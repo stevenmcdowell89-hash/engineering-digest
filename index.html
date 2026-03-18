@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Digest — Archive</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid #c4a35a;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #c4a35a;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #c4a35a;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #333;
+        }
+        .issue-card {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .issue-card:hover {
+            border-color: #c4a35a;
+            transform: translateY(-2px);
+        }
+        .issue-card .issue-type {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+        .type-weekly {
+            background: #1a3a5c;
+            color: #7ab8f5;
+        }
+        .type-deepdive {
+            background: #5c1a1a;
+            color: #f57a7a;
+        }
+        .type-light {
+            background: #1a5c3a;
+            color: #7af5a8;
+        }
+        .issue-card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        .issue-card h2 a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .issue-card h2 a:hover {
+            color: #c4a35a;
+        }
+        .issue-card .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        .issue-card .summary {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+        .issue-card .links {
+            margin-top: 16px;
+            display: flex;
+            gap: 16px;
+        }
+        .issue-card .links a {
+            font-size: 0.85rem;
+            color: #c4a35a;
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid #c4a35a;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .issue-card .links a:hover {
+            background: #c4a35a;
+            color: #0a0a0a;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Engineering Digest</h1>
+        <div class="subtitle">Curated intelligence for engineering leaders</div>
+    </div>
+
+    <div class="container">
+        <div class="section-label">All Issues</div>
+
+        <div class="issue-card">
+            <span class="issue-type type-deepdive">Deep Dive</span>
+            <h2><a href="issues/deep-dive-dd1.html">DD-1 — When the Bombs Hit the Cloud</a></h2>
+            <div class="date">18 March 2026</div>
+            <div class="summary">
+                The first military strike on hyperscale cloud infrastructure. What the Houthi drone attacks on AWS Middle East mean for sovereignty, resilience, and the assumption that the cloud is untouchable.
+            </div>
+            <div class="links">
+                <a href="issues/deep-dive-dd1.html">Read Online</a>
+                <a href="issues/deep-dive-dd1.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="issue-card">
+            <span class="issue-type type-weekly">Weekly</span>
+            <h2><a href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a></h2>
+            <div class="date">18 March 2026 &middot; Feb 18 – Mar 18, 2026</div>
+            <div class="summary">
+                Launch edition covering the month's most consequential developments: AWS Middle East drone strikes, the AI coding revolution, delivery bottlenecks in AI-augmented teams, and Revolut's UK banking licence.
+            </div>
+            <div class="links">
+                <a href="issues/issue-0.html">Read Online</a>
+                <a href="issues/issue-0.pdf">Download PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Engineering Digest &middot; Archive
+    </div>
+</body>
+</html>

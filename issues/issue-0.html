@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — February 18 – March 18, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+.cover{background:var(--navy);padding:56px 60px 48px;position:relative;overflow:hidden}.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal))}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}.cover-meta{margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:16px}
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}p{margin-bottom:12px}p:last-child{margin-bottom:0}
+.quick-hits{list-style:none;margin:16px 0}.quick-hits li{padding:14px 0;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start}.quick-hits li:last-child{border-bottom:none}.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}.glance-table td{padding:14px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:top}.glance-table tr:last-child td{border-bottom:none}.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.other-news{list-style:none;margin:16px 0}.other-news li{padding:10px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}.other-news li:last-child{border-bottom:none}.other-news .on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+.radar-list{list-style:none;margin:16px 0}.radar-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;display:flex;gap:12px}.radar-list li:last-child{border-bottom:none}.radar-date{font-weight:700;color:var(--deep-teal);white-space:nowrap;min-width:90px}
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.footer{background:var(--navy);padding:36px 60px;text-align:center}.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.cover-contents{margin-top:28px;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.feature-opener{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:40px 60px;color:var(--white);margin:0}.feature-opener .section-label{color:var(--teal)}.feature-opener h2{color:var(--white);margin-bottom:8px}.feature-opener .deck{font-family:'Playfair Display',serif;font-size:18px;color:rgba(255,255,255,.7);font-style:italic}
+.quick-takes{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;padding:40px 60px;border-bottom:1px solid var(--light-gray)}.qt{border-left:4px solid var(--teal);padding-left:20px}.qt.red{border-left-color:var(--alert-red)}.qt .section-label{margin-bottom:4px}.qt h3{margin-top:0;font-size:18px}.qt p{font-size:14px;line-height:1.65}
+.key-takeaway{background:var(--navy);border-radius:6px;padding:24px 28px;margin:24px 0;color:var(--white)}.key-takeaway h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.key-takeaway ul{list-style:none;margin:0;padding:0}.key-takeaway li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.85);line-height:1.5}.key-takeaway li::before{content:'→ ';color:var(--teal);font-weight:700}
+.callout-box{border-left:4px solid var(--teal);background:var(--off-white);padding:20px 24px;margin:20px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}.callout-box .cb-item{display:flex;flex-direction:column}.callout-box .cb-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--med-gray)}.callout-box .cb-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--navy)}
+@media(max-width:700px){.cover,.section,.mgmt-section,.foreword{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.quick-takes{grid-template-columns:1fr;padding:28px 20px}.feature-opener{padding:28px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <h1>Engineering<em>Digest</em></h1>
+  <div class="cover-meta">
+    <span class="cover-date">February 18 – March 18, 2026</span>
+    <span class="cover-issue">|&ensp;Issue #0</span>
+  </div>
+  <div class="week-badge">Monthly Retrospective</div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>AWS Middle East Drone Strikes: A New Category of Cloud Risk</li>
+      <li>The AI Coding Revolution: Claude Code, Copilot Wave 3, and the Enterprise Shake-Up</li>
+      <li>The AI Delivery Bottleneck</li>
+      <li>Revolut Gets Its Full UK Banking Licence</li>
+      <li>The Leadership Read &bull; Outside In &bull; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Drones hit cloud infrastructure and 109 services went dark for weeks. AI coding tools reached 95% weekly adoption while delivery pipelines buckled under the weight of code nobody can ship fast enough. A neobank gained the same regulatory standing as Barclays. And most engineering teams discovered they can write code faster than they can review, test, and deploy it. This is the month the assumptions broke.</p>
+</section>
+
+<!-- ═══ QUICK HITS ═══ -->
+<section class="section">
+  <div class="section-label">The Month at a Glance</div>
+  <h2>Eight stories in sixty seconds</h2>
+  <ul class="quick-hits">
+    <li><span class="qh-badge green">Node</span><div class="qh-text"><strong>Node.js 20 EOL April 30</strong> — 24.14.0 LTS released (Mar 11). New release schedule: one major per year from Node 27. Migration should be underway. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">nodejs.org</a></span></div></li>
+    <li><span class="qh-badge purple">Security</span><div class="qh-text"><strong>Chrome zero-days patched</strong> (Mar 13) — CVE-2026-3909 and CVE-2026-3910 exploited in the wild. Update immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></div></li>
+    <li><span class="qh-badge">AWS</span><div class="qh-text"><strong>Iranian drone strikes hit 3 AWS facilities in UAE and Bahrain</strong> (Mar 1) — 109+ services offline, 2/3 UAE AZs down. 16+ days without full restoration. First military strike on hyperscale cloud. <em>See lead article below.</em></div></li>
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Claude Code is the #1 AI coding tool</strong> — Pragmatic Engineer survey: 95% weekly AI usage, Claude Code overtook Copilot and Cursor in 8 months. <em>See Article 2.</em></div></li>
+    <li><span class="qh-badge">Banking</span><div class="qh-text"><strong>Revolut secured its full UK banking licence</strong> (Mar 11) — FSCS-protected deposits for 13M customers. Credit products and dual London/NY IPO ahead. <em>See Article 4.</em></div></li>
+    <li><span class="qh-badge orange">DevEx</span><div class="qh-text"><strong>CircleCI: throughput up 59%, but delivery is slowing</strong> — main branch success at 70.8% (5-year low). Fewer than 1 in 20 teams shipping at AI speed. <em>See Article 3.</em></div></li>
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Microsoft Copilot Wave 3 launches May 1 with Claude</strong> — Agent 365 at $15/user, E7 Frontier Suite at $99/user. Anthropic's Cowork technology in mainline Copilot. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></span></div></li>
+    <li><span class="qh-badge">Regulation</span><div class="qh-text"><strong>EU AI Act high-risk obligations apply August 2, 2026</strong> — organisations deploying AI in hiring, credit scoring, or critical infrastructure must comply. Planning window is narrowing.</div></li>
+  </ul>
+</section>
+
+<!-- ═══ ARTICLE 1: FEATURE OPENER — AWS DRONE STRIKES ═══ -->
+<div class="feature-opener">
+  <div class="section-label">Priority 0 &bull; Cloud &amp; Infrastructure</div>
+  <h2>When Drones Hit the Cloud: The AWS Middle East Strikes</h2>
+  <p class="deck">The first military attack on hyperscale cloud infrastructure — and everything it exposed about resilience assumptions, data residency, and the physical layer we forgot existed.</p>
+</div>
+<section class="section">
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">109+</div><div class="stat-label">Services affected</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Facilities hit</div></div>
+    <div class="stat"><div class="stat-num">2 of 3</div><div class="stat-label">UAE AZs offline</div></div>
+    <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Days recovery</div></div>
+  </div>
+
+  <p>On March 1, Iranian drone strikes hit two AWS data centres in the UAE and damaged a third in Bahrain. Two of three availability zones in the UAE went offline — not degraded, offline. 109+ AWS services became unavailable. The physical damage was severe: structural, power, fire, and water damage from suppression systems. AWS initially described "objects" causing a "localized power issue," then confirmed the strikes 36 hours later.</p>
+
+  <p>The banking impact was immediate. ADCB mobile banking went down. Emirates NBD was disrupted. Payment platforms Alaan and Hubpay stopped processing. Careem — the region's dominant ride-hailing app — was disrupted. The effects cascaded beyond the Middle East: US-EAST-1 experienced degraded performance, Snowflake reported service issues, and Claude AI saw availability problems. As of mid-March, more than 16 days after the strikes, there was no full restoration date. AWS's recommendation to customers was extraordinary: migrate your workloads to alternate regions.</p>
+
+  <h3>The data residency paradox</h3>
+  <p>UAE and Bahrain Central Bank mandates require financial data to stay in-region. The region's infrastructure was physically destroyed. Failing over to another region resolves the outage but creates a legal problem — you can't comply with data residency requirements when the region doesn't exist in a functional sense. The Dubai Financial Services Authority issued emergency guidance for temporary cross-region processing, a regulatory improvisation nobody had planned for.</p>
+
+  <div class="pull-quote">
+    <p>This is the first major military strike on hyperscale cloud infrastructure. Data centres are now military targets, and $300 billion in Gulf AI and data centre investments are at risk.</p>
+    <cite>— CSIS; The Information, Semafor (March 2026)</cite>
+  </div>
+
+  <p>Multi-AZ redundancy within a single region — the standard resilience playbook — assumed that availability zones fail independently through technical faults, not simultaneously through military action. That assumption is broken. For any organisation running production workloads in a geopolitically contested region, the conversation has shifted from "how many AZs?" to "how many <em>regions</em>?" — and what happens to your compliance posture when you can't use the one the regulator requires.</p>
+
+  <div class="key-takeaway">
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Multi-AZ ≠ multi-region. Simultaneous AZ failure from physical attack was not in most DR plans.</li>
+      <li>Data residency mandates and disaster recovery are now in direct conflict in contested regions.</li>
+      <li>AWS's advice to migrate workloads is unprecedented — and signals long-term uncertainty for the ME region.</li>
+      <li>Cascading failures to US-EAST-1, Snowflake, and Claude AI show interconnection risks beyond the strike zone.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://www.cnbc.com/2026/03/02/amazon-says-drone-strikes-damaged-3-facilities-in-uae-and-bahrain.html">CNBC</a>, <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.reuters.com/world/middle-east/amazons-cloud-unit-says-drone-strikes-damaged-uae-bahrain-facilities-2026-03-03/">Reuters</a>, <a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">Data Center Knowledge</a>, <a href="https://www.marketplace.org/story/2026/03/04/drone-strikes-highlight-data-center-vulnerabilities">Marketplace</a></p>
+</section>
+
+<!-- ═══ ARTICLES 2–3: QUICK TAKES ═══ -->
+<div class="quick-takes">
+  <div class="qt">
+    <div class="section-label">AI &amp; Tooling</div>
+    <h3>The AI Coding Arms Race Enters a New Phase</h3>
+    <p>The Pragmatic Engineer's March survey of 906 engineers is definitive: 95% use AI tools weekly, 75% for half or more of their work, 55% use agents regularly. Claude Code is the #1 most-used AI coding tool — overtaking Copilot and Cursor in just eight months since its May 2025 launch. It commands 46% of "most loved" mentions.</p>
+    <p>Anthropic's disruption goes beyond coding tools. Their COBOL modernisation capability caused IBM shares to drop 13% on February 23. The $100M Claude Partner Network launched March 12 with Claude Certified Architect training. Meanwhile, Microsoft is integrating Claude into Copilot Wave 3 (March 10), with Agent 365 launching May 1 at $15/user and the E7 Frontier Suite at $99/user.</p>
+    <p>GitHub's agentic Copilot capabilities went GA in JetBrains on March 11: custom agents, sub-agents, plan agents, MCP auto-approve. But the economics of frontier models are biting — GitHub removed premium models from the free student plan on March 13, drawing 1,836 downvotes from the ~2M affected students.</p>
+    <p>The question for engineering leaders: your teams are already saturated with AI tools. The contest now is over who controls the agent layer — and whether your procurement decisions match what your engineers actually want to use.</p>
+    <p class="source-tag">Sources: <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a>, <a href="https://www.cnbc.com/2026/02/23/ibm-is-the-latest-ai-casualty-shares-are-tanking-on-anthropic-cobol-threat.html">CNBC</a>, <a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a>, <a href="https://github.blog/changelog/2026-03-11-major-agentic-capabilities-improvements-in-github-copilot-for-jetbrains-ides/">GitHub Blog</a></p>
+  </div>
+  <div class="qt red">
+    <div class="section-label alert">Engineering Leadership</div>
+    <h3>The AI Delivery Bottleneck</h3>
+    <p>CircleCI's 2026 State of Software Delivery report — 28 million CI/CD workflows analysed — reveals the paradox at the heart of the AI coding boom. Average throughput jumped 59% year-over-year, the biggest increase ever. But on the main branch, where code actually ships, delivery throughput for the median team fell 7%.</p>
+
+    <div class="callout-box">
+      <div class="cb-item"><span class="cb-label">Throughput</span><span class="cb-value">+59%</span></div>
+      <div class="cb-item"><span class="cb-label">Main branch</span><span class="cb-value">−7%</span></div>
+      <div class="cb-item"><span class="cb-label">Success rate</span><span class="cb-value">70.8%</span></div>
+      <div class="cb-item"><span class="cb-label">Recovery</span><span class="cb-value">72 min</span></div>
+    </div>
+
+    <p>Main branch success rates hit 70.8% — lowest in five-plus years, against a 90% benchmark. Recovery times are up 13% to 72 minutes. Feature branch throughput is up 15% for the median team, meaning more work-in-progress piling up in branches that don't make it to production.</p>
+    <p>The distribution is stark. The top 5% of teams saw throughput jump 97%. The median got 4%. The bottom quartile got nothing. AI is amplifying existing delivery strengths, not distributing them evenly. Writing code is no longer the constraint — review, validation, and integration is where it all piles up.</p>
+    <p class="source-tag">Sources: <a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">CircleCI</a>, <a href="https://circleci.com/resources/2026-state-of-software-delivery/">CircleCI Report</a></p>
+  </div>
+</div>
+
+<!-- ═══ ARTICLE 4: REVOLUT ═══ -->
+<section class="section">
+  <div class="section-label">Banking &amp; Fintech</div>
+  <h2>Revolut Gets Its Full UK Banking Licence</h2>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">13M</div><div class="stat-label">UK customers</div></div>
+    <div class="stat"><div class="stat-num">$75B</div><div class="stat-label">Valuation</div></div>
+    <div class="stat"><div class="stat-num">£3B</div><div class="stat-label">UK investment planned</div></div>
+    <div class="stat"><div class="stat-num">£120K</div><div class="stat-label">FSCS protection</div></div>
+  </div>
+
+  <p>After a four-year application process and 18 months in mobilisation, the PRA lifted restrictions on March 11 and Revolut Bank UK Ltd became a fully licensed bank. Eligible deposits are now FSCS-protected up to £120,000 — the same safety net customers get at Barclays or HSBC. This is the moment the fintech narrative shifts from "challenger nibbling at margins" to "direct competitor with regulatory parity."</p>
+
+  <p>The licence unlocks lending and credit products — the real revenue engines of banking, locked behind full authorisation until now. Current accounts are rolling out gradually to new customers; existing customers remain on the e-money entity, with migration over months. Revolut has committed £3 billion to UK investment and 1,000 high-skilled jobs. They're also exploring a dual London/New York IPO at their $75 billion valuation. The Bank of England governor reportedly blocked a chancellor-arranged meeting over political interference concerns — a signal of how seriously the establishment takes this.</p>
+
+  <p>For anyone building payment infrastructure or customer-facing banking technology in the UK: this is a competitor with 13 million customers that just gained the full platform to offer lending, credit, and protected deposits — powered by an engineering-led operating model traditional banks cannot replicate without rebuilding from scratch.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.reuters.com/business/finance/revolut-gets-full-uk-banking-licence-after-years-long-wait-2026-03-11/">Reuters</a>, <a href="https://www.cnbc.com/2026/03/11/revolut-acquires-full-uk-banking-license.html">CNBC</a>, Bloomberg</p>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section">
+  <div class="section-label">Other News This Month</div>
+  <h2>In Brief</h2>
+  <ul class="other-news">
+    <li><strong>PMI and Agile Alliance released the Manifesto for Enterprise Agility</strong> (Mar 3) — first joint manifesto, extending agile from team delivery to enterprise governance, funding, and leadership. <span class="on-source"><a href="https://www.pmi.org/learning/agile/manifesto-for-enterprise-agility">PMI</a>, <a href="https://agilealliance.org/built-for-change-enterprise-agility-isnt-optional-anymore/">Agile Alliance</a></span></li>
+    <li><strong>Anthropic discovered 24,000+ fraudulent accounts from Chinese AI labs</strong> — DeepSeek, Moonshot, and MiniMax systematically scraping Claude capabilities. <span class="on-source"><a href="https://blog.mean.ceo/anthropic-claude-news-march-2026/">Mean CEO Blog</a></span></li>
+    <li><strong>Chrome zero-days patched</strong> (Mar 13) — CVE-2026-3909 and CVE-2026-3910 exploited in the wild. Update immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></li>
+    <li><strong>MCP security concerns mounting</strong> — RSA Conference 2026 submissions heavily focused on Model Context Protocol risks. The attack surface of agentic AI is becoming a first-class security concern. <span class="on-source"><a href="https://www.cio.com/article/4136548/why-model-context-protocol-is-suddenly-on-every-executive-agenda.html">CIO</a></span></li>
+    <li><strong>UK open banking heading toward open finance</strong> — FCA expects VRP live transactions in Q1, statutory instrument for new regulatory framework expected 2026. <span class="on-source"><a href="https://www.openbanking.org.uk/insights/2026-a-landmark-year-for-open-banking/">Open Banking UK</a></span></li>
+    <li><strong>March Patch Tuesday: 79 CVEs, 2 zero-days</strong> — SQL Server elevation of privilege and .NET denial of service both exploited. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-march-2026-patch-tuesday-fixes-2-zero-days-79-flaws/">BleepingComputer</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section">
+  <div class="section-label">Platform Updates</div>
+  <h2>At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td class="platform">.NET</td><td>March security patches across .NET 10/9/8. Emergency .NET 10.0.5 out-of-band fix for macOS debugging (Mar 12).</td></tr>
+      <tr><td class="platform">Node.js</td><td>24.14.0 LTS (Mar 11). Node 20 EOL April 30 — migration should be underway. <a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">New release schedule</a>: one major per year from Node 27.</td></tr>
+      <tr><td class="platform">GitHub</td><td>Copilot agentic capabilities GA in JetBrains. VS 2026 18.3.0 with Copilot memories. AGENTS.md instruction file support.</td></tr>
+      <tr><td class="platform">AWS</td><td>S3 turned 20. Route 53 Global Resolver GA. Stateful MCP in Bedrock AgentCore. ME region recovery ongoing.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<hr class="feature-break">
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Agentic Engineering in Practice: What the Pragmatic Summit Told Us</h2>
+  <p style="margin-bottom:20px">Simon Willison — creator of Datasette and one of the most respected voices in AI-assisted development — sat down for a fireside chat at Gergely Orosz's Pragmatic Summit in San Francisco. Published March 14. It's the most useful thing released this month for anyone managing an engineering team that uses AI tools.</p>
+
+  <h3>The adoption curve is real — and your people are at different points on it</h3>
+  <p>Willison described distinct phases: ChatGPT for occasional questions, then AI agents writing bits of code, then agents producing more code than the human. The newest phase — where Willison operates now — is where "you don't read the code." The agent writes it, runs it, tests it, and you evaluate the output. Understanding where each person on your team sits on this curve matters, because they need fundamentally different support at each stage.</p>
+
+  <h3>TDD becomes essential, not optional</h3>
+  <p>"Every single coding session I start with an agent, I start by saying here's how to run the test." When AI writes the code, tests become the specification language — the mechanism through which you verify the agent did what you intended. Teams without strong test coverage are flying blind with agents.</p>
+
+  <h3>Mental exhaustion is the new bottleneck</h3>
+  <div class="pull-quote">
+    <p>After two hours of that I'm done for the day. I'm mentally exhausted. People worry about skill atrophy and being lazy. I think this is the opposite of that. You have to operate firing on all cylinders if you're going to keep your trio or quadruple of agents busy solving all these different problems.</p>
+    <cite>— Simon Willison, Pragmatic Summit, 2026</cite>
+  </div>
+  <p>Running 3–4 agent sessions in parallel is technically possible but cognitively draining. Two hours of high-intensity agent orchestration can outproduce a full day of traditional development. The engineers using AI most effectively may look like they're working less. Traditional productivity metrics are becoming meaningless.</p>
+
+  <h3>Maintain a "retry list"</h3>
+  <p>Keep track of tasks that AI failed at and re-test every six months as models improve. Willison describes regularly being surprised when something impossible three months ago now works perfectly. The teams that systematically re-test their assumptions will find capabilities others miss.</p>
+
+  <h3>What this means for management</h3>
+  <p>Productivity measurement needs rethinking. Team practices must account for cognitive intensity. Tooling investment is becoming as important as headcount. The engineers leaning furthest into agents aren't the ones who need less attention — they're navigating the steepest learning curve and operating at the highest cognitive load.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/" class="mgmt-link">Read the full post: simonwillison.net/2026/Mar/14/pragmatic-summit/ →</a></p>
+</section>
+
+<!-- ═══ OUTSIDE IN ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>The Pragmatic Engineer AI Survey: How AI Is Reshaping Engineering Teams</h2>
+  <p>The Pragmatic Engineer's AI Tooling Survey (published March 3) surveyed 900+ engineers and engineering leaders, and the workforce data buried in it is as significant as the tooling data. Big Tech junior hiring has plummeted from 32% of new hires in 2019 to just 7% today. Entry-level roles are down 73%. The junior pipeline that fed every major engineering organisation for the past two decades is collapsing.</p>
+
+  <h3>The AI-native workforce</h3>
+  <p>56% of engineers now do 70% or more of their work with AI tools. Staff+ engineers are leading agent adoption at 63.5% — the most senior individual contributors are the heaviest users, not juniors experimenting. Claude Code is the most loved tool at 46%, far ahead of Cursor at 19% and Copilot at 9%. The preference split is stark: small companies favour Claude Code (75%), while enterprises default to GitHub Copilot through Microsoft procurement bundling.</p>
+
+  <h3>What this means for team composition</h3>
+  <p>If junior hiring is collapsing and senior engineers are doing most of their work through AI agents, the traditional team pyramid — many juniors, some mids, few seniors — is inverting. The question for engineering leaders isn't just "which AI tools should we use?" It's "what does a team look like when AI handles the work juniors used to do, and senior engineers spend their time orchestrating agents instead of writing code directly?" The Pragmatic Engineer data suggests we're already living in that world — most organisations just haven't updated their org charts to reflect it.</p>
+
+  <p class="source-tag"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Read the full survey: The Pragmatic Engineer — AI Tooling for Software Engineers in 2026 →</a></p>
+</section>
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-list">
+    <li><span class="radar-date">April 19</span> Claude Haiku 3 model retirement — migrate to Haiku 4.5</li>
+    <li><span class="radar-date">April 22</span> AWS Summit London — expect Bedrock, Trainium, and ME recovery announcements</li>
+    <li><span class="radar-date">April 29</span> Zero Day Con, Dublin — Ireland's largest cybersecurity conference</li>
+    <li><span class="radar-date">April 30</span> Node.js 20 end of life</li>
+    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 / Agent 365 launch ($15/user)</li>
+    <li><span class="radar-date">August 2</span> EU AI Act — high-risk AI obligations apply</li>
+  </ul>
+</section>
+
+<!-- ═══ READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Month's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">AI Tooling for Software Engineers in 2026</a></span><span class="source">The Pragmatic Engineer</span></li>
+    <li><span class="title"><a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">5 Key Takeaways from the 2026 State of Software Delivery</a></span><span class="source">CircleCI</span></li>
+    <li><span class="title"><a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/">My fireside chat about agentic engineering</a></span><span class="source">simonwillison.net</span></li>
+    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/the-future-of-software-engineering-with-ai">The Future of Software Engineering with AI</a></span><span class="source">The Pragmatic Engineer</span></li>
+    <li><span class="title"><a href="https://www.cio.com/article/4136548/why-model-context-protocol-is-suddenly-on-every-executive-agenda.html">Why Model Context Protocol is suddenly on every executive agenda</a></span><span class="source">CIO</span></li>
+    <li><span class="title"><a href="https://www.pmi.org/learning/agile/manifesto-for-enterprise-agility">Manifesto for Enterprise Agility</a></span><span class="source">PMI / Agile Alliance</span></li>
+  </ul>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">February 18 – March 18, 2026 · Monthly Retrospective · Issue #0</div>
+  <div class="footer-next">Next edition: March 20, 2026</div>
+</footer>
+
+</div></body></html>

@@ -1,0 +1,63 @@
+{
+  "last_issue_number": 0,
+  "consecutive_non_deepdive": 0,
+  "last_run_date": "2026-03-18",
+  "issues": [
+    {
+      "issue_number": 0,
+      "type": "weekly",
+      "title": "Issue 0 — Monthly Retrospective",
+      "date": "2026-03-18",
+      "date_range": "February 18 – March 18, 2026",
+      "html_file": "issues/issue-0.html",
+      "pdf_file": "issues/issue-0.pdf",
+      "articles": [
+        {
+          "title": "When the Bombs Hit the Cloud",
+          "topic": "AWS Middle East Drone Strikes",
+          "priority": 0,
+          "format": "feature_opener"
+        },
+        {
+          "title": "The AI Coding Revolution Nobody Planned For",
+          "topic": "AI Coding Tools",
+          "priority": 1,
+          "format": "quick_take"
+        },
+        {
+          "title": "The AI Delivery Bottleneck",
+          "topic": "AI/DevOps Bottleneck (CircleCI)",
+          "priority": 3,
+          "format": "quick_take"
+        },
+        {
+          "title": "Revolut Gets Its UK Banking Licence",
+          "topic": "Revolut UK Licence",
+          "priority": 4,
+          "format": "short_form"
+        }
+      ],
+      "leadership_read": {
+        "title": "Simon Willison on Agentic Engineering",
+        "source": "Pragmatic Summit, March 14 2026"
+      },
+      "outside_in": {
+        "title": "How Engineering Teams Actually Use AI",
+        "source": "Pragmatic Engineer AI Survey 2026"
+      }
+    },
+    {
+      "issue_number": "DD-1",
+      "type": "deep_dive",
+      "title": "Deep Dive DD-1 — When the Bombs Hit the Cloud",
+      "date": "2026-03-18",
+      "topic": "AWS Middle East Drone Strikes",
+      "priority": 0,
+      "html_file": "issues/deep-dive-dd1.html",
+      "pdf_file": "issues/deep-dive-dd1.pdf"
+    }
+  ],
+  "companies_featured_outside_in": ["Pragmatic Engineer"],
+  "companies_featured_leadership_read": ["Simon Willison / Pragmatic Summit"],
+  "topics_deep_dived": ["AWS Middle East Drone Strikes"]
+}
