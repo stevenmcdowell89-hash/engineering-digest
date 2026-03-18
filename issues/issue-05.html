@@ -295,20 +295,22 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <!-- ═══ OUTSIDE IN ═══ -->
 <section class="outside-in-section">
   <div class="section-label">Outside In</div>
-  <h2>The SaaSpocalypse Through Goldman's Lens</h2>
-  <h3>Why the software market selloff is structural, not cyclical</h3>
+  <h2>How Stripe Built Ledger: Tracking Every Dollar Across 135 Currencies</h2>
+  <h3>The engineering behind proving 5 billion daily transactions are correct</h3>
 
-  <p>Goldman Sachs analysis, covered across multiple financial outlets, predicts AI agents will significantly broaden the overall software market by the decade's end — but capture disproportionate profit share. The consultancy estimates that by 2030, over 60% of software economics may flow through agent-based systems rather than traditional SaaS licences.</p>
+  <p>Stripe's engineering team published a detailed breakdown of Ledger — their system for tracking and validating every money movement across the platform. Processing 5 billion events per day across 135+ currencies and 185 countries, Ledger serves as the immutable system of record for Stripe's entire Global Payments and Treasury Network. The engineering challenges are directly relevant to anyone building or operating payment infrastructure at scale.</p>
 
-  <p>The structural argument: intelligence is becoming mobile, data is becoming understandable, and workflows are becoming replicable. Software increasingly resembles a container, with intelligence becoming the actual product. The implication is that the recurring-revenue moats SaaS companies built — vendor lock-in through data formats, workflow integration, institutional knowledge — are eroding simultaneously.</p>
+  <h3>The core abstraction</h3>
+  <p>Ledger models money movement as a state machine using double-entry bookkeeping — not just for accounting correctness, but as a data integrity mechanism. Every transaction is an event that moves funds between accounts through defined states (creation, submission, release). Credits and debits must balance to zero at steady state, which means a single incorrect event in billions of transactions can be detected mathematically. The system achieves 99.9999% explainability — meaning for every dollar Stripe processes, 99.9999% can be traced end-to-end through the system.</p>
 
-  <p>Short sellers profited over $20 billion in 2026 betting against traditional SaaS. The IGV Software Index was down 30% from its September peak by February. What started as a valuation correction is now being read as a permanent repricing of business models.</p>
+  <h3>What stands out</h3>
+  <p>Two things are particularly notable. First, Stripe treats data quality as a first-class engineering discipline with its own metrics platform built on top of Ledger. Three metrics — clearing (are balances resolving to zero?), timeliness (is data arriving within thresholds?), and completeness (are all expected events present?) — are monitored continuously with hierarchical alerting and auto-generated investigation tools. Teams get self-service dashboards showing their data quality scores with dollar-impact context.</p>
+  <p>Second, the system is designed for a messy world. External banking partners send malformed reports. Settlement cycles vary from real-time to monthly across different countries. Macro events — Stripe explicitly cites bank collapses — create exceptions that no schema anticipated. Rather than trying to eliminate imperfection, Ledger bounds it: proactive alerting catches anomalies, and data corrections go through a two-phase review process modelled on CI/CD pipelines.</p>
 
-  <p>Not everyone agrees. Wedbush's Dan Ives argues investors are making a mistake dumping software stocks, believing AI will complement rather than displace existing models. The reality is probably both — some categories (task management, CRM, tier-1 support) face existential pressure, while others (security, observability, infrastructure) may be enhanced by AI rather than replaced.</p>
+  <h3>Why this matters</h3>
+  <p>The pattern of treating financial data quality as an observable, measurable engineering concern — rather than something discovered during month-end close — is applicable beyond Stripe's scale. Any organisation processing payments across multiple corridors, currencies, or banking partners faces the same fundamental challenge: proving that money moved correctly through heterogeneous systems. Stripe's answer is to make correctness provable by design, not verified after the fact.</p>
 
-  <p class="source-tag"><a href="https://www.forbes.com/sites/donmuir/2026/02/04/300-billion-evaporated-the-saaspocalypse-has-begun/">Read the full Goldman analysis via Forbes →</a></p>
-
-  <p class="source-tag">Sources: <a href="https://www.forbes.com/sites/donmuir/2026/02/04/300-billion-evaporated-the-saaspocalypse-has-begun/">Forbes</a>, <a href="https://www.bloomberg.com/news/articles/2026-02-software-selloff">Bloomberg</a>, <a href="https://foundationcapital.com/ai-agents-saas/">Foundation Capital</a>, <a href="https://digitalapplied.com/saaspocalypse-ai-agents/">Digital Applied</a></p>
+  <p class="source-tag"><a href="https://stripe.com/blog/ledger-stripe-system-for-tracking-and-validating-money-movement">Read the full post: stripe.com/blog/ledger-stripe-system-for-tracking-and-validating-money-movement →</a></p>
 </section>
 <hr class="feature-break">
 
