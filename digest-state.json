@@ -1,8 +1,51 @@
 {
-  "last_issue_number": 0,
-  "consecutive_non_deepdive": 0,
+  "last_issue_number": 0.5,
+  "consecutive_non_deepdive": 1,
   "last_run_date": "2026-03-18",
   "issues": [
+    {
+      "issue_number": 0.5,
+      "type": "weekly",
+      "title": "Issue 0.5 — The SaaSpocalypse Edition",
+      "date": "2026-03-18",
+      "date_range": "March 11–18, 2026",
+      "html_file": "issues/issue-05.html",
+      "pdf_file": "issues/issue-05.pdf",
+      "articles": [
+        {
+          "title": "The SaaSpocalypse: When AI Agents Ate the Software Industry",
+          "topic": "AI agents disrupting SaaS / Atlassian layoffs",
+          "priority": 1,
+          "format": "feature_opener"
+        },
+        {
+          "title": "GPT-5.4, Mistral Small 4, and the Agent-Native Race",
+          "topic": "AI model releases",
+          "priority": 1,
+          "format": "quick_take"
+        },
+        {
+          "title": "Chrome Zero-Days and the NCSC Cyber Warning",
+          "topic": "Security / Cyber threats",
+          "priority": 10,
+          "format": "quick_take"
+        },
+        {
+          "title": "UK Banks Are Losing a Third of Their Market to Fintechs",
+          "topic": "Banking/fintech UK market share",
+          "priority": 4,
+          "format": "short_form"
+        }
+      ],
+      "leadership_read": {
+        "title": "Mike Cannon-Brookes on the AI Restructuring",
+        "source": "Atlassian Work Life, March 11 2026"
+      },
+      "outside_in": {
+        "title": "The SaaSpocalypse Through Goldman's Lens",
+        "source": "Goldman Sachs analysis via Forbes/Bloomberg"
+      }
+    },
     {
       "issue_number": 0,
       "type": "weekly",
@@ -57,7 +100,7 @@
       "pdf_file": "issues/deep-dive-dd1.pdf"
     }
   ],
-  "companies_featured_outside_in": ["Pragmatic Engineer"],
-  "companies_featured_leadership_read": ["Simon Willison / Pragmatic Summit"],
+  "companies_featured_outside_in": ["Goldman Sachs / Forbes", "Pragmatic Engineer"],
+  "companies_featured_leadership_read": ["Atlassian / Mike Cannon-Brookes", "Simon Willison / Pragmatic Summit"],
   "topics_deep_dived": ["AWS Middle East Drone Strikes"]
 }
