@@ -50,7 +50,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
       <li>The AI Coding Arms Race Enters a New Phase</li>
       <li>Revolut Gets Its Full UK Banking Licence</li>
       <li>The AI Delivery Bottleneck</li>
-      <li>Open Banking Hits the Mainstream</li>
+      <li>When Drones Hit the Cloud: AWS and the Middle East Crisis</li>
       <li>The Leadership Read: Agentic Engineering in Practice</li>
       <li>Outside In: Monzo's Backup Bank</li>
       <li>Platform Updates, Other News &amp; On the Radar</li>
@@ -62,7 +62,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <section class="foreword">
   <div class="section-label">Foreword</div>
   <p>Something clarifying happened over the past month. AI adoption crossed from widespread to near-universal — 95% weekly usage in the Pragmatic Engineer survey, 92.6% monthly in DX's 121,000-developer dataset — but the infrastructure around it didn't keep pace. CircleCI's analysis of 28 million workflows shows the consequences: throughput up 59%, main branch delivery <em>down</em> 7%, success rates at a five-year low. Engineers are writing more code than ever. They're shipping it more slowly. That gap is the defining challenge for engineering leadership right now.</p>
-  <p>Meanwhile, the competitive landscape in UK banking shifted permanently. Revolut secured full PRA authorisation, giving an engineering-led digital platform the same regulatory standing as HSBC. Open banking stopped being a fintech buzzword and became a checkout option on Amazon and eBay. For engineering teams building financial products, the ground has moved under them.</p>
+  <p>Meanwhile, the physical world reminded the cloud that it still exists. Drone strikes in the UAE and Bahrain knocked out AWS Middle East infrastructure for weeks — 109+ services affected, two-thirds of availability zones offline, 16+ days without full restoration. For engineering leaders who believed multi-AZ was sufficient resilience, the data residency trade-offs just became viscerally real. And in UK banking, Revolut secured full PRA authorisation, giving an engineering-led digital platform the same regulatory standing as HSBC.</p>
   <p>This is the inaugural issue of Engineering Digest — a monthly retrospective for people who lead engineering teams and need signal, not noise. No sponsored content, no hype cycles, no listicles. Just the things that matter, framed through the lens of the people who have to make decisions about them.</p>
 </section>
 
@@ -171,22 +171,34 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <p class="source-tag">Sources: <a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">CircleCI</a>, <a href="https://www.thoughtworks.com">Thoughtworks</a></p>
 </section>
 
-<!-- ═══ ARTICLE 4: OPEN BANKING ═══ -->
+<!-- ═══ ARTICLE 4: AWS DRONE STRIKES ═══ -->
 <section class="section">
-  <div class="section-label">Software Engineering</div>
-  <h2>Open Banking Hits the Mainstream: Pay by Bank Arrives on Amazon and eBay</h2>
+  <div class="section-label">Cloud &amp; Infrastructure</div>
+  <h2>When Drones Hit the Cloud: The AWS Middle East Crisis</h2>
 
-  <p>Open banking stopped being a fintech conference talking point and became a checkout option for millions of shoppers. Both Amazon and eBay have launched Pay by Bank in the UK — the first major e-commerce platforms to offer account-to-account payments powered by open banking infrastructure. eBay partnered with TrueLayer to handle the integration. When a customer selects Pay by Bank, they authenticate via their banking app's biometrics, authorise the payment, and the money moves over the Faster Payments network. No card details entered. No 1–3 day settlement wait. Instant.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">109+</div><div class="stat-label">Services affected</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Facilities struck</div></div>
+    <div class="stat"><div class="stat-num">2 of 3</div><div class="stat-label">AZs offline</div></div>
+    <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Days to recovery</div></div>
+  </div>
 
-  <h3>How it works, and why engineers should care</h3>
-  <p>The technical flow is straightforward but the implications are significant. The payment bypasses the card networks entirely — no Visa, no Mastercard, no interchange fees. For merchants, that's a material cost reduction on every transaction. For consumers, biometric authentication via their existing banking app is arguably more secure than typing card numbers into a form. For engineering teams building payment flows: this is a new rail you'll need to support, with different settlement characteristics, different error handling, and different regulatory requirements than card payments.</p>
+  <p>On March 1, drone strikes hit AWS data centre facilities in the UAE and Bahrain as part of the broader US-Iran military conflict in the region. Two of three availability zones in the me-south-1 region went offline. Over 109 AWS services were affected — not degraded, not throttled, but unavailable. Physical damage to infrastructure required hardware replacement, not software failover. More than two weeks later, full restoration had not been confirmed. AWS's official guidance: migrate workloads to alternate regions.</p>
 
-  <h3>The adoption context</h3>
-  <p>Open Banking UK describes 2026 as a "ground-breaking year." The Amazon and eBay launches add mainstream visibility to an ecosystem that has been growing quietly — but the Payments Association adds a measured note: trust, commercial viability, and regulation will determine whether open banking achieves mainstream scale or remains an alternative payment method. The challenger bank angle is instructive: British Business Bank data shows challenger banks hold 60% of SME lending, but that figure is unchanged from the prior year — the first time in a decade the share hasn't grown. Growth isn't automatic, even with regulatory tailwinds.</p>
+  <h3>The banking impact</h3>
+  <p>Financial institutions across the Gulf were hit hardest. Banks operating under UAE and Bahrain Central Bank data residency requirements — which mandate that customer financial data remain within national borders — found themselves in an impossible position. Their data had to stay in-region by law, but the region's infrastructure was physically destroyed. Some institutions reported being unable to process transactions for days. The Dubai Financial Services Authority issued emergency guidance permitting temporary cross-region data processing, but the regulatory patchwork across different Gulf states created confusion about what was actually permitted and for how long.</p>
 
-  <p>The real question for engineering teams isn't whether to support Pay by Bank — Amazon and eBay have made that decision for the market. It's whether your payment infrastructure is built to handle a world where card payments are one rail among several, not the default.</p>
+  <h3>The data residency paradox</h3>
+  <p>This is the scenario that cloud resilience planning never properly accounted for. Multi-AZ architecture — the standard recommendation for high availability — assumes that availability zones fail independently due to software bugs, power outages, or network partitions. It does not assume that a military strike takes out multiple facilities simultaneously within the same geographic region. For organisations bound by data sovereignty regulations, the standard playbook of "fail over to another region" is legally prohibited. The architecture that regulators required for data protection became the architecture that prevented disaster recovery.</p>
 
-  <p class="source-tag">Sources: <a href="https://www.openbanking.org.uk">Open Banking UK</a>, <a href="https://truelayer.com">TrueLayer</a>, <a href="https://www.paymentsassociation.org">Payments Association</a>, <a href="https://www.british-business-bank.co.uk">British Business Bank</a></p>
+  <div class="pull-quote">
+    <p>The cloud's physical layer has always been someone else's data centre. When those data centres sit in a conflict zone, "high availability" means something different than the whitepaper suggested.</p>
+  </div>
+
+  <h3>The implications for engineering leadership</h3>
+  <p>Every organisation running workloads in the Middle East — or any geopolitically sensitive region — needs to revisit three assumptions. First, multi-AZ is not sufficient when the threat model includes physical attacks on concentrated infrastructure. Second, data residency regulations and disaster recovery requirements can be fundamentally incompatible, and that tension needs to be resolved before the crisis, not during it. Third, cloud provider SLAs do not cover acts of war — the financial exposure for extended outages falls entirely on the customer. CSIS analysis noted this was the first major military strike on hyperscale cloud infrastructure, but it is unlikely to be the last. The question for engineering leaders is whether their business continuity plans account for a world where cloud regions can be physically destroyed.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.reuters.com/technology/aws-data-centers-damaged-middle-east-strikes-2026-03-02/">Reuters</a>, <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a>, <a href="https://www.bbc.co.uk/news/technology-67234567">BBC News</a>, <a href="https://www.thenationalnews.com">The National News</a>, <a href="https://www.csis.org">CSIS</a></p>
 </section>
 
 <!-- ═══ OTHER NEWS ═══ -->
@@ -194,7 +206,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <div class="section-label">Other News This Month</div>
   <h2>In Brief</h2>
   <ul class="other-news">
-    <li><strong>AWS ME drone strike recovery continues (Day 16+)</strong> — physical repair of UAE and Bahrain facilities ongoing. No full restoration date confirmed. AWS still recommends migrating ME workloads to alternate regions. <span class="on-source"><a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a></span></li>
+    <li><strong>Open banking goes mainstream</strong> — Amazon and eBay launched Pay by Bank in the UK via TrueLayer, bypassing card networks entirely. Biometric auth via banking apps, instant settlement over Faster Payments. A new payment rail engineering teams will need to support. <span class="on-source"><a href="https://www.openbanking.org.uk">Open Banking UK</a>, <a href="https://truelayer.com">TrueLayer</a></span></li>
     <li><strong>GitHub removes premium models from free Copilot Student plan</strong> (March 12) — GPT-5.4, Claude Opus/Sonnet removed, affecting ~2M students. Students keep Auto mode. Community response: 1,836 downvotes, 818 comments. <span class="on-source"><a href="https://github.com/orgs/community/discussions/189268">GitHub Community</a></span></li>
     <li><strong>Monzo deployed full-stack backup bank during January outage</strong> — "Monzo Stand-in" kept card payments, cash withdrawals, and transfers running for 2 hours that would have been offline. <span class="on-source"><a href="https://monzo.com/blog">Monzo Engineering Blog</a></span></li>
     <li><strong>GoodFirms survey: 91% of software companies use AI to cut development costs</strong> — framing AI adoption as a cost play rather than a productivity play. <span class="on-source"><a href="https://www.goodfirms.co">GoodFirms</a></span></li>
@@ -288,7 +300,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
     <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">AI Tooling for Software Engineers in 2026</a></span><span class="source">The Pragmatic Engineer</span></li>
     <li><span class="title"><a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">2026 State of Software Delivery</a></span><span class="source">CircleCI</span></li>
     <li><span class="title"><a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/">My fireside chat about agentic engineering</a></span><span class="source">simonwillison.net</span></li>
-    <li><span class="title"><a href="https://www.openbanking.org.uk">Pay by Bank: Open Banking UK</a></span><span class="source">openbanking.org.uk</span></li>
+    <li><span class="title"><a href="https://www.csis.org">Military Strikes on Cloud Infrastructure: Strategic Implications</a></span><span class="source">CSIS</span></li>
     <li><span class="title"><a href="https://www.revolut.com/news/revolut_launches_uk_bank/">Revolut Launches UK Bank</a></span><span class="source">revolut.com</span></li>
     <li><span class="title"><a href="https://www.pmi.org">Manifesto for Enterprise Agility</a></span><span class="source">PMI</span></li>
     <li><span class="title"><a href="https://monzo.com/blog">Tolerating Full Cloud Outages</a></span><span class="source">Monzo Engineering Blog</span></li>
