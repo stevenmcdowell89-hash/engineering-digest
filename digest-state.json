@@ -56,7 +56,7 @@
       "pdf_file": "issues/issue-0.pdf",
       "articles": [
         {
-          "title": "When the Bombs Hit the Cloud",
+          "title": "When Drones Hit the Cloud",
           "topic": "AWS Middle East Drone Strikes",
           "priority": 0,
           "format": "feature_opener"
@@ -92,7 +92,7 @@
     {
       "issue_number": "DD-1",
       "type": "deep_dive",
-      "title": "Deep Dive DD-1 — When the Bombs Hit the Cloud",
+      "title": "Deep Dive DD-1 — When Drones Hit the Cloud",
       "date": "2026-03-18",
       "topic": "AWS Middle East Drone Strikes",
       "priority": 0,
