@@ -50,28 +50,31 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 .pq-bar{background:var(--navy);padding:28px 60px;margin:0;text-align:center}
 .pq-bar p{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}
 .pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--teal)}
-/* Key takeaway box */
-.key-takeaway{background:var(--navy);border-radius:6px;padding:20px 24px;margin:20px 0;color:var(--white)}
-.key-takeaway h4{color:var(--teal);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.key-takeaway ul{list-style:none;margin:0;padding:0}
-.key-takeaway li{color:rgba(255,255,255,.85);font-size:14px;line-height:1.6;margin-bottom:6px;padding-left:16px;position:relative}
-.key-takeaway li::before{content:'→';position:absolute;left:0;color:var(--teal)}
 /* Urgency group headers in quick hits */
 .urgency-header{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:10px 0 4px;border-bottom:none;display:block}
 .urgency-header.action{color:var(--alert-red)}
 .urgency-header.knowing{color:var(--deep-teal)}
 .urgency-header.watching{color:var(--med-gray)}
+/* Quick takes two-column */
+.quick-takes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
+.qt{border-left:4px solid var(--teal);padding:0 0 0 20px}
+.qt.urgent{border-left-color:var(--alert-red)}
+.qt .qt-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+.qt.urgent .qt-label{color:var(--alert-red)}
 /* Archive bar */
 .archive-bar{margin-top:14px;font-size:11px;color:var(--med-gray);letter-spacing:.5px}
 .archive-bar a{color:var(--teal);text-decoration:none}.archive-bar a:hover{text-decoration:underline}
 /* On the Radar subheadings */
 .radar-subhead{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--alert-red);padding:12px 0 4px;border-bottom:none}
 .radar-subhead.events{color:var(--deep-teal)}
-/* Quick takes two-column */
-.quick-takes{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;padding:40px 60px;border-bottom:1px solid var(--light-gray)}.qt{border-left:4px solid var(--teal);padding-left:20px}.qt.red{border-left-color:var(--alert-red)}.qt .section-label{margin-bottom:4px}.qt h3{margin-top:0;font-size:18px}.qt p{font-size:14px;line-height:1.65}
-/* Feature opener */
-.feature-opener{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:40px 60px;color:var(--white);margin:0}.feature-opener .section-label{color:var(--teal)}.feature-opener h2{color:var(--white);margin-bottom:8px}.feature-opener .deck{font-family:'Playfair Display',serif;font-size:18px;color:rgba(255,255,255,.7);font-style:italic}
-@media(max-width:700px){.cover,.section,.mgmt-section,.foreword{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.quick-takes{grid-template-columns:1fr;padding:28px 20px}.feature-opener{padding:28px 20px}.article-with-sidebar{grid-template-columns:1fr}.pq-bar{padding:28px 20px}}
+/* Progress tracker */
+.progress-tracker{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;margin:0;border-left:4px solid var(--alert-red)}
+.progress-tracker .pt-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--alert-red);margin-bottom:8px}
+.progress-tracker .pt-bar{background:var(--light-gray);border-radius:10px;height:10px;overflow:hidden;margin-bottom:8px}
+.progress-tracker .pt-fill{background:linear-gradient(90deg,var(--alert-red),var(--accent-orange));height:100%;border-radius:10px}
+.progress-tracker .pt-status{font-size:13px;color:var(--body-text);line-height:1.5}
+.progress-tracker .pt-status strong{color:var(--navy)}
+@media(max-width:700px){.cover,.section,.mgmt-section,.foreword{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.quick-takes{grid-template-columns:1fr}.article-with-sidebar{grid-template-columns:1fr}.pq-bar{padding:28px 20px}}
 </style>
 </head>
 <body>
@@ -89,10 +92,11 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
     <div class="cover-contents-label">In This Issue</div>
     <ul>
       <li>When Drones Hit the Cloud: The AWS Middle East Strikes</li>
-      <li>The AI Coding Revolution Nobody Planned For</li>
+      <li>The AI Coding Landscape Shifts</li>
       <li>The AI Delivery Bottleneck</li>
       <li>Revolut Gets Its Full UK Banking Licence</li>
-      <li>The Leadership Read &bull; On the Radar</li>
+      <li>The Leadership Read: Agentic Engineering</li>
+      <li>Other News &bull; Platform Updates &bull; On the Radar</li>
     </ul>
   </div>
 </header>
@@ -100,7 +104,16 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <!-- ═══ FOREWORD ═══ -->
 <section class="foreword">
   <div class="section-label">Foreword</div>
-  <p>Drones hit cloud infrastructure and 109 services went dark for weeks. AI coding tools reached 95% weekly adoption while delivery pipelines buckled under the weight of code nobody can ship fast enough. A neobank gained the same regulatory standing as Barclays. This is the month the assumptions broke — about resilience, about productivity, and about who the competition really is.</p>
+  <p>Engineers adopted AI coding tools faster than anyone predicted — 95% use them weekly now. But the delivery data tells a different story: main-branch success rates just hit a five-year low. The month's most important question isn't whether your teams are using AI. It's whether all that generated code is actually reaching production.</p>
+</section>
+
+<!-- ═══ PROGRESS TRACKER ═══ -->
+<section class="section" style="padding-top:24px;padding-bottom:24px">
+  <div class="progress-tracker">
+    <div class="pt-label">&#9888; Ongoing P0 — AWS Middle East Recovery</div>
+    <div class="pt-bar"><div class="pt-fill" style="width:40%"></div></div>
+    <div class="pt-status"><strong>Day 18 · ~40% services restored.</strong> Physical repair of UAE and Bahrain facilities ongoing. No full restoration date confirmed. AWS continues to recommend migrating ME workloads to alternate regions. <em>See lead article and <a href="issues/deep-dive-dd1.html" style="color:var(--deep-teal)">Deep Dive DD-1</a> for full analysis.</em></div>
+  </div>
 </section>
 
 <!-- ═══ QUICK HITS ═══ -->
@@ -110,21 +123,21 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
   <span class="urgency-header action">&#9888; Action Required</span>
   <ul class="quick-hits">
-    <li><span class="qh-badge">AWS</span><div class="qh-text"><strong>Iranian drone strikes hit 3 AWS facilities in UAE and Bahrain</strong> (Mar 1) — 109+ services offline, 2/3 UAE AZs down. 16+ days without full restoration. AWS recommends migrating ME workloads. <em>See lead article below.</em></div></li>
-    <li><span class="qh-badge purple">Security</span><div class="qh-text"><strong>Chrome zero-days patched</strong> (Mar 13) — CVE-2026-3909 and CVE-2026-3910 exploited in the wild. Update immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></div></li>
-    <li><span class="qh-badge green">Node</span><div class="qh-text"><strong>Node.js 20 EOL April 30</strong> — 24.14.0 LTS released (Mar 11). New release schedule: one major per year from Node 27. Migration should be underway. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">nodejs.org</a></span></div></li>
+    <li><span class="qh-badge">AWS</span><div class="qh-text"><strong>Iranian drone strikes hit 3 AWS facilities in UAE and Bahrain</strong> (Mar 1) — 109+ services offline, 2/3 UAE AZs down. 18+ days without full restoration. AWS recommends migrating ME workloads. <em>See lead article.</em></div></li>
+    <li><span class="qh-badge purple">Security</span><div class="qh-text"><strong>Chrome zero-days patched</strong> (Mar 13) — exploited in the wild. Update immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></div></li>
+    <li><span class="qh-badge green">Node</span><div class="qh-text"><strong>Node.js 20 EOL April 30</strong> — 24.14.0 LTS released (Mar 11). Migration should be underway. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">nodejs.org</a></span></div></li>
   </ul>
 
   <span class="urgency-header knowing">Worth Knowing</span>
   <ul class="quick-hits">
-    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Claude Code is the #1 AI coding tool</strong> — Pragmatic Engineer survey: 95% weekly AI usage, Claude Code overtook Copilot and Cursor in 8 months. <em>See Article 2.</em></div></li>
-    <li><span class="qh-badge">Banking</span><div class="qh-text"><strong>Revolut secured its full UK banking licence</strong> (Mar 11) — FSCS-protected deposits for 13M customers. Credit products and dual London/NY IPO ahead. <em>See Article 4.</em></div></li>
-    <li><span class="qh-badge orange">DevEx</span><div class="qh-text"><strong>CircleCI: throughput up 59%, but delivery is slowing</strong> — main branch success at 70.8% (5-year low). Fewer than 1 in 20 teams shipping at AI speed. <em>See Article 3.</em></div></li>
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Claude Code is the #1 AI coding tool</strong> — Pragmatic Engineer survey: 95% weekly AI usage, Claude Code overtook Copilot and Cursor in eight months. <em>See Quick Take 1.</em></div></li>
+    <li><span class="qh-badge">Banking</span><div class="qh-text"><strong>Revolut secured its full UK banking licence</strong> (Mar 11) — FSCS-protected deposits, 13M customers. Credit products and dual London/NY IPO ahead. <em>See Article 4.</em></div></li>
+    <li><span class="qh-badge orange">DevEx</span><div class="qh-text"><strong>CircleCI: throughput up 59%, but delivery is slowing</strong> — main branch success at 70.8%, a five-year low. The gap between generating code and shipping it is widening. <em>See Quick Take 2.</em></div></li>
   </ul>
 
   <span class="urgency-header watching">Watching</span>
   <ul class="quick-hits">
-    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Microsoft Copilot Wave 3 launches May 1 with Claude</strong> — Agent 365 at $15/user, E7 Frontier Suite at $99/user. Anthropic's Cowork technology in mainline Copilot. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></span></div></li>
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Microsoft Copilot Wave 3 launches May with Claude integration</strong> — Agent 365 at $15/user, E7 Frontier Suite at $99/user. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></span></div></li>
     <li><span class="qh-badge">Regulation</span><div class="qh-text"><strong>EU AI Act high-risk obligations apply August 2, 2026</strong> — organisations deploying AI in hiring, credit scoring, or critical infrastructure must comply. Planning window is narrowing.</div></li>
   </ul>
 </section>
@@ -137,39 +150,29 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
     <div class="stat"><div class="stat-num">109+</div><div class="stat-label">Services affected</div></div>
     <div class="stat"><div class="stat-num">3</div><div class="stat-label">Facilities hit</div></div>
     <div class="stat"><div class="stat-num">2 of 3</div><div class="stat-label">UAE AZs offline</div></div>
-    <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Days recovery</div></div>
+    <div class="stat"><div class="stat-num">18+</div><div class="stat-label">Days recovery</div></div>
   </div>
   <div class="article-with-sidebar">
     <div>
-      <p>On March 1, Iranian drone strikes hit two AWS data centres in the UAE and damaged a third in Bahrain. Two of three availability zones in the UAE went offline — not degraded, offline. 109+ AWS services became unavailable. The physical damage was severe: structural, power, fire, and water damage from suppression systems. AWS initially described "objects" causing a "localized power issue," then confirmed the strikes 36 hours later.</p>
+      <p>On March 1, Iranian drone strikes hit two AWS data centres in the UAE and damaged a third in Bahrain. Two of three availability zones went offline — not degraded, offline. 109+ services became unavailable. The physical damage was severe enough that AWS initially described "objects" causing a "localized power issue," then confirmed the strikes 36 hours later.</p>
 
-      <p>The banking impact was immediate. ADCB mobile banking went down. Emirates NBD was disrupted. Payment platforms Alaan and Hubpay stopped processing. Careem — the region's dominant ride-hailing app — was disrupted. The effects cascaded beyond the Middle East: US-EAST-1 experienced degraded performance, Snowflake reported service issues, and Claude AI saw availability problems. As of mid-March, more than 16 days after the strikes, there was no full restoration date. AWS's recommendation to customers was extraordinary: migrate your workloads to alternate regions.</p>
+      <p>Banking impact was immediate. ADCB mobile banking went down. Emirates NBD was disrupted. Payment platforms Alaan and Hubpay stopped processing. The effects cascaded beyond the Middle East: US-EAST-1 experienced degraded performance, Snowflake reported issues, and Claude AI saw availability problems. As of mid-March, there is no full restoration date. AWS's recommendation: migrate workloads to alternate regions.</p>
 
       <h3>The data residency paradox</h3>
-      <p>UAE and Bahrain Central Bank mandates require financial data to stay in-region. The region's infrastructure was physically destroyed. Failing over to another region resolves the outage but creates a legal problem — you can't comply with data residency requirements when the region doesn't exist in a functional sense. The Dubai Financial Services Authority issued emergency guidance for temporary cross-region processing, a regulatory improvisation nobody had planned for.</p>
+      <p>UAE and Bahrain Central Bank mandates require financial data to stay in-region. The region's infrastructure was physically destroyed. Failing over resolves the outage but creates a legal problem — you can't comply with data residency requirements when the region doesn't exist in a functional sense. The Dubai Financial Services Authority issued emergency guidance for temporary cross-region processing, a regulatory improvisation nobody had planned for.</p>
 
-      <p>Multi-AZ redundancy within a single region — the standard resilience playbook — assumed that availability zones fail independently through technical faults, not simultaneously through military action. That assumption is broken. For any organisation running production workloads in a geopolitically contested region, the conversation has shifted from "how many AZs?" to "how many <em>regions</em>?" — and what happens to your compliance posture when you can't use the one the regulator requires.</p>
+      <p>Multi-AZ redundancy — the standard resilience playbook — assumed availability zones fail independently through technical faults, not simultaneously through military action. That assumption is broken. The conversation has shifted from "how many AZs?" to "how many <em>regions</em>?" — and what happens to your compliance posture when you can't use the one the regulator requires.</p>
     </div>
     <div>
       <div class="sidebar-box">
         <h4>Context: What is multi-AZ?</h4>
-        <p>AWS regions contain multiple Availability Zones (AZs) — physically separate data centres within the same geographic area. Multi-AZ deployment spreads workloads across 2–3 AZs so that if one fails, the others keep running. The assumption: AZs fail independently through hardware faults, power issues, or network problems. That assumption was designed for technical failures, not military strikes that damage multiple facilities simultaneously.</p>
+        <p>AWS regions contain multiple Availability Zones — physically separate data centres within the same geographic area. Multi-AZ deployment spreads workloads across 2–3 AZs so that if one fails, the others keep running. The design assumption: AZs fail independently through hardware faults, not simultaneously through kinetic military action.</p>
       </div>
       <div class="sidebar-box dark">
         <h4>Cascading impact</h4>
-        <p>The strikes didn't stay contained to the Middle East. US-EAST-1 experienced degraded performance. Snowflake reported service issues. Claude AI saw availability problems. $300 billion in Gulf AI and data centre investments are now at risk.</p>
+        <p>The strikes didn't stay contained. US-EAST-1 experienced degraded performance. Snowflake reported service issues. Claude AI saw availability problems. $300 billion in Gulf AI and data centre investments are now at elevated risk.</p>
       </div>
     </div>
-  </div>
-
-  <div class="key-takeaway">
-    <h4>Key Takeaways</h4>
-    <ul>
-      <li>Multi-AZ ≠ multi-region. Simultaneous AZ failure from physical attack was not in most DR plans.</li>
-      <li>Data residency mandates and disaster recovery are now in direct conflict in contested regions.</li>
-      <li>AWS's advice to migrate workloads is unprecedented — and signals long-term uncertainty for the ME region.</li>
-      <li>Cascading failures to US-EAST-1, Snowflake, and Claude AI show interconnection risks beyond the strike zone.</li>
-    </ul>
   </div>
 
   <p class="source-tag">Sources: <a href="https://www.cnbc.com/2026/03/02/amazon-says-drone-strikes-damaged-3-facilities-in-uae-and-bahrain.html">CNBC</a>, <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.reuters.com/world/middle-east/amazons-cloud-unit-says-drone-strikes-damaged-uae-bahrain-facilities-2026-03-03/">Reuters</a>, <a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">Data Center Knowledge</a>, <a href="https://www.marketplace.org/story/2026/03/04/drone-strikes-highlight-data-center-vulnerabilities">Marketplace</a></p>
@@ -177,45 +180,45 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
 <!-- ═══ FULL-WIDTH PULL QUOTE BAR ═══ -->
 <div class="pq-bar">
-  <p>This is the first major military strike on hyperscale cloud infrastructure. Data centres are now military targets, and $300 billion in Gulf AI and data centre investments are at risk.</p>
+  <p>This is the first major military strike on hyperscale cloud infrastructure. Data centres are now military targets.</p>
   <cite>— CSIS; The Information, Semafor (March 2026)</cite>
 </div>
 
 <!-- ═══ ARTICLES 2–3: QUICK TAKES ═══ -->
-<div class="quick-takes">
-  <div class="qt">
-    <div class="section-label">AI &amp; Tooling</div>
-    <h3>The AI Coding Revolution Nobody Planned For</h3>
-    <p>The Pragmatic Engineer's March survey of 906 engineers is definitive: 95% use AI tools weekly, 75% for half or more of their work, 55% use agents regularly. Claude Code is the #1 most-used AI coding tool — overtaking Copilot and Cursor in just eight months since its May 2025 launch. It commands 46% of "most loved" mentions.</p>
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two stories, one thread</h2>
+  <div class="quick-takes">
+    <div class="qt">
+      <div class="qt-label">AI &amp; Tooling</div>
+      <h3>The AI Coding Landscape Shifts</h3>
+      <p>The Pragmatic Engineer's March survey of 906 engineers confirmed what most delivery managers already suspect: AI coding tools are now baseline infrastructure. 95% use them weekly, 75% for half or more of their work, and 55% use agents regularly. Claude Code is the most-used tool — overtaking Copilot and Cursor in eight months since launch, with 46% "most loved" mentions.</p>
 
-    <div class="callout-box">
-      <div class="cb-grid">
-        <div class="cb-item"><span class="cb-val">95%</span><span class="cb-label">Weekly AI usage</span></div>
-        <div class="cb-item"><span class="cb-val">46%</span><span class="cb-label">Claude Code "most loved"</span></div>
-        <div class="cb-item"><span class="cb-val">55%</span><span class="cb-label">Use agents regularly</span></div>
-        <div class="cb-item"><span class="cb-val">-13%</span><span class="cb-label">IBM shares (COBOL threat)</span></div>
+      <p>The cost and procurement picture is shifting fast. Anthropic's COBOL modernisation capability sent IBM shares down 13%. Microsoft is integrating Claude into Copilot Wave 3, launching Agent 365 in May at $15/user and the E7 Frontier Suite at $99/user. Claude is now available on all three major clouds. The $100M Claude Partner Network launched March 12 with enterprise certification and training.</p>
+
+      <p>For delivery managers, the question is no longer "should teams use AI tools?" — it's which agent platform your procurement locks you into, and whether the tools your engineers actually prefer are the ones your enterprise agreement covers.</p>
+      <p class="source-tag">Sources: <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a>, <a href="https://www.cnbc.com/2026/02/23/ibm-is-the-latest-ai-casualty-shares-are-tanking-on-anthropic-cobol-threat.html">CNBC</a>, <a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></p>
+    </div>
+    <div class="qt urgent">
+      <div class="qt-label">Developer Experience &amp; Productivity</div>
+      <h3>The AI Delivery Bottleneck</h3>
+
+      <div class="callout-box">
+        <div class="cb-grid">
+          <div class="cb-item"><span class="cb-val">70.8%</span><span class="cb-label">Main branch success rate</span></div>
+          <div class="cb-item"><span class="cb-val">-7%</span><span class="cb-label">Main branch throughput</span></div>
+          <div class="cb-item"><span class="cb-val">+59%</span><span class="cb-label">Average throughput</span></div>
+          <div class="cb-item"><span class="cb-val">72 min</span><span class="cb-label">Recovery time (+13%)</span></div>
+        </div>
       </div>
+
+      <p>CircleCI's 2026 report — 28 million workflows analysed — reveals the other side of the AI adoption story in Quick Take 1. Average throughput jumped 59%, but on the main branch where code actually ships, throughput for the median team <em>fell</em> 7%. Success rate hit 70.8% — a five-year low against a 90% benchmark.</p>
+
+      <p>Read these two quick takes together: if 95% of engineers are generating code with AI and main-branch delivery is simultaneously falling, the bottleneck has moved. Writing code is no longer the constraint. Review, validation, and integration is where everything piles up. The top 5% of teams saw 97% throughput gains; the median got 4%. AI is amplifying existing delivery strengths, not distributing them.</p>
+      <p class="source-tag">Sources: <a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">CircleCI</a>, <a href="https://circleci.com/resources/2026-state-of-software-delivery/">Full Report</a></p>
     </div>
-
-    <p>Anthropic's disruption goes beyond coding tools. Their COBOL modernisation capability caused IBM shares to drop 13% on February 23. The $100M Claude Partner Network launched March 12 with Claude Certified Architect training. Meanwhile, Microsoft is integrating Claude into Copilot Wave 3 (March 10), with Agent 365 launching May 1 at $15/user and the E7 Frontier Suite at $99/user.</p>
-    <p>The question for engineering leaders: your teams are already saturated with AI tools. The contest now is over who controls the agent layer — and whether your procurement decisions match what your engineers actually want to use.</p>
-    <p class="source-tag">Sources: <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a>, <a href="https://www.cnbc.com/2026/02/23/ibm-is-the-latest-ai-casualty-shares-are-tanking-on-anthropic-cobol-threat.html">CNBC</a>, <a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a>, <a href="https://github.blog/changelog/2026-03-11-major-agentic-capabilities-improvements-in-github-copilot-for-jetbrains-ides/">GitHub Blog</a></p>
   </div>
-  <div class="qt red">
-    <div class="section-label alert">Developer Experience &amp; Productivity</div>
-    <h3>The AI Delivery Bottleneck</h3>
-
-    <div class="number-led">
-      <div class="big-number">70.8%</div>
-      <div class="big-label">Main branch success rate — lowest in five years (benchmark: 90%)</div>
-    </div>
-
-    <p>CircleCI's 2026 State of Software Delivery report — 28 million CI/CD workflows analysed — reveals the paradox at the heart of the AI coding boom. Average throughput jumped 59% year-over-year, the biggest increase ever. But on the main branch, where code actually ships, delivery throughput for the median team fell 7%.</p>
-    <p>Recovery times are up 13% to 72 minutes. Feature branch throughput is up 15% for the median team, meaning more work-in-progress piling up in branches that don't make it to production.</p>
-    <p>The distribution is stark. The top 5% of teams saw throughput jump 97%. The median got 4%. The bottom quartile got nothing. AI is amplifying existing delivery strengths, not distributing them evenly. Writing code is no longer the constraint — review, validation, and integration is where it all piles up.</p>
-    <p class="source-tag">Sources: <a href="https://circleci.com/blog/five-takeaways-2026-software-delivery-report/">CircleCI</a>, <a href="https://circleci.com/resources/2026-state-of-software-delivery/">CircleCI Report</a></p>
-  </div>
-</div>
+</section>
 
 <!-- ═══ ARTICLE 4: REVOLUT (SHORT FORM WITH STATS ROW) ═══ -->
 <section class="section">
@@ -230,7 +233,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
   <p>After a four-year application process and 18 months in mobilisation, the PRA lifted restrictions on March 11 and Revolut Bank UK Ltd became a fully licensed bank. Eligible deposits are now FSCS-protected up to £120,000 — the same safety net customers get at Barclays or HSBC. This is the moment the fintech narrative shifts from "challenger nibbling at margins" to "direct competitor with regulatory parity."</p>
 
-  <p>The licence unlocks lending and credit products — the real revenue engines of banking, locked behind full authorisation until now. Current accounts are rolling out gradually to new customers; existing customers remain on the e-money entity, with migration over months. Revolut has committed £3 billion to UK investment and 1,000 high-skilled jobs. They're also exploring a dual London/New York IPO at their $75 billion valuation. The Bank of England governor reportedly blocked a chancellor-arranged meeting over political interference concerns — a signal of how seriously the establishment takes this.</p>
+  <p>The licence unlocks lending and credit products — the real revenue engines of banking. Revolut has committed £3 billion to UK investment and 1,000 high-skilled jobs. They're exploring a dual London/New York IPO at their $75 billion valuation. The Bank of England governor reportedly blocked a chancellor-arranged meeting over political interference concerns — a signal of how seriously the establishment takes this.</p>
 
   <p>For anyone building payment infrastructure or customer-facing banking technology in the UK: this is a competitor with 13 million customers that just gained the full platform to offer lending, credit, and protected deposits — powered by an engineering-led operating model traditional banks cannot replicate without rebuilding from scratch.</p>
 
@@ -244,9 +247,9 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <ul class="other-news">
     <li><strong>PMI and Agile Alliance released the Manifesto for Enterprise Agility</strong> (Mar 3) — first joint manifesto, extending agile from team delivery to enterprise governance, funding, and leadership. <span class="on-source"><a href="https://www.pmi.org/learning/agile/manifesto-for-enterprise-agility">PMI</a>, <a href="https://agilealliance.org/built-for-change-enterprise-agility-isnt-optional-anymore/">Agile Alliance</a></span></li>
     <li><strong>Anthropic discovered 24,000+ fraudulent accounts from Chinese AI labs</strong> — DeepSeek, Moonshot, and MiniMax systematically scraping Claude capabilities. <span class="on-source"><a href="https://blog.mean.ceo/anthropic-claude-news-march-2026/">Mean CEO Blog</a></span></li>
-    <li><strong>MCP security concerns mounting</strong> — RSA Conference 2026 submissions heavily focused on Model Context Protocol risks. The attack surface of agentic AI is becoming a first-class security concern. <span class="on-source"><a href="https://www.cio.com/article/4136548/why-model-context-protocol-is-suddenly-on-every-executive-agenda.html">CIO</a></span></li>
+    <li><strong>MCP security concerns mounting</strong> — RSA Conference 2026 submissions heavily focused on Model Context Protocol risks. Agentic AI attack surface is becoming a first-class security concern. <span class="on-source"><a href="https://www.cio.com/article/4136548/why-model-context-protocol-is-suddenly-on-every-executive-agenda.html">CIO</a></span></li>
     <li><strong>UK open banking heading toward open finance</strong> — FCA expects VRP live transactions in Q1, statutory instrument for new regulatory framework expected 2026. <span class="on-source"><a href="https://www.openbanking.org.uk/insights/2026-a-landmark-year-for-open-banking/">Open Banking UK</a></span></li>
-    <li><strong>March Patch Tuesday: 79 CVEs, 2 zero-days</strong> — SQL Server elevation of privilege and .NET denial of service both exploited. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-march-2026-patch-tuesday-fixes-2-zero-days-79-flaws/">BleepingComputer</a></span></li>
+    <li><strong>March Patch Tuesday: 79 CVEs, 2 zero-days</strong> — SQL Server elevation of privilege and .NET denial of service both exploited. Patch now. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-march-2026-patch-tuesday-fixes-2-zero-days-79-flaws/">BleepingComputer</a></span></li>
   </ul>
 </section>
 
@@ -304,14 +307,14 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <ul class="radar-list">
     <li><span class="radar-date">April 19</span> Claude Haiku 3 model retirement — migrate to Haiku 4.5</li>
     <li><span class="radar-date">April 30</span> Node.js 20 end of life — migration to v24 recommended</li>
-    <li><span class="radar-date">August 2</span> EU AI Act — high-risk AI obligations take effect. Conformity assessments, CE marking, and EU database registration required.</li>
+    <li><span class="radar-date">August 2</span> EU AI Act — high-risk AI obligations take effect</li>
   </ul>
 
   <div class="radar-subhead events">Events &amp; Conferences</div>
   <ul class="radar-list">
     <li><span class="radar-date">April 22</span> AWS Summit London — expect Bedrock, Trainium, and ME recovery announcements</li>
     <li><span class="radar-date">April 29</span> Zero Day Con, Dublin — Ireland's largest cybersecurity conference</li>
-    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 / Agent 365 launch ($15/user)</li>
+    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 / Agent 365 launch</li>
   </ul>
 </section>
 
@@ -332,8 +335,8 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <footer class="footer">
   <div class="footer-brand">Engineering Digest</div>
   <div class="footer-sub">February 18 – March 18, 2026 · Monthly Retrospective · Issue #0</div>
-  <div class="archive-bar">Issue 0 · Feb 18 – Mar 18 · Monthly Retrospective</div>
-  <div class="footer-next">Next edition: March 20, 2026</div>
+  <div class="archive-bar"><a href="issues/issue-05.html">Mar 11–18 · Weekly</a> · <a href="issues/deep-dive-dd1.html">Mar 18 · Deep Dive</a></div>
+  <div class="footer-next">Next edition: March 25, 2026</div>
 </footer>
 
 </div></body></html>

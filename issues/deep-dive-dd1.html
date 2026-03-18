@@ -3,49 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engineering Digest — Deep Dive DD-1: When Drones Hit the Cloud</title>
+<title>Engineering Digest — Deep Dive DD-1: AWS Middle East Drone Strikes</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
 .cover{background:var(--navy);padding:56px 60px 48px;position:relative;overflow:hidden}.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--alert-red),var(--coral),var(--alert-red))}.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:44px;color:var(--white);line-height:1.1;margin-bottom:8px}.cover-sub{font-family:'Playfair Display',serif;font-size:22px;color:rgba(255,255,255,.7);font-style:italic;margin-bottom:20px}.cover-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.cover-date{font-family:'Playfair Display',serif;font-size:18px;color:var(--teal)}.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}.deep-badge{display:inline-block;background:var(--alert-red);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:16px}
-.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}
+.cover-contents{margin-top:28px;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
 h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}p{margin-bottom:12px}p:last-child{margin-bottom:0}
 .pull-quote{border-left:4px solid var(--alert-red);padding:16px 24px;margin:24px 0;background:#FEF2F2}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
 .stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.divider{width:50px;height:3px;background:var(--alert-red);margin:24px 0}
 .timeline-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:24px 28px;margin:20px 0}.timeline-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:14px}.timeline-track{border-left:3px solid var(--light-gray);padding-left:20px;margin-left:4px}.timeline-track p{margin-bottom:14px}.tl-red{color:var(--alert-red)}.tl-navy{color:var(--navy)}.tl-teal{color:var(--deep-teal)}
 .other-news{list-style:none;margin:16px 0}.other-news li{padding:10px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}.other-news li:last-child{border-bottom:none}.other-news .on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
 .radar-list{list-style:none;margin:16px 0}.radar-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;display:flex;gap:12px}.radar-list li:last-child{border-bottom:none}.radar-date{font-weight:700;color:var(--deep-teal);white-space:nowrap;min-width:90px}
 .reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
 .footer{background:var(--navy);padding:36px 60px;text-align:center}.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
 .source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
-.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
-.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
 .foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
 /* How to Read This guide */
-.read-guide{background:var(--off-white);border:1px solid var(--light-gray);border-radius:6px;padding:20px 24px;margin:0 60px 0}
-.read-guide h3{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:12px}
-.read-guide .rg-item{display:flex;gap:12px;margin-bottom:8px;font-size:14px}
-.read-guide .rg-time{font-weight:700;color:var(--navy);min-width:80px}
-.read-guide .rg-desc{color:var(--body-text)}
+.how-to-read{background:var(--off-white);border:1px solid var(--light-gray);border-radius:6px;padding:20px 28px;margin:0 60px;border-bottom:1px solid var(--light-gray)}
+.how-to-read h4{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.how-to-read .htr-item{display:flex;gap:14px;align-items:baseline;margin-bottom:8px;font-size:14px}
+.how-to-read .htr-item:last-child{margin-bottom:0}
+.how-to-read .htr-time{font-family:'Playfair Display',serif;font-weight:900;color:var(--deep-teal);min-width:60px;white-space:nowrap}
+.how-to-read .htr-desc{color:var(--body-text)}
+/* Progress tracker */
+.progress-tracker{padding:20px 60px;background:var(--off-white);border-bottom:1px solid var(--light-gray);display:flex;align-items:center;gap:20px}
+.progress-tracker .pt-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--alert-red);white-space:nowrap}
+.progress-tracker .pt-bar{flex:1;height:10px;background:var(--light-gray);border-radius:5px;overflow:hidden}
+.progress-tracker .pt-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--alert-red),var(--coral))}
+.progress-tracker .pt-status{font-size:12px;color:var(--med-gray);white-space:nowrap}
 /* Context/definition box */
 .context-box{background:var(--off-white);border-left:4px solid var(--teal);border-radius:0 4px 4px 0;padding:16px 20px;margin:20px 0}
 .context-box h4{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:8px}
 .context-box p{font-size:14px;line-height:1.6;color:var(--body-text)}
+/* Full-width pull quote bar */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:0;text-align:center}
+.pq-bar p{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}
+.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--teal)}
 /* Key takeaway box */
 .key-takeaway{background:var(--navy);border-radius:6px;padding:20px 24px;margin:20px 0;color:var(--white)}
 .key-takeaway h4{color:var(--teal);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.key-takeaway ul{list-style:none;padding:0}
+.key-takeaway ul{list-style:none;padding:0;margin:0}
 .key-takeaway li{color:rgba(255,255,255,.85);font-size:14px;line-height:1.6;margin-bottom:6px;padding-left:16px;position:relative}
 .key-takeaway li::before{content:'→';position:absolute;left:0;color:var(--teal)}
+/* Sidebar box */
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin:16px 0}
+.sidebar-box.dark{background:var(--navy-mid);border-color:var(--navy);color:rgba(255,255,255,.85)}
+.sidebar-box.dark h4{color:var(--accent-orange)}
+.sidebar-box h4{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.sidebar-box p{font-size:13px;line-height:1.6}
 /* Archive bar */
 .archive-bar{margin-top:14px;font-size:11px;color:var(--med-gray);letter-spacing:.5px}
 .archive-bar a{color:var(--teal);text-decoration:none}.archive-bar a:hover{text-decoration:underline}
 /* On the Radar subheadings */
 .radar-subhead{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--alert-red);padding:12px 0 4px;border-bottom:none}
 .radar-subhead.events{color:var(--deep-teal)}
-@media(max-width:700px){.cover,.section{padding:28px 20px}.cover h1{font-size:32px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.read-guide{margin:0 20px}}
+/* SVG visual containers */
+.svg-visual{margin:24px 0;text-align:center}
+.svg-visual svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.svg-caption{font-size:11px;color:var(--med-gray);margin-top:8px;font-style:italic;text-align:center}
+@media(max-width:700px){.cover,.section,.foreword{padding:28px 20px}.cover h1{font-size:32px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.how-to-read{margin:0 20px}.progress-tracker{padding:16px 20px;flex-wrap:wrap}.cover-contents ul{grid-template-columns:1fr}.pq-bar{padding:28px 20px}}
 </style>
 </head>
 <body>
@@ -54,78 +76,325 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <!-- ═══ COVER ═══ -->
 <header class="cover">
   <div class="deep-badge">Deep Dive</div>
-  <h1 style="margin-top:16px">When Drones Hit the Cloud: The AWS Middle East Strikes</h1>
-  <div class="cover-sub">A retrospective on the first military attack on hyperscale cloud infrastructure</div>
+  <h1 style="margin-top:16px">When Drones Hit the Cloud</h1>
+  <div class="cover-sub">The AWS Middle East strikes and the end of the safe infrastructure assumption</div>
   <div class="cover-meta">
-    <span class="cover-date">March 2026</span>
-    <span class="cover-issue">|&ensp;Engineering Digest&ensp;|&ensp;DD-1</span>
+    <span class="cover-date">March 18, 2026</span>
+    <span class="cover-issue">|&ensp;Engineering Digest DD-1&ensp;|&ensp;Special Edition</span>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Executive summary</li>
+      <li>Full timeline: March 1 to present</li>
+      <li>Cascade impact: how strikes rippled</li>
+      <li>Banking &amp; payments fallout</li>
+      <li>The data residency paradox</li>
+      <li>Multi-AZ: the assumption that broke</li>
+      <li>Industry response &amp; $300B question</li>
+      <li>Lessons for engineering leaders</li>
+    </ul>
   </div>
 </header>
 
 <!-- ═══ FOREWORD ═══ -->
 <section class="foreword">
   <div class="section-label">Foreword</div>
-  <p>On March 1, Iranian drone strikes hit AWS data centres in the UAE and Bahrain. Over 109 cloud services went dark. Banking apps crashed. Payment platforms froze. And engineering teams across the Gulf discovered something the industry had spent two decades abstracting away: the cloud has a physical layer, and that physical layer exists in the real world where geopolitics, conflict, and kinetic weapons happen. This wasn't a misconfiguration. It was structural damage, fire, and water from suppression systems — with recovery measured in weeks.</p>
-  <p>We're dedicating a full issue to this event because it changes the risk calculus for any organisation operating in the Middle East, and by extension for anyone who assumed cloud infrastructure exists in a safe, abstract layer removed from the physical world. The CSIS called it the first major military strike on hyperscale cloud infrastructure. There will be others. What follows is what happened, who was affected, what it exposed, and what it means.</p>
+  <p>On March 1, Iranian drone strikes hit AWS data centres in the UAE and Bahrain — taking 109 services offline, shutting down banking and payment platforms across the Gulf, and introducing a category of infrastructure risk that no resilience playbook was designed to handle. The cloud's longest-standing thought experiment became operational reality: what happens when someone physically destroys the data centre your business runs on?</p>
+  <p>We're dedicating a full issue to this because the implications extend far beyond a service outage. This event changes how engineering leaders think about geographic risk, disaster recovery assumptions, and whether the legal frameworks governing data residency can survive contact with the physical world. The CSIS called it a paradigm shift. They're not wrong.</p>
 </section>
 
 <!-- ═══ HOW TO READ THIS ═══ -->
-<div class="read-guide">
-  <h3>How to Read This Issue</h3>
-  <div class="rg-item"><span class="rg-time">2 minutes</span><span class="rg-desc">Read the executive summary and key takeaway box at the end</span></div>
-  <div class="rg-item"><span class="rg-time">10 minutes</span><span class="rg-desc">Add the foreword, cascade diagram, and lessons section</span></div>
-  <div class="rg-item"><span class="rg-time">30 minutes</span><span class="rg-desc">Read the full issue end to end</span></div>
+<div class="how-to-read">
+  <h4>How to Read This Issue</h4>
+  <div class="htr-item"><span class="htr-time">2 min</span><span class="htr-desc">Read the executive summary and the key takeaway box at the end</span></div>
+  <div class="htr-item"><span class="htr-time">10 min</span><span class="htr-desc">Add the foreword, cascade diagram, architecture visual, and lessons section</span></div>
+  <div class="htr-item"><span class="htr-time">30 min</span><span class="htr-desc">Read the full issue end to end, including industry response and sources</span></div>
+</div>
+
+<!-- ═══ PROGRESS TRACKER ═══ -->
+<div class="progress-tracker">
+  <span class="pt-label">AWS ME Recovery</span>
+  <div class="pt-bar"><div class="pt-fill" style="width:40%"></div></div>
+  <span class="pt-status">~40% services restored · Week 3 · No full recovery date</span>
 </div>
 
 <!-- ═══ EXECUTIVE SUMMARY ═══ -->
 <section class="section">
   <div class="section-label alert">Executive Summary</div>
   <h2>What Happened and Why It Matters</h2>
-  <p>On March 1, 2026, Iranian retaliatory drone strikes hit two Amazon Web Services data centres in the UAE and damaged a third facility in Bahrain. Two of three availability zones in the ME-CENTRAL-1 region went offline — not degraded, offline. Over 109 services were disrupted. Banking apps, payment platforms, and enterprise software across the region went dark. Recovery took weeks, not hours.</p>
-  <p>This was the first time a major hyperscale cloud provider's infrastructure was directly hit by military action. It introduced a category of risk that the industry had theorised about but never experienced: kinetic attacks on the digital infrastructure that underpins the Gulf's financial system. AWS initially described the cause as "objects" before confirming drone strikes 36 hours later — then issued an advisory unprecedented in the company's history, telling customers to migrate workloads to alternate regions entirely.</p>
-  <p>For engineering teams operating in the region — particularly those in banking, payments, and fintech — the implications are structural. Multi-AZ redundancy within a single region, the standard resilience playbook, assumed that availability zones fail independently through technical faults. That assumption broke when two out of three zones were hit simultaneously by coordinated military strikes, with a third zone in a neighbouring country also damaged the same day.</p>
+  <p>On March 1, 2026, Iranian retaliatory drone strikes hit two Amazon Web Services data centres in the UAE and damaged a third facility in Bahrain. Two of three availability zones in the ME-CENTRAL-1 region went offline — not degraded, offline. Over 109 services were disrupted. Banking apps, payment platforms, and enterprise software across the Gulf went dark. Recovery has taken weeks, not hours — and as of March 18, full restoration has not been confirmed.</p>
+  <p>This was the first time a major hyperscale cloud provider's infrastructure was directly hit by military action. It introduced a risk category the industry had theorised about but never experienced: kinetic attacks on the digital infrastructure that underpins the Gulf's financial system. AWS initially described the cause as "objects" before confirming drone strikes 36 hours later — then issued an advisory unprecedented in the company's history, telling customers to migrate workloads to alternate regions entirely.</p>
+  <p>For engineering teams operating in the region — particularly those in banking, payments, and fintech — the implications are structural. Multi-AZ redundancy within a single region, the standard resilience playbook, assumed that availability zones fail independently through technical faults. That assumption broke when two of three zones were hit simultaneously by coordinated strikes, with a third zone in a neighbouring country also damaged the same day.</p>
   <p>The data residency paradox made it worse. UAE and Bahrain central bank mandates require financial data to stay in-region. But the region's infrastructure was physically destroyed. Failing over to another region resolves the technical outage but creates a legal one. Many organisations discovered at 4:30 AM that they had no pre-approved authority for cross-border failover under emergency conditions.</p>
 
   <div class="stats-row">
-    <div class="stat"><div class="stat-num">109+</div><div class="stat-label">Services affected</div></div>
+    <div class="stat"><div class="stat-num">109+</div><div class="stat-label">Services disrupted</div></div>
     <div class="stat"><div class="stat-num">3</div><div class="stat-label">Facilities hit</div></div>
     <div class="stat"><div class="stat-num">2/3</div><div class="stat-label">UAE AZs offline</div></div>
-    <div class="stat"><div class="stat-num">16+</div><div class="stat-label">Days without restoration</div></div>
+    <div class="stat"><div class="stat-num">$300B</div><div class="stat-label">Gulf DC investment at risk</div></div>
   </div>
 </section>
 
-<!-- ═══ TIMELINE ═══ -->
+<!-- ═══ SVG 1: CASCADE IMPACT DIAGRAM ═══ -->
+<section class="section">
+  <div class="section-label alert">Cascade Impact</div>
+  <h2>How the Strikes Rippled Through the Stack</h2>
+  <p>The damage didn't stop at the data centres. A single kinetic event cascaded through availability zones, cloud services, downstream platforms, financial infrastructure, and legal frameworks — each layer amplifying the impact of the one before it.</p>
+
+  <div class="svg-visual">
+    <svg viewBox="0 0 780 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cascade impact diagram showing how drone strikes rippled from physical facilities through cloud services to banking and legal consequences">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8899AA"/></marker>
+        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#DC2626"/></marker>
+      </defs>
+
+      <!-- Layer 1: Physical strikes -->
+      <rect x="240" y="16" width="300" height="50" rx="6" fill="#DC2626"/>
+      <text x="390" y="37" font-family="'Playfair Display',serif" font-size="16" font-weight="900" fill="#FFF" text-anchor="middle">DRONE STRIKES</text>
+      <text x="390" y="54" font-family="'Source Sans 3',sans-serif" font-size="11" fill="rgba(255,255,255,.75)" text-anchor="middle">March 1, 2026 — Iranian retaliatory attack</text>
+
+      <!-- Arrow 1→2 -->
+      <line x1="310" y1="66" x2="175" y2="88" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+      <line x1="390" y1="66" x2="390" y2="88" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+      <line x1="470" y1="66" x2="605" y2="88" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+
+      <!-- Layer 2: Facilities -->
+      <rect x="60" y="92" width="230" height="48" rx="4" fill="#0A1628"/>
+      <text x="175" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626" text-anchor="middle">mec1-az2 — DIRECT HIT</text>
+      <text x="175" y="128" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.65)" text-anchor="middle">Fire · Power cut · Backup generators off</text>
+
+      <rect x="310" y="92" width="160" height="48" rx="4" fill="#0A1628"/>
+      <text x="390" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FF6B35" text-anchor="middle">mec1-az3 — CASCADE</text>
+      <text x="390" y="128" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.65)" text-anchor="middle">Degraded · Then offline</text>
+
+      <rect x="490" y="92" width="230" height="48" rx="4" fill="#0A1628"/>
+      <text x="605" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FF6B35" text-anchor="middle">Bahrain — PROXIMITY DAMAGE</text>
+      <text x="605" y="128" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.65)" text-anchor="middle">Physical impact · 46+ services</text>
+
+      <!-- Arrow 2→3 -->
+      <line x1="390" y1="140" x2="390" y2="170" stroke="#8899AA" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Layer 3: Services -->
+      <rect x="80" y="174" width="155" height="44" rx="4" fill="#DC2626"/>
+      <text x="157" y="192" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">FULLY DOWN (9)</text>
+      <text x="157" y="207" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">EC2 · EBS · S3 · Lambda</text>
+
+      <rect x="253" y="174" width="155" height="44" rx="4" fill="#FF6B35"/>
+      <text x="330" y="192" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">DEGRADED (24)</text>
+      <text x="330" y="207" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">RDS · DynamoDB · EKS</text>
+
+      <rect x="426" y="174" width="155" height="44" rx="4" fill="#0077B6"/>
+      <text x="503" y="192" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">IMPACTED (58+)</text>
+      <text x="503" y="207" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">WAF · Route 53 · SNS/SQS</text>
+
+      <!-- 109+ callout -->
+      <rect x="608" y="178" width="108" height="36" rx="4" fill="none" stroke="#0A1628" stroke-width="2"/>
+      <text x="662" y="195" font-family="'Playfair Display',serif" font-size="22" font-weight="900" fill="#0A1628" text-anchor="middle">109+</text>
+      <text x="662" y="208" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8899AA" text-anchor="middle">TOTAL</text>
+
+      <!-- Arrow 3→4 -->
+      <line x1="280" y1="218" x2="190" y2="248" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="390" y1="218" x2="390" y2="248" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="500" y1="218" x2="590" y2="248" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Layer 4: Downstream -->
+      <rect x="70" y="252" width="240" height="44" rx="4" fill="#0077B6"/>
+      <text x="190" y="270" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">BANKING OFFLINE</text>
+      <text x="190" y="286" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">ADCB · Emirates NBD · Contact centres</text>
+
+      <rect x="330" y="252" width="120" height="44" rx="4" fill="#0077B6"/>
+      <text x="390" y="270" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">PAYMENTS</text>
+      <text x="390" y="286" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">Alaan · Hubpay</text>
+
+      <rect x="470" y="252" width="240" height="44" rx="4" fill="#0077B6"/>
+      <text x="590" y="270" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">PLATFORMS &amp; ENTERPRISE</text>
+      <text x="590" y="286" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.75)" text-anchor="middle">Careem · Snowflake · unnamed FIs</text>
+
+      <!-- Arrow 4→5 -->
+      <line x1="390" y1="296" x2="390" y2="326" stroke="#8899AA" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Layer 5: Consequences -->
+      <rect x="60" y="330" width="330" height="64" rx="4" fill="#1A2744"/>
+      <text x="225" y="352" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FF6B35" text-anchor="middle">DATA RESIDENCY PARADOX</text>
+      <text x="225" y="368" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.7)" text-anchor="middle">Failover to EU/US fixes the outage</text>
+      <text x="225" y="382" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.7)" text-anchor="middle">but creates a legal/compliance breach</text>
+
+      <rect x="410" y="330" width="310" height="64" rx="4" fill="#1A2744"/>
+      <text x="565" y="352" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626" text-anchor="middle">$300B INVESTMENT QUESTION</text>
+      <text x="565" y="368" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.7)" text-anchor="middle">Gulf AI/DC investments being reassessed</text>
+      <text x="565" y="382" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.7)" text-anchor="middle">CSIS: data centres now military targets</text>
+
+      <!-- Arrow 5→6 -->
+      <line x1="390" y1="394" x2="390" y2="424" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+
+      <!-- Layer 6: AWS advisory -->
+      <rect x="120" y="428" width="540" height="52" rx="4" fill="none" stroke="#DC2626" stroke-width="2.5"/>
+      <text x="390" y="449" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626" text-anchor="middle">AWS ADVISORY — UNPRECEDENTED</text>
+      <text x="390" y="468" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63" text-anchor="middle">"Strongly recommend customers migrate workloads to alternate AWS Regions"</text>
+    </svg>
+    <p class="svg-caption">How the March 1 drone strikes cascaded from physical infrastructure through 109+ cloud services to banking, payments, legal, and investment consequences</p>
+  </div>
+</section>
+
+<!-- ═══ FULL TIMELINE ═══ -->
 <section class="section">
   <div class="section-label alert">The Full Timeline</div>
-  <h2>From First Strike to Prolonged Recovery</h2>
+  <h2>From First Strike to Week Three</h2>
 
   <div class="timeline-box">
     <div class="timeline-label">Phase 1 — March 1: The Strikes</div>
     <div class="timeline-track">
       <p><strong class="tl-red">4:30 AM PST</strong> — "Objects" strike the mec1-az2 availability zone in UAE. Fire breaks out inside the data centre. Local fire department responds and shuts off all power — including backup generators — to contain the blaze.</p>
-      <p><strong class="tl-red">6:09 AM</strong> — AWS confirms power failure in mec1-az2. EC2 instances, EBS volumes, and RDS databases in the affected zone become unavailable. AWS frames it as a "localized power issue."</p>
-      <p><strong class="tl-red">11:30 AM</strong> — Cascading failure. The second availability zone (mec1-az3) enters a degraded state. Only mec1-az1 remains partially operational — but EC2 API errors and launch failures are reported there too. Two of three AZs in the UAE region are now offline.</p>
-      <p><strong class="tl-red">9:56 PM</strong> — ME-SOUTH-1 (Bahrain) hit. A drone strike in close proximity to an AWS facility causes physical damage to infrastructure. 46+ services affected in Bahrain. The attack surface now spans two countries.</p>
+      <p><strong class="tl-red">6:09 AM</strong> — AWS confirms power failure in mec1-az2. EC2 instances, EBS volumes, and RDS databases in the zone become unavailable. AWS frames it as a "localized power issue."</p>
+      <p><strong class="tl-red">11:30 AM</strong> — Cascading failure. The second availability zone (mec1-az3) enters a degraded state. Only mec1-az1 remains partially operational — but EC2 API errors and launch failures are reported there too. Two of three UAE AZs are now offline.</p>
+      <p><strong class="tl-red">9:56 PM</strong> — ME-SOUTH-1 (Bahrain) hit. A drone strike in close proximity to an AWS facility causes physical damage. 46+ services affected in Bahrain. The attack surface now spans two countries.</p>
     </div>
   </div>
 
   <div class="timeline-box">
-    <div class="timeline-label">Phase 2 — March 2–3: Confirmation and Partial Recovery</div>
+    <div class="timeline-label">Phase 2 — March 2–3: Confirmation &amp; Advisory</div>
     <div class="timeline-track">
       <p><strong class="tl-navy">March 2, 7:19 PM EST</strong> — AWS breaks its silence on the cause: "In the UAE, two of our facilities were directly struck, while in Bahrain, a drone strike in close proximity to one of our facilities caused physical impacts to our infrastructure. These strikes have caused structural damage, disrupted power delivery, and in some cases required fire suppression activities that resulted in additional water damage."</p>
-      <p><strong class="tl-navy">March 3, 8:14 AM</strong> — Partial S3 recovery begins. New PUT and LIST operations work; GET operations for pre-existing data remain dependent on physical infrastructure restoration. EC2 instance launches throttled. DynamoDB error rates elevated.</p>
-      <p><strong class="tl-navy">March 3</strong> — AWS issues its strongest advisory in company history: "We continue to strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions."</p>
+      <p><strong class="tl-navy">March 3, 8:14 AM</strong> — Partial S3 recovery begins. New PUT and LIST operations work; GET operations for pre-existing data remain dependent on physical restoration. EC2 instance launches throttled. DynamoDB error rates elevated.</p>
+      <p><strong class="tl-navy">March 3</strong> — AWS issues its strongest-ever advisory: "We continue to strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions."</p>
     </div>
   </div>
 
   <div class="timeline-box">
     <div class="timeline-label">Phase 3 — March 4 Onwards: Prolonged Recovery</div>
     <div class="timeline-track">
-      <p><strong class="tl-teal">Week of March 3–10</strong> — Physical repair of cooling systems, power infrastructure, and structural damage continues. AWS pursues parallel recovery: physical restoration alongside software mitigations to restore partial availability. A separate US-EAST-1 operational issue on March 1–2 (unrelated) compounds confusion.</p>
-      <p><strong class="tl-teal">Week of March 10–17</strong> — AWS re:Post forum shows customers still unable to retrieve snapshots or migrate workloads from affected zones. Snowflake reports regional outages affecting enterprise data workloads. No confirmed full restoration date published. AWS continues to recommend alternate regions.</p>
+      <p><strong class="tl-teal">Week of March 3–10</strong> — Physical repair of cooling systems, power infrastructure, and structural damage continues. AWS pursues parallel recovery: physical restoration alongside software mitigations to restore partial availability.</p>
+      <p><strong class="tl-teal">Week of March 10–17</strong> — AWS re:Post forum shows customers still unable to retrieve snapshots or migrate workloads from affected zones. Snowflake reports regional outages affecting enterprise data. No confirmed full restoration date.</p>
+      <p><strong class="tl-teal">March 18 (today)</strong> — Approximately 40% of services restored. Full recovery timeline unknown. AWS continues to recommend alternate regions.</p>
     </div>
   </div>
 </section>
+
+<!-- ═══ SVG 2: MULTI-AZ BEFORE/AFTER ═══ -->
+<section class="section">
+  <div class="section-label">Architecture Analysis</div>
+  <h2>The Multi-AZ Assumption vs. Reality</h2>
+  <p>AWS's multi-AZ architecture is designed to survive the failure of a single availability zone — the standard resilience model assumes independent failure domains. On March 1, that assumption was invalidated when drone strikes hit two of three UAE zones simultaneously and damaged a third in a neighbouring country.</p>
+
+  <div class="svg-visual">
+    <svg viewBox="0 0 780 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Before and after diagram comparing multi-AZ design assumption with March 1 reality">
+      <!-- Left panel: Design assumption -->
+      <rect x="0" y="0" width="378" height="430" rx="6" fill="#F4F6F9"/>
+      <rect x="0" y="0" width="378" height="38" rx="6" fill="#0077B6"/>
+      <rect x="0" y="20" width="378" height="18" fill="#0077B6"/>
+      <text x="189" y="25" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#FFF" text-anchor="middle">DESIGN ASSUMPTION</text>
+
+      <!-- Region box -->
+      <rect x="20" y="54" width="338" height="160" rx="6" fill="none" stroke="#0077B6" stroke-width="2"/>
+      <text x="189" y="74" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="#0077B6" text-anchor="middle" letter-spacing="2">ME-CENTRAL-1 REGION (UAE)</text>
+
+      <!-- 3 healthy AZ boxes -->
+      <rect x="36" y="90" width="94" height="80" rx="4" fill="#00D4AA"/>
+      <text x="83" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#0A1628" text-anchor="middle">AZ-1</text>
+      <circle cx="83" cy="134" r="10" fill="#0A1628"/>
+      <text x="83" y="138" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="900" fill="#00D4AA" text-anchor="middle">✓</text>
+      <text x="83" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#0A1628" text-anchor="middle">Healthy</text>
+
+      <rect x="142" y="90" width="94" height="80" rx="4" fill="#DC2626"/>
+      <text x="189" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">AZ-2</text>
+      <circle cx="189" cy="134" r="10" fill="#0A1628"/>
+      <text x="189" y="138" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="900" fill="#DC2626" text-anchor="middle">✗</text>
+      <text x="189" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.85)" text-anchor="middle">Failed</text>
+
+      <rect x="248" y="90" width="94" height="80" rx="4" fill="#00D4AA"/>
+      <text x="295" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#0A1628" text-anchor="middle">AZ-3</text>
+      <circle cx="295" cy="134" r="10" fill="#0A1628"/>
+      <text x="295" y="138" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="900" fill="#00D4AA" text-anchor="middle">✓</text>
+      <text x="295" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#0A1628" text-anchor="middle">Healthy</text>
+
+      <!-- Failover arrows -->
+      <path d="M189,170 L189,190 Q189,200 170,200 L105,200 Q83,200 83,190 L83,170" fill="none" stroke="#0077B6" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <path d="M189,170 L189,190 Q189,200 210,200 L275,200 Q295,200 295,190 L295,170" fill="none" stroke="#0077B6" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="189" y="198" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#0077B6" text-anchor="middle" font-weight="600">failover</text>
+
+      <!-- Assumption box -->
+      <rect x="30" y="230" width="318" height="44" rx="4" fill="#0077B6"/>
+      <text x="189" y="248" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">SINGLE-ZONE FAILURE</text>
+      <text x="189" y="264" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.8)" text-anchor="middle">Workloads failover to healthy zones ✓</text>
+
+      <!-- Assumption description -->
+      <text x="189" y="300" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63" text-anchor="middle">Standard model: independent failure domains</text>
+      <text x="189" y="316" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63" text-anchor="middle">Power outage in one zone doesn't affect others</text>
+      <text x="189" y="332" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63" text-anchor="middle">Recovery in hours, automated failover</text>
+
+      <!-- Result -->
+      <rect x="70" y="355" width="238" height="36" rx="4" fill="#00D4AA"/>
+      <text x="189" y="378" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#0A1628" text-anchor="middle">SERVICE CONTINUES ✓</text>
+
+      <!-- Confidence label -->
+      <text x="189" y="412" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#0077B6" text-anchor="middle" font-style="italic">Every major outage prior to March 1 followed this pattern</text>
+
+      <!-- Divider -->
+      <line x1="389" y1="15" x2="389" y2="415" stroke="#E8EDF2" stroke-width="2"/>
+
+      <!-- Right panel: March 1 reality -->
+      <rect x="402" y="0" width="378" height="430" rx="6" fill="#F4F6F9"/>
+      <rect x="402" y="0" width="378" height="38" rx="6" fill="#DC2626"/>
+      <rect x="402" y="20" width="378" height="18" fill="#DC2626"/>
+      <text x="591" y="25" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#FFF" text-anchor="middle">MARCH 1 REALITY</text>
+
+      <!-- Region box -->
+      <rect x="422" y="54" width="338" height="160" rx="6" fill="none" stroke="#DC2626" stroke-width="2"/>
+      <text x="591" y="74" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="#DC2626" text-anchor="middle" letter-spacing="2">ME-CENTRAL-1 REGION (UAE)</text>
+
+      <!-- 3 AZ boxes — 2 red, 1 orange -->
+      <rect x="438" y="90" width="94" height="80" rx="4" fill="#FF6B35"/>
+      <text x="485" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">AZ-1</text>
+      <circle cx="485" cy="134" r="10" fill="#0A1628"/>
+      <text x="485" y="138" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="900" fill="#FF6B35" text-anchor="middle">⚠</text>
+      <text x="485" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.85)" text-anchor="middle">Degraded</text>
+
+      <rect x="544" y="90" width="94" height="80" rx="4" fill="#DC2626"/>
+      <text x="591" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">AZ-2</text>
+      <text x="591" y="130" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)" text-anchor="middle">DIRECT</text>
+      <text x="591" y="142" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)" text-anchor="middle">HIT</text>
+      <text x="591" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,.9)" text-anchor="middle">OFFLINE</text>
+
+      <rect x="650" y="90" width="94" height="80" rx="4" fill="#DC2626"/>
+      <text x="697" y="112" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#FFF" text-anchor="middle">AZ-3</text>
+      <text x="697" y="130" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)" text-anchor="middle">CASCADE</text>
+      <text x="697" y="142" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)" text-anchor="middle">FAILURE</text>
+      <text x="697" y="158" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,.9)" text-anchor="middle">OFFLINE</text>
+
+      <!-- Strike markers -->
+      <text x="591" y="86" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#DC2626" text-anchor="middle" font-weight="900">✦</text>
+      <text x="697" y="86" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#FF6B35" text-anchor="middle">⚡</text>
+
+      <!-- No failover label -->
+      <text x="591" y="228" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#DC2626" text-anchor="middle" font-weight="700">No viable failover target within UAE</text>
+
+      <!-- Bahrain box -->
+      <rect x="432" y="248" width="318" height="52" rx="4" fill="none" stroke="#FF6B35" stroke-width="2"/>
+      <text x="591" y="268" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="#FF6B35" text-anchor="middle" letter-spacing="2">ME-SOUTH-1 (BAHRAIN)</text>
+      <text x="591" y="286" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63" text-anchor="middle">Proximity damage · 46+ services hit</text>
+
+      <!-- Nearest healthy region -->
+      <rect x="432" y="316" width="318" height="40" rx="4" fill="none" stroke="#8899AA" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="591" y="335" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">Nearest healthy region: eu-west-1 (Ireland)</text>
+      <text x="591" y="349" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#DC2626" text-anchor="middle" font-weight="600">← Data residency prevents failover</text>
+
+      <!-- Result -->
+      <rect x="470" y="372" width="242" height="36" rx="4" fill="#DC2626"/>
+      <text x="591" y="395" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#FFF" text-anchor="middle">REGIONAL FAILURE — NO FAILOVER ✗</text>
+
+      <!-- Bottom label -->
+      <text x="591" y="424" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#DC2626" text-anchor="middle" font-style="italic">Recovery measured in weeks, not hours</text>
+    </svg>
+    <p class="svg-caption">Standard multi-AZ resilience model (left) assumes single-zone failure with automatic failover. March 1 reality (right): two zones hit simultaneously, third degraded, neighbouring region also damaged — no viable failover within data residency boundaries.</p>
+  </div>
+</section>
+
+<!-- ═══ PQ BAR ═══ -->
+<div class="pq-bar">
+  <p>"In previous conflicts, adversaries targeted pipelines, refineries, and oil fields. In the compute era, these actors could also target data centres, energy infrastructure supporting compute, and fibre chokepoints."</p>
+  <cite>— Center for Strategic and International Studies (CSIS), March 2026</cite>
+</div>
 
 <!-- ═══ IMPACT ANALYSIS ═══ -->
 <section class="section">
@@ -133,126 +402,103 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <h2>Who Was Affected and How</h2>
 
   <h3>Service tiers at peak disruption</h3>
-  <p><strong>Fully disrupted (UAE: 38 services, Bahrain: 46 services):</strong> EC2 (networking APIs returning 500s), EBS (volumes inaccessible), S3 (high failure rates), Lambda (invocations failing), Management Console (partial access only).</p>
+  <p><strong>Fully disrupted (9 services):</strong> EC2 (networking APIs returning 500s), EBS (volumes inaccessible), S3 (high failure rates), Lambda (invocations failing), Management Console (partial access only).</p>
   <p><strong>Degraded (24+ services):</strong> RDS, DynamoDB, Cognito (authentication), EKS (cluster management), VPC networking.</p>
-  <p><strong>Impacted (remaining services):</strong> CloudFormation, Route 53, CloudWatch, Kinesis, WAF, SNS/SQS, and dozens more — cascading failures from the core compute and storage layer.</p>
+  <p><strong>Impacted (58+ services):</strong> CloudFormation, Route 53, CloudWatch, Kinesis, WAF, SNS/SQS, and dozens more — cascading failures from the core compute and storage layer.</p>
 
-  <h3>Downstream: banking and payments</h3>
-  <p>The financial services impact was immediate and widespread. ADCB mobile banking and contact centre went offline. Emirates NBD phone banking was disrupted. Payment platforms Alaan and Hubpay went down entirely — not degraded, unavailable. Careem, the region's dominant ride-hailing and delivery platform, was disrupted. Snowflake reported regional outages affecting enterprise data and analytics workloads. Claude AI experienced availability problems. Reuters reported multiple unnamed financial institutions were affected.</p>
+  <div class="divider"></div>
 
-  <!-- ═══ CASCADE IMPACT SVG ═══ -->
-  <svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:28px 0;display:block">
-    <defs>
-      <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8899AA"/></marker>
-    </defs>
+  <h3>Banking and payments</h3>
+  <p>The financial services impact was immediate and widespread. ADCB mobile banking and contact centre went offline. Emirates NBD phone banking was disrupted. Payment platforms Alaan and Hubpay went down entirely — not degraded, unavailable. Careem, the region's dominant ride-hailing and delivery platform, was disrupted. Snowflake reported regional outages affecting enterprise data and analytics workloads. Reuters reported multiple unnamed financial institutions were affected.</p>
+  <p>For banking engineering teams, the outage exposed a specific vulnerability: many organisations in the UAE had chosen single-region deployments to meet data residency requirements under TDRA guidelines. The architecture that satisfied the regulator is the same architecture that had no failover path when the region went down.</p>
 
-    <!-- Title -->
-    <text x="390" y="18" text-anchor="middle" fill="#0A1628" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" letter-spacing="3" text-transform="uppercase">CASCADE IMPACT DIAGRAM</text>
+  <div class="context-box">
+    <h4>What is multi-AZ redundancy?</h4>
+    <p>AWS organises each geographic region into multiple "availability zones" — physically separate data centres within the same metro area, connected by low-latency networking. The standard resilience pattern is to deploy across at least two AZs so that if one fails through a technical fault, the other continues operating. Multi-AZ is designed for independent, uncorrelated failures: a power outage in one facility, a cooling failure in another. It was not designed for coordinated kinetic attacks affecting an entire geographic area simultaneously.</p>
+  </div>
 
-    <!-- Layer 1: Physical Attack -->
-    <rect x="285" y="34" width="210" height="44" rx="4" fill="#DC2626"/>
-    <text x="390" y="55" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="700">IRANIAN DRONE STRIKES</text>
-    <text x="390" y="69" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="10">March 1, 2026 — 3 facilities across UAE &amp; Bahrain</text>
+  <div class="divider"></div>
 
-    <!-- Arrow down -->
-    <line x1="390" y1="78" x2="390" y2="96" stroke="#8899AA" stroke-width="2" marker-end="url(#arr)"/>
-
-    <!-- Layer 2: Physical Damage -->
-    <rect x="140" y="100" width="140" height="40" rx="4" fill="#0A1628"/>
-    <text x="210" y="118" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">STRUCTURAL DAMAGE</text>
-    <text x="210" y="131" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="Source Sans 3,sans-serif" font-size="9">Power, cooling, server racks</text>
-
-    <rect x="320" y="100" width="140" height="40" rx="4" fill="#0A1628"/>
-    <text x="390" y="118" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">FIRE + WATER</text>
-    <text x="390" y="131" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="Source Sans 3,sans-serif" font-size="9">Suppression systems activated</text>
-
-    <rect x="500" y="100" width="140" height="40" rx="4" fill="#0A1628"/>
-    <text x="570" y="118" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">POWER SHUTDOWN</text>
-    <text x="570" y="131" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="Source Sans 3,sans-serif" font-size="9">Inc. backup generators</text>
-
-    <!-- Arrows from attack to damage layer -->
-    <line x1="340" y1="78" x2="230" y2="96" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
-    <line x1="440" y1="78" x2="550" y2="96" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
-
-    <!-- Arrow down -->
-    <line x1="390" y1="140" x2="390" y2="158" stroke="#8899AA" stroke-width="2" marker-end="url(#arr)"/>
-
-    <!-- Layer 3: AZ Failure -->
-    <rect x="100" y="162" width="130" height="40" rx="4" fill="#DC2626"/>
-    <text x="165" y="180" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">mec1-az2 OFFLINE</text>
-    <text x="165" y="193" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">Direct strike — 4:30 AM</text>
-
-    <rect x="250" y="162" width="130" height="40" rx="4" fill="#DC2626"/>
-    <text x="315" y="180" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">mec1-az3 DEGRADED</text>
-    <text x="315" y="193" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">Cascade — 11:30 AM</text>
-
-    <rect x="400" y="162" width="130" height="40" rx="4" fill="#FF6B35"/>
-    <text x="465" y="180" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">mec1-az1 ERRORS</text>
-    <text x="465" y="193" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">API failures</text>
-
-    <rect x="550" y="162" width="130" height="40" rx="4" fill="#DC2626"/>
-    <text x="615" y="180" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">BAHRAIN HIT</text>
-    <text x="615" y="193" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">46+ services — 9:56 PM</text>
-
-    <!-- Arrow down -->
-    <line x1="390" y1="202" x2="390" y2="220" stroke="#8899AA" stroke-width="2" marker-end="url(#arr)"/>
-
-    <!-- Layer 4: Service Disruption -->
-    <rect x="195" y="224" width="390" height="36" rx="4" fill="#0077B6"/>
-    <text x="390" y="241" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="700">109+ AWS SERVICES DISRUPTED</text>
-    <text x="390" y="254" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="10">EC2, S3, Lambda, RDS, DynamoDB, EKS, Cognito…</text>
-
-    <!-- Arrow down splitting -->
-    <line x1="310" y1="260" x2="170" y2="278" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
-    <line x1="390" y1="260" x2="390" y2="278" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
-    <line x1="470" y1="260" x2="610" y2="278" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
-
-    <!-- Layer 5: Customer Impact -->
-    <rect x="90" y="282" width="160" height="36" rx="4" fill="#0077B6"/>
-    <text x="170" y="299" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">BANKING OFFLINE</text>
-    <text x="170" y="312" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">ADCB, Emirates NBD</text>
-
-    <rect x="310" y="282" width="160" height="36" rx="4" fill="#0077B6"/>
-    <text x="390" y="299" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">PAYMENTS DOWN</text>
-    <text x="390" y="312" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">Alaan, Hubpay, Careem</text>
-
-    <rect x="530" y="282" width="160" height="36" rx="4" fill="#FF6B35"/>
-    <text x="610" y="299" text-anchor="middle" fill="#FFF" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700">DATA RESIDENCY CRISIS</text>
-    <text x="610" y="312" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Source Sans 3,sans-serif" font-size="9">Failover ≠ compliance</text>
-
-    <!-- Recovery label -->
-    <text x="390" y="338" text-anchor="middle" fill="#8899AA" font-family="Source Sans 3,sans-serif" font-size="10" font-style="italic">Recovery: 16+ days — no full restoration as of March 18</text>
-  </svg>
-
-  <div class="pull-quote">
-    <p>In previous conflicts, adversaries targeted pipelines, refineries, and oil fields. In the compute era, these actors could also target data centres, energy infrastructure supporting compute, and fibre chokepoints.</p>
-    <cite>— Center for Strategic and International Studies (CSIS), March 2026</cite>
+  <h3>The data residency paradox</h3>
+  <div class="two-col">
+    <div>
+      <h3 style="margin-top:0">The technical imperative</h3>
+      <p>When two of three availability zones went offline and the region's infrastructure sustained physical damage, the standard engineering response is failover: route traffic to eu-west-1, us-east-1, or any healthy region. Technically, this is straightforward for well-architected applications.</p>
+      <p>AWS's own advisory made the recommendation explicit: migrate to alternate regions. From a pure availability standpoint, this is correct. The infrastructure was physically damaged. Recovery would take weeks. Customers needed their services running.</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">The legal problem</h3>
+      <p>UAE and Bahrain central bank mandates require financial data to remain in-region. TDRA compliance frameworks specify data residency. Failing over resolves the outage but potentially violates these requirements — creating a legal exposure at the exact moment you're solving an operational crisis.</p>
+      <p>The Dubai Financial Services Authority issued emergency guidance allowing temporary cross-border processing. But many organisations discovered at 4:30 AM that they had no pre-approved authority for emergency data movement. That decision framework needs to exist before the incident.</p>
+    </div>
   </div>
 
   <p class="source-tag">Sources: <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a>, <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://cybersecuritynews.com/aws-middle-east-services-disrupted/">Cybersecurity News</a>, <a href="https://blog.cybelesoft.com/aws-outage-march-2026-vdi-impact-oracle-cloud-alternative/">Cybele Software</a></p>
 </section>
 
-<!-- ═══ DATA RESIDENCY PARADOX ═══ -->
+<!-- ═══ SVG 3: RECOVERY TIMELINE ═══ -->
 <section class="section">
-  <div class="section-label">The Core Tension</div>
-  <h2>The Data Residency Paradox</h2>
+  <div class="section-label alert">Recovery Timeline</div>
+  <h2>Three Weeks and Counting</h2>
+  <p>Unlike software outages where recovery is measured in hours, physical damage requires on-site assessment, component sourcing, safety clearances, and structural repair. The March 1 strikes introduced a recovery timeline closer to a construction project than an incident response runbook.</p>
 
-  <div class="context-box">
-    <h4>What is multi-AZ redundancy?</h4>
-    <p>AWS organises each geographic region into multiple "availability zones" (AZs) — physically separate data centres within the same metro area, connected by low-latency networking. The standard resilience pattern is to deploy workloads across at least two AZs, so that if one fails through a technical fault, the other continues operating. Multi-AZ architecture is designed for independent, uncorrelated failures — a power outage in one facility, a cooling system failure in another. It was not designed for coordinated kinetic attacks that affect an entire geographic area simultaneously.</p>
-  </div>
+  <div class="svg-visual">
+    <svg viewBox="0 0 780 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visual recovery timeline from March 1 to March 18 showing three phases colour-coded by severity">
+      <rect width="780" height="400" fill="#F4F6F9" rx="4"/>
 
-  <div class="two-col">
-    <div>
-      <h3>The technical imperative</h3>
-      <p>When two of three availability zones went offline and the region's infrastructure sustained physical damage, the standard engineering response is failover: route traffic to eu-west-1, us-east-1, or any healthy region. Technically, this is straightforward. Most well-architected applications can switch regions within minutes if the architecture supports it.</p>
-      <p>AWS's own advisory made the recommendation explicit: migrate workloads to alternate regions. From a pure availability standpoint, this is the correct answer. The infrastructure in the Middle East was physically damaged. The path to recovery was weeks. Customers needed their services running.</p>
-    </div>
-    <div>
-      <h3>The legal problem</h3>
-      <p>UAE and Bahrain central bank mandates require financial data to remain in-region. TDRA compliance frameworks specify data residency. Failing over to another region resolves the outage but potentially violates these requirements — creating a legal exposure at the exact moment you're trying to solve an operational crisis.</p>
-      <p>The Dubai Financial Services Authority issued emergency guidance allowing temporary cross-border processing. But many organisations discovered at 4:30 AM during a live incident that they had no pre-approved authority for cross-border failover. The legal authority to approve emergency data movement should be established before the incident, not during one.</p>
-    </div>
+      <!-- Vertical timeline line -->
+      <line x1="90" y1="28" x2="90" y2="370" stroke="#E8EDF2" stroke-width="3"/>
+
+      <!-- Phase 1 pill -->
+      <rect x="66" y="18" width="48" height="20" rx="10" fill="#DC2626"/>
+      <text x="90" y="32" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="700" fill="#FFF" text-anchor="middle">PHASE 1</text>
+
+      <!-- Event 1 -->
+      <circle cx="90" cy="62" r="8" fill="#DC2626"/>
+      <rect x="116" y="46" width="630" height="36" rx="3" fill="#DC2626" opacity=".08"/>
+      <text x="126" y="60" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626">March 1 — 4:30 AM PST</text>
+      <text x="126" y="76" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">Drone strikes hit mec1-az2. Fire breaks out. Power cut including backup generators. AWS reports "localized power issue"</text>
+
+      <!-- Event 2 -->
+      <circle cx="90" cy="106" r="6" fill="#DC2626"/>
+      <text x="126" y="102" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626">March 1 — 11:30 AM</text>
+      <text x="126" y="118" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">Cascade failure: mec1-az3 goes down. Only AZ-1 partially operational with errors. 109+ services disrupted</text>
+
+      <!-- Event 3 -->
+      <circle cx="90" cy="150" r="6" fill="#DC2626"/>
+      <text x="126" y="146" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#DC2626">March 1 — 9:56 PM</text>
+      <text x="126" y="162" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">Bahrain facility hit. ME-SOUTH-1 impacted. 46+ additional services affected. Two countries now involved</text>
+
+      <!-- Phase 2 pill -->
+      <rect x="66" y="186" width="48" height="20" rx="10" fill="#0A1628"/>
+      <text x="90" y="200" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="700" fill="#FFF" text-anchor="middle">PHASE 2</text>
+
+      <!-- Event 4 -->
+      <circle cx="90" cy="228" r="7" fill="#0A1628"/>
+      <rect x="116" y="212" width="630" height="36" rx="3" fill="#0A1628" opacity=".06"/>
+      <text x="126" y="226" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#0A1628">March 2 — 7:19 PM EST (+36 hours)</text>
+      <text x="126" y="242" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">AWS confirms drone strikes as cause. "Structural damage, disrupted power delivery, fire suppression water damage"</text>
+
+      <!-- Event 5 -->
+      <circle cx="90" cy="270" r="6" fill="#0A1628"/>
+      <text x="126" y="266" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#0A1628">March 3 — Unprecedented advisory</text>
+      <text x="126" y="282" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">"Strongly recommend customers migrate workloads to alternate AWS Regions." Partial S3 recovery begins</text>
+
+      <!-- Phase 3 pill -->
+      <rect x="66" y="302" width="48" height="20" rx="10" fill="#0077B6"/>
+      <text x="90" y="316" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="700" fill="#FFF" text-anchor="middle">PHASE 3</text>
+
+      <!-- Event 6 -->
+      <circle cx="90" cy="346" r="6" fill="#0077B6"/>
+      <text x="126" y="342" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="700" fill="#0077B6">March 4–18 — Physical recovery (ongoing)</text>
+      <text x="126" y="358" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3D4F63">Cooling, power, structural repairs continue. Customers unable to retrieve snapshots. ~40% restored. No ETA for full recovery</text>
+
+      <!-- Status badge -->
+      <rect x="590" y="330" width="166" height="44" rx="4" fill="#DC2626"/>
+      <text x="673" y="349" font-family="'Playfair Display',serif" font-size="18" font-weight="900" fill="#FFF" text-anchor="middle">DAY 18</text>
+      <text x="673" y="365" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.8)" text-anchor="middle">RECOVERY ONGOING</text>
+    </svg>
+    <p class="svg-caption">Three phases: strikes and cascade (red), confirmation and advisory (navy), prolonged physical recovery (teal). Day 18 — no confirmed full restoration date.</p>
   </div>
 </section>
 
@@ -262,7 +508,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <h2>How the Industry Reacted</h2>
 
   <h3>AWS: 36 hours of ambiguity</h3>
-  <p>AWS's initial communications described the cause as "objects" and a "localized power issue." The company confirmed drone strikes 36 hours later, on March 2 at 7:19 PM EST. The gap matters: for a day and a half, customers making decisions about failover, data migration, and incident response were operating without accurate information about the cause, scope, or likely recovery timeline. Whether this was operational caution or deliberate opacity, the effect was the same — customers couldn't make informed decisions during the critical first hours.</p>
+  <p>AWS initially described the cause as "objects" and a "localized power issue." The company confirmed drone strikes 36 hours later. The gap matters: for a day and a half, customers making decisions about failover, data migration, and incident response were operating without accurate information about the cause, scope, or likely recovery timeline. Whether this was a power outage (hours) or physical destruction (weeks) changes every downstream decision an engineering leader needs to make.</p>
 
   <div class="pull-quote">
     <p>We continue to strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions. The ongoing conflict in the region means that the broader operating environment in the Middle East remains unpredictable.</p>
@@ -271,11 +517,16 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
   <p>AWS then pursued parallel recovery: physical restoration alongside software mitigations. The statement that "the broader operating environment in the Middle East remains unpredictable" was unprecedented. A hyperscale cloud provider publicly acknowledging that geopolitical instability makes its infrastructure unreliable in a region has no precedent in the industry's history.</p>
 
-  <h3>Other cloud providers</h3>
-  <p>Google, Microsoft, and Oracle — all of which operate data centres in the region — declined to comment publicly. None reported outages from this event. But the CSIS warning applies equally: roughly 326 data centres across the Middle East are within range of the same threats. The physical risk isn't vendor-specific. It's geographic.</p>
-
-  <h3>The broader implications</h3>
-  <p>The CSIS analysis framed this as a paradigm shift. In previous Gulf conflicts, adversaries targeted oil infrastructure — pipelines, refineries, fields. In the compute era, data centres join that target set. The Semafor and The Information reported that $300 billion in Gulf AI and data centre investments are now being reassessed in light of the strikes. The assumption that the Middle East's massive investment in digital infrastructure would be treated as civilian and therefore off-limits in conflict has been invalidated.</p>
+  <div class="two-col">
+    <div>
+      <h3>Other cloud providers</h3>
+      <p>Google, Microsoft, and Oracle — all of which operate data centres in the region — declined to comment publicly. None reported outages from this event. But the CSIS warning applies equally: roughly 326 data centres across the Middle East sit within the same threat envelope. The physical risk isn't vendor-specific. It's geographic.</p>
+    </div>
+    <div>
+      <h3>The $300B question</h3>
+      <p>Over $300 billion in Gulf AI and data centre investments have been announced in the past 18 months. Those numbers were premised on a stable operating environment. That assumption now has a footnote. For engineering leaders, it translates to a simpler question: will your cloud provider continue to invest in — and maintain — infrastructure in a region where data centres are viable military targets?</p>
+    </div>
+  </div>
 
   <p class="source-tag">Sources: <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a>, <a href="https://www.marketplace.org/story/2026/03/04/drone-strikes-highlight-data-center-vulnerabilities">Marketplace</a>, <a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">Data Center Knowledge</a></p>
 </section>
@@ -286,29 +537,29 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <h2>What This Changes</h2>
 
   <h3>A new category of cloud risk</h3>
-  <p>Previous major AWS outages — including the US-EAST-1 disruption in October 2025 — were caused by operational issues: misconfigurations, software bugs, power grid failures. Software outages can often be resolved in hours. Physical damage to cooling systems, power infrastructure, and server hardware requires on-site assessment, component replacement, safety clearances from local authorities, and structural repair. The recovery timeline for kinetic damage is fundamentally different from the recovery timeline for software failures. Every disaster recovery plan that assumed "worst case: a few hours" needs revisiting.</p>
+  <p>Every previous hyperscale cloud outage — including the US-EAST-1 disruption in October 2025 — was operational in nature: misconfigurations, software bugs, power grid failures. These are well-understood failure modes with well-understood recovery paths. Physical destruction of data centre infrastructure by military action is a fundamentally different category. The recovery timeline isn't measured in incident response playbooks — it's measured in construction schedules. Every disaster recovery plan that assumed "worst case: a few hours" is incomplete.</p>
 
-  <h3>Multi-AZ is not enough</h3>
-  <p>AWS's multi-AZ architecture is designed to survive the failure of a single availability zone through independent technical faults. It was not designed for two out of three zones being simultaneously hit by coordinated military strikes, with a third zone in a neighbouring country also damaged the same day. The cascading failure pattern — az2 hit, az3 degraded, az1 experiencing errors, then Bahrain — exposed assumptions in the resilience model that held for software failures but not for kinetic attacks across a geographic area.</p>
+  <h3>Multi-AZ is not multi-risk</h3>
+  <p>The standard three-AZ model was designed to survive the failure of any single zone through independent technical faults. It was not designed for two zones being simultaneously struck by coordinated attacks, with the remaining zone degraded from cascading load. For engineering leaders, the distinction matters: multi-AZ protects against operational failures. It does not protect against geographic risks that affect an entire metropolitan area or country.</p>
 
-  <h3>Vendor diversification in the same geography is theatre</h3>
-  <p>Spreading workloads across AWS, Azure, and GCP doesn't help if all three operate facilities within the same conflict zone. Multi-cloud in the same geography is diversification theatre. The risk is physical proximity, not vendor dependency. Google's Dammam region, Microsoft's Azure UAE North, and AWS ME-CENTRAL-1 are all within range of the same threats. True resilience requires geographic separation — and that conflicts directly with data residency requirements.</p>
+  <h3>Vendor diversification doesn't eliminate geographic risk</h3>
+  <p>Spreading workloads across AWS, Azure, and GCP doesn't help if all three operate facilities within the same conflict zone. Multi-cloud in the same geography is diversification theatre. Real geographic resilience means workloads that can run in genuinely separate physical locations — which, for organisations with data residency requirements, circles back to the legal question that has no comfortable answer.</p>
 
-  <h3>The "unpredictable operating environment" statement</h3>
-  <p>AWS publicly stated that the broader operating environment in the Middle East "remains unpredictable." This is extraordinary. A hyperscale cloud provider acknowledging that geopolitical instability makes its infrastructure unreliable in a region shifts the conversation from "how do we optimise in this region" to a harder question about whether critical workloads should be there at all. It also has implications for shared responsibility models and SLA enforcement — if the provider has publicly acknowledged unpredictability, what does that mean for contractual commitments?</p>
+  <h3>Data centres as strategic targets</h3>
+  <p>CSIS framed this explicitly: in the compute era, adversaries who previously targeted pipelines and refineries will also target data centres, energy infrastructure supporting compute, and fibre chokepoints. This isn't speculative — it's a retrospective observation based on what just happened. For any organisation operating critical infrastructure in a geopolitically contested region, the risk calculus has permanently changed. The question is no longer whether this could happen, but where it happens next.</p>
 
   <div class="key-takeaway">
     <h4>Key Takeaways</h4>
     <ul>
-      <li><strong>Kinetic risk is now a cloud risk category.</strong> Physical destruction of cloud infrastructure by military action has moved from theoretical to demonstrated. Disaster recovery plans built around software failure assumptions are incomplete.</li>
-      <li><strong>Multi-AZ resilience has a boundary condition.</strong> Coordinated strikes across availability zones in the same region bypass the independence assumption that multi-AZ architecture depends on.</li>
-      <li><strong>Multi-cloud in the same geography is not diversification.</strong> The risk is physical proximity to conflict, not vendor dependency. Geographic separation is the only meaningful mitigation.</li>
-      <li><strong>Data residency and resilience are now in direct tension.</strong> The legal authority for emergency cross-border failover must be established before the incident, not during it.</li>
-      <li><strong>Recovery timelines for physical damage are measured in weeks.</strong> Engineering teams accustomed to hours-long recovery from software outages need fundamentally different planning for kinetic scenarios.</li>
+      <li><strong>Kinetic risk is now a cloud risk category.</strong> Physical destruction of cloud infrastructure by military action has moved from theoretical to demonstrated.</li>
+      <li><strong>Multi-AZ resilience has a boundary condition.</strong> Coordinated strikes across availability zones bypass the independence assumption that the model depends on.</li>
+      <li><strong>Multi-cloud in the same geography is not diversification.</strong> The risk is physical proximity to conflict, not vendor dependency.</li>
+      <li><strong>Data residency and resilience are now in direct tension.</strong> The legal authority for emergency cross-border failover must be established before the incident.</li>
+      <li><strong>Recovery timelines for physical damage are measured in weeks.</strong> Teams accustomed to hours-long software recovery need fundamentally different planning.</li>
     </ul>
   </div>
 
-  <p class="source-tag">Sources: <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a>, <a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">Data Center Knowledge</a>, <a href="https://cybersecuritynews.com/aws-middle-east-services-disrupted/">Cybersecurity News</a>, <a href="https://repost.aws/questions/QUWHvInQqCTSSf_-DMZPZH6Q/service-disruption-in-aws-middle-east-region-me-central-1">AWS re:Post</a>, <a href="https://medium.com/@ismailkovvuru/aws-uae-drone-strike-outage-disaster-recovery-lessons-every-cloud-architect-needs-now-6b4d9c57b694">Medium (DR lessons)</a></p>
+  <p class="source-tag">Sources: <a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a>, <a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">CNBC</a>, <a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">Data Center Knowledge</a>, <a href="https://cybersecuritynews.com/aws-middle-east-services-disrupted/">Cybersecurity News</a>, <a href="https://repost.aws/questions/QUWHvInQqCTSSf_-DMZPZH6Q/service-disruption-in-aws-middle-east-region-me-central-1">AWS re:Post</a></p>
 </section>
 
 <!-- ═══ OTHER NEWS THIS WEEK ═══ -->
@@ -316,11 +567,11 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <div class="section-label">Other News This Week</div>
   <h2>In Brief</h2>
   <ul class="other-news">
-    <li><strong>Microsoft integrating Claude into Copilot Wave 3</strong> — Agent 365 launching May 1 at $15/user. E7 Frontier Suite at $99/user. Claude in mainline Copilot chat. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></span></li>
-    <li><strong>Anthropic launched $100M Claude Partner Network</strong> (Mar 12) — enterprise training, Claude Certified Architect certification, co-marketing. <span class="on-source"><a href="https://www.anthropic.com/news">Anthropic</a></span></li>
-    <li><strong>Revolut secured full UK banking licence</strong> (Mar 11) — FSCS-protected deposits for 13M customers. $75B valuation. Credit products coming. <span class="on-source"><a href="https://www.reuters.com/business/finance/revolut-gets-full-uk-banking-licence-after-years-long-wait-2026-03-11/">Reuters</a>, <a href="https://www.cnbc.com/2026/03/11/revolut-acquires-full-uk-banking-license.html">CNBC</a></span></li>
-    <li><strong>PMI and Agile Alliance released Manifesto for Enterprise Agility</strong> (Mar 3) — extending agile principles from team delivery to enterprise governance and funding. <span class="on-source"><a href="https://agilealliance.org/built-for-change-enterprise-agility-isnt-optional-anymore/">Agile Alliance</a></span></li>
-    <li><strong>Pragmatic Engineer AI survey: 95% weekly AI usage, Claude Code #1 tool</strong> — 906 respondents. Claude Code overtook Copilot and Cursor in 8 months. <span class="on-source"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a></span></li>
+    <li><strong>Atlassian cut 1,600 jobs (10% of workforce) to fund AI pivot</strong> — restructuring to "invest aggressively" in AI across Jira, Confluence, and Rovo. Third round of layoffs in two years. <span class="on-source"><a href="https://www.cnbc.com/2026/03/12/atlassian-layoffs-ai-pivot.html">CNBC</a></span></li>
+    <li><strong>OpenAI released GPT-5.4</strong> — native computer-use capability, 1M token context window. First model to directly control a user's screen. Enterprise pricing at $60/seat/month. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/openai-gpt-5-4-launch">Windows Central</a></span></li>
+    <li><strong>Google patched two Chrome zero-days (CVE-2026-3909, CVE-2026-3910)</strong> — exploited in the wild. V8 type confusion and sandbox escape chain. Patch immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></li>
+    <li><strong>Revolut secured full UK banking licence</strong> — PRA approval after four-year process. 13M UK customers now FSCS-protected up to £120,000. $75B valuation. Credit products coming. <span class="on-source"><a href="https://www.reuters.com/business/finance/revolut-gets-full-uk-banking-licence-after-years-long-wait-2026-03-11/">Reuters</a>, <a href="https://www.cnbc.com/2026/03/11/revolut-acquires-full-uk-banking-license.html">CNBC</a></span></li>
+    <li><strong>Mistral released Small 4 under Apache 2.0</strong> — open-weight model competitive with GPT-4o at inference. Self-hostable. Relevant for teams with data sovereignty constraints. <span class="on-source"><a href="https://mistral.ai/news/mistral-small-4">Mistral AI</a></span></li>
   </ul>
 </section>
 
@@ -332,15 +583,15 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <div class="radar-subhead">Deadlines &amp; Required Actions</div>
   <ul class="radar-list">
     <li><span class="radar-date">Apr 19</span> Claude Haiku 3 model retirement — migrate to Haiku 4.5</li>
-    <li><span class="radar-date">Apr 30</span> Node.js 20 end of life — migration to v24 recommended</li>
-    <li><span class="radar-date">Aug 2</span> EU AI Act high-risk obligations take effect — conformity assessments, CE marking, EU database registration required</li>
+    <li><span class="radar-date">Apr 30</span> Node.js 20 end of life — upgrade to Node 22 or 24 LTS</li>
+    <li><span class="radar-date">Aug 2</span> EU AI Act high-risk AI system obligations take effect</li>
   </ul>
 
   <div class="radar-subhead events" style="margin-top:16px">Events &amp; Conferences</div>
   <ul class="radar-list">
     <li><span class="radar-date">Apr 22</span> AWS Summit London — expect Bedrock, Trainium, and ME recovery announcements</li>
     <li><span class="radar-date">Apr 29</span> Zero Day Con, Dublin — Ireland's largest cybersecurity conference</li>
-    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 / Agent 365 launch ($15/user)</li>
+    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 / Agent 365 launch</li>
   </ul>
 </section>
 
@@ -351,20 +602,23 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <ul class="reading-list">
     <li><span class="title"><a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">AWS says drones hit two of its datacenters in UAE</a></span><span class="source">The Register</span></li>
     <li><span class="title"><a href="https://www.cnbc.com/2026/03/03/iran-war-uae-drone-strikes-aws-data-centers.html">Banking, payments disrupted after AWS UAE drone strikes</a></span><span class="source">CNBC</span></li>
+    <li><span class="title"><a href="https://www.reuters.com/world/middle-east/amazons-cloud-unit-says-drone-strikes-damaged-uae-bahrain-facilities-2026-03-03/">Amazon cloud unit says drone strikes damaged UAE, Bahrain facilities</a></span><span class="source">Reuters</span></li>
     <li><span class="title"><a href="https://www.datacenterknowledge.com/outages/aws-middle-east-outage-after-data-center-hit-by-unidentified-objects">AWS Middle East Outage After Data Centers Hit by Drone Strikes</a></span><span class="source">Data Center Knowledge</span></li>
-    <li><span class="title"><a href="https://www.marketplace.org/story/2026/03/04/drone-strikes-highlight-data-center-vulnerabilities">Drone strikes highlight data center vulnerabilities</a></span><span class="source">Marketplace</span></li>
+    <li><span class="title"><a href="https://www.marketplace.org/story/2026/03/04/drone-strikes-highlight-data-center-vulnerabilities">Drone Strikes Highlight Data Center Vulnerabilities</a></span><span class="source">Marketplace</span></li>
+    <li><span class="title"><a href="https://cybersecuritynews.com/aws-middle-east-services-disrupted/">AWS ME-CENTRAL-1: 109 Services Disrupted After Drone Strikes</a></span><span class="source">Cybersecurity News</span></li>
     <li><span class="title"><a href="https://medium.com/@ismailkovvuru/aws-uae-drone-strike-outage-disaster-recovery-lessons-every-cloud-architect-needs-now-6b4d9c57b694">AWS UAE Drone Strike Outage: DR Lessons Every Cloud Architect Needs</a></span><span class="source">Medium</span></li>
-    <li><span class="title"><a href="https://cybersecuritynews.com/aws-middle-east-services-disrupted/">AWS ME-CENTRAL-1: 109 Services Disrupted</a></span><span class="source">Cybersecurity News</span></li>
     <li><span class="title"><a href="https://repost.aws/questions/QUWHvInQqCTSSf_-DMZPZH6Q/service-disruption-in-aws-middle-east-region-me-central-1">Service disruption in AWS Middle East Region</a></span><span class="source">AWS re:Post</span></li>
-    <li><span class="title"><a href="https://blog.cybelesoft.com/aws-outage-march-2026-vdi-impact-oracle-cloud-alternative/">AWS Outage March 2026: VDI Impact &amp; Alternatives</a></span><span class="source">Cybele Software</span></li>
   </ul>
 </section>
 
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div class="footer-brand">Engineering Digest</div>
-  <div class="footer-sub">March 2026 · Deep Dive · DD-1</div>
-  <div class="archive-bar">Issue 0 · Feb 18 – Mar 18 · Monthly &ensp;·&ensp; DD-1 · Mar 2026 · Deep Dive</div>
-  <div class="footer-next">Next weekly edition: March 25, 2026</div>
+  <div class="footer-sub">DD-1 · March 18, 2026 · Deep Dive · Special Edition</div>
+  <div class="archive-bar">
+    <a href="issues/issue-0.html">Feb 18 – Mar 18 · Monthly (Issue 0)</a> · <a href="issues/issue-05.html">Mar 11–18 · Weekly (Issue 0.5)</a>
+  </div>
+  <div class="footer-next">Next weekly edition: March 18–25, 2026</div>
 </footer>
 
 </div></body></html>
