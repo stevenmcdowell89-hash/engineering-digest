@@ -30,11 +30,54 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 .outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
 .cover-contents{margin-top:28px;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
 .foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
-.feature-opener{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:40px 60px;color:var(--white);margin:0}.feature-opener .section-label{color:var(--teal)}.feature-opener h2{color:var(--white);margin-bottom:8px}.feature-opener .deck{font-family:'Playfair Display',serif;font-size:18px;color:rgba(255,255,255,.7);font-style:italic}
-.quick-takes{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;padding:40px 60px;border-bottom:1px solid var(--light-gray)}.qt{border-left:4px solid var(--teal);padding-left:20px}.qt.red{border-left-color:var(--alert-red)}.qt .section-label{margin-bottom:4px}.qt h3{margin-top:0;font-size:18px}.qt p{font-size:14px;line-height:1.65}
-.key-takeaway{background:var(--navy);border-radius:6px;padding:24px 28px;margin:24px 0;color:var(--white)}.key-takeaway h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.key-takeaway ul{list-style:none;margin:0;padding:0}.key-takeaway li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.85);line-height:1.5}.key-takeaway li::before{content:'→ ';color:var(--teal);font-weight:700}
-.callout-box{border-left:4px solid var(--teal);background:var(--off-white);padding:20px 24px;margin:20px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}.callout-box .cb-item{display:flex;flex-direction:column}.callout-box .cb-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--med-gray)}.callout-box .cb-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--navy)}
-@media(max-width:700px){.cover,.section,.mgmt-section,.foreword{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.quick-takes{grid-template-columns:1fr;padding:28px 20px}.feature-opener{padding:28px 20px}}
+/* Feature opener */
+.feature-opener{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:36px 60px;margin:0;color:var(--white)}
+.feature-opener .fo-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:12px}
+.feature-opener h2{color:var(--white);font-size:34px;margin-bottom:8px}
+.feature-opener .fo-deck{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.7);line-height:1.4}
+/* Number-led feature block */
+.number-led{text-align:center;margin:20px 0}
+.number-led .big-number{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--navy);line-height:1}
+.number-led .big-label{font-size:13px;color:var(--med-gray);margin-top:4px}
+/* Sidebar box */
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin:16px 0}
+.sidebar-box.dark{background:var(--navy-mid);border-color:var(--navy);color:rgba(255,255,255,.85)}
+.sidebar-box.dark h4{color:var(--accent-orange)}
+.sidebar-box h4{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.sidebar-box p{font-size:13px;line-height:1.6}
+/* Key takeaway box */
+.key-takeaway{background:var(--navy);border-radius:6px;padding:20px 24px;margin:20px 0;color:var(--white)}
+.key-takeaway h4{color:var(--teal);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.key-takeaway ul{list-style:none;padding:0}
+.key-takeaway li{color:rgba(255,255,255,.85);font-size:14px;line-height:1.6;margin-bottom:6px;padding-left:16px;position:relative}
+.key-takeaway li::before{content:'→';position:absolute;left:0;color:var(--teal)}
+/* Full-width pull quote bar */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:0;text-align:center}
+.pq-bar p{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}
+.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--teal)}
+/* Callout box */
+.callout-box{border-left:4px solid var(--teal);background:var(--off-white);padding:20px 24px;margin:20px 0;border-radius:0 4px 4px 0}
+.callout-box .cb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.callout-box .cb-item .cb-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy)}
+.callout-box .cb-item .cb-label{font-size:11px;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px}
+/* Urgency group headers in quick hits */
+.urgency-header{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:10px 0 4px;border-bottom:none;display:block}
+.urgency-header.action{color:var(--alert-red)}
+.urgency-header.knowing{color:var(--deep-teal)}
+.urgency-header.watching{color:var(--med-gray)}
+/* Quick takes two-column */
+.quick-takes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
+.qt{border-left:4px solid var(--teal);padding:0 0 0 20px}
+.qt.urgent{border-left-color:var(--alert-red)}
+.qt .qt-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+.qt.urgent .qt-label{color:var(--alert-red)}
+/* Archive bar */
+.archive-bar{margin-top:14px;font-size:11px;color:var(--med-gray);letter-spacing:.5px}
+.archive-bar a{color:var(--teal);text-decoration:none}.archive-bar a:hover{text-decoration:underline}
+/* On the Radar subheadings */
+.radar-subhead{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--alert-red);padding:12px 0 4px;border-bottom:none}
+.radar-subhead.events{color:var(--deep-teal)}
+@media(max-width:700px){.cover,.section,.mgmt-section,.foreword{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.quick-takes{grid-template-columns:1fr}.feature-opener{padding:28px 20px}.pq-bar{padding:28px 20px}}
 </style>
 </head>
 <body>
@@ -63,30 +106,40 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <!-- ═══ FOREWORD ═══ -->
 <section class="foreword">
   <div class="section-label">Foreword</div>
-  <p>Two trillion dollars in SaaS market cap evaporated as AI agents threatened the per-seat model. Atlassian cut 1,600 to fund the pivot. OpenAI shipped GPT-5.4 with native computer-use while Mistral open-sourced a 119B model that unifies everything. And the cybersecurity community warned that the Middle East conflict is spilling into corporate networks whether you have regional exposure or not. This was the week the industry stopped debating whether AI would change software — and started repricing it.</p>
+  <p>Nearly two trillion dollars in SaaS market cap evaporated, Atlassian cut 1,600 people to fund the pivot, and Goldman Sachs put a number on what everyone suspects: 60% of software economics through agents by 2030. Meanwhile, Google patched two zero-days already being exploited and the NCSC warned that the Middle East conflict is arriving in corporate networks. The per-seat model isn't dying slowly. It's being repriced in real time.</p>
 </section>
 
 <!-- ═══ QUICK HITS ═══ -->
 <section class="section">
   <div class="section-label">The Week at a Glance</div>
   <h2>Eight stories in sixty seconds</h2>
+
+  <span class="urgency-header action">⚠ Action Required</span>
   <ul class="quick-hits">
-    <li><span class="qh-badge green">Node</span><div class="qh-text"><strong>Node.js v20 EOL April 2026</strong> — New release schedule announced: one major per year from Node 27. Migration to v24 recommended. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">nodejs.org</a></span></div></li>
     <li><span class="qh-badge" style="background:var(--alert-red)">Security</span><div class="qh-text"><strong>Chrome zero-days patched</strong> (Mar 13) — CVE-2026-3909 and CVE-2026-3910 exploited in the wild. Update immediately. <span class="on-source"><a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a></span></div></li>
-    <li><span class="qh-badge">AI</span><div class="qh-text"><strong>Cerebras coming to AWS Bedrock</strong> (Mar 13) — CS-3 systems deploying for fastest AI inference. <span class="on-source"><a href="https://www.wsj.com/tech/ai/cerebras-aws-bedrock-partnership-2026">WSJ</a></span></div></li>
-    <li><span class="qh-badge">AI</span><div class="qh-text"><strong>Mistral Small 4 released</strong> (Mar 16) — Apache 2.0, 119B MoE, unifies instruct/reasoning/coding. 256K context. <span class="on-source"><a href="https://mistral.ai/news/mistral-small-4">mistral.ai</a></span></div></li>
+    <li><span class="qh-badge green">Node</span><div class="qh-text"><strong>Node.js v20 EOL April 2026</strong> — new release schedule announced: one major per year from Node 27. Migration to v24 recommended. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">nodejs.org</a></span></div></li>
+  </ul>
+
+  <span class="urgency-header knowing">Worth Knowing</span>
+  <ul class="quick-hits">
     <li><span class="qh-badge orange">SaaS</span><div class="qh-text"><strong>Atlassian cuts 1,600 jobs</strong> (10%) to fund AI pivot (Mar 11). CTO replaced. Stock -53% YTD. <span class="on-source"><a href="https://www.reuters.com/business/atlassian-cuts-1600-jobs-2026-03-11/">Reuters</a></span></div></li>
-    <li><span class="qh-badge">Banking</span><div class="qh-text"><strong>UK banks lost third of market share to fintechs</strong> — heading to 35% loss by 2030. <span class="on-source"><a href="https://thefinanser.com/2026/03/bain-uk-banks-market-share/">The Finanser</a></span></div></li>
     <li><span class="qh-badge">AI</span><div class="qh-text"><strong>GPT-5.4 released</strong> (Mar 5) — native computer-use, 1M context, tool search API. 33% fewer hallucinations. <span class="on-source"><a href="https://openai.com/index/gpt-5-4/">OpenAI</a></span></div></li>
+    <li><span class="qh-badge">AI</span><div class="qh-text"><strong>Mistral Small 4 released</strong> (Mar 16) — Apache 2.0, 119B MoE, unifies instruct/reasoning/coding. 256K context. <span class="on-source"><a href="https://mistral.ai/news/mistral-small-4">mistral.ai</a></span></div></li>
+    <li><span class="qh-badge">Banking</span><div class="qh-text"><strong>UK banks lost third of market share to fintechs</strong> — heading to 35% loss by 2030. <span class="on-source"><a href="https://thefinanser.com/2026/03/bain-uk-banks-market-share/">The Finanser</a></span></div></li>
     <li><span class="qh-badge purple">Regulation</span><div class="qh-text"><strong>FCA opens authorisation gateway for targeted support</strong> (Mar 2) — new regulatory priorities replacing portfolio letters. <span class="on-source"><a href="https://www.taylorwessing.com/en/insights-and-events/insights/2026/03/fca-authorisation-gateway">Taylor Wessing</a></span></div></li>
+  </ul>
+
+  <span class="urgency-header watching">Watching</span>
+  <ul class="quick-hits">
+    <li><span class="qh-badge">AI</span><div class="qh-text"><strong>Cerebras coming to AWS Bedrock</strong> (Mar 13) — CS-3 wafer-scale systems deploying for fastest AI inference. <span class="on-source"><a href="https://www.wsj.com/tech/ai/cerebras-aws-bedrock-partnership-2026">WSJ</a></span></div></li>
   </ul>
 </section>
 
 <!-- ═══ ARTICLE 1: FEATURE OPENER — THE SAASPOCALYPSE ═══ -->
 <div class="feature-opener">
-  <div class="section-label">AI &amp; Software Economics</div>
+  <span class="fo-badge">AI &amp; Software Economics</span>
   <h2>The SaaSpocalypse: When AI Agents Ate the Software Industry</h2>
-  <p class="deck">$2 trillion in SaaS market cap erased. Atlassian cut 1,600 people. And Goldman Sachs says 60% of software economics will flow through agents by 2030. The per-seat model is dying.</p>
+  <p class="fo-deck">$2 trillion in SaaS market cap erased. Atlassian cut 1,600 people. And Goldman Sachs says 60% of software economics will flow through agents by 2030. The per-seat model is dying.</p>
 </div>
 <section class="section">
   <div class="stats-row">
@@ -108,13 +161,8 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
   <p>Goldman Sachs analysis predicts AI agents will broaden the overall software market but capture disproportionate profit. By 2030, over 60% of software economics may flow through agent-based systems rather than traditional SaaS licences. Software becomes the container. Intelligence becomes the product.</p>
 
-  <div class="pull-quote">
-    <p>AI doesn't kill software. It broke the SaaS growth story.</p>
-    <cite>— Forbes, February 2026</cite>
-  </div>
-
   <div class="key-takeaway">
-    <h3>Key Takeaways</h3>
+    <h4>Key Takeaways</h4>
     <ul>
       <li>$2 trillion in SaaS market cap erased in 30 days — not from earnings misses but from structural repricing of the per-seat model.</li>
       <li>Atlassian's 1,600-person cut is the clearest signal yet: even the companies building developer tools are restructuring around AI.</li>
@@ -126,25 +174,44 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <p class="source-tag">Sources: <a href="https://techcrunch.com/2026/02/saas-selloff-ai-agents/">TechCrunch</a>, <a href="https://www.forbes.com/sites/donmuir/2026/02/04/300-billion-evaporated-the-saaspocalypse-has-begun/">Forbes</a>, <a href="https://www.reuters.com/business/atlassian-cuts-1600-jobs-2026-03-11/">Reuters</a>, <a href="https://www.businessinsider.com/atlassian-layoffs-ai-pivot-2026-3">Business Insider</a>, <a href="https://digitalapplied.com/saaspocalypse-ai-agents/">Digital Applied</a>, <a href="https://www.bloomberg.com/news/articles/2026-02-software-selloff">Bloomberg</a></p>
 </section>
 
-<!-- ═══ ARTICLES 2–3: QUICK TAKES ═══ -->
-<div class="quick-takes">
-  <div class="qt">
-    <div class="section-label">AI &amp; Tooling</div>
-    <h3>GPT-5.4, Mistral Small 4, and the Agent-Native Race</h3>
-    <p>Three model releases in two weeks reshaped the landscape. OpenAI's GPT-5.4 (March 5) is the first general-purpose model with native computer-use capabilities and a 1M-token context window. Its new tool search API lets agents find the right tools without bloated system prompts — a fundamental shift for agentic architectures. Hallucinations dropped 33% versus GPT-5.2.</p>
-    <p>Mistral's Small 4 (March 16) went the opposite direction: open-source, Apache 2.0, 119B parameters with only 6.5B active per token. It unifies instruct, reasoning, and coding into a single model with 256K context and configurable reasoning effort. Completion time dropped 40% versus Small 3.</p>
-    <p>Meanwhile, Cerebras signed a deal to deploy its CS-3 wafer-scale systems in AWS data centres (March 13), bringing the industry's fastest inference to AWS Bedrock. The pattern: foundation model providers are optimising for the agentic use case — speed, tool-use, and efficiency — not chat.</p>
-    <p class="source-tag">Sources: <a href="https://openai.com/index/gpt-5-4/">OpenAI</a>, <a href="https://techcrunch.com/2026/03/05/openai-gpt-5-4-computer-use/">TechCrunch</a>, <a href="https://mistral.ai/news/mistral-small-4">Mistral docs</a>, <a href="https://simonwillison.net/2026/Mar/16/mistral-small-4/">Simon Willison</a>, <a href="https://www.wsj.com/tech/ai/cerebras-aws-bedrock-partnership-2026">Cerebras / WSJ</a></p>
-  </div>
-  <div class="qt red">
-    <div class="section-label alert">Security</div>
-    <h3>Chrome Zero-Days and the NCSC Cyber Warning</h3>
-    <p>Google patched two high-severity Chrome zero-days on March 13, both already exploited in the wild. CVE-2026-3909 is an out-of-bounds write in Skia, Chrome's 2D graphics library. CVE-2026-3910 is a V8 JavaScript engine flaw allowing arbitrary code execution inside the sandbox. Together, they form a chainable attack surface — Skia for memory corruption, V8 for sandbox escape.</p>
-    <p>CISA added both to its Known Exploited Vulnerabilities catalog. Federal agencies must patch by March 27. The 3.5 billion Chrome users globally are the target surface.</p>
-    <p>Separately, the UK's National Cyber Security Centre warned organisations to review their security posture following the Middle East conflict. The NCSC assessed "almost certainly a heightened risk of indirect cyber threats" for organisations with operations, partnerships, or supply chains in the region. Pro-Iran hacktivist groups — Handala, Cyber Islamic Resistance, RipperSec — have announced coordinated operations. Palo Alto's Unit 42 noted Iran's internet connectivity dropped to 1-4%, which may limit state-sponsored activity but not proxy operations outside the country.</p>
-    <p class="source-tag">Sources: <a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a>, <a href="https://www.forbes.com/sites/daveywinder/2026/03/13/chrome-zero-day-update/">Forbes</a>, <a href="https://www.malwarebytes.com/blog/news/2026/03/chrome-zero-days-march">Malwarebytes</a>, <a href="https://www.ncsc.gov.uk/news/heightened-cyber-threat-middle-east">NCSC</a>, <a href="https://www.industrialcyber.co/news/ncsc-middle-east-cyber-warning/">Industrial Cyber</a></p>
-  </div>
+<!-- ═══ FULL-WIDTH PULL QUOTE BAR ═══ -->
+<div class="pq-bar">
+  <p>"AI doesn't kill software. It broke the SaaS growth story."</p>
+  <cite>— Forbes, February 2026</cite>
 </div>
+
+<!-- ═══ ARTICLES 2–3: QUICK TAKES ═══ -->
+<section class="section">
+  <div class="quick-takes">
+    <div class="qt">
+      <div class="qt-label">AI &amp; Tooling</div>
+      <h3>GPT-5.4, Mistral Small 4, and the Agent-Native Race</h3>
+
+      <div class="number-led">
+        <div class="big-number">67.3%</div>
+        <div class="big-label">GPT-5.4 WebArena browser-use success rate</div>
+      </div>
+
+      <p>Three model releases in two weeks reshaped the landscape. OpenAI's GPT-5.4 (March 5) is the first general-purpose model with native computer-use capabilities and a 1M-token context window. Its new tool search API lets agents find the right tools without bloated system prompts — a fundamental shift for agentic architectures. Hallucinations dropped 33% versus GPT-5.2. On WebArena-Verified, it scored 67.3% on browser-use tasks — the highest of any foundation model.</p>
+      <p>Mistral's Small 4 (March 16) went the opposite direction: open-source, Apache 2.0, 119B parameters with only 6.5B active per token. It unifies instruct, reasoning, and coding into a single model with 256K context and configurable reasoning effort. Completion time dropped 40% versus Small 3, with 3x throughput.</p>
+      <p>Meanwhile, Cerebras signed a deal to deploy its CS-3 wafer-scale systems in AWS data centres (March 13), bringing the industry's fastest inference to AWS Bedrock. The pattern: foundation model providers are optimising for the agentic use case — speed, tool-use, and efficiency — not chat.</p>
+      <p class="source-tag">Sources: <a href="https://openai.com/index/gpt-5-4/">OpenAI</a>, <a href="https://techcrunch.com/2026/03/05/openai-gpt-5-4-computer-use/">TechCrunch</a>, <a href="https://mistral.ai/news/mistral-small-4">Mistral docs</a>, <a href="https://simonwillison.net/2026/Mar/16/mistral-small-4/">Simon Willison</a>, <a href="https://www.wsj.com/tech/ai/cerebras-aws-bedrock-partnership-2026">Cerebras / WSJ</a></p>
+    </div>
+    <div class="qt urgent">
+      <div class="qt-label">Security</div>
+      <h3>Chrome Zero-Days and the NCSC Cyber Warning</h3>
+
+      <div class="sidebar-box dark">
+        <h4>⚠ Patch Now</h4>
+        <p>CVE-2026-3909 (Skia) and CVE-2026-3910 (V8) are chainable — memory corruption plus sandbox escape. CISA KEV catalog. Federal deadline: March 27. 3.5 billion Chrome users at risk.</p>
+      </div>
+
+      <p>Google patched two high-severity Chrome zero-days on March 13, both already exploited in the wild. CVE-2026-3909 is an out-of-bounds write in Skia, Chrome's 2D graphics library. CVE-2026-3910 is a V8 JavaScript engine flaw allowing arbitrary code execution inside the sandbox. Together, they form a chainable attack surface — Skia for memory corruption, V8 for sandbox escape.</p>
+      <p>Separately, the UK's National Cyber Security Centre warned organisations to review their security posture following the Middle East conflict. The NCSC assessed "almost certainly a heightened risk of indirect cyber threats" for organisations with operations, partnerships, or supply chains in the region. Pro-Iran hacktivist groups — Handala, Cyber Islamic Resistance, RipperSec — have announced coordinated operations. Palo Alto's Unit 42 noted Iran's internet connectivity dropped to 1-4%, which may limit state-sponsored activity but not proxy operations outside the country.</p>
+      <p class="source-tag">Sources: <a href="https://thehackernews.com/2026/03/google-fixes-two-chrome-zero-days.html">The Hacker News</a>, <a href="https://www.forbes.com/sites/daveywinder/2026/03/13/chrome-zero-day-update/">Forbes</a>, <a href="https://www.malwarebytes.com/blog/news/2026/03/chrome-zero-days-march">Malwarebytes</a>, <a href="https://www.ncsc.gov.uk/news/heightened-cyber-threat-middle-east">NCSC</a>, <a href="https://www.industrialcyber.co/news/ncsc-middle-east-cyber-warning/">Industrial Cyber</a></p>
+    </div>
+  </div>
+</section>
 
 <!-- ═══ ARTICLE 4: UK BANKS / FINTECHS ═══ -->
 <section class="section">
@@ -159,7 +226,44 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 
   <p>For engineering leaders in banking: this isn't just a competitive story. It's a technology architecture story. The challengers winning market share are shipping on modern stacks — and the incumbents losing it are fighting their own infrastructure as much as their competitors.</p>
 
+  <div class="key-takeaway">
+    <h4>Key Takeaways</h4>
+    <ul>
+      <li>Traditional UK banks have lost ~15 percentage points of addressable revenue to challengers — heading to 35% loss by 2030.</li>
+      <li>62% of UK banking customers use at least one challenger, but only 14% have fully switched — the battle is far from over.</li>
+      <li>Revolut's full banking licence unlocks lending and credit — the real revenue engines that were locked behind regulation until now.</li>
+      <li>The competitive advantage is architectural: challengers ship on modern stacks while incumbents fight legacy infrastructure.</li>
+    </ul>
+  </div>
+
   <p class="source-tag">Sources: <a href="https://www.bain.com/insights/uk-banking-market-share/">Bain &amp; Co</a>, <a href="https://thefinanser.com/2026/03/bain-uk-banks-market-share/">Chris Skinner / The Finanser</a>, <a href="https://www.fintechfutures.com/2026/03/revolut-licence-market-impact/">FinTech Futures</a></p>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section">
+  <div class="section-label">Other News This Week</div>
+  <h2>In Brief</h2>
+  <ul class="other-news">
+    <li><strong>AWS Middle East recovery ongoing (Day 17)</strong> — still no full restoration date as of March 18. AWS continues to recommend migrating workloads to alternate regions. <span class="on-source"><a href="https://www.theregister.com/2026/03/02/amazon_outages_middle_east/">The Register</a></span></li>
+    <li><strong>Microsoft Copilot Wave 3 confirmed for May 1</strong> — Agent 365 at $15/user, E7 Frontier Suite at $99/user. Claude integration via Anthropic Cowork technology. <span class="on-source"><a href="https://www.windowscentral.com/artificial-intelligence/microsoft-copilot/microsoft-365-copilot-wave-3-announcement">Windows Central</a></span></li>
+    <li><strong>GitHub Copilot agentic capabilities GA in JetBrains</strong> (Mar 11) — custom agents, sub-agents, plan agents, MCP auto-approve. Premium models removed from free student plan, drawing 1,836 downvotes. <span class="on-source"><a href="https://github.blog/changelog/2026-03-11-major-agentic-capabilities-improvements-in-github-copilot-for-jetbrains-ides/">GitHub Blog</a></span></li>
+    <li><strong>March Patch Tuesday: 79 CVEs, 2 zero-days</strong> — SQL Server elevation of privilege and .NET denial of service both exploited. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-march-2026-patch-tuesday-fixes-2-zero-days-79-flaws/">BleepingComputer</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section">
+  <div class="section-label">Platform Updates</div>
+  <h2>At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td class="platform">.NET</td><td>March security patches across .NET 10/9/8. Emergency .NET 10.0.5 out-of-band fix for macOS debugging (Mar 12). Critical DoS vulnerability patched.</td></tr>
+      <tr><td class="platform">Node.js</td><td>24.14.0 LTS (Mar 11). Node 20 EOL April 30 — migration should be underway. <a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">New release schedule</a>: one major per year from Node 27.</td></tr>
+      <tr><td class="platform">GitHub</td><td>Copilot agentic capabilities GA in JetBrains. VS 2026 18.3.0 with Copilot memories. AGENTS.md instruction file support.</td></tr>
+      <tr><td class="platform">AWS</td><td>S3 turned 20. Route 53 Global Resolver GA. Stateful MCP in Bedrock AgentCore. ME region recovery ongoing — no restoration date.</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- ═══ THE LEADERSHIP READ ═══ -->
@@ -193,6 +297,7 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <div class="section-label">Outside In</div>
   <h2>The SaaSpocalypse Through Goldman's Lens</h2>
   <h3>Why the software market selloff is structural, not cyclical</h3>
+
   <p>Goldman Sachs analysis, covered across multiple financial outlets, predicts AI agents will significantly broaden the overall software market by the decade's end — but capture disproportionate profit share. The consultancy estimates that by 2030, over 60% of software economics may flow through agent-based systems rather than traditional SaaS licences.</p>
 
   <p>The structural argument: intelligence is becoming mobile, data is becoming understandable, and workflows are becoming replicable. Software increasingly resembles a container, with intelligence becoming the actual product. The implication is that the recurring-revenue moats SaaS companies built — vendor lock-in through data formats, workflow integration, institutional knowledge — are eroding simultaneously.</p>
@@ -211,11 +316,19 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
 <section class="section" style="background:var(--off-white)">
   <div class="section-label">On the Radar</div>
   <h2>What We're Watching</h2>
+
+  <div class="radar-subhead">Deadlines &amp; Required Actions</div>
   <ul class="radar-list">
+    <li><span class="radar-date">Apr 19</span> Claude Haiku 3 model retirement — migrate to Haiku 4.5</li>
     <li><span class="radar-date">Apr 30</span> Node.js v20 reaches end of life. Migration to v24 recommended — v22 EOLs April 2027.</li>
-    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 launches — Agent 365 at $15/user, E7 Frontier Suite at $99/user.</li>
     <li><span class="radar-date">Aug 2</span> EU AI Act high-risk obligations take effect. Conformity assessments, CE marking, and EU database registration required.</li>
-    <li><span class="radar-date">Ongoing</span> AWS Middle East recovery — still no full restoration date as of March 18.</li>
+  </ul>
+
+  <div class="radar-subhead events">Events &amp; Conferences</div>
+  <ul class="radar-list">
+    <li><span class="radar-date">Apr 22</span> AWS Summit London — expect Bedrock, Trainium, and ME recovery announcements.</li>
+    <li><span class="radar-date">Apr 29</span> Zero Day Con, Dublin — Ireland's largest cybersecurity conference.</li>
+    <li><span class="radar-date">May 1</span> Microsoft Copilot Wave 3 launches — Agent 365 at $15/user, E7 Frontier Suite at $99/user.</li>
   </ul>
 </section>
 
@@ -224,17 +337,19 @@ h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var
   <div class="section-label">Weekend Reading</div>
   <h2>Five Links for the Weekend</h2>
   <ul class="reading-list">
-    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">AI Tooling for Software Engineers in 2026</a></span><span class="source">Pragmatic Engineer</span></li>
-    <li><span class="title"><a href="https://digitalapplied.com/saaspocalypse-ai-agents/">The SaaSpocalypse: AI Agents Disrupting Software</a></span><span class="source">Digital Applied</span></li>
-    <li><span class="title"><a href="https://www.complexdiscovery.com/cybersecurity-middle-east-2026/">Cybersecurity Implications of the 2026 ME Escalation</a></span><span class="source">ComplexDiscovery</span></li>
+    <li><span class="title"><a href="https://www.forbes.com/sites/donmuir/2026/02/04/300-billion-evaporated-the-saaspocalypse-has-begun/">The SaaSpocalypse Has Begun</a></span><span class="source">Forbes</span></li>
+    <li><span class="title"><a href="https://digitalapplied.com/saaspocalypse-ai-agents/">AI Agents Disrupting Software: The SaaSpocalypse</a></span><span class="source">Digital Applied</span></li>
+    <li><span class="title"><a href="https://www.atlassian.com/blog/announcements/atlassian-team-update-march-2026">Atlassian Team Update — March 2026</a></span><span class="source">Atlassian Work Life</span></li>
     <li><span class="title"><a href="https://simonwillison.net/2026/Mar/16/mistral-small-4/">Mistral Small 4 announcement</a></span><span class="source">Simon Willison</span></li>
-    <li><span class="title"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Node.js Release Schedule Evolution</a></span><span class="source">nodejs.org</span></li>
+    <li><span class="title"><a href="https://www.ncsc.gov.uk/news/heightened-cyber-threat-middle-east">NCSC Middle East Cyber Threat Warning</a></span><span class="source">NCSC</span></li>
   </ul>
 </section>
 
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div class="footer-brand">Engineering Digest</div>
   <div class="footer-sub">March 11–18, 2026 · This Week's Briefing · Issue #0.5</div>
+  <div class="archive-bar">Issue 0 · Feb 18 – Mar 18 · Monthly &ensp;·&ensp; DD-1 · Mar 2026 · Deep Dive &ensp;·&ensp; Issue 0.5 · Mar 11–18 · Weekly</div>
   <div class="footer-next">Next issue: March 21, 2026</div>
 </footer>
 
