@@ -4,168 +4,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Digest — Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --navy: #0A1628;
+            --navy-mid: #1A2744;
+            --teal: #00B4D8;
+            --deep-teal: #0077B6;
+            --white: #FFF;
+            --off-white: #F4F6F9;
+            --light-gray: #E8EDF2;
+            --med-gray: #8899AA;
+            --body-text: #3D4F63;
+            --accent-green: #00D4AA;
+            --accent-orange: #FF6B35;
+            --alert-red: #DC2626;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            min-height: 100vh;
+            font-family: 'Source Sans 3', sans-serif;
+            color: var(--body-text);
+            background: var(--off-white);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            padding: 60px 40px;
-            text-align: center;
-            border-bottom: 3px solid #c4a35a;
-        }
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .header .subtitle {
-            font-size: 1.1rem;
-            color: #c4a35a;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-        .container {
+
+        .archive-wrap {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 24px;
+            background: var(--white);
+            box-shadow: 0 0 60px rgba(10, 22, 40, .08);
+            min-height: 100vh;
         }
+
+        /* ── Cover / Header ── */
+        .header {
+            background: var(--navy);
+            padding: 56px 60px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--teal), var(--accent-green), var(--teal));
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 52px;
+            color: var(--white);
+            line-height: .95;
+            margin-bottom: 4px;
+        }
+        .header h1 em {
+            font-style: italic;
+            font-weight: 400;
+            display: block;
+            font-size: 48px;
+            color: rgba(255, 255, 255, .82);
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: var(--med-gray);
+            letter-spacing: 1px;
+            margin-top: 16px;
+        }
+
+        /* ── Content Area ── */
+        .content {
+            padding: 40px 60px;
+        }
+
         .section-label {
-            font-size: 0.85rem;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #c4a35a;
+            color: var(--teal);
             margin-bottom: 24px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
         }
+
+        /* ── Issue Cards ── */
         .issue-card {
-            background: #141414;
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
             padding: 28px 32px;
-            margin-bottom: 16px;
-            transition: border-color 0.2s, transform 0.2s;
+            margin-bottom: 20px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .issue-card:hover {
-            border-color: #c4a35a;
-            transform: translateY(-2px);
+            border-color: var(--teal);
+            box-shadow: 0 4px 20px rgba(0, 180, 216, .08);
         }
-        .issue-card .issue-type {
+
+        .issue-type {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 11px;
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             padding: 3px 10px;
-            border-radius: 3px;
+            border-radius: 2px;
             margin-bottom: 12px;
         }
         .type-weekly {
-            background: #1a3a5c;
-            color: #7ab8f5;
+            background: var(--deep-teal);
+            color: var(--white);
         }
         .type-deepdive {
-            background: #5c1a1a;
-            color: #f57a7a;
+            background: var(--alert-red);
+            color: var(--white);
         }
         .type-light {
-            background: #1a5c3a;
-            color: #7af5a8;
+            background: var(--accent-green);
+            color: var(--navy);
         }
+
         .issue-card h2 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
             margin-bottom: 6px;
         }
         .issue-card h2 a {
-            color: #ffffff;
+            color: var(--navy);
             text-decoration: none;
         }
         .issue-card h2 a:hover {
-            color: #c4a35a;
+            color: var(--deep-teal);
         }
+
         .issue-card .date {
-            font-size: 0.9rem;
-            color: #888;
+            font-size: 13px;
+            color: var(--med-gray);
             margin-bottom: 12px;
         }
+
         .issue-card .summary {
-            font-size: 0.95rem;
-            color: #b0b0b0;
-            line-height: 1.6;
+            font-size: 15px;
+            color: var(--body-text);
+            line-height: 1.65;
         }
+
         .issue-card .links {
-            margin-top: 16px;
+            margin-top: 18px;
             display: flex;
-            gap: 16px;
+            gap: 12px;
         }
         .issue-card .links a {
-            font-size: 0.85rem;
-            color: #c4a35a;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-teal);
             text-decoration: none;
-            padding: 6px 14px;
-            border: 1px solid #c4a35a;
-            border-radius: 4px;
+            padding: 6px 16px;
+            border: 1px solid var(--deep-teal);
+            border-radius: 3px;
             transition: background 0.2s, color 0.2s;
         }
         .issue-card .links a:hover {
-            background: #c4a35a;
-            color: #0a0a0a;
+            background: var(--deep-teal);
+            color: var(--white);
         }
+
+        /* ── Footer ── */
         .footer {
+            background: var(--navy);
+            padding: 36px 60px;
             text-align: center;
-            padding: 40px 24px;
-            color: #555;
-            font-size: 0.8rem;
-            border-top: 1px solid #222;
+        }
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--white);
+            font-weight: 700;
+        }
+        .footer-sub {
+            font-size: 12px;
+            color: var(--med-gray);
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 700px) {
+            .header, .content, .footer { padding-left: 20px; padding-right: 20px; }
+            .header h1 { font-size: 36px; }
+            .header h1 em { font-size: 34px; }
+            .issue-card { padding: 20px; }
+            .issue-card h2 { font-size: 22px; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Engineering Digest</h1>
-        <div class="subtitle">Curated intelligence for engineering leaders</div>
-    </div>
+    <div class="archive-wrap">
+        <div class="header">
+            <h1>Engineering<em>Digest</em></h1>
+            <div class="subtitle">Curated intelligence for engineering leaders</div>
+        </div>
 
-    <div class="container">
-        <div class="section-label">All Issues</div>
+        <div class="content">
+            <div class="section-label">All Issues</div>
 
-        <div class="issue-card">
-            <span class="issue-type type-deepdive">Deep Dive</span>
-            <h2><a href="issues/deep-dive-dd1.html">DD-1 — When the Bombs Hit the Cloud</a></h2>
-            <div class="date">18 March 2026</div>
-            <div class="summary">
-                The first military strike on hyperscale cloud infrastructure. What the Houthi drone attacks on AWS Middle East mean for sovereignty, resilience, and the assumption that the cloud is untouchable.
+            <div class="issue-card">
+                <span class="issue-type type-deepdive">Deep Dive</span>
+                <h2><a href="issues/deep-dive-dd1.html">DD-1 — When the Bombs Hit the Cloud</a></h2>
+                <div class="date">18 March 2026</div>
+                <div class="summary">
+                    The first military strike on hyperscale cloud infrastructure. What the Houthi drone attacks on AWS Middle East mean for sovereignty, resilience, and the assumption that the cloud is untouchable.
+                </div>
+                <div class="links">
+                    <a href="issues/deep-dive-dd1.html">Read Online</a>
+                    <a href="issues/deep-dive-dd1.pdf">Download PDF</a>
+                </div>
             </div>
-            <div class="links">
-                <a href="issues/deep-dive-dd1.html">Read Online</a>
-                <a href="issues/deep-dive-dd1.pdf">Download PDF</a>
+
+            <div class="issue-card">
+                <span class="issue-type type-weekly">Weekly</span>
+                <h2><a href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a></h2>
+                <div class="date">18 March 2026 &middot; Feb 18 – Mar 18, 2026</div>
+                <div class="summary">
+                    Launch edition covering the month's most consequential developments: AWS Middle East drone strikes, the AI coding revolution, delivery bottlenecks in AI-augmented teams, and Revolut's UK banking licence.
+                </div>
+                <div class="links">
+                    <a href="issues/issue-0.html">Read Online</a>
+                    <a href="issues/issue-0.pdf">Download PDF</a>
+                </div>
             </div>
         </div>
 
-        <div class="issue-card">
-            <span class="issue-type type-weekly">Weekly</span>
-            <h2><a href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a></h2>
-            <div class="date">18 March 2026 &middot; Feb 18 – Mar 18, 2026</div>
-            <div class="summary">
-                Launch edition covering the month's most consequential developments: AWS Middle East drone strikes, the AI coding revolution, delivery bottlenecks in AI-augmented teams, and Revolut's UK banking licence.
-            </div>
-            <div class="links">
-                <a href="issues/issue-0.html">Read Online</a>
-                <a href="issues/issue-0.pdf">Download PDF</a>
-            </div>
+        <div class="footer">
+            <div class="footer-brand">Engineering Digest</div>
+            <div class="footer-sub">Archive</div>
         </div>
-    </div>
-
-    <div class="footer">
-        Engineering Digest &middot; Archive
     </div>
 </body>
 </html>
