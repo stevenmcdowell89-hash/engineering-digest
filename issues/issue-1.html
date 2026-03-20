@@ -61,7 +61,7 @@ a{color:var(--deep-teal);text-decoration:none}a:hover{text-decoration:underline}
       <li>NVIDIA GTC 2026: The Trillion-Dollar AI Infrastructure Bet</li>
       <li>The Agent Workflow Wars: Skills, Manus, and What Ships Next</li>
       <li>AWS Middle East Recovery: Day 18 Update</li>
-      <li>The Leadership Read: The Future of Software Engineering with AI</li>
+      <li>The Leadership Read: How AI Is Changing Staff+ Engineering</li>
       <li>Outside In: How Monzo Ships Hundreds of Changes a Day</li>
       <li>Platform Updates, Other News &amp; On the Radar</li>
     </ul>
@@ -182,16 +182,16 @@ a{color:var(--deep-teal);text-decoration:none}a:hover{text-decoration:underline}
 
     <div class="qt">
       <div class="qt-label">Developer Experience</div>
-      <h3>AI Is Writing More Code. Is It Shipping?</h3>
-      <p>CircleCI's 2026 State of Software Delivery report — the largest CI/CD performance analysis ever published, drawn from 28 million workflows — found a <strong>59% increase</strong> in average engineering throughput last year. AI-assisted development is the primary driver. But the same data reveals that most organisations are leaving those gains on the table.</p>
+      <h3>The Largest AI Adoption Study Yet Says the Gap Is Widening</h3>
+      <p>Jellyfish published its AI Engineering Trends benchmark this week — the most comprehensive quantitative study of AI's impact on software engineering to date, drawn from <strong>700+ companies, 200,000 engineers, and 20 million pull requests</strong>. The headline: over the past three months, companies in the top quartile of AI adoption have seen <strong>2x the PR throughput</strong> of low adopters. 64% of surveyed companies now generate a majority of their code with AI assistance.</p>
 
       <div class="context-box">
         <h4>Connect the Dots</h4>
-        <p>The Pragmatic Engineer's AI Tooling survey (March 3) found 95% of engineers use AI tools weekly, with 55% regularly using agents. Jellyfish's analysis of 200,000 engineers confirms adoption is deep. Yet CircleCI's data shows the bottleneck has shifted — from writing code to validating and shipping it. The delivery infrastructure hasn't caught up with AI's output.</p>
+        <p>Jellyfish's partnership with Harvard Economics analysed 100,000 engineers across 500 companies and found AI is making coding faster without measurable quality degradation. But the Harvard researchers also found something striking: productivity improvements aren't yet translating into business outcomes. Engineers are coding faster, but organisations aren't necessarily delivering more value to customers. The bottleneck has moved downstream.</p>
       </div>
 
-      <p>The highest performers are either very small (2–5 people, lean pipelines) or very large (1,000+, with investment in delivery infrastructure). Mid-sized teams are most likely to see AI generate code that stalls before reaching production. The question for engineering leaders: is your CI/CD pipeline designed for the volume AI is now producing?</p>
-      <p class="source-tag">Sources: <a href="https://waydev.co/engineering-leadership-blind-spot-of-2026/">Waydev / CircleCI</a>, <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">The Pragmatic Engineer</a>, <a href="https://jellyfish.co/newsroom/jellyfish-reveals-ais-real-impact-on-engineering-teams/">Jellyfish</a></p>
+      <p>Autonomous agent activity — PRs generated entirely by AI agents — is still low overall, but growing exponentially. The data also shows that aggressive AI adopters are pulling away from the pack, creating a measurable maturity gap between organisations that have invested in AI integration and those still experimenting. TaskRabbit, using the Augment Code integration tracked by Jellyfish, reported a 50% decrease in issue cycle time and 2x deployment rates.</p>
+      <p class="source-tag">Sources: <a href="https://jellyfish.co/newsroom/jellyfish-reveals-ais-real-impact-on-engineering-teams/">Jellyfish</a>, <a href="https://jellyfish.co/ai-engineering-trends/">Jellyfish AI Engineering Trends</a>, <a href="https://jellyfish.co/blog/harvard-jellyfish-ai-is-making-developers-faster/">Jellyfish / Harvard Economics</a></p>
     </div>
   </div>
 </section>
@@ -233,26 +233,24 @@ a{color:var(--deep-teal);text-decoration:none}a:hover{text-decoration:underline}
 <hr class="feature-break">
 <section class="mgmt-section">
   <div class="section-label">The Leadership Read</div>
-  <h2>The Future of Software Engineering with AI</h2>
-  <p style="margin-bottom:20px">Gergely Orosz hosted the inaugural Pragmatic Summit in San Francisco in February, bringing together experienced engineers, leaders, and industry figures including Martin Fowler and Kent Beck to examine what AI is doing to the profession. The resulting analysis, published on February 24, is the most data-rich treatment of AI's impact on engineering teams published this year — and several of its findings directly challenge assumptions that engineering leaders may be carrying into planning conversations.</p>
+  <h2>How AI Is Changing the Staff+ Engineer Role</h2>
+  <p style="margin-bottom:20px">Maxime Najim — Distinguished Engineer at Target with two decades building systems at Netflix, Apple, and Amazon — published a detailed account this week of how AI coding agents are reshaping the work of senior technical leaders. The piece, published on LeadDev, is the most practical treatment of what the agentic shift actually looks like at staff+ level: less time writing implementations, more time defining what "correct" means, and a fundamentally different relationship between seniority and execution.</p>
 
-  <h3>The data is unambiguous: AI adoption is mainstream</h3>
-  <p>Laura Tacho's keynote presented new data showing 92% of developers now use AI coding tools monthly. The Pragmatic Engineer's own survey of 900+ engineers (published March 3) found 95% use AI tools weekly, 75% use AI for at least half their work, and 55% regularly use AI agents. Claude Code — released only eight months ago — has already overtaken GitHub Copilot and Cursor to become the most-used AI coding tool.</p>
+  <h3>Execution is no longer the bottleneck — verification is</h3>
+  <p>Najim describes being pulled into an unfamiliar domain and using an AI agent to read internal Confluence docs, trace data flows across 20+ repositories, and identify where documentation had drifted from reality. He used the output to draft a steel-thread proposal, iterated with principal engineers, and had alignment in 2–3 days. "This would normally take a month, maybe more." The new SDLC, he argues, is agentic and parallel: planning compresses from weeks to hours, agents explore multiple paths simultaneously, and human verification becomes the primary bottleneck.</p>
 
-  <h3>Healthy organisations see 50% fewer incidents</h3>
-  <p>Tacho's data revealed a stark split: organisations with healthy engineering practices see half the incidents of their peers, while "unhealthy" organisations see twice as many. The implication is that AI amplifies whatever engineering culture already exists. Teams with strong review processes, testing discipline, and delivery infrastructure benefit from AI's throughput. Teams without it get more code, more bugs, and more incidents — faster.</p>
+  <h3>From influence to activation</h3>
+  <p>The most striking shift Najim describes is what he calls moving from "influence to activation." Staff+ engineers have always been expected to improve systems across organisational boundaries, but their main tool was persuasion — writing proposals, making the case, waiting for it to land on a roadmap. Now, you point a coding agent at the problem, generate a working PR, and walk over to the owning team with a finished implementation instead of a backlog ticket. "The conversation shifts from 'can you prioritise this sometime next quarter?' to 'here's the solution, does this look right to you?'"</p>
 
-  <h3>The veterans agree: this is unprecedented</h3>
   <div class="pull-quote">
-    <p>Things haven't shifted so rapidly during their 50+ years in the industry.</p>
-    <cite>— On Martin Fowler and Kent Beck at The Pragmatic Summit, February 2026</cite>
+    <p>Your value stops being about how fast you can implement something and starts being about whether you can look at what got implemented and say ‘yeah, I trust this.’</p>
+    <cite>— Maxime Najim, Distinguished Engineer at Target, LeadDev (March 16, 2026)</cite>
   </div>
-  <p>The summit's closing fireside between Thomas Dohmke (former GitHub CEO, now building AI-native startup Entire) and Rajeev Rajan (Atlassian CTO) explored what AI-native engineering teams actually look like. The consensus: the profession is at an inflection point where the distinction between "using AI tools" and "being AI-native" starts to matter. Teams that merely bolt AI onto existing workflows will fall behind those that redesign their engineering processes around AI capabilities.</p>
 
-  <h3>One surprising thread: XP is coming back</h3>
-  <p>On Agile's 25th anniversary, the summit found engineers and leaders returning to Extreme Programming practices — pair programming, test-driven development, continuous integration — as the natural complement to AI-generated code. When AI writes most of the code, the human disciplines that ensure quality become more important, not less. Kent Beck, co-author of the original Agile Manifesto, was reportedly energised rather than threatened by the shift.</p>
+  <h3>The spec becomes the whole game</h3>
+  <p>When the volume of AI-generated code outpaces what any person can read line by line, Najim argues, trying to review it all just makes you the bottleneck. The differentiator becomes spec quality — not a traditional requirements document, but a constraint system: what must not change, what stays true when things break, what's off-limits for compliance reasons, and what "done" means in production (monitoring, alerting, rollback plans, SLOs). The staff+ engineers who get comfortable in that space first, he concludes, will have an outsized impact on what their teams believe they can take on.</p>
 
-  <p class="source-tag" style="color:var(--teal)"><a href="https://newsletter.pragmaticengineer.com/p/the-future-of-software-engineering-with-ai" class="mgmt-link">Read the full analysis: The Future of Software Engineering with AI — The Pragmatic Engineer →</a></p>
+  <p class="source-tag" style="color:var(--teal)"><a href="https://leaddev.com/ai/how-ai-is-changing-my-work-as-a-staff-engineer" class="mgmt-link">Read the full article: How AI is changing my work as a staff+ engineer — LeadDev →</a></p>
 </section>
 
 <!-- ═══ OUTSIDE IN ═══ -->
@@ -295,12 +293,12 @@ a{color:var(--deep-teal);text-decoration:none}a:hover{text-decoration:underline}
   <div class="section-label">Recommended Reading</div>
   <h2>This Week's Links</h2>
   <ul class="reading-list">
+    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/the-future-of-software-engineering-with-ai">The Future of Software Engineering with AI: Six Predictions</a></span><span class="source">The Pragmatic Engineer</span></li>
     <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">AI Tooling for Software Engineers in 2026</a></span><span class="source">The Pragmatic Engineer</span></li>
-    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/when-ai-writes-almost-all-code-what">When AI writes almost all code, what happens to software engineering?</a></span><span class="source">The Pragmatic Engineer</span></li>
     <li><span class="title"><a href="https://www.cnbc.com/2026/03/16/nvidia-gtc-2026-ceo-jensen-huang-keynote-blackwell-vera-rubin.html">NVIDIA GTC 2026: Keynote highlights</a></span><span class="source">CNBC</span></li>
     <li><span class="title"><a href="https://www.infoq.com/news/2026/03/shipping-monzo/">Move Fast, Don't Break Trust: Shipping Constantly at Monzo</a></span><span class="source">InfoQ</span></li>
     <li><span class="title"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Evolving the Node.js Release Schedule</a></span><span class="source">nodejs.org</span></li>
-    <li><span class="title"><a href="https://waydev.co/engineering-leadership-blind-spot-of-2026/">The Engineering Leadership Blind Spot of 2026</a></span><span class="source">Waydev / CircleCI</span></li>
+    <li><span class="title"><a href="https://jellyfish.co/ai-engineering-trends/">AI Engineering Trends: The Industry's Largest Study</a></span><span class="source">Jellyfish</span></li>
   </ul>
 </section>
 
