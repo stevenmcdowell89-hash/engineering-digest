@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Deep Dive: Team Topologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+.cover{background:var(--navy);padding:56px 60px 48px;position:relative;overflow:hidden}.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--deep-teal),var(--teal),var(--deep-teal))}.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:42px;color:var(--white);line-height:1.1;margin-bottom:8px}.cover-sub{font-family:'Playfair Display',serif;font-size:21px;color:rgba(255,255,255,.7);font-style:italic;margin-bottom:20px}.cover-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.cover-date{font-family:'Playfair Display',serif;font-size:18px;color:var(--teal)}.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}.deep-badge{display:inline-block;background:var(--deep-teal);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:16px}
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.orange{color:var(--accent-orange)}.section-label.alert{color:var(--alert-red)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}p{margin-bottom:12px}p:last-child{margin-bottom:0}
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.pull-quote.orange{border-left-color:var(--accent-orange)}.pull-quote.red{border-left-color:var(--alert-red);background:#FEF2F2}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+.context-box{border:2px solid var(--teal);border-radius:4px;padding:20px 24px;margin:20px 0;background:rgba(0,180,216,.04)}.context-box .context-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.context-box p{font-size:14px;line-height:1.65;margin-bottom:8px}
+.context-box.red{border-color:var(--alert-red);background:rgba(220,38,38,.03)}.context-box.red .context-title{color:var(--alert-red)}
+.how-to-read{background:var(--navy-mid);color:rgba(255,255,255,.88);border-radius:4px;padding:24px 28px;margin:20px 0}.how-to-read .htr-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--teal);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}.how-to-read p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:6px}.how-to-read strong{color:var(--white)}
+.key-takeaway{background:var(--navy);border-radius:6px;padding:28px 32px;margin:28px 0;color:var(--white)}.key-takeaway .kt-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--teal);margin-bottom:14px;letter-spacing:1px;text-transform:uppercase}.key-takeaway .kt-item{font-size:14px;line-height:1.65;color:rgba(255,255,255,.82);margin-bottom:10px;padding-left:20px;position:relative}.key-takeaway .kt-item::before{content:'→';position:absolute;left:0;color:var(--teal)}
+.article-with-sidebar{display:grid;grid-template-columns:1fr 300px;gap:32px;margin-top:20px}.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:20px 22px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;margin-bottom:6px}.sidebar-box.dark{background:var(--navy);border-color:var(--navy)}.sidebar-box.dark .sb-title{color:var(--accent-orange)}.sidebar-box.dark p{color:rgba(255,255,255,.78);font-size:13px}
+.pq-bar{background:var(--navy);padding:32px 60px;text-align:center;margin:0 -60px;width:calc(100% + 120px)}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.4;max-width:700px;margin:0 auto 8px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--teal)}
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+.radar-list{list-style:none;margin:16px 0}.radar-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;display:flex;gap:12px}.radar-list li:last-child{border-bottom:none}.radar-date{font-weight:700;color:var(--deep-teal);white-space:nowrap;min-width:90px}
+.footer{background:var(--navy);padding:36px 60px;text-align:center}.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.scenario{padding:24px;border-right:1px solid var(--light-gray)}.scenario:last-child{border-right:none}.scenario-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}.scenario-label.before{color:var(--alert-red)}.scenario-label.after{color:var(--accent-green)}.scenario h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}.scenario p{font-size:13px;line-height:1.6;margin-bottom:6px}
+.team-card{border:1px solid var(--light-gray);border-radius:4px;padding:20px 24px;margin-bottom:16px;position:relative;border-left:4px solid var(--teal)}.team-card.stream{border-left-color:var(--deep-teal)}.team-card.platform{border-left-color:var(--accent-orange)}.team-card.enabling{border-left-color:var(--accent-green)}.team-card.subsystem{border-left-color:var(--med-gray)}.team-card .tc-type{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}.team-card.stream .tc-type{color:var(--deep-teal)}.team-card.platform .tc-type{color:var(--accent-orange)}.team-card.enabling .tc-type{color:var(--accent-green)}.team-card.subsystem .tc-type{color:var(--med-gray)}.team-card h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}.team-card p{font-size:14px;line-height:1.6;margin-bottom:6px}
+.interaction-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.interaction-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray);background:var(--off-white)}.interaction-table td{padding:14px 16px;border-bottom:1px solid var(--light-gray);vertical-align:top}.interaction-table tr:last-child td{border-bottom:none}.interaction-table .mode{font-weight:700;color:var(--navy);white-space:nowrap}
+@media(max-width:700px){.cover,.section,.foreword{padding:28px 20px}.cover h1{font-size:30px}h2{font-size:26px}.two-col,.article-with-sidebar,.scenario-grid{grid-template-columns:1fr}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.pq-bar{margin:0 -20px;width:calc(100% + 40px);padding:24px 20px}.scenario{border-right:none;border-bottom:1px solid var(--light-gray)}.scenario:last-child{border-bottom:none}}
+.archive-bar{margin-top:14px;font-size:11px;color:var(--med-gray);letter-spacing:0.5px}.archive-bar a{color:var(--teal);text-decoration:none}.archive-bar a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<header class="cover">
+  <div class="deep-badge">Deep Dive</div>
+  <h1 style="margin-top:16px">Team Topologies for a Product Company</h1>
+  <div class="cover-sub">Four team types, three interaction modes, and what they look like inside a product company — including how to handle DevOps, test automation, cross-team projects, and team evolution</div>
+  <div class="cover-meta">
+    <span class="cover-date">March 2026</span>
+    <span class="cover-issue">|&ensp;Engineering Digest&ensp;|&ensp;Special Edition</span>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Here's the thing most Team Topologies guides get wrong for product companies: they assume a large enterprise with dozens of internal teams and a sprawling microservice estate. A CLO business isn't that. It has a consolidated API and microservice architecture that <em>is</em> the product. Banks are the customers. That single product platform is the thing being sold, and almost every engineer works on it or directly supports it.</p>
+  <p>This creates a specific challenge that the book doesn't address head-on: when your "platform" is your product, who owns it? The answer — and this is the most important thing in this issue — is that the product is stream-aligned work. The Team Topologies "platform team" is something different entirely. Getting this distinction wrong leads to confused ownership, misaligned priorities, and teams that don't know whether they're serving bank customers or internal engineers. This issue untangles it.</p>
+</section>
+
+<!-- ═══ HOW TO READ ═══ -->
+<section class="section" style="padding-top:24px;padding-bottom:24px;">
+  <div class="how-to-read">
+    <div class="htr-title">How to Read This Issue</div>
+    <p><strong>2 minutes:</strong> Read the executive summary and the key takeaway box at the end</p>
+    <p><strong>10 minutes:</strong> Add "The Core Question" section and the platform team deep dive</p>
+    <p><strong>30 minutes:</strong> Read the full issue, including interaction modes, DevOps, test automation, and practical scenarios</p>
+  </div>
+</section>
+
+<!-- ═══ EXECUTIVE SUMMARY ═══ -->
+<section class="section">
+  <div class="section-label">Executive Summary</div>
+  <h2>What Team Topologies Is — and Isn't</h2>
+  <p>Team Topologies is a framework for organising software teams around four types and three interaction modes. Created by Matthew Skelton and Manuel Pais (2019, second edition 2025), it's become the default language for engineering team structure. The core idea: your team structure is your architecture. Conway's Law — that organisations produce systems mirroring their communication structures — is a force to harness deliberately, not a bug to work around.</p>
+  <p>What makes it different is its focus on <strong>cognitive load</strong> as the primary constraint. Not "how do we organise for efficiency?" but "how do we keep teams focused enough that they can hold their domain in their heads?" When teams juggle too many concerns — offer logic alongside Kubernetes troubleshooting alongside bank-specific API quirks — they cut corners, quality drops, delivery slows.</p>
+  <p>The framework defines four team types — stream-aligned, platform, enabling, and complicated subsystem — and three interaction modes — collaboration, X-as-a-Service, and facilitating. The constraint is deliberate. The value isn't in the labels but in forcing every team to answer: what type are we, and how should we interact with the teams around us?</p>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Team types</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Interaction modes</div></div>
+    <div class="stat"><div class="stat-num">80%</div><div class="stat-label">Orgs with platform teams by 2026 (Gartner)</div></div>
+    <div class="stat"><div class="stat-num">5–9</div><div class="stat-label">Ideal team size</div></div>
+  </div>
+</section>
+
+<!-- ═══ THE CORE QUESTION ═══ -->
+<section class="section">
+  <div class="section-label alert">The Core Question for Us</div>
+  <h2>The Product Is a Platform. But It's Not a "Platform Team."</h2>
+
+  <p>This is the single most important distinction in this entire issue, and the one most likely to cause confusion when adopting Team Topologies language without thinking it through.</p>
+
+  <p>A CLO business has a consolidated API and microservice architecture that is the core of the product. Banks integrate with it. Merchants interact through it. Transaction data flows through it. It <em>is</em> the card-linked offers product. Internally, people might call it "the platform" — but in Team Topologies terms, it is <strong>not</strong> a platform. It's stream-aligned work.</p>
+
+  <div class="context-box red">
+    <div class="context-title">The Distinction That Matters</div>
+    <p><strong>Stream-aligned work</strong> delivers value to <em>external</em> customers. The consolidated API serves banks and merchants. The teams building and running it are stream-aligned — their customer is the bank, the merchant, the cardholder.</p>
+    <p><strong>Platform team work</strong> delivers value to <em>internal</em> engineers. CI/CD pipelines, container orchestration, observability, test environments, developer tooling — things that make stream-aligned teams faster. The customer is the engineer on the team next to you.</p>
+    <p>Manuel Pais, co-author of Team Topologies, draws the line explicitly: platform teams have internal customers; stream-aligned teams have external customers. The product API has external customers. That makes it stream-aligned.</p>
+  </div>
+
+  <h3>Why this matters in practice</h3>
+  <p>If the teams working on the core product think of themselves as a "platform team," they'll optimise for the wrong things. Platform teams optimise for developer experience, self-service, and reducing cognitive load for other engineers. Stream-aligned teams optimise for delivering value to customers — shipping features banks are asking for, improving transaction matching accuracy, onboarding merchants faster, meeting bank SLAs.</p>
+  <p>The priorities, the roadmap inputs, the definition of "done," and the success metrics are fundamentally different. A platform team succeeds when other engineers can move faster. A stream-aligned team succeeds when bank customers get more value. Conflating these leads to a team that doesn't know whether to prioritise the bank's feature request or the internal developer experience improvement — and ends up doing neither well.</p>
+
+  <h3>How to slice the product into streams</h3>
+  <p>Even though the product runs on a single consolidated API, the <em>value streams</em> within it are distinct. Different parts of the product serve different customer needs, change at different rates, and require different domain knowledge. The streams might look something like:</p>
+
+  <div class="two-col">
+    <div>
+      <p><strong>Offer management</strong> — creation, configuration, targeting rules, lifecycle, the merchant/advertiser CMS. Changes frequently as new offer types and targeting capabilities are added.</p>
+      <p><strong>Transaction matching &amp; fulfilment</strong> — ingestion of bank transaction data, normalisation, matching against active offers, cashback/reward calculation and settlement. Changes less frequently but requires deep domain expertise.</p>
+    </div>
+    <div>
+      <p><strong>Bank integration</strong> — the APIs, data feeds, and white-label components that bank customers consume. Heavily shaped by per-bank requirements and SLAs.</p>
+      <p><strong>Merchant onboarding &amp; reporting</strong> — the merchant-facing tools, onboarding flows, and performance reporting. A distinct user persona with distinct needs.</p>
+    </div>
+  </div>
+
+  <p>Whether these are separate teams or areas of ownership within a smaller number of teams depends on your organisation's size. But the key point holds: all of these are stream-aligned work. They all serve external customers. None of them is a "platform team" in the Team Topologies sense.</p>
+
+  <p class="source-tag">Source: Manuel Pais on the distinction — <a href="https://getdx.com/podcast/team-topologies-platform-work/">DX Podcast: Platform Teams vs Enabling Teams</a></p>
+</section>
+
+<!-- ═══ SVG: THE DISTINCTION ═══ -->
+<section class="section" style="padding-top:20px;padding-bottom:20px;">
+<svg viewBox="0 0 780 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <rect width="780" height="380" fill="#F4F6F9" rx="6"/>
+  <text x="390" y="30" text-anchor="middle" font-family="'Playfair Display',serif" font-size="16" font-weight="700" fill="#0A1628">Product vs Platform: Who Serves Whom</text>
+
+  <!-- External customers box -->
+  <rect x="30" y="50" width="720" height="50" rx="4" fill="#0077B6" opacity="0.08" stroke="#0077B6" stroke-width="1"/>
+  <text x="390" y="72" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#0077B6" letter-spacing="2">EXTERNAL CUSTOMERS</text>
+  <text x="130" y="90" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">Bank Partners</text>
+  <text x="390" y="90" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">Merchants / Advertisers</text>
+  <text x="650" y="90" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">Cardholders (via bank apps)</text>
+
+  <!-- Arrows down from customers to stream-aligned -->
+  <line x1="390" y1="100" x2="390" y2="120" stroke="#0077B6" stroke-width="1.5"/>
+  <polygon points="386,117 394,117 390,124" fill="#0077B6"/>
+
+  <!-- Stream-aligned teams - THE PRODUCT -->
+  <rect x="30" y="125" width="720" height="105" rx="4" fill="#0077B6" opacity="0.1" stroke="#0077B6" stroke-width="1.5"/>
+  <text x="390" y="145" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#0077B6" letter-spacing="2">STREAM-ALIGNED — THE PRODUCT (CONSOLIDATED API + MICROSERVICES)</text>
+
+  <rect x="50" y="155" width="155" height="55" rx="3" fill="white" stroke="#0077B6" stroke-width="1"/>
+  <text x="127" y="175" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A1628" font-weight="600">Offer Management</text>
+  <text x="127" y="192" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Config · Targeting · Lifecycle</text>
+
+  <rect x="220" y="155" width="155" height="55" rx="3" fill="white" stroke="#0077B6" stroke-width="1"/>
+  <text x="297" y="175" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A1628" font-weight="600">Transaction Matching</text>
+  <text x="297" y="192" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Ingest · Match · Fulfil</text>
+
+  <rect x="390" y="155" width="155" height="55" rx="3" fill="white" stroke="#0077B6" stroke-width="1"/>
+  <text x="467" y="175" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A1628" font-weight="600">Bank Integration</text>
+  <text x="467" y="192" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">APIs · Feeds · White-label</text>
+
+  <rect x="560" y="155" width="170" height="55" rx="3" fill="white" stroke="#0077B6" stroke-width="1"/>
+  <text x="645" y="175" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A1628" font-weight="600">Merchant Platform</text>
+  <text x="645" y="192" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Onboarding · Reporting</text>
+
+  <!-- Dividing line -->
+  <line x1="60" y1="252" x2="720" y2="252" stroke="#E8EDF2" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="390" y="268" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8899AA" font-weight="600" letter-spacing="2">INTERNAL BOUNDARY — BELOW THIS LINE, THE CUSTOMER IS THE ENGINEER</text>
+
+  <!-- Platform team -->
+  <rect x="30" y="280" width="460" height="60" rx="4" fill="#FF6B35" opacity="0.1" stroke="#FF6B35" stroke-width="1.5"/>
+  <text x="260" y="300" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#FF6B35" letter-spacing="2">PLATFORM TEAM (INTERNAL)</text>
+  <text x="260" y="318" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">CI/CD · Kubernetes · Observability · Environments · Dev Tooling</text>
+  <text x="260" y="332" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8899AA">Serves engineers, not banks</text>
+
+  <!-- Enabling teams -->
+  <rect x="510" y="280" width="240" height="60" rx="4" fill="#00D4AA" opacity="0.12" stroke="#00D4AA" stroke-width="1.5"/>
+  <text x="630" y="300" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#00D4AA" letter-spacing="2">ENABLING TEAMS</text>
+  <text x="630" y="318" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">Test Automation · DevOps Practices</text>
+  <text x="630" y="332" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8899AA">Coach teams, then move on</text>
+
+  <!-- Arrows from platform/enabling up to stream-aligned -->
+  <line x1="260" y1="280" x2="260" y2="230" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="256,233 264,233 260,226" fill="#FF6B35"/>
+  <line x1="630" y1="280" x2="530" y2="230" stroke="#00D4AA" stroke-width="1.5"/>
+  <polygon points="527,233 533,233 530,226" fill="#00D4AA"/>
+
+  <!-- Labels -->
+  <text x="200" y="248" font-family="Source Sans 3,sans-serif" font-size="9" fill="#FF6B35" font-weight="600">X-as-a-Service (self-service)</text>
+  <text x="600" y="248" font-family="Source Sans 3,sans-serif" font-size="9" fill="#00D4AA" font-weight="600">Facilitating (temporary)</text>
+</svg>
+</section>
+
+<!-- ═══ THE FOUR TEAM TYPES ═══ -->
+<section class="section">
+  <div class="section-label orange">The Framework Applied</div>
+  <h2>The Four Team Types — Applied to a CLO Business</h2>
+
+  <div class="team-card stream">
+    <div class="tc-type">Stream-Aligned Teams</div>
+    <h4>The teams building and running the product — aligned to value streams within the consolidated API</h4>
+    <p>These are the primary teams. They own slices of the product end-to-end: they build, test, deploy, and run their part of the consolidated API in production. Their customers are external — banks, merchants, cardholders. Even though the underlying codebase is a shared API and microservice architecture, the <em>value streams</em> are distinct: offer management, transaction matching, bank integration, merchant platform.</p>
+    <p>In a smaller organisation, one team might own multiple streams. That's fine — what matters is that the ownership is explicit and that the team knows which external customer they're serving. As the organisation grows, streams can be split across teams. The key question: can this team ship a change to their domain without coordinating with another team? If not, the boundaries need rethinking.</p>
+    <p><strong>What they own:</strong> Feature delivery, testing, deployment, and production operations for their area of the product. They carry the pager for their services. They respond to bank escalations about their domain.</p>
+  </div>
+
+  <div class="team-card platform">
+    <div class="tc-type">Platform Team</div>
+    <h4>Internal infrastructure that makes stream-aligned teams faster — not the product itself</h4>
+    <p>The platform team provides internal services that stream-aligned teams consume as self-service. CI/CD pipelines, container orchestration, the observability stack (logging, metrics, alerting), secrets management, environment provisioning, and shared developer tooling. The customer is the engineer on the offer management team, not the bank.</p>
+    <p>In a smaller organisation, this might not be a dedicated team — it might be a few people who spend part of their time on internal tooling. The key is that the work is recognised as distinct from product work, with a different customer and different success metrics. The platform succeeds when stream-aligned teams can deploy faster, debug faster, and onboard new engineers faster. It fails when teams are filing tickets and waiting.</p>
+    <p>This team type is covered in more depth below.</p>
+  </div>
+
+  <div class="team-card enabling">
+    <div class="tc-type">Enabling Teams</div>
+    <h4>Coaches that upskill stream-aligned teams, then move on</h4>
+    <p>Specialists who help stream-aligned teams acquire capabilities they're missing — test automation, DevOps practices, observability skills, security practices — for a bounded period. They don't own software. They don't build features. They pair with developers, help them build the capability, and then rotate to the next team. If an enabling team is still embedded with the same team six months later, something has gone wrong.</p>
+    <p><strong>Example:</strong> The offer management team has poor automated test coverage for the targeting rules engine. A test automation enabling team spends 4–6 weeks helping them design a test strategy, select frameworks, write the first suite of tests, and integrate them into CI. The offer management team now owns their testing. The enabling team moves to the bank integration team next.</p>
+  </div>
+
+  <div class="team-card subsystem">
+    <div class="tc-type">Complicated Subsystem Team</div>
+    <h4>Specialists owning a component too complex for a generalist team</h4>
+    <p>Some components require deep specialist knowledge that can't reasonably be expected of a generalist stream-aligned team. In a CLO business, the strongest candidate is the <strong>transaction matching engine</strong> — the algorithms that normalise merchant data from wildly different bank and card network formats and match transactions against active offers. This requires specialist knowledge of merchant identifier formats, fuzzy matching, and the edge cases that arise across Visa, Mastercard, and bank-proprietary feeds.</p>
+    <p>The subsystem team owns the matching engine and exposes it as an API. Stream-aligned teams call the API — they don't need to understand the normalisation algorithms underneath. If matching accuracy drops, there's one team with the expertise and ownership to fix it.</p>
+    <p><strong>When to use:</strong> Only when the subsystem genuinely requires specialist knowledge. If it can be abstracted into the product's regular stream-aligned work, it should be. Complicated subsystem teams should be rare.</p>
+  </div>
+
+  <p class="source-tag">Framework: <a href="https://teamtopologies.com/key-concepts">Team Topologies</a> (IT Revolution, 2019; 2nd edition 2025). <a href="https://martinfowler.com/bliki/TeamTopologies.html">Martin Fowler's overview</a>.</p>
+
+  <h3>Where does UX/UI fit?</h3>
+  <p>This is one of the first questions that comes up when mapping a real organisation to the four types, because most UX/UI teams don't fit neatly into one. The answer depends on what the team actually does — and in practice, a small UX/UI team often operates in multiple modes.</p>
+  <p>The test is the same one that applies to every team: <strong>who is the customer?</strong></p>
+  <p>If the UX/UI team owns a specific product surface end-to-end — say, the merchant portal from design through to production — then they are <strong>stream-aligned</strong>. Their customer is the merchant. They ship features, own the interface in production, and respond to user feedback directly.</p>
+  <p>But most UX/UI teams in practice operate more like an <strong>enabling team</strong>. They don't own a product stream — they work <em>across</em> stream-aligned teams to uplift design quality, establish patterns, build a component library, and coach teams on user research practices. They pair with the offer management team for a few weeks on a redesign, then rotate to the merchant platform team. They don't own the shipped product — the stream-aligned team does. The interaction mode is facilitating: they help other teams build better interfaces, then move on.</p>
+  <p>A third dimension exists too: if the team owns and maintains a <strong>shared design system or component library</strong> that other teams consume as self-service, that part of the work is closer to a <strong>platform team</strong> function — providing reusable UI components that reduce cognitive load for stream-aligned teams. The component library has an API (in the broad sense), versioning, documentation, and internal users.</p>
+  <p>In a smaller organisation, one UX/UI team may do all three. Team Topologies would say that's workable as long as the team and its stakeholders are clear about which mode they're operating in at any given time — and critically, that the enabling and platform work (design system maintenance, coaching on research practices) doesn't get constantly deprioritised in favour of direct product work. The same tension that affects internal platform work versus bank-facing feature work applies here: without explicit time protection, the enabling work always loses.</p>
+</section>
+
+<!-- ═══ PLATFORM TEAM DEEP DIVE ═══ -->
+<section class="section">
+  <div class="section-label orange">The Platform Team in Depth</div>
+  <h2>What a Platform Team Does When Your Product Is Already a "Platform"</h2>
+
+  <p>This is where a CLO context diverges most from the standard Team Topologies guidance. Most examples in the book assume the platform team is the primary infrastructure concern. In a CLO business, the product <em>is</em> infrastructure for banks — but the Team Topologies platform team serves a different purpose entirely. It serves the organisation's own engineers.</p>
+
+  <h3>The purpose: free stream-aligned teams to focus on banks, not Kubernetes</h3>
+  <p>Every hour the offer management team spends debugging a CI pipeline failure, waiting for a test environment, or figuring out Kubernetes networking is an hour not spent on offer targeting improvements that banks are asking for. The platform team's job is to eliminate that extraneous cognitive load. They make the internal machinery invisible so stream-aligned teams can focus entirely on the product domain.</p>
+
+  <div class="context-box">
+    <div class="context-title">What a Platform Team Owns — CLO Context</div>
+    <p><strong>Deployment pipeline:</strong> Push code, it builds, runs tests, deploys to staging, and with approval deploys to production. Stream-aligned teams don't configure CI — they just push.</p>
+    <p><strong>Container orchestration:</strong> Kubernetes clusters managed centrally. Teams deploy via simple manifests. They don't manage nodes or cluster upgrades.</p>
+    <p><strong>Observability:</strong> Centralised logging, metrics, alerting. Pre-configured dashboards. If transaction matching latency spikes, the alert fires automatically without the team having built the alerting pipeline.</p>
+    <p><strong>Environment provisioning:</strong> Self-service creation of dev/staging/test environments, including isolated test data that simulates bank feeds without real cardholder data.</p>
+    <p><strong>Secrets and configuration:</strong> Centralised secrets management with self-service rotation. Teams don't manage encryption keys directly.</p>
+    <p><strong>Developer experience tooling:</strong> Local development setup, documentation, internal developer portal, onboarding guides. A new joiner should be able to deploy their first change within a day.</p>
+  </div>
+
+  <p>Note what's <em>not</em> on this list: the consolidated API itself, the bank-facing endpoints, the offer rules engine, the transaction matching pipeline. Those are product — stream-aligned work. The platform team never touches the product directly. They make it possible for the teams who do to move faster.</p>
+
+  <div class="pull-quote orange">
+    <p>The difference that platform teams have: internal customers. Product teams — stream-aligned teams as we call them — have external customers, customers outside the organisation.</p>
+    <cite>— Manuel Pais, Team Topologies co-author</cite>
+  </div>
+
+  <h3>The Thinnest Viable Platform</h3>
+  <p>Skelton and Pais advocate for the "Thinnest Viable Platform" — the smallest set of services that meaningfully reduces cognitive load. For an organisation of this size, the TVP probably starts with the deployment pipeline and observability stack — the two things that create friction for every team. Add services only when stream-aligned teams are consistently spending time on something that could be abstracted away. A bloated internal platform creates its own cognitive load.</p>
+
+  <h3>When the platform team gets it wrong</h3>
+  <div class="scenario-grid">
+    <div class="scenario">
+      <div class="scenario-label before">Anti-Pattern</div>
+      <h4>The Ticket Queue</h4>
+      <p>A stream-aligned team needs a new test environment for a bank onboarding. They file a Jira ticket. The platform team triages and eventually provisions it. Wait time: 4 days. The bank's go-live slips.</p>
+    </div>
+    <div class="scenario">
+      <div class="scenario-label after">The Pattern</div>
+      <h4>Self-Service</h4>
+      <p>The team runs a CLI command. A test environment spins up in minutes, pre-configured with tenant isolation and synthetic bank data. The platform team built the tooling; the stream-aligned team consumed it without waiting.</p>
+    </div>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://teamtopologies.com/key-concepts">teamtopologies.com</a>, <a href="https://martinfowler.com/bliki/TeamTopologies.html">martinfowler.com</a>, <a href="https://getdx.com/podcast/team-topologies-platform-work/">DX Podcast</a></p>
+</section>
+
+<!-- ═══ PQ BAR ═══ -->
+<section class="section" style="padding:0;border-bottom:none;">
+  <div class="pq-bar">
+    <p>A crucial insight of Team Topologies is that the primary benefit of a platform is to reduce the cognitive load on stream-aligned teams.</p>
+    <cite>— Martin Fowler</cite>
+  </div>
+</section>
+
+<!-- ═══ INTERACTION MODES ═══ -->
+<section class="section">
+  <div class="section-label">Interaction Modes</div>
+  <h2>The Three Ways Teams Work Together</h2>
+  <p>The team types get attention, but the interaction modes are where the framework delivers its sharpest value. Most dysfunction comes from teams interacting in undefined ways. Team Topologies replaces "we need to coordinate better" with three specific modes.</p>
+
+  <table class="interaction-table">
+    <thead><tr><th>Mode</th><th>What It Means</th><th>CLO Example</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="mode">Collaboration</td>
+        <td>Two teams work closely on a shared goal. High bandwidth, high cost.</td>
+        <td>The platform team and bank integration team work together to design automated environment provisioning for multi-bank testing. Neither has the full picture alone.</td>
+        <td><strong>Temporary.</strong> Weeks, not months.</td>
+      </tr>
+      <tr>
+        <td class="mode">X-as-a-Service</td>
+        <td>One team provides, another consumes with minimal coordination. Clear interface, clear SLAs.</td>
+        <td>The transaction matching subsystem exposes a matching API. The offer management team calls it to validate transactions. No meetings needed. The platform team provides CI/CD as a service — teams push and deploy.</td>
+        <td><strong>Ongoing.</strong> Default for stable capabilities.</td>
+      </tr>
+      <tr>
+        <td class="mode">Facilitating</td>
+        <td>One team coaches another to build a capability. They help, not build.</td>
+        <td>The test automation enabling team pairs with the merchant platform team to build contract tests for the merchant-facing API. After 4 weeks, the team owns it.</td>
+        <td><strong>Temporary.</strong> Weeks to a few months.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>How modes evolve</h3>
+  <p>A platform capability starts in <strong>collaboration</strong> with an early-adopter team (discover what it should look like), shifts to <strong>X-as-a-Service</strong> once stable (other teams consume independently), and uses <strong>facilitating</strong> to help teams that struggle to adopt. Permanent collaboration signals either a wrong team boundary or an immature service.</p>
+</section>
+
+<!-- ═══ DEVOPS AND TEST AUTOMATION ═══ -->
+<section class="section">
+  <div class="section-label orange">DevOps &amp; Test Automation</div>
+  <h2>Where They Fit — and Where They Don't</h2>
+
+  <div class="article-with-sidebar">
+    <div>
+      <h3>DevOps is not a team type</h3>
+      <p>Team Topologies grew from Skelton's earlier DevOps Topologies work, which identified a common anti-pattern: a dedicated "DevOps team" sitting between Dev and Ops, becoming a bottleneck that prevents the collaboration DevOps was supposed to enable.</p>
+      <p>In the Team Topologies model, DevOps capabilities split across two types:</p>
+      <p><strong>The platform team</strong> owns the tooling: CI/CD pipelines, container orchestration, observability infrastructure, environment provisioning. These are consumed as self-service by stream-aligned teams.</p>
+      <p><strong>Stream-aligned teams</strong> own deployment and production for their part of the product. "You built it, you run it" — but only because the platform is good enough that running it doesn't require deep infrastructure expertise. The offer management team deploys their services and responds to alerts, but they don't manage Kubernetes nodes.</p>
+      <p>When a stream-aligned team lacks DevOps skills, an <strong>enabling team</strong> bridges the gap: pairing on Terraform, helping set up canary deployments, teaching them to build SLO dashboards. The goal is self-sufficiency — the enabling team moves on once the capability transfers.</p>
+
+      <h3>Test automation: enabling, not a silo</h3>
+      <p>A centralised QA team is an anti-pattern. It creates a handoff between development and testing that slows flow and separates ownership. Stream-aligned teams should own their own testing.</p>
+      <p>What if they can't? A <strong>test automation enabling team</strong> rotates across stream-aligned teams on 4–6 week engagements: assessing testing maturity, helping select frameworks, pairing on the first test suites, integrating into CI, establishing patterns for test data management. Then moving on.</p>
+      <p>The <strong>platform team</strong> provides the shared infrastructure: ephemeral test environments with tenant isolation, synthetic transaction generators that simulate multi-bank feeds without real cardholder data, and CI pipeline integration for parallel test execution.</p>
+      <p>The enabling team teaches <em>how</em> to test. The platform team provides <em>where</em> tests run. Both reduce cognitive load, but differently.</p>
+    </div>
+    <div>
+      <div class="sidebar-box dark">
+        <div class="sb-title">DevOps Topologies Origin</div>
+        <p>Skelton's earlier research identified "Anti-Type B" — a DevOps silo that neither collaborates with Dev nor Ops. Team Topologies evolved from this as a comprehensive org design model.</p>
+        <p>The key insight: DevOps is a set of practices, not a team. The practices distribute between platform (tooling) and stream-aligned (ownership).</p>
+      </div>
+      <div class="sidebar-box">
+        <div class="sb-title">CLO-Specific Testing Challenges</div>
+        <p>Card-linked offer testing is harder than typical CRUD apps. You need synthetic transaction feeds simulating multiple banks, merchant IDs in different formats, edge cases in fuzzy matching, and end-to-end flows from transaction ingestion through to cashback fulfilment.</p>
+        <p>The platform team can provide test data generators and environment isolation. The enabling team helps each team write the actual test cases for their domain.</p>
+      </div>
+      <div class="sidebar-box">
+        <div class="sb-title">Enabling vs Platform for Testing</div>
+        <p><strong>Enabling:</strong> Teaches how — frameworks, patterns, contract testing, test strategy. Temporary.</p>
+        <p><strong>Platform:</strong> Provides where — environments, data, CI, execution. Ongoing service.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://web.devopstopologies.com/">devopstopologies.com</a>, <a href="https://engineering.cloudflight.io/enhancing-test-automation-with-team-topologies-leveraging-enabling-teams">Cloudflight Engineering</a>, <a href="https://www.atlassian.com/devops/frameworks/team-topologies">Atlassian</a></p>
+</section>
+
+<!-- ═══ PRACTICAL SCENARIOS ═══ -->
+<section class="section">
+  <div class="section-label">Practical Scenarios</div>
+  <h2>Five Situations You'll Recognise</h2>
+
+  <h3>1. A bank onboarding stalls because everyone's busy</h3>
+  <p><strong>Problem:</strong> A new bank has signed. Their transaction feed format differs from existing banks. The bank integration team, the platform team, and the offer management team all need to contribute work. Everyone is mid-sprint. The onboarding takes three months.</p>
+  <p><strong>Diagnosis:</strong> Undefined interaction modes. Nobody pre-agreed how cross-team onboarding works.</p>
+  <p><strong>Fix:</strong> Bank onboarding is a <em>collaboration trigger</em>. The bank integration team and the platform team enter a time-boxed collaboration to build the adapter and data pipeline together, with shared goals and a shared definition of done. Once the pattern is stable, future onboardings follow the established template (X-as-a-Service) with minimal coordination.</p>
+
+  <div class="divider"></div>
+
+  <h3>2. Teams can't deploy without the "DevOps team"</h3>
+  <p><strong>Problem:</strong> Stream-aligned teams raise tickets for deployments. Two-day wait. Features sit in branches gathering risk.</p>
+  <p><strong>Diagnosis:</strong> The "DevOps team" is a gatekeeper, not a platform.</p>
+  <p><strong>Fix:</strong> Split the work. The <em>platform function</em> builds a self-service deployment pipeline. The <em>enabling function</em> coaches teams that lack confidence to deploy independently. Within six months, every team deploys without tickets.</p>
+
+  <div class="divider"></div>
+
+  <h3>3. The centralised QA team is a bottleneck</h3>
+  <p><strong>Problem:</strong> Code gets thrown over the wall to QA. Features wait 1–2 weeks for coverage. Bugs return to developers who've context-switched.</p>
+  <p><strong>Diagnosis:</strong> Handoff between development and testing breaks flow and separates quality ownership.</p>
+  <p><strong>Fix:</strong> Dissolve centralised QA over six months. Move QA engineers into stream-aligned teams. Form a test automation enabling team from senior automation engineers to rotate across teams, building capability. Platform team provides shared test infrastructure.</p>
+
+  <div class="divider"></div>
+
+  <h3>4. Nobody knows who owns the matching engine</h3>
+  <p><strong>Problem:</strong> The transaction matching code is maintained by whichever team last touched it. Knowledge of normalisation rules and fuzzy-matching edge cases is spread thinly. When accuracy drops for a bank, nobody owns the fix.</p>
+  <p><strong>Diagnosis:</strong> A complicated subsystem without dedicated ownership.</p>
+  <p><strong>Fix:</strong> Form a <em>complicated subsystem team</em> owning the matching engine, normalisation logic, and matching API. Stream-aligned teams call the API; the subsystem team has the expertise to fix accuracy issues. Interaction mode: X-as-a-Service.</p>
+
+  <div class="divider"></div>
+
+  <h3>5. "Platform" priorities compete with bank feature requests</h3>
+  <p><strong>Problem:</strong> Engineers working on internal tooling improvements (CI pipeline speed, observability dashboards) keep getting pulled onto bank-requested feature work, because it's all "the platform." Internal improvements never get finished. Developer experience degrades.</p>
+  <p><strong>Diagnosis:</strong> This is what happens when the product/platform distinction is blurred. Internal tooling work and bank-facing feature work are competing for the same people's time because the organisation treats them as the same thing.</p>
+  <p><strong>Fix:</strong> Explicitly separate the two. Stream-aligned work serves banks — it's prioritised by bank customer needs, commercial commitments, and SLAs. Platform work serves internal engineers — it's prioritised by developer experience metrics, deployment frequency, and cognitive load reduction. Even if it's the same people doing both (which may be necessary at smaller scale), the work needs separate backlogs, separate prioritisation, and explicit time allocation. Without this, bank work will always win, and internal tooling will always lose.</p>
+</section>
+
+<!-- ═══ CROSS-TEAM PROJECTS ═══ -->
+<section class="section">
+  <div class="section-label orange">The Tension</div>
+  <h2>When Work Crosses Team Boundaries: Projects in a Flow-Based Model</h2>
+
+  <p>Team Topologies is deliberately anti-project. The framework is built around persistent teams with stable ownership and continuous flow — not temporary project teams assembled for a deliverable and then disbanded. The reasoning is sound: project teams create handoff points, lose context when they dissolve, and nobody owns the code in production once the project is "done."</p>
+  <p>But the reality is that cross-cutting work happens. A major bank onboarding touches the bank integration team, the offer management team, the matching subsystem, and the platform team. A new product capability — say, real-time offer notification — cuts across multiple streams. A PCI compliance deadline requires coordinated changes everywhere. Pretending these don't need cross-team coordination is as naive as pretending persistent teams don't need to exist.</p>
+  <p>The question isn't whether cross-team work happens — it's how to handle it without undermining the team ownership model.</p>
+
+  <h3>The Team Topologies answer: collaboration mode with clear ownership</h3>
+  <p>Cross-team initiatives are handled through <em>collaboration mode</em> — a temporary, time-boxed period where teams work closely together on a shared goal. The critical difference from a traditional project: <strong>no team gives up ownership of their domain</strong>. Each team still owns their part of the system. They're collaborating on the <em>integration points</em> between their domains, not handing pieces of their work to a project manager.</p>
+
+  <div class="context-box">
+    <div class="context-title">Example: Major Bank Onboarding</div>
+    <p>A new Tier 1 bank has signed. The work touches four teams. Here's how it flows without creating a project team:</p>
+    <p><strong>Bank integration team</strong> owns the bank-specific adapter — the API integration, data feed ingestion, and white-label configuration. This is their stream. They lead the technical relationship with the bank.</p>
+    <p><strong>Offer management team</strong> owns the offer configuration for the new bank — targeting rules, merchant mapping, campaign setup. They work with the bank's commercial team on offer strategy.</p>
+    <p><strong>Transaction matching subsystem team</strong> may need to handle a new merchant ID format or a previously unseen transaction schema. They update the matching engine and expose the capability via their API.</p>
+    <p><strong>Platform team</strong> provisions the tenant infrastructure — data pipeline, environments, monitoring dashboards for the new bank.</p>
+    <p>Each team works on <em>their</em> domain. The cross-team coordination is about <em>sequencing and integration</em>, not about reassigning work.</p>
+  </div>
+
+  <h3>How the EM and PO fit: coordination, not command</h3>
+  <p>This is where engineering managers and product owners play a specific role that Team Topologies doesn't spell out explicitly — but that matters enormously in practice.</p>
+
+  <div class="article-with-sidebar">
+    <div>
+      <p><strong>The product owner</strong> for a cross-team initiative isn't running a project. They're defining the <em>what</em> and the <em>why</em> at the initiative level — what the bank needs, what the commercial commitments are, what "done" looks like for the bank customer. They work with each stream-aligned team's own PO (or the team directly) to break the initiative into work items that fit each team's backlog and prioritisation. They don't prioritise individual team backlogs — they ensure the teams have enough context to prioritise correctly themselves.</p>
+      <p>In practice, this means the initiative PO runs a regular cadence (weekly or fortnightly) where representatives from each involved team sync on progress, surface dependencies, and flag blockers. This is not a project standup — it's a coordination point. Each team still has its own sprint cadence, its own backlog, and its own delivery rhythm.</p>
+      <p><strong>The engineering manager's</strong> role is to protect the team ownership model while enabling the cross-team work. This means several things: ensuring the initiative work is properly sized and prioritised in each team's backlog (not bolted on as "also do this"), flagging when a team is being asked to take on initiative work that doesn't fit their current capacity, and — critically — deciding when collaboration mode should end. If the bank integration team and the platform team are still in close collaboration eight weeks into an onboarding, the EM needs to ask whether the integration patterns are mature enough to move to X-as-a-Service for the next bank, or whether the team boundaries need rethinking.</p>
+      <p><strong>The integration pattern:</strong> The initiative PO defines the customer outcome. Each team's PO translates that into domain-specific work items. The EM ensures capacity, removes blockers, and guards team autonomy. Nobody creates a Gantt chart. Nobody reassigns engineers to a project team. The work flows through existing teams with explicit collaboration on the integration points.</p>
+    </div>
+    <div>
+      <div class="sidebar-box dark">
+        <div class="sb-title">What This Looks Like in Practice</div>
+        <p><strong>Weekly initiative sync</strong> (30 mins): Initiative PO + one representative from each involved team. Status, dependencies, blockers. Not a standup — a coordination point.</p>
+        <p><strong>Team backlogs</strong> remain sovereign. Each team prioritises initiative work against their other commitments. The EM helps negotiate when there are conflicts.</p>
+        <p><strong>Shared Slack channel</strong> for the initiative. Async questions, integration testing coordination, quick decisions.</p>
+        <p><strong>Explicit end date</strong> for the collaboration. When does this initiative stop needing cross-team coordination? That's when collaboration mode ends and X-as-a-Service begins.</p>
+      </div>
+      <div class="sidebar-box">
+        <div class="sb-title">When This Breaks Down</div>
+        <p>The most common failure: the initiative PO starts acting as a project manager — directly prioritising work in team backlogs, pulling engineers into "war rooms," and creating a shadow delivery structure that undermines team ownership.</p>
+        <p>The second failure: no explicit coordination at all. Each team picks up their piece independently, nobody tracks the integration points, and the bank go-live slips because Team A shipped their part but Team B didn't know it was urgent.</p>
+        <p>The balance: enough coordination to keep things aligned, not so much that it replaces team autonomy.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Larger initiatives: thin coordination layer, not project management</h3>
+  <p>For bigger efforts — a new product line, a platform migration, a regulatory compliance programme — the coordination layer might be slightly more formal: a dedicated initiative lead (could be an EM, a senior PO, or a principal engineer), a shared roadmap with milestones per team, and regular demo sessions where teams show integrated progress. But the principle holds: each team owns their domain. The coordination layer tracks dependencies and integration points. Nobody builds a temporary project team.</p>
+  <p>If a cross-team initiative consistently requires so much coordination that it feels like running a project, that's a signal. Either the team boundaries are wrong (the work that needs to be coordinated should be owned by a single team), or the initiative is actually building a new capability that needs its own stream-aligned team.</p>
+
+  <p class="source-tag">Sources: <a href="https://teamtopologies.com/key-concepts">Team Topologies key concepts</a>, <a href="https://itrevolution.com/articles/the-three-team-interaction-modes/">IT Revolution — interaction modes</a></p>
+</section>
+
+<!-- ═══ SVG: CROSS-TEAM INITIATIVE FLOW ═══ -->
+<section class="section" style="padding-top:20px;padding-bottom:20px;">
+<svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <rect width="780" height="340" fill="#F4F6F9" rx="6"/>
+  <text x="390" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="700" fill="#0A1628">Cross-Team Initiative: Bank Onboarding</text>
+  <text x="390" y="46" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#8899AA">Coordination layer on top, team ownership preserved below</text>
+
+  <!-- Initiative PO coordination layer -->
+  <rect x="150" y="62" width="480" height="44" rx="4" fill="#FF6B35" opacity="0.12" stroke="#FF6B35" stroke-width="1.5"/>
+  <text x="390" y="80" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#FF6B35" letter-spacing="1.5">INITIATIVE PO — COORDINATION LAYER</text>
+  <text x="390" y="96" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#3D4F63">Defines customer outcome · Weekly sync · Tracks dependencies · Does NOT own team backlogs</text>
+
+  <!-- EM box -->
+  <rect x="650" y="62" width="110" height="44" rx="4" fill="#00D4AA" opacity="0.12" stroke="#00D4AA" stroke-width="1.5"/>
+  <text x="705" y="80" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#00D4AA" letter-spacing="1">EM</text>
+  <text x="705" y="96" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Capacity · Blockers</text>
+
+  <!-- Arrows down from coordination to teams -->
+  <line x1="260" y1="106" x2="130" y2="140" stroke="#FF6B35" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="340" y1="106" x2="310" y2="140" stroke="#FF6B35" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="440" y1="106" x2="490" y2="140" stroke="#FF6B35" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="520" y1="106" x2="670" y2="140" stroke="#FF6B35" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Team 1: Bank Integration -->
+  <rect x="30" y="140" width="200" height="90" rx="4" fill="white" stroke="#0077B6" stroke-width="1.5"/>
+  <rect x="30" y="140" width="200" height="24" rx="4" fill="#0077B6"/>
+  <text x="130" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="white">Bank Integration Team</text>
+  <text x="45" y="180" font-family="Source Sans 3,sans-serif" font-size="10" fill="#0A1628" font-weight="600">Their work:</text>
+  <text x="45" y="194" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Bank API adapter, data feed</text>
+  <text x="45" y="207" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">ingestion, white-label config</text>
+  <text x="45" y="222" font-family="Source Sans 3,sans-serif" font-size="9" fill="#0077B6" font-weight="600">→ Owns their backlog</text>
+
+  <!-- Team 2: Offer Mgmt -->
+  <rect x="245" y="140" width="180" height="90" rx="4" fill="white" stroke="#0077B6" stroke-width="1.5"/>
+  <rect x="245" y="140" width="180" height="24" rx="4" fill="#0077B6"/>
+  <text x="335" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="white">Offer Management Team</text>
+  <text x="260" y="180" font-family="Source Sans 3,sans-serif" font-size="10" fill="#0A1628" font-weight="600">Their work:</text>
+  <text x="260" y="194" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Bank-specific offer config,</text>
+  <text x="260" y="207" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">targeting rules, campaign setup</text>
+  <text x="260" y="222" font-family="Source Sans 3,sans-serif" font-size="9" fill="#0077B6" font-weight="600">→ Owns their backlog</text>
+
+  <!-- Team 3: Matching -->
+  <rect x="440" y="140" width="170" height="90" rx="4" fill="white" stroke="#8899AA" stroke-width="1.5"/>
+  <rect x="440" y="140" width="170" height="24" rx="4" fill="#8899AA"/>
+  <text x="525" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="white">Matching Subsystem</text>
+  <text x="455" y="180" font-family="Source Sans 3,sans-serif" font-size="10" fill="#0A1628" font-weight="600">Their work:</text>
+  <text x="455" y="194" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">New merchant ID format,</text>
+  <text x="455" y="207" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">transaction schema handling</text>
+  <text x="455" y="222" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8899AA" font-weight="600">→ Owns their backlog</text>
+
+  <!-- Team 4: Platform -->
+  <rect x="625" y="140" width="135" height="90" rx="4" fill="white" stroke="#FF6B35" stroke-width="1.5"/>
+  <rect x="625" y="140" width="135" height="24" rx="4" fill="#FF6B35"/>
+  <text x="692" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="white">Platform Team</text>
+  <text x="640" y="180" font-family="Source Sans 3,sans-serif" font-size="10" fill="#0A1628" font-weight="600">Their work:</text>
+  <text x="640" y="194" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">Tenant infra, data</text>
+  <text x="640" y="207" font-family="Source Sans 3,sans-serif" font-size="9" fill="#3D4F63">pipeline, monitoring</text>
+  <text x="640" y="222" font-family="Source Sans 3,sans-serif" font-size="9" fill="#FF6B35" font-weight="600">→ Owns their backlog</text>
+
+  <!-- Integration points between teams -->
+  <line x1="230" y1="185" x2="245" y2="185" stroke="#DC2626" stroke-width="2"/>
+  <circle cx="237" cy="185" r="3" fill="#DC2626"/>
+  <line x1="425" y1="185" x2="440" y2="185" stroke="#DC2626" stroke-width="2"/>
+  <circle cx="432" cy="185" r="3" fill="#DC2626"/>
+  <line x1="610" y1="185" x2="625" y2="185" stroke="#DC2626" stroke-width="2"/>
+  <circle cx="617" cy="185" r="3" fill="#DC2626"/>
+
+  <!-- Legend -->
+  <rect x="30" y="260" width="720" height="60" rx="4" fill="white" stroke="#E8EDF2" stroke-width="1"/>
+  <text x="50" y="280" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="700" fill="#0A1628" letter-spacing="1">KEY PRINCIPLE</text>
+  <text x="50" y="298" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">Each team owns their backlog, their prioritisation, and their delivery. The coordination layer tracks</text>
+  <text x="50" y="312" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63">dependencies and </text>
+  <circle cx="161" cy="309" r="3" fill="#DC2626"/>
+  <text x="170" y="312" font-family="Source Sans 3,sans-serif" font-size="11" fill="#DC2626" font-weight="600">integration points</text>
+  <text x="295" y="312" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3D4F63"> between teams — it does not reassign work or create a temporary project team.</text>
+</svg>
+</section>
+
+<!-- ═══ COGNITIVE LOAD ═══ -->
+<section class="section">
+  <div class="section-label">The Core Principle</div>
+  <h2>Cognitive Load: Why This All Matters</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>The three types</h3>
+      <p><strong>Intrinsic</strong> — the inherent complexity of the domain. Understanding offer rules, bank feed formats, matching algorithms. Necessary and unavoidable.</p>
+      <p><strong>Extraneous</strong> — complexity imposed by the environment. Managing Kubernetes, debugging CI failures, provisioning test environments, coordinating deployments across teams. This is what platform and enabling teams exist to reduce.</p>
+      <p><strong>Germane</strong> — effort spent learning and improving. Experimenting with better targeting approaches, improving match accuracy, learning a new bank's requirements. This is where you <em>want</em> cognitive effort to go.</p>
+    </div>
+    <div>
+      <h3>The practical test</h3>
+      <p>Ask each team to list everything they're responsible for. If the list includes their business domain <em>plus</em> infrastructure management, deployment pipelines, test environments, security patching, and cross-team coordination — extraneous load is too high.</p>
+      <p>When cognitive load exceeds capacity, teams cut corners. Testing gets skipped. Deployment frequency drops. Defect rates rise. The instinct is to add people; Team Topologies argues the better lever is reducing extraneous load through clearer team boundaries, better platform services, and targeted enablement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM EVOLUTION ═══ -->
+<section class="section">
+  <div class="section-label orange">Team Evolution</div>
+  <h2>When Teams Should Change Size, Shape, or Type</h2>
+
+  <p>Team Topologies is not a one-time exercise. The authors are explicit: organisational design is never "done" — it must evolve as the business, the technology, and the people change. The signals that a team needs to change are often visible long before anyone acts on them. Knowing what to watch for — and what to do about it — is one of the most practical applications of the framework for engineering managers.</p>
+
+  <h3>Signals that a stream-aligned team needs to split</h3>
+  <p><strong>The domain has grown beyond one team's cognitive capacity.</strong> The bank integration team started by handling three banks. Now there are twelve, each with different feed formats, API requirements, and SLAs. The team can't hold all twelve bank contexts in their heads simultaneously. Changes for Bank A accidentally break Bank B's integration. Deployment frequency has dropped because every change requires regression testing across all banks.</p>
+  <p>The fix: split by bank cluster or by integration pattern. One team owns the high-volume, real-time feed banks; another owns the batch-file banks with simpler integrations. Each team has a manageable cognitive load. They share the same codebase but own different areas of it.</p>
+  <p><strong>Delivery cadence has slowed and the team can't explain why.</strong> The offer management team used to ship weekly. Now it takes three weeks to get a feature to production. There's no single bottleneck — it's a diffuse slowdown caused by too many things in flight, too many context switches, and too many implicit dependencies within the team's own domain. This is often a sign that the team owns too much.</p>
+  <p>The fix: identify which parts of the domain change at different rates. Offer configuration and targeting rules change constantly; the underlying offer engine changes rarely. Split along the rate-of-change boundary. The fast-moving team iterates on targeting; the other maintains and evolves the core engine.</p>
+
+  <h3>Signals that a team needs to merge or absorb work</h3>
+  <p><strong>Two teams are always in collaboration mode.</strong> If the bank integration team and the offer management team can never ship independently — every bank change requires an offer change and vice versa — the team boundary is in the wrong place. Permanent collaboration is a sign that what looks like two streams is actually one.</p>
+  <p><strong>A team is too small to be effective.</strong> Dunbar's research, referenced heavily in Team Topologies, suggests a minimum effective team size of around 5 people. Below that, the team lacks the cross-functional skills to own their domain end-to-end — they can't cover development, testing, deployment, and on-call without burning people out. If a team has shrunk to 3 people through attrition or reorg, it either needs to recruit or its domain needs to merge back into a neighbouring team.</p>
+
+  <h3>Signals that a new team type is needed</h3>
+  <p><strong>Multiple teams are struggling with the same capability gap.</strong> If three stream-aligned teams all have poor test automation, and none has the time or expertise to fix it alone, that's the signal for an enabling team. Not a permanent testing function — a temporary coaching team that rotates across the organisation, building capability in each team and then moving on.</p>
+  <p><strong>A shared component has no clear owner.</strong> When a critical piece of the system — the matching engine, the data pipeline, the bank API gateway — is maintained by "whoever touched it last," that's the signal for either a complicated subsystem team (if it requires deep specialist knowledge) or for the platform team to absorb it (if it's infrastructure that multiple teams consume).</p>
+  <p><strong>The platform team is drowning in tickets.</strong> If the platform team has become a bottleneck — long queues, slow turnaround, stream-aligned teams working around them — it might need to grow, or it might need to split. In larger organisations, Skelton and Pais describe "platform groupings" — the platform itself becomes a mini-organisation with its own stream-aligned teams (one owning CI/CD, another owning observability, another owning the data platform), supported by its own enabling team.</p>
+
+  <div class="pull-quote">
+    <p>Team boundaries shouldn't be fixed permanently; they must adapt as products and technologies evolve. The best companies enable teams to negotiate boundary changes directly rather than wait for top-down directives.</p>
+    <cite>— Team Topologies key concepts</cite>
+  </div>
+
+  <h3>How to evolve without chaos</h3>
+  <p>The most important principle: team changes should be <strong>evolutionary, not revolutionary</strong>. Don't reorganise the entire engineering department on a Monday morning. Instead, identify the strongest signal (the team with the highest cognitive load, the boundary causing the most friction, the capability gap affecting the most teams) and address that one change. Let it settle. Observe the effects. Then address the next one.</p>
+  <p>Team Topologies provides a useful forcing function for this: every six months, ask each team to map themselves against the four types and three interaction modes. Where are the mismatches? Where are the undefined interactions? Where has a "temporary" collaboration become permanent? Those are your evolution candidates.</p>
+
+  <p class="source-tag">Sources: <a href="https://teamtopologies.com/key-concepts">Team Topologies key concepts</a>, <a href="https://itrevolution.com/articles/team-topologies-five-years-of-transforming-organizations/">IT Revolution — five years</a></p>
+</section>
+
+<!-- ═══ KEY TAKEAWAY ═══ -->
+<section class="section" style="padding-top:20px;padding-bottom:32px;">
+  <div class="key-takeaway">
+    <div class="kt-title">Key Takeaways</div>
+    <div class="kt-item"><strong>The product is not a "platform team."</strong> The consolidated API serves bank customers externally. That makes it stream-aligned work. The Team Topologies platform team serves <em>internal engineers</em> — CI/CD, observability, environments, developer tooling. Getting this distinction wrong leads to confused ownership and competing priorities.</div>
+    <div class="kt-item">Stream-aligned teams own slices of the product by value stream (offer management, transaction matching, bank integration, merchant platform) — even if it's a shared codebase. They're responsible for build, test, deploy, and run. Their customer is the bank.</div>
+    <div class="kt-item">The platform team provides internal infrastructure as self-service. If teams file tickets and wait, the platform has failed. The Thinnest Viable Platform — start with CI/CD and observability, add capabilities only when stream-aligned teams are consistently losing time to something that could be abstracted.</div>
+    <div class="kt-item">DevOps is not a team type. Capabilities split between platform (tooling as a service) and stream-aligned teams (deployment and production ownership). Enabling teams bridge the skills gap temporarily.</div>
+    <div class="kt-item">Test automation should be owned by stream-aligned teams. An enabling team helps build the capability; the platform team provides test infrastructure (environments, synthetic data generators, CI integration).</div>
+    <div class="kt-item">The transaction matching engine is a strong candidate for a complicated subsystem team — specialist knowledge of merchant normalisation and fuzzy matching, exposed to stream-aligned teams via API.</div>
+    <div class="kt-item">When product and internal tooling compete for the same people's time, bank work always wins and developer experience always loses. Even at small scale, separate the backlogs, separate the prioritisation, and protect time for internal platform work.</div>
+    <div class="kt-item"><strong>Cross-team initiatives don't need project teams.</strong> Use collaboration mode with a thin coordination layer: an initiative PO defines the customer outcome, each team owns their domain-specific work, and a weekly sync tracks dependencies and integration points. The EM protects team autonomy and decides when collaboration mode should end.</div>
+    <div class="kt-item"><strong>Teams should evolve, not reorganise.</strong> Watch for signals: a domain outgrowing one team's cognitive capacity, permanent collaboration between two teams (they should probably merge), multiple teams struggling with the same capability gap (form an enabling team). Address one change at a time and let it settle.</div>
+  </div>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-list">
+    <li><span class="radar-date">April 1</span> AWS Summit Paris</li>
+    <li><span class="radar-date">April 19</span> Claude Haiku 3 model retirement — migrate to Haiku 4.5</li>
+    <li><span class="radar-date">April 22</span> AWS Summit London — expect Bedrock and Trainium announcements</li>
+    <li><span class="radar-date">April 29</span> Zero Day Con, Dublin</li>
+    <li><span class="radar-date">April 30</span> Node.js 20 end of life</li>
+  </ul>
+</section>
+
+<!-- ═══ READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>Sources &amp; Further Reading</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://teamtopologies.com/key-concepts">Team Topologies — Key Concepts</a></span><span class="source">teamtopologies.com</span></li>
+    <li><span class="title"><a href="https://martinfowler.com/bliki/TeamTopologies.html">bliki: Team Topologies</a></span><span class="source">Martin Fowler</span></li>
+    <li><span class="title"><a href="https://teamtopologies.com/book">Team Topologies: Second Edition (2025)</a></span><span class="source">IT Revolution</span></li>
+    <li><span class="title"><a href="https://getdx.com/podcast/team-topologies-platform-work/">Platform Teams vs Enabling Teams — Manuel Pais</a></span><span class="source">DX Podcast</span></li>
+    <li><span class="title"><a href="https://itrevolution.com/articles/team-topologies-five-years-of-transforming-organizations/">Team Topologies: Five Years of Transforming Organizations</a></span><span class="source">IT Revolution</span></li>
+    <li><span class="title"><a href="https://web.devopstopologies.com/">DevOps Topologies</a></span><span class="source">devopstopologies.com</span></li>
+    <li><span class="title"><a href="https://engineering.cloudflight.io/enhancing-test-automation-with-team-topologies-leveraging-enabling-teams">Enhancing Test Automation with Team Topologies</a></span><span class="source">Cloudflight Engineering</span></li>
+    <li><span class="title"><a href="https://teamtopologies.com/2nd-edition-case-studies/managing-team-cognitive-load-for-fast-flow-of-value">Creditas: Managing Team Cognitive Load for Fast Flow</a></span><span class="source">Team Topologies</span></li>
+    <li><span class="title"><a href="https://www.atlassian.com/devops/frameworks/team-topologies">Team Topologies and DevOps</a></span><span class="source">Atlassian</span></li>
+    <li><span class="title"><a href="https://itrevolution.com/articles/four-team-types/">The Four Team Types from Team Topologies</a></span><span class="source">IT Revolution</span></li>
+  </ul>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">March 2026 · Deep Dive · Special Edition</div>
+  <div class="archive-bar">
+    Other issues: <a href="issue-1.html">Mar 13–20 · Weekly</a> · <a href="issue-05.html">Mar 11–18 · Weekly</a> · <a href="deep-dive-dd1.html">Deep Dive DD-1</a> · <a href="issue-0.html">Feb 18 – Mar 18 · Monthly</a>
+  </div>
+  <div class="footer-next">Next weekly edition: March 24–31, 2026</div>
+</footer>
+
+</div></body></html>
