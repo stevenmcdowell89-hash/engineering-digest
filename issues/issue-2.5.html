@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — March 20–27, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+.progress-tracker{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin:0 60px}
+.progress-tracker .tracker-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:8px}
+.progress-tracker .tracker-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.progress-tracker .tracker-bar{height:8px;background:var(--light-gray);border-radius:4px;overflow:hidden;margin-bottom:6px}
+.progress-tracker .tracker-fill{height:100%;background:linear-gradient(90deg,var(--alert-red),var(--accent-orange));border-radius:4px;width:30%}
+.progress-tracker .tracker-status{font-size:12px;color:var(--med-gray)}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section{padding-left:20px;padding-right:20px}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.progress-tracker{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">March 20–27, 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #2.5</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">1st</div>
+    <div class="stat-context">Starling becomes the first UK bank to deploy agentic AI in a customer-facing context — acting on accounts, not just answering questions</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Starling's Agentic AI Banking Assistant</li>
+      <li>XBOW Embeds AI Pen-Testing in Microsoft Security Copilot</li>
+      <li>GitHub Copilot Data Policy vs Cursor Self-Hosted Agents</li>
+      <li>The Preceptorship Model for Junior Devs</li>
+      <li>Nebius us-central1 Post-Mortem</li>
+      <li>Platform Updates, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Agentic AI stopped being a research concept this week and started touching real bank accounts. Starling's assistant doesn't just interpret — it acts, moving money, setting goals, and executing on behalf of customers. That shift from advisory to autonomous changes the engineering surface area dramatically: trust models, rollback strategies, and regulatory boundaries all need rethinking when the AI has write access to your customers' money.</p>
+</section>
+
+<!-- ═══ PROGRESS TRACKER ═══ -->
+<div class="progress-tracker">
+  <div class="tracker-label">Priority 0 — Ongoing</div>
+  <div class="tracker-title">AWS Middle East Region Disruption — Day 24+</div>
+  <div class="tracker-bar"><div class="tracker-fill" style="width:15%"></div></div>
+  <div class="tracker-status">Second drone-related disruption hit Bahrain on March 24 — the second time in a month. AWS continues advising migration to alternate regions with no recovery timeline. <a href="https://www.reuters.com/world/middle-east/amazon-says-awss-bahrain-region-disrupted-following-drone-activity-2026-03-24/" style="color:var(--deep-teal);text-decoration:none;">Reuters</a></div>
+</div>
+
+<!-- ═══ QUICK HITS ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Five stories in sixty seconds</h2>
+
+  <div class="tier-label">Action Required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Node.js security releases patch 7 vulnerabilities across v20–v25.</strong> Two high-severity flaws: remote process crash via TLS SNICallback and HTTP __proto__ header crash. Patch to v20.20.2, v22.22.2, v24.14.1, or v25.8.2 immediately. <span class="on-source"><a href="https://nodejs.org/en/blog/vulnerability/march-2026-security-releases">nodejs.org</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth Knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">Fintech</span><div class="qh-text"><strong>Revolut posts record £1.7B profit, rolling out UK bank accounts.</strong> 68.3M customers globally after securing full UK banking licence. Lending products next — the competitive pressure on UK neobanks just intensified. <span class="on-source"><a href="https://www.reuters.com/business/finance/revolut-says-profit-hit-record-23-billion-2025-2026-03-24/">Reuters</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge">AI</span><div class="qh-text"><strong>OpenAI winds down Sora to redirect compute.</strong> The AI video generator is being retired and the Disney collaboration cancelled. Shift from consumer to business focus — compute is being reallocated to the next major model. <span class="on-source"><a href="https://www.nbcnews.com/tech/tech-news/openai-shuttering-sora-video-generating-service-rcna264989">NBC News</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">DevEx</span><div class="qh-text"><strong>Cursor ships self-hosted cloud agents.</strong> Code and tool execution stays in your own network. A direct counterpoint to GitHub's centralised data approach — worth watching for teams evaluating code assistant governance. <span class="on-source"><a href="https://cursor.com/blog/self-hosted-cloud-agents">cursor.com</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge purple">Reg</span><div class="qh-text"><strong>FCA targeted support gateway opens — rules take effect April 6.</strong> Banks and pension providers can now apply to offer tailored recommendations. Engineering teams at authorised firms should be preparing integration work. <span class="on-source"><a href="https://www.fca.org.uk/news/news-stories/fca-opens-authorisation-gateway-targeted-support">FCA</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section">
+  <div class="section-label">Banking &amp; Fintech</div>
+  <h2>Starling Launches the UK's First Agentic AI Banking Assistant</h2>
+
+  <!-- SVG: Starling AI progression chart -->
+  <div style="margin:28px 0 24px;">
+    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif;">
+      <text x="20" y="24" font-size="13" font-weight="700" fill="#0A1628" letter-spacing="1">STARLING'S AI PROGRESSION — FROM ANALYTICS TO AGENCY</text>
+      <!-- Timeline baseline -->
+      <line x1="60" y1="100" x2="720" y2="100" stroke="#E8EDF2" stroke-width="2"/>
+      <!-- Phase 1: Analytical -->
+      <circle cx="140" cy="100" r="20" fill="#0077B6" opacity="0.15"/>
+      <circle cx="140" cy="100" r="12" fill="#0077B6"/>
+      <text x="140" y="104" font-size="10" fill="#FFF" text-anchor="middle" font-weight="700">1</text>
+      <text x="140" y="75" font-size="14" fill="#0A1628" text-anchor="middle" font-weight="700">Analytical AI</text>
+      <text x="140" y="132" font-size="11" fill="#8899AA" text-anchor="middle">Spending Intelligence</text>
+      <text x="140" y="148" font-size="11" fill="#8899AA" text-anchor="middle">Pattern recognition</text>
+      <text x="140" y="164" font-size="10" fill="#0077B6" text-anchor="middle" font-weight="600">2025</text>
+      <!-- Connecting arrow 1→2 -->
+      <line x1="162" y1="100" x2="358" y2="100" stroke="#00B4D8" stroke-width="2" stroke-dasharray="6,4"/>
+      <polygon points="355,94 365,100 355,106" fill="#00B4D8"/>
+      <!-- Phase 2: Advisory -->
+      <circle cx="380" cy="100" r="20" fill="#00B4D8" opacity="0.15"/>
+      <circle cx="380" cy="100" r="12" fill="#00B4D8"/>
+      <text x="380" y="104" font-size="10" fill="#FFF" text-anchor="middle" font-weight="700">2</text>
+      <text x="380" y="75" font-size="14" fill="#0A1628" text-anchor="middle" font-weight="700">Advisory AI</text>
+      <text x="380" y="132" font-size="11" fill="#8899AA" text-anchor="middle">Scam Intelligence</text>
+      <text x="380" y="148" font-size="11" fill="#8899AA" text-anchor="middle">Detection &amp; alerts</text>
+      <text x="380" y="164" font-size="10" fill="#00B4D8" text-anchor="middle" font-weight="600">2025</text>
+      <!-- Connecting arrow 2→3 -->
+      <line x1="402" y1="100" x2="598" y2="100" stroke="#00D4AA" stroke-width="2" stroke-dasharray="6,4"/>
+      <polygon points="595,94 605,100 595,106" fill="#00D4AA"/>
+      <!-- Phase 3: Agentic -->
+      <circle cx="620" cy="100" r="24" fill="#00D4AA" opacity="0.15"/>
+      <circle cx="620" cy="100" r="14" fill="#00D4AA"/>
+      <text x="620" y="104" font-size="10" fill="#0A1628" text-anchor="middle" font-weight="700">3</text>
+      <text x="620" y="71" font-size="14" fill="#0A1628" text-anchor="middle" font-weight="700">Agentic AI</text>
+      <text x="620" y="132" font-size="11" fill="#8899AA" text-anchor="middle">Starling Assistant</text>
+      <text x="620" y="148" font-size="11" fill="#8899AA" text-anchor="middle">Acts on accounts</text>
+      <text x="620" y="164" font-size="10" fill="#00D4AA" text-anchor="middle" font-weight="600">March 2026</text>
+      <!-- Capability labels at bottom -->
+      <rect x="60" y="195" width="200" height="28" rx="3" fill="#0077B6" opacity="0.08"/>
+      <text x="160" y="213" font-size="11" fill="#0077B6" text-anchor="middle" font-weight="600">Read-only</text>
+      <rect x="280" y="195" width="200" height="28" rx="3" fill="#00B4D8" opacity="0.08"/>
+      <text x="380" y="213" font-size="11" fill="#00B4D8" text-anchor="middle" font-weight="600">Read + Recommend</text>
+      <rect x="500" y="195" width="220" height="28" rx="3" fill="#00D4AA" opacity="0.12"/>
+      <text x="610" y="213" font-size="11" fill="#0A1628" text-anchor="middle" font-weight="700">Read + Write + Execute</text>
+      <!-- Bottom note -->
+      <text x="380" y="252" font-size="11" fill="#8899AA" text-anchor="middle">Built on Google Gemini · Google Cloud · Opt-in rollout · Data never used for training</text>
+    </svg>
+    <p class="source-tag" style="margin-top:8px;">Data: <a href="https://www.starlingbank.com/news/starling-launches-agentic-ai-assistant/">Starling Bank</a></p>
+  </div>
+
+  <h3>What Starling built</h3>
+  <p>Starling's "Starling Assistant," launched March 20 for personal account holders on an opt-in basis, is a conversational banking interface that responds to voice and natural language prompts. It doesn't just answer questions — it acts. The assistant can set up personalised saving goals, organise bill payments, share spending insights, and provide tailored banking guidance, all executing directly on the customer's account. Built on Google Gemini running within Starling's Google Cloud environment, all customer data stays within that perimeter and is never used for model training.</p>
+
+  <h3>Eight years of infrastructure, three phases of AI</h3>
+  <p>The launch is the culmination of eight years of AI development at Starling. The progression is worth studying: Starling moved from analytical AI (Spending Intelligence — pattern recognition in spending data, launched 2025) to advisory AI (Scam Intelligence — detecting and alerting on marketplace scams) to agentic AI (taking actions on customer accounts). Each layer built on the infrastructure and trust model of the one before it. The Starling Assistant now surfaces both earlier tools alongside new agentic capabilities through a single conversational interface.</p>
+
+  <h3>The competitive signal</h3>
+  <p>This matters because it sets a benchmark. Starling is the first UK bank to give an AI write access to customer accounts in a production setting. The opt-in model and the progressive capability build suggest a deliberate approach to regulatory and customer trust. But the competitive clock has started. Revolut posted £1.7B in profit this week and is expanding its UK banking operations with 68.3M customers globally. The FCA's targeted support gateway opens April 6. For engineering teams at UK banks, the question is no longer whether to build agentic capabilities, but how quickly your architecture, trust model, and compliance framework can support them.</p>
+
+  <h3>What engineering leaders should watch</h3>
+  <p>The hardest problem here is not the AI model — it is the control plane around it. When an assistant has the ability to move money, set up recurring transfers, and modify account configurations, the blast radius of a model error or prompt injection is fundamentally different from a chatbot that just retrieves information. Starling's decision to build incrementally — proving out analytical and advisory layers before granting agentic access — is the engineering pattern worth emulating. The teams that skip the trust-building phases and jump straight to agentic will discover why Starling didn't.</p>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>Starling is the first UK bank to deploy agentic AI that acts on customer accounts — not just answers questions</li>
+      <li>The progressive build from analytical → advisory → agentic AI is the architectural pattern — each layer proved the trust model before the next was built</li>
+      <li>The competitive benchmark is now set: Revolut scaling, FCA rules landing April 6, and agentic AI in production at a UK neobank</li>
+      <li>The control plane challenge — rollback, blast-radius containment, prompt injection defence — is harder when the AI has write access to accounts</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://www.starlingbank.com/news/starling-launches-agentic-ai-assistant/">Starling Bank</a>, <a href="https://www.reuters.com/business/finance/revolut-says-profit-hit-record-23-billion-2025-2026-03-24/">Reuters</a> (March 20–27, 2026)</p>
+</section>
+
+<!-- ═══ QUICK TAKES ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col">
+    <div class="quick-take-col">
+      <div class="qt-header security">Security</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat security">CVSS 9.8</div>
+        <div class="qt-anchor-context">First AI Agent to Receive CVE Attribution</div>
+        <h3 style="margin-top:0">XBOW Embeds AI Pen-Testing in Microsoft Security Copilot</h3>
+        <p>XBOW, the autonomous offensive security platform that made history by receiving the first-ever AI CVE attribution (CVE-2026-21536, a critical unauthenticated RCE), has announced a deeper integration with Microsoft. The collaboration embeds continuous AI-driven penetration testing directly into Security Copilot and Sentinel through three components: a Pentest Manager Agent, a Sentinel Connector, and a Pentest Analysis Agent.</p>
+        <p>Available as a public preview at RSAC 2026, this shifts the model from periodic manual pen-testing engagements to continuous, automated offensive assessment. The practical question for security teams is not whether AI pen-testing works — XBOW's CVE record proves it does — but how vulnerability management workflows handle the order-of-magnitude increase in discovered issues when scanning never stops.</p>
+        <p class="source-tag">Source: <a href="https://xbow.com/news/xbow-penetration-testing-microsoft-security-ecosystem">XBOW</a></p>
+      </div>
+    </div>
+    <div class="quick-take-col">
+      <div class="qt-header ai">AI Tooling</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat ai">Apr 24</div>
+        <div class="qt-anchor-context">GitHub Training Data Opt-In Takes Effect</div>
+        <h3 style="margin-top:0">Two AI Tooling Strategies Diverge</h3>
+        <p>GitHub announced that from April 24, interaction data from Copilot Free, Pro, and Pro+ users will be used to train AI models. Business and Enterprise plans are unaffected. The nuance matters: private repository content at rest is excluded, but interaction data generated while working in private repos — inputs, outputs, code snippets, and associated context — is covered. Opt-out is available in settings.</p>
+        <p>The same week, Cursor shipped self-hosted cloud agents that keep code and tool execution entirely within your own network. These two announcements illustrate a stark divergence: GitHub is centralising data to improve its models; Cursor is decentralising execution to win trust. For engineering leaders evaluating code assistant governance, the question is no longer just capability — it is where your interaction data lives and who trains on it.</p>
+        <p class="source-tag">Sources: <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/">GitHub Blog</a>, <a href="https://cursor.com/blog/self-hosted-cloud-agents">Cursor</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Claude Code vs Copilot vs Cursor: a no-fluff comparison for 2026.</strong> Useful reference for teams currently evaluating AI coding assistants — covers strengths, trade-offs, and where each tool fits. <span class="on-source"><a href="https://www.cosmicjs.com/blog/claude-code-vs-github-copilot-vs-cursor-which-ai-coding-agent-should-you-use-2026">cosmicjs.com</a></span></li>
+    <li><strong>Buy-now-pay-later regulation hits the UK perimeter.</strong> Deferred payment credit enters the FCA's regulatory scope from July 15, 2026 — engineering teams at BNPL providers should be planning compliance infrastructure now. <span class="on-source"><a href="https://www.osborneclarke.com">Osborne Clarke</a></span></li>
+    <li><strong>Nebius publishes detailed us-central1 post-mortem.</strong> A scheduled power maintenance event turned into a 9.5-hour multi-phase outage when provider work exceeded the announced scope — see Outside In for the full analysis. <span class="on-source"><a href="https://nebius.com/blog/posts/incident-post-mortem-analysis-us-central1-service-disruption-on-march-10">nebius.com</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">Node.js</td><td>Security releases for v20.x–v25.x: 2 high, 5 medium severity. Remote crash via TLS SNICallback is the priority. <a href="https://nodejs.org/en/blog/vulnerability/march-2026-security-releases" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">Patch now →</a></td></tr>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">AWS ME</td><td>Second drone disruption to Bahrain region on March 24. No recovery timeline. Migration to alternate regions advised. <a href="https://www.reuters.com/world/middle-east/amazon-says-awss-bahrain-region-disrupted-following-drone-activity-2026-03-24/" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">Reuters →</a></td></tr>
+      <tr><td><span class="status-dot amber"></span></td><td class="platform">GitHub</td><td>Copilot interaction data used for AI training from April 24 (Free, Pro, Pro+ plans). Business/Enterprise excluded. <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">Policy →</a></td></tr>
+      <tr><td><span class="status-dot green"></span></td><td class="platform">Cursor</td><td>Self-hosted cloud agents shipped — code execution stays within your own network. <a href="https://cursor.com/blog/self-hosted-cloud-agents" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">Details →</a></td></tr>
+      <tr><td><span class="status-dot green"></span></td><td class="platform">Starling</td><td>Agentic AI assistant launched for personal accounts. Built on Google Gemini, opt-in, data stays within Starling's cloud perimeter. <a href="https://www.starlingbank.com/news/starling-launches-agentic-ai-assistant/" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">Details →</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<hr class="feature-break">
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The Preceptorship Model: Growing Engineers When AI Handles the Easy Work</h2>
+  <p>Microsoft Azure CTO Mark Russinovich and VP of Developer Community Scott Hanselman have published a paper proposing a nursing-style "preceptorship" model for developing junior software engineers. Their argument: as AI automates the tasks that used to build foundational skills — writing boilerplate, debugging simple issues, reading documentation — organisations face a pipeline crisis that takes years to materialise and years to repair.</p>
+
+  <h3>How it works</h3>
+  <p>Preceptorship pairs early-career developers with senior engineers at 3:1 to 5:1 ratios. The juniors work on real product teams — prompting, debugging, and reviewing AI-generated code — while seniors externalise their judgment, turning daily work into structured learning. AI tools are deliberately configured for Socratic coaching rather than direct code generation: asking "why did you choose this approach?" instead of just producing the answer. Each cohort runs for at least one year.</p>
+
+  <div class="pull-quote">
+    <p>"The path forward is a culture of preceptorship at scale. We must enable senior mentorship with AI systems that capture reasoning, surface misconceptions, and turn daily work into teachable moments."</p>
+    <cite>— Mark Russinovich and Scott Hanselman, Microsoft</cite>
+  </div>
+
+  <h3>The cautionary data point</h3>
+  <p>The paper references Microsoft's own EDS Systems Engineering Development program, which was paused with a three-month recovery estimate. Actual recovery took over 18 months. Russinovich and Hanselman's point is stark: the talent pipeline is not a headcount lever — it is a supply chain, and supply chains are rebuilt, not restarted. The short-term incentive to stop hiring juniors because AI fills the gap will produce a future without the engineers capable of governing the AI systems being deployed today.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://leaddev.com/career-development/a-model-for-growing-the-next-generation-of-developers" class="mgmt-link">Read the full article: leaddev.com →</a></p>
+</section>
+
+<!-- ═══ OUTSIDE IN ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Nebius us-central1 Post-Mortem: When Scheduled Maintenance Becomes an Outage</h2>
+
+  <div class="oi-stats-row">
+    <div class="oi-stat"><div class="oi-stat-num">~9.5h</div><div class="oi-stat-label">Total Incident Duration</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">4+</div><div class="oi-stat-label">Unplanned Power Events</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">1h 46m</div><div class="oi-stat-label">VM Connectivity Loss</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">1h 22m</div><div class="oi-stat-label">S3 Endpoint Down</div></div>
+  </div>
+
+  <h3>What happened</h3>
+  <p>On March 10, Nebius — a cloud GPU provider relevant to teams running AI workloads — experienced a major outage in its us-central1 region during what was supposed to be a controlled power infrastructure maintenance window. The provider-led electrical work did not remain within the announced maintenance profile. Instead of a single controlled event, it produced an initial multi-rack power outage at 15:18 UTC followed by at least four additional unplanned power interruptions over the next several hours, each disrupting recovery work already in progress.</p>
+
+  <h3>Why the duration compounded</h3>
+  <p>The site was operating in a temporary power configuration during maintenance. When an electrical anomaly caused incorrect switching and rack ATS unit failures, UPS capacity was insufficient to prevent the cascade. But the real duration driver was architectural: customer-facing networking, VM connectivity, Managed Kubernetes, and storage all depended on shared regional networking and a Kubernetes-based control plane. Power returned to different parts of the site at different times, meaning some hosts recovered before the control services needed to restart their workloads were healthy. The result: many workloads required manual reconciliation rather than automatic recovery.</p>
+
+  <h3>The honest admission</h3>
+  <p>Nebius acknowledged that during the incident, they did not follow the most effective restoration algorithm — too much recovery was handled as parallel service-by-service restoration instead of a stricter dependency-ordered regional recovery sequence. Their action items include hard stop-and-review criteria for ongoing electrical work and regular recovery drills with dependency-ordered restoration sequences. For any team relying on GPU cloud providers for AI workloads, this post-mortem is worth reading in full.</p>
+
+  <p class="source-tag"><a href="https://nebius.com/blog/posts/incident-post-mortem-analysis-us-central1-service-disruption-on-march-10">Read the full post-mortem: nebius.com →</a></p>
+</section>
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">APR</div>
+        <div class="rd-day">06</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>FCA targeted support rules take effect.</strong> Authorised banks and pension providers can begin offering tailored recommendations. Engineering teams should have integration work ready. <a href="https://www.fca.org.uk/news/news-stories/fca-opens-authorisation-gateway-targeted-support" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">FCA →</a></div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">APR</div>
+        <div class="rd-day">24</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GitHub Copilot training data opt-in takes effect.</strong> Personal-plan interaction data will be used for model training unless users opt out. Review your organisation's Copilot tier and data governance policies. <a href="https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/" style="color:var(--deep-teal);text-decoration:none;font-size:12px;">GitHub →</a></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">JUN</div>
+        <div class="rd-day">03</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Money20/20 Europe 2026.</strong> Amsterdam, June 3–5. Agentic finance and AI governance expected to dominate the agenda after Starling's launch this week.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Q2</div>
+        <div class="rd-label">TBC</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>FCA consultation on retained EU payments law.</strong> Will include the approach to open banking and stablecoin payments. Related statutory instrument expected 2027/2028.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://www.starlingbank.com/news/starling-launches-agentic-ai-assistant/">Starling launches UK's first Agentic AI financial assistant</a></span><span class="source">starlingbank.com</span></li>
+    <li><span class="title"><a href="https://leaddev.com/career-development/a-model-for-growing-the-next-generation-of-developers">A model for growing the next generation of developers</a></span><span class="source">leaddev.com</span></li>
+    <li><span class="title"><a href="https://nebius.com/blog/posts/incident-post-mortem-analysis-us-central1-service-disruption-on-march-10">Nebius us-central1 incident post-mortem</a></span><span class="source">nebius.com</span></li>
+    <li><span class="title"><a href="https://www.cosmicjs.com/blog/claude-code-vs-github-copilot-vs-cursor-which-ai-coding-agent-should-you-use-2026">Claude Code vs GitHub Copilot vs Cursor: 2026 comparison</a></span><span class="source">cosmicjs.com</span></li>
+    <li><span class="title"><a href="https://cursor.com/blog/self-hosted-cloud-agents">Cursor self-hosted cloud agents</a></span><span class="source">cursor.com</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">March 20–27, 2026 · Weekly Edition · Issue #2.5</div>
+  <div class="footer-next">Next edition: March 27 – April 3, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Mar 18 · Weekly #0</span>
+    <span class="archive-pill">Mar 18 · Deep Dive</span>
+    <span class="archive-pill">Mar 18 · Weekly #0.5</span>
+    <span class="archive-pill">Mar 20 · Weekly #1</span>
+    <span class="archive-pill current">Mar 27 · Weekly #2.5</span>
+  </div>
+</footer>
+
+</div></body></html>
