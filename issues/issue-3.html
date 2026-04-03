@@ -174,7 +174,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 
 /* ═══ EDITORIAL MOMENT ═══ */
 .editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
-.em-thinking{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-thinking .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
 
 /* ═══ FLOATED SIDEBAR BOX — standard weekly ═══ */
 .sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
@@ -244,10 +244,10 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
   <div class="p0-current">AWS continues to advise all Middle East customers to migrate workloads to alternate regions. No ETA for full restoration. <a href="https://www.crn.com/news/cloud/2026/aws-data-center-disrupted-by-drones-in-middle-east-client-workloads-being-migrated">CRN →</a></div>
 </div>
 
-<!-- ═══ EDITORIAL MOMENT — Variant 1: Thinking ═══ -->
+<!-- ═══ EDITORIAL MOMENT — Variant 1: Worth a second look ═══ -->
 <section class="editorial-moment">
-  <div class="em-thinking">
-    <div class="em-label">One thing I've been thinking about</div>
+  <div class="em-second-look">
+    <div class="em-label">Worth a second look</div>
     <p>The JetBrains data shows 74% adoption, but the Pragmatic Engineer survey adds a telling detail: staff+ engineers and directors are the heaviest AI agent users. The people most enthusiastic about Claude Code are the same people signing purchase orders. When the decision-maker and the power user are the same person, procurement frameworks built around committee review may already be obsolete.</p>
   </div>
 </section>
@@ -325,7 +325,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
   <h3>Three-Way Tension</h3>
   <p>Engineering directors making tooling decisions in 2026 face a tension that didn't exist eighteen months ago. Developers increasingly prefer Claude Code. Procurement teams default to Copilot because it's the known quantity with a Microsoft contract attached. And the market's cost frontier is being pushed by models built on open-source Chinese foundations — capable, cheap, and sitting outside most enterprise AI governance policies. The Kimi episode is the first visible collision between these three forces. It will not be the last.</p>
 
-  <p><strong>So what:</strong> The AI coding tools market has moved from "should we adopt?" to a three-way contest between developer preference, procurement defaults, and model provenance — and most enterprise tooling policies haven't caught up with any of them.</p>
+  <p><strong>The takeaway:</strong> The AI coding tools market has moved from "should we adopt?" to a three-way contest between developer preference, procurement defaults, and model provenance — and most enterprise tooling policies haven't caught up with any of them.</p>
 
   <p class="source-tag">Sources: <a href="https://blog.jetbrains.com/research/2026/04/which-ai-coding-tools-do-developers-actually-use-at-work/">JetBrains</a>, <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a>, <a href="https://www.businessinsider.com/cursor-composer-chinese-model-kimi-moonshot-ai-coding-low-cost-2026-3">Business Insider</a>, <a href="https://techcrunch.com/2026/03/22/cursor-admits-its-new-coding-model-was-built-on-top-of-moonshot-ais-kimi/">TechCrunch</a></p>
 </section>
@@ -343,7 +343,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
         <h3 style="margin-top:0">Wise Takes On High Street Banks</h3>
         <p>Wise launched its UK Current Account on March 30, offering a 3.26% variable rate on GBP balances — a direct challenge to the high street banks sitting on over £250bn in zero-interest current accounts. The numbers behind the move are substantial: more than 3 million active UK customers, £8bn held in Wise accounts, and over £4bn already earning interest through Wise Assets.</p>
         <p>The current account comes packaged with Airport Lounge Pass access and Young Explorer cards for under-18s, both launched after sustained customer demand. Wise's real-time payment infrastructure already delivers 74% of global payments in under 20 seconds — a capability that most traditional banks are still years away from matching at scale.</p>
-        <p class="so-what"><strong>So what:</strong> Wise has built the multi-currency real-time infrastructure that traditional banks are spending years trying to modernise, and is now competing directly on the most defended product in retail banking — the current account.</p>
+        <p class="so-what"><strong>The takeaway:</strong> Wise has built the multi-currency real-time infrastructure that traditional banks are spending years trying to modernise, and is now competing directly on the most defended product in retail banking — the current account.</p>
         <p class="source-tag"><a href="https://newsroom.wise.com/en-UKI/263844-wise-launches-uk-current-account-to-take-on-high-street-banks/">Wise Newsroom</a></p>
       </div>
     </div>
@@ -356,7 +356,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
         <p>Node.js 20 reaches end-of-life on April 30 — 27 days from today. After that date, no more official security patches or vulnerability fixes. AWS Lambda Phase 1 deprecation begins the same day, blocking the creation of new Lambda functions on the nodejs20.x runtime. Phase 2 follows in August; Phase 3 in September.</p>
         <p>The recommended migration target is Node.js 24, not 22 — Node.js 22's own EOL arrives in April 2027, uncomfortably close. But Node.js 24 introduces a breaking change: callback-based Lambda handlers (<code>exports.handler = function(event, context, callback)</code>) no longer work. Every Lambda function using the legacy callback pattern needs rewriting to async/await.</p>
         <p>Separately, Node.js announced it is moving to one major release per year starting with Node 27 in April 2027. Every release becomes LTS. The confusing odd/even system is retired.</p>
-        <p class="so-what"><strong>So what:</strong> Any team running production workloads on Node.js 20 without a migration plan has a 27-day security deadline — and the migration path to Node.js 24 includes a breaking change that affects every Lambda function using the legacy callback pattern.</p>
+        <p class="so-what"><strong>The takeaway:</strong> Any team running production workloads on Node.js 20 without a migration plan has a 27-day security deadline — and the migration path to Node.js 24 includes a breaking change that affects every Lambda function using the legacy callback pattern.</p>
         <p class="source-tag"><a href="https://www.herodevs.com/blog-posts/node-js-20-goes-eol-how-to-stay-secure-without-a-full-migration">HeroDevs</a>, <a href="https://www.cloudquery.io/blog/aws-lambda-nodejs-20-eol">CloudQuery</a>, <a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Node.js</a></p>
       </div>
     </div>
@@ -447,7 +447,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
   <h3>The leadership decision</h3>
   <p>CEO Colin Sidoti announced that the majority of Clerk's engineering team would shift to reliability-focused projects, with new product features explicitly delayed as a consequence. For an infrastructure provider in a competitive market, pausing feature development is a significant strategic cost — and an acknowledgement that reliability debt had outpaced the roadmap.</p>
 
-  <p class="so-what"><strong>So what:</strong> When an infrastructure provider's routine operation fails silently and takes your platform down, the response that matters is whether you're willing to redirect your entire engineering team to reliability and tell customers that features will be late.</p>
+  <p class="so-what"><strong>The takeaway:</strong> When an infrastructure provider's routine operation fails silently and takes your platform down, the response that matters is whether you're willing to redirect your entire engineering team to reliability and tell customers that features will be late.</p>
 
   <p class="source-tag"><a href="https://clerk.com/blog/2026-03-10-service-outage-postmortem">Read the full post: clerk.com →</a></p>
 </section>
