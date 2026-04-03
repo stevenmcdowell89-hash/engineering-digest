@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — March 27 – April 3, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:none;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal);text-transform:none}.tier-label.watch{color:var(--med-gray);text-transform:none}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:none;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:none}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:none;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:none;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:none;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:none;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+/* ═══ P0 STATUS CARD ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:none;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:none;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-thinking{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-thinking .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+
+/* ═══ SIDEBAR TABLE ═══ */
+.sidebar-box table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.sidebar-box th{text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--med-gray);padding:4px 6px;border-bottom:1px solid var(--light-gray)}
+.sidebar-box td{padding:4px 6px;border-bottom:1px solid var(--light-gray);color:var(--body-text);font-size:12px}
+.sidebar-box tr:last-child td{border-bottom:none}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">March 27 – April 3, 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue Three</span>
+      <span class="cover-read-time">|&ensp;13 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">74%</div>
+    <div class="stat-context">The share of developers worldwide who have adopted specialised AI coding tools as of January 2026 — JetBrains AI Pulse survey, April 2, 2026</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>The AI Tooling War Has a Winner. Your Procurement Team Missed It.</li>
+      <li>Wise Takes On High Street Banks</li>
+      <li>Node.js 20 — 27 Days to End of Life</li>
+      <li>The Tool Your Developers Want vs. The Tool Procurement Approves</li>
+      <li>Outside In: Clerk's Reliability Reckoning</li>
+      <li>Platform Updates, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Seventy-four percent of developers now use specialised AI coding tools. Universal adoption ought to simplify procurement, but this week proved the opposite. The cheapest frontier coding model turns out to be built on a Chinese open-source foundation that nobody disclosed at launch. The tooling war is being fought on three fronts simultaneously — adoption, cost, and provenance — and most enterprise procurement policies were written before the third front existed.</p>
+</section>
+
+<!-- ═══ P0 STATUS CARD ═══ -->
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">AWS Middle East — Day 33+ <span class="p0-badge degraded">Degraded</span></div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">Mar 23–24</span><span class="p0-event">Second disruption in Bahrain from ongoing drone activity. AWS repeats migration advisory to alternate regions.</span></li>
+    <li><span class="p0-date">Mar 14</span><span class="p0-event">Bahrain region 7h+ outage from misconfigured routing (separate incident from original strikes).</span></li>
+    <li><span class="p0-date">Mar 2</span><span class="p0-event">AWS confirms structural damage from drone strikes in UAE and Bahrain. Fire suppression caused additional water damage.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Initial drone strikes on UAE facility. Fire, power shutdown, immediate service disruption.</span></li>
+  </ul>
+  <div class="p0-current">AWS continues to advise all Middle East customers to migrate workloads to alternate regions. No ETA for full restoration. <a href="https://www.crn.com/news/cloud/2026/aws-data-center-disrupted-by-drones-in-middle-east-client-workloads-being-migrated">CRN →</a></div>
+</div>
+
+<!-- ═══ EDITORIAL MOMENT — Variant 1: Thinking ═══ -->
+<section class="editorial-moment">
+  <div class="em-thinking">
+    <div class="em-label">One thing I've been thinking about</div>
+    <p>The JetBrains data shows 74% adoption, but the Pragmatic Engineer survey adds a telling detail: staff+ engineers and directors are the heaviest AI agent users. The people most enthusiastic about Claude Code are the same people signing purchase orders. When the decision-maker and the power user are the same person, procurement frameworks built around committee review may already be obsolete.</p>
+  </div>
+</section>
+
+<!-- ═══ QUICK HITS ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Seven Stories in Sixty Seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Node.js 20 reaches end-of-life April 30.</strong> No more security patches after that date. AWS Lambda Phase 1 deprecation begins the same day. Migration to Node.js 24 is recommended — but callback-based Lambda handlers break under the new runtime. <span class="on-source"><a href="https://www.herodevs.com/blog-posts/node-js-20-goes-eol-how-to-stay-secure-without-a-full-migration">HeroDevs</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">AI</span><div class="qh-text"><strong>74% of developers have adopted specialised AI coding tools.</strong> GitHub Copilot growth has stalled at 29% workplace usage while Claude Code rocketed to joint second (18%) in eight months. JetBrains AI Pulse survey of 10,000+ developers. <span class="on-source"><a href="https://blog.jetbrains.com/research/2026/04/which-ai-coding-tools-do-developers-actually-use-at-work/">JetBrains</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Cursor's Composer 2 built on Chinese open-source model Kimi K2.5 without disclosure.</strong> The model delivers frontier-level coding at one-tenth the cost of Claude Opus 4.6, but Cursor only acknowledged the Kimi foundation after it was discovered by users. Enterprise procurement teams now need a policy for Chinese-origin AI models. <span class="on-source"><a href="https://www.businessinsider.com/cursor-composer-chinese-model-kimi-moonshot-ai-coding-low-cost-2026-3">Business Insider</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">AI</span><div class="qh-text"><strong>OpenAI building desktop "SuperApp"</strong> merging ChatGPT, Codex, and Atlas browser into one application. CEO of Applications Fidji Simo told staff that "fragmentation has been slowing us down." <span class="on-source"><a href="https://finance.yahoo.com/sectors/technology/articles/openai-plans-superapp-unify-chatgpt-151317550.html">Yahoo Finance</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">Fintech</span><div class="qh-text"><strong>Wise launches UK Current Account with 3.26% variable rate</strong> — directly challenging high street banks while over £250bn sits in UK current accounts earning zero interest. Over 3 million active UK customers, £8bn held. <span class="on-source"><a href="https://newsroom.wise.com/en-UKI/263844-wise-launches-uk-current-account-to-take-on-high-street-banks/">Wise</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">DevTools</span><div class="qh-text"><strong>Anthropic ships Claude Code auto mode</strong> — an AI classifier approves safe actions automatically and blocks risky ones, reducing the permission fatigue that led developers to skip guardrails entirely. Research preview for Teams. <span class="on-source"><a href="https://www.anthropic.com/engineering/claude-code-auto-mode">Anthropic</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Platform</span><div class="qh-text"><strong>Node.js moves to one major release per year</strong> starting with Node 27 in April 2027. Every release becomes LTS. The odd/even distinction — and the confusion it caused — is gone. <span class="on-source"><a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Node.js</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section">
+  <div class="section-label">AI Tooling &amp; Adoption</div>
+  <h2>The AI Tooling War Has a Winner. Your Procurement Team Missed It.</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">74%</div><div class="stat-label">Developer adoption of AI coding tools</div></div>
+    <div class="stat"><div class="stat-num">29%</div><div class="stat-label">Copilot workplace usage</div></div>
+    <div class="stat"><div class="stat-num">18%</div><div class="stat-label">Claude Code workplace usage</div></div>
+    <div class="stat"><div class="stat-num">$0.50</div><div class="stat-label">Composer 2 per 1M input tokens</div></div>
+  </div>
+
+  <!-- Floated sidebar -->
+  <div class="sidebar-box-float">
+    <div class="sidebar-box">
+      <div class="sb-title">Enterprise AI coding costs compared</div>
+      <table>
+        <thead><tr><th>Tool</th><th>Per-seat pricing</th></tr></thead>
+        <tbody>
+          <tr><td>GitHub Copilot</td><td>$19/seat (Business)<br>$39/seat (Enterprise)</td></tr>
+          <tr><td>Claude Code</td><td>$20–25/seat</td></tr>
+          <tr><td>Cursor</td><td>$40/seat (Pro)<br>Custom (Enterprise)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Adoption Is Universal — Growth Is Not</h3>
+  <p>JetBrains published its latest AI Pulse survey data on April 2, drawing on responses from more than 10,000 developers across eight languages. The headline number: 74% of developers worldwide have adopted specialised AI coding tools — editors, assistants, and agents — as of January 2026. A further 90% use at least one AI tool (including chatbots) for development work.</p>
+  <p>But adoption figures mask a dramatic shift in market share. GitHub Copilot remains the most widely recognised tool (76% awareness) and holds the largest single share at 29% workplace usage. That number has barely moved in a year. Copilot's strongest position is in enterprises over 5,000 employees, where it reaches 40% — driven overwhelmingly by procurement defaults, not developer choice.</p>
+
+  <h3>Claude Code's Eight-Month Ascent</h3>
+  <p>Claude Code, which didn't exist before mid-2025, has reached 18% workplace adoption — matching Cursor for joint second place globally and hitting 24% in the US and Canada. Its customer satisfaction score is the highest in the survey: 91% CSAT and a net promoter score of +54. The Pragmatic Engineer's parallel survey of 900+ engineers tells a similar story: Claude Code is the most-used tool, with directors and VPs among the most enthusiastic adopters.</p>
+
+  <div class="pq-bar">
+    <p>"GitHub Copilot growth has stalled since last year. Claude Code adoption increased 6x from April–June 2025 to January 2026."</p>
+    <cite>— JetBrains AI Pulse Survey, April 2, 2026</cite>
+  </div>
+
+  <h3>The Kimi Question</h3>
+  <p>Then there's Cursor's Composer 2. Launched in late March, it was marketed as "frontier-level at coding" at a fraction of the cost: $0.50 per million input tokens versus $5 for Claude Opus 4.6. What Cursor didn't disclose at launch was that Composer 2 was built on Kimi K2.5, an open-source model from Chinese startup Moonshot AI. Cofounder Aman Sanger later acknowledged on X that "it was a miss to not mention the Kimi base in our blog from the start." Only about a quarter of the compute came from the base model, with Cursor's own reinforcement learning training on top — but the provenance disclosure gap raises a procurement question that many enterprises haven't yet been forced to answer.</p>
+
+  <h3>Three-Way Tension</h3>
+  <p>Engineering directors making tooling decisions in 2026 face a tension that didn't exist eighteen months ago. Developers increasingly prefer Claude Code. Procurement teams default to Copilot because it's the known quantity with a Microsoft contract attached. And the market's cost frontier is being pushed by models built on open-source Chinese foundations — capable, cheap, and sitting outside most enterprise AI governance policies. The Kimi episode is the first visible collision between these three forces. It will not be the last.</p>
+
+  <p><strong>So what:</strong> The AI coding tools market has moved from "should we adopt?" to a three-way contest between developer preference, procurement defaults, and model provenance — and most enterprise tooling policies haven't caught up with any of them.</p>
+
+  <p class="source-tag">Sources: <a href="https://blog.jetbrains.com/research/2026/04/which-ai-coding-tools-do-developers-actually-use-at-work/">JetBrains</a>, <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">Pragmatic Engineer</a>, <a href="https://www.businessinsider.com/cursor-composer-chinese-model-kimi-moonshot-ai-coding-low-cost-2026-3">Business Insider</a>, <a href="https://techcrunch.com/2026/03/22/cursor-admits-its-new-coding-model-was-built-on-top-of-moonshot-ais-kimi/">TechCrunch</a></p>
+</section>
+
+<!-- ═══ QUICK TAKES ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col">
+    <div class="quick-take-col">
+      <div class="qt-header fintech">Banking &amp; Fintech</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat fintech">£250bn</div>
+        <div class="qt-anchor-context">In UK current accounts earning 0% interest</div>
+        <h3 style="margin-top:0">Wise Takes On High Street Banks</h3>
+        <p>Wise launched its UK Current Account on March 30, offering a 3.26% variable rate on GBP balances — a direct challenge to the high street banks sitting on over £250bn in zero-interest current accounts. The numbers behind the move are substantial: more than 3 million active UK customers, £8bn held in Wise accounts, and over £4bn already earning interest through Wise Assets.</p>
+        <p>The current account comes packaged with Airport Lounge Pass access and Young Explorer cards for under-18s, both launched after sustained customer demand. Wise's real-time payment infrastructure already delivers 74% of global payments in under 20 seconds — a capability that most traditional banks are still years away from matching at scale.</p>
+        <p class="so-what"><strong>So what:</strong> Wise has built the multi-currency real-time infrastructure that traditional banks are spending years trying to modernise, and is now competing directly on the most defended product in retail banking — the current account.</p>
+        <p class="source-tag"><a href="https://newsroom.wise.com/en-UKI/263844-wise-launches-uk-current-account-to-take-on-high-street-banks/">Wise Newsroom</a></p>
+      </div>
+    </div>
+    <div class="quick-take-col">
+      <div class="qt-header security">Security Alert</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat security">April 30</div>
+        <div class="qt-anchor-context">Node.js 20 end-of-life date</div>
+        <h3 style="margin-top:0">Node.js 20 — 27 Days to End of Life</h3>
+        <p>Node.js 20 reaches end-of-life on April 30 — 27 days from today. After that date, no more official security patches or vulnerability fixes. AWS Lambda Phase 1 deprecation begins the same day, blocking the creation of new Lambda functions on the nodejs20.x runtime. Phase 2 follows in August; Phase 3 in September.</p>
+        <p>The recommended migration target is Node.js 24, not 22 — Node.js 22's own EOL arrives in April 2027, uncomfortably close. But Node.js 24 introduces a breaking change: callback-based Lambda handlers (<code>exports.handler = function(event, context, callback)</code>) no longer work. Every Lambda function using the legacy callback pattern needs rewriting to async/await.</p>
+        <p>Separately, Node.js announced it is moving to one major release per year starting with Node 27 in April 2027. Every release becomes LTS. The confusing odd/even system is retired.</p>
+        <p class="so-what"><strong>So what:</strong> Any team running production workloads on Node.js 20 without a migration plan has a 27-day security deadline — and the migration path to Node.js 24 includes a breaking change that affects every Lambda function using the legacy callback pattern.</p>
+        <p class="source-tag"><a href="https://www.herodevs.com/blog-posts/node-js-20-goes-eol-how-to-stay-secure-without-a-full-migration">HeroDevs</a>, <a href="https://www.cloudquery.io/blog/aws-lambda-nodejs-20-eol">CloudQuery</a>, <a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Node.js</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — Number Band ═══ -->
+<div class="mid-accent-band">
+  <div class="accent-stat">42%</div>
+  <div class="accent-context">The share of committed code that is now AI-generated or assisted, up from 6% in 2023. Developers predict this will reach 65% by 2027. — Sonar State of Code 2026</div>
+</div>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>OpenAI consolidating ChatGPT, Codex, and Atlas browser into a desktop "SuperApp"</strong> — ending product fragmentation ahead of its planned IPO at a $730bn valuation. <span class="on-source"><a href="https://letsdatascience.com/blog/openai-admitted-its-product-strategy-was-broken-now-it-s-building-one-app-to-replace-everything">Let's Data Science</a></span></li>
+    <li><strong>Anthropic launched Claude Code auto mode</strong> — a two-layer classifier system that approves safe actions automatically while blocking risky ones, aiming to solve the permission fatigue that led developers to skip guardrails entirely. <span class="on-source"><a href="https://www.anthropic.com/engineering/claude-code-auto-mode">Anthropic</a></span></li>
+    <li><strong>Sonar's 2026 State of Code survey:</strong> 72% of developers who have tried AI coding tools now use them every day, with 42% of committed code AI-generated or assisted. <span class="on-source"><a href="https://www.sonarsource.com/state-of-code-developer-survey-report.pdf">SonarSource</a></span></li>
+    <li><strong>Africa's first Islamic neobank Nyla selected Mambu</strong> for its SaaS core banking platform ahead of its Ghana launch in June 2026. <span class="on-source"><a href="https://www.fintechfutures.com/core-banking-technology/march-2026-top-five-banking-technology-stories-of-the-month">Fintech Futures</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What changed</th></tr></thead>
+    <tbody>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">Node.js 20</td><td>End-of-life April 30, 2026 — no more security patches</td></tr>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">AWS Lambda</td><td>Node.js 20 runtime Phase 1 deprecation April 30</td></tr>
+      <tr><td><span class="status-dot amber"></span></td><td class="platform">Node.js</td><td>Release schedule changing: one major per year from Node 27 (2027)</td></tr>
+      <tr><td><span class="status-dot green"></span></td><td class="platform">Node.js 25</td><td>Released with V8 14.1, <code>--allow-net</code> permission model, Web Storage default</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The Tool Your Developers Want vs. The Tool Procurement Approves</h2>
+
+  <h3>The data is in — and it tells two different stories</h3>
+  <p>JetBrains' AI Pulse survey, published April 2, gives engineering leaders the clearest picture yet of what's actually happening with AI coding tools. The headline — 74% adoption — sounds like consensus. Beneath it, there's a widening gap between what developers choose and what enterprises buy.</p>
+  <p>GitHub Copilot holds 76% awareness and 29% workplace usage, but that number has flatlined. At companies over 5,000 employees, Copilot reaches 40%, largely because procurement teams select it as the default via existing Microsoft agreements. Meanwhile, Claude Code — barely eight months old — has hit 18% globally and 24% in the US and Canada, with a 91% customer satisfaction score and a net promoter score of +54, the highest in the survey.</p>
+
+  <h3>The agent adoption gap</h3>
+  <p>The Pragmatic Engineer's parallel survey of 900+ engineers adds a layer the JetBrains data doesn't fully capture. Staff+ engineers are the heaviest users of AI agents, at 63.5%. Directors and VPs are especially enthusiastic about agentic tools. Most engineers juggle two to four AI tools simultaneously; 15% use five or more. The era of a single company-approved tool is over in practice, even where it persists in policy.</p>
+
+  <div class="pull-quote" style="background:rgba(255,255,255,.08);border-left-color:var(--accent-orange)">
+    <p style="color:var(--white);font-size:20px">"GitHub Copilot growth has stalled since last year. Claude Code increased adoption 6x from April–June 2025 to January 2026, achieving the highest satisfaction score of any tool in the survey."</p>
+    <cite>— JetBrains AI Pulse Survey, April 2, 2026</cite>
+  </div>
+
+  <h3>Cursor's 35% growth advantage</h3>
+  <p>Cursor is growing 35% faster than Copilot per the Pragmatic Engineer data, driven by developers who prize speed and cost-effectiveness over procurement convenience. And Cursor's trajectory raises the sharpest question of all: its newest model is built on a Chinese open-source foundation that most enterprise AI governance policies don't yet address.</p>
+  <p>The pattern across both surveys is consistent: developers are adopting tools faster than procurement can evaluate them, and the tools developers prefer are frequently not the ones procurement approves.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://blog.jetbrains.com/research/2026/04/which-ai-coding-tools-do-developers-actually-use-at-work/" class="mgmt-link">Read the full survey: JetBrains →</a></p>
+  <p class="source-tag" style="color:var(--teal);margin-top:4px"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026" class="mgmt-link">Read the full survey: Pragmatic Engineer →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> If your developers are choosing Claude Code and your procurement team is approving Copilot, who is making the actual tooling decision for your organisation?</p>
+</section>
+
+<!-- ═══ OUTSIDE IN — Format A: Full Feature ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Clerk's Reliability Reckoning</h2>
+
+  <h3>When routine infrastructure fails silently</h3>
+  <p>Clerk, the authentication-as-a-service provider used by thousands of applications, published a post-mortem on March 13 for a service outage three days earlier. The root cause was a failed live migration of a Google Cloud SQL virtual machine — a routine operation performed by Google without advance notice. The migration caused a spike in disk latency, which cascaded into database lock contention and a complete outage.</p>
+  <p>This was not Clerk's first recent incident. A similar Cloud SQL live migration had caused problems in September 2025. The database was pinned to prevent further migrations until January 2026, then unpinned. Three months later, the same failure mode struck again.</p>
+
+  <div class="oi-callout">
+    <p>"Clerk has faced several incidents recently and frustration is rightfully mounting. We have failed at our commitment to customers and we are deeply sorry. Customers depend on Clerk for critical infrastructure, and we have not lived up to that responsibility."</p>
+  </div>
+
+  <h3>Masking failure state</h3>
+  <p>A technical detail in the post-mortem is worth noting: during the outage, Clerk's system returned 429 (rate limit) status codes instead of 500 (server error) codes. The 429s bubbled up from an internal service rather than being transformed to accurately represent the failure. Applications relying on those error codes to assess Clerk's health were getting a misleading signal — the system looked throttled when it was actually down.</p>
+
+  <h3>The leadership decision</h3>
+  <p>CEO Colin Sidoti announced that the majority of Clerk's engineering team would shift to reliability-focused projects, with new product features explicitly delayed as a consequence. For an infrastructure provider in a competitive market, pausing feature development is a significant strategic cost — and an acknowledgement that reliability debt had outpaced the roadmap.</p>
+
+  <p class="so-what"><strong>So what:</strong> When an infrastructure provider's routine operation fails silently and takes your platform down, the response that matters is whether you're willing to redirect your entire engineering team to reliability and tell customers that features will be late.</p>
+
+  <p class="source-tag"><a href="https://clerk.com/blog/2026-03-10-service-outage-postmortem">Read the full post: clerk.com →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">14</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Patch Tuesday</strong> — Microsoft April security update cycle</div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 20 end-of-life</strong> — last day for official security patches</div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>AWS Lambda Node.js 20 Phase 1 deprecation</strong> — no new functions on nodejs20.x runtime</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">19</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>QCon London 2026</strong> — May 19–21</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">02</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Apple WWDC 2026</strong></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">AI Tooling for Software Engineers in 2026</a></span><span class="source">pragmaticengineer.com</span></li>
+    <li><span class="title"><a href="https://getdx.com/blog/dora-metrics-tools/">DORA metrics tools in 2026: What to measure, and what's missing</a></span><span class="source">getdx.com</span></li>
+    <li><span class="title"><a href="https://www.ccgcatalyst.com/thought-leadership/commentary/the-state-of-banking-technology-in-2026-why-this-year-is-different/">The State of Banking Technology in 2026</a></span><span class="source">ccgcatalyst.com</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">March 27 – April 3, 2026 · Weekly Edition · Issue Three</div>
+  <div class="footer-next">Next edition: April 10, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Issue 0</span>
+    <span class="archive-pill">Issue 1</span>
+    <span class="archive-pill">Issue 2</span>
+    <span class="archive-pill current">Issue 3</span>
+  </div>
+</footer>
+
+</div></body></html>
