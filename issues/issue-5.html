@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Apr 10–17, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+/* ═══ P0 STATUS CARD (replaces progress-tracker bar) ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT (Leadership Read) ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE (Quick Takes, Outside In) ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER (v1.7) ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT (v1.7) ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly (v1.8) ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+
+/* ═══ ARTICLE WITH SIDEBAR — deep dives ONLY (v1.8: do NOT use in standard weeklies) ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:65% 35%;gap:28px;margin-top:20px}.article-body{min-width:0}.article-sidebar{min-width:0}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.sidebar-box.urgent{border-left:4px solid var(--alert-red)}.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ TIER 2 LABEL OVERRIDES — sentence case (v1.7) ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+/* Format B: Hero moment */
+.oi-hero-band{padding:48px 60px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);text-align:center;border-bottom:1px solid var(--light-gray)}
+.oi-hero-band .oi-hero-quote{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;color:var(--teal);line-height:1.35;max-width:700px;margin:0 auto 20px}
+.oi-hero-band .oi-hero-attr{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:24px}
+.oi-hero-band .oi-hero-body{max-width:700px;margin:0 auto;color:rgba(255,255,255,.8);font-size:15px;line-height:1.7;text-align:left}
+.oi-hero-band .section-label{color:var(--accent-orange)}
+.oi-hero-band h2{color:var(--white)}
+.oi-hero-band .so-what{color:rgba(255,255,255,.9)}
+
+/* Format C: Compact inset */
+.oi-compact{background:var(--off-white);border-left:4px solid var(--teal);padding:20px 24px;margin:24px 60px;border-radius:0 4px 4px 0}
+.oi-compact .oi-compact-company{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.oi-compact p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.oi-compact .oi-compact-source{font-size:12px;color:var(--med-gray)}
+
+/* Format E: Contrast card */
+.oi-contrast-card{display:grid;grid-template-columns:1fr 2fr;margin:24px 60px;border-radius:6px;overflow:hidden;border:1px solid var(--light-gray)}
+.oi-contrast-card .oic-left{background:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.oi-contrast-card .oic-left .oic-company{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.oi-contrast-card .oic-left .oic-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}
+.oi-contrast-card .oic-left .oic-stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-top:4px}
+.oi-contrast-card .oic-right{padding:24px;background:var(--white)}
+.oi-contrast-card .oic-right p{font-size:14px;line-height:1.6;color:var(--body-text)}
+.oi-contrast-card .oic-right .oi-compact-source{font-size:12px;color:var(--med-gray);margin-top:8px}
+
+/* Format F: Meanwhile strip */
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-hero-band{padding:32px 20px}.oi-hero-band .oi-hero-quote{font-size:22px}.oi-compact{margin:16px 20px}.oi-contrast-card{grid-template-columns:1fr;margin:16px 20px}.oi-meanwhile{padding:10px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Codex Breaks Free<em>from the IDE</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">17 April 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #5</span>
+      <span class="cover-read-time">|&ensp;~12 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">111</div>
+    <div class="stat-context">OpenAI's Codex now deploys persistent background agents on your desktop — with 111 plugin integrations and zero IDE dependency.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>OpenAI Codex: desktop agents and what they mean for governance</li>
+      <li>GitHub Copilot training data deadline — seven days left</li>
+      <li>Bluesky's eight-hour outage: a goroutine story</li>
+      <li>The Pragmatic Engineer: AI costs, slop, and identity loss</li>
+      <li>Bluesky's post-mortem as a model for engineering transparency</li>
+      <li>Platform Updates, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>The AI coding assistant left the IDE this week. OpenAI's overhauled Codex now runs persistent background agents on macOS, controlling desktop apps and managing workflows through 111 plugin integrations — while you keep working in a separate window. That shift surfaces a governance gap most enterprises haven't addressed. GitHub's April 24 training data deadline is seven days out, Bluesky published a textbook cascading-failure post-mortem, and Node.js 20 reaches end of life in thirteen days.</p>
+</section>
+
+<!-- ═══ P0 STATUS CARD ═══ -->
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">AWS Middle East Recovery — Day 47 <span class="p0-badge degraded">Degraded</span></div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">Apr 17</span><span class="p0-event">Still DEGRADED. No full recovery timeline published.</span></li>
+    <li><span class="p0-date">Apr 3</span><span class="p0-event">Partial service restoration in progress across ME-CENTRAL-1 and ME-SOUTH-1.</span></li>
+    <li><span class="p0-date">Mar 14</span><span class="p0-event">ME-SOUTH-1 (Bahrain) networking cascade. 84 services down, 7+ hours.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Physical damage to ME-CENTRAL-1 (UAE). Fire and power loss.</span></li>
+  </ul>
+  <div class="p0-current">AWS continues recovery operations across ME-CENTRAL-1 and ME-SOUTH-1. No complete recovery timeline has been published. <a href="https://health.aws.amazon.com/health/status">AWS Health Dashboard →</a></div>
+</div>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num red">13</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center">Days until Node.js 20 reaches end of life. After April 30, no security patches, no CVE fixes. AWS Lambda starts pulling the plug the next day.</p>
+  </div>
+</section>
+
+<!-- ═══ THE WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Seven stories in sixty seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action">
+      <span class="qh-badge red">Privacy</span>
+      <div class="qh-text"><strong>GitHub Copilot training data opt-out: April 24.</strong> Free, Pro, and Pro+ users are opted in by default. Prompts, accepted suggestions, code snippets, and context will feed AI model training. Business and Enterprise are exempt. Opt out via Settings &gt; Copilot &gt; Privacy. <span class="on-source"><a href="https://byteiota.com/github-copilot-trains-on-your-data-opt-out-before-april-24/">byteiota.com</a></span></div>
+    </li>
+    <li class="tier-action">
+      <span class="qh-badge red">Runtime</span>
+      <div class="qh-text"><strong>Node.js 20 EOL April 30.</strong> AWS Lambda stops patching that day and blocks new functions June 1, then all updates July 1. Azure SDK for JS drops Node.js 20 in July; GCP Cloud Run decommissions it in October. Upgrade path: v22 (LTS) or v24. <span class="on-source"><a href="https://www.herodevs.com/blog-posts/node-js-v20-goes-eol-april-30----and-your-cloud-provider-is-pulling-the-plug-the-next-day">herodevs.com</a></span></div>
+    </li>
+    <li class="tier-action">
+      <span class="qh-badge red">Security</span>
+      <div class="qh-text"><strong>April Patch Tuesday: 163 CVEs, 1 actively exploited zero-day.</strong> SharePoint spoofing CVE-2026-32201 (CVSS 6.5) confirmed exploited. Also patched: IKE RCE at CVSS 9.8, Active Directory RCE at 8.0, .NET Framework DoS at 7.5. Eight rated Critical total.</div>
+    </li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know">
+      <span class="qh-badge orange">Security</span>
+      <div class="qh-text"><strong>BlueHammer: Microsoft Defender EoP publicly disclosed before patch.</strong> CVE-2026-33825 (CVSS 7.8). Exploit code posted to GitHub on April 3 by researcher "Chaotic Eclipse" before Microsoft shipped a fix. No confirmed active exploitation at time of publication.</div>
+    </li>
+    <li class="tier-know">
+      <span class="qh-badge orange">AI tools</span>
+      <div class="qh-text"><strong>Pragmatic Engineer AI survey (April 14): costs now a growing concern.</strong> Engineers hitting usage limits on AI tools, Claude Code most affected. "AI slop" — low-quality code from colleagues using agents without review discipline — emerging as a team quality problem. <span class="on-source"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">pragmaticengineer.com</a></span></div>
+    </li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch">
+      <span class="qh-badge">AI tools</span>
+      <div class="qh-text"><strong>Claude Opus 4.7 now GA on GitHub Copilot.</strong> Stronger multi-step task performance and more reliable agentic execution across the Copilot interface.</div>
+    </li>
+    <li class="tier-watch">
+      <span class="qh-badge">DevEx</span>
+      <div class="qh-text"><strong>GitHub Actions April updates.</strong> OIDC custom properties, VNET failover for hosted runners, service container entrypoint overrides.</div>
+    </li>
+    <li class="tier-watch">
+      <span class="qh-badge">Infra</span>
+      <div class="qh-text"><strong>Lumen and Cogent transit outages (April 6 and April 8).</strong> Brief but multi-region impact including UAE and UK. Both resolved within hours; no prolonged service degradation reported.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section">
+  <div class="section-label">AI Tooling &amp; Adoption</div>
+  <h2>OpenAI's Codex Desktop Agents: From Code Completion to Workflow Automation</h2>
+
+  <!-- Floated sidebar — standard weekly style -->
+  <div class="sidebar-box-float">
+    <div class="sidebar-box">
+      <div class="sb-title">What changed in Codex</div>
+      <ul style="list-style:none;padding:0;margin:0;font-size:13px;line-height:1.7;color:var(--body-text)">
+        <li style="padding:4px 0;border-bottom:1px solid var(--light-gray)">Background desktop agents on macOS</li>
+        <li style="padding:4px 0;border-bottom:1px solid var(--light-gray)">In-app browser for localhost testing</li>
+        <li style="padding:4px 0;border-bottom:1px solid var(--light-gray)">Session memory for context recall</li>
+        <li style="padding:4px 0;border-bottom:1px solid var(--light-gray)">111 plugin integrations (CodeRabbit, GitLab Issues, Slack, Calendar)</li>
+        <li style="padding:4px 0">Pay-as-you-go Enterprise pricing</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>From IDE plugin to desktop agent platform</h3>
+  <p>111 plugin integrations. That is what OpenAI announced on April 16 for its overhauled Codex — no longer an IDE extension but a persistent desktop agent platform running on macOS. Codex now deploys multiple agents working in the background, controlling desktop apps and managing workflows independently, without interfering with whatever the developer is doing in a separate window. The IDE is optional. The agent is always on.</p>
+  <p>The in-app browser supports frontend and game development testing against localhost, with planned expansion toward full web browsing control. A memory feature recalls context from previous sessions. Enterprise and Business customers get pay-as-you-go pricing for agent compute, which signals OpenAI's intent to position this as infrastructure rather than tooling.</p>
+
+  <div class="pq-bar">
+    <p>"The shift is from 'pair programming with AI' to 'orchestrating a small engineering team'"</p>
+    <cite>— Engineering Digest editorial framing, April 2026</cite>
+  </div>
+
+  <h3>The competitive picture</h3>
+  <p>This is a direct competitive move against Anthropic's Claude Code, but the paradigm differs. Claude Code operates in a request-response model — the developer initiates, the agent executes, control returns. Codex's background agents run continuously in parallel, executing tasks while the developer works on something else entirely. OpenAI is betting that the value of agentic coding tools compounds when they run concurrently, not sequentially. <span class="source-tag" style="display:inline;font-style:normal">(<a href="https://fordelstudios.com/research/cursor-vs-claude-code-april-2026-what-changed">Fordel Studios, April 8</a>)</span></p>
+
+  <h3>The governance gap</h3>
+  <p>Codex's pivot from code completion to desktop automation surfaces a governance challenge most enterprises haven't addressed: AI agents with persistent, unsupervised access to the desktop environment. These agents can read and write files, control applications, interact with internal systems, and do so continuously across sessions. That is a different security and compliance surface from a chat interface.</p>
+  <p>For engineering leaders in banking and fintech, the relevant questions are resource management (agent compute costs at scale), desktop access governance (what can an agent touch?), and audit trail completeness (what did the agent do, and when?). Enterprise pricing exists; enterprise-grade guardrails are still emerging.</p>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>Codex is no longer an IDE plugin — it is a persistent desktop agent platform with 111 integrations</li>
+      <li>Background agents run continuously and in parallel, distinct from Claude Code's request-response model</li>
+      <li>Persistent desktop access creates a governance gap around security, resource management, and audit trails that most enterprise policies haven't addressed</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://techcrunch.com/2026/04/16/openai-takes-aim-at-anthropic-with-beefed-up-codex-that-gives-it-more-power-over-your-desktop/">TechCrunch</a> (April 16), <a href="https://openai.com/index/introducing-the-codex-app/">OpenAI blog</a>, <a href="https://fordelstudios.com/research/cursor-vs-claude-code-april-2026-what-changed">Fordel Studios</a> (April 8)</p>
+</section>
+
+<!-- ═══ OUTSIDE IN — Format C: Compact inset, placed after lead article ═══ -->
+<div class="oi-compact">
+  <div class="section-label" style="margin-bottom:4px;font-size:10px">Outside In</div>
+  <div class="oi-compact-company">Bluesky Engineering</div>
+  <p>Jim Calabro's April 10 post-mortem on Bluesky's eight-hour outage is a masterclass in transparent incident communication. Full technical detail, honest timeline, no corporate PR filtering. The status page initially blamed a third-party provider; the post-mortem explicitly corrects the record.</p>
+  <div class="oi-callout" style="margin:12px 0 10px">
+    <p style="font-size:14px;font-style:italic">"EDIT: Also, the status page said this was an issue with a 3rd party provider. It was clearly not, apologies for that miscommunication!" — Jim Calabro, Bluesky</p>
+  </div>
+  <p class="so-what" style="font-size:13px"><strong>The takeaway: Public post-mortems with this level of technical honesty build more engineering credibility than any marketing page.</strong></p>
+  <div class="oi-compact-source"><a href="https://pckt.blog/b/jcalabro/april-2026-outage-post-mortem-219ebg2">Read the full post-mortem →</a></div>
+</div>
+
+<!-- ═══ QUICK TAKES — QT-B asymmetric (3fr/2fr) ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col qt-featured">
+
+    <!-- QT-B: Wider column (60%) — stronger story -->
+    <div class="quick-take-col qt-card">
+      <div class="qt-header devex">Developer governance</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">7</div>
+        <div class="qt-anchor-context">Days until the April 24 opt-out deadline</div>
+        <h3 style="margin-top:0">GitHub Copilot's Data Policy Takes Effect in One Week</h3>
+        <p>Starting April 24, GitHub will use Copilot interaction data — prompts, accepted suggestions, code snippets, and surrounding context — to train its AI models. The default for Free, Pro, and Pro+ users is opted in. Business, Enterprise, student, and teacher accounts are exempt. Users who previously opted out keep their exclusion.</p>
+        <p>The opt-out path is Settings &gt; Copilot &gt; Privacy &gt; disable "Allow GitHub to use my data for AI model training." There is no grace period and no retroactive opt-out for data already collected between now and the deadline.</p>
+        <p>The policy matters at the team level when engineers use Copilot on individual plans rather than team-managed Business or Enterprise accounts. In that scenario, code from internal systems, unreleased features, or client projects can flow into training data by default — without the organisation having any visibility into it.</p>
+        <p class="so-what"><strong>The takeaway: Teams with developers on individual Copilot plans have seven days to set a consistent policy before the default takes effect — and to audit which plan tier those developers are actually on.</strong></p>
+        <p class="source-tag">Sources: <a href="https://byteiota.com/github-copilot-trains-on-your-data-opt-out-before-april-24/">byteiota.com</a>, <a href="https://windowsforum.com/threads/github-copilot-privacy-shift-apr-24-2026-training-data-by-default-for-individuals.409998/">Windows Forum</a></p>
+      </div>
+    </div>
+
+    <!-- QT-B: Compact column (40%) -->
+    <div class="quick-take-col qt-card">
+      <div class="qt-header security">Engineering reliability</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat security" style="font-size:28px">8 hrs</div>
+        <div class="qt-anchor-context">Duration of Bluesky's April outage</div>
+        <h3 style="font-size:17px;margin-top:0">Bluesky's Post-Mortem: One Missing Bound Caused Eight Hours of Downtime</h3>
+        <p style="font-size:14px">Bluesky published a detailed post-mortem on April 10. The root cause: unbounded goroutines in the data plane exhausted all ephemeral TCP ports connecting to memcached. The death spiral followed — logging storm, Go runtime thread explosion, GC pauses, OOM kills. The Surfing Complexity analysis (April 12) notes this is a textbook saturation failure at scale.</p>
+        <p class="so-what" style="font-size:13px"><strong>The takeaway: A single missing concurrency bound caused an eight-hour outage — bounded concurrency is defensive infrastructure, not premature optimization.</strong></p>
+        <p class="source-tag" style="font-size:12px"><a href="https://pckt.blog/b/jcalabro/april-2026-outage-post-mortem-219ebg2">post-mortem</a>, <a href="https://surfingcomplexity.blog/2026/04/12/thoughts-on-the-bluesky-public-incident-write-up/">surfingcomplexity.blog</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ OTHER NEWS THIS WEEK ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Pragmatic Engineer AI survey (April 14):</strong> Growing concern over AI tool costs. Engineers hitting usage limits, especially Claude Code. "AI slop" — low-quality code from colleagues using agents without review discipline — is emerging as a team quality problem. Builder-types report identity loss. <span class="on-source"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">pragmaticengineer.com</a></span></li>
+    <li><strong>Cursor vs Claude Code comparison updated (April 8):</strong> Fordel Studios revised their comparison after Cursor 3 (released April 2) closed the capability gap significantly with agent mode, subagents, CLI, and cloud agents. Both now have full agentic capabilities. Claude Code's 1M token context window remains its strongest differentiator. <span class="on-source"><a href="https://fordelstudios.com/research/cursor-vs-claude-code-april-2026-what-changed">fordelstudios.com</a></span></li>
+    <li><strong>Microsoft 365 global disruption (April 2):</strong> office.com and the M365 admin center degraded for 74 minutes. Root cause traced to the Central US datacenter. Resolved without data loss.</li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What changed</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="status-dot red"></span></td>
+        <td class="platform">Node.js</td>
+        <td>v20 reaches end of life April 30. No further security patches after that date. Upgrade to v22 (LTS) or v24.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">GitHub</td>
+        <td>Copilot training data policy takes effect April 24. Individual plan users opted in by default.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot green"></span></td>
+        <td class="platform">GitHub</td>
+        <td>Claude Opus 4.7 now GA on Copilot. Improved multi-step agentic execution.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot green"></span></td>
+        <td class="platform">GitHub</td>
+        <td>Actions April updates: OIDC custom properties, VNET failover for hosted runners, service container entrypoint overrides.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">.NET</td>
+        <td>April security patches include CVE-2026-23666 (Critical DoS, CVSS 7.5) for .NET Framework.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">Azure</td>
+        <td>Azure SDK for JavaScript ends Node.js 20 support July 9.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The Impact of AI on Software Engineers in 2026</h2>
+  <p>Gergely Orosz and Elin Nilsson surveyed hundreds of engineers for the Pragmatic Engineer's April 14 report. The findings are worth time — not because they're surprising, but because they name things that are happening on most engineering teams right now and haven't been said clearly.</p>
+
+  <h3>Costs and limits</h3>
+  <p>AI tooling costs have moved from "investment" to "concern" for a growing share of respondents. Usage limits are being hit regularly, with Claude Code the most frequently affected tool. The cost trajectory is considered unsustainable by many respondents — a significant shift from last year's posture of expansive adoption.</p>
+
+  <h3>The slop problem</h3>
+  <p>A new term has entered the vocabulary: "AI slop" — low-quality code generated by colleagues using AI agents without applying review discipline. Engineers report spending more time debugging AI-generated code than the tooling was supposed to save. Staff+ engineers are the heaviest agent users at 63%, and they're encountering the slop problem most directly.</p>
+
+  <div class="pull-quote">
+    <p>"Builder-types are reporting identity loss and grief — no longer doing hands-on coding because they can't justify the time when agents are faster."</p>
+    <cite>— Orosz &amp; Nilsson, The Pragmatic Engineer, April 14 2026</cite>
+  </div>
+
+  <h3>The identity question</h3>
+  <p>The finding that deserves the most attention from engineering leaders: engineers who define themselves as builders — people for whom writing code is intrinsically motivating, not just a means to an end — are reporting a sense of loss as AI agents take over the work they found meaningful. This isn't burnout in the traditional sense. It's a professional identity disruption, and the survey data suggests it's widespread enough to affect retention and engagement in ways that aren't yet showing up in conventional metrics.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026" class="mgmt-link">Read the full article: newsletter.pragmaticengineer.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> the survey finds builder-type engineers reporting identity loss as AI agents take over the coding they once found meaningful — and it's worth asking whether that shift is being acknowledged in your team conversations, or whether it's just quietly accumulating.</p>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR — timeline treatment ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">24</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GitHub Copilot training data deadline</strong> — Free/Pro/Pro+ users opted in by default. Opt out via Settings &gt; Copilot &gt; Privacy.</div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 20 end of life</strong> — No further security patches from this date.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">1</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>AWS Lambda stops patching Node.js 20 runtime.</strong></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">1</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>AWS Lambda blocks new functions on Node.js 20.</strong></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jul</div>
+        <div class="rd-day">1</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>AWS Lambda blocks all Node.js 20 function updates.</strong></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jul</div>
+        <div class="rd-day">9</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Azure SDK for JS drops Node.js 20 support.</strong></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Oct</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GCP Cloud Run decommissions Node.js 20.</strong></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Nov</div>
+        <div class="rd-day">10</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>.NET 9 reaches end of life.</strong></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li>
+      <span class="title"><a href="https://surfingcomplexity.blog/2026/04/12/thoughts-on-the-bluesky-public-incident-write-up/">Thoughts on the Bluesky public incident write-up</a></span>
+      <span class="source">surfingcomplexity.blog</span>
+    </li>
+    <li>
+      <span class="title"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">The impact of AI on software engineers in 2026: key trends</a></span>
+      <span class="source">pragmaticengineer.com</span>
+    </li>
+    <li>
+      <span class="title"><a href="https://www.herodevs.com/blog-posts/node-js-v20-goes-eol-april-30----and-your-cloud-provider-is-pulling-the-plug-the-next-day">Node.js v20 Goes EOL April 30 — and Your Cloud Provider Is Pulling the Plug</a></span>
+      <span class="source">herodevs.com</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">Apr 10–17, 2026 · Weekly Edition · Issue #5</div>
+  <div class="footer-next">Next edition: Apr 24, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Issue 1</span>
+    <span class="archive-pill">Issue 2.5</span>
+    <span class="archive-pill">Issue 3</span>
+    <span class="archive-pill">Issue 4 (DD)</span>
+    <span class="archive-pill current">Issue 5</span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
