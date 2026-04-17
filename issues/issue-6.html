@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — April 10–17, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}.qt-header.security{background:var(--alert-red)}.qt-header.devex{background:var(--deep-teal)}.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}.qt-anchor-stat.security{color:var(--alert-red)}.qt-anchor-stat.devex{color:var(--deep-teal)}.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+/* ═══ P0 STATUS CARD ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.degraded{background:var(--alert-red)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+
+/* ═══ TIER 2 LABEL OVERRIDES ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-even{grid-template-columns:1fr 1fr}
+.two-col.qt-stacked{grid-template-columns:1fr;gap:24px}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+/* Format A: Default narrative */
+/* (uses .outside-in-section with h3 subheadings) */
+
+/* ═══ v2.1 — FEATURE ARTICLE ═══ */
+.feature-article{background:var(--off-white);border-top:3px solid var(--teal);padding:40px 60px;border-bottom:1px solid var(--light-gray)}
+.feature-article .feature-label{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--teal);font-variant:small-caps;margin-bottom:6px;text-transform:uppercase}
+.feature-article h2{color:var(--navy)}
+.feature-article h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin:20px 0 8px}
+.feature-article h3:first-of-type{margin-top:16px}
+.feature-article p{font-size:15px;line-height:1.75;color:var(--body-text)}
+
+/* ═══ v2.1 — DOWN THE RABBIT HOLE ═══ */
+.rabbit-hole{border-left:3px solid var(--teal);background:rgba(0,180,216,.04);padding:14px 18px;margin:20px 0;border-radius:0 4px 4px 0}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:6px}
+.rabbit-hole p{font-size:14px;line-height:1.65;color:var(--body-text);margin:0 0 6px}
+.rabbit-hole p:last-child{margin:0}
+.rh-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--navy);color:var(--white);margin-right:6px;vertical-align:middle}
+
+@media(max-width:700px){
+  .cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment,.feature-article{padding-left:20px;padding-right:20px}
+  .sidebar-box-float{float:none;width:100%;margin:16px 0}
+  .cover-inner{padding-top:28px;padding-bottom:28px}
+  .cover h1{font-size:36px}.cover h1 em{font-size:34px}
+  h2{font-size:26px}
+  .two-col{grid-template-columns:1fr}
+  .stats-row,.oi-stats-row{flex-direction:column}
+  .stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}
+  .cover-contents ul{grid-template-columns:1fr}
+  .p0-status-card{margin:0 20px}
+  .radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}
+  .archive-bar{flex-direction:column;gap:8px}
+  .pq-bar{padding:20px;margin:20px -20px}
+  .mid-accent-band{padding:20px}
+  .mid-accent-band .accent-stat{font-size:36px}
+}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">April 10–17, 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #6</span>
+      <span class="cover-read-time">|&ensp;18 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">167</div>
+    <div class="stat-context">Vulnerabilities patched by Microsoft in a single Patch Tuesday — double March's count, with two zero-days actively exploited in the wild</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Security: April Patch Tuesday mega-month + Fortinet zero-days</li>
+      <li>Quick Take: Bluesky's double outage — port exhaustion, then DDoS</li>
+      <li>Quick Take: CircleCI report — AI writes faster, teams ship slower</li>
+      <li>Feature: GitHub Copilot data training — April 24 deadline</li>
+      <li>Leadership Read: Thoughtworks on the delivery pipeline bottleneck</li>
+      <li>Outside In: Revolut launches AI financial assistant</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <p>April's Patch Tuesday was the busiest in memory — 167 Microsoft vulnerabilities, a Fortinet zero-day already under active exploitation before its advisory even published, and a SAP SQL injection scoring 9.9 CVSS sitting quietly in financial planning systems across the sector. Meanwhile, a new CircleCI report confirms what many engineering leaders have quietly suspected: AI is making code generation faster but delivery pipelines haven't kept pace, and the gap is widening. This issue maps both pressures.</p>
+</section>
+
+<!-- ═══ P0 STATUS CARD ═══ -->
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">AWS Middle East degraded — Day 47+ <span class="p0-badge degraded">Degraded</span></div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">Apr 17</span><span class="p0-event">ME-CENTRAL-1 (UAE) and ME-SOUTH-1 (Bahrain) remain degraded. No recovery timeline published.</span></li>
+    <li><span class="p0-date">Mar 15</span><span class="p0-event">AWS acknowledges ongoing geopolitical threat environment affecting regional data centre operations.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Initial degradation reported across multiple services in both Middle East regions.</span></li>
+  </ul>
+  <div class="p0-current">As of April 17, no restoration timeline has been communicated. Teams operating in UAE and Bahrain AWS regions should assume continued degradation. <a href="https://health.aws.amazon.com/health/status">AWS Health Dashboard →</a></div>
+</div>
+
+<!-- ═══ EDITORIAL MOMENT — Quote of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-quote">
+    <div class="em-label">Quote of the week</div>
+    <p>"It has reached a level of fervor akin to a religion. If you ask anyone today, 'What AI tool would you choose if given just one?' the answer would invariably be Claude."</p>
+    <cite>— Arvind Jain, CEO of Glean, speaking at HumanX, April 11, 2026</cite>
+  </div>
+</section>
+
+<!-- ═══ THE WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Eight stories in sixty seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action">
+      <span class="qh-badge red">Security</span>
+      <div class="qh-text"><strong>Fortinet zero-day under active exploitation.</strong> CVE-2026-35616 (CVSS 9.1) in FortiClient EMS enables unauthenticated RCE. CISA added to KEV; federal agencies given April 9 deadline. Second FortiClient EMS zero-day in weeks. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/security/fortinet-warns-of-new-forticlient-ems-zero-day-exploited-in-attacks/">BleepingComputer →</a></span></div>
+    </li>
+    <li class="tier-action">
+      <span class="qh-badge red">Security</span>
+      <div class="qh-text"><strong>SAP SQL injection scores 9.9 CVSS.</strong> CVE-2026-27681 affects BW/BPC financial planning systems — an authenticated low-privilege user can read, modify, or delete database data. Patch Tuesday scope extends well beyond Microsoft. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/security/microsoft-april-2026-patch-tuesday-fixes-2-zero-days-167-flaws/">BleepingComputer →</a></span></div>
+    </li>
+    <li class="tier-action">
+      <span class="qh-badge orange">Data policy</span>
+      <div class="qh-text"><strong>GitHub Copilot data training opt-out window closes April 24.</strong> Free, Pro, and Pro+ users will have interaction data used for AI training by default from that date. Business and Enterprise users are covered by DPA. <span class="on-source"><a href="https://github.blog/changelog/2026-03-25-updates-to-github-copilots-privacy-settings/">GitHub Changelog →</a></span></div>
+    </li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know">
+      <span class="qh-badge">Infra</span>
+      <div class="qh-text"><strong>Bluesky hit by two major outages in ten days.</strong> April 10: port exhaustion; April 16: DDoS attack still being mitigated. The platform's infrastructure is being stress-tested at a pace its original architecture wasn't designed for. <span class="on-source"><a href="https://bsky.social/about/blog">Bluesky Blog →</a></span></div>
+    </li>
+    <li class="tier-know">
+      <span class="qh-badge">Delivery</span>
+      <div class="qh-text"><strong>CircleCI: main-branch success rates at a five-year low.</strong> 70.8% success rate on main, against a 90% benchmark. The report recorded its largest-ever throughput surge year-on-year, but median team performance declined. AI is accelerating code generation faster than teams can integrate it. <span class="on-source"><a href="https://circleci.com/resources/2026-state-of-software-delivery/">CircleCI →</a></span></div>
+    </li>
+    <li class="tier-know">
+      <span class="qh-badge green">AI</span>
+      <div class="qh-text"><strong>Revolut launches "AI by Revolut" assistant.</strong> Spending insights, investment updates, trip planning — built-in and live from April 9. Fintech's AI arms race moves from back-end optimisation to customer-facing financial command centres. <span class="on-source"><a href="https://www.cityam.com/revolut-launches-ai-financial-assistant/">City AM →</a></span></div>
+    </li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch">
+      <span class="qh-badge">Fintech</span>
+      <div class="qh-text"><strong>Monzo exits the US for the second time,</strong> refocusing on UK and European markets. <span class="on-source"><a href="https://www.fintechfutures.com/2026/04/monzo-retreats-from-us-market-again/">FinTech Futures →</a></span></div>
+    </li>
+    <li class="tier-watch">
+      <span class="qh-badge">AI</span>
+      <div class="qh-text"><strong>JetBrains Air enters public preview.</strong> Agentic dev environment orchestrating Codex, Claude, Gemini, and Junie concurrently. Worth watching to see whether multi-agent orchestration delivers in practice. <span class="on-source"><a href="https://www.jetbrains.com/air/">JetBrains →</a></span></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE — Security & Compliance ═══ -->
+<section class="section">
+  <div class="section-label">Security &amp; Compliance</div>
+  <h2>When Everything Patches at Once</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">167</div><div class="stat-label">Microsoft CVEs patched</div></div>
+    <div class="stat"><div class="stat-num">9.9</div><div class="stat-label">SAP BW/BPC CVSS score</div></div>
+    <div class="stat"><div class="stat-num">9.1</div><div class="stat-num" style="font-size:14px;color:var(--med-gray);margin-top:2px">Fortinet EMS</div><div class="stat-label">CVSS score</div></div>
+    <div class="stat"><div class="stat-num">2×</div><div class="stat-label">March's patch volume</div></div>
+  </div>
+
+  <p>At 10am Tuesday, Microsoft pushed fixes for 167 vulnerabilities — double the count from March and the highest single-month tally in recent memory. But the headline number is almost beside the point. Among them were two zero-days already exploited in the wild, seven critical remote code execution flaws, and a collection of patches that extended across SAP, Adobe, and Fortinet — each carrying its own severity, urgency, and remediation window. For engineering teams supporting banking and fintech infrastructure, April's Patch Tuesday arrived less as a routine update cycle and more as a simultaneous crisis across multiple vendor ecosystems.</p>
+
+  <h3>The Microsoft layer</h3>
+  <p>Of those CVEs, eight were rated Critical — seven enabling remote code execution, one denial of service. The two actively exploited zero-days are CVE-2026-32201, a SharePoint spoofing vulnerability (CVSS 6.5) already being used in targeted attacks, and a second flaw affecting Windows components. Seven critical RCE vulnerabilities across a single patch batch represents a significant exposure window for any organisation running unpatched systems across the standard 30-day remediation cycle.</p>
+
+  <div class="pq-bar">
+    <p>"The cumulative burden of April's patch cycle falls on the same security teams already managing Fortinet advisories, SAP critical updates, and an active KEV entry — simultaneously."</p>
+    <cite>— Engineering Digest editorial synthesis</cite>
+  </div>
+
+  <h3>Fortinet: exploited before the advisory</h3>
+
+  <div class="sidebar-box-float">
+    <div class="sidebar-box">
+      <div class="sb-title">FortiClient EMS context</div>
+      <p>CVE-2026-35616 is the second critical FortiClient EMS zero-day in consecutive months — CVE-2026-21643 preceded it. Both scored 9.1 CVSS. CISA has added both to its Known Exploited Vulnerabilities catalogue.</p>
+      <p>FortiSandbox also carries a separate authentication bypass (CVE-2026-39813, CVSS 9.1) in the same advisory batch.</p>
+    </div>
+  </div>
+
+  <p>The Fortinet disclosure is the most operationally urgent element of this month's cycle. CVE-2026-35616 in FortiClient EMS allows unauthenticated remote code execution — an attacker with no credentials can gain control of systems running the affected versions. CISA moved it to the Known Exploited Vulnerabilities catalogue immediately and gave US federal agencies an April 9 deadline. The advisory was published after the vulnerability was already under active exploitation, meaning organisations relying on advisory-triggered patch cycles had no protection window at all.</p>
+
+  <p>The pattern here — two critical FortiClient EMS zero-days in consecutive months — warrants architectural scrutiny, not just patching. Security teams with Fortinet products in their network perimeter are managing a compound risk: known CVEs, an active threat actor, and a second advisory cycle before the first remediation is fully validated across the estate.</p>
+
+  <h3>SAP: the financial system exposure</h3>
+  <p>SAP's contribution to April's patch load is significant for banking and fintech specifically. CVE-2026-27681 is a SQL injection flaw in SAP BW/BPC — the financial planning and consolidation product used heavily across large financial institutions. A CVSS of 9.9 reflects the severity: an authenticated user with low privileges can read, modify, or delete database contents. The second SAP flaw, CVE-2026-34256 (CVSS 7.1), allows an authorised user to overwrite executable ABAP reports in ERP and S/4HANA systems. Both are less glamorous than the Fortinet zero-day but potentially more damaging in a regulated financial environment where data integrity is both a technical and compliance obligation.</p>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key takeaways</div>
+    <ul>
+      <li>April's patch cycle spans four major vendors simultaneously — Microsoft, Fortinet, SAP, Adobe — each requiring independent prioritisation and validation tracks</li>
+      <li>The Fortinet EMS zero-day was exploited before its advisory published, making advisory-triggered remediation cycles structurally insufficient for this class of threat</li>
+      <li>SAP BW/BPC exposure (CVSS 9.9) has direct implications for financial data integrity in regulated environments — a compliance angle, not just a security one</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://www.bleepingcomputer.com/news/security/microsoft-april-2026-patch-tuesday-fixes-2-zero-days-167-flaws/">BleepingComputer</a> (Apr 15), <a href="https://thehackernews.com/2026/04/microsoft-patch-tuesday-april-2026.html">The Hacker News</a> (Apr 15), <a href="https://www.bleepingcomputer.com/news/security/fortinet-warns-of-new-forticlient-ems-zero-day-exploited-in-attacks/">BleepingComputer / Fortinet</a> (Apr 14), <a href="https://pathlock.com/blog/sap-patch-day-april-2026/">Pathlock</a> (Apr 14)</p>
+</section>
+
+<!-- ═══ QUICK TAKES ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two stories worth knowing</h2>
+  <div class="two-col qt-even">
+
+    <!-- QT1: Bluesky — stat-first -->
+    <div class="quick-take-col">
+      <div class="qt-header devex">Operational resilience</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">2</div>
+        <div class="qt-anchor-context">Major outages in 10 days</div>
+        <h3 style="margin-top:0">Bluesky's infrastructure stress test</h3>
+        <p>Two major outages in ten days have put Bluesky's infrastructure under uncomfortable scrutiny. April 10 brought a port exhaustion failure — the platform ran out of available network connections under traffic load, a classic scaling failure mode where system design meets unexpected demand. A detailed post-mortem followed. Six days later, on April 16, a DDoS attack took services down again, still being mitigated as of April 17. The company confirmed no unauthorised access to private user data.</p>
+        <p>Port exhaustion is an instructive failure pattern. It surfaces when connection handling hasn't been designed for the traffic volume a system now receives — no single component breaks, but the aggregate runs out of a resource that was never expected to be a constraint. For a platform growing rapidly as an alternative to X, hitting this failure mode reveals the gap between original architecture assumptions and current operating scale.</p>
+        <p class="so-what"><strong>The takeaway: Two distinct failure modes in ten days — one architectural, one adversarial — raises real questions about whether Bluesky's infrastructure investment is keeping pace with its growth ambitions.</strong></p>
+        <p class="source-tag">Sources: <a href="https://bsky.social/about/blog">Bluesky Blog</a> (Apr 17), <a href="https://glitchwire.com/bluesky-ddos-april-2026">Glitchwire</a> (Apr 16)</p>
+      </div>
+    </div>
+
+    <!-- QT2: CircleCI — quote-first -->
+    <div class="quick-take-col">
+      <div class="qt-header ai">Engineering leadership</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat ai">−7%</div>
+        <div class="qt-anchor-context">Median team main-branch throughput, despite 59% average growth</div>
+        <h3 style="margin-top:0">AI writes faster. Teams ship slower.</h3>
+        <p>"The delivery pipeline has become the binding constraint on engineering performance" — that's Thoughtworks' read on the CircleCI 2026 State of Software Delivery report, which analysed 28 million CI workflows. The aggregate numbers look strong: average throughput up 59% year-on-year, the biggest increase ever recorded. But the aggregate hides a structural split. The top 5% of teams nearly doubled their throughput (97% increase). The median team saw main-branch throughput decline 7%, even as feature branch activity grew 15%. The bottom 25% recorded no increase at all.</p>
+        <p>Main-branch success rates fell to 70.8% — the lowest in five years, against a 90% benchmark. Recovery times averaged 72 minutes, up 13% year-on-year. The picture that emerges is of AI accelerating code generation into pipelines that weren't built to handle the increased merge frequency and integration complexity. Fewer than 1 in 20 teams can currently ship at the pace AI tooling enables.</p>
+        <p class="so-what"><strong>The takeaway: AI coding tools are creating a delivery bottleneck — teams generating more code than their integration and validation pipelines can absorb, with the divergence growing wider between high-performing and median teams.</strong></p>
+        <p class="source-tag">Source: <a href="https://circleci.com/resources/2026-state-of-software-delivery/">CircleCI, 2026 State of Software Delivery</a> (Feb 18)</p>
+
+        <!-- Down the Rabbit Hole — floated within related section -->
+        <div class="rabbit-hole" style="margin-top:16px">
+          <div class="rh-label">Down the Rabbit Hole</div>
+          <p><span class="rh-badge">Podcast</span> DHH spent years being publicly skeptical about AI coding tools. On the Pragmatic Engineer podcast (April 8, 1h 46m), he explains his complete reversal — now running an agent-first workflow with 100+ PRs in 90 minutes. The tension he describes maps directly onto the CircleCI data: writing code has never been faster, but the delivery and review infrastructure hasn't caught up.</p>
+          <p><a href="https://www.pragmaticengineer.com/podcast/dhh-ai-coding" style="color:var(--deep-teal);text-decoration:none;font-size:13px">Listen: "DHH's new way of writing code" — Pragmatic Engineer →</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Claude Mythos Preview announced.</strong> Anthropic's next model began rolling out to approximately 50 enterprise partners from April 7. Claude Code is now generating $2.5B+ in annualised revenue and has 1,000+ enterprise customers spending $1M+ annually, following the "Claude Mania" reception at HumanX on April 11. <span class="on-source"><a href="https://www.cnbc.com/2026/04/11/anthropic-claude-humanx-conference.html">CNBC →</a></span></li>
+    <li><strong>Pragmatic Engineer AI survey: cost concerns rising.</strong> 900+ responses show 15% of engineers flagging mounting costs and 30% hitting usage limits. Companies are footing the majority of AI tool spend, but engineer and manager roles are converging in ways that complicate traditional reporting structures. <span class="on-source"><a href="https://www.pragmaticengineer.com/p/ai-tools-survey-2026">Pragmatic Engineer →</a></span></li>
+    <li><strong>UK fintech revenue approaching £34.7B.</strong> IBISWorld projects 12.1% growth in 2025–26, with open banking now serving 11 million active users in the UK. The regulatory sandbox framework continues to draw international fintech operations to London. <span class="on-source"><a href="https://www.techbullion.com/uk-fintech-market-2026/">TechBullion →</a></span></li>
+    <li><strong>GitHub Copilot cloud agent: April updates.</strong> Pre-PR research and planning workflows, signed commits for agent-authored code, organisation-level firewall controls, mobile support (from April 8), and parallel validation delivering 20% faster builds. Claude Opus 4.7 now generally available on Copilot. <span class="on-source"><a href="https://github.blog/changelog/">GitHub Changelog →</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ FEATURE ARTICLE — GitHub Copilot data training ═══ -->
+<section class="feature-article">
+  <div class="feature-label">Feature</div>
+  <h2>The Copilot Data Decision Your Developers Haven't Made Yet</h2>
+
+  <p>Starting April 24, GitHub will use interaction data from Copilot Free, Pro, and Pro+ accounts to train its AI models — by default, unless users opt out. That includes inputs, outputs, code snippets, and associated context from active sessions. The deadline is seven days away, and awareness among developer populations remains uneven.</p>
+
+  <h3>What's included, what's protected</h3>
+  <p>GitHub has been clear about the scope. Private repositories at rest are not included in training data. Copilot Business and Enterprise users are covered by their Data Processing Agreements — no change for them. The policy change applies to individual plan users: Free, Pro, and Pro+. Previously opted-out users retain their status; the change only applies to those who haven't made an active choice. Automated CI processes and bots using Copilot under individual accounts are subject to the same opt-out rules as human users — a detail likely to surprise teams running Copilot in pipeline automation.</p>
+
+  <h3>The two-tier structure this creates</h3>
+
+  <!-- SVG visual: the data policy tier structure -->
+  <div style="margin:24px 0 20px">
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif;">
+      <!-- Left: Individual tier -->
+      <rect x="20" y="20" width="300" height="160" rx="6" fill="#F4F6F9" stroke="#E8EDF2" stroke-width="1.5"/>
+      <rect x="20" y="20" width="300" height="6" rx="3" fill="#FF6B35"/>
+      <text x="170" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#FF6B35" letter-spacing="1">Individual Plans</text>
+      <text x="170" y="72" text-anchor="middle" font-size="11" fill="#8899AA">Free · Pro · Pro+</text>
+      <text x="40" y="100" font-size="12" fill="#3D4F63">✓  Inputs &amp; outputs used for training</text>
+      <text x="40" y="120" font-size="12" fill="#3D4F63">✓  Opt-out available (Settings → Copilot)</text>
+      <text x="40" y="140" font-size="12" fill="#3D4F63">✓  CI bots on individual accounts included</text>
+      <text x="40" y="160" font-size="12" fill="#DC2626" font-weight="600">⚠  Default: opted in from April 24</text>
+
+      <!-- Right: Enterprise tier -->
+      <rect x="380" y="20" width="300" height="160" rx="6" fill="#F4F6F9" stroke="#E8EDF2" stroke-width="1.5"/>
+      <rect x="380" y="20" width="300" height="6" rx="3" fill="#00B4D8"/>
+      <text x="530" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#0077B6" letter-spacing="1">Business &amp; Enterprise</text>
+      <text x="530" y="72" text-anchor="middle" font-size="11" fill="#8899AA">Covered by DPA</text>
+      <text x="400" y="100" font-size="12" fill="#3D4F63">✓  Private repos protected at rest</text>
+      <text x="400" y="120" font-size="12" fill="#3D4F63">✓  No training data use under DPA</text>
+      <text x="400" y="140" font-size="12" fill="#3D4F63">✓  No action required</text>
+      <text x="400" y="160" font-size="12" fill="#00D4AA" font-weight="600">● No change from April 24</text>
+    </svg>
+    <p class="source-tag">Source: <a href="https://github.blog/changelog/2026-03-25-updates-to-github-copilots-privacy-settings/">GitHub Changelog</a> (Mar 25)</p>
+  </div>
+
+  <p>The practical consequence is a two-tier data relationship. Enterprise users have contractual protection — their code interactions stay outside GitHub's training corpus. Individual plan users on the same teams, or contractors and open-source contributors using personal accounts, do not. In environments where developers move between enterprise and personal tooling, the distinction matters. A developer testing something on a personal Pro account, or using a free account for side projects that touch work-adjacent code, is contributing training data that their employer has no visibility into.</p>
+
+  <h3>Community response and the opt-out path</h3>
+  <p>Developer community reaction on Reddit, LinkedIn, and technical forums has been sharply negative — primarily on the basis that opt-in should be the default for data use of this nature. GitHub's position is that individual users have agency via Settings → Copilot → Privacy, and that previously opted-out users are unaffected. That framing has not substantially quieted the backlash.</p>
+  <p>For engineering leaders, the practical question is whether the developer population under your oversight has the information to make an informed choice before April 24. Awareness campaigns, internal comms, or a team-level policy clarification are options that sit within reasonable scope. What happens after the deadline cannot be undone retroactively.</p>
+
+  <h3>The broader pattern</h3>
+  <p>GitHub's move is consistent with how AI model development at scale has to be funded — training data from real usage is the core economic model. The question for enterprises is whether the DPA boundary is robust enough, and whether the informal data leakage through individual accounts constitutes an acceptable risk. Both are assessments that require active decisions, not passive defaults.</p>
+
+  <p><strong>The takeaway: Individual Copilot users become training data contributors by default from April 24 — enterprise plan protections do not extend to personal accounts, and the deadline applies even to CI bots running under individual credentials.</strong></p>
+
+  <p class="source-tag">Sources: <a href="https://github.blog/changelog/2026-03-25-updates-to-github-copilots-privacy-settings/">GitHub Changelog</a> (Mar 25), <a href="https://windowsforum.com/threads/github-copilot-training-data-april-2026.html">WindowsForum</a> (Apr 4), <a href="https://opentechstack.com/github-copilot-training-data-2026/">Open-TechStack</a> (Apr 11)</p>
+</section>
+
+<!-- ═══ LEADERSHIP READ ═══ -->
+<hr class="feature-break">
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The Pipeline Is the Bottleneck</h2>
+  <p>When CircleCI published its State of Software Delivery report in February, the headline narrative was AI acceleration. By March, Thoughtworks had published a sharper read: the data shows that AI coding tools have made the delivery pipeline — CI/CD, integration, review, validation — the primary constraint on engineering performance. Their analysis is worth sitting with carefully.</p>
+
+  <h3>The finding that matters most</h3>
+  <p>The CircleCI data shows record average throughput growth while median team main-branch throughput fell 7%. Thoughtworks' interpretation: high-performing teams have delivery pipelines strong enough to absorb the code volume AI tooling generates. Median and lower-quartile teams do not. The result is that AI amplifies existing delivery strengths rather than distributing capability improvements evenly. Teams with good pipelines get better. Teams without them get more code stuck in integration queues.</p>
+
+  <div class="pull-quote">
+    <p>"Organizations that fail to recognize this will find that every dollar spent on AI coding tools produces diminishing returns."</p>
+    <cite>— Thoughtworks, "A Thoughtworks perspective on CircleCI's 2026 State of Software Delivery," March 2026</cite>
+  </div>
+
+  <h3>What this means for investment decisions</h3>
+  <p>The Thoughtworks piece makes a specific argument: organisations evaluating AI coding tool spend should assess their delivery pipeline before, not after, deployment. A team running 70% main-branch success rates and 72-minute average recovery times will generate more integration failures and slower throughput as AI tooling increases the volume of code entering that pipeline. The bottleneck doesn't disappear — it compounds.</p>
+  <p>The strategic framing for engineering leaders is that delivery infrastructure investment — pipeline reliability, test coverage, deployment automation — now has a quantifiable multiplier effect. AI tooling ROI depends on it. The 5% of teams approaching 97% throughput growth are the ones whose delivery pipelines were already robust before AI tooling arrived.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://www.thoughtworks.com/insights/blog/technology-strategy/circleci-2026-state-software-delivery" class="mgmt-link">Read the full piece: thoughtworks.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> If your team's main-branch success rate is below 85%, do you know whether that's a pipeline capacity problem, a test coverage problem, or an integration process problem — and would adding AI coding tools make it better or worse?</p>
+</section>
+
+<!-- ═══ OUTSIDE IN — Revolut (Format A: narrative) ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Revolut builds the financial command centre</h2>
+
+  <h3>From transaction processor to AI-native assistant</h3>
+  <p>On April 9, Revolut launched "AI by Revolut" — a built-in financial assistant covering spending insights, investment updates, and trip planning. It arrives weeks after Starling's own AI assistant launch, built with Google Gemini. The timing is instructive: two of the UK's largest neobanks shipping customer-facing AI features within the same month signals a sector-wide phase change, from AI as back-end optimisation to AI as a primary customer interface.</p>
+
+  <div class="oi-callout">
+    <p>For fintech engineering teams, the competitive pressure here is specific: the expectation is no longer that AI features will arrive eventually, but that they ship concurrently with — or ahead of — competitors. Revolut and Starling have now set a public baseline for what an AI-native banking product looks like in the UK market.</p>
+  </div>
+
+  <h3>What the engineering challenge looks like</h3>
+  <p>Customer-facing financial AI assistants carry a different engineering burden than internal tooling. Accuracy requirements are heightened — an investment insight or spending summary presented directly to a retail customer carries regulatory exposure if it is wrong. The integration surface is large: transaction history, investment portfolio data, travel bookings, notifications. The latency and reliability expectations are those of a consumer product, not an internal dashboard.</p>
+  <p>Revolut's approach — building natively into the app rather than bolting on a third-party chat interface — suggests the engineering investment is structural rather than cosmetic. Whether that architectural decision pays off in reliability and personalisation quality will be visible in the product's performance over the next few quarters.</p>
+
+  <p class="so-what"><strong>The takeaway: The UK fintech AI race has moved from model selection to product execution — with Revolut and Starling both shipping customer-facing AI financial assistants in the same month, engineering teams across the sector are now benchmarking against live products, not roadmaps.</strong></p>
+
+  <p class="source-tag"><a href="https://www.cityam.com/revolut-launches-ai-financial-assistant/">Read the announcement: City AM →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">20</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>ICDBIT 2026 — Manchester</strong> — International Conference on Data, Business, and Information Technology. <a href="https://icdbit.org/" style="color:var(--deep-teal)">icdbit.org →</a></div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">22</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Fintech Summit Middle East — Dubai</strong> — Regional fintech leadership conference covering AI in financial services, open banking, and digital infrastructure. <a href="https://fintechsummitme.com/" style="color:var(--deep-teal)">fintechsummitme.com →</a></div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">24</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GitHub Copilot data training opt-out deadline</strong> — After this date, Free, Pro, and Pro+ interaction data used for AI training by default. Opt out: Settings → Copilot → Privacy. <a href="https://github.blog/changelog/2026-03-25-updates-to-github-copilots-privacy-settings/" style="color:var(--deep-teal)">GitHub →</a></div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 20 End of Life</strong> — Maintenance LTS support ends. Applications still running Node 20 will receive no further security patches after this date. Node 22 (LTS) is the migration target. <a href="https://nodejs.org/en/about/previous-releases" style="color:var(--deep-teal)">nodejs.org →</a></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li>
+      <span class="title"><a href="https://www.thoughtworks.com/insights/blog/technology-strategy/circleci-2026-state-software-delivery">A Thoughtworks perspective on CircleCI's 2026 State of Software Delivery</a></span>
+      <span class="source">thoughtworks.com</span>
+    </li>
+    <li>
+      <span class="title"><a href="https://circleci.com/resources/2026-state-of-software-delivery/">2026 State of Software Delivery — full report</a></span>
+      <span class="source">circleci.com</span>
+    </li>
+    <li>
+      <span class="title"><a href="https://www.pragmaticengineer.com/podcast/dhh-ai-coding">DHH's new way of writing code (podcast, 1h 46m)</a></span>
+      <span class="source">pragmaticengineer.com</span>
+    </li>
+    <li>
+      <span class="title"><a href="https://pathlock.com/blog/sap-patch-day-april-2026/">SAP April 2026 Patch Day — full breakdown</a></span>
+      <span class="source">pathlock.com</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">April 10–17, 2026 · Weekly Edition · Issue #6</div>
+  <div class="footer-next">Next edition: April 24, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Issue 2.5 · Mar 27 · Weekly</span>
+    <span class="archive-pill">Issue 3 · Apr 3 · Weekly</span>
+    <span class="archive-pill">Issue 4 · Apr 10 · Deep Dive</span>
+    <span class="archive-pill">Issue 5 · Apr 17 · Weekly</span>
+    <span class="archive-pill current">Issue 6 · Apr 17 · Weekly</span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
