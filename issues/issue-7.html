@@ -303,7 +303,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
       <li>→ Node.js 20 EOL: six days away</li>
       <li>→ The Stack: tokenisation in wholesale markets</li>
       <li>→ Leadership Read: AI &amp; platform engineering</li>
-      <li>→ Outside In: Monzo on shipping at scale</li>
+      <li>→ Outside In: Ramp's Inspect agent writes half of merged PRs</li>
       <li>→ James Stanier on the non-technical EM</li>
       <li>→ AWS Middle East: Day 54+</li>
     </ul>
@@ -674,43 +674,43 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     OUTSIDE IN — Monzo (stats-led / callout-led, NOT narrative)
+     OUTSIDE IN — Ramp (stats-led / callout-led, NOT narrative)
 ═══════════════════════════════════════════════════════════ -->
 <div class="outside-in-section">
   <div class="section-label">Outside In</div>
-  <h2>Monzo: shipping constantly, from code to Android runtime</h2>
+  <h2>Ramp: when half the merged PRs are written by an agent</h2>
 
   <div class="oi-stats-row">
     <div class="oi-stat">
-      <div class="oi-stat-num">35%</div>
-      <div class="oi-stat-label">ANR reduction, Android R8 optimisation</div>
+      <div class="oi-stat-num">~50%</div>
+      <div class="oi-stat-label">Merged PRs started by Inspect, frontend and backend</div>
     </div>
     <div class="oi-stat">
-      <div class="oi-stat-num">1,600+</div>
-      <div class="oi-stat-label">Engineers at Monzo (QCon context)</div>
+      <div class="oi-stat-num">80%+</div>
+      <div class="oi-stat-label">Of Inspect's own codebase written by Inspect</div>
     </div>
     <div class="oi-stat">
-      <div class="oi-stat-num">300+</div>
-      <div class="oi-stat-label">Microservices in production</div>
+      <div class="oi-stat-num">Seconds</div>
+      <div class="oi-stat-label">Cold-start for a full dev environment on Modal Sandboxes</div>
     </div>
   </div>
 
-  <h3>Suhail Patel at QCon London: shipping constantly with humans and LLMs</h3>
+  <h3>The verification loop, not the generation step</h3>
 
   <div class="oi-callout">
-    <p>Suhail Patel (Principal Engineer, Monzo) presented at QCon London on how Monzo manages continuous deployment across a microservices estate at scale — and what changes when LLMs enter the development loop. The core lesson from the talk: shipping velocity is a cultural and process property, not a tooling property. LLMs accelerate code production; they do not automatically improve the system that decides what to ship and how to validate it.</p>
+    <p>Ramp — the US corporate card and spend-management fintech — has published the fullest public account to date of a background coding agent running in production at scale. Inspect now starts roughly half of all merged pull requests across Ramp's frontend and backend repositories, up from around 30% in January. Adoption was voluntary: Ramp did not mandate its use.</p>
   </div>
 
-  <p>Patel's QCon talk (available via InfoQ) covers the tension between developer autonomy and system coherence at an organisation that has grown from dozens to 1,600+ engineers without losing its deployment cadence. The practical question Monzo has had to answer repeatedly: how do you maintain fast deployment cycles when the organisation is large enough that no single person understands the full system?</p>
+  <p>The architectural choice that matters is the verification loop. Inspect runs in sandboxed VMs on Modal with full access to the same toolchain Ramp's engineers use — CI/CD pipelines, Sentry, Datadog, GitHub, feature flags, and internal databases. The agent writes code, runs the tests, reads the monitoring dashboards, and in the case of frontend changes renders the result in a real browser before submitting the pull request. State lives in Cloudflare Durable Objects so the session survives across interactions.</p>
 
-  <h3>The Android R8 result</h3>
-  <p>Separately from the QCon talk, Monzo's Android team published results from their R8 code-shrinking optimisation work — a 35% reduction in Application Not Responding (ANR) errors. The mechanism: R8 shrinks and optimises bytecode at build time, reducing the runtime overhead that contributes to ANR events. For a bank processing real-money transactions on mobile, ANR rates are a direct reliability metric, and a 35% improvement at scale is a meaningful signal about the compounding return on build tooling investment.</p>
+  <h3>Why the number keeps climbing</h3>
+  <p>Ramp's engineers describe Inspect as closing the "verification gap" that most coding assistants leave open: generating code is cheap, but proving it works against the real system is where human time actually goes. By giving the agent the same production signals a human engineer would check, the human-in-the-loop step compresses to code review. <a href="https://www.softwareseni.com/how-ai-coding-agents-evolved-from-autocomplete-into-autonomous-pull-request-machines/">A detailed analysis by SoftwareSeni this week</a> identifies Inspect as the most thoroughly documented production metric for a Level 3–4 background coding agent, and flags a prerequisite most teams underestimate: the DORA-grade pipeline the agent verifies against has to exist first. Weak pipelines produce weak agents.</p>
 
-  <p>The two data points sit alongside each other instructively: Patel's talk addresses the process discipline required to ship frequently at scale; the Android result illustrates the kind of infrastructure investment that makes mobile reliability systematic rather than ad hoc.</p>
+  <p>For a UK banking or fintech audience, the interesting part is what Inspect does <em>not</em> try to do. There is no mandated adoption target, no replacement of code review, and no claim that the agent operates unsupervised on high-risk changes. The step change came from treating the agent as a developer that uses the same tools, not a new class of tool that sits beside them.</p>
 
-  <p class="so-what"><strong>The takeaway:</strong> At the scale Monzo operates, deployment velocity and mobile reliability are both outcomes of deliberate platform investment — neither emerges naturally from team size or engineering talent alone.</p>
+  <p class="so-what"><strong>The takeaway:</strong> The bottleneck in background coding agents has shifted from "can the agent write correct code" to "can it verify its own work against production signals" — and answering that requires the platform investment, not the model choice.</p>
 
-  <p class="source-tag"><a href="https://www.infoq.com/news/2026/03/shipping-monzo/">InfoQ — QCon London, Suhail Patel talk</a> <em style="font-size:11px">(traction exception — QCon London March 2026; ongoing discussion and InfoQ coverage this week)</em></p>
+  <p class="source-tag"><a href="https://modal.com/blog/how-ramp-built-a-full-context-background-coding-agent-on-modal">Modal — How Ramp built a full-context background coding agent</a> &middot; <a href="https://www.infoq.com/news/2026/01/ramp-coding-agent-platform/">InfoQ — Ramp's Inspect architecture</a> &middot; <a href="https://www.softwareseni.com/how-ai-coding-agents-evolved-from-autocomplete-into-autonomous-pull-request-machines/">SoftwareSeni — background coding agents, April 17</a> <em style="font-size:11px">(traction exception — Inspect first documented Jan 2026; sustained coverage and growth to ~50% of PRs this week)</em></p>
 </div>
 
 <hr class="feature-break">
