@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — April 17–24, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-header.leadership{background:#2D5986}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-stat.leadership{color:#2D5986}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+/* ═══ P0 STATUS CARD (replaces progress-tracker bar) ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT (Leadership Read) ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE (Quick Takes, Outside In) ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER (v1.7) ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT (v1.7) ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly (v1.8) ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+
+/* ═══ ARTICLE WITH SIDEBAR — deep dives ONLY (v1.8: do NOT use in standard weeklies) ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:65% 35%;gap:28px;margin-top:20px}.article-body{min-width:0}.article-sidebar{min-width:0}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.sidebar-box.urgent{border-left:4px solid var(--alert-red)}.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ TIER 2 LABEL OVERRIDES — sentence case (v1.7) ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+.oi-hero-band{padding:48px 60px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);text-align:center;border-bottom:1px solid var(--light-gray)}
+.oi-hero-band .oi-hero-quote{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;color:var(--teal);line-height:1.35;max-width:700px;margin:0 auto 20px}
+.oi-hero-band .oi-hero-attr{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:24px}
+.oi-hero-band .oi-hero-body{max-width:700px;margin:0 auto;color:rgba(255,255,255,.8);font-size:15px;line-height:1.7;text-align:left}
+.oi-hero-band .section-label{color:var(--accent-orange)}
+.oi-hero-band h2{color:var(--white)}
+.oi-hero-band .so-what{color:rgba(255,255,255,.9)}
+.oi-compact{background:var(--off-white);border-left:4px solid var(--teal);padding:20px 24px;margin:24px 60px;border-radius:0 4px 4px 0}
+.oi-compact .oi-compact-company{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.oi-compact p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.oi-compact .oi-compact-source{font-size:12px;color:var(--med-gray)}
+.oi-contrast-card{display:grid;grid-template-columns:1fr 2fr;margin:24px 60px;border-radius:6px;overflow:hidden;border:1px solid var(--light-gray)}
+.oi-contrast-card .oic-left{background:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.oi-contrast-card .oic-left .oic-company{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.oi-contrast-card .oic-left .oic-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}
+.oi-contrast-card .oic-left .oic-stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-top:4px}
+.oi-contrast-card .oic-right{padding:24px;background:var(--white)}
+.oi-contrast-card .oic-right p{font-size:14px;line-height:1.6;color:var(--body-text)}
+.oi-contrast-card .oic-right .oi-compact-source{font-size:12px;color:var(--med-gray);margin-top:8px}
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+
+/* ═══ FEATURE ARTICLE ═══ */
+.feature-article{background:var(--off-white);border-top:3px solid var(--teal);padding:40px 48px}
+.feature-article .section-label{color:var(--teal)}
+.feature-article h2{font-size:28px}
+.feature-article h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin:20px 0 8px}
+.feature-article h3:first-child{margin-top:0}
+
+/* ═══ THE STACK ═══ */
+.the-stack{background:var(--white);border-left:4px solid var(--deep-teal);padding:32px 40px}
+.the-stack .section-label{color:var(--deep-teal);letter-spacing:3px}
+.the-stack h2{font-size:24px}
+.the-stack h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin:20px 0 8px}
+.the-stack h3:first-child{margin-top:0}
+.stack-subtitle{font-size:15px;color:var(--body-text);font-style:italic;margin-bottom:20px}
+.stack-def-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin:20px 0}
+.stack-def-box .sdb-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--deep-teal);margin-bottom:10px}
+.stack-def-box dl{margin:0}
+.stack-def-box dt{font-size:13px;font-weight:700;color:var(--navy);margin-top:8px}
+.stack-def-box dt:first-child{margin-top:0}
+.stack-def-box dd{font-size:13px;color:var(--body-text);line-height:1.5;margin:2px 0 0 0}
+
+/* ═══ DOWN THE RABBIT HOLE ═══ */
+.rabbit-hole{background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;font-size:13px;max-width:280px;float:right;margin:0 0 16px 24px}
+.rabbit-hole-standalone{background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;font-size:13px;margin:24px 60px;clear:both}
+.rabbit-hole .rh-label,.rabbit-hole-standalone .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;display:block}
+.rabbit-hole .rh-title,.rabbit-hole-standalone .rh-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:8px;display:block}
+.rabbit-hole .rh-title a,.rabbit-hole-standalone .rh-title a{color:var(--navy);text-decoration:none}
+.rabbit-hole .rh-title a:hover,.rabbit-hole-standalone .rh-title a:hover{text-decoration:underline}
+.rabbit-hole p,.rabbit-hole-standalone p{color:var(--body-text);line-height:1.6;margin:0 0 8px}
+.rabbit-hole p:last-child,.rabbit-hole-standalone p:last-child{margin:0}
+.rabbit-hole-type{display:inline-block;background:rgba(0,180,216,.1);color:var(--deep-teal);font-size:10px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-top:6px}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-hero-band{padding:32px 20px}.oi-hero-band .oi-hero-quote{font-size:22px}.oi-compact{margin:16px 20px}.oi-contrast-card{grid-template-columns:1fr;margin:16px 20px}.oi-meanwhile{padding:10px 20px}.feature-article{padding:28px 20px}.the-stack{padding:24px 20px}.rabbit-hole{float:none;width:100%;max-width:100%;margin:16px 0}.rabbit-hole-standalone{margin:16px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">April 17 – 24, 2026</span>
+      <span class="cover-issue">ISSUE 7 · STANDARD WEEKLY</span>
+      <span class="cover-read-time">~12 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+
+  <div class="cover-lead-stat">
+    <div class="stat-figure">8</div>
+    <div class="stat-context">First cohort companies in the FCA's AI Live Testing Lab — Barclays, Lloyds, GoCardless, UBS and four others now have supervised agentic deployment.</div>
+  </div>
+
+  <div class="cover-contents">
+    <div class="cover-contents-label">In this issue</div>
+    <ul>
+      <li>→ UK Fintech Week: FCA regulatory package</li>
+      <li>→ CISA KEV: 8 exploited CVEs, April 23 deadline</li>
+      <li>→ Node.js 20 EOL: six days away</li>
+      <li>→ The Stack: tokenisation in wholesale markets</li>
+      <li>→ Leadership Read: AI &amp; platform engineering</li>
+      <li>→ Outside In: Monzo on shipping at scale</li>
+      <li>→ James Stanier on the non-technical EM</li>
+      <li>→ AWS Middle East: Day 54+</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOREWORD
+═══════════════════════════════════════════════════════════ -->
+<div class="foreword">
+  <p>Governments do not often hand engineering leaders a clear signal about where to invest next. This week, HM Treasury and the FCA did exactly that — combining Open Banking's regulatory transition, a new Wholesale Digital Markets Champion, an AI Live Testing Lab cohort, and explicit regulatory language around agentic commerce into a single announcement that redraws the boundaries of what financial services engineering teams can build with confidence. The week's story is regulatory clarity arriving faster than most teams expected.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     P0 STATUS CARD — AWS Middle East
+═══════════════════════════════════════════════════════════ -->
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">
+    AWS Middle East — partial service degradation &nbsp;<span class="p0-badge degraded">Degraded</span><span style="font-size:13px;color:var(--med-gray);font-family:'Source Sans 3',sans-serif;font-weight:400;margin-left:8px;">Day 54+</span>
+  </div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">Apr 24</span><span class="p0-event">No updated recovery timeline issued. Partial restoration of compute services continues.</span></li>
+    <li><span class="p0-date">Mar 20</span><span class="p0-event">Infrastructure damage confirmed. AWS ME begins staged failover to backup availability zones.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Initial disruption. Multiple availability zones in the Bahrain (me-south-1) region report degraded state.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Incident opened. Engineering teams in UAE, Saudi Arabia, and Bahrain begin activating DR plans.</span></li>
+  </ul>
+  <div class="p0-current">Current status: service remains degraded with no confirmed full-recovery date. Teams reliant on me-south-1 should treat cross-region redundancy as a standing requirement. <a href="https://health.aws.amazon.com/health/status">AWS Health Dashboard</a></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EDITORIAL MOMENT — Worth a second look
+═══════════════════════════════════════════════════════════ -->
+<div class="editorial-moment">
+  <div class="em-second-look">
+    <div class="em-label">Worth a second look</div>
+    Jessica Rusu, the FCA's Chief Data, Intelligence and Information Officer, closed her IFGS keynote with a line that deserves attention beyond the headline it generated: "no new rules" for AI in financial services. The EU AI Act runs to 458 articles. The FCA's posture is that existing principles — fair treatment, transparency, operational resilience — already cover AI. That is a deliberate regulatory philosophy, and it creates a different kind of pressure on engineering teams: fewer bright-line rules means more interpretive work at the design stage. The standard for "what the regulator expects" will be set by how Live Testing Lab participants behave in practice.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WEEK AT A GLANCE
+═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Week at a Glance</div>
+  <h2>The week's signal, sorted by urgency</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action">
+      <span class="qh-badge red">Security</span>
+      <div class="qh-text"><strong>Cisco SD-WAN KEV patch deadline: April 23.</strong> CISA added 8 CVEs to its Known Exploited Vulnerabilities catalog on April 20, including a Cisco SD-WAN flaw with a same-week deadline. BoE/FCA operational resilience frameworks treat CISA KEV additions as reference-equivalent for UK financial institutions. <span class="on-source"><a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html">The Hacker News</a></span></div>
+    </li>
+    <li class="tier-action">
+      <span class="qh-badge red">Platform</span>
+      <div class="qh-text"><strong>Node.js 20 reaches end-of-life April 30.</strong> Six days from publication. Cloud provider runtime freezes follow shortly after. Any team running Node 20 in production or CI pipelines needs the migration path confirmed before month end. See Feature article for detail.</div>
+    </li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know">
+      <span class="qh-badge orange">Fintech</span>
+      <div class="qh-text"><strong>FCA to regulate Open Banking directly.</strong> The Payment Systems Regulator merges into the FCA and JROC/OBIE oversight transfers to full FCA regulation. API specification and SLA regimes will professionalise under a single supervisory body. <span class="on-source"><a href="https://www.gov.uk/government/news/uk-fintech-backed-to-embrace-future-payments-technology">gov.uk</a></span></div>
+    </li>
+    <li class="tier-know">
+      <span class="qh-badge orange">Fintech</span>
+      <div class="qh-text"><strong>AI Live Testing Lab first cohort confirmed.</strong> Barclays, GoCardless, Experian, UBS, Palindrome, Aereve, Co-Adjute, and Lloyds/Scottish Widows enter supervised agentic deployment under the FCA sandbox. Next Supercharged Sandbox intake: May 5. <span class="on-source"><a href="https://www.fca.org.uk/news/speeches/supporting-fintech-next-phase-innovation">FCA</a></span></div>
+    </li>
+    <li class="tier-know">
+      <span class="qh-badge">Fintech</span>
+      <div class="qh-text"><strong>PSR merges into FCA; Woolard named Wholesale Digital Markets Champion.</strong> Chris Woolard CBE's remit spans tokenised assets and programmable settlements. £1M in additional CFIT funding also announced. <span class="on-source"><a href="https://www.gov.uk/government/news/uk-fintech-backed-to-embrace-future-payments-technology">gov.uk</a></span></div>
+    </li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch">
+      <span class="qh-badge green">Markets</span>
+      <div class="qh-text"><strong>Tokenised wholesale markets gaining formal UK backing.</strong> Woolard's new role signals government intent on programmable settlement infrastructure. See The Stack this issue for the engineering context.</div>
+    </li>
+    <li class="tier-watch">
+      <span class="qh-badge green">Region</span>
+      <div class="qh-text"><strong>12th Middle East Banking AI &amp; Analytics Summit, Riyadh — April 29.</strong> Agenda focuses on agentic AI and compliance automation for GCC institutions. <span class="on-source"><a href="https://www.eventbrite.com/e/12th-middle-east-banking-ai-analytics-summit-2026-tickets-1977022136430">Eventbrite</a></span></div>
+    </li>
+  </ul>
+</div>
+
+<!-- SECTION BREATHER 1 -->
+<div class="section-breather"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LEAD ARTICLE — UK Fintech Week & Government Payments Package
+═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Banking &amp; fintech</div>
+  <h2>The UK government just told financial services teams to build for agentic payments — now</h2>
+
+  <!-- FLOATED INSET SIDEBAR — standard weekly only, not grid -->
+  <div class="sidebar-box-float">
+    <div class="sidebar-box compliance">
+      <div class="sb-label">FCA AI Live Testing Lab — first cohort</div>
+      <p>Barclays · GoCardless · Experian · UBS · Palindrome · Aereve · Co-Adjute · Lloyds/Scottish Widows</p>
+      <p style="margin-top:8px">Supervised agentic deployment under FCA oversight. <strong>Next Supercharged Sandbox intake: May 5, 2026.</strong></p>
+    </div>
+  </div>
+
+  <p>On April 21, during UK Fintech Week, HM Treasury and the FCA published a package that removes much of the "wait for clarity" reason teams have been holding back on agentic payment infrastructure. The announcement combined four distinct moves into a single signal: Open Banking comes under direct FCA regulation; the PSR merges into the FCA; a Wholesale Digital Markets Champion is appointed; and eight companies begin supervised AI deployment in financial services.</p>
+
+  <h3>What the FCA is actually doing with Open Banking</h3>
+
+  <p>The transfer of Open Banking oversight from JROC and OBIE to direct FCA regulation is the structural change that carries the most near-term engineering consequence. A single regulator with enforcement powers over API specifications and SLA regimes creates a more predictable compliance target than a joint committee. Teams building on Open Banking rails now have a single supervisory point of contact — and a single enforcement entity if something breaks.</p>
+
+  <p>The PSR merger accelerates this. Payment Systems Regulator remit (Faster Payments, card schemes, interbank infrastructure) combines with FCA remit (conduct, consumer duty, AI oversight) under one body. The likely outcome for engineering teams is a unified compliance framework that spans payment initiation and the consumer-facing layer above it.</p>
+
+  <h3>Agentic commerce gets explicit regulatory recognition</h3>
+
+  <p>Jessica Rusu's IFGS keynote framing of an "agentic commerce era" was the phrase that circulated most from the week's announcements. The more consequential move was structural: establishing an AI Live Testing Lab with eight named cohort participants gives regulated firms a supervised pathway for deploying AI agents in payment flows. Barclays and Lloyds/Scottish Widows are inside that pathway. For their engineering counterparts at other institutions, the timeline pressure is real: the firms in the cohort are building operational experience while others deliberate.</p>
+
+  <div class="pq-bar">
+    <p>"The era of agentic commerce is already here — we just need the infrastructure to catch up."</p>
+    <cite>Jessica Rusu, Chief Data, Intelligence and Information Officer, FCA — IFGS keynote, April 21, 2026 · <a href="https://www.fca.org.uk/news/speeches/supporting-fintech-next-phase-innovation" style="color:var(--med-gray)">fca.org.uk</a></cite>
+  </div>
+
+  <h3>The engineering implications, by layer</h3>
+
+  <p>Three layers of this package have direct engineering consequence:</p>
+
+  <p><strong>API and SLA governance.</strong> Open Banking under single-regulator oversight means tighter and more consistent enforcement of API performance requirements. Teams maintaining Open Banking integrations should expect specification rigidity to increase, not decrease, under the new regime.</p>
+
+  <p><strong>AI agent compliance surface.</strong> The FCA's "no new rules" posture means existing operational resilience obligations — explainability, incident reporting, consumer duty — apply to AI agents in payment flows without modification. That shifts complexity to design-time: teams need to embed compliance into agent architecture before deployment, not as an audit layer after.</p>
+
+  <p><strong>Wholesale settlement infrastructure.</strong> Chris Woolard's appointment as Wholesale Digital Markets Champion signals formal government backing for tokenised settlement infrastructure. This is a longer-cycle item — but the appointment creates a formal consultation channel that teams building on DLT-adjacent infrastructure should engage with early.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.gov.uk/government/news/uk-fintech-backed-to-embrace-future-payments-technology">gov.uk</a> · <a href="https://www.fca.org.uk/news/speeches/supporting-fintech-next-phase-innovation">FCA</a> · <a href="https://startupcoalition.substack.com/p/the-future-is-already-here-we-just">Startup Coalition</a></p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     QUICK TAKES — QT-B asymmetric (3fr / 2fr)
+═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two stories, one week</h2>
+
+  <div class="two-col qt-featured">
+
+    <!-- QT2 — wider column (60%) — LeadDev / James Stanier -->
+    <div class="quick-take-col">
+      <div class="qt-header leadership">Engineering leadership</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat leadership">"Managers who can't read code are losing leverage."</div>
+        <div class="qt-anchor-context">James Stanier, Director of Engineering, Shopify — LeadDev, April 20</div>
+
+        <h3>The end of the non-technical engineering manager</h3>
+        <p>James Stanier's LeadDev piece is generating the kind of quiet circulation that means it is landing with people who don't want to say it out loud in a meeting. His argument: as AI tools produce more code, faster, the manager who cannot read or review that output is structurally disadvantaged. They cannot assess quality, spot drift, challenge estimates, or have credible technical conversations with their team.</p>
+        <p>Stanier is precise about the threshold: technical conversance, meaning the ability to engage with engineering decisions at a level above "trust me." Writing production code is a separate and higher bar. Reading, reviewing, and challenging it is the baseline he describes. AI-generated code volume is raising the stakes on that baseline. When a team can ship more with less friction, the manager's value in maintaining quality and direction becomes more visible, not less.</p>
+        <p>For engineering organisations that have moved toward deliberately non-technical management layers — often for legitimate reasons around people focus and delivery management — this is worth sitting with. The pressure Stanier describes will not arrive as a policy change. It will arrive as a gradual credibility gap.</p>
+
+        <div class="so-what"><strong>The takeaway:</strong> AI tooling is raising the technical floor for credible engineering leadership, without any formal role definition changing.</div>
+        <p class="source-tag"><a href="https://leaddev.com/career-development/the-end-of-the-non-technical-engineering-manager">LeadDev</a> · April 20, 2026</p>
+      </div>
+    </div>
+
+    <!-- QT1 — compact column (40%) — CISA KEV -->
+    <div class="quick-take-col">
+      <div class="qt-header security">Security alert</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat security">8</div>
+        <div class="qt-anchor-context">New CVEs added to CISA's Known Exploited Vulnerabilities catalog, April 20</div>
+
+        <h3>Cisco and CISA deadlines this week</h3>
+        <p>CISA added 8 actively exploited CVEs on April 20. The Cisco SD-WAN entry carries a patch deadline of April 23 — at or before publication. The remaining vulnerabilities close May 4.</p>
+        <p>UK financial institutions are not formally bound by CISA's Binding Operational Directives, but BoE and FCA operational resilience frameworks treat known-exploited vulnerability lists as a baseline expectation for patch management programmes. A CISA KEV addition with a same-week deadline is a credible proxy for urgency.</p>
+
+        <div class="so-what"><strong>The takeaway:</strong> The April 23 Cisco deadline is either already met or already overdue — the May 4 window for remaining CVEs is the active patch target now.</div>
+        <p class="source-tag"><a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html">The Hacker News</a> · April 20, 2026</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION BREATHER 2 -->
+<div class="section-breather"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FEATURE ARTICLE — Node.js 20 EOL
+═══════════════════════════════════════════════════════════ -->
+<div class="feature-article">
+  <div class="section-label">Feature</div>
+  <h2>Node.js 20 dies on April 30. Your cloud provider is already making plans.</h2>
+
+  <p>Six days from publication, Node.js 20 reaches end-of-life. That sentence would normally belong in On the Radar and Platform Updates — and it does appear there too — but the cloud provider behaviour that follows the EOL date makes this worth a longer read than a table row.</p>
+
+  <h3>What EOL means in practice</h3>
+  <p>Node.js EOL means no further security patches from the Node.js release team. For teams running Node 20 in containerised environments they control, the practical risk is manageable: you keep running it, you accept the security posture, you upgrade when it suits your cycle. For teams relying on managed cloud runtimes, it is different. AWS Lambda, Azure Functions, and Google Cloud Functions all freeze runtime update support for EOL Node versions shortly after the official date — in some cases, the next day. That freeze means no environment patches, no security backports, and eventually the function update capability itself stops accepting EOL runtime versions.</p>
+
+  <!-- Rabbit Hole — floated within Feature -->
+  <div class="rabbit-hole">
+    <span class="rh-label">Down the Rabbit Hole</span>
+    <span class="rh-title"><a href="https://larahogan.me/blog/">Lara Hogan — "AI aha" team meetings</a></span>
+    <p>Lara Hogan's recent writing on how to structure the AI conversation inside an engineering team — moving beyond individual tool adoption to shared team understanding. A natural companion to the Stanier piece on technical conversance this issue.</p>
+    <span class="rabbit-hole-type">Long-read</span>
+  </div>
+
+  <h3>The migration path</h3>
+  <p>Node.js 22 is the current LTS release and the standard migration target. Node.js 24 LTS arrived in October 2025 and is the forward-looking choice for teams willing to take a slightly newer release. Both are actively maintained. The migration from Node 20 to 22 is generally clean — the breaking changes are minor for most application code — but the friction sits in CI pipeline configuration, Dockerfile base images, and any third-party dependencies that pinned to Node 20 behaviours.</p>
+
+  <h3>Where teams get caught</h3>
+  <p>The common failure pattern: a team hears about Node 20 EOL, plans the migration, executes it across their main services — and leaves a single overlooked function or background worker behind. Cloud provider freeze applies per function configuration. One forgotten Lambda function on Node 20 becomes an unpatched attack surface on a runtime the provider no longer touches.</p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num" style="color:var(--alert-red)">Apr 30</div>
+      <div class="stat-label">Node.js 20 EOL</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">22 LTS</div>
+      <div class="stat-label">Active migration target</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24 LTS</div>
+      <div class="stat-label">Oct 2025 — forward choice</div>
+    </div>
+  </div>
+
+  <p><strong>The takeaway:</strong> The teams most at risk from Node 20 EOL are not the ones running monoliths they know about — they are the ones with distributed function inventories where runtime versions are not systematically tracked.</p>
+
+  <p class="source-tag"><a href="https://www.herodevs.com/blog-posts/node-js-v20-goes-eol-april-30----and-your-cloud-provider-is-pulling-the-plug-the-next-day">HeroDevs</a></p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     THE STACK — Tokenisation in wholesale markets
+═══════════════════════════════════════════════════════════ -->
+<div class="section the-stack">
+  <div class="section-label" style="color:var(--deep-teal);letter-spacing:3px">The Stack</div>
+  <h2>Tokenised Settlement in Wholesale Markets</h2>
+  <p class="stack-subtitle">Chris Woolard's appointment as Wholesale Digital Markets Champion makes this the right week to understand what tokenisation actually means for the teams building financial infrastructure.</p>
+
+  <div class="stack-def-box">
+    <div class="sdb-label">Key terms</div>
+    <dl>
+      <dt>Tokenisation</dt>
+      <dd>Representing a financial instrument — a bond, equity, or payment obligation — as a programmable token on a distributed ledger. The token carries ownership rights and can be transferred, settled, or used as collateral without a central intermediary processing each step.</dd>
+      <dt>Atomic DvP (Delivery versus Payment)</dt>
+      <dd>Settlement where asset transfer and cash payment happen simultaneously in a single transaction — eliminating the settlement lag (currently T+1 or T+2) and the counterparty risk that exists during that lag.</dd>
+      <dt>ISO 20022</dt>
+      <dd>The global messaging standard for financial transactions. Tokenised settlement systems are being designed to interoperate with ISO 20022 message flows — which matters for teams already building on SWIFT's migration timeline.</dd>
+    </dl>
+  </div>
+
+  <h3>Why it matters for your teams</h3>
+  <p>Tokenised settlement changes three things that engineering teams currently manage as separate systems: asset ledger, payment ledger, and settlement reconciliation. In a tokenised model, these collapse into a single programmable layer. The operational complexity does not disappear — it moves. Reconciliation logic that currently lives in batch jobs and overnight settlement windows shifts to smart contract logic and real-time event streams. The engineering surface area changes shape rather than shrinks.</p>
+
+  <p>For banking engineering teams, the near-term consequence is API and data architecture decisions made today that need to accommodate tokenised instrument types tomorrow. If your settlement data models assume T+2 batch flows, they will need rearchitecting for atomic finality. If your risk systems assume counterparty exposure during settlement windows, that assumption breaks in a DvP-atomic world.</p>
+
+  <h3>What to watch for</h3>
+
+  <svg viewBox="0 0 760 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:20px 0;display:block" role="img" aria-label="Tokenisation landscape: three initiatives and their stage">
+    <rect width="760" height="120" fill="#F4F6F9" rx="4"/>
+    <!-- Column headers -->
+    <text x="20" y="22" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#8899AA" letter-spacing="1">Initiative</text>
+    <text x="340" y="22" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#8899AA" letter-spacing="1">Stage</text>
+    <text x="500" y="22" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#8899AA" letter-spacing="1">Relevance</text>
+    <!-- Row 1 -->
+    <rect x="10" y="30" width="740" height="28" fill="#fff" rx="2"/>
+    <text x="20" y="48" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Project Agorá (BIS)</text>
+    <text x="340" y="48" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">Live pilot — 7 central banks</text>
+    <text x="500" y="48" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">FX settlement model</text>
+    <!-- Row 2 -->
+    <rect x="10" y="60" width="740" height="28" fill="#F4F6F9" rx="2"/>
+    <text x="20" y="78" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">UK DLT Pilot Regime</text>
+    <text x="340" y="78" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">FCA sandbox — active</text>
+    <text x="500" y="78" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">Gilt &amp; securities tokenisation</text>
+    <!-- Row 3 -->
+    <rect x="10" y="90" width="740" height="28" fill="#fff" rx="2"/>
+    <text x="20" y="108" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Regulated Liability Network</text>
+    <text x="340" y="108" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">UK consortium — design phase</text>
+    <text x="500" y="108" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">Shared tokenised £ layer</text>
+  </svg>
+
+  <p>Three initiatives are worth tracking. Project Agorá (BIS, seven central banks) is a live pilot testing wholesale FX settlement on a unified ledger — results will establish whether atomic DvP works at system scale. The UK DLT Pilot Regime, operating inside the FCA sandbox, is testing gilt and securities tokenisation with a small number of institutions. The Regulated Liability Network is a UK banking consortium exploring a shared tokenised sterling layer for interbank settlement. Chris Woolard's new remit spans all three, and his formal appointment creates a consultation channel that did not previously exist at this level of seniority.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OTHER NEWS THIS WEEK
+═══════════════════════════════════════════════════════════ -->
+<div class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other news</div>
+  <h2>Also this week</h2>
+  <ul class="other-news">
+    <li><strong>GitHub Actions billing change</strong> — GitHub confirmed adjusted per-minute pricing for macOS runners effective May 1, affecting CI cost calculations for teams running mobile build pipelines on Actions. <span class="on-source"><a href="https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions">GitHub Docs</a></span></li>
+    <li><strong>CFIT receives £1M additional funding</strong> — the Centre for Finance, Innovation and Technology's expanded budget is earmarked for open finance and data standards work directly linked to the April 21 package. <span class="on-source"><a href="https://www.gov.uk/government/news/uk-fintech-backed-to-embrace-future-payments-technology">gov.uk</a></span></li>
+    <li><strong>Financial Services AI Champions programme launched</strong> — a new UK government initiative pairing AI companies with financial institutions to accelerate deployment. Separate from the FCA sandbox; aimed at earlier-stage partnerships. <span class="on-source"><a href="https://www.fca.org.uk/news/speeches/supporting-fintech-next-phase-innovation">FCA</a></span></li>
+    <li><strong>Node.js 24 now stable</strong> — while Node 20 exits support, Node 24 (October 2025 LTS) is confirmed stable and available. Teams planning ahead of Node 22's LTS window can adopt 24 now. <span class="on-source"><a href="https://nodejs.org/en/blog">nodejs.org</a></span></li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PLATFORM UPDATES AT A GLANCE
+═══════════════════════════════════════════════════════════ -->
+<div class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform updates</div>
+  <h2>At a glance</h2>
+  <table class="glance-table">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Platform</th>
+        <th>What changed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="status-dot red"></span></td>
+        <td class="platform">Node.js 20</td>
+        <td>End-of-life April 30. No further security patches. Cloud provider runtime freeze follows immediately. Migrate to Node 22 LTS or Node 24 LTS.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot green"></span></td>
+        <td class="platform">Node.js 22</td>
+        <td>Active LTS — current recommended migration target from Node 20. Maintained through April 2027.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot green"></span></td>
+        <td class="platform">Node.js 24</td>
+        <td>LTS (October 2025). Stable for production. Forward-looking choice for teams with longer planning horizons.</td>
+      </tr>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">GitHub Actions</td>
+        <td>macOS runner per-minute pricing change effective May 1. Review CI cost projections for mobile pipeline budgets.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="feature-break">
+
+<!-- ═══════════════════════════════════════════════════════════
+     LEADERSHIP READ — LeadDev: AI made platform engineering strategic again
+═══════════════════════════════════════════════════════════ -->
+<div class="mgmt-section">
+  <div class="section-label">Leadership read</div>
+  <h2>AI made platform engineering strategic again</h2>
+
+  <h3>The argument</h3>
+  <p>Platform engineering teams spent several years fighting a perception problem: expensive to run, slow to deliver value, hard to justify at board level. A LeadDev piece from April 13 — which has gained significant traction this week — makes a direct case that AI agents have changed the calculus. The author's argument: agents need golden paths, safe sandboxes, and robust observability to operate reliably. Those are exactly what mature platform engineering delivers. The demand signal for platform investment has arrived from an unexpected direction.</p>
+
+  <h3>What changed, and why it matters</h3>
+  <p>The mechanism is straightforward. When developers use AI code assistants, the output quality is highly dependent on the quality of the environment those assistants are working in — clean APIs, reliable test infrastructure, fast feedback loops. An AI agent operating in a chaotic environment produces chaotic output faster. Platform engineering, by reducing environmental entropy, directly improves the ceiling on what AI-assisted development can deliver.</p>
+
+  <p>For platform teams that have struggled to demonstrate ROI in business terms, this reframes the value proposition. The argument for investing in internal developer platforms was always productivity — but AI tooling makes the mechanism more legible to non-engineers: better infrastructure means better AI output means faster delivery.</p>
+
+  <h3>The risk the piece identifies</h3>
+  <p>Platform teams that are reacting to AI adoption — retrofitting observability and sandboxing after agents are already deployed — are building catch-up debt. The teams that built ahead, treating agentic workloads as first-class platform citizens before they arrived, are starting to see compounding advantage. The gap between these two cohorts is widening, not closing.</p>
+
+  <div class="pull-quote">
+    <p>"The teams treating AI agents as first-class platform consumers — before they were mainstream — now have infrastructure that works. The teams who waited are catching up under pressure."</p>
+    <cite>LeadDev, April 13, 2026</cite>
+  </div>
+
+  <div class="discussion-prompt">
+    <strong>This could be worth talking about:</strong> whether our platform roadmap is investing ahead of AI agent adoption, or reacting after the first agents are already in production.
+  </div>
+
+  <p class="source-tag" style="color:rgba(255,255,255,.4);margin-top:16px"><a href="https://leaddev.com/technical-direction/ai-made-platform-engineering-strategic-again" class="mgmt-link">LeadDev</a> · April 13, 2026 <em style="font-size:11px">(traction exception — significant new readership and discussion this week)</em></p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OUTSIDE IN — Monzo (stats-led / callout-led, NOT narrative)
+═══════════════════════════════════════════════════════════ -->
+<div class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Monzo: shipping constantly, from code to Android runtime</h2>
+
+  <div class="oi-stats-row">
+    <div class="oi-stat">
+      <div class="oi-stat-num">35%</div>
+      <div class="oi-stat-label">ANR reduction, Android R8 optimisation</div>
+    </div>
+    <div class="oi-stat">
+      <div class="oi-stat-num">1,600+</div>
+      <div class="oi-stat-label">Engineers at Monzo (QCon context)</div>
+    </div>
+    <div class="oi-stat">
+      <div class="oi-stat-num">300+</div>
+      <div class="oi-stat-label">Microservices in production</div>
+    </div>
+  </div>
+
+  <h3>Suhail Patel at QCon London: shipping constantly with humans and LLMs</h3>
+
+  <div class="oi-callout">
+    <p>Suhail Patel (Principal Engineer, Monzo) presented at QCon London on how Monzo manages continuous deployment across a microservices estate at scale — and what changes when LLMs enter the development loop. The core lesson from the talk: shipping velocity is a cultural and process property, not a tooling property. LLMs accelerate code production; they do not automatically improve the system that decides what to ship and how to validate it.</p>
+  </div>
+
+  <p>Patel's QCon talk (available via InfoQ) covers the tension between developer autonomy and system coherence at an organisation that has grown from dozens to 1,600+ engineers without losing its deployment cadence. The practical question Monzo has had to answer repeatedly: how do you maintain fast deployment cycles when the organisation is large enough that no single person understands the full system?</p>
+
+  <h3>The Android R8 result</h3>
+  <p>Separately from the QCon talk, Monzo's Android team published results from their R8 code-shrinking optimisation work — a 35% reduction in Application Not Responding (ANR) errors. The mechanism: R8 shrinks and optimises bytecode at build time, reducing the runtime overhead that contributes to ANR events. For a bank processing real-money transactions on mobile, ANR rates are a direct reliability metric, and a 35% improvement at scale is a meaningful signal about the compounding return on build tooling investment.</p>
+
+  <p>The two data points sit alongside each other instructively: Patel's talk addresses the process discipline required to ship frequently at scale; the Android result illustrates the kind of infrastructure investment that makes mobile reliability systematic rather than ad hoc.</p>
+
+  <p class="so-what"><strong>The takeaway:</strong> At the scale Monzo operates, deployment velocity and mobile reliability are both outcomes of deliberate platform investment — neither emerges naturally from team size or engineering talent alone.</p>
+
+  <p class="source-tag"><a href="https://www.infoq.com/news/2026/03/shipping-monzo/">InfoQ — QCon London, Suhail Patel talk</a> <em style="font-size:11px">(traction exception — QCon London March 2026; ongoing discussion and InfoQ coverage this week)</em></p>
+</div>
+
+<hr class="feature-break">
+
+<!-- ═══════════════════════════════════════════════════════════
+     ON THE RADAR — timeline treatment
+═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">On the Radar</div>
+  <h2>Deadlines and events ahead</h2>
+
+  <ul class="radar-timeline">
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">23</div>
+        <div class="rd-label">Deadline</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Cisco SD-WAN KEV patch deadline.</strong> CISA's binding deadline for the Cisco SD-WAN vulnerability added to the Known Exploited Vulnerabilities catalog on April 20. At or past publication for most readers.</div>
+    </li>
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">29</div>
+        <div class="rd-label">Event</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>12th Middle East Banking AI &amp; Analytics Summit, Riyadh.</strong> Agenda centred on agentic AI deployment and compliance automation for GCC institutions. Relevant for engineering leadership in ME region. <a href="https://www.eventbrite.com/e/12th-middle-east-banking-ai-analytics-summit-2026-tickets-1977022136430" style="color:var(--deep-teal)">Eventbrite</a></div>
+    </li>
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Apr</div>
+        <div class="rd-day">30</div>
+        <div class="rd-label">EOL</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 20 end-of-life.</strong> No further security patches. Cloud provider runtime freezes follow. See Feature article for the cloud provider behaviour detail.</div>
+    </li>
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">4</div>
+        <div class="rd-label">Deadline</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>CISA KEV remaining CVE deadline.</strong> Seven of the eight vulnerabilities added April 20 carry a May 4 remediation deadline under CISA's Known Exploited Vulnerabilities catalog. <a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html" style="color:var(--deep-teal)">The Hacker News</a></div>
+    </li>
+
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">5</div>
+        <div class="rd-label">Intake</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>FCA Supercharged Sandbox — next intake opens.</strong> The cohort following the AI Live Testing Lab confirmed participants. Relevant for regulated financial services teams seeking supervised agentic deployment pathways. <a href="https://www.fca.org.uk/news/speeches/supporting-fintech-next-phase-innovation" style="color:var(--deep-teal)">FCA</a></div>
+    </li>
+
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">For engineering leadership in UK and Middle East banking &amp; fintech</div>
+  <div class="footer-next">Next issue: Friday, May 1, 2026</div>
+
+  <div class="archive-bar">
+    <span class="archive-bar-label">Previous issues</span>
+    <span class="archive-pill">Issue 3 · Apr 3 · Weekly</span>
+    <span class="archive-pill">Issue 4 · Apr 10 · Deep Dive</span>
+    <span class="archive-pill">Issue 5 · Apr 17 · Weekly</span>
+    <span class="archive-pill">Issue 6 · Apr 17 · Weekly</span>
+    <span class="archive-pill current">Issue 7 · Apr 24 · Weekly</span>
+  </div>
+</div>
+
+</div><!-- .magazine -->
+</body>
+</html>
