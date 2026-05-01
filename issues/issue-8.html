@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Deep Dive: The Agentic AI Production Gap</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08);position:relative}
+
+/* PROGRESS BAR */
+.progress-bar{position:sticky;top:0;z-index:100;height:3px;background:rgba(10,22,40,.08)}.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--alert-red),var(--coral));transition:width .15s ease-out}
+
+/* SECTION MARKER */
+.section-marker{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}
+.section-marker .marker-num{font-family:'Playfair Display',serif;font-size:13px;font-weight:900;color:var(--white);background:var(--alert-red);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1}
+.section-marker .marker-of{font-size:11px;font-weight:600;color:var(--med-gray);letter-spacing:1px}
+
+/* COVER */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--alert-red),var(--coral),var(--alert-red));z-index:2}
+.cover-inner{padding:56px 60px 0;text-align:left}
+.deep-badge{display:inline-block;background:var(--alert-red);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:20px}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:1.02;margin-bottom:10px;max-width:700px}
+.cover-sub{font-family:'Source Sans 3',sans-serif;font-size:18px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:24px;max-width:640px}
+.cover-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:18px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.cover-read-time{font-size:11px;color:var(--med-gray);letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);padding:3px 9px;border-radius:2px}
+.cover-scope{margin-top:32px;padding:24px 0;border-top:1px solid rgba(255,255,255,.1);display:flex;gap:40px}
+.scope-item{text-align:left}.scope-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--alert-red);line-height:1}.scope-label{font-size:11px;font-weight:600;color:var(--med-gray);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.cover-stat-band{padding:28px 60px;background:rgba(220,38,38,.08);border-top:1px solid rgba(220,38,38,.18)}
+.cover-stat-band .stat-figure{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:var(--alert-red);line-height:1;display:inline}
+.cover-stat-band .stat-context{font-size:15px;color:rgba(255,255,255,.6);margin-top:4px}
+
+/* SECTIONS */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.section.tight{padding-top:32px;padding-bottom:32px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}.section-label.green{color:var(--accent-green)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* FOREWORD */
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+
+/* HOW TO READ */
+.how-to-read{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin:20px 0}
+.htr-card{border:1px solid var(--light-gray);border-radius:4px;padding:20px;text-align:center}
+.htr-card .htr-time{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.htr-card .htr-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-top:4px;margin-bottom:8px}
+.htr-card p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-num.red{color:var(--alert-red)}.stat-num.teal{color:var(--deep-teal)}.stat-num.green{color:var(--accent-green)}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* PULL QUOTE */
+.pull-quote{border-left:4px solid var(--alert-red);padding:16px 24px;margin:24px 0;background:#FEF2F2}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.pq-bar{background:var(--navy);padding:36px 60px;text-align:center;border-bottom:1px solid var(--light-gray)}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.4;max-width:720px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ARTICLE WITH SIDEBAR */
+.article-with-sidebar{display:grid;grid-template-columns:1fr 300px;gap:32px;margin-top:16px}
+.article-main{}
+.article-sidebar{}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:20px;margin-bottom:16px}
+.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}
+.sidebar-box .sb-stat{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1;margin-bottom:4px}
+.sidebar-box .sb-context{font-size:13px;color:var(--body-text);line-height:1.5}
+.sidebar-box.urgent{border-color:var(--alert-red);border-left:4px solid var(--alert-red);background:#FEF2F2}
+.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* BY-THE-NUMBERS */
+.by-the-numbers{border:2px solid var(--teal);border-radius:4px;padding:24px 28px;margin:24px 0}
+.btn-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.btn-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.btn-item{text-align:center}
+.btn-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1}
+.btn-label{font-size:11px;color:var(--med-gray);margin-top:2px}
+
+/* COUNTERPOINT */
+.counterpoint-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray);border-left:5px solid var(--accent-green)}
+.counterpoint-pill{display:inline-block;background:var(--accent-green);color:var(--navy);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:12px;margin-bottom:10px}
+.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}
+.compare-col{padding:24px}
+.compare-col.left{background:rgba(220,38,38,.04);border-right:1px solid var(--light-gray)}
+.compare-col.right{background:rgba(0,212,170,.04)}
+.compare-col .cc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.compare-col.left .cc-label{color:var(--alert-red)}
+.compare-col.right .cc-label{color:var(--accent-green)}
+.compare-col .cc-metric{font-size:14px;color:var(--body-text);margin-bottom:6px;line-height:1.5}
+.compare-col .cc-metric strong{color:var(--navy)}
+.compare-col .cc-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1}
+.compare-col.left .cc-num{color:var(--alert-red)}
+.compare-col.right .cc-num{color:var(--accent-green)}
+
+/* TIMELINE */
+.timeline-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:24px 28px;margin:20px 0}
+.timeline-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:14px}
+.timeline-track{border-left:3px solid var(--light-gray);padding-left:20px;margin-left:4px}
+.timeline-track p{margin-bottom:14px}
+.tl-red{color:var(--alert-red);font-weight:700}.tl-navy{color:var(--navy);font-weight:700}.tl-teal{color:var(--deep-teal);font-weight:700}
+
+/* LESSONS */
+.lessons-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px;border-bottom:1px solid var(--light-gray)}
+.lessons-section .section-label{color:var(--teal)}
+.lessons-section h2{color:var(--white)}
+.lessons-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:700;letter-spacing:.5px}
+.lessons-section p{color:rgba(255,255,255,.78)}
+.verdict-box{background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);border-radius:4px;padding:24px 28px;margin-bottom:28px}
+.verdict-box .vb-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:8px}
+.verdict-box p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--white);line-height:1.45;margin:0}
+.key-takeaway{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:24px 28px;margin:28px 0}
+.key-takeaway .kt-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.key-takeaway ul{list-style:none;margin:0;padding:0}
+.key-takeaway li{padding:6px 0;color:rgba(255,255,255,.85);font-size:15px;line-height:1.6;padding-left:16px;position:relative}
+.key-takeaway li::before{content:'\2192';position:absolute;left:0;color:var(--teal)}
+
+/* MEANWHILE */
+.meanwhile-section{background:var(--off-white);padding:40px 48px;border-top:2px solid var(--teal);border-bottom:1px solid var(--light-gray)}
+.meanwhile-intro{font-style:italic;color:var(--med-gray);font-size:14px;margin-bottom:20px}
+.meanwhile-lead{border-left:3px solid var(--teal);background:var(--white);padding:14px 18px;margin-bottom:14px;border-radius:0 3px 3px 0}
+.meanwhile-lead strong{color:var(--navy);font-size:15px;display:block;margin-bottom:4px}
+.meanwhile-lead p{font-size:14px;line-height:1.55;color:var(--body-text);margin:0}
+.meanwhile-lead .mw-source{font-size:11px;color:var(--deep-teal);font-style:italic;margin-top:4px;display:block}
+.meanwhile-lead .mw-source a{color:var(--deep-teal);text-decoration:none}
+.meanwhile-lead .mw-source a:hover{text-decoration:underline}
+.mw-also-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin:24px 0 10px}
+.meanwhile-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--light-gray)}
+.meanwhile-grid .mw-item{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.55}
+.meanwhile-grid .mw-item:nth-child(odd){border-right:1px solid var(--light-gray)}
+.meanwhile-grid .mw-item strong{color:var(--navy);font-size:14px}
+.meanwhile-grid .mw-source{font-size:11px;color:var(--deep-teal);font-style:italic}
+.meanwhile-grid .mw-source a{color:var(--deep-teal);text-decoration:none}
+.meanwhile-grid .mw-source a:hover{text-decoration:underline}
+
+/* COMPACT RADAR */
+.radar-compact{list-style:none;margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.radar-compact li{display:flex;gap:10px;padding:10px 16px;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5;align-items:flex-start}
+.radar-compact li:nth-child(odd){border-right:1px solid var(--light-gray)}
+.radar-compact .rc-date{font-family:'Playfair Display',serif;font-weight:900;color:var(--deep-teal);font-size:13px;white-space:nowrap;min-width:56px}
+.radar-compact .rc-date.urgent{color:var(--alert-red)}
+.radar-compact strong{color:var(--navy)}
+
+/* READING LIST */
+.reading-list{list-style:none;margin:16px 0}
+.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.reading-list li:last-child{border-bottom:none}
+.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}
+.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* SOURCE TAG */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}
+.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+
+/* FOOTER */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.archive-pill{display:inline-block;font-size:11px;padding:4px 12px;border-radius:12px;color:var(--med-gray);border:1px solid rgba(255,255,255,.1);letter-spacing:.5px}
+.archive-pill.current{background:var(--deep-teal);color:var(--white);border-color:var(--deep-teal)}
+
+/* RESPONSIVE */
+@media(max-width:700px){.cover-inner,.section,.foreword,.pq-bar,.footer,.lessons-section,.counterpoint-section,.cover-stat-band,.meanwhile-section{padding-left:20px;padding-right:20px}.cover h1{font-size:34px}h2{font-size:26px}.article-with-sidebar,.comparison-grid,.how-to-read{grid-template-columns:1fr}.meanwhile-grid,.radar-compact{grid-template-columns:1fr}.meanwhile-grid .mw-item:nth-child(odd){border-right:none}.radar-compact li:nth-child(odd){border-right:none}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-scope{flex-direction:column;gap:16px}.btn-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="cover-inner">
+    <div class="deep-badge">Deep Dive</div>
+    <h1>The Agentic AI Production Gap</h1>
+    <div class="cover-sub">Banks are betting nine figures on autonomous agents. The data, the regulators, and the engineering reality say not so fast.</div>
+    <div class="cover-meta">
+      <span class="cover-date">May 1, 2026</span>
+      <span class="cover-issue">|&ensp;Engineering Digest&ensp;|&ensp;Issue 8 · Deep Dive</span>
+      <span class="cover-read-time">~22 min read</span>
+    </div>
+    <div class="cover-scope">
+      <div class="scope-item"><div class="scope-num">4</div><div class="scope-label">Studies</div></div>
+      <div class="scope-item"><div class="scope-num">7</div><div class="scope-label">Sections</div></div>
+      <div class="scope-item"><div class="scope-num">65k+</div><div class="scope-label">Engineers Tracked</div></div>
+      <div class="scope-item"><div class="scope-num">14</div><div class="scope-label">Sources</div></div>
+    </div>
+  </div>
+  <div class="cover-stat-band">
+    <div class="stat-figure">23%</div>
+    <div class="stat-context">of organisations see significant ROI from AI agents — despite 97% of executives reporting they have already deployed them. Writer.com 2026 Enterprise AI Adoption survey.</div>
+  </div>
+</header>
+
+<!-- FOREWORD -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>The pilots are over. In April, OpenAI shipped Workspace Agents, Snowflake shipped Cortex Code, Microsoft shipped Agent Framework v1.0, and Lloyds Banking Group committed to extracting more than &pound;100m of value from agentic AI in 2026. JPMorgan now scores its 65,000 engineers on how often they reach for Copilot. Banking has decided agents are infrastructure, not experiment.</p>
+  <p>The deployment numbers are real. The ROI numbers are not yet. This issue takes the entire week to look at why those two facts are sitting in the same room — what the latest Writer survey says, what UK banks are actually building, what the Bank of England is now treating as a supervisory priority, and what the productivity research says when you stop reading the headlines.</p>
+</section>
+
+<!-- HOW TO READ -->
+<section class="section">
+  <div class="section-label">How to Read This</div>
+  <h2>Three Paths Through This Issue</h2>
+  <div class="how-to-read">
+    <div class="htr-card">
+      <div class="htr-time">2 min</div>
+      <div class="htr-label">The Headlines</div>
+      <p>Executive summary, the verdict, and the key takeaways. The shape of the gap and what to do about it.</p>
+    </div>
+    <div class="htr-card">
+      <div class="htr-time">10 min</div>
+      <div class="htr-label">The Full Picture</div>
+      <p>Add the three source sections — Writer's adoption data, the UK banking lean-in, and the regulator's view.</p>
+    </div>
+    <div class="htr-card">
+      <div class="htr-time">30 min</div>
+      <div class="htr-label">The Deep Read</div>
+      <p>Add the Counterpoint on developer productivity, the JPMorgan case study, and the Meanwhile catch-up on the rest of the week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">1</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label alert">Executive Summary</div>
+  <h2>The deployment-to-value gap is structural, not temporary</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num red">97%</div><div class="stat-label">Executives deployed agents</div></div>
+    <div class="stat"><div class="stat-num red">23%</div><div class="stat-label">See significant ROI</div></div>
+    <div class="stat"><div class="stat-num teal">44%</div><div class="stat-label">Finance teams using agents</div></div>
+    <div class="stat"><div class="stat-num">&pound;100m+</div><div class="stat-label">Lloyds 2026 target</div></div>
+  </div>
+
+  <p>Three datasets, one tension. Writer.com surveyed 800 enterprise leaders and found that almost everyone has deployed AI agents in the past year, but fewer than a quarter can point to significant business returns. AI Magicx and Tyk's banking-specific data shows finance teams jumped from less than 7% agent adoption in January 2025 to 44% by Q1 2026, a six-fold increase in twelve months. And on April 1, the Bank of England and the PRA wrote jointly to the Chancellor naming AI as a supervisory priority for 2026 — with agentic AI explicitly flagged as the next item on the radar.</p>
+
+  <p>What follows takes each thread in turn. Writer's data on why deployment is not translating to ROI. The UK banking lean-in, anchored by Lloyds' &pound;100m commitment and JPMorgan's internal Copilot scoreboards. The regulator's framing, reading existing rules onto a technology stack that is moving faster than the supervisory cycle. A Counterpoint on the developer-productivity research that complicates the simple "agents make us faster" narrative. And a case study on what JPMorgan's tracking infrastructure tells us about how the largest engineering organisations are operationalising the transition.</p>
+
+  <p>The pattern by the end is consistent. The gap between deployment and durable value is not a question of more time. It is a question of which engineering and operating decisions get made now — about validation, about pipeline architecture, about review cycles, about governance — that determine whether the spend compounds or evaporates.</p>
+</section>
+
+<!-- SOURCE 1: Writer survey - article-with-sidebar layout -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">2</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label alert">Source 1 &mdash; Writer 2026 Enterprise AI Adoption Survey</div>
+  <h2>Deployment is universal. Returns are not.</h2>
+
+  <div class="article-with-sidebar">
+    <div class="article-main">
+      <h3>The headline number that matters</h3>
+      <p>Writer's annual survey of 800 enterprise leaders, published April 7, captures the cleanest version of the central tension in agentic AI right now. Ninety-seven percent of executives report their company has deployed AI agents in the past year. Twenty-three percent say they are seeing significant ROI from those agents. The deployment metric is essentially saturated. The value metric is not.</p>
+
+      <p>That gap is not new in shape — it shows up in every enterprise tech adoption cycle — but the magnitude is unusual. Writer also reports that 59% of companies are now investing at least &dollar;1m annually in AI tooling. Sixty-seven percent of executives believe their company has already suffered a data breach due to unapproved AI tools. Sixty-nine percent are planning layoffs they attribute, at least in part, to AI.</p>
+
+      <h3>Where the value is actually flowing</h3>
+      <p>The minority who report significant ROI share four characteristics in Writer's data. They tie agents directly to revenue outcomes rather than productivity proxies. They architect platforms that give business teams autonomy while IT retains oversight. They put governance in place before scaling, not after. And they treat AI adoption as organisational redesign rather than technology rollout.</p>
+
+      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of AI deployment vs ROI">
+        <rect x="0" y="0" width="600" height="280" fill="#FFFFFF"/>
+        <text x="20" y="28" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="#0A1628">Deployment vs ROI &mdash; the gap visualised</text>
+        <text x="20" y="46" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Writer.com 2026 Enterprise AI Adoption Survey, n=800</text>
+
+        <!-- Deployment bar -->
+        <text x="20" y="90" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">Deployed AI agents (past 12 months)</text>
+        <rect x="20" y="100" width="540" height="22" fill="#E8EDF2" rx="2"/>
+        <rect x="20" y="100" width="524" height="22" fill="#DC2626" rx="2"/>
+        <text x="555" y="116" font-family="Playfair Display, serif" font-size="16" font-weight="900" fill="#DC2626" text-anchor="end">97%</text>
+
+        <!-- Genuine GenAI ROI -->
+        <text x="20" y="148" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">See significant ROI from generative AI</text>
+        <rect x="20" y="158" width="540" height="22" fill="#E8EDF2" rx="2"/>
+        <rect x="20" y="158" width="156.6" height="22" fill="#0077B6" rx="2"/>
+        <text x="186" y="174" font-family="Playfair Display, serif" font-size="16" font-weight="900" fill="#0077B6">29%</text>
+
+        <!-- Agent ROI -->
+        <text x="20" y="206" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">See significant ROI from AI agents</text>
+        <rect x="20" y="216" width="540" height="22" fill="#E8EDF2" rx="2"/>
+        <rect x="20" y="216" width="124.2" height="22" fill="#FF6B35" rx="2"/>
+        <text x="154" y="232" font-family="Playfair Display, serif" font-size="16" font-weight="900" fill="#FF6B35">23%</text>
+
+        <text x="20" y="264" font-family="Source Sans 3, sans-serif" font-size="10" font-style="italic" fill="#8899AA">The 74-point gap between deployment and durable returns is the structural problem of 2026.</text>
+      </svg>
+
+      <h3>The breach number is the one to flag</h3>
+      <p>The 67% data-breach figure is the line in this survey that matters most for a banking engineering leader. Writer's question is loose — "believe their company has already suffered" rather than "have confirmed and disclosed" — so the number should be read as an exposure signal rather than an incident count. But even read conservatively, two out of three executives think unapproved AI usage has already cost them. That is the line a CISO has to engage with, and it is the line that the BoE and PRA were obviously thinking about when they named AI a 2026 supervisory priority three weeks earlier.</p>
+
+      <p>Writer's CEO May Habib offered the verdict directly: "Layoffs are not a viable AI strategy." The companies extracting value, in her framing, are redesigning operations with human-agent collaboration in the design, not bolting agents onto an unchanged org chart and expecting the spreadsheet to fix itself.</p>
+    </div>
+    <div class="article-sidebar">
+      <div class="sidebar-box">
+        <div class="sb-title">Survey Methodology</div>
+        <div class="sb-context">Writer surveyed 800 senior enterprise leaders in late 2025 and Q1 2026 across the US and UK, with respondents drawn from companies of $500m+ in revenue. Published April 7, 2026.</div>
+      </div>
+      <div class="sidebar-box urgent">
+        <div class="sb-title">Shadow AI Risk</div>
+        <div class="sb-stat">67%</div>
+        <div class="sb-context">of executives believe their company has already suffered a data breach due to unapproved AI tools. The single most actionable finding for a CISO this quarter.</div>
+      </div>
+      <div class="sidebar-box">
+        <div class="sb-title">Layoffs Frame</div>
+        <div class="sb-stat">69%</div>
+        <div class="sb-context">of companies plan AI-attributed layoffs. Writer's framing: this is the symptom of a bad strategy, not the strategy itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The thread to pull next: if 23% see ROI but 97% have deployed, what does the deployment look like in practice? The clearest answer is in UK banking, where the bets are largest and the disclosure is most public.</p>
+
+  <p class="source-tag">Source: <a href="https://writer.com/blog/enterprise-ai-adoption-2026/">Writer &mdash; Enterprise AI adoption in 2026: Why 79% face challenges</a> (April 7, 2026); <a href="https://writer.com/blog/ai-adoption-survey-2026/">Writer &mdash; Key findings from our 2026 AI adoption survey</a> (April 14, 2026)</p>
+</section>
+
+<!-- PULL QUOTE BAR -->
+<div class="pq-bar">
+  <p>"Layoffs are not a viable AI strategy. The leaders who are putting in the work to radically redesign operations with human-agent collaboration at the centre are the ones compounding their advantage in ways competitors can't replicate."</p>
+  <cite>&mdash; May Habib, CEO &amp; co-founder, Writer (April 7, 2026)</cite>
+</div>
+
+<!-- SOURCE 2: UK Banking - by-the-numbers opening -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">3</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label alert">Source 2 &mdash; UK Banking Lean-In</div>
+  <h2>Lloyds, JPMorgan, and the production-scale bet</h2>
+
+  <div class="by-the-numbers">
+    <div class="btn-title">UK Banking Agentic AI &mdash; January to April 2026</div>
+    <div class="btn-grid">
+      <div class="btn-item"><div class="btn-num">&pound;100m+</div><div class="btn-label">Lloyds 2026 value target</div></div>
+      <div class="btn-item"><div class="btn-num">65,000</div><div class="btn-label">JPMorgan engineers tracked</div></div>
+      <div class="btn-item"><div class="btn-num">600+</div><div class="btn-label">Claude Code seats at JPMorgan, early April</div></div>
+    </div>
+  </div>
+
+  <h3>Lloyds: from &pound;50m to &pound;100m+ in twelve months</h3>
+  <p>In its 2025 results announcement on January 29, Lloyds Banking Group disclosed that generative AI delivered around &pound;50m of value during 2025 and committed to "more than &pound;100m" of additional value in 2026 — driven specifically by scaling agentic AI across the group. The Group is launching an AI Academy for 67,000 colleagues and committing to "significant strategic investments in agentic AI" for its 28 million customers. A full customer rollout of an AI-powered financial assistant is on the same 2026 milestone list.</p>
+
+  <p>Lloyds' framing matters because it is the most public commitment yet from a UK high-street bank that agentic AI is a P&amp;L line, not a research budget. The numbers also matter: a 2x year-on-year value step, disclosed to shareholders, with a publicly stated target tied to specific use cases. The bank has effectively bet that its 2025 GenAI work was the warm-up.</p>
+
+  <h3>JPMorgan: the dashboard era</h3>
+  <p>On April 23, Business Insider published an investigation into how JPMorgan is operationalising its push. The bank has built internal dashboards that score each of its roughly 65,000 Global Technology engineers on AI tool usage — Copilot adoption, Claude usage, spending per user, total spend — visible to thousands of their peers. Engineers have been told to demonstrate "meaningful improvement" in both code quality and code volume by using AI. As Claude Code seats began rolling out to a wider population in early April, screenshots show a dedicated tracking dashboard already covering 600-plus engineers.</p>
+
+  <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of JPMorgan's AI tracking flow">
+    <rect x="0" y="0" width="600" height="320" fill="#FFFFFF"/>
+    <text x="20" y="28" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="#0A1628">JPMorgan engineer tracking flow</text>
+    <text x="20" y="46" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">As reported by Business Insider, April 23, 2026</text>
+
+    <!-- Engineer node -->
+    <rect x="40" y="80" width="140" height="60" fill="#0077B6" rx="4"/>
+    <text x="110" y="108" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">~65,000 engineers</text>
+    <text x="110" y="126" font-family="Source Sans 3, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">Global Technology div.</text>
+
+    <!-- Tools -->
+    <rect x="240" y="60" width="120" height="36" fill="#1A2744" rx="4"/>
+    <text x="300" y="83" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">GitHub Copilot</text>
+
+    <rect x="240" y="106" width="120" height="36" fill="#1A2744" rx="4"/>
+    <text x="300" y="129" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Claude Code</text>
+
+    <rect x="240" y="152" width="120" height="36" fill="#1A2744" rx="4"/>
+    <text x="300" y="175" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Other AI tooling</text>
+
+    <!-- Arrows from engineer to tools -->
+    <line x1="180" y1="110" x2="240" y2="78" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="180" y1="110" x2="240" y2="124" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="180" y1="110" x2="240" y2="170" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- Dashboard node -->
+    <rect x="420" y="80" width="160" height="60" fill="#DC2626" rx="4"/>
+    <text x="500" y="108" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">Internal scoreboards</text>
+    <text x="500" y="126" font-family="Source Sans 3, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">Visible to thousands</text>
+
+    <line x1="360" y1="78" x2="420" y2="100" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="360" y1="124" x2="420" y2="110" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="360" y1="170" x2="420" y2="120" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- Outcome -->
+    <rect x="170" y="220" width="260" height="60" fill="#F4F6F9" stroke="#0A1628" stroke-width="1" rx="4"/>
+    <text x="300" y="244" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628" text-anchor="middle">Engineer ranked, categorised,</text>
+    <text x="300" y="262" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628" text-anchor="middle">visible to thousands of peers</text>
+
+    <line x1="500" y1="140" x2="430" y2="220" stroke="#8899AA" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <defs>
+      <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 z" fill="#8899AA"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <h3>The bank says the dashboard isn't performance management</h3>
+  <p>JPMorgan's spokesperson told Business Insider the data is not used in "performance management" and instead tracks the effectiveness of the bank's AI investment. That distinction will be tested. When usage data is visible to thousands of peers, ranks engineers against each other, and lands in a manager's view at calibration time, the line between "investment tracking" and "performance signal" is largely a disclosure choice.</p>
+
+  <p>The wider point: this is what production-scale bank engineering looks like in 2026. Lloyds is treating agentic AI as a balance-sheet line; JPMorgan is treating tool adoption as an org-wide measurable. Both bets sit at the centre of the bank, not its periphery. Both rely on the assumption that more usage equals more value — which is precisely where Writer's 23% number, and the productivity research we look at next, deserve a hard read.</p>
+
+  <p>The thread for Section 4: the regulator now has its own opinion. On April 1, the BoE and PRA put it in writing.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/ai-driven-benefits-2026.html">Lloyds Banking Group &mdash; Group expects over &pound;100m in value from next-gen AI in 2026</a> (January 29, 2026); <a href="https://www.businessinsider.com/jpmorgan-track-software-engineers-ai-use-dashboards-2026-4">Business Insider &mdash; Inside JPMorgan's Efforts to Track Its Engineers' AI Use</a> (April 23, 2026); <a href="https://www.lloydsbankinggroup.com/insights/2026-the-year-of-agentic-ai-and-a-new-era-for-finance.html">Lloyds Banking Group &mdash; 2026: The year of Agentic AI</a> (January 21, 2026)</p>
+</section>
+
+<!-- SOURCE 3: Regulator view - standalone with horizontal SVG -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">4</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label alert">Source 3 &mdash; The Regulator's View</div>
+  <h2>The Bank of England names AI a 2026 supervisory priority</h2>
+
+  <h3>What the April 1 letter actually says</h3>
+  <p>On April 1, Sarah Breeden (Deputy Governor for Financial Stability at the Bank of England) and Sam Woods (Deputy Governor and CEO of the PRA) wrote jointly to the Chancellor and the Secretaries of State for Science, Innovation and Technology, and for Business and Trade. The letter responded to a January 28 request for the regulators to set out how they will enable safe AI innovation. Three commitments stand out: AI is now an explicit PRA supervisory priority for 2026; the BoE will run the fourth biennial sector survey of AI adoption; and the AI Consortium will publish work on agentic AI specifically. Supervisory dialogue with firms will increasingly cover AI risk and governance directly.</p>
+
+  <p>The framing is deliberately conservative. As A&amp;O Shearman summarised: existing rules apply to AI, and firms should be ready to demonstrate compliance under those rules. There is no new AI-specific rulebook and no BoE/PRA AI sandbox. The PRA's 2023 Model Risk Management Principles for banks (SS1/23), although technology-agnostic, are now the de facto reference for AI model oversight.</p>
+
+  <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UK regulator priorities for AI in 2026">
+    <rect x="0" y="0" width="600" height="320" fill="#FFFFFF"/>
+    <text x="20" y="28" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="#0A1628">UK regulator priorities for AI &mdash; 2026</text>
+    <text x="20" y="46" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">BoE/PRA letter to HMT, DSIT, DBT &mdash; April 1, 2026</text>
+
+    <!-- Horizontal bars representing priorities -->
+    <text x="20" y="86" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">AI as named PRA supervisory priority</text>
+    <rect x="20" y="96" width="540" height="20" fill="#E8EDF2" rx="2"/>
+    <rect x="20" y="96" width="540" height="20" fill="#DC2626" rx="2"/>
+    <text x="555" y="111" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="end">In force, 2026</text>
+
+    <text x="20" y="138" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">Biennial AI adoption survey (4th edition)</text>
+    <rect x="20" y="148" width="540" height="20" fill="#E8EDF2" rx="2"/>
+    <rect x="20" y="148" width="430" height="20" fill="#0077B6" rx="2"/>
+    <text x="445" y="163" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="end">Re-running 2026</text>
+
+    <text x="20" y="190" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">AI Consortium work on agentic AI</text>
+    <rect x="20" y="200" width="540" height="20" fill="#E8EDF2" rx="2"/>
+    <rect x="20" y="200" width="320" height="20" fill="#FF6B35" rx="2"/>
+    <text x="335" y="215" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="end">In progress</text>
+
+    <text x="20" y="242" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63">PRA/BoE AI roundtables with banks &amp; insurers</text>
+    <rect x="20" y="252" width="540" height="20" fill="#E8EDF2" rx="2"/>
+    <rect x="20" y="252" width="380" height="20" fill="#00B4D8" rx="2"/>
+    <text x="395" y="267" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="end">Series this year</text>
+
+    <text x="20" y="300" font-family="Source Sans 3, sans-serif" font-size="10" font-style="italic" fill="#8899AA">"Existing rules apply to AI. Firms should be ready to demonstrate compliance." &mdash; A&amp;O Shearman, April 9.</text>
+  </svg>
+
+  <h3>Why the timing matters: DORA enforcement begins this week</h3>
+  <p>The April 1 letter lands in the same month as the second Register of Information submission cycle for DORA. April 30 is the consolidated EU deadline for ROI submissions to the European Supervisory Authorities. As of 2026, regulators have moved from paperwork tolerance to what AQMetrics calls "interventionist supervision" — real-time, data-driven evidence of resilience, not policy documentation. Penalties for financial entities can reach 2% of total annual worldwide turnover. Senior management can face personal fines up to &euro;1m and temporary management bans.</p>
+
+  <p>The regulatory pattern is consistent: technology-agnostic frameworks are being read onto agentic AI deployments. The PRA's Model Risk Management Principles will increasingly carry weight for any agent making customer-impacting decisions. The DORA ICT third-party register has to capture the AI providers banks have just signed onboarding contracts with. The DRCF (Digital Regulation Cooperation Forum) has separately published a paper on agentic AI. None of these are "new AI rules." All of them constrain how a bank can scale agents safely.</p>
+
+  <h3>The scale to internalise</h3>
+  <p>Tyk's January research found that roughly 70% of banks are deploying some form of agentic AI in production. AI Magicx's reading of finance-team adoption shows a 600% year-on-year increase from 7% to 44% in twelve months. Tyk also notes that nearly 50% of banks are creating dedicated roles for AI agent supervision. The supervisory infrastructure is being built bottom-up by individual banks at the same time the regulatory infrastructure is being built top-down by the BoE and PRA. Whether they meet in the middle this year is the question that 2026 will answer.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.bankofengland.co.uk/letter/2026/letter-from-sarah-breeden-sam-woods-to-chancellor">Bank of England &mdash; Letter from Sarah Breeden &amp; Sam Woods to the Chancellor</a> (April 1, 2026); <a href="https://www.tlt.com/insights-and-events/insight/the-bank-of-england-and-pra-set-out-plans-for-safe-ai-innovation-what-firms-need-to-know">TLT &mdash; The Bank of England and PRA set out plans for safe AI innovation</a> (April 10, 2026); <a href="https://www.orbiqhq.com/eu-regulations/dora-compliance">Orbiq &mdash; DORA Compliance: Complete Guide</a> (March 16, 2026); <a href="https://tyk.io/blog/2026-the-year-apis-and-ai-become-non-negotiable-for-financial-services/">Tyk &mdash; 2026: The Year APIs and AI Become Non-Negotiable for Financial Services</a> (January 26, 2026)</p>
+</section>
+
+<!-- CASE STUDY -->
+<section class="section">
+  <div class="section-label alert">Case Study</div>
+  <h2>Inside the JPMorgan tracking infrastructure</h2>
+
+  <div class="timeline-box">
+    <div class="timeline-label">JPMorgan AI rollout &mdash; April 2026</div>
+    <div class="timeline-track">
+      <p><strong class="tl-navy">Early April</strong> &mdash; Anthropic's Claude Code is rolled out to a wider engineer population. Internal dashboard immediately tracks adoption rates and spending across 600-plus seats.</p>
+      <p><strong class="tl-navy">Mid-April</strong> &mdash; The Global Technology division (~65,000 engineers) is told to demonstrate "meaningful improvement" in code quality and volume by using AI tooling.</p>
+      <p><strong class="tl-red">April 23</strong> &mdash; Business Insider publishes screenshots of the internal scoreboards. Engineers are ranked by Copilot and Claude usage. Dashboards visible to thousands of peers.</p>
+      <p><strong class="tl-teal">April 23 (response)</strong> &mdash; JPMorgan spokesperson confirms the data is collected to "measure the effectiveness of AI investments" and states it is not used in "performance management."</p>
+    </div>
+  </div>
+
+  <h3>What the framing reveals</h3>
+  <p>JPMorgan's defence — "this is investment tracking, not performance review" — is technically accurate and operationally tenuous. The same telemetry will inform headcount planning, tool seat allocation, and which teams get scaled access to higher-tier agents. The information asymmetry has been deliberately chosen: every engineer can see where they stand, and so can every manager looking at their org.</p>
+
+  <p>For a UK bank engineering leader the case study reads two ways. The first is an operational template: instrumenting AI tool adoption is now table stakes for any bank putting nine figures into agentic AI, because without the telemetry there is no answer to "is this working?" beyond anecdote. The second is a culture warning: when usage is the headline metric, engineers optimise for usage. Whether that translates into the kind of code-quality and review-judgement gains that Writer's 29% are actually capturing is a separate question — and the JPMorgan dashboard, as currently described, does not measure it.</p>
+
+  <div class="pull-quote">
+    <p>"The bank does not incorporate the data in performance management, and instead tracks it to measure the effectiveness of its AI investments."</p>
+    <cite>&mdash; JPMorgan spokesperson, to Business Insider (April 23, 2026)</cite>
+  </div>
+
+  <p class="source-tag">Source: <a href="https://www.businessinsider.com/jpmorgan-track-software-engineers-ai-use-dashboards-2026-4">Business Insider &mdash; Inside JPMorgan's Efforts to Track Its Engineers' AI Use</a> (April 23, 2026)</p>
+</section>
+
+<!-- COUNTERPOINT -->
+<section class="counterpoint-section">
+  <div class="counterpoint-pill">Counterpoint</div>
+  <h2>The productivity research has stopped giving clean answers</h2>
+  <p>If a bank is building dashboards on the premise that more AI usage equals more output, the productivity research deserves a careful read. Three studies released between February and April complicate the picture in different ways.</p>
+
+  <div class="comparison-grid">
+    <div class="compare-col left">
+      <div class="cc-label">METR (Feb 2026 update)</div>
+      <div class="cc-num">-18%</div>
+      <div class="cc-metric"><strong>Reported speedup</strong> for AI-assisted developers in updated study</div>
+      <div class="cc-num">+19%</div>
+      <div class="cc-metric"><strong>Original 2025 finding</strong> &mdash; AI-assisted tasks took 19% longer</div>
+      <div class="cc-metric">METR's own caveat: developers most positive about AI dropped out of the study because they wouldn't work without their tools, biasing the data.</div>
+    </div>
+    <div class="compare-col right">
+      <div class="cc-label">JetBrains HAX study (April 2026)</div>
+      <div class="cc-num">+600</div>
+      <div class="cc-metric"><strong>Extra characters per month</strong> typed by AI users vs. non-users (telemetry on 800 devs)</div>
+      <div class="cc-num">80%+</div>
+      <div class="cc-metric"><strong>Survey respondents</strong> reporting productivity increase</div>
+      <div class="cc-metric">JetBrains found behaviour and perception aligned: AI users wrote substantially more code and reported feeling more productive over a 2-year window.</div>
+    </div>
+  </div>
+
+  <h3>How the data reconciles &mdash; and what it doesn't say</h3>
+  <p>The studies aren't contradictory. METR measured time-to-completion on bounded tasks among elite open-source developers; JetBrains measured volume-of-code typed across a broader population using IDE telemetry. They are answering different questions. JetBrains shows AI users produce more code, faster, over time. METR's own commentary is that the 2026 cohort is likely faster than the 2025 cohort, but selection effects make the headline number unreliable.</p>
+
+  <p>What none of this tells us &mdash; the gap that matters most for an engineering leader &mdash; is whether the additional code is the right code. Spotify's published account, captured in LeadDev's January annual survey, was that with 90% of developers using AI daily the company saw a 30% jump in code changes per developer, followed by a spike in code review time, quality concerns, and pipeline strain that leadership did not anticipate. Waydev's reading of CircleCI's 2026 State of Software Delivery report adds the systems-level version: industry-average main branch success rate is 70.8% (against a 90% benchmark), with mean time to recovery at 59.2 minutes.</p>
+
+  <p>The point Allstacks's Jeff Keyes made bluntly on April 28: "Move fast, review later" has always been a lie; with AI, it is now an expensive lie. Throughput goes up. Whether durable value goes up depends on whether the validation infrastructure scales with the throughput. That is precisely Writer's 23% finding said in engineering language.</p>
+
+  <p class="source-tag">Sources: <a href="https://metr.org/blog/2026-02-24-uplift-update/">METR &mdash; We are Changing our Developer Productivity Experiment Design</a> (February 24, 2026); <a href="https://blog.jetbrains.com/research/2026/04/ai-impact-developer-workflows/">JetBrains &mdash; Understanding AI's Impact on Developer Workflows</a> (April 16, 2026); <a href="https://waydev.co/engineering-leadership-blind-spot-of-2026/">Waydev &mdash; The Engineering Leadership Blind Spot of 2026</a> (March 6, 2026); <a href="https://www.allstacks.com/blog/engineering-leadership-ai-slop-rethinks">Allstacks &mdash; Engineering Leadership In the AI Era</a> (April 28, 2026); <a href="https://www.linkedin.com/pulse/developer-productivity-engineer-april-2026-gradle-technologies-qpqdc">Gradle &mdash; The Developer Productivity Engineer (April 2026)</a> (April 21, 2026)</p>
+</section>
+
+<!-- LESSONS -->
+<section class="lessons-section">
+  <div class="section-marker"><span class="marker-num">5</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label">Lessons &amp; Implications</div>
+  <h2>What this changes for a UK banking engineering leader</h2>
+
+  <div class="verdict-box">
+    <div class="vb-label">The Verdict</div>
+    <p>The agentic AI deployment race in banking is real, the regulatory backstop is forming, and the productivity case is more contested than the headline numbers admit. The job for the next two quarters is not faster adoption &mdash; it is building the validation, governance, and review infrastructure that lets the spend compound rather than evaporate.</p>
+  </div>
+
+  <h3>Throughput is not the metric. Validation is.</h3>
+  <p>If usage dashboards are running, they should be paired with main-branch success rate, MTTR, and review-cycle time on AI-touched commits. CircleCI's 90% main-branch success benchmark and 60-minute MTTR target are reasonable references. Branch-level throughput should be tracked separately from main-branch throughput, because a rising feature-branch number with a flat main-branch number is an integration problem, not a development problem.</p>
+
+  <h3>Governance is moving from paperwork to evidence.</h3>
+  <p>DORA's April 30 ROI deadline, the BoE/PRA's April 1 letter, and the PRA's 2023 Model Risk Management Principles all point in the same direction: regulators want demonstrable, real-time control over what AI systems are doing in production. The work to do now is mapping every agent in production to (a) the third-party register, (b) the model risk inventory, and (c) the human-in-the-loop accountability chain. The 67% figure on shadow-AI breach exposure makes the unsanctioned tooling sweep urgent rather than optional.</p>
+
+  <h3>Hiring and review patterns are shifting underneath us.</h3>
+  <p>Allstacks's "hire for editing, not just coding" framing is the cleanest version of the people-pattern shift. The mid-career review-and-edit muscle that used to be earned at senior level is now the entry-level bar. For a hiring rubric, that means testing for spec-writing, review judgement, and the willingness to push back on an agent's output. For an existing team, it means giving people time to review &mdash; not booking the time AI saved as net delivery.</p>
+
+  <div class="key-takeaway">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>The 23% ROI figure is the planning baseline. Assume most of the spend won't compound unless the operating model changes alongside it.</li>
+      <li>Track main-branch success rate and MTTR on AI-touched commits, not just tool usage. Throughput dashboards alone hide the integration cost.</li>
+      <li>The DORA ROI deadline and the PRA's AI supervisory priority both anchor on the same question: can you show real-time evidence of control?</li>
+      <li>Shadow AI is now a CISO-level number. Two-thirds of executives think it has already cost them &mdash; the unsanctioned tool sweep is overdue.</li>
+      <li>Review capacity is the bottleneck most teams haven't budgeted for. AI generates more code; the cost is review time, not seat licences.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources synthesised across <a href="https://writer.com/blog/enterprise-ai-adoption-2026/">Writer</a>, <a href="https://www.bankofengland.co.uk/letter/2026/letter-from-sarah-breeden-sam-woods-to-chancellor">BoE/PRA</a>, <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/ai-driven-benefits-2026.html">Lloyds</a>, <a href="https://www.businessinsider.com/jpmorgan-track-software-engineers-ai-use-dashboards-2026-4">Business Insider</a>, <a href="https://waydev.co/engineering-leadership-blind-spot-of-2026/">Waydev</a>, and <a href="https://www.allstacks.com/blog/engineering-leadership-ai-slop-rethinks">Allstacks</a>.</p>
+</section>
+
+<!-- MEANWHILE -->
+<section class="meanwhile-section">
+  <div class="section-marker"><span class="marker-num">6</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label">Meanwhile&hellip;</div>
+  <h2>While we were deep in agents, the rest of the week kept moving</h2>
+  <p class="meanwhile-intro">Two stories that would have led a standard weekly, plus the catch-up on everything else from April 24 through May 1.</p>
+
+  <div class="meanwhile-lead">
+    <strong>Node.js 20 reached end of life on April 30 &mdash; and AWS Lambda begins its three-phase deprecation</strong>
+    <p>AWS Lambda's nodejs20.x runtime stopped receiving security patches on April 30. Function creation is blocked from August 31; function updates from September 30. Azure App Service stopped patching on the same day. GCP Cloud Run is on a longer leash (decommission October 30). The recommended path is Node.js 22, in maintenance LTS through April 2027. Every UK bank running Lambda needs the runtime inventory done in May, not September.</p>
+    <span class="mw-source"><a href="https://www.herodevs.com/blog-posts/node-js-v20-goes-eol-april-30----and-your-cloud-provider-is-pulling-the-plug-the-next-day">HeroDevs</a> &middot; <a href="https://www.cloudquery.io/blog/aws-lambda-nodejs-20-eol">CloudQuery</a></span>
+  </div>
+
+  <div class="meanwhile-lead">
+    <strong>cPanel CVE-2026-41940 actively exploited &mdash; CVSS 9.8 authentication bypass</strong>
+    <p>cPanel patched a critical CRLF-injection authentication bypass on April 28. Rapid7 confirms exploitation in the wild as early as February 23. watchTowr published a working proof-of-concept on April 29. Any UK or ME bank with cPanel-managed hosts in supplier or subsidiary infrastructure should treat this as urgent &mdash; widespread exploitation is now expected.</p>
+    <span class="mw-source"><a href="https://www.rapid7.com/blog/post/etr-cve-2026-41940-cpanel-whm-authentication-bypass/">Rapid7</a></span>
+  </div>
+
+  <div class="mw-also-label">Also this week</div>
+  <div class="meanwhile-grid">
+    <div class="mw-item"><strong>GitHub Copilot for Visual Studio &mdash; April update</strong> &mdash; Cloud agent sessions launch from the IDE, custom agents now travel across projects, and a new debugger agent validates fixes against runtime behaviour. <span class="mw-source"><a href="https://github.blog/changelog/2026-04-30-github-copilot-in-visual-studio-april-update/">GitHub Blog</a></span></div>
+    <div class="mw-item"><strong>FCA opens second AI Live Testing cohort</strong> &mdash; The application window ran 19 January to 24 March; the second cohort launches in April 2026, building on the October 2025 first cohort. <span class="mw-source"><a href="https://www.insideglobaltech.com/2026/04/09/uk-financial-services-regulators-approach-to-artificial-intelligence-in-2026/">Inside Global Tech</a></span></div>
+    <div class="mw-item"><strong>FCA confirms removal of &pound;100 contactless cap</strong> &mdash; Banks will set their own contactless limits, subject to strong fraud controls. UK retail bank engineering teams now own a fraud-detection design problem they didn't last quarter. <span class="mw-source"><a href="https://www.osborneclarke.com/insights/regulatory-outlook-april-2026-fintech-digital-assets-payments-consumer-credit">Osborne Clarke</a></span></div>
+    <div class="mw-item"><strong>FCA charts open finance roadmap</strong> &mdash; Regulator aims to develop "options for a regulatory framework for open finance by the end of 2027." <span class="mw-source"><a href="https://www.fintechfutures.com/open-banking/uks-fca-charts-path-for-future-of-open-finance">FinTech Futures</a></span></div>
+    <div class="mw-item"><strong>Microsoft April Patch Tuesday &mdash; 164 CVEs</strong> &mdash; One exploited zero-day (SharePoint, CVE-2026-32201), one disclosed zero-day, eight Critical. Notable: Windows IKE RCE (CVSS 9.8). <span class="mw-source"><a href="https://www.crowdstrike.com/en-us/blog/patch-tuesday-analysis-april-2026/">CrowdStrike</a></span></div>
+    <div class="mw-item"><strong>Middle East Banking AI Summit, Riyadh</strong> &mdash; The 12th edition ran April 29 in Riyadh. Banking AI &amp; analytics leaders gathering as agentic AI reaches GCC retail-bank production. <span class="mw-source"><a href="https://mebankingai.com/sa/">MEBankingAI</a></span></div>
+  </div>
+</section>
+
+<!-- ON THE RADAR -->
+<section class="section tight">
+  <div class="section-marker"><span class="marker-num">7</span><span class="marker-of">OF 7</span></div>
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-compact">
+    <li><span class="rc-date urgent">Apr 30</span> <span><strong>DORA Register of Information deadline</strong> &mdash; Consolidated EU submission to the ESAs.</span></li>
+    <li><span class="rc-date urgent">May 13</span> <span><strong>Microsoft May Patch Tuesday</strong> &mdash; Following April's 164-CVE drop, expect another large set.</span></li>
+    <li><span class="rc-date">Jun 1</span> <span><strong>AWS Lambda blocks new Node.js 20 functions</strong> &mdash; Phase 2 of the deprecation.</span></li>
+    <li><span class="rc-date">Jul 1</span> <span><strong>AWS Lambda blocks Node.js 20 function updates</strong> &mdash; Phase 3. The hard operational deadline.</span></li>
+    <li><span class="rc-date">Jul 15</span> <span><strong>FCA begins regulating buy-now-pay-later</strong> &mdash; Temporary permissions regime active for existing DPC firms.</span></li>
+    <li><span class="rc-date">Oct 30</span> <span><strong>GCP Cloud Run decommissions Node.js 20</strong> &mdash; Hard deployment block on Cloud Run.</span></li>
+  </ul>
+</section>
+
+<!-- RECOMMENDED READING -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>Sources &amp; Further Reading</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://writer.com/blog/enterprise-ai-adoption-2026/">Enterprise AI adoption in 2026: Why 79% face challenges</a></span><span class="source">Writer.com &middot; Apr 7</span></li>
+    <li><span class="title"><a href="https://www.bankofengland.co.uk/letter/2026/letter-from-sarah-breeden-sam-woods-to-chancellor">BoE/PRA Letter to the Chancellor on AI in Financial Services</a></span><span class="source">Bank of England &middot; Apr 1</span></li>
+    <li><span class="title"><a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/ai-driven-benefits-2026.html">Group expects over &pound;100m in value from next-gen AI in 2026</a></span><span class="source">Lloyds Banking Group &middot; Jan 29</span></li>
+    <li><span class="title"><a href="https://www.businessinsider.com/jpmorgan-track-software-engineers-ai-use-dashboards-2026-4">Inside JPMorgan's Efforts to Track Its Engineers' AI Use</a></span><span class="source">Business Insider &middot; Apr 23</span></li>
+    <li><span class="title"><a href="https://blog.jetbrains.com/research/2026/04/ai-impact-developer-workflows/">Understanding AI's Impact on Developer Workflows</a></span><span class="source">JetBrains Research &middot; Apr 16</span></li>
+    <li><span class="title"><a href="https://metr.org/blog/2026-02-24-uplift-update/">We are Changing our Developer Productivity Experiment Design</a></span><span class="source">METR &middot; Feb 24</span></li>
+    <li><span class="title"><a href="https://waydev.co/engineering-leadership-blind-spot-of-2026/">The Engineering Leadership Blind Spot of 2026</a></span><span class="source">Waydev &middot; Mar 6</span></li>
+    <li><span class="title"><a href="https://www.allstacks.com/blog/engineering-leadership-ai-slop-rethinks">Engineering Leadership In the AI Era: 4 Rethinks To Avoid AI Slop</a></span><span class="source">Allstacks &middot; Apr 28</span></li>
+    <li><span class="title"><a href="https://www.tlt.com/insights-and-events/insight/the-bank-of-england-and-pra-set-out-plans-for-safe-ai-innovation-what-firms-need-to-know">BoE and PRA set out plans for safe AI innovation</a></span><span class="source">TLT &middot; Apr 10</span></li>
+    <li><span class="title"><a href="https://tyk.io/blog/2026-the-year-apis-and-ai-become-non-negotiable-for-financial-services/">2026: The Year APIs and AI Become Non-Negotiable</a></span><span class="source">Tyk &middot; Jan 26</span></li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">May 1, 2026 &middot; Issue 8 &middot; Deep Dive</div>
+  <div class="footer-next">Next edition: May 8, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-pill">Apr 17 &middot; Weekly</span>
+    <span class="archive-pill">Apr 24 &middot; Weekly</span>
+    <span class="archive-pill current">May 1 &middot; Deep Dive</span>
+  </div>
+</footer>
+
+<script>
+(function(){const fill=document.getElementById('progressFill');if(!fill)return;window.addEventListener('scroll',function(){const h=document.documentElement.scrollHeight-window.innerHeight;fill.style.width=h>0?(window.scrollY/h*100).toFixed(1)+'%':'0%'},{passive:true})})();
+</script>
+
+</div></body></html>
