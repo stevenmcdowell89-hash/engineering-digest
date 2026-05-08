@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — May 1–8, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:28px 36px;margin:0 60px 32px}
+.in-practice .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.in-practice .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--deep-teal);margin-bottom:14px;display:block}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.6;color:var(--body-text);margin:0 0 12px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-skip{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-meanwhile{padding:10px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">May 1–8, 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #9</span>
+      <span class="cover-read-time">|&ensp;14 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">Node 26</div>
+    <div class="stat-context">Long-term support enters testing on Tuesday — three-year support, native Temporal API, V8 14.6, and an Undici jump that meaningfully changes HTTP performance.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Node.js 26 ships with Temporal, V8 14.6, faster Undici</li>
+      <li>cPanel CVE-2026-41940 — 44k IPs in active exploitation</li>
+      <li>UK fintech funding rebound — Q1 up 32% year-on-year</li>
+      <li>Five recommendations for platform teams in 2026</li>
+      <li>Outside In: Cloudflare on the .de DNSSEC outage</li>
+      <li>In Practice, Platform Updates &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>A quiet week on the AI front, but a noisy one elsewhere. Node 26 lands as the first LTS line to bake Temporal into the standard library — a reminder that long-running language work still ships even when the headlines are about agents. Underneath, two stories worth pairing: a cPanel zero-day with 44,000 IPs already drawn into a Mirai-Sorry hybrid, and a UK fintech market that just posted its strongest quarter since 2023. Read them together — capital flowing in, attack surface flowing wider.</p>
+</section>
+
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">AWS Middle East recovery — Day 68 <span class="p0-badge degraded">Multi-month</span></div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">May 1</span><span class="p0-event">AWS confirms ME-CENTRAL-1 and ME-SOUTH-1 recovery now expected to take several months; billing remains suspended; customers urged to migrate accessible workloads.</span></li>
+    <li><span class="p0-date">Apr 30</span><span class="p0-event">Health Dashboard updated: regions described as "unable to provide stable support" with strong recommendation to restore from remote backups.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Original drone-strike incident at UAE datacentre; two of three availability zones impaired.</span></li>
+  </ul>
+  <div class="p0-current">No change in the recovery timeline this week. <a href="https://gigazine.net/gsc_news/en/20260501-amazon-aws-restoring/">Latest AWS guidance →</a></div>
+</div>
+
+<section class="editorial-moment">
+  <div class="em-quote">
+    <div class="em-label">Quote of the week</div>
+    <p>"The cat is out of the bag when it comes to AI. They're likely damned if they do — with increased pressure to show its impact — and damned if they don't."</p>
+    <cite>— LeadDev, Five uncomfortable predictions for engineering leaders in 2026</cite>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Six stories in sixty seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>cPanel CVE-2026-41940 in active exploitation.</strong> A critical authenticated RCE chain in cPanel/WHM is being weaponised by a Mirai-Sorry hybrid; roughly 44,000 IPs are already implicated. Audit any managed-hosting estate this week. <span class="on-source"><a href="https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html">The Hacker News</a></span></div></li>
+    <li class="tier-action"><span class="qh-badge red">Cloud</span><div class="qh-text"><strong>AWS ME regions: months, not weeks.</strong> AWS is now telling customers ME-CENTRAL-1 and ME-SOUTH-1 recovery will take "several months" and to plan permanent migrations rather than wait. <span class="on-source"><a href="https://gigazine.net/gsc_news/en/20260501-amazon-aws-restoring/">Gigazine</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">Runtime</span><div class="qh-text"><strong>Node.js 26 ships May 5; LTS in October.</strong> Standard-library Temporal, V8 14.6, Undici 8 with notable HTTP throughput gains, and TypeScript erasable-syntax support out of the box. <span class="on-source"><a href="https://nodejs.org/en/blog/release/v26.0.0">nodejs.org</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">Fintech</span><div class="qh-text"><strong>UK fintech funding up 32% year-on-year.</strong> Q1 2026 deal value rebounds; Allica Bank closes a $155m Series, and forecasters now project full-year growth around 26%. <span class="on-source"><a href="https://fintech.global/2026/05/05/uk-fintech-funding-expected-to-grow-by-26-in-2026-due-to-increase-in-deals-over-100m/">FinTech Global</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">DNS</span><div class="qh-text"><strong>.de TLD outage from broken DNSSEC.</strong> DENIC published broken DNSSEC signatures on May 5; serve-stale on resolvers cushioned the impact, but millions of German domains briefly went unreachable. <span class="on-source"><a href="https://blog.cloudflare.com/tag/reliability/">Cloudflare blog</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">AI</span><div class="qh-text"><strong>Pragmatic Engineer's 900-engineer survey lands.</strong> 75% of respondents now do more than half of their software work with AI; the report segments engineers into "builders, shippers, coasters" — useful framing for calibration season. <span class="on-source"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">The Pragmatic Engineer</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Security</span><div class="qh-text"><strong>Linux kernel privilege-escalation patched at scale.</strong> Cloudflare confirms its global fleet is fully mitigated against the latest Linux kernel CVE; expect detection rules and CIS guidance to follow this week. <span class="on-source"><a href="https://blog.cloudflare.com">Cloudflare</a></span></div></li>
+  </ul>
+</section>
+
+<div class="section-breather"></div>
+
+<section class="section">
+  <div class="section-label">Platforms &amp; Runtimes</div>
+  <h2>Node.js 26 ships with Temporal, V8 14.6 and a noticeably faster Undici</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">26</div><div class="stat-label">Node major version</div></div>
+    <div class="stat"><div class="stat-num">14.6</div><div class="stat-label">V8 engine version</div></div>
+    <div class="stat"><div class="stat-num">8.0</div><div class="stat-label">Undici release</div></div>
+    <div class="stat"><div class="stat-num">36 mo</div><div class="stat-label">LTS support window</div></div>
+  </div>
+
+  <h3>What actually changed</h3>
+  <p>Tuesday's Node.js 26 release is the first major line to land the JavaScript Temporal API in the standard library, removing one of the most common third-party dependencies in production estates. Internally, the runtime now ships V8 14.6, an updated Undici 8 HTTP client with measurable throughput gains for keep-alive workloads, and built-in support for TypeScript erasable syntax — meaning many service codebases can drop a separate compile step for type-only annotations.</p>
+
+  <p>Permissions Model exits experimental status, the test runner gains coverage merging across processes, and several long-deprecated APIs have been removed for good. That last point matters more than usual: this is the line that becomes the next Active LTS in October, so the deprecation list is the rough shape of what every Node service in production will need to be clean of by Q4.</p>
+
+  <div class="pq-bar">
+    <p>"This is the line that becomes Active LTS in October — the deprecation list is, effectively, your Q4 readiness backlog."</p>
+    <cite>— Editorial framing</cite>
+  </div>
+
+  <h3>What this means for engineering leadership</h3>
+  <p>Three practical consequences. First, the LTS window extends to roughly three years, which lengthens the planning runway for teams still on Node 20 — but only if they upgrade before the October cutover. Second, native Temporal eliminates a long list of date-handling patches and shims that have accumulated across most server fleets; expect to see PRs that strip date-fns or moment-timezone in dependency-update branches over the next month. Third, the Undici 8 throughput change is large enough that any service heavily reliant on outbound HTTP (payments, downstream APIs, SaaS integrations) should re-baseline its p95 latency rather than assume the upgrade is neutral.</p>
+
+  <h3>Adoption signal</h3>
+  <p>Major LTS cutovers historically take six to nine months to penetrate enterprise estates. The presence of Temporal in the standard library is the kind of feature that pulls migrations forward — it removes a dependency rather than adds one, which is unusual.</p>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>Node 26 ships now; Active LTS designation arrives in October — plan upgrade work for the next two quarters.</li>
+      <li>Standard-library Temporal will quietly retire several common date-handling dependencies.</li>
+      <li>Undici 8 is the upgrade most likely to change observed latency; re-baseline rather than assume parity.</li>
+      <li>Permissions Model leaving experimental opens a path for tighter runtime sandboxing in regulated environments.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://nodejs.org/en/blog/release/v26.0.0">nodejs.org — Node.js 26 release notes</a> (May 5, 2026)</p>
+</section>
+
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two stories worth knowing</h2>
+  <div class="two-col">
+    <div class="quick-take-col">
+      <div class="qt-header security">Security</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat security">44,000</div>
+        <div class="qt-anchor-context">IPs implicated in active exploitation</div>
+        <h3 style="margin-top:0">cPanel CVE-2026-41940 turns into a Mirai-Sorry hybrid</h3>
+        <p>The May 2 disclosure of CVE-2026-41940 — a critical authenticated remote-code-execution chain in cPanel/WHM — has already moved from advisory to mass exploitation. Researchers tracking telemetry put roughly 44,000 IPs in the active campaign, with payloads combining Mirai-style lateral spread with Sorry ransomware components. Managed-hosting estates with shared cPanel infrastructure are the most exposed; banks and fintechs that lean on white-label hosting partners should treat this as a third-party dependency question this week, not just an internal patching exercise.</p>
+        <p class="so-what"><strong>The takeaway: A control-plane vulnerability in shared hosting infrastructure becomes a third-party-risk conversation the moment exploitation goes public.</strong></p>
+        <p class="source-tag">Sources: <a href="https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html">The Hacker News</a></p>
+      </div>
+    </div>
+    <div class="quick-take-col">
+      <div class="qt-header fintech">UK Fintech</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat fintech">+32%</div>
+        <div class="qt-anchor-context">UK fintech deal value, Q1 2026 vs Q1 2025</div>
+        <h3 style="margin-top:0">UK fintech funding posts its strongest quarter since 2023</h3>
+        <p>Q1 2026 closed up roughly 32% year-on-year by deal value, with the lift driven primarily by deals over $100m rather than seed-stage volume. Allica Bank's $155m Series — closed during the quarter — is the headline raise, and forecasters now expect full-year UK fintech funding to grow around 26% on 2025. The signal worth reading is composition: capital is concentrating in scale-ups with regulated revenue, not in early-stage experimentation. For engineering leadership in established UK fintechs, that translates into a more competitive market for senior platform and security talent than Q4 suggested.</p>
+        <p class="so-what"><strong>The takeaway: Funding is rotating toward later-stage UK fintechs — expect tougher hiring conditions for senior platform, security, and risk engineering roles into the summer.</strong></p>
+        <p class="source-tag">Sources: <a href="https://fintech.global/2026/05/05/uk-fintech-funding-expected-to-grow-by-26-in-2026-due-to-increase-in-deals-over-100m/">FinTech Global</a>, <a href="https://www.fintechfutures.com/fintech/fintech-futures-top-five-news-stories-of-the-week-1-may-2026">FinTech Futures</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-breather"></div>
+
+<div class="mid-accent-band">
+  <div class="accent-stat">75%</div>
+  <div class="accent-context">share of Pragmatic Engineer survey respondents who now do more than half their software engineering work with AI tools.</div>
+</div>
+
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>OutSystems' agentic AI study finds 96% of developers and 94% of IT leaders worry about AI-driven sprawl</strong> — even as low-code agentic platforms ship into production. <span class="on-source"><a href="https://www.businesswire.com/news/home/20260407749542/en/OutSystems-Agentic-AI-Survey">BusinessWire</a></span></li>
+    <li><strong>DORA's latest platform-engineering guidance frames AI as an "amplifier" of existing capabilities</strong>, not a substitute for them; the framework now explicitly couples AI adoption to baseline DORA metric maturity. <span class="on-source"><a href="https://dora.dev/capabilities/platform-engineering/">dora.dev</a></span></li>
+    <li><strong>Pragmatic Engineer publishes its 900-respondent AI tooling survey</strong>, segmenting engineers into builders, shippers and coasters and noting that managers are now using AI agents as often as staff-plus engineers. <span class="on-source"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">The Pragmatic Engineer</a></span></li>
+    <li><strong>Cloudflare's 2026 Threat Report flags hyper-volumetric DDoS and over-privileged SaaS integrations</strong> as the two fastest-growing attack vectors, with a 31.4 Tbps DDoS baseline now considered routine. <span class="on-source"><a href="https://blog.cloudflare.com/2026-threat-report/">Cloudflare</a></span></li>
+    <li><strong>incident.io publishes its 2026 on-call best-practice guide</strong>, centred on rotation models, escalation depth and the cost of coordination overhead during incidents. <span class="on-source"><a href="https://incident.io/blog/on-call-best-practices-guide-2026">incident.io</a></span></li>
+  </ul>
+</section>
+
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td><span class="status-dot green"></span></td><td class="platform">Node.js</td><td>v26.0.0 released; Temporal in stdlib, V8 14.6, Undici 8, Permissions Model GA, TypeScript erasable syntax built in.</td></tr>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">cPanel</td><td>CVE-2026-41940 (critical authenticated RCE) under active exploitation; emergency patch advised for any cPanel/WHM estate.</td></tr>
+      <tr><td><span class="status-dot amber"></span></td><td class="platform">Cloudflare</td><td>Workers panic/abort recovery via wasm-bindgen now resilient; .de TLD DNSSEC outage absorbed via serve-stale.</td></tr>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">AWS</td><td>ME-CENTRAL-1 and ME-SOUTH-1 recovery officially "several months"; billing suspended for affected accounts.</td></tr>
+      <tr><td><span class="status-dot amber"></span></td><td class="platform">Linux kernel</td><td>Privilege-escalation CVE patched across major distributions; Cloudflare confirms global fleet mitigated.</td></tr>
+      <tr><td><span class="status-dot green"></span></td><td class="platform">DORA</td><td>Updated platform-engineering capability guidance: AI positioned as amplifier, baseline metric maturity now a prerequisite.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="in-practice">
+  <div class="section-label">In Practice</div>
+  <span class="ip-theme">Performance cycle — calibration &amp; rating conversations</span>
+  <h3>How to actually decide a performance rating</h3>
+  <div class="ip-attribution">Camille Fournier · Spicy Takes, late 2025 · <a href="https://skamille.spicytakes.org">Read the full piece</a></div>
+  <p>Calibration season is upon us, and Camille Fournier's framework is the cleanest place to start. Her central claim: there is no algorithm that produces a fair performance rating. The job is to combine three things — tiered goals (must-achieve, stretch, moonshot), role-specific attributes from the ladder, and your own honest judgement — and then be willing to defend the result in calibration without flinching.</p>
+  <p>The piece reads as a working manager's checklist rather than a process document. She is direct about the trap most managers fall into: hiding behind data when the data is thin, or hiding behind gut feel when the data exists. The discipline is reconciling the two, and noticing when they disagree, because that disagreement is usually where bias lives.</p>
+  <blockquote>No perfect algorithm exists for rating people, and managers must reconcile objective data with their gut reactions to uncover hidden biases.</blockquote>
+  <p>What's transferable: she frames calibration as a debate you have to be ready to win on the merits — which means starting early, writing down expectations before the cycle begins, and being precise about the difference between "exceeded" and "met". For UK and ME engineering leaders heading into year-end performance work this month, that preparation window is now.</p>
+  <div class="ip-try">
+    <strong>Why this matters this week</strong>
+    Most calibration disagreements come down to one of two things: thin evidence, or unwritten expectations. Both are easier to fix in the week before the cycle than during it.
+  </div>
+</section>
+
+<hr class="feature-break">
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Five recommendations for platform teams in 2026</h2>
+  <p>Platform engineering's 2026 industry report is one of the more useful pieces of the year, partly because it stops asking what platform engineering is and starts asking what good looks like. The headline gap: 94% of teams view AI as critical to platform engineering's future, but most have not yet mastered the fundamentals that make AI integration pay off.</p>
+
+  <h3>Where the report is sharpest</h3>
+  <p>The first recommendation — adopt platform-as-a-product with dedicated leadership — is the one most engineering organisations will recognise in their own gaps. Only 36.6% of respondents have dedicated Platform Product Managers; 38% are still relying on engineers with a "distributed product mindset". The report's verdict on that distributed model is unusually direct: it once looked like best practice, and now it isn't.</p>
+
+  <div class="pull-quote">
+    <p>Engineers with a product mindset bring valuable perspective, but they lack the bandwidth and authority to drive platform evolution strategically.</p>
+    <cite>— PlatformEngineering.org, 2026 industry report</cite>
+  </div>
+
+  <p>The other four recommendations track familiar themes — measurement maturity (down from 45% to 29.6% of teams who don't measure at all), AI literacy as mandatory rather than optional, voluntary adoption over mandate, and tighter cost-to-value tracking. What makes the piece worth reading in full is the data underneath each: 89% of platform engineers use AI daily, but mostly for tactical code generation and documentation, not embedded into platform workflows. That gap between individual usage and platform leverage is the work for the rest of 2026.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://platformengineering.org/blog/five-key-recommendations-for-platform-teams-in-2026" class="mgmt-link">Read the full article: platformengineering.org →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> If your platform team had a dedicated Platform Product Manager today, which roadmap decision would they have made differently in the last six months — and is that a hire worth funding before year-end?</p>
+</section>
+
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Cloudflare on the .de TLD outage and the case for serve-stale</h2>
+
+  <div class="oi-stats-row">
+    <div class="oi-stat"><div class="oi-stat-num">May 5</div><div class="oi-stat-label">DENIC publishes broken signatures</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">.de</div><div class="oi-stat-label">TLD affected</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">Millions</div><div class="oi-stat-label">domains briefly unreachable</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">1.1.1.1</div><div class="oi-stat-label">resolver telemetry source</div></div>
+  </div>
+
+  <h3>The incident, briefly</h3>
+  <p>On May 5, DENIC — the registry for the .de top-level domain — published broken DNSSEC signatures for an entire zone. Resolvers that strictly enforce DNSSEC validation, as they should, started rejecting otherwise-healthy responses for millions of German domains. Cloudflare's write-up walks through what 1.1.1.1 telemetry saw, why the visible blast radius was smaller than the underlying breakage, and how serve-stale behaviour absorbed most of the user-facing impact.</p>
+
+  <div class="oi-callout">
+    <p>The honest admission worth pulling out: serve-stale is the kind of resilience pattern that looks defensive and slightly grubby in good times, and earns its keep maybe twice a year — but when it earns it, it earns it for an entire country.</p>
+  </div>
+
+  <h3>What's transferable</h3>
+  <p>Two things land for engineering leaders outside the DNS world. First, the incident is a clean argument for "graceful degradation as a deliberate platform investment" — not a fallback your team apologises for, but a capability you fund. Second, the post is a model of how to write up an incident you weren't responsible for: it explains what your platform did, names the upstream cause without scoring points, and surfaces a transferable lesson rather than reading as a lap of honour.</p>
+
+  <p class="so-what"><strong>The takeaway: Resilience patterns that look ugly during normal operation are exactly the ones worth defending in design review — DNSSEC validation done strictly is correct, and serve-stale is what makes it survivable.</strong></p>
+
+  <p class="source-tag"><a href="https://blog.cloudflare.com/tag/reliability/">Read the full post: blog.cloudflare.com →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">14</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>LeadDev webinar — engineering leadership in the age of agents</strong> — practical session on workflow design and team operating models around agentic tools.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">27</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>LeadDev panel — measuring platform engineering ROI</strong> — discussion centred on the metric maturity gap surfaced in this week's PlatformEngineering.org report.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">02</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>LeadDev London 2026 (Jun 2–3)</strong> — Europe's largest concentration of engineering leaders; in-person agenda confirmed.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Oct</div>
+        <div class="rd-label">TBC</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 26 enters Active LTS</strong> — the deprecation list becomes the readiness backlog for any production estate still on 20.</div>
+    </li>
+  </ul>
+</section>
+
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://nodejs.org/en/blog/release/v26.0.0">Node.js 26.0.0 release notes</a></span><span class="source">nodejs.org</span></li>
+    <li><span class="title"><a href="https://platformengineering.org/blog/five-key-recommendations-for-platform-teams-in-2026">Five key recommendations for platform teams in 2026</a></span><span class="source">platformengineering.org</span></li>
+    <li><span class="title"><a href="https://newsletter.pragmaticengineer.com/p/the-impact-of-ai-on-software-engineers-2026">The impact of AI on software engineers in 2026</a></span><span class="source">pragmaticengineer.com</span></li>
+    <li><span class="title"><a href="https://blog.cloudflare.com/2026-threat-report/">Introducing the 2026 Cloudflare Threat Report</a></span><span class="source">blog.cloudflare.com</span></li>
+    <li><span class="title"><a href="https://incident.io/blog/on-call-best-practices-guide-2026">On-call best practices: handoffs, schedules, and alert fatigue</a></span><span class="source">incident.io</span></li>
+    <li><span class="title"><a href="https://skamille.spicytakes.org">Camille Fournier on performance rating frameworks</a></span><span class="source">skamille.spicytakes.org</span></li>
+  </ul>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">May 1–8, 2026 · Weekly Edition · Issue #9</div>
+  <div class="footer-next">Next edition: May 15, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Apr 17 · Weekly</span>
+    <span class="archive-pill">Apr 24 · Weekly</span>
+    <span class="archive-pill">May 1 · Deep Dive</span>
+    <span class="archive-pill current">May 8 · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>
