@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — May 8–15, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:var(--accent-orange);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:14px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ IN PRACTICE — v2.8 weekly craft slot, v3.0 visual hierarchy ═══ */
+.in-practice-header{background:var(--navy);color:var(--white);padding:18px 60px;border-top:3px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--accent-orange);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 4px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--white);margin:0;display:block;line-height:1.3}
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:32px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+/* ═══ JARGON WATCH — v3.0 inline term-explanation sidebar ═══ */
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+/* ═══ P0 STATUS CARD (replaces progress-tracker bar) ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT (Leadership Read) ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE (Quick Takes, Outside In) ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER (v1.7) ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT (v1.7) ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly (v1.8) ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+
+/* ═══ ARTICLE WITH SIDEBAR — deep dives ONLY (v1.8: do NOT use in standard weeklies) ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:65% 35%;gap:28px;margin-top:20px}.article-body{min-width:0}.article-sidebar{min-width:0}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.sidebar-box.urgent{border-left:4px solid var(--alert-red)}.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ TIER 2 LABEL OVERRIDES — sentence case (v1.7) ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+/* Format B: Hero moment */
+.oi-hero-band{padding:48px 60px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);text-align:center;border-bottom:1px solid var(--light-gray)}
+.oi-hero-band .oi-hero-quote{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;color:var(--teal);line-height:1.35;max-width:700px;margin:0 auto 20px}
+.oi-hero-band .oi-hero-attr{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:24px}
+.oi-hero-band .oi-hero-body{max-width:700px;margin:0 auto;color:rgba(255,255,255,.8);font-size:15px;line-height:1.7;text-align:left}
+.oi-hero-band .section-label{color:var(--accent-orange)}
+.oi-hero-band h2{color:var(--white)}
+.oi-hero-band .so-what{color:rgba(255,255,255,.9)}
+
+/* Format C: Compact inset */
+.oi-compact{background:var(--off-white);border-left:4px solid var(--teal);padding:20px 24px;margin:24px 60px;border-radius:0 4px 4px 0}
+.oi-compact .oi-compact-company{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.oi-compact p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.oi-compact .oi-compact-source{font-size:12px;color:var(--med-gray)}
+
+/* Format E: Contrast card */
+.oi-contrast-card{display:grid;grid-template-columns:1fr 2fr;margin:24px 60px;border-radius:6px;overflow:hidden;border:1px solid var(--light-gray)}
+.oi-contrast-card .oic-left{background:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.oi-contrast-card .oic-left .oic-company{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.oi-contrast-card .oic-left .oic-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}
+.oi-contrast-card .oic-left .oic-stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-top:4px}
+.oi-contrast-card .oic-right{padding:24px;background:var(--white)}
+.oi-contrast-card .oic-right p{font-size:14px;line-height:1.6;color:var(--body-text)}
+.oi-contrast-card .oic-right .oi-compact-source{font-size:12px;color:var(--med-gray);margin-top:8px}
+
+/* Format F: Meanwhile strip */
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+
+/* ═══ DOWN THE RABBIT HOLE ═══ */
+.rabbit-hole{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--accent-orange);padding:16px 20px;margin:24px 60px;border-radius:0 4px 4px 0}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:6px;display:block}
+.rabbit-hole .rh-badge{display:inline-block;font-size:10px;font-weight:700;background:var(--accent-orange);color:var(--white);padding:2px 8px;border-radius:2px;letter-spacing:1px;margin-bottom:6px}
+.rabbit-hole p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.rabbit-hole a{color:var(--deep-teal);text-decoration:none}
+.rabbit-hole a:hover{text-decoration:underline}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-skip{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-hero-band{padding:32px 20px}.oi-hero-band .oi-hero-quote{font-size:22px}.oi-compact{margin:16px 20px}.oi-contrast-card{grid-template-columns:1fr;margin:16px 20px}.oi-meanwhile{padding:10px 20px}.rabbit-hole{margin:16px 20px}.pq-bar{margin:28px -20px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-meta">
+      <span class="cover-date">May 8–15, 2026</span>
+      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #10</span>
+      <span class="cover-read-time">|&ensp;~18 min read</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">67.48%</div>
+    <div class="stat-context">Open-source talent is in motion — and AI impact views are the split that defines retention risk in 2026.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>FCA safeguarding regime: reconciliation pipelines as audit evidence</li>
+      <li>Mini Shai-Hulud: when valid SLSA attestations aren't enough</li>
+      <li>DORA ROI of AI-assisted development — the J-curve warning</li>
+      <li>Agentic coding and the IC/EM boundary collapse</li>
+      <li>Wise: observability re-architecture through ownership culture</li>
+      <li>Platform Updates, On the Radar &amp; Down the Rabbit Hole</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Three stories this week share a structural pattern: something that was a process concern has become a production obligation. The FCA's safeguarding regime turns reconciliation into audit evidence. The Mini Shai-Hulud supply-chain worm shows that valid provenance certificates mean nothing when the pipeline generating them is compromised. The DORA team gives engineering leaders a financial model rigorous enough to take to a CFO — along with a warning about what happens when the underlying platform is weak.</p>
+</section>
+
+<!-- ═══ P0 STATUS CARD ═══ -->
+<div class="p0-status-card">
+  <div class="p0-label">Priority 0 — Ongoing</div>
+  <div class="p0-title">AWS ME-CENTRAL-1 Infrastructure Recovery — Day 75+ <span class="p0-badge recovering">Recovering</span></div>
+  <ul class="p0-event-log">
+    <li><span class="p0-date">May 15</span><span class="p0-event">No new ME-CENTRAL-1-specific public statement found this week. Multi-month recovery timeline remains the operating assumption per AWS guidance.</span></li>
+    <li><span class="p0-date">Mar 1</span><span class="p0-event">Original infrastructure event. AWS confirmed extended recovery timeline.</span></li>
+  </ul>
+  <div class="p0-current">Note: the <a href="https://mashable.com/article/amazon-web-services-outage-may-2026-cause-resolved">Northern Virginia cooling/power incident (May 8, us-east-1)</a> is a separate event — resolved within 24 hours and covered in Platform Updates below. The ME-CENTRAL-1 situation remains distinct and ongoing.</div>
+</div>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">67.48%</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center;max-width:580px;margin-left:auto;margin-right:auto">Two-thirds of open-source professionals are actively looking for a new role or open to the right opportunity, according to the 2026 Open Source Professionals Job Survey (OSPJS — the Linux Professional Institute and Open Source JobHub's <a href="https://www.lpi.org/articles/2026-open-source-professionals-job-survey-ospjs-report-now-available/" style="color:var(--deep-teal);text-decoration:none">third annual survey of FOSS</a> — Free and Open Source Software — professionals). The survey also finds that 83.58% of respondents rate employer-provided training as important when choosing a role. For engineering leaders managing open-source-heavy teams, this is a talent-risk signal with a specific implication: teams that invest visibly in structured learning and thoughtful AI tooling adoption are operating in a market where two-thirds of the relevant talent pool is already in motion. The variable that separates firms in this environment is likely not compensation alone — it is whether the organisation's approach to AI-augmented work looks like a growth path or an extraction. <a href="https://www.lpi.org/2026-open-source-professionals-job-survey-ospjs-report/" style="color:var(--deep-teal);text-decoration:none">Full report →</a></p>
+  </div>
+</section>
+
+<!-- ═══ WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Four more stories worth knowing</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>vm2 sandbox-escape wave: 13+ CVEs in early May.</strong> AI agent frameworks and SaaS automation services running untrusted JavaScript are the highest-risk targets. Check whether your agentic workflows use vm2 or any derivative sandbox library. <span class="on-source"><a href="https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html">The Hacker News →</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">AI Tooling</span><div class="qh-text"><strong>Cursor 3 ships parallel agents, a PR review workflow, and a public SDK.</strong> Coding agent tooling reaches CI/CD integration maturity: multiple agents can now run concurrently against the same codebase, with the SDK enabling custom integrations. <span class="on-source"><a href="https://releasebot.io/updates/cursor">ReleaseBot →</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">Regulation</span><div class="qh-text"><strong>HM Treasury and FCA payments overhaul takes shape.</strong> The PSR folds into the FCA and stablecoins, along with agentic AI payments, are explicitly addressed in the new unified framework — the first UK regulatory instrument to name AI-initiated payments as a distinct category. <span class="on-source"><a href="https://www.linkedin.com/posts/autorek_uk-fintech-backed-to-embrace-future-payments-activity-7453062095719378944-wAQ3">AutoRek →</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Open Source</span><div class="qh-text"><strong>OSI 2026 State of Open Source: geopolitical pressure is now a board-level risk topic.</strong> The report frames open-source dependency as a strategic concern — compliance complexity, security exposure, and operational maintenance burden all rising. Context for the supply-chain story in Quick Takes. <span class="on-source"><a href="https://opensource.org/blog/the-2026-state-of-open-source-report">OSI →</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section">
+  <div class="section-label">Lead</div>
+  <h2>The FCA's new safeguarding regime turns reconciliation pipelines into audit evidence</h2>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">7 May</div><div class="stat-label">Effective date — CASS 15 live</div></div>
+    <div class="stat"><div class="stat-num">D+1</div><div class="stat-label">Reconciliation frequency — daily</div></div>
+    <div class="stat"><div class="stat-num">Monthly</div><div class="stat-label">Dedicated safeguarding return</div></div>
+    <div class="stat"><div class="stat-num">Annual</div><div class="stat-label">CASS 15 audit — first within 6 months of period end</div></div>
+  </div>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">PS25/12 &amp; CASS 15</span>
+    <p class="jw-body">Policy Statement 25/12 is the FCA's published rulebook instrument that brought the Safeguarding Supplementary Regime into force on 7 May 2026. The "25" is the year of issue; "12" the sequence number. It amends the FCA Handbook to insert CASS 15 — a new chapter of the Client Assets sourcebook — alongside the pre-existing CASS 10A (the FCA chapter on payment and e-money safeguarding, now supplemented by CASS 15). The key change for engineering teams: what were principles-based expectations became enforceable rules with daily, monthly, and annual data-delivery obligations.</p>
+  </div>
+
+  <h3>What went live on 7 May</h3>
+  <p>As of 7 May 2026, the FCA's (Financial Conduct Authority, the UK's primary financial services regulator) Safeguarding Supplementary Regime is in force under PS25/12 for all authorised payment institutions — firms authorised by the FCA to provide payment services, distinct from a bank — and e-money institutions (EMIs — regulated firms licensed to issue electronic money, such as digital wallets and prepaid cards). The regime replaces the principles-based safeguarding framework of CASS 10A with the prescriptive obligations of the new CASS 15 chapter.</p>
+
+  <p>The headline change is not the existence of safeguarding — the requirement to ringfence customer funds in dedicated accounts, segregated from the firm's own money, so they can be returned if the firm fails — but the standard of evidence that safeguarding now demands: production-grade data infrastructure across four distinct obligations.</p>
+
+  <h3>The four engineering obligations</h3>
+  <p>First, D+1 reconciliation (a reconciliation run completed by the close of the business day following the reference date) is now a daily production requirement: internal reconciliation against the D+1 segregation requirement, and external reconciliation against third-party bank data, both must run every reconciliation day. Shortfalls must be remedied from the firm's own funds the same day.</p>
+
+  <p>Second, a dedicated monthly safeguarding return replaces the previous monthly questions — covering the D+1 segregation requirement, reconciliation completion status, and data on relevant assets and custodians. Third, most firms must arrange an annual CASS 15 audit under SUP 3A (the FCA Handbook chapter governing auditor appointment), with the first report due within six months of the period end. Fourth, firms must maintain a resolution pack — account maps, safeguarding records, and reconciliation logs — that is current and immediately usable by an insolvency practitioner, not a static document filed once.</p>
+
+  <div class="pq-bar">
+    <p>The FCA expects an increase in adverse audit opinions in the short term, as greater scrutiny surfaces previously hidden deficiencies in safeguarding practices.</p>
+    <cite>— Osborne Clarke analysis of PS25/12 (May 2026)</cite>
+  </div>
+
+  <h3>From process to production</h3>
+  <p>The practical pressure is one of reliability, not existence. Most payment institutions and EMIs already run reconciliation processes — but those were built for internal reporting, tolerating batch delays and manual corrections invisible to an auditor. CASS 15 changes the test: the question is no longer whether reconciliation ran, but whether the output is accurate enough for FCA audit. Reconciliation must be treated as a first-class production system; the resolution pack as a data product rather than a document — its accuracy only as good as the pipelines that feed it.</p>
+
+  <h3>What comes next</h3>
+  <p>The FCA will review the regime's effectiveness after the first full audit period — firms that discover pipeline deficiencies after the first CASS 15 opinion is issued face remediation inside an active supervisory relationship, which is the harder path.</p>
+
+  <p>For teams building in the Middle East, the ADGM (Abu Dhabi Global Market — the international financial centre and free zone in Abu Dhabi) published AML/CFT (Anti-Money Laundering / Counter Financing of Terrorism) amendments also effective from May 1, creating a parallel regulatory two-front week for any engineering leadership spanning both UK and ME payment operations.</p>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>Daily reconciliation pipelines and resolution packs are now audit evidence — a team whose pipeline was good enough for internal reporting may not be good enough for CASS 15 scrutiny.</li>
+      <li>The first CASS 15 audit opinions are ~12 months away — the implementation window is narrow, and adverse opinions are the expected starting point, not an aberration.</li>
+      <li>Resolution packs are data products, not documents — their accuracy depends on the quality of the pipelines that feed them.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://www.osborneclarke.com/insights/new-uk-payments-safeguarding-rules-take-effect-further-fca-review-come">Osborne Clarke</a>, <a href="https://www.fca.org.uk/publications/policy-statements/ps25-12-changes-safeguarding-regime-payments-and-e-money-firms">FCA PS25/12</a>, <a href="https://bratby.law/fca-safeguarding-rules-2026-compliance-checklist/">Bratby Law</a> (May 2026)</p>
+</section>
+
+<!-- ═══ OUTSIDE IN — Format C: Compact inset (placed after lead article) ═══ -->
+<div class="oi-compact">
+  <div class="section-label" style="margin-bottom:4px;font-size:10px">Outside In</div>
+  <div class="oi-compact-company">Wise — Leading an observability re-architecture through ownership culture</div>
+  <p>When Marta Lima joined Wise's Observability domain, the team was mid-migration: rebuilding the entire observability stack — migrating to the LGTM stack (an open-source observability toolkit composed of Loki for log aggregation, Grafana for dashboarding, Tempo for distributed tracing, and Mimir for long-term metrics storage; maintained by Grafana Labs and widely used as an alternative to proprietary APM platforms) — concurrently with a Kubernetes platform migration (Kubernetes — open-source container orchestration system, the standard for running containerised applications across clusters), without interrupting the engineering organisation. The stack is built in-house — a deliberate choice reflecting Wise's requirement to handle high data volumes under strict regulatory constraints across multiple countries — and the migration took over a year. What made it tractable, Lima argues, was not technical planning alone but Wise's domain ownership culture: teams are fully accountable for their domains, with genuine authority to move fast when the data supports it. The platform team's role is to provide the underlying infrastructure that lets product engineers focus on product; the observability team's role is to give every engineer real-time visibility into their service's behaviour — which is the ability to understand the internal state of a system from its external outputs (logs, metrics, and traces), distinct from monitoring, which watches for predefined conditions. Neither depends on a central coordination layer to make decisions.</p>
+  <p>The transferable pattern for engineering leaders managing platform modernisation without dedicated SRE headcount is the accountability structure that came first: when a team owns the outcome end-to-end, concurrent migrations become tractable because coordination overhead is absorbed within the domain rather than escalated.</p>
+  <p class="so-what" style="font-size:13px"><strong>The takeaway:</strong> Wise's LGTM observability migration succeeded not because it was well-planned but because domain ownership meant the team absorbed the coordination complexity that would otherwise have required cross-org negotiation.</p>
+  <div class="oi-compact-source"><a href="https://wise.jobs/blog/2026-5/leading-engineering-through-ownership">Marta Lima, Engineering Lead · Wise Blog (May 2026) →</a></div>
+</div>
+
+<!-- ═══ QUICK TAKES ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col qt-featured">
+
+    <!-- QT1: Security — Featured 60% card -->
+    <div class="quick-take-col qt-card">
+      <div class="qt-header security">Security &amp; Compliance</div>
+      <div class="qt-body">
+
+        <div class="jargon-watch">
+          <span class="jw-label">Jargon Watch</span>
+          <span class="jw-term">Mini Shai-Hulud</span>
+          <p class="jw-body">The name given by security researchers to a self-propagating supply-chain worm documented in 2026 by TeamPCP, a threat actor. Named after the giant sandworms in Frank Herbert's <em>Dune</em> for its ability to bore through build pipelines and surface at unexpected points. This was its third documented wave in 2026; prior targets included Aqua Security Trivy and Bitwarden CLI.</p>
+        </div>
+
+        <div class="qt-anchor-stat security">170+</div>
+        <div class="qt-anchor-context">packages reached; 12M+ weekly downloads for @tanstack/react-router alone</div>
+        <h3 style="margin-top:0">Valid provenance wasn't enough: Mini Shai-Hulud turns CI/CD trust into the attack surface</h3>
+        <p>On 11 May 2026, TeamPCP (the threat-actor designation used by Wiz and security researchers for the group behind the Mini Shai-Hulud worm campaigns) exploited a <code>pull_request_target</code> misconfiguration — a GitHub Actions trigger that runs with write permissions even from an external fork's pull request — in TanStack's monorepo. The attacker used this to poison the pnpm build cache (pnpm is a fast Node.js package manager; cache poisoning here injected malicious content that subsequent builds fetched as legitimate), then extracted OIDC tokens (OpenID Connect — short-lived identity tokens used to authenticate GitHub Actions workflows against external services like the npm registry) directly from runner process memory. Those tokens were used to publish malicious packages to the npm (Node Package Manager registry — the primary JavaScript/TypeScript distribution channel) and PyPI ecosystems without ever stealing credentials.</p>
+
+        <p>The published packages carried valid SLSA Build Level 3 attestations and valid Sigstore signatures — SLSA (Supply-chain Levels for Software Artifacts, a Google-originated framework defining build-pipeline integrity levels) and Sigstore (an open-source toolkit for signing software supply chains using short-lived cryptographic certificates) both confirmed the pipeline ran correctly. They could not confirm the pipeline itself was the attack surface.</p>
+
+        <p>84 malicious artifacts across 42 @tanstack packages were published on May 11. The worm self-propagated to Mistral AI, UiPath, and over 160 other packages within hours. Environments that ran @tanstack packages on May 11 are treated as fully compromised in the incident response pattern: the remediation cycle involves rotating all accessible secrets (GitHub tokens, npm tokens, AWS credentials, Kubernetes service accounts, CI/CD secrets), removing persistence hooks in <code>.claude/</code> and <code>.vscode/</code> directories, and blocking C2 domains git-tanstack.com and *.getsession.org. An SBOM (Software Bill of Materials — a structured list of all components in a software build) with valid attestations offers no protection when the build system generating the attestations is the attack surface. Structural mitigations include auditing <code>pull_request_target</code> workflows, pinning GitHub Action versions to commit SHAs rather than tags, and applying GitHub's OIDC token scoping mitigations.</p>
+
+        <p class="so-what"><strong>The takeaway:</strong> SLSA attestations and Sigstore signatures confirm that the build pipeline ran correctly — they cannot confirm the pipeline was not itself compromised; a provenance chain that starts at a compromised build environment is valid all the way down.</p>
+        <p class="source-tag">Sources: <a href="https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised">Wiz</a>, <a href="https://tanstack.com/blog/npm-supply-chain-compromise-postmortem">TanStack postmortem</a>, <a href="https://snyk.io/blog/tanstack-npm-packages-compromised/">Snyk</a>, <a href="https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem">StepSecurity</a> (May 2026)</p>
+      </div>
+    </div>
+
+    <!-- QT2: DevEx — Compact 40% card -->
+    <div class="quick-take-col qt-card">
+      <div class="qt-header devex">Developer Experience</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">39%</div>
+        <div class="qt-anchor-context">First-year ROI on AI-assisted development — 500-person org model</div>
+        <h3 style="margin-top:0">DORA gives AI-assisted development a CFO model — and warns about the J-curve</h3>
+        <p>"The greatest returns on AI investment come not from the tools themselves but from a strategic focus on the underlying organizational system: the quality of the internal platform, the clarity of workflows, and the alignment of teams. Without this foundation, AI creates localized pockets of productivity that are often lost in downstream chaos." That is the central claim of the DORA ROI of AI-Assisted Software Development report — where DORA refers to the DevOps Research and Assessment team at Google Cloud, not the EU Digital Operational Resilience Act (a different DORA in financial-services regulation context).</p>
+        <p>The illustrative model for a 500-person engineering organisation ($176k fully loaded salary) shows ~$11.6m first-year return against ~$8.4m investment: 39% ROI, ~8-month payback. The headline figure is less useful than the J-curve warning that accompanies it: a temporary productivity dip before long-term gains, caused by the learning curve, a "verification tax" from reviewing AI-generated code, and the need to adapt downstream processes like testing and change approval to handle increased code volumes. Leaders who mistake the dip for failure risk pulling funding during the period that generates the eventual return. An interactive calculator is available at <a href="https://dora.dev/ai/roi/report/">dora.dev/ai/roi/report</a>.</p>
+        <p class="so-what"><strong>The takeaway:</strong> Engineering leaders now have a Google-branded financial model to take to a CFO conversation about AI tooling — and a specific term ("the J-curve") for the temporary dip that finance teams will otherwise treat as evidence the investment isn't working.</p>
+        <p class="source-tag">Sources: <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/">InfoQ</a>, <a href="https://dora.dev/ai/roi/report/">DORA report</a>, <a href="https://cloud.google.com/resources/content/dora-roi-of-ai-assisted-software-development">Google Cloud</a> (May 2026)</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — Mini-highlight ═══ -->
+<div class="mid-accent-highlight">
+  <p>Fidelity Investments is trimming roughly 800 jobs — about 1% of its 80,000-person global workforce — while simultaneously opening 2,000 positions, 400 of them in tech or product roles. The restructuring explicitly targets senior leadership layers while adding early-career, hands-on engineering capacity. This is a financial-services org-shape signal worth watching: Fidelity's answer to the question of how AI-augmented delivery changes levelling appears to be fewer senior-strategic layers and more execution headcount. Whether that ratio holds as agent-first workflows mature is the open question for engineering leaders thinking about their own org design over the next 18 months.</p>
+  <div class="accent-source"><a href="https://www.boston.com/news/business/2026/05/11/fidelity-reorganizes-its-workplace-with-new-hires-and-a-few-cuts/">Boston.com (May 11, 2026) →</a></div>
+</div>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What changed</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">GHES 3.21 RC</td>
+        <td><strong>GitHub Enterprise Server</strong> (GHES — the self-hosted version of GitHub, as distinct from github.com) 3.21 release candidate is available. Self-hosted teams should begin upgrade planning. Key items: org custom properties reach GA, hierarchy view for Projects ships, secret scanning permission model changes, and the REST API advances to version 2026-03-10 — a breaking change affecting GitHub App integrations. App owners should audit the migration path before enterprise rollout. <span class="on-source"><a href="https://github.blog/changelog/month/05-2026/">The GitHub Blog →</a></span></td>
+      </tr>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">.NET May 2026</td>
+        <td>Microsoft's May 2026 servicing update covers <strong>.NET 8 LTS</strong> (LTS — Long-Term Support, the channel receiving security and stability patches for 3+ years), .NET 9, and .NET 10, plus .NET Framework 3.5 through 4.8.1. Two EoP (Elevation of Privilege — a vulnerability class allowing an attacker to gain higher permissions than granted) CVEs (Common Vulnerabilities and Exposures — standardised identifiers for disclosed security vulnerabilities) affect the runtime across all three current versions. Teams on any of these channels should ship this patch cycle. <span class="on-source"><a href="https://devblogs.microsoft.com/dotnet/dotnet-and-dotnet-framework-may-2026-servicing-updates/">.NET Blog →</a></span></td>
+      </tr>
+      <tr>
+        <td><span class="status-dot red"></span></td>
+        <td class="platform">Patch Tuesday May 2026</td>
+        <td>130 CVEs, 30 Critical. The two actionable items for most teams: <strong>Windows DNS Client RCE</strong> (RCE — Remote Code Execution, a vulnerability class allowing an attacker to run arbitrary code from a remote location; CVSS — Common Vulnerability Scoring System, 0–10 severity scale — 9.8, unauthenticated, zero interaction required) and two M365 Copilot information disclosure CVEs (CVE-2026-26129, CVE-2026-26164). An Azure DevOps CVSS 10.0 item is cloud-remediated by Microsoft; no customer action needed. <span class="on-source"><a href="https://www.crowdstrike.com/en-us/blog/patch-tuesday-analysis-may-2026/">CrowdStrike →</a></span></td>
+      </tr>
+      <tr>
+        <td><span class="status-dot red"></span></td>
+        <td class="platform">AWS us-east-1</td>
+        <td>A thermal event caused a 24-hour EBS (Elastic Block Store — AWS's persistent block storage service for EC2 instances) and EC2 (Elastic Compute Cloud — AWS's virtual server service) availability zone failure in us-east-1 (Northern Virginia) on May 8. Cooling stabilised by 1:50 PM; most volumes recovered the same day. Engineering angle: multi-region resilience posture and dependency concentration in a single AZ (Availability Zone — an isolated data centre location within an AWS region). <strong>Note:</strong> this is a separate incident from the ongoing AWS ME-CENTRAL-1 P0 story above. <span class="on-source"><a href="https://mashable.com/article/amazon-web-services-outage-may-2026-cause-resolved">Mashable →</a></span></td>
+      </tr>
+      <tr>
+        <td><span class="status-dot green"></span></td>
+        <td class="platform">Claude Security</td>
+        <td>Anthropic's Claude Security is now in public beta for all Enterprise customers — native AI vulnerability scanning and patch suggestions accessible from the Claude.ai sidebar, with no custom API integration required. Positioned as an AI-native alternative to traditional SAST (Static Application Security Testing — automated analysis of source code for vulnerabilities before the code runs). <span class="on-source"><a href="https://www.infosecurity-magazine.com/news/anthropic-claude-security-for-ai/">Infosecurity Magazine →</a></span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ IN PRACTICE ═══ -->
+<hr class="feature-break">
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Calibration &amp; performance conversations</span>
+</header>
+<section class="in-practice">
+  <h3>Engineering performance calibration as decision-making infrastructure</h3>
+  <div class="ip-attribution">Pensero editorial team · Pensero, April 2026 · <a href="https://pensero.ai/blog/engineering-performance-calibration">Read the full piece</a></div>
+
+  <p>Calibration sessions often function as opinion-reconciliation meetings — managers arrive with different standards, negotiate toward rough consensus, and leave with decisions that are difficult to revisit later. The specific framework this piece argues for reframes calibration as decision-making infrastructure rather than a calendar ritual: a structured process with a defined data layer, a two-tier conversation model, and explicit handling of variables that current levelling rubrics do not address.</p>
+
+  <p>The data layer rests on complexity-weighted delivery metrics (metrics that weight engineering output by the estimated complexity of the work, rather than counting story points or commits — which prevents large but simple work from distorting comparisons). The specific metrics proposed: delivery per headcount, defect rate, AI adoption share, roadmap alignment, cycle time, capitalizable delivery (work that qualifies as capital expenditure under accounting rules, relevant for teams whose CFO tracks software development cost categories), and knowledge gaps. The key structural argument is that VP and CTO-level calibration — team-to-team comparison for resource allocation — requires different data than EM-level calibration, which is about individual promotion evidence. Conflating the two produces sessions where neither conversation happens well.</p>
+
+  <p>The 2026-specific variable the piece introduces is agent-authored delivery (code or output produced by an AI coding agent rather than directly by a human engineer). Most levelling rubrics were designed around code-output signals — PRs merged, velocity, lines of code — that do not yet distinguish human from agent contribution. An engineer whose throughput has increased significantly this quarter may be demonstrating either mastery of AI-augmented workflows or a dependency on agent output that lacks the signal quality the framework was designed to measure. Calibration sessions in Q2 2026 will encounter this split for the first time, often without explicit data to resolve it.</p>
+
+  <blockquote>Calibration works when the data reflects the work, not just the volume of output. The agent-authored delivery variable is the first place where this distinction becomes visible in the numbers.</blockquote>
+
+  <p>The concrete mechanism the piece proposes is treating agent-authored delivery share as a new column in the calibration data view — surfacing which engineers are extending AI-augmented capability in ways that compound their judgement, and which are generating throughput that looks like productivity but reflects authorship volume rather than decision quality. Without this column, calibration sessions reward the latter as readily as the former.</p>
+
+  <div class="ip-try">
+    <strong>What to try</strong>
+    One anchor for the next calibration session: before the meeting, ask whether the data on the table distinguishes between team-to-team comparison and individual promotion evidence — and, if anyone on the team has meaningfully shifted toward agent-augmented delivery this cycle, whether that shift is visible in the metrics or invisible beneath a throughput number.
+  </div>
+</section>
+
+<!-- ═══ LEADERSHIP READ ═══ -->
+<hr class="feature-break">
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Agentic coding is making engineering-management skills part of the IC job</h2>
+  <p>Sage Lazzaro's piece in LeadDev is not primarily about AI. It is about what happens to role boundaries, levelling frameworks, and career paths when the competencies that engineering managers have spent years developing — breaking down problems, delegating, setting context, managing toward outcomes — become the core skill of an IC (individual contributor — an engineer without direct reports, whose primary work is technical execution) working with AI agents.</p>
+
+  <h3>The boundary collapse</h3>
+  <p>The specific argument is that agentic coding (the practice of using AI coding agents — tools like GitHub Copilot, Cursor, or Claude Code — to plan, implement, test, and in some cases merge code with reduced or restructured human oversight) is collapsing the IC/EM (engineering manager — an engineer with direct reports, responsible for people management, team direction, and delivery coordination) boundary from both directions simultaneously. ICs managing five AI agents in parallel need to prioritise tasks, set context, review outputs, and manage toward a delivery outcome — structurally the same work as managing a team of junior engineers. Meanwhile, experienced EMs are being actively recruited as senior ICs at agent-first companies, because their skill set maps directly to orchestrating agent workflows.</p>
+
+  <p>Scott Breitenother, co-founder and CEO of Kilo — an agentic coding startup that launched in early 2025 — says: "Instead of having teams of humans working together, each individual contributor ends up being like a manager. But instead of a manager of humans, they're a manager of agents." Every engineer Kilo has hired was previously either an engineering manager or a senior peer mentor. Breitenother's hypothesis is that the adjustment from managing humans to managing agents is smaller than the adjustment from managing no-one to managing agents: the delegation and context-setting muscle is already there.</p>
+
+  <h3>Where levelling frameworks are misaligned</h3>
+  <p>The second concrete mechanism is the mismatch between how current levelling frameworks measure performance and what the work now requires. Levelling rubrics built on code-output signals — PRs merged, velocity, lines of code delivered — reward throughput. An IC managing multiple agents can generate high throughput while the work that actually distinguishes senior contribution (context quality, delegation decisions, output review, delivery management) is invisible in the metrics. Vinay Perneti, VP of Engineering at Augment Code, puts it plainly: "Instead, I think you really want to embrace outcomes."</p>
+
+  <p>The data the article cites is pointed: staff and principal engineers now regularly out-earn engineering managers by 15 to 25% at top companies, according to IT hiring firm HR Oasis. Google has cut 35% of managers overseeing fewer than three people. Amazon required every team to increase its ratio of ICs to managers by 15% by Q1 2025. These are separate decisions taken by separate organisations, but the direction is consistent: the management layer is contracting while the IC layer is expected to absorb more of what was previously management work.</p>
+
+  <h3>The career-path implication</h3>
+  <p>For engineering leaders, the useful tension here is not that "AI changes everything." It is that careers and team structures are shifting before the levelling frameworks that govern them have caught up. An engineer who is demonstrably excellent at managing agent workflows may be measured — and paid, and promoted — against a rubric designed for a world where that skill did not exist. That gap will surface in calibration sessions, in retention conversations, and in hiring decisions. Recognising it explicitly is more useful than waiting for the frameworks to self-update.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://leaddev.com/career-development/demand-for-engineering-managers-is-surging-in-the-agentic-coding-era" class="mgmt-link">Read the full article: leaddev.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> If your levelling rubrics were redesigned today, would they reward the quality of delegation and outcome-management decisions — or would they still reward throughput, with agent-assisted throughput looking indistinguishable from human-authored throughput?</p>
+</section>
+
+<!-- ═══ DOWN THE RABBIT HOLE ═══ -->
+<div class="rabbit-hole">
+  <span class="rh-label">Down the Rabbit Hole</span>
+  <span class="rh-badge">Long-read</span>
+  <p><strong>If Outside In gave you the culture-and-architecture frame, here's the stack behind it.</strong> ByteByteGo's breakdown of the Wise infrastructure gives the granular numbers: the Mimir cluster (part of the LGTM stack) processing 6 million metric samples per second, Temporal — the workflow engine for automated database failovers, distinct from the JavaScript Temporal API in Node.js 26 that led Issue 9 — and the Mission Zero cost programme that ties it together. The technical depth behind Wise's ownership model is in this piece.</p>
+  <p><a href="https://blog.bytebytego.com/p/the-tech-stack-powering-wise">ByteByteGo: The Tech Stack Powering Wise →</a></p>
+</div>
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">2026</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>First CASS 15 audit cycle</strong> — FCA commentary expected after the first full audit period completes under the Supplementary Safeguarding Regime. Watch for adverse-opinion rates and any supervisory guidance update. No new FCA publication yet; monitor <a href="https://www.fca.org.uk/publications/policy-statements/ps25-12-changes-safeguarding-regime-payments-and-e-money-firms">PS25/12 publications page</a> for updates.</div>
+    </li>
+
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Oct</div>
+        <div class="rd-label">LTS date</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Node.js 26 LTS path</strong> — Not re-covering as a story (Issue 9 lead). For platform teams with native add-ons: the NODE_MODULE_VERSION 147 bump in Node.js 26 requires a rebuild cycle before the October LTS date. Check your native dependency inventory now. <a href="https://nodejs.org/en/blog/release/v26.0.0">Node.js 26.0.0 →</a></div>
+    </li>
+
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-day">1</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>ADGM AML reforms</strong> — Abu Dhabi Global Market (ADGM — the international financial centre in Abu Dhabi with its own regulatory framework operated by the FSRA — Financial Services Regulatory Authority) AML/CFT amendments effective May 1. ME fintech teams should assess impact on KYC (Know Your Customer — regulatory obligations requiring firms to verify customer identity and monitor transactions) workflow design and reporting pipelines. <a href="https://www.linkedin.com/posts/law-corporation_bdo-bdouae-adgm-activity-7458099077071929344-nILo">BDO UAE / Law Corporation →</a></div>
+    </li>
+
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-label">2026</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GHES 3.21 upgrade runway</strong> — GitHub App owners integrating against the REST API should check the 2026-03-10 migration path (the GitHub REST API version identifier for the March 10, 2026 release — a breaking-change version; the old 2022-11-28 version will be deprecated) before enterprise rollout of 3.21. <a href="https://github.blog/changelog/month/05-2026/">GitHub Changelog →</a></div>
+    </li>
+
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">2026</div>
+        <div class="rd-label">Context</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Open-source governance as board risk</strong> — The OSI 2026 State of Open Source report provides structural context behind the Mini Shai-Hulud supply-chain story: geopolitical pressure, compliance complexity, and operational maintenance burden are now board-level risk topics for organisations with significant open-source dependency. Context only; outside the window. <a href="https://opensource.org/blog/the-2026-state-of-open-source-report">OSI →</a></div>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ═══ SOURCES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px;background:var(--off-white)">
+  <div class="section-label">Sources</div>
+  <h2 style="font-size:26px;margin-bottom:14px">Primary References</h2>
+  <ul class="other-news">
+    <li><strong>Lead — FCA Safeguarding Regime:</strong> <span class="on-source"><a href="https://www.osborneclarke.com/insights/new-uk-payments-safeguarding-rules-take-effect-further-fca-review-come">Osborne Clarke</a>, <a href="https://www.fca.org.uk/publications/policy-statements/ps25-12-changes-safeguarding-regime-payments-and-e-money-firms">FCA PS25/12</a>, <a href="https://bratby.law/fca-safeguarding-rules-2026-compliance-checklist/">Bratby Law</a></span></li>
+    <li><strong>Quick Take 1 — Mini Shai-Hulud:</strong> <span class="on-source"><a href="https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised">Wiz</a>, <a href="https://tanstack.com/blog/npm-supply-chain-compromise-postmortem">TanStack postmortem</a>, <a href="https://snyk.io/blog/tanstack-npm-packages-compromised/">Snyk</a>, <a href="https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem">StepSecurity</a></span></li>
+    <li><strong>Quick Take 2 — DORA ROI:</strong> <span class="on-source"><a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/">InfoQ</a>, <a href="https://dora.dev/ai/roi/report/">DORA report</a>, <a href="https://cloud.google.com/resources/content/dora-roi-of-ai-assisted-software-development">Google Cloud</a></span></li>
+    <li><strong>Editorial Moment — LPI Survey:</strong> <span class="on-source"><a href="https://www.lpi.org/articles/2026-open-source-professionals-job-survey-ospjs-report-now-available/">LPI announcement</a>, <a href="https://www.lpi.org/2026-open-source-professionals-job-survey-ospjs-report/">Full OSPJS report</a></span></li>
+    <li><strong>Mid-issue Accent — Fidelity:</strong> <span class="on-source"><a href="https://www.boston.com/news/business/2026/05/11/fidelity-reorganizes-its-workplace-with-new-hires-and-a-few-cuts/">Boston.com</a></span></li>
+    <li><strong>Platform Updates:</strong> <span class="on-source"><a href="https://github.blog/changelog/month/05-2026/">GitHub Blog</a>, <a href="https://devblogs.microsoft.com/dotnet/dotnet-and-dotnet-framework-may-2026-servicing-updates/">.NET Blog</a>, <a href="https://www.crowdstrike.com/en-us/blog/patch-tuesday-analysis-may-2026/">CrowdStrike</a>, <a href="https://mashable.com/article/amazon-web-services-outage-may-2026-cause-resolved">Mashable</a>, <a href="https://www.infosecurity-magazine.com/news/anthropic-claude-security-for-ai/">Infosecurity Magazine</a>, <a href="https://support.claude.com/en/articles/14661296-use-claude-security">Claude support docs</a></span></li>
+    <li><strong>In Practice:</strong> <span class="on-source"><a href="https://pensero.ai/blog/engineering-performance-calibration">Pensero</a></span></li>
+    <li><strong>Leadership Read:</strong> <span class="on-source"><a href="https://leaddev.com/career-development/demand-for-engineering-managers-is-surging-in-the-agentic-coding-era">LeadDev — Sage Lazzaro</a></span></li>
+    <li><strong>Outside In:</strong> <span class="on-source"><a href="https://wise.jobs/blog/2026-5/leading-engineering-through-ownership">Wise Blog — Marta Lima</a></span></li>
+    <li><strong>Down the Rabbit Hole:</strong> <span class="on-source"><a href="https://blog.bytebytego.com/p/the-tech-stack-powering-wise">ByteByteGo</a></span></li>
+    <li><strong>On the Radar:</strong> <span class="on-source"><a href="https://nodejs.org/en/blog/release/v26.0.0">Node.js 26.0.0</a>, <a href="https://www.linkedin.com/posts/law-corporation_bdo-bdouae-adgm-activity-7458099077071929344-nILo">ADGM AML</a>, <a href="https://opensource.org/blog/the-2026-state-of-open-source-report">OSI 2026</a></span></li>
+    <li><strong>P0 Status context:</strong> <span class="on-source"><a href="https://mashable.com/article/amazon-web-services-outage-may-2026-cause-resolved">Mashable (NVA incident, not ME-CENTRAL-1)</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">May 8–15, 2026 · Weekly Edition · Issue #10</div>
+  <div class="footer-next">Next edition: May 15–22, 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">Mar 2026 · Weekly</span>
+    <span class="archive-pill">Mar 2026 · Weekly</span>
+    <span class="archive-pill">Apr 2026 · Weekly</span>
+    <span class="archive-pill">May 2026 · Weekly (Issue 9)</span>
+    <span class="archive-pill current">May 8–15 · Weekly (Issue 10)</span>
+  </div>
+</footer>
+
+</div></body></html>
