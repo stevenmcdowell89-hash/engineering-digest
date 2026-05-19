@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Engineering Digest Candidates Inventory (v3.2)",
+  "description": "Output artefact of Phase 1 (Beat sweep / research). Every top-tier beat must appear, even if its candidates array is empty.",
+  "type": "object",
+  "required": ["issue_number", "date_window", "generated_at", "beats", "secondary"],
+  "properties": {
+    "issue_number": { "type": "integer", "minimum": 1 },
+    "date_window": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "format": "date" },
+        "to": { "type": "string", "format": "date" }
+      }
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "state_snapshot": {
+      "type": "object",
+      "description": "Selected fields from engineering-digest-state.json that drove the research, captured for auditability.",
+      "properties": {
+        "last_lead_topic": { "type": "string" },
+        "last_lead_topics_3issues": { "type": "array", "items": { "type": "string" } },
+        "last_outside_in_company": { "type": "string" },
+        "outside_in_history": { "type": "array" },
+        "current_in_practice_season": { "type": "string" },
+        "in_practice_history": { "type": "array" }
+      }
+    },
+    "beats": {
+      "type": "array",
+      "description": "One entry per top-tier beat. Mandatory beats: ai_tooling, eng_leadership, devex, banking_fintech, sw_eng_news, security_compliance, platform_updates.",
+      "items": {
+        "type": "object",
+        "required": ["beat", "queries_run", "candidates"],
+        "properties": {
+          "beat": {
+            "type": "string",
+            "enum": [
+              "ai_tooling",
+              "eng_leadership",
+              "devex",
+              "banking_fintech",
+              "sw_eng_news",
+              "security_compliance",
+              "platform_updates"
+            ]
+          },
+          "queries_run": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 3,
+            "description": "Verbatim list of search queries used. Minimum 3, target 3-5."
+          },
+          "candidates": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/candidate" }
+          },
+          "null_finding": {
+            "type": "string",
+            "description": "Required when candidates is empty. Must reference what was searched and why nothing qualified. 'Nothing came up' is not acceptable."
+          }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "candidates": { "maxItems": 0 } } },
+            "then": { "required": ["null_finding"] }
+          }
+        ]
+      },
+      "minItems": 7
+    },
+    "secondary": {
+      "type": "object",
+      "description": "Candidate pools for slots that don't map to top-tier beats.",
+      "required": ["leadership_read", "in_practice", "outside_in"],
+      "properties": {
+        "leadership_read": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/candidate" }
+        },
+        "in_practice": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/candidate" }
+        },
+        "outside_in": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/candidate" }
+        },
+        "rabbit_hole": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/candidate" }
+        },
+        "p0_active": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/candidate" },
+          "description": "Active Priority 0 stories carried from prior issues with new developments this week."
+        }
+      }
+    }
+  },
+  "definitions": {
+    "candidate": {
+      "type": "object",
+      "required": [
+        "headline",
+        "source_name",
+        "source_url",
+        "published_date",
+        "summary",
+        "so_what",
+        "tier_guess",
+        "uk_me_relevance",
+        "narrative_tension",
+        "urgency_classification"
+      ],
+      "properties": {
+        "headline": { "type": "string", "description": "The story in a single line. Not the source's headline verbatim — a paraphrase that captures the so-what." },
+        "source_name": { "type": "string" },
+        "source_url": { "type": "string", "format": "uri" },
+        "published_date": { "type": "string", "format": "date" },
+        "beat": {
+          "type": "string",
+          "description": "Optional in candidate-level (the beat is set by the parent in the beats array). Used in the secondary pools.",
+          "enum": [
+            "ai_tooling",
+            "eng_leadership",
+            "devex",
+            "banking_fintech",
+            "sw_eng_news",
+            "security_compliance",
+            "platform_updates",
+            "outside_in",
+            "leadership_read",
+            "in_practice"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "description": "2–3 sentences. Enough that the curation phase can rank without re-fetching the source."
+        },
+        "so_what": {
+          "type": "string",
+          "description": "One sentence on why an engineering leader should care. Must answer 'what would change in their week if they read this?'"
+        },
+        "tier_guess": {
+          "type": "string",
+          "enum": [
+            "lead-worthy",
+            "quick-take-worthy",
+            "quick-hit",
+            "platform-update",
+            "radar",
+            "outside-in",
+            "leadership-read",
+            "in-practice",
+            "rabbit-hole"
+          ],
+          "description": "Researcher's first-pass slot estimate. Curation phase makes the final call."
+        },
+        "uk_me_relevance": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "How directly the story touches a UK or Middle East banking/fintech engineering team's week."
+        },
+        "narrative_tension": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Does the story have an arc, controversy, surprise, or stake? Routine version releases default to low."
+        },
+        "urgency_classification": {
+          "type": "string",
+          "enum": ["act_this_week", "decide_this_month", "general_awareness"],
+          "description": "v3.2 audience-fit gate. act_this_week = reader needs to do something or have a conversation in the next 7 days. decide_this_month = reader has a decision to make in the next 30 days. general_awareness = useful context, no near-term action. Only act_this_week and high-impact decide_this_month stories are eligible for anchor slots (lead, QT1, QT2). Version EOLs, minor version bumps, and most platform updates default to general_awareness unless impact is widespread right now (real-time customer outage, active CVE in mass exploitation, regulatory deadline this week for the reader's own organisation — not their customers')."
+        },
+        "secondary_sources": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" },
+          "description": "Optional. Confirmation or context links beyond the primary source."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional. Anything the curator should know — e.g. 'related to Issue 8 lead', 'overlaps with the security beat candidate X', 'piece is paywalled'."
+        },
+        "jargon_terms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Capitalised technical terms or proper nouns in this candidate that will need glossing or a Jargon Watch sidebar (per v3.0 rule)."
+        }
+      }
+    }
+  }
+}

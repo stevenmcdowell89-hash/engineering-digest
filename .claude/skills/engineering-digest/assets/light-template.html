@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — March 24–31, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+.cover{background:var(--navy);padding:56px 60px 48px;position:relative;overflow:hidden}.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal))}.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}.cover-meta{margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}.week-badge{display:inline-block;background:var(--med-gray);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-top:16px}
+.cover-contents{margin-top:28px;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}p{margin-bottom:12px}p:last-child{margin-bottom:0}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.quick-hits{list-style:none;margin:16px 0}.quick-hits li{padding:14px 0;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start}.quick-hits li:last-child{border-bottom:none}.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}
+.radar-list{list-style:none;margin:16px 0}.radar-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;display:flex;gap:12px}.radar-list li:last-child{border-bottom:none}.radar-date{font-weight:700;color:var(--deep-teal);white-space:nowrap;min-width:90px}
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.footer{background:var(--navy);padding:36px 60px;text-align:center}.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+@media(max-width:700px){.cover,.section,.mgmt-section,.foreword,.outside-in-section{padding:28px 20px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.cover-contents ul{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<header class="cover">
+  <h1>Engineering<em>Digest</em></h1>
+  <div class="cover-meta">
+    <span class="cover-date">March 24–31, 2026</span>
+    <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #3</span>
+  </div>
+  <div class="week-badge">Short Edition</div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>This Week's Quick Hits</li>
+      <li>The Leadership Read: Lara Hogan on Feedback</li>
+      <li>Outside In: How Wise Builds Payments Infrastructure</li>
+      <li>On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>A quieter week — no major launches, no outages, no manifestos. The kind of week where the most valuable thing a digest can do is point you toward something worth reading that you wouldn't have found on your own. This issue is carried by two strong feature pieces: Lara Hogan on the mechanics of giving feedback that actually lands, and a look inside Wise's approach to building payment infrastructure across 80+ countries. Both are worth your time regardless of what the news cycle is doing.</p>
+</section>
+
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Five stories in sixty seconds</h2>
+  <ul class="quick-hits">
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Anthropic March usage promotion ended</strong> (March 27) — the two-week doubled off-peak limits experiment concluded. No announcement yet on whether it becomes permanent.</div></li>
+    <li><span class="qh-badge">AWS</span><div class="qh-text"><strong>AWS ME recovery progressing</strong> — partial service restoration in ME-CENTRAL-1. Some customers still reporting snapshot access issues. AWS continues to recommend alternate regions for critical workloads.</div></li>
+    <li><span class="qh-badge green">.NET</span><div class="qh-text"><strong>.NET 10.0.5 out-of-band fix available</strong> — addresses the macOS VS Code debugging regression from the March 10 patch. Only relevant for macOS development environments.</div></li>
+    <li><span class="qh-badge">AWS</span><div class="qh-text"><strong>AWS Summit Paris</strong> (April 1) — next week. Expect announcements on Bedrock, Trainium, and potentially the ME recovery roadmap.</div></li>
+    <li><span class="qh-badge orange">AI</span><div class="qh-text"><strong>Claude Haiku 3 retirement approaching</strong> (April 19) — teams using Haiku 3 via API should be migrating to Haiku 4.5.</div></li>
+  </ul>
+</section>
+
+<hr class="feature-break">
+
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The Art of the Feedback Conversation</h2>
+  <p style="margin-bottom:20px">Lara Hogan — former VP of Engineering at Kickstarter, author of <em>Resilient Management</em>, and one of the clearest thinkers on engineering leadership — wrote extensively about how to structure feedback conversations that actually change behaviour. Her framework has become a reference point across the industry, and it's worth revisiting.</p>
+
+  <h3>The equation: observation + impact + question</h3>
+  <p>Hogan's core model strips feedback down to three components. Start with a specific observation — what you saw, not your interpretation of it. Follow with the impact — what effect it had on the team, the project, or the person's own goals. Then ask a question — opening space for the other person's perspective rather than delivering a verdict. The structure prevents feedback from becoming personal ("you're bad at this") or vague ("you need to communicate better") by grounding it in observable facts.</p>
+
+  <h3>Why engineering managers get this wrong</h3>
+  <p>The most common failure mode Hogan identifies is the "feedback sandwich" — positive, negative, positive — which she argues trains people to distrust praise and brace for criticism. The second failure is saving feedback for performance reviews, by which point the specific context has faded and the conversation becomes about patterns rather than moments. The third is conflating feedback with instruction: telling someone what to do differently isn't feedback, it's direction. Feedback creates awareness; what the person does with that awareness is where growth happens.</p>
+
+  <div class="pull-quote">
+    <p>Feedback is most useful at the lowest level of abstraction. The more specific you can be, the more actionable it becomes.</p>
+    <cite>— Lara Hogan</cite>
+  </div>
+
+  <h3>The timing question</h3>
+  <p>Hogan advocates for feedback delivered within 48 hours of the observation — close enough that both parties remember the context, far enough that initial emotional reactions have settled. She also distinguishes between feedback that should be private (anything that could feel like criticism) and feedback that can be public (specific, genuine praise — but only if the person is comfortable with public recognition, which not everyone is).</p>
+
+  <h3>Why this still matters</h3>
+  <p>In an environment where AI tools are changing what engineering work looks like week to week, the ability to give clear, specific feedback on new kinds of work — prompt quality, agent orchestration decisions, knowing when to trust and when to verify — becomes more important, not less. The fundamentals don't change: be specific, be timely, be curious. But the situations you're giving feedback on are evolving fast.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://larahogan.me/blog/feedback-equation/" class="mgmt-link">Read the full post: larahogan.me/blog/feedback-equation/ →</a></p>
+</section>
+
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>How Wise Builds Payment Infrastructure Across 80+ Countries</h2>
+  <p>Wise (formerly TransferWise) published an engineering blog detailing how they've built a payment infrastructure platform that operates across more than 80 countries with different regulatory frameworks, banking systems, and payment rails. For anyone in the payments or loyalty space, the architectural decisions are directly relevant.</p>
+
+  <h3>The core challenge</h3>
+  <p>Every country has different payment infrastructure — different clearing systems, different settlement cycles, different compliance requirements. Wise's approach is to abstract these differences behind a unified internal API, so product teams build against a single interface regardless of which country's payment rails they're using underneath. The abstraction layer handles routing, compliance checks, settlement timing, and failure modes per-country.</p>
+
+  <h3>What's interesting about the architecture</h3>
+  <p>Wise runs each country's payment integration as an independent service with its own deployment lifecycle. If the Brazilian payment rail integration needs updating, it can be deployed without touching the UK or EU integrations. They call this "corridor independence" — the ability to ship changes to one payment corridor without risking others. It's a form of blast radius control applied to financial infrastructure rather than traditional microservices.</p>
+  <p>They also maintain what they call "payment route scoring" — a real-time system that evaluates the reliability, cost, and speed of available payment routes and automatically selects the optimal path. If a bank connection degrades, the system routes around it before customers notice.</p>
+
+  <h3>Why this matters</h3>
+  <p>The pattern of abstracting country-specific complexity behind a unified interface is applicable beyond payments. Any organisation operating across multiple regulatory jurisdictions — banking, insurance, fintech — faces the same tension between local compliance requirements and engineering simplicity. Wise's answer is to make the complexity explicit and contained rather than letting it leak across the codebase.</p>
+
+  <p class="source-tag"><a href="https://wise.com/gb/blog/engineering">Read more: wise.com/gb/blog/engineering →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-list">
+    <li><span class="radar-date">April 1</span> AWS Summit Paris</li>
+    <li><span class="radar-date">April 19</span> Claude Haiku 3 model retirement</li>
+    <li><span class="radar-date">April 22</span> AWS Summit London</li>
+    <li><span class="radar-date">April 29</span> Zero Day Con, Dublin</li>
+    <li><span class="radar-date">April 30</span> Node.js 20 end of life</li>
+  </ul>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">March 24–31, 2026 · Short Edition · Issue #3</div>
+  <div class="footer-next">Next edition: March 31 – April 7, 2026</div>
+</footer>
+
+</div></body></html>
