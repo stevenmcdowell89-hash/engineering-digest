@@ -11,7 +11,7 @@ description: >
   edition. Includes HTML templates, editorial spec, and a compliance checklist.
 metadata:
   author: steven-mcdowell
-  version: '1.22'
+  version: '1.23'
 ---
 
 # Engineering Digest
@@ -20,6 +20,7 @@ Generate magazine-style briefing issues for hands-off engineering leadership (di
 
 ## Changelog
 
+- **v1.23 (May 2026)** — Audience reframe (corrects v3.2). The reader is now defined as **engineering leadership at a fintech operating in the customer-loyalty / commerce-media space, working directly with UK and ME banks as customers** — plus a wider management team including managers who came in from non-technical routes. The v3.2 "the reader is never inside a bank / software vendor serving banks as customers" framing was directionally right but lost the actual signal — the reader is at a fintech (not a generic software vendor) and operates in a specific loyalty/commerce-media patch. Banking, fintech, and loyalty stories are now first-class subject matter framed as *"the world the reader operates in"* — the v3.2 *customer-pressure gate* (regulatory stories "never the lead, never an anchor by default") is **retired**. Regulatory stories qualify for any slot they earn on operational impact, including the Lead. Topic taxonomy and lead-selection mechanical rules unchanged in this version — addressed in v1.24.
 - **v1.22 (May 2026)** — Ported to a Claude Code project skill. The previous harness's subagent-type names (`research`, `general_purpose`) collapse to the single `general-purpose` type Claude Code exposes; the previous cost-driven model split (Sonnet for research/planning/writing/review, GPT-5.5 for curation, Opus only for deep-dive writing) is replaced by Opus 4.7 across every phase since cost is no longer a constraint. Curation remains the structurally most important step — splitting research, curation, planning, writing, and review into distinct phases with reviewable artefacts is the load-bearing design, not the model choice. Workspace paths are repo-relative (`digest-runs/issue-N/` under the repo root, `engineering-digest-state.json` at the repo root) rather than `/home/user/workspace/`. **Every editorial control, hard rule, version-numbered rule (v3.2 audience, v3.1 workflow, v3.0 substance floor, v2.x rules across sections), HTML template, the compliance checklist, and the candidates schema are preserved verbatim.**
 - **v1.21 (May 2026)** — Audience reframe. "Banking/fintech as content lens" framing retired (it produced the Issue 10 FCA-lead failure). Audience is now defined as hands-off engineering leadership at a software company serving banks/fintechs as customers — not engineering managers AT banks. New primary curation test: "what guides the team's work vs. what the team's work is." Added `urgency_classification` field to candidates schema (act_this_week / decide_this_month / general_awareness) with anchor-slot eligibility gates. In Practice now operates against a strict whitelist (Monzo, Wise, Stripe, Cloudflare, GitHub, Shopify, Spotify, Intercom, Airbnb, Figma) plus the existing three-quality filter; Monzo archetype locked in. Platform Updates condensed from a default 5-row table to 0–2 rows MAX. Compliance checklist gained an audience-fit & urgency gates section.
 

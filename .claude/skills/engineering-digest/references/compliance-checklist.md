@@ -69,12 +69,12 @@ These checks run before the content checks. They verify the five-phase pipeline 
 
 ## Audience-fit & urgency gates (v3.2)
 
-These checks enforce the v3.2 audience reframe. The reader is hands-off engineering leadership at a software company whose customers include UK/ME banks and fintechs — not engineering managers AT banks, not engineers doing the work. The test for every anchor slot: "what guides the team's work" vs. "what the team's work is."
+These checks enforce the v3.3 audience definition. The reader is engineering leadership at a fintech operating in the customer-loyalty / commerce-media space, working with UK and Middle East banks as customers — plus a wider management team that includes managers who came in from non-technical routes. The test for every anchor slot: "what guides the team's work" vs. "what the team's work is."
 
 - [ ] **Lead urgency**: the Lead qualifies as `act_this_week` or high-impact `decide_this_month` for the audience. If `general_awareness`, the curation has failed — replace the lead. ("Node.js 20 reaches EOL in months" is `general_awareness`. It does not lead.)
 - [ ] **Quick Take urgency**: each Quick Take meets the same `act_this_week` or high-impact `decide_this_month` bar. If a Quick Take resolves to `general_awareness`, demote it to On the Radar, Week at a Glance, or Other News.
 - [ ] **Anchor depth-fit**: for each anchor slot (Lead, QT1, QT2), there is a clear "what guides the team's work" takeaway that does not require the reader to be running the system themselves. If the only useful version of the takeaway is for someone patching, deploying, configuring, or writing code, the story is in the wrong slot — demote.
-- [ ] **Customer-pressure framing**: any regulatory or customer-pressure story (FCA, ADGM, PSR, DORA, etc.) appearing in this issue is framed as "what's landing on your customers' plates and what they'll ask you for" — never as a compliance briefing for the reader's own firm. If a customer-pressure story is the Lead, the curation has failed (customer-pressure stories are NEVER the Lead).
+- [ ] **Banking/fintech framing (v3.3 — supersedes v3.2 customer-pressure gate)**: banking, fintech, and loyalty stories are framed positively as *"the world the reader operates in and the engineering decisions their peers and customers are making"* — not as customer-pressure briefings, and not as compliance briefings for the reader's own firm. Regulatory stories (FCA, ADGM, PSR, DORA) qualify for any slot they earn on operational impact, including the Lead.
 - [ ] **In Practice source check (v3.2)**: the *In Practice* piece (if present) is from the strict whitelist — Monzo, Wise, Stripe, Cloudflare, GitHub, Shopify, Spotify, Intercom, Airbnb, or Figma. Off-whitelist sources require a documented exception in run notes. Whitelist alone is not sufficient — the three required qualities (named operator, journey not framework, technical content at implication level) still apply.
 
 ## Structure
@@ -235,12 +235,12 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] **Omit cleanly when thin**: if the week's candidate cannot meet the 400-word floor with substance, the Leadership Read is cut entirely and a footer note (*"Leadership Read returns next week"*) is added — it is not padded with summary or filler.
 - [ ] **Page-cut floor**: when trimming the issue to fit the page limit, the Leadership Read may be shortened toward 400 words but never below. If 400 cannot hold, omit per the rule above. *In Practice* is not a page-cut lever.
 
-## Audience Framing (v3.2 — supersedes v2.6 "content lens" framing)
-- [ ] Audience is never described as "engineering managers in banks", "banking engineering leaders", "banking and fintech engineering managers", or any phrase that locates the reader inside a bank/fintech
-- [ ] Reader-frame phrasing is hands-off engineering leadership at a software company serving banks/fintechs as customers ("engineering leaders", "engineering directors", "heads of engineering", "for your teams", "in your org"). Banks and fintechs are customers of the reader's organisation, not the reader's organisation itself.
-- [ ] The phrase "banking/fintech as content lens" or any structural equivalent does NOT appear — this framing produced the Issue 10 FCA-lead failure and is retired.
-- [ ] Sentence-level scan: searched the issue for "engineering managers in", "engineering leaders in banking", "banking engineering", "in banking and fintech" used as audience descriptors and corrected each instance
-- [ ] Customer-pressure stories (FCA, ADGM, PSR, DORA, etc.) are framed as "what's landing on your customers' plates" — never as compliance briefing for the reader's own firm
+## Audience Framing (v3.3 — supersedes v3.2 customer-pressure framing)
+- [ ] Reader-frame phrasing matches the v3.3 audience: engineering leadership at a fintech in the customer-loyalty / commerce-media space, working with UK and ME banks as customers, plus a wider management team that includes managers from non-technical backgrounds. Acceptable descriptors: "engineering leaders", "engineering directors", "heads of engineering", "your management team", "for your teams", "in your org".
+- [ ] Audience is never described as "engineering managers in banks" or any phrase that locates the reader as a bank's internal eng team
+- [ ] Banking, fintech, and loyalty stories are framed positively as *"the world the reader operates in"* — not as "customer-pressure" briefings, not as compliance briefings for the reader's own firm
+- [ ] Regulatory stories (FCA, ADGM, PSR, DORA) are evaluated for any slot — including the Lead — on operational impact, not blocked by a categorical "never the lead" rule
+- [ ] Accessibility check: the issue is readable by an engineering manager who came in from a non-technical route (former scrum master / delivery manager / PM). Jargon Watch sidebars, inline glosses, and the agent-terminology precision rule all serve this reader as well as the senior eng reader
 
 ## Agent Terminology Precision (v2.6)
 - [ ] First use of "deploy agents" / "agentic AI" / "AI agents" / "autonomous agents" in any article names which end of the spectrum the story is about: agent-mode workflows inside existing tools (human still triggers/reviews) vs production agents with action authority (autonomous tool calls, money moves, record updates)
