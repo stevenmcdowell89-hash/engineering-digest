@@ -29,7 +29,7 @@
     },
     "beats": {
       "type": "array",
-      "description": "One entry per top-tier beat. Mandatory beats: ai_tooling, eng_leadership, devex, banking_fintech, sw_eng_news, security_compliance, platform_updates.",
+      "description": "One entry per operational concern (v3.4). Mandatory concerns: management_teams, ways_of_working, operating_at_scale, banking_fintech_loyalty. AI is the substrate that runs through all four — not a fifth concern. Classify candidates by the operational decision they trigger, not by surface topic.",
       "items": {
         "type": "object",
         "required": ["beat", "queries_run", "candidates"],
@@ -37,13 +37,10 @@
           "beat": {
             "type": "string",
             "enum": [
-              "ai_tooling",
-              "eng_leadership",
-              "devex",
-              "banking_fintech",
-              "sw_eng_news",
-              "security_compliance",
-              "platform_updates"
+              "management_teams",
+              "ways_of_working",
+              "operating_at_scale",
+              "banking_fintech_loyalty"
             ]
           },
           "queries_run": {
@@ -68,7 +65,7 @@
           }
         ]
       },
-      "minItems": 7
+      "minItems": 4
     },
     "secondary": {
       "type": "object",
@@ -123,13 +120,10 @@
           "type": "string",
           "description": "Optional in candidate-level (the beat is set by the parent in the beats array). Used in the secondary pools.",
           "enum": [
-            "ai_tooling",
-            "eng_leadership",
-            "devex",
-            "banking_fintech",
-            "sw_eng_news",
-            "security_compliance",
-            "platform_updates",
+            "management_teams",
+            "ways_of_working",
+            "operating_at_scale",
+            "banking_fintech_loyalty",
             "outside_in",
             "leadership_read",
             "in_practice"

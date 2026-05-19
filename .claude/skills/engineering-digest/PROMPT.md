@@ -30,8 +30,8 @@ Read files **in this order**, then follow the workflow in `SKILL.md`:
 
 | Phase | Output artefact | What happens |
 |---|---|---|
-| 1. Beat sweep | `candidates.json` | Research every top-tier beat + secondary pools, validate against schema |
-| 2. Inventory & rank | `run-plan.md` | Curate; apply 3-issue lookback, topic saturation cap, AI-balance check, lead sanity check; choose format |
+| 1. Beat sweep | `candidates.json` | Research every operational concern + secondary pools, validate against schema |
+| 2. Inventory & rank | `run-plan.md` | Curate; apply operational-concern lead test, audience-fit gate, soft breadth guardrail, lead sanity check; choose format |
 | 3. Slot detail | `section-briefs.md` | Per-section briefs: opener style, sidebar plan, jargon glosses, pull quotes, word counts, sources |
 | 4. Generate | `issue-N.html` | Write the HTML against the plan. No editorial decisions at this stage — execution only |
 | 5. Review | `review.md` | Run the full compliance checklist + lead-sanity cross-check |

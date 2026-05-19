@@ -43,7 +43,7 @@ The phases are:
 
 **Inputs:** the date window, the topic priority list (top tier and lower tier), the state file (for `last_lead_topic`, `last_outside_in_company`, `last_leadership_read`, `current_in_practice_season`, `in_practice_history`, `outside_in_history`).
 
-**Process:** for each top-tier topic area (AI tooling, Engineering leadership, Developer experience, Banking & fintech, Software engineering news, Security & compliance, Platform updates) run 3–5 targeted queries for the past 7 days. Then run secondary queries for Leadership Read candidates, In Practice candidates (against both source pools), Outside In candidates, and any active Priority 0 stories. Capture every plausible candidate, including ones the writer might dismiss — the curation phase makes the cut, not the research phase.
+**Process:** for each operational concern (Management & teams, Ways of working, Operating at scale, Banking/fintech/loyalty) run 3–5 targeted queries for the past 7 days. Then run secondary queries for Leadership Read candidates, In Practice candidates, Outside In candidates, the rabbit hole, and any active Priority 0 stories. Capture every plausible candidate, including ones the writer might dismiss — the curation phase makes the cut, not the research phase. **Classify each candidate by the operational decision it triggers, not by surface topic** — a tool release that triggers a budget conversation is "Ways of working", not "AI tooling" (AI is the substrate, not a concern).
 
 **Artefact:** `digest-runs/issue-N/candidates.json` matching the schema in `references/candidates-schema.json`. Every entry includes: `headline`, `source_name`, `source_url`, `published_date`, `beat`, `summary` (2–3 sentences — enough that curation can rank without re-fetching), `so_what` (one sentence on why an engineering leader should care), `tier_guess` (lead-worthy / quick-take-worthy / quick-hit / platform-update / radar / outside-in / leadership-read / in-practice), `uk_me_relevance` (high / medium / low), `narrative_tension` (high / medium / low), `notes` (optional).
 
@@ -59,14 +59,13 @@ The phases are:
 
 **Inputs:** `candidates.json` from phase 1, the state file, the editorial spec.
 
-**Process:** Read every candidate. Score each on a small set of axes: "so what" weight, narrative tension, UK/ME banking-fintech relevance, recency, source quality. Then apply the constraints:
+**Process:** Read every candidate. Score each on: "so what" weight, narrative tension, operational-decision fit (does the story trigger a leadership conversation the reader is about to have?), recency, source quality. Then apply the constraints:
 
-- **3-issue lookback:** lead beat differs from the previous 2 issues' lead beats.
-- **Topic saturation cap:** of the top 4 anchor slots (lead, QT1, QT2, editorial moment), no more than 2 share the same beat.
-- **AI-balance check (v3.1):** of the top 3 anchor slots (lead, QT1, QT2), no more than 2 may be AI tooling stories. If the strongest case for the week is genuinely 3 AI stories, the run notes must document why — specifically, what non-AI candidates were considered and rejected, and on what grounds. The default expectation is that the top 3 slots span at least 2 distinct beats.
-- **Lead sanity check (v3.1):** the chosen lead must be in the top 3 candidates ranked across all beats by combined "so what" + narrative tension + UK/ME relevance score. If it isn't, the run notes must justify the choice or the lead is changed.
-- **Audience-fit gate (v3.2 — the primary gate, runs before everything else):** for every candidate, ask "what does the reader do with this on Monday?" If the answer requires the reader to be running the system themselves (patching, deploying, configuring, writing prompts, writing code, executing a CLI command), the story does NOT qualify for the lead or a Quick Take. It may still appear in Week at a Glance or On the Radar if the reader's required action is "be aware" or "delegate." It may NEVER be the lead. **Worked rejection: Issue 10's Mini Shai-Hulud story.** The technical takeaway only lands for someone running the CI/CD pipeline themselves — the reader does not. Correct slot: Week at a Glance, "Action required" tier, one line. Wrong slot: featured Quick Take, 327 words, Jargon Watch sidebar.
-- **Banking/fintech framing gate (v3.3 — supersedes v3.2 customer-pressure gate):** stories about the reader's bank customers, UK/ME fintech peers, regulators (FCA, ADGM/FSRA, PSR, HMT, EU), payments rails, and loyalty/commerce-media tech are eligible for any slot they earn on the same operational-impact test as any other story. Frame them positively: *"this is the world the reader operates in and the engineering decisions their peers and customers are making."* When a regulatory story does qualify, frame it as the conversation the reader needs to have ready for their customers and team — never as compliance briefing for the reader's own firm.
+- **Audience-fit gate (v3.2 — the primary gate, runs before everything else):** for every candidate, ask "what does the reader do with this on Monday?" If the answer requires the reader to be running the system themselves (patching, deploying, configuring, writing prompts, writing code, executing a CLI command), the story does NOT qualify for the lead or a Quick Take. It may still appear in Week at a Glance or On the Radar if the reader's required action is "be aware" or "delegate." It may NEVER be the lead. **Worked rejection: Issue 10's Mini Shai-Hulud story.** The technical takeaway only lands for someone running the CI/CD pipeline themselves — the reader does not. Correct slot: Week at a Glance, "Action required" tier, one line.
+- **Operational-concern lead test (v3.4 — replaces 3-issue lookback, AI-balance check, topic saturation cap):** the chosen lead must connect to one of the four operational concerns (Management & teams / Ways of working / Operating at scale / Banking, fintech & loyalty) with a clear *"what changes for the reader"* takeaway. A tool release alone does not qualify — Cursor adding Composer 2.5 is At a Glance; Cursor changing its pricing in a way that triggers a finance/budget conversation is Quick Take or Lead. The lead must change a conversation the reader is about to have with their team, peers, leadership, or customers. If the chosen lead is a tool release with no associated leadership conversation, the curation has failed — replace.
+- **Banking/fintech framing (v3.3):** banking, fintech, and loyalty stories are framed positively as *"the world the reader operates in"* — never as customer-pressure briefings, never as compliance briefings for the reader's own firm. Regulatory stories (FCA, ADGM, PSR, DORA) are evaluated for any slot they earn on operational-impact tests, including the Lead.
+- **Lead sanity check (v3.1, retained):** the chosen lead must be in the top 3 candidates ranked across all concerns by combined "so what" + narrative tension + operational-decision fit score. If it isn't, the run notes must justify the choice or the lead is changed.
+- **Soft breadth guardrail (v3.4):** across rolling 4 issues, leads should span at least 3 of the 4 operational concerns. Guidance, not a block. If the same concern leads twice running and there's a genuinely stronger story in that concern this week, take it — document the choice in the run plan.
 - **Urgency-vs-awareness classification (v3.2):** every candidate is classified as one of three urgency levels (from the `urgency_classification` field in `candidates.json`):
   - **`act_this_week`** — the reader needs to do something, decide something, or have a conversation about this in the next 7 days. Examples: a real-time customer-impacting outage, an actively-exploited zero-day in widespread use, a regulation effective this week that hits the reader's own organisation.
   - **`decide_this_month`** — the reader has a decision to make in the next 30 days. Examples: a structural industry shift that changes hiring/levelling/team-shape decisions, a major platform deprecation with a 30-day cutover window, a meaningful new framework or model for an ongoing investment decision (e.g. agentic coding rollout strategy).
@@ -111,7 +110,7 @@ The phases are:
 
 **Inputs:** the HTML issue, `references/compliance-checklist.md`, `run-plan.md`.
 
-**Process:** run the full compliance checklist. Then run the lead-sanity cross-check: confirm the lead in the HTML matches the lead in the run plan, the chosen quick takes match, the format matches, the AI-balance check still holds, and the candidates rejected in phase 2 did not silently reappear. Flag every failure. Fix in the main loop or send back to the relevant phase.
+**Process:** run the full compliance checklist. Then run the lead-sanity cross-check: confirm the lead in the HTML matches the lead in the run plan, the chosen quick takes match, the format matches, the operational-concern lead test still holds (the lead is a leadership-conversation story, not a tool capability release), and the candidates rejected in phase 2 did not silently reappear. Flag every failure. Fix in the main loop or send back to the relevant phase.
 
 **Artefact:** a short pass/fail report. Issue is not delivered until pass.
 
@@ -194,42 +193,73 @@ CSS class: `.editorial-moment` (container) with variant-specific inner classes.
 
 ---
 
-## Topic Priority Order
+## Topic Priority Order (v3.4)
 
-**Priority 0 — Cross-cutting events.** Anything that simultaneously affects multiple topic areas and the broader operating environment: hyperscaler outages, military action on infrastructure, actively-exploited zero-days, regulatory changes forcing immediate engineering work across industries. Priority 0 stories always lead — they are never crowded out. Most weeks nothing qualifies. Test: would an engineering manager regret not knowing this on Monday morning?
+**Priority 0 — Cross-cutting events.** Anything that simultaneously affects multiple operational concerns and the broader operating environment: hyperscaler outages, military action on infrastructure, actively-exploited zero-days at mass-deployed scale, regulatory changes forcing immediate engineering work across industries. Priority 0 stories always lead — they are never crowded out. Most weeks nothing qualifies. Test: would an engineering leader regret not knowing this on Monday morning?
 
-Every Priority 0 event eventually gets a deep dive. Cover it first as the lead article in a standard weekly, track it in subsequent issues, then publish the deep dive when enough information exists to tell the full story.
+Every Priority 0 event eventually gets a deep dive. Cover it first as the lead in a standard weekly, track it in subsequent issues, then publish the deep dive when enough information exists to tell the full story.
 
-### Top tier — equal weight (v2.0)
+### Four operational concerns (v3.4 — replaces v2.0 top tier of six)
 
-The following six topics carry **equal editorial weight**. None has a standing claim on the lead article. Each week, the lead is chosen by which story from any of these six topics has the most impact for that specific week — not by topic ranking.
+The digest covers four operational concerns the reader can act on as a leader. **AI is the substrate that runs through all four — not a fifth concern.** Tool releases are not first-order subject matter; the operational decisions they trigger are.
 
-- **AI tooling & adoption** — Product releases, pricing changes, and capability shifts for AI coding tools (GitHub Copilot, Claude Code, Cursor, Codex) and enterprise AI platforms. Scope: the tools themselves and their direct feature/pricing/capability impact. When a story is primarily about AI's effect on teams, roles, culture, or ways of working, it belongs in Engineering leadership instead. When it's about AI's effect on individual developer workflows, it belongs in Developer experience.
-- **Engineering leadership, culture & ways of working** — Two equally-weighted facets:
-  - **Management craft (v2.7, the practitioner side)** — the everyday craft of being an engineering manager: running a good 1:1, having a hard performance conversation, giving and receiving feedback, writing/applying career frameworks and ladders, calibration practice, levelling decisions, growth plans, coaching frameworks, hiring loops and interview design, structuring onboarding for new hires, the manager-of-managers transition, skip-levels, and new-manager survival material. **The reader is an engineering manager, sometimes with only ~1 year of experience.** Frame craft pieces for that reader — "here's how a peer thinks about 1:1s", not "here's the strategic shape of your org's calibration process". Craft content is the priority for this topic area; it should appear in roughly half of all issues (see Leadership Read floor below).
-  - **Org-level structural change (the strategic side)** — Org design, team topologies, delivery frameworks, Agile methodology changes, PM tooling (Jira, Linear), engineering culture shifts, AI's impact on teams and roles (identity loss, capability planning, team reshaping), incident response culture, and transparent engineering communication.
+1. **Management & teams** — the everyday craft of running engineering managers and the teams they run: 1:1s, performance conversations, calibration and levelling, career frameworks, hiring loops and interview design, structured onboarding, the manager-of-managers transition, skip-levels, coaching and feedback culture, retention, growth plans. Frame for engineering managers with 1–3 years of experience, including those who came in from non-technical routes (former scrum masters, delivery managers, PMs stepping into eng leadership). When AI shows up here, it's because rollouts are changing what managers manage (calibration of agentic IC output, hiring shifts, role-shape changes, the disappearing junior pipeline conversation).
 
-  Both facets are equally eligible. If a story is fundamentally about how managers manage or how orgs are changing, it lives here regardless of whether AI is the catalyst. **Source sector doesn't matter (v2.5).** A performance-review redesign at Shopify, an on-call culture change at Netflix, a team-topology shift at a public-sector eng org, a calibration-process rewrite at a US enterprise, or a Lara Hogan post on running 1:1s are all eligible when the lesson applies to a banking/fintech engineering manager. Apply the same transferability test used for Outside In — is this a pattern the reader will face in their own role in the next 6–12 months? If yes, the source company's sector is irrelevant.
-- **Developer experience & productivity** — DORA/SPACE, platform engineering, internal portals, CI/CD health, developer surveys, and strategic tooling decisions (pricing changes, acquisitions, vendor lock-in risk) for observability, CI, incident management, and feature flag tools. When a story is about a tool's impact on developer workflows and productivity, it's DevEx. When it's about the tool's own release or capability, it's AI tooling.
-- **Operational resilience** — Post-mortems, outage analysis, cascading failure patterns, observability strategy, on-call design, disaster recovery, and dependency lifecycle management (EOLs, deprecations, upgrade paths, vendor sunset timelines). These are daily concerns for engineering leaders running production systems. Stories about how systems fail and how organisations respond to failure live here. Version lifecycle deadlines (e.g. Node.js EOL) belong in Platform Updates tables and On the Radar timelines unless the story has a genuine narrative beyond "update by date X" — in which case it can earn quick take treatment but not lead article treatment.
-- **Banking, fintech, and loyalty** (v3.3) — first-class subject matter, framed as *"the world the reader operates in."* The reader works at a fintech serving UK and ME banks as customers, in the customer-loyalty / commerce-media space, and has no other reliable source for what bank engineering orgs and fintech peers are actually building. Includes: bank engineering posts (Monzo, Wise, Starling, Revolut, ClearBank, Allica, Lloyds, JPMorgan, regional ME banks), broader UK/ME fintech engineering moves, payments rails (Visa, Mastercard, faster-payments work, agentic-commerce protocols), loyalty / commerce-media tech (Stripe Ledger, neobank loyalty engineering, aggregator APIs, rewards-platform engineering), open banking, neobank rollouts, and regulatory-driven engineering work (DORA, PSD3, ME data-residency mandates, FCA/ADGM/FSRA/PSR/HMT changes). A US fintech's coding-agent rollout, an EU DORA clarification, or a global payments rail shift all qualify when they change what UK/ME teams will build, buy, plan, or have a conversation about. No macro-economics, monetary policy, or general financial regulation unless it directly creates engineering work.
-- **Security & compliance** — Critical vulnerabilities requiring patching, compliance deadlines, major threat landscape shifts relevant to financial services, and actively exploited zero-days. Eligible for lead or quick take treatment when a security event has genuine narrative weight and passes the "worth reading" test (see Content Rules). Patch roundups and CVE summaries belong in Week at a Glance and Platform Updates — not articles. Frame for managers: urgency, scope, and what teams need to patch, not exploit mechanics.
+2. **Ways of working** — how teams deliver, organise, adopt, and shift practice. Delivery metrics (DORA, SPACE), trunk-based dev rollouts, CI/CD adoption, internal developer platforms and golden paths, feature-flag practice, observability strategy as practice, incident-response culture, team topologies, agile and PM-tool shifts, engineering culture. **The whole agentic-coding rollout question lives here:** structuring the team for adoption, what changes about review / refinement / sequencing, what guardrails are in place, what the rollout looks like at month 1 vs month 6. Vendor decisions (CI, observability, incident management, feature flag, internal developer platform) belong here when the angle is *what teams do differently* — not the tool's own release notes.
 
-**Testing** (manual and automated) cuts across topics. Surface when there is a structural shift worth an engineering leader's attention: significant changes in how teams are organising QA, major tooling decisions, regulatory mandates making automated testing a compliance obligation, or the challenge of testing AI-generated code at scale. Testing sits at a slightly lower threshold than the core six topics: a single company's automation case study belongs in the Leadership Read or Outside In, not a lead article or quick take. Testing should not anchor consecutive issues.
+3. **Operating at scale** — running production systems and the engineering organisations that keep them running. Post-mortems with narrative weight, outage analysis, cascading failure patterns, on-call design, disaster recovery, observability under load. Dependency lifecycle (EOLs, deprecations, vendor sunsets) when the upgrade work is real and the deadline is live, not "months from now." Security stories when active exploitation, mass impact, or live compliance deadlines are present — the framing is urgency and scope, never CVE forensics or exploit mechanics. AI shows up here too: production agents with action authority, agent supply-chain risk (the Mini Shai-Hulud pattern), AI-assisted SRE.
 
-**No-repeat-lead rule (3-issue lookback, v2.0):** No top-tier topic can lead more than once in any rolling 3-issue window. Before selecting the lead article, check the state file for the last 3 issues' lead topics. If AI tooling led either of the previous two issues, it cannot lead this week regardless of what's in the news. Pick a different topic. This replaces the previous single-issue check and prevents any topic from dominating the run. (Priority 0 events override this rule — they always lead.)
+4. **Banking, fintech & loyalty** — the world the reader operates in (v3.3). Bank engineering orgs (Monzo, Wise, Starling, Revolut, ClearBank, Allica, Lloyds, JPMorgan, regional ME banks), broader UK/ME fintech engineering moves, payments rails (Visa, Mastercard, faster-payments work, agentic-commerce protocols), loyalty / commerce-media tech (Stripe Ledger, neobank loyalty engineering, aggregator APIs, rewards-platform engineering), open banking, neobank rollouts, and regulatory work (DORA, PSD3, ME data-residency, FCA/ADGM/FSRA/PSR/HMT) when it creates real engineering work. Framed positively: *"this is the world you operate in and the engineering decisions your peers and customers are making."* The reader has no other reliable source for what their bank customers and fintech peers are actually building.
 
-### Lower tier — higher threshold (v2.0)
+### AI as substrate, not a beat (v3.4)
 
-These topics retain a higher bar for inclusion. They appear when warranted but do not compete for the lead article unless impact is exceptional.
+The previous taxonomy treated "AI tooling & adoption" as a co-equal beat. The result: the most active news cycle is AI, so AI dominated the leads, and the corrective mechanical rules (3-issue lookback, AI-balance check, topic saturation cap) papered over the structural problem by rotating AI stories rather than asking the deeper question.
 
-7. **Software engineering (general)** — Conference-driven practitioner insight (the specific finding, not a round-up), open-source governance changes that create dependency or licensing risk, language and runtime shifts affecting hiring or architecture, empirical research on team structure or delivery patterns.
-8. **Cloud & infrastructure** — AWS/GCP/Azure. Major outages, budget-affecting pricing changes, or new services that change architectural options only. Routine launches → At a Glance or omit.
-9. **API strategy & platform integration** — MCP, agentic commerce standards, platform-as-a-product. High threshold — major shifts only.
-10. **Talent & labour market** — Hiring trends, salary data, AI-driven team sizing, UK/ME focus. Concrete surveys or notable trend shifts only.
-11. **Platform updates** — .NET, Node.js, GitHub, frameworks. Never articles — At a Glance table and On the Radar timeline only. Only include if there's an EOL deadline, critical patch, or breaking change.
+**The new rule: AI is classified by the operational decision it triggers, not as its own category.** A Cursor capability release, a Copilot pricing change, a Claude Code update — each is classified by *what changes for the reader as a leader*:
+- "The reader needs to renegotiate finance budgets" → **Ways of working** or **Management & teams**.
+- "The reader needs to plan a verification loop for production agents" → **Operating at scale**.
+- "The reader's bank customers will start asking about it" → **Banking, fintech & loyalty**.
+- "This is a tool capability my staff engineers will evaluate" → **At a Glance**, not first-order subject matter.
 
-Impact always overrides tier. If a lower-tier story has major, broad-reaching impact, elevate it.
+**Tool releases are not leads by default.** Cursor 2.5 shipping → At a Glance. Cursor changing its pricing in a way that materially alters how engineering leaders budget AI spend → Quick Take or Lead. The cleanest test: *can the reader bring this to a conversation with their team, their finance partner, their customers, or their leadership team?* If yes, eligible. If no, At a Glance.
+
+### Cross-cutting subject matter (surfaces when warranted)
+
+The following topics surface across the four concerns when the substance is there. They don't have a standing claim on slots:
+
+- **Testing** (manual and automated) — surface when structural shifts apply (org-level QA reshaping, regulatory mandates making test automation a compliance obligation, the challenge of testing AI-generated code at scale).
+- **Talent & labour market** — concrete UK/ME-relevant surveys, salary data, AI-driven team-size shifts.
+- **Software engineering research** — empirical findings on team structure, delivery patterns, code-review practice the reader can use in their own org.
+
+These do not need to appear every issue. They surface when the substance is there, classified into whichever of the four concerns they best fit.
+
+### Demoted to reference-only treatment
+
+The following never get article treatment. They live in Week at a Glance, Platform Updates rows (when v3.2 condensed rules permit), or On the Radar:
+
+- **Hyperscaler events** (AWS, GCP, Azure) — major outages or budget-affecting pricing changes only, and these qualify as Priority 0 events when they hit, not as a standing beat. Routine launches → At a Glance or omit.
+- **Platform / runtime updates** (.NET, Node.js, GitHub changelogs, framework releases) — At a Glance row or On the Radar timeline only. Never articles. The v3.2 anchor-slot rule (`general_awareness` candidates do not anchor) covers this.
+
+### Lead selection (v3.4 — replaces 3-issue lookback, AI-balance check, topic saturation cap)
+
+The lead is the week's strongest story about an operational concern the reader can act on as a leader. The story must change a conversation the reader is about to have with their team, their peers, their leadership team, or their customers.
+
+A story qualifies for the lead when both:
+- It connects to one of the four operational concerns with a clear *"what changes for the reader"* takeaway, AND
+- It earns the lead on substance — narrative weight, breadth of impact, or a structural shift worth surfacing.
+
+A tool release alone is not a lead. A regulatory event qualifies for the lead if it materially changes the conversation. An engineering management piece qualifies if its framing is fresh enough to land — vs being canonical.
+
+### Soft breadth guardrail (v3.4 — replaces mechanical rotation rules)
+
+Across rolling 4 issues, leads should span at least 3 of the 4 operational concerns. This is editorial guidance for the curator, not a mechanical block. If the same concern leads twice running and there's a genuinely stronger story in that concern this week, take it — the discipline is editorial judgment, not a lookback table. Document the choice in the run plan.
+
+The following rules from earlier versions are **retired**:
+- **3-issue lookback** (v2.0) — gone. Replaced by the operational-concern lead test plus the soft breadth guardrail.
+- **Topic saturation cap** (v2.0) — gone. With AI no longer a beat, the rule has no target.
+- **AI-balance check** (v3.1) — gone for the same reason.
+
+If AI is the substrate of three anchor stories in the same issue and the curator can defend each on operational-decision grounds, that's fine. The discipline lives in the operational-decision test, not in a rotation rule.
 
 ---
 
@@ -240,11 +270,9 @@ Impact always overrides tier. If a lower-tier story has major, broad-reaching im
 - **Search the web every issue.** Do not rely on training data. Search each topic area individually.
 - **Date range: look backwards.** "Run the digest" means the previous 7 days ending today. Cover what happened — never preview what's coming.
 
-### Topic Saturation Cap (v2.0)
+### Topic balance (v3.4 — replaces v2.0 Topic Saturation Cap)
 
-No single topic area can dominate an issue. Of the four prominent slots — lead article, QT1 (the stronger/wider quick take), leadership read, and editorial moment — **no more than 2 can share the same topic area**. This forces distribution even when one topic generates the most news volume.
-
-When classifying stories, apply the narrower topic definitions from v2.0. A story about AI's impact on engineering teams is "Engineering leadership, culture & ways of working" — not "AI tooling." A story about a specific AI tool's release is "AI tooling" — not "Developer experience." Be honest about classification; don't relabel a story to circumvent the cap.
+The v2.0 mechanical cap ("no more than 2 of lead/QT1/leadership read/editorial moment share the same beat") is retired. With AI no longer a beat, mechanical caps on beat saturation have no target. The replacement is the operational-concern lead test plus the soft breadth guardrail in the Topic Priority Order section: leads span at least 3 of the 4 operational concerns across rolling 4 issues, but on any given week the curator is free to anchor multiple slots in the same concern if the substance is there. The discipline lives in the operational-decision test (does each anchor story trigger a leadership conversation?), not in a rotation rule.
 
 ### Source Diversity Rule (v2.0)
 
@@ -953,7 +981,7 @@ Do not use inflammatory terms like "bombs" unless there were literally bombs and
 
 **Layout variety (v1.9, expanded v2.1):** Quick take layout differs from last issue (`last_qt_layout` in state). Outside In format differs from last issue (`last_oi_format` in state). Mid-issue accent, if present, uses a different variant from last issue. Lead article opener differs from last issue (`last_lead_opener` in state). No two articles in the same issue share an opener style.
 
-**Topic balance (v2.0):** No topic area dominates the prominent slots (lead, QT1, leadership read, editorial moment) — max 2 of 4 from the same area. Lead topic passes the 3-issue lookback. AI stories classified honestly using v2.0 definitions.
+**Topic balance (v3.4):** The lead is a leadership-conversation story, not a tool capability release. AI is classified by the operational decision it triggers, not as a standalone beat. Across rolling 4 issues, leads span at least 3 of the 4 operational concerns (soft breadth guardrail — editorial guidance, not a mechanical block).
 
 **Source balance (v2.0):** No publication in more than 2 sections. Leadership Read source differs from last issue.
 
