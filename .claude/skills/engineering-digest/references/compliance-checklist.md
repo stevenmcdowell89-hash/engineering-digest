@@ -75,7 +75,7 @@ These checks enforce the v3.3 audience definition. The reader is engineering lea
 - [ ] **Quick Take urgency**: each Quick Take meets the same `act_this_week` or high-impact `decide_this_month` bar. If a Quick Take resolves to `general_awareness`, demote it to On the Radar, Week at a Glance, or Other News.
 - [ ] **Anchor depth-fit**: for each anchor slot (Lead, QT1, QT2), there is a clear "what guides the team's work" takeaway that does not require the reader to be running the system themselves. If the only useful version of the takeaway is for someone patching, deploying, configuring, or writing code, the story is in the wrong slot — demote.
 - [ ] **Banking/fintech framing (v3.3 — supersedes v3.2 customer-pressure gate)**: banking, fintech, and loyalty stories are framed positively as *"the world the reader operates in and the engineering decisions their peers and customers are making"* — not as customer-pressure briefings, and not as compliance briefings for the reader's own firm. Regulatory stories (FCA, ADGM, PSR, DORA) qualify for any slot they earn on operational impact, including the Lead.
-- [ ] **In Practice source check (v3.2)**: the *In Practice* piece (if present) is from the strict whitelist — Monzo, Wise, Stripe, Cloudflare, GitHub, Shopify, Spotify, Intercom, Airbnb, or Figma. Off-whitelist sources require a documented exception in run notes. Whitelist alone is not sufficient — the three required qualities (named operator, journey not framework, technical content at implication level) still apply.
+- [ ] **In Practice quality check (v3.5 — replaces v3.2 whitelist)**: the *In Practice* piece (if present) passes the three required qualities — (1) named operator at a real org, (2) journey not framework, (3) technical content at implication level. Source identity is the filter, not a fixed whitelist; named eng-management authors and scale-tech / fintech engineering blogs are strong candidate pools, with bank engineering blogs (Monzo / Wise / Starling / Revolut / etc.) first-class per v3.3.
 
 ## Structure
 - [ ] Section order matches the spec for the chosen format
@@ -109,24 +109,14 @@ These checks enforce the v3.3 audience definition. The reader is engineering lea
 - [ ] If a source is used in lead article + Week at a Glance, it is NOT also used as Leadership Read or quick take anchor
 - [ ] Source variety across sections — different publications anchor different sections
 
-## Quick Take Layout (v1.9)
-- [ ] Quick take layout variant (QT-A / QT-B / QT-C) differs from `last_qt_layout` in the state file
-- [ ] If QT-B: stronger story is in the wider (60%) column; compact column has anchor stat + 2–3 sentences + takeaway only
-- [ ] If QT-C: only one story genuinely earns quick-take treatment — second card not forced for symmetry
-- [ ] `last_qt_layout` updated in state file after generation
+## Layout choices (v3.5 — replaces v1.9 rotation-tracking)
 
-## Outside In Format (v1.9)
-- [ ] Outside In format (A–F) differs from `last_oi_format` in the state file
-- [ ] Chosen format matches the strength of the source material (see format menu in editorial spec)
-- [ ] Placement matches the format’s rules: A after LR, B before LR, C after lead, E within lead, F flexible
-- [ ] Format D (omit) used only when nothing genuinely earns inclusion
-- [ ] `last_oi_format` updated in state file after generation
+The v3.5 spec retired cross-issue rotation tracking for Quick Take layout, Outside In format, mid-issue accent, and lead opener. The discipline is within-issue craft, not state-file rotation. Verify:
 
-## Mid-Issue Accent (v1.9)
-- [ ] If mid-issue accent is present, it uses a different variant (number band / mini-highlight) from the last issue
-- [ ] Number band stat comes from a story already covered — emphasis, not new content
-- [ ] Mini-highlight is genuinely interesting — not filler
-- [ ] Mid-issue accent omitted if nothing earns it (optional component)
+- [ ] Quick Take layout (QT-A equal grid / QT-B featured+compact / QT-C single full-width) suits this week's material. If QT-B: stronger story is in the wider column. If QT-C: only one story genuinely earns quick-take treatment — no forced symmetry
+- [ ] Outside In format (A full feature / B hero moment / C compact inset) suits the source material. Placement matches the format (A after LR, B before LR, C after lead). Omitting is always an option when nothing earns it
+- [ ] Mid-issue accent (number band / mini-highlight) is genuinely interesting — not filler. Number band stat comes from a story already covered. Optional component — omit if nothing earns it
+- [ ] No two articles in this issue open the same way (within-issue opener variety rule)
 
 ## Feature Article (v2.1)
 _Skip if no Feature article is present in this issue._
@@ -164,12 +154,10 @@ _Skip if no Rabbit Hole is present in this issue._
 - [ ] Placement feels natural — floated within a related article or standalone between sections
 - [ ] `last_rabbit_hole_date` updated in state file after generation
 
-## Entry Pattern Rotation (v2.1)
-- [ ] Lead article opener differs from `last_lead_opener` in the state file
+## Article Openers (v3.5 — within-issue variety only)
 - [ ] No two articles (lead, quick takes, Feature) in this issue share the same opener style
 - [ ] Opener styles drawn from the catalogue: stat-first, quote-first, summary-first, narrative-first
-- [ ] Each opener suits its story — style chosen for editorial fit, not just rotation
-- [ ] `last_lead_opener` updated in state file after generation
+- [ ] Each opener suits its story — chosen for editorial fit
 
 ## Meanwhile (v2.1 — deep dives only)
 _Skip this section for standard weekly and light edition issues._
@@ -281,21 +269,16 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] Stats tile (`.stats-tile`) used only when data earns visual emphasis — not forced every issue
 - [ ] "The takeaway" lines and discussion prompts do NOT prescribe actions — they state implications
 
-## Pacing & Layout (v1.7)
-- [ ] Weekend magazine pacing: quick hits open briskly, lead/quick takes build, Leadership Read/Outside In ease the reader out
-- [ ] Two-tier label hierarchy applied: Tier 1 labels (section labels, cover labels, key takeaway title) in all-caps with 3–4px letter-spacing; Tier 2 labels (tier labels, quick-take headers, stat labels, table headers, badges, archive bar label) in sentence case with 1–2px letter-spacing
-- [ ] Tier 2 labels written in sentence case in the HTML — not relying on CSS `text-transform: uppercase`
-- [ ] Article opener for the lead differs from last issue's opener style (stat-first / quote-first / summary-first / narrative-first)
-- [ ] Quick takes within this issue use different opener styles from each other
-- [ ] If lead article uses a sidebar, it uses the correct layout for the format: **floated inset box** (`.sidebar-box-float`) for standard weeklies, **grid sidebar** (`.article-with-sidebar`) for deep dives only
+## Pacing & Layout (v3.5)
+- [ ] Weekend magazine pacing: quick hits open briskly, lead/quick takes build, Leadership Read / Outside In ease the reader out
+- [ ] Tier 2 labels written in sentence case in the HTML (the template's CSS handles the visual rendering — write the text in the case it should appear in, not relying on `text-transform: uppercase`)
+- [ ] If the lead article uses a sidebar: **floated inset box** (`.sidebar-box-float`) for standard weeklies, **grid sidebar** (`.article-with-sidebar`) for deep dives only
 - [ ] Standard weekly sidebar box has a clear purpose (context, methodology, "what we said last week") — not decorative
 - [ ] `.article-with-sidebar` (65/35 grid) is NOT used in any standard weekly issue
 - [ ] Section breathers (`.section-breather`) placed between The Week at a Glance and Lead Article, and between Quick Takes and Other News
 - [ ] No more than 2 section breathers in the issue
-- [ ] Editorial moment present after foreword/P0, before The Week at a Glance
-- [ ] Editorial moment variant differs from `last_editorial_moment` in state file (no consecutive repeats)
-- [ ] Editorial moment is brief, personality-rich, and tonally distinct from the main editorial content
-- [ ] `last_editorial_moment` updated in state file after generation
+- [ ] Editorial moment present after foreword/P0, before The Week at a Glance — variant suits this week's material (no cross-issue rotation tracker)
+- [ ] Editorial moment is brief, curatorial in tone, distinct from the main editorial content
 
 ## Design Enhancements (v1.1)
 - [ ] Cover: centred masthead, lead pull-stat in tinted band with context sentence

@@ -84,7 +84,7 @@ The phases are:
 
 **Subagent type:** `general-purpose`. **Model:** `opus`.
 
-**Inputs:** `run-plan.md` from phase 2, the editorial spec, the state file (for last-issue values that drive rotation: `last_qt_layout`, `last_oi_format`, `last_editorial_moment`, `last_lead_opener`, `last_feature_date`, `last_stack_date`, `last_rabbit_hole_date`).
+**Inputs:** `run-plan.md` from phase 2, the editorial spec, the state file (for cadence values: `last_feature_date`, `last_stack_date`, `last_rabbit_hole_date` — these gate occasional sections; the v3.5 spec no longer tracks `last_qt_layout`, `last_oi_format`, `last_editorial_moment`, or `last_lead_opener`, since rotation is by within-issue craft, not cross-issue state).
 
 **Process:** for each slot, decide opener style, sidebar usage, jargon-watch terms (the proper-noun scan happens here, not during writing), pull-quote candidates, the editorial moment variant, the QT layout variant, the Outside In format variant, the rabbit hole inclusion. Also flag every term that needs glossing or a Jargon Watch sidebar. Apply the no-repeat rotations against the state file.
 
@@ -116,33 +116,13 @@ The phases are:
 
 ### Why this shape
 
-Research, curation, planning, writing, and review are five distinct kinds of work. They reward different models, different prompts, and different artefacts. Collapsing them into one writer who researches-as-they-write is what produced the lead-selection failures of issues 7–9. The artefacts at each handoff are the load-bearing element — each one is reviewable, each one is the input to the next phase, and each one stops a class of failure (no candidates sheet → anchoring; no run plan → mid-draft drift; no review against plan → silent re-promotion).
-
-Models: all phases run on Opus 4.7 in this Claude Code port (cost is not a constraint; the original split — Sonnet for research/planning/writing/review, GPT-5.5 for curation, Opus only for deep-dive writing — was a cost optimisation on a different harness, see SKILL.md v1.22 changelog). Curation remains the structurally most important step regardless of model: the five-phase split with reviewable artefacts at each handoff is the load-bearing design.
+The artefacts at each handoff are the load-bearing element — each one is reviewable, the input to the next phase, and each one stops a class of failure (no candidates sheet → anchoring; no run plan → mid-draft drift; no review against plan → silent re-promotion). All phases run on Opus 4.7 in this Claude Code port; curation remains the structurally most important step regardless of model.
 
 ---
 
-## Two-Tier Label Hierarchy (v1.7)
+## Labels (v3.5 — template convention, no longer a separate enforced rule)
 
-Labels throughout the digest use a two-tier system:
-
-- **Tier 1 — Structural landmarks** (all-caps, letter-spacing 3–4px): section labels like `THE WEEK AT A GLANCE`, `QUICK TAKES`, `THE LEADERSHIP READ`, `OUTSIDE IN`, `ON THE RADAR`, `RECOMMENDED READING`, `FOREWORD`, cover labels (`IN THIS ISSUE`), and the `KEY TAKEAWAYS` box title. These are navigational signposts — the reader uses them to jump between sections. CSS class: `.section-label`, `.cover-contents-label`, `.kt-title`.
-- **Tier 2 — Inline labels** (sentence case, letter-spacing 1–2px): urgency tier labels (`Action required`, `Worth knowing`, `Watching`), quick-take header bars (`Banking & fintech`, `Security alert`), stats labels beneath numbers (`.stat-label`, `.oi-stat-label`, `.st-label`, `.qt-anchor-context`), table headers, archive bar label, badge text (`.qh-badge`), P0 event log dates, compliance side-note label, and the discussion prompt prefix. These sit within a section — they describe, they don't navigate.
-
-When generating an issue, apply this hierarchy consistently. If a label is Tier 1, use `text-transform: uppercase` and wider letter-spacing. If Tier 2, use sentence case in the HTML text content and keep letter-spacing at 1–2px. The CSS template encodes the defaults; the content author must write Tier 2 labels in sentence case rather than relying on CSS to capitalise them.
-
----
-
-## Article Opener Rotation (v1.7)
-
-The lead article and quick takes should not always open the same way. Rotate between four opener styles across issues:
-
-1. **Stat-first** — open with a bold stat tile or stats row, then contextualise. Best when a number is the headline.
-2. **Quote-first** — open with a pull quote from a key figure, then unpack. Best when someone said something the reader needs to hear.
-3. **Summary-first** — open with a direct one-sentence thesis ("X happened, and it changes Y"), then evidence. The default when nothing else earns top billing.
-4. **Narrative-first** — open with a scene-setting sentence or anecdote ("Three weeks ago, engineers at [company] noticed..."), then zoom out. Best for stories with a human angle.
-
-Track which opener was used for the lead article. Avoid using the same opener style in two consecutive issues. Quick takes within the same issue should use different openers from each other.
+The HTML templates encode label hierarchy at the CSS level — Tier 1 structural landmarks (section labels like `THE WEEK AT A GLANCE`, `QUICK TAKES`, `THE LEADERSHIP READ`, `OUTSIDE IN`, cover labels, `KEY TAKEAWAYS`) use all-caps + 3–4px letter-spacing; Tier 2 inline labels (urgency tiers, quick-take header bars, stat labels, badges, the compliance side-note label) use sentence case + 1–2px letter-spacing. **Use the template's existing classes and the rendering is correct by default.** Write Tier 2 labels in sentence case in the HTML content rather than relying on CSS to capitalise them.
 
 ---
 
@@ -176,20 +156,17 @@ CSS class: `.section-breather`. Never place more than two breathers per issue. T
 
 ---
 
-## Rotating Editorial Moment (v1.7)
+## Editorial Moment (v3.5 — simplified from v1.7)
 
-A short, curatorial slot that rotates between four variants across issues. Place it immediately after the Foreword (and P0 status card, if present), before The Week at a Glance. It should feel like an editorial aside — brief and slightly different in tone from the rest of the issue — but must not read as though a specific person wrote it (the reader may forward the digest to their team).
+A short, curatorial slot placed immediately after the Foreword (and P0 status card, if present), before The Week at a Glance. It should feel like an editorial aside — brief, slightly different in tone — but must not read as though a specific person wrote it (the reader may forward the digest to their team). Pick the variant that suits the week's material, not a rotation tracker.
 
-The four variants:
+Three variants:
 
-1. **"Worth a second look"** — a 2–3 sentence editorial aside connecting a theme from the week's news to a broader observation. Not a summary; a perspective. Framed as curatorial emphasis ("this detail deserves more attention") rather than personal reflection. Style: italic, teal text, padded box with subtle left border.
-2. **"Number of the week"** — a single stat from outside the issue's main stories, with a one-sentence "why it matters" line. Uses the stats-tile component. Good for surfacing a data point that didn't earn full coverage.
+1. **"Worth a second look"** — a 2–3 sentence editorial aside connecting a theme from the week's news to a broader observation. Not a summary; a perspective. Curatorial emphasis, not personal reflection. Italic teal text, padded box with subtle left border.
+2. **"Number of the week"** — a single stat from outside the issue's main stories, with a one-sentence "why it matters" line. Stats-tile component. Good for surfacing a data point that didn't earn full coverage.
 3. **"Quote of the week"** — a short, attributed quote from a public figure, conference talk, or blog post that captures the week's mood. Pull-quote style but smaller and more casual.
-4. **"What changed since last week"** — a 1–2 sentence update on a story from the previous issue, with a source link. Only use when there's a genuine update; skip this variant if nothing meaningful changed.
 
-Rotate in order (1 → 2 → 3 → 4 → 1...). Track `last_editorial_moment` in the state file (values: `second-look`, `number`, `quote`, `changed`). If the next variant in rotation doesn't have strong material, skip to the one after — but never use the same variant two issues in a row.
-
-CSS class: `.editorial-moment` (container) with variant-specific inner classes.
+Vary across issues so the slot doesn't feel mechanical, but pick on substance — not by checking what last week used. CSS class: `.editorial-moment` (container) with variant-specific inner classes.
 
 ---
 
@@ -353,7 +330,7 @@ Calibrate depth to delivery managers. Concrete guidance:
    Each tier gets its own `<ul class="quick-hits">` block preceded by a tier label. This is the best-polished section. Include source links on any item not covered by a full article.
 6. **Section breather** — `.section-breather` band between The Week at a Glance and the Lead Article.
 7. **Lead article** — full treatment, 300–400 words. Feature opener, floated sidebar (see Sidebar Layouts), or full-width. **Break up the prose with h3 subheadings** — one every 1–2 paragraphs to make the article scannable. When the article involves data from multiple sources, include an **inline SVG chart** (bar, grouped bar, or line) using the digest colour palette. Visuals must be actual `<svg>` elements. The chart should tell the story at a glance for readers who won't read every paragraph. **Include a mid-article pull quote bar** (`.pq-bar`) highlighting the core insight or most striking sentence from the story. This is the default for the lead article — omit only when no quote genuinely earns it. When content describes a clear sequence (phases, steps, a progression), render it as an explicit numbered list with spacing rather than burying the sequence in prose.
-8. **1–2 quick takes** — rotate between three layout variants across issues. Track `last_qt_layout` in the state file and avoid repeating the same layout in consecutive issues.
+8. **1–2 quick takes** — pick the layout variant that suits this week's material (no cross-issue rotation tracker):
 
    **QT-A: Equal grid** (default) — two-column grid, equal-width cards. Each column is a card with:
    - A **coloured header bar** across the top (full-width, 10px vertical padding, white text, 11px uppercase tracking) — use topic-appropriate colours (e.g. orange for Banking/Fintech, red for Security Alert, teal for DevEx).
@@ -371,16 +348,15 @@ Calibrate depth to delivery managers. Concrete guidance:
    - Rotate which additional components appear inside cards (pull quote, callout box, stats row — not the same every time).
    - **End each quick take with a bold “The takeaway” line** — one sentence in `<p><strong>` that states the implication for engineering leaders. This is not an action item or instruction — it states what has changed and why it matters.
 9. **Section breather** — `.section-breather` band between Quick Takes and the mid-issue accent (or Other News if no accent).
-9a. **Mid-issue accent** (v1.9) — a small visual pattern-breaker placed between Quick Takes and Other News. Rotate between two variants; do not use the same one in consecutive issues:
-   - **Number band** (`.mid-accent-band`) — full-width tinted band (off-white background, teal top/bottom borders) containing a single striking stat (48px Playfair Display, teal) with a one-line context sentence. The stat should come from a story already covered — this is emphasis, not new content. Think of it as a mid-article pull stat that breaks the vertical rhythm.
-   - **Mini-highlight** (`.mid-accent-highlight`) — a compact 2–3 sentence highlight box (off-white background, subtle left border in teal) surfacing a detail from the week’s news that didn’t earn its own section but is too interesting to bury in Other News. Smaller font (14px), italic, with source link.
-   The mid-issue accent is optional — omit when nothing earns it. But when it appears, it prevents the visual dead zone between quick takes and the quieter back sections.
+9a. **Mid-issue accent** — a small visual pattern-breaker between Quick Takes and Other News. Optional — omit when nothing earns it. Pick the variant that suits this week's material; no cross-issue rotation tracker.
+   - **Number band** (`.mid-accent-band`) — full-width tinted band (off-white background, teal top/bottom borders) containing one striking stat (48px Playfair Display, teal) plus a one-line context sentence. The stat should come from a story already covered — emphasis, not new content.
+   - **Mini-highlight** (`.mid-accent-highlight`) — compact 2–3 sentence highlight box (off-white background, subtle teal left border) surfacing a detail too interesting to bury in Other News. 14px, italic, with source link.
 10. **Other News This Week** — one sentence + source link per item. 3–6 items. Tighter vertical padding than full sections (`padding-top:32px; padding-bottom:32px`).
 11. **Platform Updates / What's worth knowing this week** (v3.2 — condensed) — **0 to 2 rows MAX**. Include ONLY items where impact is widespread right now OR the audience needs to make a near-term decision (`act_this_week` or high-impact `decide_this_month` — see urgency classification under Curation). Routine version bumps, monthly servicing updates, EOL announcements months out, and standard platform changelogs do NOT belong here — they live in their respective vendor changelogs (the reader has those if they need them) or in On the Radar as a timeline entry. Most weeks this section will have one row; some weeks it will not render at all, and that is correct, not a failure. When rows are present, retain the existing format: three columns (**Status**, **Platform**, **What Changed**), colour-coded status dots (red `.status-dot.red` for security/outage, amber `.status-dot.amber` for active security update, green `.status-dot.green` for material feature change), alternating row shading if more than one row, same tighter padding as Other News.
 12. `<hr class="feature-break">`
 13. **In Practice** (v2.8, visual hierarchy fixed v3.0) — standalone craft section, peer of The Leadership Read. Full-section vertical spacing, full-width `IN PRACTICE` header bar above the off-white inset box, separated from Platform Updates by a `.feature-break` or `.section-breather`. Must read as a section, not as a panel floated inside Platform Updates. Appears in roughly 9 of every 10 issues; omitted only when source material is genuinely thin (see In Practice section below). See § In Practice for full rules including the v3.0 substance floor.
 14. **The Leadership Read** — navy background (`.mgmt-section`). Only when source material earns it; omit if nothing strong. Max two consecutive issues without one.
-15. **Outside In** — uses the format menu (see Outside In section). Default placement is here (after Leadership Read), but formats B, C, E, and F allow earlier placement. Check the chosen format for its placement rule. When using Format A (full feature) with benchmark data, add a **stats row** (`.oi-stats-row`) immediately below the headline — 3–4 stat cells with large numbers (28px Playfair Display, deep-teal) and uppercase labels.
+15. **Outside In** — uses the format menu (see Outside In section). Default placement is here (after Leadership Read); Format B (hero) places before Leadership Read; Format C (compact inset) places after the lead. When using Format A with benchmark data, add a **stats row** (`.oi-stats-row`) below the headline — 3–4 stat cells with 28px Playfair Display deep-teal numbers and uppercase labels.
 16. `<hr class="feature-break">`
 17. **On the Radar** — **timeline treatment** with a vertical connector. Each item is a row with three parts: (1) a **date block** on the left (month abbreviation in small caps + day number in large 28px Playfair Display), (2) a **connector** column with a dot (12px circle, teal) and a vertical connecting line between items, (3) the event description on the right. Urgent/deadline items get red dot and red day number styling (`.radar-item.urgent`). Deadlines and required actions still come first, then events.
 18. **Recommended Reading** — linked list.
@@ -503,36 +479,20 @@ Flexible — as a sidebar box floated within any article section, or as a standa
 
 ---
 
-## Entry Pattern Rotation (v2.1)
+## Article Openers (v3.5 — simplified from v2.1 Entry Pattern Rotation)
 
-Article openers set the rhythm of the issue. When every article opens the same way — stat, context, analysis — the reader's attention flattens. Vary the entry pattern across articles within the same issue and across issues.
+Article openers set the rhythm of the issue. When every article opens the same way — stat, context, analysis — the reader's attention flattens. **Vary opener styles across the articles in this issue.** Pick whichever opener best suits each story; don't track which opener "the lead used last week" — that's craft-by-tracker rather than craft-by-judgement.
 
 ### Opener catalogue
 
-Four opener styles are available. Each article (lead, quick takes, Feature) should use a different style from the others in the same issue.
+1. **Stat-first** — open with a striking number, then context. Best when one data point captures the story.
+2. **Quote-first** — open with a direct quote from a named source. Best when someone said something worth leading with.
+3. **Summary-first** — open with a one-sentence thesis, then unpack. Best for complex stories needing a frame.
+4. **Narrative-first** — open with a scene, anecdote, or temporal hook. Best for post-mortems, incidents, chronological stories.
 
-1. **Stat-first** — opens with a striking number, then context. Best when one data point captures the story.
-   > "Forty-three percent of enterprise engineering teams now use AI code assistants daily. Six months ago, it was twelve."
+### Rule (one rule, not four)
 
-2. **Quote-first** — opens with a direct quote from a named source, then context. Best when someone said something worth leading with.
-   > "'We didn't deprecate the old system — it deprecated us.' That line, buried in Monzo's latest post-mortem..."
-
-3. **Summary-first** — opens with a one-sentence thesis, then unpacks. Best for complex stories where the reader needs the frame before the detail.
-   > "GitHub's new pricing tier fundamentally changes the economics of AI-assisted development for teams above 50 seats."
-
-4. **Narrative-first** — opens with a scene, anecdote, or temporal hook, then broadens. Best for post-mortems, incidents, or stories with a strong chronological element.
-   > "At 3:47am GMT on Tuesday, every CI pipeline running on GitHub Actions stalled. By the time most European teams logged in, the backlog was nine hours deep."
-
-### Rotation rules
-
-- **Within an issue**: the lead article, each quick take, and the Feature (if present) must each use a different opener style. No two articles in the same issue open the same way.
-- **Across issues**: the lead article opener must differ from the previous issue's lead opener. Track `last_lead_opener` in the state file (already tracked).
-- **Quick takes**: each quick take within the same issue uses a different opener from the other and from the lead. No cross-issue tracking needed for quick takes — within-issue variety is sufficient.
-- **Feature**: must differ from the lead and quick takes in the same issue. No cross-issue tracking needed.
-
-### State tracking
-
-`last_lead_opener` in the state file tracks the lead article's opener style. Values: `stat-first`, `quote-first`, `summary-first`, `narrative-first`.
+**No two articles in the same issue open the same way.** Within-issue variety is the rule. Cross-issue tracking is not — pick the opener that fits the story.
 
 ---
 
@@ -613,9 +573,9 @@ The deep dive cover is deliberately different from the standard weekly. It is **
 3. **Left-aligned headline** — `font-size: 52px`, `max-width: 700px`, flush left. This is the visual signal that the reader has entered a different format.
 4. **Subtitle** — one sentence framing the central question. `font-size: 18px`, `rgba(255,255,255,.6)`, left-aligned.
 5. **Scope indicator** — a row of 3–4 large stats (Playfair 36px, alert-red) showing the issue's reach: number of studies, sections, engineers surveyed, sources. Separated from the headline by a subtle `rgba(255,255,255,.1)` top border.
-- **Quick take layout variants** (v1.9) — QT-A (equal grid, `.two-col`), QT-B (featured + compact, `.two-col.qt-featured`), QT-C (single full-width, `.qt-single`). Track `last_qt_layout` in state file; rotate across issues.
-- **Mid-issue accent** (v1.9) — number band (`.mid-accent-band`) or mini-highlight (`.mid-accent-highlight`). Placed between Quick Takes and Other News. Optional — omit when nothing earns it.
-- **Outside In format variants** (v1.9) — A: full feature (`.outside-in-section`), B: hero moment (`.oi-hero-band`), C: compact inset (`.oi-compact`), D: omit, E: contrast card (`.oi-contrast-card`), F: meanwhile strip (`.oi-meanwhile`). Track `last_oi_format` in state file; rotate across issues.
+- **Quick take layouts** — QT-A (equal grid, `.two-col`), QT-B (featured + compact, `.two-col.qt-featured`), QT-C (single full-width, `.qt-single`). Pick the layout that suits this week's material.
+- **Mid-issue accent** — number band (`.mid-accent-band`) or mini-highlight (`.mid-accent-highlight`). Between Quick Takes and Other News. Optional — omit when nothing earns it.
+- **Outside In formats** — A: full feature (`.outside-in-section`), B: hero moment (`.oi-hero-band`), C: compact inset (`.oi-compact`). Pick the format that suits this week's material; omitting is always an option.
 6. **Lead stat band** — full-width tinted band (`rgba(220,38,38,.08)` background) beneath the scope row. One large stat (56px Playfair, alert-red) with a context sentence in `rgba(255,255,255,.6)`. This is the single most memorable number from the entire issue.
 
 ### Deep Dive Section Markers
@@ -688,124 +648,62 @@ Cover → Foreword (one paragraph) → Quick hits (5–8, grouped by urgency) �
 
 ---
 
-## In Practice (v3.2 — first-person operational writing, Monzo archetype)
+## In Practice (v3.5 — first-person operational writing)
 
-A dedicated, compact section that surfaces **first-person operational writing from named engineering leaders at named organisations** — not editorial-team think pieces, not abstract frameworks, not vendor content marketing. The reader is the hands-off engineering leader defined in the Audience & Tone section. The framing is "someone at another organisation tried this, here's what they learned, here's what's transferable" — not "here's how X should work in principle."
+A compact section surfacing **first-person operational writing from named engineering leaders at named organisations** — not editorial-team think pieces, not abstract frameworks, not vendor content marketing. Framing: *"someone at another organisation tried this, here's what they learned, here's what's transferable"* — not "here's how X should work in principle."
 
-### The Monzo archetype (v3.2 — source of truth for the section)
+### The three required qualities (the filter — any source qualifies if all three pass)
 
-The section's voice, structure, and signal density are calibrated against three specific Monzo engineering blog posts:
+1. **Source identity — a named operator at a named organisation.** A real person who did the thing they're writing about. Diogo Matias at Monzo. Lara Hogan at Wherewithall. Will Larson at Carta. Disqualified by name pattern: "Pensero editorial team," "the engineering team at X," anonymous corporate bylines, vendor blog posts without a human author. The author must have been in the room when the thing happened.
+2. **Journey not framework.** The piece is operational, lived, and reflective. Pattern-match: *"How we…"*, *"What we learned when…"*, *"Why we changed…"*, *"Expectations for…"*, *"We tried X and here's what happened."* Normative pieces ("here's how X should work," "the right way to do Y") do NOT qualify, regardless of source. If the post would survive being written by an analyst who has never run an engineering organisation, it is the wrong post.
+3. **Technical content at the level of implications, not instructions.** A piece can be about test automation, agentic coding adoption, observability re-architecture, deploy pipelines, calibration, hiring loops — but the takeaway must be transferable to a reader who does not run the system themselves. **The reader's filter:** *"I won't be writing any of them, but it gives an insight of what went wrong and what didn't, what they learned."* If the only useful takeaway requires running the system, the piece belongs to lead developers and architects, not a Friday-morning magazine.
 
-1. **[Expectations for an Engineering Manager at Monzo](https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo)** (Diogo Matias, September 2025) — a manager-of-managers writing TO EMs about how he expects them to drive their area, deliver impact, manage risk, run 1:1s, embody psychological safety. First-person, plain, operational. Every section is one transferable claim.
-2. **[How Monzo Designers are shipping safer, faster product improvements](https://monzo.com/blog/how-Monzo-Designers-are-shipping-safer-faster-product-improvements)** (Susan Walsh / Sasha Ward / Justin Thrift, March 2026) — three named designers describing how they started shipping production code with AI tooling, what guardrails are in place, what changed about their relationship with engineers. Technical content present but at the level of *implications*: no Cursor configs, no prompts, no CLI commands.
-3. **[Monzo's transparent engineering progression framework](https://monzo.com/blog/2018/06/25/monzos-transparent-engineering-progression-framework)** (June 2018, evergreen) — how they rolled out a structural change to their org, what it's *for*, what it *isn't* for, why transparency mattered. The piece that helped the digest's own publisher design their organisation's career framework.
+**Source policy (v3.5 — replaces the v3.2 strict whitelist):** any source passes if all three qualities are met. Strong candidate pools include named eng-management authors (Pragmatic Engineer, LeadDev, Lara Hogan, Will Larson, Charity Majors, Camille Fournier, Marc Brooker, Patrick Kua, Cate Huston) and scale-tech / fintech engineering blogs (Monzo, Wise, Starling, Revolut, Stripe, Cloudflare, GitHub, Shopify, Spotify, Intercom, Airbnb, Figma, Atlassian, LinkedIn, Netflix, Twilio, etc.). Bank engineering blogs in particular are first-class given the v3.3 audience definition — when a Monzo / Wise / Starling / Revolut engineer publishes a piece that passes the three qualities, it's the strongest possible *In Practice* fit.
 
-These three posts — not generic Monzo content, not all Monzo content — are the calibration north star. If a candidate piece does not pattern-match to one of these, it does not qualify.
+### The Monzo archetype (calibration reference, not a source restriction)
 
-### The three required qualities (all must pass; whitelist alone is not enough)
+The section's voice is calibrated against three specific Monzo engineering blog posts:
 
-1. **Source identity — a named operator at a named organisation.** Diogo Matias at Monzo. Susan Walsh at Monzo. A real person who did the thing they're writing about. Disqualified by name pattern: "Pensero editorial team," "the engineering team at X," anonymous corporate bylines, vendor blog posts without a human author. The author must have been in the room when the thing happened.
-2. **Journey not framework.** The piece is operational, lived, and reflective. Pattern-match to *"How we…"*, *"What we learned when…"*, *"Why we changed…"*, *"Expectations for…"*, *"We tried X and here's what happened."* Normative pieces ("here's how X should work," "the right way to do Y") do NOT qualify, regardless of source. If the post would survive being written by an analyst who has never run an engineering organisation, it is the wrong post.
-3. **Technical content at the level of implications, not instructions.** A piece can be about test automation rollout, agentic coding adoption, observability re-architecture, deploy pipelines, calibration cycles, hiring loops — but the takeaway must be transferable to a reader who does not run the system themselves. **The reader's filter:** *"I won't be writing any of them, but it gives an insight of what went wrong and what didn't, what they learned."* If the only useful version of the takeaway requires running the system, the piece is wrong for *In Practice* — it belongs to lead developers and architects, not a Friday-morning magazine.
+1. **[Expectations for an Engineering Manager at Monzo](https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo)** (Diogo Matias) — a manager-of-managers writing TO EMs about how he expects them to drive their area. First-person, plain, operational. Every section is one transferable claim.
+2. **[How Monzo Designers are shipping safer, faster product improvements](https://monzo.com/blog/how-Monzo-Designers-are-shipping-safer-faster-product-improvements)** — named operators describing shipping production code with AI tooling, the guardrails, what changed about engineer-designer collaboration. Technical content at implication level.
+3. **[Monzo's transparent engineering progression framework](https://monzo.com/blog/2018/06/25/monzos-transparent-engineering-progression-framework)** (evergreen) — how they rolled out a structural org change, what it's for, what it isn't for.
 
-### Purpose
-
-*In Practice* makes operational writing — the lived experience of running an engineering organisation — a structural part of the digest. The result: every issue gives the reader insight into how another team approached a real situation, what they learned, what's transferable. Not a framework. Not a manifesto. A specific journey at a specific organisation.
+A candidate piece doesn't need to be from Monzo — it needs to pattern-match the voice of these three. The whitelist is retired; the archetype is the calibration.
 
 ### Themed seasons (year-round rotation)
 
-*In Practice* runs in **themed seasons of 3–4 issues each**. Each season anchors on one craft theme; the slot's content across consecutive issues builds depth on that theme rather than jumping topics every week. Two seasons of the year are calendar-anchored to the engineering performance cycle:
+*In Practice* runs in themed seasons of 3–4 issues each, building depth on one craft theme. Two seasons are calendar-anchored to the engineering performance cycle:
 
-- **Mid-April → mid-May (4–5 issues): Year-end performance cycle.** UK banking norms drive April calibration windows. The themes for this season are calibration & rating decisions, difficult performance conversations, and promotion conversations & growth plans.
-- **Mid-October → mid-November (4–5 issues): Mid-year/half-year cycle (lighter touch).** Same trio of themes but framed for the half-year cycle: interim conversations, recalibration, course-correction rather than final ratings. Lighter weight than the April season.
+- **Mid-April → mid-May (4–5 issues): Year-end performance cycle** — calibration, difficult performance conversations, promotion & growth plans.
+- **Mid-October → mid-November (4–5 issues): Mid-year cycle (lighter touch)** — interim conversations, recalibration.
 
-The rest of the year rotates through other craft themes, each running 3–4 issues. Theme pool (non-exhaustive):
-
-- 1:1s and skip-levels
-- Hiring loops & interview design
-- New-manager survival & first-90-days
-- Feedback culture (giving and receiving)
-- Coaching & growth conversations
-- Manager-of-managers transitions
-- Retention conversations
-- Career frameworks & ladder design
-- Onboarding new hires
-- Running good staff meetings & async rituals
-
-The two calendar-anchored seasons are fixed; the order of the other themes is flexible. Track season state in `current_in_practice_season` and `in_practice_season_progress` (see State Tracking section).
+The rest of the year rotates through other craft themes (3–4 issues each). Theme pool: 1:1s and skip-levels · hiring loops & interview design · new-manager survival · feedback culture · coaching & growth conversations · manager-of-managers transitions · retention conversations · career frameworks & ladder design · onboarding · async rituals.
 
 ### Format
 
-- **Section label**: "IN PRACTICE" in deep-teal, small-caps, 11px, 3px letter-spacing (Tier 1 label). Below the label, a **light theme name** in italic teal: e.g. *"Performance conversations"*, *"1:1s"*, *"Hiring loops"*. Do not include a week count ("week 2 of 4") — keep it light.
-- **Headline**: Playfair Display, 22px, navy. The piece's own title, paraphrased if needed for fit.
-- **Author + outlet line**: 12px Source Sans 3, body grey. e.g. *"Lara Hogan · Wherewithall, March 2026"*.
-- **Body**: 300–450 words (revised from 200–300 in v3.0.1 — the substance floor below requires real headroom; condensed summaries cannot carry it). Summarise the piece's central insight, frame it for a working engineering manager, link out for the full read. Never plagiarise; never write original advice; this is curation, not commentary.
-- **Substance floor (v3.0):** *In Practice* must be valuable on its own, even if the reader never clicks the source link. The summary must include: (1) **the specific framework, model, or claim** the author makes — named, not gestured at; (2) **at least one concrete example, mechanism, or distinction** from the source that makes the idea actionable; (3) **the takeaway the reader gets without clicking through** — articulated, not implied. A summary that reads as "here are the broad strokes; read the full piece for the substance" fails this floor and must be rewritten before publication. Test: after stripping the link, does the section still teach the reader something specific they can use? If no, expand it or drop the section.
-- **One pulled quote** (optional, when the source has a sharp line): rendered inline as a small blockquote.
-- **Closing line**: bold one-sentence framing of why this matters this week. Same structure as "The takeaway" but labelled differently — use **"What to try"** in bold, followed by one peer-level sentence (e.g. *"Next time you sit down to write someone's calibration evidence, start with the gap between their current behaviour and the next level's expectations — not their wins."*). The wording should still be inform/contextualise, not prescribe.
-- **Visual hierarchy (v3.0):** *In Practice* must read as a **peer section** of The Leadership Read, not as a sub-article or callout. To enforce this:
-  - Section uses a full-width header bar (`.in-practice-header`) above the boxed content — small caps `IN PRACTICE` label in deep-teal, full container width, sitting outside the off-white inset like other section labels do.
-  - The boxed content (`.in-practice`) below the header retains its off-white inset and deep-teal left border for visual softness, but the header treatment plus full-section vertical spacing (`padding: 0 60px; margin: 32px 0`) makes it read as a standalone section, not a panel inside Platform Updates.
-  - A `<hr class="feature-break">` or `.section-breather` separates Platform Updates from *In Practice* so the boundary is unambiguous.
-  - On mobile, the header bar collapses with the box but maintains the separation cue.
-- CSS: `.in-practice` — off-white background (`var(--off-white)`), deep-teal left border (4px), `padding: 28px 36px`. The wrapping section uses full container width with the header bar as described above.
+- **Section label**: `IN PRACTICE` (Tier 1, deep-teal, all caps), with an italic teal theme name underneath (e.g. *"Performance conversations"*, *"Hiring loops"*). No week count.
+- **Headline**: Playfair Display 22px navy.
+- **Author + outlet line**: 12px Source Sans 3 (e.g. *"Diogo Matias · Monzo, March 2026"*).
+- **Body**: 300–450 words. Summarise the central insight, frame for a working engineering manager, link out. Never plagiarise. Never write original advice.
+- **Substance floor**: *In Practice* must be valuable on its own, even if the reader never clicks through. The summary must include (1) the specific framework / model / claim the author makes, named — not gestured at; (2) at least one concrete example, mechanism, or distinction; (3) the takeaway the reader gets without clicking. Strip-link test: after removing the source link, does the section still teach the reader something specific? If no, expand or omit.
+- **Optional pulled quote** when the source has a sharp line.
+- **Closing line**: bold **"What to try"** plus one peer-level sentence (e.g. *"Before your next 1:1 with an EM, ask which of Matias's nine expectations you'd score them lowest on — then consider whether that's a gap they can see."*). Inform/contextualise, never prescribe.
+- **Visual hierarchy**: full-width `.in-practice-header` bar above the off-white `.in-practice` inset (deep-teal 4px left border, 28px/36px padding). Separated from Platform Updates by `<hr class="feature-break">` or `.section-breather` so it reads as a peer section to the Leadership Read, not a panel inside Platform Updates.
 
 ### Source rules
 
-- **Recency window**: 30 days for fresh writing, but evergreen pieces are explicitly eligible (see below).
-- **Evergreen rule ("a classic worth revisiting")**: When recent writing on the season's theme is thin, *In Practice* may pull from older but still-relevant pieces from the same whitelist. Tag those issues with a small *"a classic worth revisiting"* sub-label. Quality beats recency.
-- **Cut the season short rather than drag**: If the third or fourth issue of a season has no qualifying candidate, end the season at 2–3 issues and start the next theme.
-- **Skip cleanly when needed**: If a single week has no qualifying candidate from the whitelist, omit *In Practice* with a small footer note (*"In Practice returns next week"*).
-
-- **Strict source whitelist (v3.2 — start here, expand only by exception):**
-  - **Monzo** (the archetype; the three reference posts above)
-  - **Wise**
-  - **Stripe**
-  - **Cloudflare**
-  - **GitHub**
-  - **Shopify**
-  - **Spotify**
-  - **Intercom**
-  - **Airbnb**
-  - **Figma**
-
-  Being on the whitelist is **necessary but not sufficient**. Every candidate — even from Monzo — must pass the three required qualities (named operator, journey not framework, technical content at implication level). A Monzo product-marketing post does not qualify. An Intercom CTO LinkedIn-style think piece does not qualify. A Stripe vendor-marketing piece masquerading as an engineering blog does not qualify.
-
-- **Explicit disqualifiers (v3.2 — reject regardless of source):**
-  - Vendor content marketing (any source, any byline).
-  - Abstract frameworks dressed up as practice (the Issue 10 Pensero failure mode).
-  - Editorial-team or "team" bylines without a named human operator.
-  - Normative "here's how X should work" pieces without lived experience.
-  - Posts where the only operational takeaway requires running the system yourself (the Issue 10 audience-fit failure: takeaways aimed at the engineers doing the work, not the leaders guiding it).
-  - Marketing posts dressed as craft writing ("how our HR platform makes 1:1s easier").
-  - LinkedIn-style personal-brand content rather than craft writing.
-  - AI-generated or AI-summarised "thought pieces" with no human practitioner voice.
-  - Pieces aimed at the C-suite or director-of-directors level when the season's framing is for working managers — but ALSO pieces aimed at IC-level technical depth when the framing is for engineering leadership.
-
-- **No-recycle rule**: Track every piece used in *In Practice* in `in_practice_history`. The same piece cannot appear twice across the run.
-- **Source diversity**: *In Practice* counts toward the 2-section-per-publication source diversity rule.
+- **Recency window**: 30 days for fresh writing; evergreen pieces are explicitly eligible when recent material on the season's theme is thin. Tag evergreen issues with a small *"a classic worth revisiting"* sub-label.
+- **Cut the season short rather than drag**: if a season's third or fourth issue has no qualifying candidate, end the season early and start the next theme.
+- **Skip cleanly when needed**: if a week has no qualifying piece, omit with a footer note (*"In Practice returns next week"*). Don't substitute a Pensero-style abstract framework piece to fill the slot.
+- **Explicit disqualifiers**: vendor content marketing; abstract frameworks dressed as practice (the Issue 10 Pensero failure mode); editorial-team / "team" bylines without a named operator; normative "here's how X should work" pieces; posts where the only takeaway requires running the system; LinkedIn-style personal-brand content; AI-generated thought pieces.
+- **No-recycle rule**: track every piece used in `in_practice_history`. The same piece cannot appear twice across the run.
 - **Anti-overlap with Leadership Read**: *In Practice* and the Leadership Read must not share an author or outlet in the same issue.
 
-### Season planning
+### Worked examples
 
-At the start of each season, do a research sweep across the season's theme to surface 4–6 candidate pieces. Note the strongest in `in_practice_season_candidates` (state file) so the weekly run isn't starting from scratch each Friday. Refresh the candidate list mid-season if new strong writing appears.
-
-### What disqualifies a piece (v3.2 — strengthened)
-
-The full disqualifier list lives under "Source rules" above. The short form for at-a-glance use during curation:
-
-- Wrong source identity — no named operator (the Issue 10 Pensero failure).
-- Wrong genre — normative framework, not a journey.
-- Wrong depth — takeaways that only land for someone running the system themselves.
-- Wrong intent — marketing, personal brand, or thought-leadership without lived experience.
-- Off-whitelist — source not on the strict whitelist, with no compelling exception case documented in run notes.
-
-### Worked examples (v3.2 — calibrated to the Monzo archetype)
-
-- *Performance conversations* season, week 2: **Diogo Matias' "Expectations for an Engineering Manager at Monzo"** — named operator at a whitelist company, journey/expectations format, technical content at implication level. *In Practice* summarises his framing on driving the area, delivering impact, embodying psychological safety; pulls one quote (e.g. *"make bad news flow much faster than good news"*); links out. **What to try:** *"Before your next 1:1 with an EM, ask yourself which of Matias' nine expectations you'd score them lowest on — then consider whether that's a gap they can see."*
-- *Agentic coding rollout* season, week 1: **Susan Walsh and Sasha Ward's Monzo piece on designers shipping to production with AI tooling.** Named operators, journey format ("I started with a deliberately small change…"), technical content present but at implication level (mandatory code review, deployment stays with engineers, designer-engineer pairing structure). What a hands-off engineering leader takes away: the team-design pattern, the safety mechanism, the cultural framing — not the Cursor commands.
-- *Career frameworks* season, week 3: **Monzo's "Transparent engineering progression framework"** (evergreen). Whitelist source, journey format ("why we've made it transparent"), explicit about what it's for and what it isn't for ("think of the framework as a compass, not a GPS"). Tagged *"a classic worth revisiting."*
-- *Hiring loops* season, week 4 (no candidate from the whitelist passes the three qualities): season ends at 3 issues; new theme begins next week. **Do not** substitute a Pensero-style abstract piece to fill the slot — omit *In Practice* with the standard footer note.
+- *Performance conversations* season, week 2: **Diogo Matias' "Expectations for an Engineering Manager at Monzo"** — named operator, journey format, implication-level technical content. Summarise his framing on driving the area, delivering impact, psychological safety; pull one quote (e.g. *"make bad news flow much faster than good news"*); link out. **What to try:** *"Before your next 1:1 with an EM, ask which of Matias's nine expectations you'd score them lowest on."*
+- *Agentic coding rollout* season, week 1: **Monzo designers shipping production code with AI tooling.** Named operators, journey format, implication-level (mandatory code review, deployment stays with engineers, designer-engineer pairing structure). Takeaway is the team-design pattern, not the Cursor commands.
+- *Hiring loops* season, week 4 (no qualifying candidate): season ends early at 3 issues. Omit with the standard footer note rather than substituting a framework piece.
 
 ---
 
@@ -886,26 +784,22 @@ Content doesn’t need to be from the current week. Only include when something 
 
 ### Format menu
 
-Choose the format that best fits the source material. Track `last_oi_format` in the state file and avoid repeating the same format in consecutive issues. The default placement is after the Leadership Read (position 15 in the section order), but formats B, C, E, and F allow earlier placement as noted.
+Choose the format that best fits the source material — there's no cross-issue rotation tracker. Default placement is after the Leadership Read; Format B places before, Format C places after the lead.
 
-**Format A: Full feature** (default) — the existing treatment. Off-white background section (`.outside-in-section`), h3 subheadings, `.oi-callout` for the core lesson, stats row if data warrants, bold “The takeaway” line. Placement: after the Leadership Read.
+**Format A: Full feature** (default) — off-white background section (`.outside-in-section`), h3 subheadings, `.oi-callout` for the core lesson, stats row if data warrants, bold "The takeaway" line. Placement: after the Leadership Read.
 
-**Format B: Hero moment** — a full-width band (`.oi-hero-band`) with a large pull quote (28px Playfair Display, centred, teal) from the source, followed by 2–3 paragraphs of context and a bold “The takeaway” line. Use when the source has a single striking admission or insight that speaks for itself. Placement: **before** the Leadership Read (between the second section breather/mid-accent area and the Leadership Read) — this pulls Outside In forward in the reading order, breaking the predictable end-of-issue pattern.
+**Format B: Hero moment** — a full-width band (`.oi-hero-band`) with a large pull quote (28px Playfair Display, centred, teal) from the source, followed by 2–3 paragraphs of context and a bold "The takeaway" line. Use when the source has a single striking admission that speaks for itself. Placement: **before** the Leadership Read, breaking the predictable end-of-issue pattern.
 
-**Format C: Compact inset** (`.oi-compact`) — a small boxed insert (off-white background, teal left border, 14px body text) containing the company name, a 2–3 sentence summary of the insight, and a source link. No subheadings, no callout box, no stats row. Use when the point can be made in a short paragraph. Placement: **after the lead article** (between items 7 and 8 in the section order) — this surfaces Outside In much earlier when the content is brief enough to sit alongside the main news flow.
+**Format C: Compact inset** (`.oi-compact`) — a small boxed insert (off-white background, teal left border, 14px body text) with company name, 2–3 sentence summary, and source link. No subheadings, no callout box. Use when the point can be made in a short paragraph. Placement: **after the lead article**, surfacing Outside In much earlier when the content is brief enough to sit alongside the main news flow.
 
-**Format D: Omit** — no Outside In this issue. Use when nothing earns inclusion. Do not force content to fill the slot.
-
-**Format E: Contrast card** (`.oi-contrast-card`) — a two-tone card (navy left panel with company name and key stat, white right panel with 3–4 sentence insight + source link). Use when the Outside In lesson directly contrasts or complements the lead article. Placement: **within the lead article section** as a floated or appended element, creating a direct visual dialogue between the main story and the external perspective.
-
-**Format F: Meanwhile strip** (`.oi-meanwhile`) — a thin full-width strip (light teal background, single line: “Meanwhile at [Company]: [one-sentence insight]” with source link). Minimal footprint. Use for a quick external signal that doesn’t warrant any deeper treatment. Placement: **flexible** — between any two major sections where a brief external reference adds context.
+**Omit** — no Outside In this issue. Use when nothing earns inclusion. The format menu is "include in one of three shapes, or skip" — don't force content to fill the slot.
 
 ### Shared rules (all formats)
 
-- **End with a bold “The takeaway” line** (formats A, B, C, E) — one sentence in `<p><strong>` stating the implication for engineering leaders.
-- **Rotate companies** — never the same company in consecutive issues.
-- **Only include when earned** — Format D (omit) is always an option.
-- Break up prose with h3 subheadings for scannability (formats A, B only — C, E, F are too compact).
+- **End with a bold "The takeaway" line** — one sentence in `<p><strong>` stating the implication for engineering leaders.
+- **Rotate companies** — never the same company in consecutive issues, never any company in `outside_in_history`.
+- **Only include when earned** — omitting is always an option.
+- Break up prose with h3 subheadings for scannability (formats A, B only — C is too compact).
 - Render sequences as numbered lists where applicable.
 
 ---
@@ -975,24 +869,10 @@ Do not use inflammatory terms like "bombs" unless there were literally bombs and
 
 ---
 
-## Quality Check
+## Quality Check (v3.5)
 
-**Good issue:** scannable in 60 seconds via quick hits · rewards deeper reading · editorial voice with opinions · pull quotes from real sources · "so what?" answered for every story · lead articles and quick takes also pass the "worth reading" test · topic diversity across prominent slots · source diversity across sections · varied sentence structure · direct · entry patterns varied across articles within the issue.
+**Good issue:** scannable in 60 seconds via quick hits · rewards deeper reading · editorial voice with opinions · pull quotes from real sources · "so what?" answered for every story · lead and quick takes pass both the operational-concern lead test and the worth-reading test · source diversity across sections · varied sentence structure · no two articles share an opener style.
 
-**Layout variety (v1.9, expanded v2.1):** Quick take layout differs from last issue (`last_qt_layout` in state). Outside In format differs from last issue (`last_oi_format` in state). Mid-issue accent, if present, uses a different variant from last issue. Lead article opener differs from last issue (`last_lead_opener` in state). No two articles in the same issue share an opener style.
+**Bad issue:** press release rewrites · padded with filler · IC-level technical details · corporate language · tells managers what to do · design deviates from template · all articles open the same way · foreword lists stories instead of finding the thread · epistemic reframing over the cap of 2 · grid sidebar in a standard weekly · same source anchoring 3+ sections · version lifecycle deadlines given article treatment · tool capability release as the lead.
 
-**Topic balance (v3.4):** The lead is a leadership-conversation story, not a tool capability release. AI is classified by the operational decision it triggers, not as a standalone beat. Across rolling 4 issues, leads span at least 3 of the 4 operational concerns (soft breadth guardrail — editorial guidance, not a mechanical block).
-
-**Source balance (v2.0):** No publication in more than 2 sections. Leadership Read source differs from last issue.
-
-**In Practice slot (v2.8):** *In Practice* appears in roughly 9 of every 10 issues. The current season's theme (`current_in_practice_season`) and progress (`in_practice_season_progress`) are tracked in state. *In Practice* and the Leadership Read in the same issue do not share an author or outlet.
-
-**Bad issue:** press release rewrites · padded with filler · IC-level technical details · corporate language · tells managers what to do · design deviates from template · all articles same format · foreword lists stories instead of finding the thread · overuse of epistemic reframing (any of the six catalogued patterns appearing more than twice total) · grid sidebar in a standard weekly (use floated sidebar instead) · one topic area dominating 3+ prominent slots · same source anchoring 3+ sections · version lifecycle deadlines given article treatment instead of table/radar placement.
-
-**Ongoing story rule:** If a Priority 0 story is being tracked across issues, include a P0 status card for visual continuity. Never use a progress/loading bar — the lack of a known endpoint makes bars misleading. Updates should be shorter than the original coverage — reference back, don't repeat.
-
----
-
-## Both Leadership Read and Outside In
-
-Both can appear in the same issue if both earn their place. The editorial spec's own criteria govern inclusion — strong source material earns a spot, weak material gets omitted. Both get condensed as needed to stay within the 5–7 page limit.
+**Cross-cutting reminders:** P0 stories get the `.p0-status-card` (status badge + event log + current status sentence), never a progress/loading bar. *In Practice* and the Leadership Read in the same issue do not share an author or outlet. Both Leadership Read and Outside In can appear in the same issue when each earns its place; condense as needed to fit the 5–7 page limit.

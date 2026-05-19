@@ -47,14 +47,20 @@ Maintained at `engineering-digest-state.json`. Read at start of every run, updat
   "last_issue_number": 3,
   "last_issue_date": "2026-03-24",
   "last_issue_format": "weekly",
-  "last_lead_topic": "AI tooling & adoption",
+  "last_lead_topic": "Management & teams",
+  "last_lead_topics_3issues": ["Operating at scale", "Ways of working", "Management & teams"],
   "consecutive_non_deepdive": 1,
   "last_outside_in_company": "Wise",
-  "last_editorial_moment": "second-look",
-  "last_lead_opener": "stat-first",
-  "last_qt_layout": "equal",
-  "last_oi_format": "full",
-  "p0_stories_tracking": ["AWS ME recovery"]
+  "outside_in_history": [],
+  "last_leadership_read": "Pragmatic Engineer",
+  "leadership_read_history": [],
+  "last_feature_date": null,
+  "last_stack_date": null,
+  "last_rabbit_hole_date": null,
+  "current_in_practice_season": "Performance conversations",
+  "in_practice_season_progress": 2,
+  "in_practice_history": [],
+  "p0_stories_tracking": []
 }
 ```
 
