@@ -11,7 +11,7 @@ description: >
   edition. Includes HTML templates, editorial spec, and a compliance checklist.
 metadata:
   author: steven-mcdowell
-  version: '1.24'
+  version: '1.25'
 ---
 
 # Engineering Digest
@@ -20,6 +20,7 @@ Generate magazine-style briefing issues for hands-off engineering leadership (di
 
 ## Changelog
 
+- **v1.25 (May 2026)** — Simplification pass. Three structural cuts: (1) ***In Practice* whitelist of 10 sources retired** — replaced with the three required qualities (named operator at a real org, journey not framework, technical content at implication level) as the sole filter; any source qualifies if it passes. The Monzo archetype remains as a voice/calibration reference, not a source restriction. (2) **Cross-issue rotation tracking retired** for Quick Take layout (`last_qt_layout`), Outside In format (`last_oi_format`), editorial moment variant (`last_editorial_moment`), and lead opener (`last_lead_opener`). Within-issue variety is now the only enforced rule; layout/format/opener choices are made on craft fit rather than rotation. (3) **Outside In format variants reduced from 6 to 3** (kept: A full feature, B hero moment, C compact inset; dropped: D omit-as-format, E contrast card, F meanwhile strip). Editorial Moment variants reduced from 4 to 3 (dropped: "What changed since last week"). Plus: Two-Tier Label Hierarchy section converted from a standalone enforced rule to a template-convention note; `current_in_practice_season` and `in_practice_history` are now load-bearing state fields. Compliance checklist trimmed accordingly. Audience-fit gate (v3.2), banking/fintech framing (v3.3), and the operational-concern taxonomy (v3.4) are all preserved.
 - **v1.24 (May 2026)** — Topic taxonomy and lead-selection rewrite. The v2.0 top tier of six beats (AI tooling, Engineering leadership, DevEx, Banking & fintech, Software engineering news, Security & compliance) is **retired**, replaced by four **operational concerns**: Management & teams, Ways of working, Operating at scale, Banking/fintech/loyalty. **AI is the substrate that runs through all four — not a fifth concern.** Tool releases (Cursor, Copilot, Claude Code feature ships) are classified by the operational decision they trigger, not by being AI; a Cursor pricing change that forces a budget conversation is "Ways of working", a Cursor capability release with no associated leadership conversation is At a Glance. The mechanical rotation rules — **3-issue lookback (v2.0), topic saturation cap (v2.0), AI-balance check (v3.1)** — are all retired and replaced by the operational-concern lead test plus a soft breadth guardrail (leads span at least 3 of 4 concerns across rolling 4 issues, editorial guidance not a mechanical block). Schema beat enum updated (4 concerns, was 7 beats). Compliance checklist Topic & Lead Selection section rewritten.
 - **v1.23 (May 2026)** — Audience reframe (corrects v3.2). The reader is now defined as **engineering leadership at a fintech operating in the customer-loyalty / commerce-media space, working directly with UK and ME banks as customers** — plus a wider management team including managers who came in from non-technical routes. The v3.2 "the reader is never inside a bank / software vendor serving banks as customers" framing was directionally right but lost the actual signal — the reader is at a fintech (not a generic software vendor) and operates in a specific loyalty/commerce-media patch. Banking, fintech, and loyalty stories are now first-class subject matter framed as *"the world the reader operates in"* — the v3.2 *customer-pressure gate* (regulatory stories "never the lead, never an anchor by default") is **retired**. Regulatory stories qualify for any slot they earn on operational impact, including the Lead. Topic taxonomy and lead-selection mechanical rules unchanged in this version — addressed in v1.24.
 - **v1.22 (May 2026)** — Ported to a Claude Code project skill. The previous harness's subagent-type names (`research`, `general_purpose`) collapse to the single `general-purpose` type Claude Code exposes; the previous cost-driven model split (Sonnet for research/planning/writing/review, GPT-5.5 for curation, Opus only for deep-dive writing) is replaced by Opus 4.7 across every phase since cost is no longer a constraint. Curation remains the structurally most important step — splitting research, curation, planning, writing, and review into distinct phases with reviewable artefacts is the load-bearing design, not the model choice. Workspace paths are repo-relative (`digest-runs/issue-N/` under the repo root, `engineering-digest-state.json` at the repo root) rather than `/home/user/workspace/`. **Every editorial control, hard rule, version-numbered rule (v3.2 audience, v3.1 workflow, v3.0 substance floor, v2.x rules across sections), HTML template, the compliance checklist, and the candidates schema are preserved verbatim.**
@@ -97,7 +98,7 @@ The run plan must list rejected candidates for the lead slot with reasons. This 
 
 Spawn a `general-purpose` subagent on `opus`. Preload the skill. Pass `run-plan.md` and the state file. The subagent's objective is to produce `section-briefs.md`: per-section briefs naming opener style, sidebar plan, jargon terms to gloss or sidebar, pull quote candidates, target word count, and source URLs. Plus a top-level component manifest (which 3–5 layout components are in this issue and why).
 
-Apply the no-repeat rotations against the state file (`last_qt_layout`, `last_oi_format`, `last_editorial_moment`, `last_lead_opener`, `last_feature_date`, `last_stack_date`, `last_rabbit_hole_date`).
+Apply the cadence gates against the state file (`last_feature_date`, `last_stack_date`, `last_rabbit_hole_date` — these gate occasional sections). The v3.5 spec retired the per-rotation trackers (`last_qt_layout`, `last_oi_format`, `last_editorial_moment`, `last_lead_opener`); within-issue variety is now the rule and cross-issue rotation is no longer mechanically enforced.
 
 ### Step 5: Phase 4 — Generate (writing subagent)
 
@@ -142,14 +143,20 @@ When running multiple issues over time (especially via a scheduled cron), mainta
   "last_issue_number": 3,
   "last_issue_date": "2026-03-24",
   "last_issue_format": "weekly",
-  "last_lead_topic": "AI tooling & adoption",
+  "last_lead_topic": "Management & teams",
+  "last_lead_topics_3issues": ["Operating at scale", "Ways of working", "Management & teams"],
   "consecutive_non_deepdive": 1,
   "last_outside_in_company": "Wise",
-  "last_editorial_moment": "second-look",
-  "last_lead_opener": "stat-first",
-  "last_qt_layout": "equal",
-  "last_oi_format": "full",
-  "p0_stories_tracking": ["AWS ME recovery"]
+  "outside_in_history": [],
+  "last_leadership_read": "Pragmatic Engineer",
+  "leadership_read_history": [],
+  "last_feature_date": null,
+  "last_stack_date": null,
+  "last_rabbit_hole_date": null,
+  "current_in_practice_season": "Performance conversations",
+  "in_practice_season_progress": 2,
+  "in_practice_history": [],
+  "p0_stories_tracking": []
 }
 ```
 
