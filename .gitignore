@@ -1,0 +1,9 @@
+# digest-runs/ holds the per-issue audit trail produced by the engineering-digest
+# skill (candidates.json, run-plan.md, section-briefs.md, issue-N.html, issue-N.pdf,
+# review.md). It is ignored by default because most local runs are test runs.
+#
+# When shipping a real issue:
+#   - the published HTML/PDF goes to issues/issue-N.html and issues/issue-N.pdf
+#     (these are tracked normally)
+#   - the audit trail should be force-added: `git add -f digest-runs/issue-N/`
+digest-runs/
