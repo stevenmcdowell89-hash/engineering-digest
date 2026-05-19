@@ -8,13 +8,13 @@ These checks run before the content checks. They verify the five-phase pipeline 
 
 - [ ] **Run directory exists** at `digest-runs/issue-N/` for this issue number
 - [ ] **Phase 1 artefact present**: `candidates.json` exists, parses as JSON, validates against `references/candidates-schema.json`
-- [ ] **Phase 1 completeness**: `candidates.json` has an entry for every top-tier beat (ai_tooling, eng_leadership, devex, banking_fintech, sw_eng_news, security_compliance, platform_updates) — empty beats have a non-trivial `null_finding` referencing the queries run
+- [ ] **Phase 1 completeness**: `candidates.json` has an entry for every operational concern (management_teams, ways_of_working, operating_at_scale, banking_fintech_loyalty) — empty concerns have a non-trivial `null_finding` referencing the queries run
 - [ ] **Phase 1 secondary pools**: `secondary` object includes `leadership_read`, `in_practice`, and `outside_in` arrays (rabbit_hole and p0_active optional)
 - [ ] **Phase 2 artefact present**: `run-plan.md` exists in the run directory
 - [ ] **Phase 2 lead justification**: run plan names the chosen lead, lists at least 2 candidates considered and rejected for the lead slot with reasons
-- [ ] **Phase 2 AI-balance check**: of the top 3 anchor slots (lead, QT1, QT2), no more than 2 are AI tooling stories — OR run plan documents why the strongest case for the week is genuinely 3 AI stories, naming non-AI candidates considered and rejected
+- [ ] **Phase 2 operational-concern lead test (v3.4 — replaces AI-balance check)**: the chosen lead is a story that triggers a leadership conversation the reader is about to have with their team, peers, leadership, or customers — not a tool capability release. Tool releases (Cursor/Copilot/Claude Code feature ships) are At a Glance unless they trigger an operating-model, budget, or org-shape conversation
 - [ ] **Phase 2 lead-sanity check**: chosen lead is in the top 3 candidates ranked by combined so-what + narrative tension + UK/ME relevance score across all beats — OR run plan justifies the choice
-- [ ] **Phase 2 topic saturation**: of the top 4 anchor slots (lead, QT1, QT2, editorial moment), no more than 2 share the same beat
+- [ ] **Phase 2 soft breadth guardrail (v3.4 — replaces topic saturation cap)**: across rolling 4 issues, leads span at least 3 of the 4 operational concerns. If the same concern leads twice running, the run plan documents the choice. (Within a single issue, multiple anchors can share a concern — discipline lives in the operational-decision test, not in a rotation rule.)
 - [ ] **Phase 3 artefact present**: `section-briefs.md` exists in the run directory with per-section briefs and a top-level component manifest
 - [ ] **Phase 4 cross-check**: the lead in the published HTML matches the lead named in `run-plan.md`. QT1 and QT2 match. Editorial moment topic matches. Format matches.
 - [ ] **No silent re-promotion**: candidates explicitly rejected for the lead slot in `run-plan.md` did not appear as the lead in the HTML
@@ -55,17 +55,17 @@ These checks run before the content checks. They verify the five-phase pipeline 
 - [ ] Page count enforcement order followed if over limit
 - [ ] **When in doubt, go Light (v3.0)**: if any two of the following are true, the issue was published as a Light Edition rather than padded into a Standard Weekly — (1) the lead is a routine version release with no controversy or downstream impact story, (2) a quick take rests on a single-source funding number with no follow-on reporting, (3) Outside In is filling a slot rather than earning it, (4) Leadership Read cannot meet its 400-word floor with a defensible piece. A thin Standard Weekly is worse than a tight Light Edition.
 
-## Topic & Lead Selection (v2.0)
-- [ ] **3-issue lookback enforced**: lead article topic has not led either of the previous 2 issues (check last 3 entries in state file `issues` array)
-- [ ] Lead chosen by highest impact this specific week — not by standing topic rank
-- [ ] **Topic saturation cap**: of the 4 prominent slots (lead, QT1, leadership read, editorial moment), no more than 2 share the same topic area
-- [ ] Topic classification uses v2.0 definitions — AI's impact on teams/culture is "Engineering leadership", not "AI tooling"; AI tool releases are "AI tooling", not "DevEx"
-- [ ] **Banking & fintech reader-frame (v2.5)**: stories selected by impact on UK/ME banking/fintech engineering teams, not by source geography. US fintech moves, EU regulation, global payments shifts all eligible when they change what UK/ME teams build, buy, patch, or plan for.
-- [ ] **Engineering leadership source sector (v2.5)**: a Shopify/Netflix/Atlassian-style leadership story is eligible for this topic area when the lesson applies to a banking/fintech eng team — don't filter by source sector.
-- [ ] **"Worth reading" test passed**: every lead article and quick take has narrative, tension, or insight beyond just being important to know. Stories that are important but not interesting to read are in Week at a Glance, Platform Updates, or On the Radar instead.
-- [ ] Version lifecycle deadlines (EOLs, deprecations) are in Platform Updates / On the Radar — not given article treatment unless the story has genuine narrative beyond "update by date X"
+## Topic & Lead Selection (v3.4 — replaces v2.0 mechanical rotation rules)
+- [ ] **Operational-concern lead test**: the lead connects to one of the four operational concerns (Management & teams / Ways of working / Operating at scale / Banking, fintech & loyalty) with a clear "what changes for the reader" takeaway, AND it triggers a leadership conversation the reader is about to have with their team, peers, leadership, or customers
+- [ ] **Tool releases are not leads**: Cursor / Copilot / Claude Code feature ships, capability releases, and version bumps are At a Glance unless they trigger an operating-model, budget, or org-shape conversation. The lead's takeaway is never "the tool can now do X" — it's "as a leader, the conversation is now Y"
+- [ ] **AI substrate classification (v3.4)**: AI stories are classified by the operational decision they trigger, not as a standalone beat. A Cursor pricing change that forces budget renegotiation is "Ways of working", not "AI tooling"
+- [ ] **Soft breadth guardrail (v3.4)**: across rolling 4 issues, leads span at least 3 of the 4 operational concerns. If the same concern leads twice running, the run plan documents the choice on substance grounds
+- [ ] Lead chosen by operational-decision impact this specific week — not by standing concern rank, not by mechanical rotation
+- [ ] **Banking, fintech & loyalty framing (v3.3)**: stories framed positively as "the world the reader operates in" — never as customer-pressure briefings or compliance briefings for the reader's own firm. Regulatory stories qualify for any slot they earn on operational-impact tests, including the Lead
+- [ ] **Source sector irrelevance (v2.5)**: a Shopify / Netflix / Atlassian-style leadership story is eligible for any concern it speaks to when the lesson applies to the reader — don't filter by source sector
+- [ ] **"Worth reading" test passed**: every lead and quick take has narrative, tension, or insight beyond just being important to know. Important-but-not-interesting stories are in Week at a Glance or On the Radar
+- [ ] Version lifecycle deadlines (EOLs, deprecations) are in Platform Updates / On the Radar — not given article treatment unless genuine narrative beyond "update by date X"
 - [ ] Testing stories: only full article treatment if structural shift; single-company case studies → Leadership Read or Outside In
-- [ ] Testing has not anchored consecutive issues
 
 ## Audience-fit & urgency gates (v3.2)
 
