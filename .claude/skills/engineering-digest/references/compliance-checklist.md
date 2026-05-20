@@ -294,6 +294,18 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] **Author card (v3.8)** rendered at the top of every *In Practice* section, every Leadership Read section, and every Outside In Format A section. Contains: text initials avatar (no photos), author name, role + organisation, date. Reinforces the "real person at a real organisation" claim visually. Smaller inline attribution remains acceptable for Outside In Formats B and C.
 - [ ] **Cross-issue throughline (v3.8)**: when a current story has roots in a prior issue, a single sentence inside an article references the prior coverage. Optional. Not a separate section. Used when the connection adds substance.
 
+## Visual Identity (v1.29 — Volume II refresh)
+- [ ] **Cover identity strap (`.cover-identity-strap`)**: rendered above the masthead. Shows *Vol. II · Issue [N] · [Date] · [N] min read* with bullet separators. Teal "Vol. II" colour cue.
+- [ ] **Cover dot-grid motif**: present on `.cover` via background-image (40px dot grid, ~7% opacity). Subtle — should register as texture, not pattern.
+- [ ] **Cover variant chosen on substance**: either `.cover-lead-stat` OR `.cover-lead-quote` — whichever fits the week's strongest signal. Don't default to the stat variant when a quote would land harder.
+- [ ] **Per-section reading time**: each major section `<h2>` carries a `.section-time` span — `(N min)` in 12px med-gray. Lead, Leadership Read, In Practice, Outside In at minimum; quick takes optional.
+- [ ] **Drop cap on Lead first paragraph**: Lead section uses class `.lead-article`; CSS renders the first letter as a 56px navy Playfair drop cap automatically.
+- [ ] **Drop cap on Leadership Read first paragraph**: `.mgmt-section h2 + p::first-letter` renders as a 52px teal Playfair drop cap automatically.
+- [ ] **Volume II marking in footer**: `.footer-vol` line above the brand mark reads *Vol. II* in teal tracked uppercase.
+- [ ] **Palette by concern**: each section label and quick-take header bar carries the right colour cue — Management & teams = orange, Ways of working = teal (default), Operating at scale = alert (red, when warranted), Banking/fintech/loyalty = green. Outside In stays orange (existing convention).
+- [ ] **Author cards (v1.28)** rendered on *In Practice*, Leadership Read, and Outside In Format A sections — text initials avatar, name, role + org, date.
+- [ ] **Editor's note (Issue 12 ONLY)**: `.editor-note` block at the top of the Foreword acknowledging the Vol. II refresh. Two sentences. Remove the block from Issue 13 onwards.
+
 ## Design Enhancements (v1.1)
 - [ ] Cover: centred masthead, lead pull-stat in tinted band with context sentence
 - [ ] Quick hits grouped by urgency tiers (Action Required / Worth Knowing / Watching) with distinct backgrounds and left borders

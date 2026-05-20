@@ -10,7 +10,7 @@
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
 
 /* ═══ COVER — full width, centred masthead, lead stat ═══ */
-.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
 .cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
 .cover-inner{padding:48px 60px 44px;text-align:center}
 .cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
@@ -26,6 +26,31 @@
 .cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
 .cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
 .cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ v1.29 — VOLUME II IDENTITY STRAP + COVER VARIANTS ═══ */
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:18px;padding:14px 60px;background:rgba(0,0,0,.18);border-bottom:1px solid rgba(255,255,255,.08);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{color:var(--teal)}
+.cover-identity-strap span:not(:last-child)::after{content:'·';margin-left:18px;color:rgba(255,255,255,.3)}
+
+/* Cover-lead-quote variant: use INSTEAD OF .cover-lead-stat when the issue's strongest signal is a quote (not a number) */
+.cover-lead-quote{margin-top:28px;padding:32px 60px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2);text-align:center}
+.cover-lead-quote .lq-text{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;max-width:640px;margin:0 auto 12px}
+.cover-lead-quote .lq-attribution{font-family:'Source Sans 3',sans-serif;font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+/* ═══ v1.29 — DROP CAPS for Lead + Leadership Read first paragraphs ═══ */
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+/* ═══ v1.29 — PER-SECTION READING TIME ═══ */
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+/* ═══ v1.29 — EDITOR'S NOTE (Issue 12 ONLY — remove from Issue 13 onwards) ═══ */
+.editor-note{background:rgba(0,180,216,.06);border-left:3px solid var(--deep-teal);padding:16px 22px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--body-text);font-style:italic}
+.editor-note .en-label{display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+
+/* ═══ v1.29 — FOOTER VOLUME II MARKING ═══ */
+.footer-vol{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 
 /* ═══ SECTIONS ═══ */
 .section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
@@ -294,22 +319,36 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 <body>
 <div class="magazine">
 
-<!-- ═══ COVER — centred masthead, lead stat, full width ═══ -->
+<!-- ═══ COVER (v1.29) — identity strap, dot-grid motif, centred masthead, lead stat OR lead quote ═══ -->
 <header class="cover">
+  <!-- v1.29: identity strap above masthead -->
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue [N]</span>
+    <span>[DATE]</span>
+    <span>[X] min read</span>
+  </div>
   <div class="cover-inner">
     <h1>Engineering<em>Digest</em></h1>
     <div class="cover-meta">
       <span class="cover-date">[DATE RANGE]</span>
-      <span class="cover-issue">|&ensp;Weekly Edition&ensp;|&ensp;Issue #[N]</span>
-      <span class="cover-read-time">|&ensp;[X] min read</span>
     </div>
     <div class="week-badge">This Week's Briefing</div>
   </div>
-  <!-- Lead pull-stat: the single most striking number from the issue -->
+  <!-- COVER VARIANT (pick one — pull-stat OR pull-quote based on the issue's strongest signal):
+       (a) cover-lead-stat — when a number is the headline (default)
+       (b) cover-lead-quote — when a direct quote captures the week better than any number -->
   <div class="cover-lead-stat">
     <div class="stat-figure">[STAT]</div>
     <div class="stat-context">[one-line context sentence explaining why this number matters]</div>
   </div>
+  <!-- ALTERNATIVE (uncomment, replace .cover-lead-stat above):
+  <div class="cover-lead-quote">
+    <div class="lq-text">"[The single most striking quote from the week — verifiable, from a named source.]"</div>
+    <div class="lq-attribution">— [Name, role, organisation]</div>
+  </div>
+  -->
+
   <div class="cover-contents">
     <div class="cover-contents-label">In This Issue</div>
     <ul>
@@ -326,6 +365,13 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 <!-- ═══ FOREWORD ═══ -->
 <section class="foreword">
   <div class="section-label">Foreword</div>
+  <!-- v1.29: editor-note for Issue 12 ONLY — remove from Issue 13 onwards.
+       Used once to mark the Volume II refresh; does NOT return.
+  <div class="editor-note">
+    <span class="en-label">A note from the editor</span>
+    We've sharpened the brief. Coverage now centres on the patch you actually operate in — fintech engineering decisions, bank engineering moves, loyalty and commerce-media tech, plus the management craft that runs across all of it. From this issue forward, the digest opens at Volume II.
+  </div>
+  -->
   <p>[50–80 words. One editorial point — a hook, not a summary. Drop-cap on first letter is automatic via CSS.]</p>
 </section>
 
@@ -412,10 +458,10 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 <!-- ═══ SECTION BREATHER (v1.7) ═══ -->
 <div class="section-breather"></div>
 
-<!-- ═══ LEAD ARTICLE ═══ -->
-<section class="section">
+<!-- ═══ LEAD ARTICLE (v1.29: add .lead-article class for drop cap; pick the .section-label colour by concern — orange = Management & teams, default teal = Ways of working, alert = Operating at scale, green = Banking/fintech/loyalty) ═══ -->
+<section class="section lead-article">
   <div class="section-label">[Topic area]</div>
-  <h2>[Lead article headline]</h2>
+  <h2>[Lead article headline] <span class="section-time">([N] min)</span></h2>
 
   <!-- Stats row when data warrants -->
   <div class="stats-row">
@@ -636,8 +682,9 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 <hr class="feature-break">
 <section class="mgmt-section">
   <div class="section-label">The Leadership Read</div>
-  <h2>[Headline]</h2>
-  <p>[Intro paragraph]</p>
+  <h2>[Headline] <span class="section-time">([N] min)</span></h2>
+  <!-- v1.29: drop cap on first paragraph automatic via CSS -->
+  <p>[Intro paragraph — first letter rendered as a teal drop cap automatically]</p>
 
   <h3>[Subheading]</h3>
   <p>[Body text]</p>
@@ -786,6 +833,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 
 <!-- ═══ FOOTER — with archive bar ═══ -->
 <footer class="footer">
+  <div class="footer-vol">Vol. II</div>
   <div class="footer-brand">Engineering Digest</div>
   <div class="footer-sub">[DATE RANGE] · Weekly Edition · Issue #[N]</div>
   <div class="footer-next">Next edition: [NEXT DATE RANGE]</div>
