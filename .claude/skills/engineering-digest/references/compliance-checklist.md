@@ -306,6 +306,17 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] **Author cards (v1.28)** rendered on *In Practice*, Leadership Read, and Outside In Format A sections — text initials avatar, name, role + org, date.
 - [ ] **Editor's note (Issue 12 ONLY)**: `.editor-note` block at the top of the Foreword acknowledging the Vol. II refresh. Two sentences. Remove the block from Issue 13 onwards.
 
+## Visual Density (v1.30 — diagrams, charts, tables expansion)
+- [ ] **Per-section visual floor (Standard Weekly)**: every major section (Lead, QT1, QT2, In Practice, Leadership Read, Outside In) contains at least one visual element (inline SVG, stats row, by-the-numbers callout, compare-table, process-flow, sparkline, pull quote bar, or sidebar box). No major section is pure prose end-to-end.
+- [ ] **Per-issue visual budget (Standard Weekly)**: 4–6 distinct visual elements across all sections. Below 4 reads memo-adjacent; above 6 starts to crowd. The cover lead-stat / lead-quote counts; the Volume II identity strap does NOT count (identity, not content).
+- [ ] **Real-diagram floor (Standard Weekly)**: of the 4–6 visuals, **at least 1–2 are a real diagram, chart, or table** — inline SVG chart, process-flow, architecture diagram, compare-table, by-the-numbers callout, or compact compare-table. Stats rows, pull quote bars, and sidebar boxes alone do NOT satisfy this floor (they count toward the 4–6 budget but not the real-diagram requirement).
+- [ ] **Deep dive visual minimum (v1.30 bump)**: deep dives carry minimum 3–4 inline SVGs (up from 2–3 in earlier versions), plus the existing structural visual surface (section markers, progress bar, scope indicator, how-to-read guide, comparison grid, case-study timeline, verdict box, lessons section, Meanwhile section). Maintains the visual heft differential between deep dives and weeklies as weeklies get denser.
+- [ ] **Compare-table cap**: `.compare-table` is capped at 5 rows × 2 columns. Larger tables are slide-deck territory — break into prose, chart, or a process-flow instead.
+- [ ] **Process-flow used when warranted**: when an article describes a 3–5 step sequence (rollout phases, funnel-vs-fork shapes, hiring-loop redesigns), `.process-flow` is the default primitive. Hand-crafted inline SVG is reserved for non-linear or branching diagrams.
+- [ ] **Sparkline used inline only**: `.sparkline` sits mid-prose for trend references. Not used as a section anchor (a section anchor is a stats row, inline chart, or by-the-numbers callout).
+- [ ] **Phase 4 degraded-visual rule**: if Phase 4 cannot produce a clean visual (no clean data, no clean message), the section ships with prose only and Phase 4 flags back. The spec does not accept degraded SVG, fabricated data, or filler tables.
+- [ ] **Phase 1 chartable_data flagging**: candidates that have data / structure suitable for charting carry the `chartable_data` field in `candidates.json`. Phase 3 uses these flags to allocate visual primitives per section.
+
 ## Design Enhancements (v1.1)
 - [ ] Cover: centred masthead, lead pull-stat in tinted band with context sentence
 - [ ] Quick hits grouped by urgency tiers (Action Required / Worth Knowing / Watching) with distinct backgrounds and left borders

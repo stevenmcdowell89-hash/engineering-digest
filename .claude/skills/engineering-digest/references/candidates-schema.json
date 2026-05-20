@@ -179,7 +179,11 @@
         "jargon_terms": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Optional. Capitalised technical terms or proper nouns in this candidate that will need glossing or a Jargon Watch sidebar (per v3.0 rule)."
+          "description": "Optional. Capitalised technical terms or proper nouns in this candidate that will need glossing or a Jargon Watch sidebar (per v3.7 rule — broadened to include lowercase / hyphenated specialist terms and any term appearing 3+ times in one section)."
+        },
+        "chartable_data": {
+          "type": "string",
+          "description": "Optional (v1.30). Free-text note flagging whether this candidate has data, structure, or content that would chart, table, or diagram well. Examples: 'three comparable adoption metrics across vendors', 'source describes a 4-step process the team rolled out', 'before/after metrics from a single-team experiment', 'architecture: 5 components with dependency arrows'. Curation and planning phases use this to allocate visual primitives (inline SVG chart, compare-table, process-flow, by-the-numbers callout) per the v1.30 visual density rules."
         }
       }
     }
