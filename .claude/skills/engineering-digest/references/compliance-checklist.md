@@ -179,17 +179,17 @@ _Skip this section for standard weekly and light edition issues._
 - [ ] Each article covers a different topic area
 - [ ] No two articles covering the same story from different angles
 
-## Prose Style (v1.5, expanded v1.8)
-- [ ] Epistemic reframing statements appear no more than **2 times** in the entire issue. The full pattern catalogue (all count toward the cap):
-  1. "the question is not X — it's Y"
-  2. "the real X was Y" / "the real issue is not X — it's Y"
-  3. "the interesting part isn't X — it's that Y"
-  4. "less a X than a Y" / "this is less about X than Y"
-  5. "not whether X, but how Y" / "not whether, but how"
-  6. "not just X — it's Y"
-  Any close variation (e.g. "the hardest problem here is not X", "the question is no longer X") also counts.
-- [ ] **Mandatory scan completed**: after generating the full HTML, every sentence was scanned for the six patterns above (and close variations), the count was confirmed at or below 2, and any excess was rewritten as direct declarative statements
-- [ ] Remaining analytical points use direct declarative sentences instead of the reframing pattern
+## Prose Style (v3.6 — structural test, not pattern list)
+
+- [ ] **Epistemic reframing structural test (v3.6)**: every sentence was scanned using the structural test — *does this sentence name what something is NOT in order to introduce what it IS?* The six canonical patterns ("not X — it's Y", "the real X was Y", "the interesting part isn't X", "less a X than a Y", "not whether X, but how Y", "not just X — it's Y") are illustrative, NOT exhaustive. **All structurally equivalent constructions count**: "the precondition story matters more than the headline", "not the tool, not the prompt library — it's the X", "the wrong unit of measurement is X; the right one is Y", "X isn't the story — Y is", etc.
+- [ ] **Count ≤ 2 per issue confirmed**. Common failure: lexical scans for the six patterns return 0 because the writer used variations on the same structure. The v3.6 scan is structural — scan the meaning, not the surface form. Phase 4 self-counts that report 0 should be reviewed sceptically; the reviewer recounts.
+- [ ] Remaining analytical points use direct declarative sentences
+
+## Quote Allocation & Attribution Fidelity (v3.6 — new)
+
+- [ ] **One quote, one slot**: no source quote (verified verbatim OR paraphrased) appears in more than one slot per issue. The same line cannot anchor both the Editorial Moment and the Outside In callout, or appear as both a pull-quote bar and a body quote. If a quote works in two places, the stronger placement keeps it; the other slot uses a different quote or framing.
+- [ ] **Attribution fidelity**: every concept attributed by name to a source uses the source's actual terminology. Inventing a label and putting it in the source's mouth is disallowed even when the substance is correct. Acceptable: *"DORA describes a productivity dip — call it the 'instability tax' if you like…"* (digest labels the framing, attributes the concept). Disallowed: *"DORA's 'instability tax'"* (label invented and attributed).
+- [ ] **Quoted-phrase scan**: every double-quoted phrase in the HTML attributed by name to a source has been checked against the source's actual wording (via WebFetch or WebSearch summaries). Paraphrased forms are marked as paraphrases, not rendered as direct quotes.
 
 ## In Practice (v2.8, expanded v3.0 / v3.0.1)
 _The v2.7 Leadership Read management-craft floor is **superseded** by *In Practice*. The Leadership Read may be craft or strategy._
