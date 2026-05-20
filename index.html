@@ -33,80 +33,186 @@
         }
 
         .archive-wrap {
-            max-width: 900px;
+            max-width: 980px;
             margin: 0 auto;
             background: var(--white);
             box-shadow: 0 0 60px rgba(10, 22, 40, .08);
             min-height: 100vh;
         }
 
-        /* ── Cover / Header ── */
-        .header {
+        /* ═══ COVER (mirrors weekly-template v1.29) — dot-grid, identity strap, masthead, tagline ═══ */
+        .cover {
             background: var(--navy);
-            padding: 56px 60px 48px;
+            background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");
             position: relative;
             overflow: hidden;
         }
-        .header::before {
+        .cover::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 5px;
             background: linear-gradient(90deg, var(--teal), var(--accent-green), var(--teal));
+            z-index: 3;
         }
-        .header h1 {
+
+        .cover-identity-strap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 60px;
+            background: rgba(0, 180, 216, .10);
+            border-bottom: 1px solid rgba(0, 180, 216, .35);
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .85);
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        .cover-identity-strap .cis-vol {
+            background: var(--teal);
+            color: var(--navy);
+            padding: 5px 12px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            line-height: 1;
+        }
+        .cover-identity-strap span:not(.cis-vol):not(:last-child)::after {
+            content: '·';
+            margin-left: 16px;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .cover-inner {
+            padding: 56px 60px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .cover-inner h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 900;
-            font-size: 52px;
+            font-size: 60px;
             color: var(--white);
             line-height: .95;
             margin-bottom: 4px;
         }
-        .header h1 em {
+        .cover-inner h1 em {
             font-style: italic;
             font-weight: 400;
             display: block;
-            font-size: 48px;
+            font-size: 54px;
             color: rgba(255, 255, 255, .82);
         }
-        .header .subtitle {
-            font-size: 14px;
-            color: var(--med-gray);
-            letter-spacing: 1px;
+        .cover-tagline {
+            font-family: 'Source Sans 3', sans-serif;
+            font-style: italic;
+            font-size: 16px;
+            color: rgba(0, 180, 216, .9);
+            letter-spacing: .5px;
             margin-top: 16px;
         }
-
-        /* ── Content Area ── */
-        .content {
-            padding: 40px 60px;
+        .cover-archive-label {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .85);
         }
 
-        .section-label {
+        /* Stats strip beneath cover — "at a glance" */
+        .stats-strip {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 18px 60px;
+            background: rgba(0, 180, 216, .06);
+            border-top: 1px solid rgba(0, 180, 216, .15);
+            border-bottom: 1px solid rgba(0, 180, 216, .15);
+            position: relative;
+            z-index: 2;
+        }
+        .stats-strip .ss-item {
+            flex: 0 0 auto;
+            padding: 0 28px;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, .15);
+        }
+        .stats-strip .ss-item:last-child { border-right: none; }
+        .stats-strip .ss-figure {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--teal);
+            line-height: 1;
+        }
+        .stats-strip .ss-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .65);
+            margin-top: 6px;
+        }
+
+        /* ═══ SPOTLIGHT — latest issue ═══ */
+        .spotlight-wrap {
+            padding: 44px 60px 8px;
+        }
+        .spotlight-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--teal);
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 18px;
+        }
+        .spotlight-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--light-gray);
         }
 
-        /* ── Issue Cards ── */
-        .issue-card {
-            background: var(--white);
-            border: 1px solid var(--light-gray);
-            border-radius: 6px;
-            padding: 28px 32px;
-            margin-bottom: 20px;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        .spotlight {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 36px;
+            padding: 32px 36px 32px 40px;
+            background: var(--off-white);
+            border-left: 4px solid var(--teal);
+            border-radius: 4px;
         }
-        .issue-card:hover {
-            border-color: var(--teal);
-            box-shadow: 0 4px 20px rgba(0, 180, 216, .08);
+        .spotlight .sp-ribbon {
+            position: absolute;
+            top: 0;
+            right: 36px;
+            background: var(--teal);
+            color: var(--navy);
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-radius: 0 0 2px 2px;
         }
-
-        .issue-type {
+        .spotlight .issue-type {
             display: inline-block;
             font-size: 11px;
             font-weight: 900;
@@ -114,7 +220,155 @@
             letter-spacing: 2px;
             padding: 3px 10px;
             border-radius: 2px;
+            margin-bottom: 14px;
+        }
+        .spotlight h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+        .spotlight h2 a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+        .spotlight h2 a:hover { color: var(--deep-teal); }
+        .spotlight .date {
+            font-size: 13px;
+            color: var(--med-gray);
+            margin-bottom: 14px;
+            letter-spacing: .5px;
+        }
+        .spotlight .summary {
+            font-size: 15px;
+            color: var(--body-text);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+        .spotlight .links {
+            display: flex;
+            gap: 12px;
+        }
+        .spotlight .links a {
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 3px;
+            letter-spacing: .5px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .spotlight .links a.primary {
+            background: var(--deep-teal);
+            color: var(--white);
+            border: 1px solid var(--deep-teal);
+        }
+        .spotlight .links a.primary:hover { background: var(--navy); border-color: var(--navy); }
+        .spotlight .links a.secondary {
+            background: transparent;
+            color: var(--deep-teal);
+            border: 1px solid var(--deep-teal);
+        }
+        .spotlight .links a.secondary:hover { background: var(--deep-teal); color: var(--white); }
+
+        .spotlight .sp-aside {
+            border-left: 1px solid var(--light-gray);
+            padding-left: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .spotlight .sp-aside-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--deep-teal);
             margin-bottom: 12px;
+        }
+        .spotlight .sp-aside ul {
+            list-style: none;
+        }
+        .spotlight .sp-aside li {
+            font-size: 13px;
+            color: var(--body-text);
+            line-height: 1.5;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .spotlight .sp-aside li:last-child { border-bottom: none; }
+        .spotlight .sp-aside li strong {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 2px;
+        }
+
+        /* ═══ ARCHIVE — grouped by month ═══ */
+        .content {
+            padding: 32px 60px 48px;
+        }
+
+        .month-group {
+            margin-top: 36px;
+        }
+        .month-group:first-child { margin-top: 24px; }
+
+        .month-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .month-header .mh-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .5px;
+        }
+        .month-header .mh-count {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--med-gray);
+        }
+
+        /* ── Issue Cards (compact in archive section) ── */
+        .issue-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            padding: 22px 26px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            position: relative;
+        }
+        .issue-card:hover {
+            border-color: var(--teal);
+            box-shadow: 0 4px 20px rgba(0, 180, 216, .08);
+        }
+        .issue-card.is-deepdive {
+            border-left: 3px solid var(--alert-red);
+        }
+
+        .issue-type {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 3px 9px;
+            border-radius: 2px;
+            margin-bottom: 10px;
         }
         .type-weekly {
             background: var(--deep-teal);
@@ -131,10 +385,10 @@
 
         .issue-card h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--navy);
-            line-height: 1.15;
+            line-height: 1.18;
             margin-bottom: 6px;
         }
         .issue-card h2 a {
@@ -146,30 +400,32 @@
         }
 
         .issue-card .date {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--med-gray);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            letter-spacing: .3px;
         }
 
         .issue-card .summary {
-            font-size: 15px;
+            font-size: 14.5px;
             color: var(--body-text);
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
         .issue-card .links {
-            margin-top: 18px;
+            margin-top: 16px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
         .issue-card .links a {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--deep-teal);
             text-decoration: none;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border: 1px solid var(--deep-teal);
             border-radius: 3px;
+            letter-spacing: .3px;
             transition: background 0.2s, color 0.2s;
         }
         .issue-card .links a:hover {
@@ -177,245 +433,362 @@
             color: var(--white);
         }
 
-        /* ── Footer ── */
+        /* ═══ Footer ═══ */
         .footer {
             background: var(--navy);
-            padding: 36px 60px;
+            padding: 40px 60px 36px;
             text-align: center;
+            position: relative;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--accent-green), var(--teal));
+        }
+        .footer-vol {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--navy);
+            padding: 5px 12px;
+            border-radius: 2px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            line-height: 1;
         }
         .footer-brand {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--white);
             font-weight: 700;
         }
         .footer-sub {
             font-size: 12px;
             color: var(--med-gray);
-            letter-spacing: 1px;
-            margin-top: 4px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 6px;
         }
 
-        /* ── Responsive ── */
-        @media (max-width: 700px) {
-            .header, .content, .footer { padding-left: 20px; padding-right: 20px; }
-            .header h1 { font-size: 36px; }
-            .header h1 em { font-size: 34px; }
-            .issue-card { padding: 20px; }
-            .issue-card h2 { font-size: 22px; }
+        /* ═══ Responsive ═══ */
+        @media (max-width: 760px) {
+            .cover-identity-strap { padding: 18px 20px; font-size: 11px; gap: 10px; }
+            .cover-inner { padding: 36px 20px 28px; }
+            .cover-inner h1 { font-size: 40px; }
+            .cover-inner h1 em { font-size: 36px; }
+            .cover-tagline { font-size: 14px; }
+            .stats-strip { padding: 14px 12px; flex-wrap: wrap; gap: 8px; }
+            .stats-strip .ss-item { padding: 0 14px; }
+            .stats-strip .ss-figure { font-size: 22px; }
+
+            .spotlight-wrap { padding: 32px 20px 4px; }
+            .spotlight {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 26px 22px;
+            }
+            .spotlight .sp-ribbon { right: 16px; }
+            .spotlight h2 { font-size: 26px; }
+            .spotlight .sp-aside {
+                border-left: none;
+                border-top: 1px solid var(--light-gray);
+                padding-left: 0;
+                padding-top: 18px;
+            }
+
+            .content { padding: 24px 20px 36px; }
+            .issue-card { padding: 18px 18px; }
+            .issue-card h2 { font-size: 19px; }
+
+            .footer { padding: 32px 20px; }
         }
     </style>
 </head>
 <body>
     <div class="archive-wrap">
-        <div class="header">
-            <h1>Engineering<em>Digest</em></h1>
-            <div class="subtitle">Curated intelligence for engineering leaders</div>
+
+        <!-- ═══ COVER ═══ -->
+        <header class="cover">
+            <div class="cover-identity-strap">
+                <span class="cis-vol">Vol. II</span>
+                <span>Archive</span>
+                <span>2026</span>
+            </div>
+            <div class="cover-inner">
+                <h1>Engineering<em>Digest</em></h1>
+                <div class="cover-tagline">Engineering decisions, every Friday.</div>
+                <div class="cover-archive-label">The Archive</div>
+            </div>
+            <div class="stats-strip">
+                <div class="ss-item">
+                    <div class="ss-figure">15</div>
+                    <div class="ss-label">Issues</div>
+                </div>
+                <div class="ss-item">
+                    <div class="ss-figure">4</div>
+                    <div class="ss-label">Deep Dives</div>
+                </div>
+                <div class="ss-item">
+                    <div class="ss-figure">11</div>
+                    <div class="ss-label">Weeks</div>
+                </div>
+                <div class="ss-item">
+                    <div class="ss-figure">Mar</div>
+                    <div class="ss-label">Since 2026</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ SPOTLIGHT — latest issue ═══ -->
+        <div class="spotlight-wrap">
+            <div class="spotlight-label">This Week's Briefing</div>
+            <div class="spotlight">
+                <span class="sp-ribbon">Latest</span>
+                <div class="sp-main">
+                    <span class="issue-type type-weekly">Weekly · Issue 10</span>
+                    <h2><a href="issues/issue-10.html">FCA Safeguarding Goes Live, npm Compromise, and DORA's ROI Reckoning</a></h2>
+                    <div class="date">15 May 2026 &middot; May 8&ndash;15, 2026</div>
+                    <div class="summary">
+                        The FCA Safeguarding Supplementary Regime takes effect, forcing UK payment institutions and e-money firms into daily reconciliations, monthly reporting, and the first cycle of mandatory safeguarding audits — a regulatory shift that turns segregation-of-funds from a policy line into a daily engineering signal. A npm supply-chain compromise hits the @tanstack ecosystem via a leaked maintainer token. The DORA team's first formal look at the ROI of AI-assisted development finds productivity gains real but unevenly distributed, with rework climbing on lower-trust teams.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-10.html" class="primary">Read Online</a>
+                        <a href="issues/issue-10.pdf" class="secondary">Download PDF</a>
+                    </div>
+                </div>
+                <aside class="sp-aside">
+                    <div class="sp-aside-label">In This Issue</div>
+                    <ul>
+                        <li><strong>Lead</strong>FCA Safeguarding Supplementary Regime goes live</li>
+                        <li><strong>Quick Take</strong>@tanstack npm supply-chain compromise</li>
+                        <li><strong>Quick Take</strong>DORA's ROI reckoning on AI-assisted dev</li>
+                        <li><strong>In Practice</strong>Pensero on engineering calibration frameworks</li>
+                        <li><strong>Outside In</strong>Wise on observability ownership across squads</li>
+                    </ul>
+                </aside>
+            </div>
         </div>
 
+        <!-- ═══ ARCHIVE — grouped by month ═══ -->
         <div class="content">
-            <div class="section-label">All Issues</div>
 
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-10.html">Issue 10 — FCA Safeguarding Goes Live, npm Compromise, and DORA's ROI Reckoning</a></h2>
-                <div class="date">15 May 2026 &middot; May 8&ndash;15, 2026</div>
-                <div class="summary">
-                    The FCA Safeguarding Supplementary Regime takes effect, forcing UK payment institutions and e-money firms into daily reconciliations, monthly reporting, and the first cycle of mandatory safeguarding audits — a regulatory shift that turns segregation-of-funds from a policy line into a daily engineering signal. A npm supply-chain compromise hits the @tanstack ecosystem via a leaked maintainer token and exposed GitHub Actions, with the worm pattern echoing Shai-Hulud. The DORA team's first formal look at the ROI of AI-assisted development finds the headline productivity gains real but unevenly distributed, with rework rates climbing on lower-trust teams. In Practice continues the year-end calibration season with Pensero on engineering-specific calibration frameworks. Leadership Read: LeadDev on the agentic-era EM. Outside In: Wise on shipping observability ownership across squads.
+            <div class="month-group">
+                <div class="month-header">
+                    <span class="mh-title">May 2026</span>
+                    <span class="mh-count">2 issues</span>
                 </div>
-                <div class="links">
-                    <a href="issues/issue-10.html">Read Online</a>
-                    <a href="issues/issue-10.pdf">Download PDF</a>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-9.html">Issue 9 — Node 26, cPanel, and a UK Fintech Rebound</a></h2>
+                    <div class="date">8 May 2026 &middot; May 1&ndash;8, 2026</div>
+                    <div class="summary">
+                        Node.js 26 ships with Temporal in the standard library, V8 14.6, and a meaningfully faster Undici 8 — the line that becomes Active LTS in October. A critical cPanel CVE moves from disclosure to mass exploitation, with roughly 44,000 IPs already drawn into a Mirai-Sorry hybrid campaign. UK fintech funding posts its strongest quarter since 2023, up 32% year-on-year by deal value, with Allica Bank closing a $155m Series. PlatformEngineering.org's 2026 report anchors the Leadership Read with five recommendations on platform-as-a-product. Outside In: Cloudflare on the .de TLD DNSSEC outage and the case for serve-stale resilience. In Practice debuts with Camille Fournier on performance rating frameworks, opening the year-end calibration season.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-9.html">Read Online</a>
+                        <a href="issues/issue-9.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card is-deepdive">
+                    <span class="issue-type type-deepdive">Deep Dive</span>
+                    <h2><a href="issues/issue-8.html">Issue 8 — The Agentic AI Production Gap</a></h2>
+                    <div class="date">1 May 2026 &middot; Apr 24&ndash;May 1, 2026</div>
+                    <div class="summary">
+                        Banks are betting nine figures on autonomous agents while the data, the regulators, and the productivity research all wave caution flags. Writer's 2026 survey shows 97% of enterprises have deployed AI agents but only 23% see significant ROI. Lloyds commits to extracting more than £100m of agentic value this year. JPMorgan now scores its 65,000 engineers on AI tool usage. The Bank of England and PRA put AI on their supervisory agenda, and DORA's 30 April ROI reporting deadline arrives. Meanwhile METR's productivity update questions whether self-reported speedups hold up under measurement. Includes: the Node.js 20 EOL fallout, a CVSS 9.8 cPanel authentication bypass, and GitHub Copilot's April Visual Studio update.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-8.html">Read Online</a>
+                        <a href="issues/issue-8.pdf">Download PDF</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-9.html">Issue 9 — Node 26, cPanel, and a UK Fintech Rebound</a></h2>
-                <div class="date">8 May 2026 &middot; May 1&ndash;8, 2026</div>
-                <div class="summary">
-                    Node.js 26 ships with Temporal in the standard library, V8 14.6, and a meaningfully faster Undici 8 — the line that becomes Active LTS in October. A critical cPanel CVE moves from disclosure to mass exploitation, with roughly 44,000 IPs already drawn into a Mirai-Sorry hybrid campaign. UK fintech funding posts its strongest quarter since 2023, up 32% year-on-year by deal value, with Allica Bank closing a $155m Series. PlatformEngineering.org's 2026 report anchors the Leadership Read with five recommendations on platform-as-a-product. Outside In: Cloudflare on the .de TLD DNSSEC outage and the case for serve-stale resilience. In Practice debuts with Camille Fournier on performance rating frameworks, opening the year-end calibration season.
+            <div class="month-group">
+                <div class="month-header">
+                    <span class="mh-title">April 2026</span>
+                    <span class="mh-count">5 issues</span>
                 </div>
-                <div class="links">
-                    <a href="issues/issue-9.html">Read Online</a>
-                    <a href="issues/issue-9.pdf">Download PDF</a>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-7.html">Issue 7 — The Fintech Week Package</a></h2>
+                    <div class="date">24 April 2026 &middot; Apr 17&ndash;24, 2026</div>
+                    <div class="summary">
+                        The UK government's Fintech Week package reshapes the regulatory stack: FCA takes on Open Banking, the PSR merges into the FCA, and Chris Woolard is named Wholesale Digital Markets Champion. The FCA's AI Live Testing Lab names its first cohort (Barclays, Lloyds, UBS and more) with Jessica Rusu signalling "no new rules" for agentic commerce. Also: CISA adds 8 exploited CVEs with a Cisco SD-WAN deadline, LeadDev argues the non-technical engineering manager is finished, Node.js 20 EOL is six days out, The Stack debuts with a tokenisation primer, and Ramp's Inspect agent now writes half of all merged PRs.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-7.html">Read Online</a>
+                        <a href="issues/issue-7.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-6.html">Issue 6 — When Everything Patches at Once</a></h2>
+                    <div class="date">17 April 2026 &middot; Apr 10&ndash;17, 2026</div>
+                    <div class="summary">
+                        April's Patch Tuesday hit 167 Microsoft vulnerabilities with two actively exploited zero-days, a Fortinet zero-day exploited before its advisory was published, and a CVSS 9.9 SAP SQL injection in financial planning systems. Also: CircleCI's report reveals AI is creating a delivery bottleneck (teams write faster but ship slower), GitHub's Copilot data training deadline is seven days out, Bluesky suffers two major outages in ten days, and Revolut launches its AI financial assistant.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-6.html">Read Online</a>
+                        <a href="issues/issue-6.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-5.html">Issue 5 — Codex Breaks Free</a></h2>
+                    <div class="date">17 April 2026 &middot; Apr 10&ndash;17, 2026</div>
+                    <div class="summary">
+                        OpenAI's Codex leaves the IDE behind — persistent background desktop agents, 111 plugin integrations, and in-app browser control. Also: GitHub's Copilot training data deadline is seven days out, Bluesky's cascading failure post-mortem, April Patch Tuesday with 163 CVEs and an active zero-day, and Node.js 20 EOL in thirteen days. <em>(Superseded by Issue 6)</em>
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-5.html">Read Online</a>
+                        <a href="issues/issue-5.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card is-deepdive">
+                    <span class="issue-type type-deepdive">Deep Dive</span>
+                    <h2><a href="issues/issue-4.html">Issue 4 — The 97% Paradox</a></h2>
+                    <div class="date">10 April 2026 &middot; Apr 3–10, 2026</div>
+                    <div class="summary">
+                        97% of enterprises have deployed AI agents — but only 29% are seeing meaningful ROI. A deep dive into the Writer/Workplace Intelligence survey, the five failure modes behind the gap, and why governance is emerging as the real bottleneck. Includes: Microsoft's Agent Governance Toolkit, Cursor's $2B ARR milestone with 35% autonomous PRs, and the continuing AWS Middle East recovery (Day 40+).
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-4.html">Read Online</a>
+                        <a href="issues/issue-4.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-3.html">Issue 3 — The AI Tooling War Has a Winner</a></h2>
+                    <div class="date">3 April 2026 &middot; Mar 27 – Apr 3, 2026</div>
+                    <div class="summary">
+                        JetBrains data shows 74% developer AI adoption — but Copilot's growth has stalled while Claude Code surges to #1 in mindshare. Wise launches a UK current account targeting £250bn in zero-interest balances. Node.js 20 hits end of life in 27 days. AWS Middle East recovery remains degraded after a second disruption. Plus: Clerk's post-mortem on shifting their entire engineering team to reliability after a Google Cloud SQL failure.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-3.html">Read Online</a>
+                        <a href="issues/issue-3.pdf">Download PDF</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="issue-card">
-                <span class="issue-type type-deepdive">Deep Dive</span>
-                <h2><a href="issues/issue-8.html">Issue 8 — The Agentic AI Production Gap</a></h2>
-                <div class="date">1 May 2026 &middot; Apr 24&ndash;May 1, 2026</div>
-                <div class="summary">
-                    Banks are betting nine figures on autonomous agents while the data, the regulators, and the productivity research all wave caution flags. Writer's 2026 survey shows 97% of enterprises have deployed AI agents but only 23% see significant ROI. Lloyds commits to extracting more than £100m of agentic value this year. JPMorgan now scores its 65,000 engineers on AI tool usage. The Bank of England and PRA put AI on their supervisory agenda, and DORA's 30 April ROI reporting deadline arrives. Meanwhile METR's productivity update questions whether self-reported speedups hold up under measurement. Includes: the Node.js 20 EOL fallout, a CVSS 9.8 cPanel authentication bypass, and GitHub Copilot's April Visual Studio update.
+            <div class="month-group">
+                <div class="month-header">
+                    <span class="mh-title">March 2026</span>
+                    <span class="mh-count">7 issues · Launch</span>
                 </div>
-                <div class="links">
-                    <a href="issues/issue-8.html">Read Online</a>
-                    <a href="issues/issue-8.pdf">Download PDF</a>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-2.5.html">Issue 2.5 — Agentic AI Gets Write Access</a></h2>
+                    <div class="date">27 March 2026</div>
+                    <div class="summary">
+                        Starling launches the UK's first agentic AI banking assistant. XBOW embeds AI pen-testing in Microsoft Security Copilot. GitHub Copilot will train on your code by default. Cursor ships self-hosted cloud agents. Plus: Node.js security patches, Revolut's record profit, OpenAI shuts down Sora, and the Nebius outage post-mortem.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-2.5.html">Read Online</a>
+                        <a href="issues/issue-2.5.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-2.html">Issue 2 — When AI Outruns the Control Plane</a></h2>
+                    <div class="date">27 March 2026</div>
+                    <div class="summary">
+                        Amazon's 90-day code safety reset after AI-assisted outages caused 6.3M lost orders. Plus: Mastercard acquires BVNK for $1.8B, an AI agent discovers a CVSS 9.8 vulnerability, Microsoft's preceptorship model for junior devs, and Starling launches the UK's first agentic AI banking assistant.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-2.html">Read Online</a>
+                        <a href="issues/issue-2.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card is-deepdive">
+                    <span class="issue-type type-deepdive">Deep Dive</span>
+                    <h2><a href="issues/deep-dive-dd2.html">DD-2 — Team Topologies for a Product Company</a></h2>
+                    <div class="date">24 March 2026</div>
+                    <div class="summary">
+                        Four team types, three interaction modes, and what they look like inside a product company. Covers the critical distinction between your product platform and a Team Topologies platform team, plus practical guidance on DevOps, test automation, cross-team projects, and team evolution.
+                    </div>
+                    <div class="links">
+                        <a href="issues/deep-dive-dd2.html">Read Online</a>
+                        <a href="issues/deep-dive-dd2.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-1.html">Issue 1 — The Trillion-Dollar Agent Layer</a></h2>
+                    <div class="date">20 March 2026 &middot; Mar 13–20, 2026</div>
+                    <div class="summary">
+                        NVIDIA GTC 2026 reveals $1 trillion in AI infrastructure orders and an open-source agent platform. The agent workflow wars crystallise as OpenAI ships Skills and Manus lands on the desktop. CircleCI data shows AI throughput is up 59% but delivery infrastructure hasn't caught up. Monzo reveals how they ship hundreds of changes daily across 3,000 microservices.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-1.html">Read Online</a>
+                        <a href="issues/issue-1.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-05.html">Issue 0.5 — The SaaSpocalypse Edition</a></h2>
+                    <div class="date">18 March 2026 &middot; Mar 11–18, 2026</div>
+                    <div class="summary">
+                        $2 trillion in SaaS market cap erased as AI agents threaten the per-seat model. Atlassian cuts 1,600 to fund the pivot. GPT-5.4 and Mistral Small 4 reshape the agent landscape. Chrome zero-days and the NCSC's Middle East cyber warning. UK banks losing a third of market share.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-05.html">Read Online</a>
+                        <a href="issues/issue-05.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card is-deepdive">
+                    <span class="issue-type type-deepdive">Deep Dive</span>
+                    <h2><a href="issues/deep-dive-dd1.html">DD-1 — When Drones Hit the Cloud</a></h2>
+                    <div class="date">18 March 2026</div>
+                    <div class="summary">
+                        The first military strike on hyperscale cloud infrastructure. What the Houthi drone attacks on AWS Middle East mean for sovereignty, resilience, and the assumption that the cloud is untouchable.
+                    </div>
+                    <div class="links">
+                        <a href="issues/deep-dive-dd1.html">Read Online</a>
+                        <a href="issues/deep-dive-dd1.pdf">Download PDF</a>
+                    </div>
+                </div>
+
+                <div class="issue-card">
+                    <span class="issue-type type-weekly">Weekly</span>
+                    <h2><a href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a></h2>
+                    <div class="date">18 March 2026 &middot; Feb 18 – Mar 18, 2026</div>
+                    <div class="summary">
+                        Launch edition covering the month's most consequential developments: AWS Middle East drone strikes, the AI coding revolution, delivery bottlenecks in AI-augmented teams, and Revolut's UK banking licence.
+                    </div>
+                    <div class="links">
+                        <a href="issues/issue-0.html">Read Online</a>
+                        <a href="issues/issue-0.pdf">Download PDF</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-7.html">Issue 7 — The Fintech Week Package</a></h2>
-                <div class="date">24 April 2026 &middot; Apr 17&ndash;24, 2026</div>
-                <div class="summary">
-                    The UK government's Fintech Week package reshapes the regulatory stack: FCA takes on Open Banking, the PSR merges into the FCA, and Chris Woolard is named Wholesale Digital Markets Champion. The FCA's AI Live Testing Lab names its first cohort (Barclays, Lloyds, UBS and more) with Jessica Rusu signalling "no new rules" for agentic commerce. Also: CISA adds 8 exploited CVEs with a Cisco SD-WAN deadline, LeadDev argues the non-technical engineering manager is finished, Node.js 20 EOL is six days out, The Stack debuts with a tokenisation primer, and Ramp's Inspect agent now writes half of all merged PRs.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-7.html">Read Online</a>
-                    <a href="issues/issue-7.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-6.html">Issue 6 — When Everything Patches at Once</a></h2>
-                <div class="date">17 April 2026 &middot; Apr 10&ndash;17, 2026</div>
-                <div class="summary">
-                    April's Patch Tuesday hit 167 Microsoft vulnerabilities with two actively exploited zero-days, a Fortinet zero-day exploited before its advisory was published, and a CVSS 9.9 SAP SQL injection in financial planning systems. Also: CircleCI's report reveals AI is creating a delivery bottleneck (teams write faster but ship slower), GitHub's Copilot data training deadline is seven days out, Bluesky suffers two major outages in ten days, and Revolut launches its AI financial assistant.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-6.html">Read Online</a>
-                    <a href="issues/issue-6.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-5.html">Issue 5 — Codex Breaks Free</a></h2>
-                <div class="date">17 April 2026 &middot; Apr 10&ndash;17, 2026</div>
-                <div class="summary">
-                    OpenAI's Codex leaves the IDE behind — persistent background desktop agents, 111 plugin integrations, and in-app browser control. Also: GitHub's Copilot training data deadline is seven days out, Bluesky's cascading failure post-mortem, April Patch Tuesday with 163 CVEs and an active zero-day, and Node.js 20 EOL in thirteen days. <em>(Superseded by Issue 6)</em>
-                </div>
-                <div class="links">
-                    <a href="issues/issue-5.html">Read Online</a>
-                    <a href="issues/issue-5.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-deepdive">Deep Dive</span>
-                <h2><a href="issues/issue-4.html">Issue 4 — The 97% Paradox</a></h2>
-                <div class="date">10 April 2026 &middot; Apr 3–10, 2026</div>
-                <div class="summary">
-                    97% of enterprises have deployed AI agents — but only 29% are seeing meaningful ROI. A deep dive into the Writer/Workplace Intelligence survey, the five failure modes behind the gap, and why governance is emerging as the real bottleneck. Includes: Microsoft's Agent Governance Toolkit, Cursor's $2B ARR milestone with 35% autonomous PRs, and the continuing AWS Middle East recovery (Day 40+).
-                </div>
-                <div class="links">
-                    <a href="issues/issue-4.html">Read Online</a>
-                    <a href="issues/issue-4.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-3.html">Issue 3 — The AI Tooling War Has a Winner</a></h2>
-                <div class="date">3 April 2026 &middot; Mar 27 – Apr 3, 2026</div>
-                <div class="summary">
-                    JetBrains data shows 74% developer AI adoption — but Copilot's growth has stalled while Claude Code surges to #1 in mindshare. Wise launches a UK current account targeting £250bn in zero-interest balances. Node.js 20 hits end of life in 27 days. AWS Middle East recovery remains degraded after a second disruption. Plus: Clerk's post-mortem on shifting their entire engineering team to reliability after a Google Cloud SQL failure.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-3.html">Read Online</a>
-                    <a href="issues/issue-3.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-2.5.html">Issue 2.5 — Agentic AI Gets Write Access</a></h2>
-                <div class="date">27 March 2026</div>
-                <div class="summary">
-                    Starling launches the UK's first agentic AI banking assistant. XBOW embeds AI pen-testing in Microsoft Security Copilot. GitHub Copilot will train on your code by default. Cursor ships self-hosted cloud agents. Plus: Node.js security patches, Revolut's record profit, OpenAI shuts down Sora, and the Nebius outage post-mortem.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-2.5.html">Read Online</a>
-                    <a href="issues/issue-2.5.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-2.html">Issue 2 — When AI Outruns the Control Plane</a></h2>
-                <div class="date">27 March 2026</div>
-                <div class="summary">
-                    Amazon's 90-day code safety reset after AI-assisted outages caused 6.3M lost orders. Plus: Mastercard acquires BVNK for $1.8B, an AI agent discovers a CVSS 9.8 vulnerability, Microsoft's preceptorship model for junior devs, and Starling launches the UK's first agentic AI banking assistant.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-2.html">Read Online</a>
-                    <a href="issues/issue-2.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-deepdive">Deep Dive</span>
-                <h2><a href="issues/deep-dive-dd2.html">DD-2 — Team Topologies for a Product Company</a></h2>
-                <div class="date">24 March 2026</div>
-                <div class="summary">
-                    Four team types, three interaction modes, and what they look like inside a product company. Covers the critical distinction between your product platform and a Team Topologies platform team, plus practical guidance on DevOps, test automation, cross-team projects, and team evolution.
-                </div>
-                <div class="links">
-                    <a href="issues/deep-dive-dd2.html">Read Online</a>
-                    <a href="issues/deep-dive-dd2.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-1.html">Issue 1 — The Trillion-Dollar Agent Layer</a></h2>
-                <div class="date">20 March 2026 &middot; Mar 13–20, 2026</div>
-                <div class="summary">
-                    NVIDIA GTC 2026 reveals $1 trillion in AI infrastructure orders and an open-source agent platform. The agent workflow wars crystallise as OpenAI ships Skills and Manus lands on the desktop. CircleCI data shows AI throughput is up 59% but delivery infrastructure hasn't caught up. Monzo reveals how they ship hundreds of changes daily across 3,000 microservices.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-1.html">Read Online</a>
-                    <a href="issues/issue-1.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-05.html">Issue 0.5 — The SaaSpocalypse Edition</a></h2>
-                <div class="date">18 March 2026 &middot; Mar 11–18, 2026</div>
-                <div class="summary">
-                    $2 trillion in SaaS market cap erased as AI agents threaten the per-seat model. Atlassian cuts 1,600 to fund the pivot. GPT-5.4 and Mistral Small 4 reshape the agent landscape. Chrome zero-days and the NCSC's Middle East cyber warning. UK banks losing a third of market share.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-05.html">Read Online</a>
-                    <a href="issues/issue-05.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-deepdive">Deep Dive</span>
-                <h2><a href="issues/deep-dive-dd1.html">DD-1 — When Drones Hit the Cloud</a></h2>
-                <div class="date">18 March 2026</div>
-                <div class="summary">
-                    The first military strike on hyperscale cloud infrastructure. What the Houthi drone attacks on AWS Middle East mean for sovereignty, resilience, and the assumption that the cloud is untouchable.
-                </div>
-                <div class="links">
-                    <a href="issues/deep-dive-dd1.html">Read Online</a>
-                    <a href="issues/deep-dive-dd1.pdf">Download PDF</a>
-                </div>
-            </div>
-
-            <div class="issue-card">
-                <span class="issue-type type-weekly">Weekly</span>
-                <h2><a href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a></h2>
-                <div class="date">18 March 2026 &middot; Feb 18 – Mar 18, 2026</div>
-                <div class="summary">
-                    Launch edition covering the month's most consequential developments: AWS Middle East drone strikes, the AI coding revolution, delivery bottlenecks in AI-augmented teams, and Revolut's UK banking licence.
-                </div>
-                <div class="links">
-                    <a href="issues/issue-0.html">Read Online</a>
-                    <a href="issues/issue-0.pdf">Download PDF</a>
-                </div>
-            </div>
         </div>
 
+        <!-- ═══ FOOTER ═══ -->
         <div class="footer">
+            <div class="footer-vol">Vol. II</div>
             <div class="footer-brand">Engineering Digest</div>
-            <div class="footer-sub">Archive</div>
+            <div class="footer-sub">The Archive</div>
         </div>
+
     </div>
 </body>
 </html>
