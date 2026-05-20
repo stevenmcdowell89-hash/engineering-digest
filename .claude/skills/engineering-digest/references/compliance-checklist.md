@@ -40,10 +40,16 @@ These checks run before the content checks. They verify the five-phase pipeline 
 - [ ] No action items or recommendations — inform only
 
 ## Explain key terms on first use (v3.0)
-- [ ] **Proper-noun / capitalised-term scan**: scanned the full issue for proper nouns and capitalised technical terms (e.g. Temporal, DNSSEC, MCP, DORA, Octoverse, attestation, kex, epoll, PSD3, eBPF, OIDC, mTLS). Each one is either glossed inline on first use OR explained in a Jargon Watch sidebar in the same section.
-- [ ] **Inline gloss format**: where used, gloss is a short parenthetical or appositive that an engineering leader who has not touched the term in 18 months can parse without leaving the page (e.g. "Temporal — a durable workflow runtime for long-running operations").
-- [ ] **Jargon Watch sidebar**: where used, sidebar carries a `JARGON WATCH` label, the term, and 2–3 sentences of plain-language explanation; it is small (≤260px) and floated, not a full-width feature; it does not count toward the 3–5 layout-component cap.
-- [ ] **Over-inform, don't under-inform**: if a term is doing real work in an article (mentioned more than once, drives the "why this matters"), it gets explained even if the reader "should" know it. The bar is the engineering leader who reads broadly but doesn't live in this specific stack.
+- [ ] **Specialist-term scan (v3.7 — broadened from v3.0 proper-noun scan)**: scanned the full issue for FOUR categories of terms, not just capitalised ones:
+  1. **Proper nouns** — vendor / product / framework / standard / regulation names (e.g. Temporal, DNSSEC, MCP, DORA, Octoverse, PSD3, eBPF).
+  2. **Acronyms and abbreviations** — including lowercase or mixed-case (`mTLS`, `OIDC`, `LLM-eval`, `LLM-as-judge`).
+  3. **Hyphenated neologisms / specialist phrases used as named concepts in the article** — e.g. `funnel-not-a-fork`, `tuition-cost-of-transformation`, `verification-tax`, `J-Curve`, `agent-mode`. If the article uses a phrase as a defined concept (often italicised, often repeated), it needs glossing — capitalisation is irrelevant.
+  4. **Numerical-frequency trigger**: any term appearing **3 or more times in the body of one section** must be glossed inline on first use OR carry a Jargon Watch sidebar, regardless of capitalisation. This catches the Issue 11 v1.25 LLM-eval failure mode (the term appeared 8 times across the In Practice section without a single gloss line).
+
+  Each flagged term is either glossed inline on first use OR explained in a Jargon Watch sidebar in the same section.
+- [ ] **Inline gloss format**: where used, gloss is a short parenthetical or appositive an engineering leader can parse without leaving the page (e.g. *"LLM-eval — using one language model to score another model's output against named criteria, before any human-led test runs"*).
+- [ ] **Jargon Watch sidebar**: where used, sidebar carries a `JARGON WATCH` label, the term, and 2–3 sentences of plain-language explanation; small (≤260px), floated, does not count toward the 3–5 layout-component cap.
+- [ ] **Over-inform, don't under-inform**: if a term is doing real work in an article (mentioned more than once, drives the "why this matters"), it gets explained even if the reader "should" know it. **The bar includes a year-one engineering manager from a non-technical route (former scrum master / delivery manager / PM)** — if the term is borderline for them, gloss it.
 - [ ] **No silent acronyms**: every acronym is expanded on first use unless it is unambiguously general-business (CEO, GDP, US, UK).
 - [ ] **Cross-issue repeat acceptable**: a term that was glossed in a recent issue may be re-glossed briefly here — readers don't carry context week-to-week.
 
@@ -62,6 +68,7 @@ These checks run before the content checks. They verify the five-phase pipeline 
 - [ ] **Soft breadth guardrail (v3.4)**: across rolling 4 issues, leads span at least 3 of the 4 operational concerns. If the same concern leads twice running, the run plan documents the choice on substance grounds
 - [ ] Lead chosen by operational-decision impact this specific week — not by standing concern rank, not by mechanical rotation
 - [ ] **Banking, fintech & loyalty framing (v3.3)**: stories framed positively as "the world the reader operates in" — never as customer-pressure briefings or compliance briefings for the reader's own firm. Regulatory stories qualify for any slot they earn on operational-impact tests, including the Lead
+- [ ] **Loyalty / commerce-media research emphasis (v3.7)**: Phase 1 ran explicit queries for loyalty / commerce-media engineering this week (Stripe Ledger, neobank loyalty rollouts, agentic-commerce protocol shifts, aggregator API moves, rewards-platform engineering, Visa/Mastercard loyalty-track work) — the patch is researched every week regardless of whether a story surfaces. **A loyalty story takes a slot only when it earns one on substance**; wider engineering news is NOT crowded out by a forced thin loyalty piece. If no loyalty story surfaces, no loyalty slot appears — that is correct, not a failure
 - [ ] **Source sector irrelevance (v2.5)**: a Shopify / Netflix / Atlassian-style leadership story is eligible for any concern it speaks to when the lesson applies to the reader — don't filter by source sector
 - [ ] **"Worth reading" test passed**: every lead and quick take has narrative, tension, or insight beyond just being important to know. Important-but-not-interesting stories are in Week at a Glance or On the Radar
 - [ ] Version lifecycle deadlines (EOLs, deprecations) are in Platform Updates / On the Radar — not given article treatment unless genuine narrative beyond "update by date X"
