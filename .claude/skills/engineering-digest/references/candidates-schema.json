@@ -183,7 +183,12 @@
         },
         "chartable_data": {
           "type": "string",
-          "description": "Optional (v1.30). Free-text note flagging whether this candidate has data, structure, or content that would chart, table, or diagram well. Examples: 'three comparable adoption metrics across vendors', 'source describes a 4-step process the team rolled out', 'before/after metrics from a single-team experiment', 'architecture: 5 components with dependency arrows'. Curation and planning phases use this to allocate visual primitives (inline SVG chart, compare-table, process-flow, by-the-numbers callout) per the v1.30 visual density rules."
+          "description": "Optional (v1.30). Free-text note flagging whether this candidate has data, structure, or content that would chart, table, or diagram well. Examples: 'three comparable adoption metrics across vendors', 'source describes a 4-step process the team rolled out', 'before/after metrics from a single-team experiment', 'architecture: 5 components with dependency arrows'. Curation and planning phases use this to allocate visual primitives per the v1.30 visual density rules."
+        },
+        "event_or_essay": {
+          "type": "string",
+          "enum": ["news_event", "essay"],
+          "description": "Optional (v1.32). Classifies whether this candidate is a news event (launch, vendor decision, corporate restructure, security incident, outage, research publication, peer-org engineering decision, payments-rail shift, hire/exit, regulatory action) or an essay (reflective blog post, framework, analytical piece, opinion). Phase 2 uses this for the v1.32 anchor balance rule: the Lead must be a news_event; ≥2 of 3 anchors (Lead, QT1, QT2) must be news_events. Essays belong in Leadership Read, In Practice, or Outside In."
         }
       }
     }
