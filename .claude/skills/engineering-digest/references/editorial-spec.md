@@ -558,7 +558,7 @@ Article openers set the rhythm of the issue. When every article opens the same w
 
 ## Deep Dive Structure
 
-Cover (red gradient bar, Deep Dive badge) → Foreword (two short paragraphs: what happened + why it warrants a full issue) → How to Read This guide (2 min / 10 min / 30 min paths) → P0 status card if story is ongoing → Executive summary → Source sections with visuals (minimum 2–3 inline SVGs) → Counterpoint (if contrasting data exists) → Case study (if a real-world example anchors the story) → Lessons & implications → **Meanwhile...** (structured catch-up on other news) → On the Radar → Recommended Reading → Footer.
+Cover (red gradient bar, Deep Dive badge) → Foreword (two short paragraphs: what happened + why it warrants a full issue) → How to Read This guide (2 min / 10 min / 30 min paths) → P0 status card if story is ongoing → Executive summary → Source sections with visuals (**minimum 3–4 inline SVGs per deep dive, bumped from 2–3 in v1.30**) → Counterpoint (if contrasting data exists) → Case study (if a real-world example anchors the story) → Lessons & implications → **Meanwhile...** (structured catch-up on other news) → On the Radar → Recommended Reading → Footer.
 
 ### Meanwhile... (v2.1 — deep dives only)
 
@@ -864,15 +864,55 @@ Choose the format that best fits the source material — there's no cross-issue 
 
 ---
 
-## Visuals
+## Visuals (v1.30 — visual density expansion)
 
-Use inline SVG when it communicates faster or more clearly than prose. Pass both tests before including: (1) does it communicate something prose can't? (2) does it look like it belongs in a magazine, not a slide deck?
+Use inline SVG, tables, or visual primitives when they communicate faster or more clearly than prose. Pass both tests before including: (1) does it communicate something prose can't? (2) does it look like it belongs in a magazine, not a slide deck?
 
-**Use for:** charts (bar, line, donut), architecture/flow/cascade diagrams, timelines for multi-day events, comparison tables, stats rows. Deep dives: minimum 2–3 SVG visuals. Standard weeklies: stats row or table where data warrants; SVG only when genuinely needed.
+**Use for:** charts (bar, line, donut), architecture / flow / cascade diagrams, timelines for multi-day events, comparison tables, stats rows.
 
-**Never use:** AI-generated images, stock photography, decorative illustrations, unsourced external images, visuals in quick hits/Other News/foreword.
+**Never use:** AI-generated images, stock photography, decorative illustrations, unsourced external images, visuals in quick hits / Other News / foreword.
 
 **SVG diagrams must be actual `<svg>` elements** with coloured rectangles, connecting lines/arrows, and the digest colour palette. Text-based or CSS-box approximations don't meet the bar — omit rather than publish a degraded version.
+
+### Visual density rule (v1.30)
+
+The digest covers engineering leadership. The right register is data-informed, diagram-friendly — not prose-memo. Three rules:
+
+1. **Per-section floor (Standard Weekly)**: every major section (Lead, QT1, QT2, In Practice, Leadership Read, Outside In) contains **at least one visual element**. *Visual* means any of: inline SVG chart, stats row, by-the-numbers callout, compare-table, process-flow diagram, sparkline, pull quote bar, sidebar box. The rule is *no major section is pure prose end-to-end.* Most sections already meet this through existing primitives — the rule formalises the floor.
+
+2. **Per-issue visual budget (Standard Weekly)**: target **4–6 distinct visual elements** across all sections. Below 4 reads memo-adjacent for this audience; above 6 starts to crowd. Cover lead-stat / lead-quote counts; Volume II identity strap does NOT count (it's identity, not content visual).
+
+3. **Real-diagram floor (Standard Weekly)**: of the 4–6 visuals per issue, **at least 1–2 must be a real diagram, chart, or table** — not just stats rows, pull quote bars, or sidebar boxes. *Real diagram / chart / table* means: an inline SVG bar/line/donut chart, a process-flow diagram, an architecture diagram, a compare-table, a by-the-numbers callout, or a small `compare-table.compact`. This is the rule that moves the publication beyond memo. The Lead's SVG chart (when data warrants) usually fills one slot; the second is most often a compare-table or process-flow in In Practice / a Quick Take / Outside In.
+
+### Visual primitives (the toolkit)
+
+Existing primitives (all unchanged):
+- **Stats rows** (`.stats-row`, `.oi-stats-row`) — 3–4 cells with large numbers, used in Lead, Outside In, Leadership Read
+- **Stats tiles** (`.stats-tile`) — single compact tile with one stat
+- **Pull quote bars** (`.pq-bar`, `.pull-quote`) — full-width quote band or floated section blockquote
+- **By-the-numbers callout** (`.by-the-numbers`) — teal-bordered panel with 3–6 data points
+- **Mid-issue accent: number band** (`.mid-accent-band`) — single large stat in a tinted band between Quick Takes and Other News
+- **Platform Updates table** (`.glance-table`) — Status / Platform / What Changed, 0–2 rows
+- **P0 status card** (`.p0-status-card`)
+- **Sidebar box** (`.sidebar-box-float`, `.sidebar-box`) — floated context / Jargon Watch / Concept of the week
+- **Radar timeline** (`.radar-timeline`)
+- **Cover lead-stat / lead-quote**
+
+New primitives in v1.30:
+- **Compare table** (`.compare-table`) — compact 2-column table, 3–5 rows max. Used for *"approach A vs approach B"*, *"before vs after"*, *"us vs them"*. Borrowed concept from the deep-dive comparison grid but scaled for inline use in QTs and In Practice. Max-width 480px (default) or 360px (`.compact` modifier). Header row uses deep-teal labels; body rows have a heavier first-column label and a light second column. **Cap: 5 rows × 2 columns. Tables larger than this are slide-deck territory — break into prose or chart instead.**
+- **Process-flow diagram** (`.process-flow` with `.pf-step` and `.pf-arrow`) — 3–5 horizontal step boxes joined by arrows, stacks vertically on mobile. Used for sequences the source describes step-by-step (the *"funnel, not a fork"* shape from the Issue 11 v1.25 In Practice piece, an agentic-coding adoption sequence, a hiring-loop redesign). CSS-based primitive — the writer fills in step labels; the visual layout is automatic. For more complex shapes (non-linear flow, branching, feedback loops), the writer falls back to hand-crafted inline `<svg>` per the existing visuals rule.
+- **Sparkline** (`.sparkline` wrapper) — 80px inline container for hand-crafted SVG (mini bar chart, line trend, comparison bars). Used inline within prose for mid-paragraph trend references. `.sparkline.wide` for 120px. The writer hand-crafts the SVG; the wrapper enforces consistent inline sizing.
+
+### Deep dive visual density (v1.30 update)
+
+Deep dives already carry significantly more visual surface than weeklies — section markers, progress bar, scope indicator, how-to-read guide, comparison grid (red/green), case-study timeline, verdict box, key-takeaway box, lessons section, Meanwhile section, distinct source-section layouts. The v1.30 update **bumps the minimum inline SVG count from 2–3 to 3–4 per deep dive**, to maintain the visual heft differential as standard weeklies get denser. Deep dives should always feel a step up in visual depth, not a continuation of the same density.
+
+### Phase-by-phase responsibility (v1.30)
+
+- **Phase 1 (research)**: flag candidates with chartable data using the optional `chartable_data` notes field — *"this candidate has 3 comparable metrics that would chart"* or *"this candidate is a process the source describes step-by-step"*. Cheap to add; gives Phase 3 the signal.
+- **Phase 3 (planning)**: each section brief names which visual primitive(s), with rationale. The component manifest at the top of `section-briefs.md` lists visuals across the issue and confirms the 4–6 budget + 1–2 real-diagram floor.
+- **Phase 4 (writing)**: produces the SVG / table / diagram per brief. **If Phase 4 can't make a clean visual (no clean data, no clean message), it flags back and ships the section with prose only — does NOT ship a degraded visual.**
+- **Phase 5 (review)**: verifies the visual budget (4–6 per issue, ≥1 per major section, ≥1–2 real diagrams/charts/tables), and that each visual passes both tests ("communicates faster than prose" + "magazine-quality not slide-deck").
 
 ---
 
