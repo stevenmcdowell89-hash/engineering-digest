@@ -83,6 +83,7 @@ These checks enforce the v3.3 audience definition. The reader is engineering lea
 - [ ] **Anchor depth-fit**: for each anchor slot (Lead, QT1, QT2), there is a clear "what guides the team's work" takeaway that does not require the reader to be running the system themselves. If the only useful version of the takeaway is for someone patching, deploying, configuring, or writing code, the story is in the wrong slot — demote.
 - [ ] **Banking/fintech framing (v3.3 — supersedes v3.2 customer-pressure gate)**: banking, fintech, and loyalty stories are framed positively as *"the world the reader operates in and the engineering decisions their peers and customers are making"* — not as customer-pressure briefings, and not as compliance briefings for the reader's own firm. Regulatory stories (FCA, ADGM, PSR, DORA) qualify for any slot they earn on operational impact, including the Lead.
 - [ ] **In Practice quality check (v3.5 — replaces v3.2 whitelist)**: the *In Practice* piece (if present) passes the three required qualities — (1) named operator at a real org, (2) journey not framework, (3) technical content at implication level. Source identity is the filter, not a fixed whitelist; named eng-management authors and scale-tech / fintech engineering blogs are strong candidate pools, with bank engineering blogs (Monzo / Wise / Starling / Revolut / etc.) first-class per v3.3.
+- [ ] **AI-substrate ceiling (v3.8)**: across rolling 4 issues, no more than 2 anchor slots (Lead, QT1, QT2) have AI as the substantive driver. At least one of this issue's top 3 anchors is a story where AI is not the primary force (security event, payments rail shift, regulator action, peer-bank engineering decision, non-AI management craft). If all 3 anchors are AI-driven, the run plan documents the call and names what non-AI candidates were considered and rejected.
 
 ## Structure
 - [ ] Section order matches the spec for the chosen format
@@ -286,6 +287,12 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] No more than 2 section breathers in the issue
 - [ ] Editorial moment present after foreword/P0, before The Week at a Glance — variant suits this week's material (no cross-issue rotation tracker)
 - [ ] Editorial moment is brief, curatorial in tone, distinct from the main editorial content
+- [ ] **Section spread (v3.8)**: the three long-form sections (*In Practice*, Outside In, The Leadership Read) are NOT all clustered at the back of the issue. **At least one is placed mid-issue.** The default is *In Practice* at position 10 (after the second section breather, before Other News). Variants are acceptable when documented in the run plan — what is NOT acceptable is all three back-to-back in positions 13–15. If the actual rendered HTML has all three back-to-back, the structure has failed and Phase 4 must be sent back to re-order.
+
+## Reader Service Components (v3.8 — for the wider management team)
+- [ ] **Concept of the week (v3.8)** sidebar present in this issue when warranted — used when an article centres on a management craft concept the year-one EM from a non-technical route may not know cold (calibration, levelling, skip-levels, psychological safety, RACI, promo packets, etc.). Same v3.7 frequency trigger: 3+ uses of a concept in one section, OR it's the article's core idea. The component is optional — omit when nothing earns it; don't force one every issue.
+- [ ] **Author card (v3.8)** rendered at the top of every *In Practice* section, every Leadership Read section, and every Outside In Format A section. Contains: text initials avatar (no photos), author name, role + organisation, date. Reinforces the "real person at a real organisation" claim visually. Smaller inline attribution remains acceptable for Outside In Formats B and C.
+- [ ] **Cross-issue throughline (v3.8)**: when a current story has roots in a prior issue, a single sentence inside an article references the prior coverage. Optional. Not a separate section. Used when the connection adds substance.
 
 ## Design Enhancements (v1.1)
 - [ ] Cover: centred masthead, lead pull-stat in tinted band with context sentence
