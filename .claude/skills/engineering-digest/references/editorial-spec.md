@@ -328,6 +328,48 @@ Calibrate depth to delivery managers. Concrete guidance:
 
 ---
 
+## Visual Identity (v1.29)
+
+The visual refresh introduced with Issue 12 marks the start of **Volume II**. The intent is *considered, not consumer-tech* — closer to FT Weekend / Pragmatic Engineer / The Economist than to a startup newsletter. Five concrete elements:
+
+1. **Cover identity strap** (`.cover-identity-strap`) — thin band above the masthead with *Vol. II · Issue [N] · [Date] · [N] min read*. Bullet-separated, 11px tracked uppercase, slightly darker band than the cover proper. Quiet but unmissable signal that the publication has a deliberate identity.
+
+2. **Cover dot-grid motif** — subtle 40px dot grid at low opacity (~7%) tiled across the cover background. Signals *engineering* (graph-paper / dot-grid is an engineering visual vocabulary) without literalism. Single CSS background-image, no separate SVG element to maintain.
+
+3. **Cover variant: pull-stat OR pull-quote**. The cover lead band can render in two forms — the existing `.cover-lead-stat` (large number with context sentence, default) OR a new `.cover-lead-quote` (28px Playfair italic quote with attribution, used when the issue's strongest signal is a quote rather than a stat). Pick whichever the week's material earns; don't force the stat variant when a quote would land harder.
+
+4. **Per-section reading time** (`.section-time`) — small `(N min)` next to each major section's `<h2>` in 12px med-gray. Magazine-standard. The cover already shows total time; this lets the reader budget per section. Particularly serves the year-one EM who wants to know what they're committing to.
+
+5. **Drop caps in Lead + Leadership Read** — automatic via CSS when the Lead section uses class `.lead-article` and the Leadership Read uses `.mgmt-section`. Drop caps now appear three times per issue (foreword + Lead + Leadership Read), giving visual rhythm across the front-middle-back of the magazine.
+
+### Volume II marking
+
+- Cover identity strap displays *Vol. II* (in teal) as the first element.
+- Footer displays a `.footer-vol` label above the masthead-style brand mark.
+- All issues from Issue 12 onwards are Vol. II until the next major spec inflection.
+
+### Editor's note (Issue 12 only)
+
+A one-time `.editor-note` block in the Foreword acknowledges the Vol. II refresh. Two short sentences, not apologetic, naming what's sharper about the publication going forward. **The note appears in Issue 12 only — remove from Issue 13 onwards.** Markup is in the template, commented out for re-use only if a future inflection warrants it.
+
+### Palette by concern (v1.29)
+
+Section labels and quick-take header bars carry colour cues by operational concern. Use the existing `.section-label` modifier classes deliberately:
+
+- **Management & teams** → `.section-label.orange` (accent-orange `#FF6B35`)
+- **Ways of working** → `.section-label` (default teal `#00B4D8`)
+- **Operating at scale** → `.section-label.alert` (alert-red `#DC2626`) — only when active threat or material upgrade window; default to teal otherwise
+- **Banking, fintech & loyalty** → `.section-label.green` (accent-green `#00D4AA`)
+- **Outside In** → `.section-label.orange` (existing convention; preserved)
+
+The palette mapping makes the issue feel organised by concern even when the reader isn't consciously reading the section label text. Already in the CSS — this is documenting consistent use, not adding classes.
+
+### Author cards (from v1.28)
+
+The v1.28 `.author-card` component lands visibly with Issue 12 onwards. Used at the top of every *In Practice*, every Leadership Read, and every Outside In Format A section. The visual signal pairs with the Volume II refresh — *real named operators at real organisations, surfaced with magazine-standard attribution.*
+
+---
+
 ## Standard Weekly Structure
 
 1. **Cover** — full-width dark navy header. Centred masthead (`text-align:center`), date, issue badge, contents grid. Include an **estimated reading time** next to the issue badge (e.g. "7 min read") — calculate from total word count at ~200 wpm, rounded to the nearest minute. Style: `font-size:12px; color:var(--med-gray); letter-spacing:1px`. Include a **lead pull-stat** — the single most striking number from the issue, displayed large (64px Playfair Display, teal) in a tinted band (`rgba(0,180,216,.08)` background with teal top/bottom borders) between the masthead and contents list. The stat needs a one-line context sentence beneath it. This is the hook — pick the number a reader would remember from the whole issue.
