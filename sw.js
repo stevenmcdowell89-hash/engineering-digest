@@ -27,11 +27,11 @@ self.addEventListener('push', (event) => {
   const title = payload.title || 'Engineering Digest';
   const options = {
     body: payload.body || 'A new issue is out.',
-    icon: '/icons/icon-192.png',
-    badge: '/icons/icon-192.png',
+    icon: './icons/icon-192.png',
+    badge: './icons/icon-192.png',
     tag: NOTIFICATION_TAG,
     renotify: true,
-    data: { url: payload.url || '/' },
+    data: { url: payload.url || './' },
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
@@ -39,7 +39,7 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const target = (event.notification.data && event.notification.data.url) || '/';
+  const target = (event.notification.data && event.notification.data.url) || './';
 
   event.waitUntil((async () => {
     const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
