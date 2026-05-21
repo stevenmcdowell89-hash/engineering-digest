@@ -1,0 +1,32 @@
+# Files and directories excluded from being served as static assets
+# by the Cloudflare Workers Static Assets deployment.
+#
+# Patterns follow .gitignore conventions. Anything matched here stays
+# in the repo (so other tooling can use it) but is never publicly
+# fetchable from the deployed site.
+
+# Infrastructure / tooling
+.github/
+.claude/
+.gitignore
+.assetsignore
+wrangler.toml
+_worker.js
+
+# State files (contain editorial state — never serve)
+engineering-digest-state.json
+digest-state.json
+
+# Build / test artefacts
+digest-runs/
+
+# Legacy worker source (kept for reference, never served)
+worker/
+
+# Local scripts
+scripts/
+
+# Note: setup/ stays public. The VAPID generator runs entirely
+# client-side, generates a fresh keypair on each visit, and sends nothing
+# anywhere — exposing it is harmless and lets you regenerate keys later
+# if needed without a code change.

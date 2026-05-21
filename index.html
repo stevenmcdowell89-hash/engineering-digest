@@ -8,8 +8,6 @@
     <meta name="theme-color" content="#0A1628">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
-    <!-- Set after deploying the Cloudflare Worker. Leave blank to disable alerts UI. -->
-    <meta name="push-worker-url" content="">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -868,10 +866,9 @@
 
 <script>
 (() => {
-    const WORKER_URL = document.querySelector('meta[name="push-worker-url"]')?.content?.trim();
-
-    // If the Worker URL isn't set, hide the alerts UI entirely.
-    if (!WORKER_URL) return;
+    // Same-origin API — the static site and /api/* are served by the
+    // same Cloudflare Worker, so relative paths are all we need.
+    const API = '/api';
 
     // Push requires service worker + Push API + Notification API.
     const supported = 'serviceWorker' in navigator
@@ -936,14 +933,14 @@
                 setState({ subscribed: false, denied: perm === 'denied' });
                 return;
             }
-            const keyRes = await fetch(`${WORKER_URL}/vapid-public-key`);
+            const keyRes = await fetch(`${API}/vapid-public-key`);
             const { key } = await keyRes.json();
             const reg = await getRegistration();
             const sub = await reg.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey: b64uToBytes(key),
             });
-            const res = await fetch(`${WORKER_URL}/subscribe`, {
+            const res = await fetch(`${API}/subscribe`, {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(sub),
@@ -962,7 +959,7 @@
         try {
             const sub = await getSubscription();
             if (sub) {
-                await fetch(`${WORKER_URL}/unsubscribe`, {
+                await fetch(`${API}/unsubscribe`, {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ endpoint: sub.endpoint }),

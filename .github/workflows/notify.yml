@@ -6,9 +6,11 @@ name: Notify subscribers of a new issue
 # Manual fallback: Actions tab → Run workflow with explicit inputs.
 #
 # Required repository secrets (Settings → Secrets and variables → Actions):
-#   PUSH_WORKER_URL   — the Cloudflare Worker URL
-#   NOTIFY_TOKEN      — matches the Worker's NOTIFY_TOKEN secret
-#   SITE_BASE_URL     — public origin where issues are served, e.g. https://stevenmcdowell89-hash.github.io
+#   NOTIFY_TOKEN    — matches the Worker's NOTIFY_TOKEN secret
+#   SITE_BASE_URL   — full origin of the published site, e.g.
+#                     https://engineering-digest.steven-mcdowell-89.workers.dev
+#                     The action POSTs to ${SITE_BASE_URL}/api/notify and uses
+#                     the same base for the in-notification issue URL.
 
 on:
   push:
@@ -95,7 +97,7 @@ jobs:
       - name: Send push
         if: steps.payload.outputs.skip != 'true'
         env:
-          PUSH_WORKER_URL: ${{ secrets.PUSH_WORKER_URL }}
+          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
           NOTIFY_TOKEN: ${{ secrets.NOTIFY_TOKEN }}
           ISSUE: ${{ steps.payload.outputs.issue }}
           HEADLINE: ${{ steps.payload.outputs.headline }}
@@ -103,8 +105,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [ -z "$PUSH_WORKER_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
-            echo "Missing PUSH_WORKER_URL or NOTIFY_TOKEN repository secrets" >&2
+          if [ -z "$SITE_BASE_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
+            echo "Missing SITE_BASE_URL or NOTIFY_TOKEN repository secrets" >&2
             exit 1
           fi
 
@@ -117,7 +119,7 @@ jobs:
           echo "Payload:"
           echo "$PAYLOAD"
 
-          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$PUSH_WORKER_URL/notify" \
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$SITE_BASE_URL/api/notify" \
             -H "authorization: Bearer $NOTIFY_TOKEN" \
             -H "content-type: application/json" \
             -d "$PAYLOAD")

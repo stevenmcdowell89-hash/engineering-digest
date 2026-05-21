@@ -1,0 +1,24 @@
+# Cloudflare Workers Static Assets — combines the static site (served
+# by the [assets] binding) with a Worker script (_worker.js) that
+# handles the /api/* endpoints for push notifications.
+#
+# This file is picked up automatically by the Git-connected Cloudflare
+# project on every push to main. No CLI required.
+#
+# After the next deploy, finish setup in the dashboard:
+#   1. Storage & Databases → KV → Create namespace "engineering-digest-subscriptions"
+#   2. Your project → Settings → Bindings → Add → KV namespace
+#      Variable name: SUBSCRIPTIONS, namespace: the one from step 1
+#      (Or paste the namespace id below under [[kv_namespaces]] and remove
+#      the dashboard binding.)
+#   3. Settings → Variables and Secrets → add 4 encrypted secrets:
+#      VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT, NOTIFY_TOKEN
+
+name = "engineering-digest"
+main = "_worker.js"
+compatibility_date = "2024-11-01"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+not_found_handling = "none"

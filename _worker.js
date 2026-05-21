@@ -1,47 +1,56 @@
-/* Engineering Digest — push notifications worker
+/* Engineering Digest — unified Worker for the Cloudflare Workers
+ * Static Assets deployment. Handles the /api/* push notification
+ * endpoints and falls through to the static asset binding for
+ * everything else (the index page, issues, manifest, sw.js, icons).
+ *
+ * Required bindings (wrangler.toml + dashboard):
+ *   ASSETS         — static assets binding (config in wrangler.toml)
+ *   SUBSCRIPTIONS  — KV namespace storing push subscriptions
+ *
+ * Required encrypted secrets (Settings → Variables and Secrets):
+ *   VAPID_PUBLIC_KEY    base64url, 65-byte uncompressed P-256
+ *   VAPID_PRIVATE_KEY   JWK string {"crv":"P-256","d":"...","kty":"EC","x":"...","y":"..."}
+ *   VAPID_SUBJECT       "mailto:you@example.com"
+ *   NOTIFY_TOKEN        random string shared with the GitHub Action
  *
  * Endpoints:
- *   GET  /vapid-public-key      → returns the VAPID public key (base64url) so the
- *                                 client can call pushManager.subscribe()
- *   POST /subscribe             → store a subscription in KV (anonymous)
- *   POST /unsubscribe           → remove a subscription
- *   POST /notify                → authenticated; sends a push to every stored subscription
- *
- * Secrets required (wrangler secret put):
- *   VAPID_PUBLIC_KEY      base64url, 65 bytes uncompressed P-256
- *   VAPID_PRIVATE_KEY     JWK string {"crv":"P-256","d":"...","kty":"EC","x":"...","y":"..."}
- *   VAPID_SUBJECT         "mailto:you@example.com"
- *   NOTIFY_TOKEN          random string, shared with the publish step
- *   ALLOWED_ORIGIN        the origin serving the site (CORS), e.g. https://stevenmcdowell89-hash.github.io
- *
- * KV binding: SUBSCRIPTIONS — keys are sha256(endpoint), values are the subscription JSON.
+ *   GET  /api/vapid-public-key   returns the VAPID public key for the client
+ *   POST /api/subscribe          stores a push subscription
+ *   POST /api/unsubscribe        removes a push subscription
+ *   POST /api/notify             bearer-auth; pushes to every stored subscription
  */
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    if (request.method === 'OPTIONS') return cors(env, new Response(null, { status: 204 }));
-
-    try {
-      if (request.method === 'GET' && url.pathname === '/vapid-public-key') {
-        return cors(env, json({ key: env.VAPID_PUBLIC_KEY }));
-      }
-      if (request.method === 'POST' && url.pathname === '/subscribe') {
-        return cors(env, await handleSubscribe(request, env));
-      }
-      if (request.method === 'POST' && url.pathname === '/unsubscribe') {
-        return cors(env, await handleUnsubscribe(request, env));
-      }
-      if (request.method === 'POST' && url.pathname === '/notify') {
-        return await handleNotify(request, env, ctx);
-      }
-      return new Response('Not found', { status: 404 });
-    } catch (err) {
-      return new Response(`Worker error: ${err.message}`, { status: 500 });
+    // Route /api/* to the handlers; everything else is a static asset
+    if (url.pathname.startsWith('/api/')) {
+      return handleApi(request, url, env, ctx);
     }
+    return env.ASSETS.fetch(request);
   },
 };
+
+async function handleApi(request, url, env, ctx) {
+  try {
+    if (request.method === 'GET' && url.pathname === '/api/vapid-public-key') {
+      return json({ key: env.VAPID_PUBLIC_KEY });
+    }
+    if (request.method === 'POST' && url.pathname === '/api/subscribe') {
+      return await handleSubscribe(request, env);
+    }
+    if (request.method === 'POST' && url.pathname === '/api/unsubscribe') {
+      return await handleUnsubscribe(request, env);
+    }
+    if (request.method === 'POST' && url.pathname === '/api/notify') {
+      return await handleNotify(request, env);
+    }
+    return new Response('Not found', { status: 404 });
+  } catch (err) {
+    return new Response(`Worker error: ${err.message}`, { status: 500 });
+  }
+}
 
 // ─── handlers ────────────────────────────────────────────────────────────────
 
@@ -67,7 +76,7 @@ async function handleUnsubscribe(request, env) {
   return json({ ok: true });
 }
 
-async function handleNotify(request, env, ctx) {
+async function handleNotify(request, env) {
   const auth = request.headers.get('authorization') || '';
   const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
   if (!env.NOTIFY_TOKEN || token !== env.NOTIFY_TOKEN) {
@@ -89,7 +98,6 @@ async function handleNotify(request, env, ctx) {
     const sub = JSON.parse(raw);
     try {
       const status = await sendPush(sub, payload, env);
-      // 404 Not Found or 410 Gone → subscription is dead, drop it
       if (status === 404 || status === 410) {
         await env.SUBSCRIPTIONS.delete(k.name);
         results.push({ endpoint: short(sub.endpoint), status, dropped: true });
@@ -154,10 +162,9 @@ async function vapidJwt(privateKeyJwkStr, subject, audience) {
 }
 
 async function encryptPayload(plaintext, p256dhB64u, authB64u) {
-  const uaPublicRaw = b64uDecode(p256dhB64u);   // 65 bytes uncompressed
-  const authSecret = b64uDecode(authB64u);      // 16 bytes
+  const uaPublicRaw = b64uDecode(p256dhB64u);
+  const authSecret = b64uDecode(authB64u);
 
-  // Generate application-server ephemeral ECDH keypair
   const asKeyPair = await crypto.subtle.generateKey(
     { name: 'ECDH', namedCurve: 'P-256' },
     true,
@@ -165,19 +172,16 @@ async function encryptPayload(plaintext, p256dhB64u, authB64u) {
   );
   const asPublicRaw = new Uint8Array(await crypto.subtle.exportKey('raw', asKeyPair.publicKey));
 
-  // Import client public key for ECDH
   const uaPublicKey = await crypto.subtle.importKey(
     'raw', uaPublicRaw,
     { name: 'ECDH', namedCurve: 'P-256' },
     false, []
   );
 
-  // ECDH → shared secret (32 bytes X coordinate)
   const ecdhSecret = new Uint8Array(
     await crypto.subtle.deriveBits({ name: 'ECDH', public: uaPublicKey }, asKeyPair.privateKey, 256)
   );
 
-  // Per RFC 8291 §3.4 — derive IKM
   const keyInfo = concat(
     new TextEncoder().encode('WebPush: info\0'),
     uaPublicRaw,
@@ -185,23 +189,19 @@ async function encryptPayload(plaintext, p256dhB64u, authB64u) {
   );
   const ikm = await hkdf(authSecret, ecdhSecret, keyInfo, 32);
 
-  // Per RFC 8188 — derive CEK and NONCE
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const cek = await hkdf(salt, ikm, new TextEncoder().encode('Content-Encoding: aes128gcm\0'), 16);
   const nonce = await hkdf(salt, ikm, new TextEncoder().encode('Content-Encoding: nonce\0'), 12);
 
-  // Pad: append delimiter byte 0x02 (last record, no further padding)
   const padded = new Uint8Array(plaintext.length + 1);
   padded.set(plaintext);
   padded[plaintext.length] = 0x02;
 
-  // AES-128-GCM encrypt
   const aesKey = await crypto.subtle.importKey('raw', cek, { name: 'AES-GCM' }, false, ['encrypt']);
   const ciphertext = new Uint8Array(
     await crypto.subtle.encrypt({ name: 'AES-GCM', iv: nonce }, aesKey, padded)
   );
 
-  // Record header: salt(16) || rs(4=4096 BE) || idlen(1=65) || keyid(65)
   const rs = new Uint8Array(4);
   new DataView(rs.buffer).setUint32(0, 4096, false);
   return concat(salt, rs, new Uint8Array([65]), asPublicRaw, ciphertext);
@@ -251,14 +251,6 @@ function json(obj, init = {}) {
     ...init,
     headers: { 'content-type': 'application/json', ...(init.headers || {}) },
   });
-}
-function cors(env, res) {
-  const h = new Headers(res.headers);
-  h.set('Access-Control-Allow-Origin', env.ALLOWED_ORIGIN || '*');
-  h.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  h.set('Access-Control-Allow-Headers', 'content-type');
-  h.set('Vary', 'Origin');
-  return new Response(res.body, { status: res.status, headers: h });
 }
 function short(endpoint) {
   return endpoint.replace(/^https?:\/\//, '').slice(0, 48) + '…';
