@@ -22,3 +22,10 @@ compatibility_date = "2024-11-01"
 directory = "."
 binding = "ASSETS"
 not_found_handling = "none"
+
+# KV namespace that stores push subscriptions. Declaring it here keeps
+# the binding intact across auto-deploys (Cloudflare reconciles bindings
+# against wrangler.toml — bindings not declared here get removed).
+[[kv_namespaces]]
+binding = "SUBSCRIPTIONS"
+id = "096e9b6c7c1f44c2815355dff88d4fbd"
