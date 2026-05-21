@@ -36,6 +36,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Cross-document view transitions — opts into a default cross-fade
+           between index → issue pages on browsers that support it. Falls
+           back to hard navigation everywhere else. */
+        @view-transition { navigation: auto; }
+
         .archive-wrap {
             max-width: 980px;
             margin: 0 auto;
@@ -220,6 +225,77 @@
         }
         .alerts-bar .ab-btn.secondary:hover { background: var(--deep-teal); color: var(--white); }
         .alerts-bar .ab-btn:disabled { opacity: .5; cursor: wait; }
+
+        /* ═══ MISSED PANEL — shown when there are unread issues since last visit ═══ */
+        .missed-panel {
+            margin: 28px 60px 0;
+            padding: 18px 24px;
+            background: rgba(0, 180, 216, .07);
+            border-left: 3px solid var(--teal);
+            border-radius: 0 4px 4px 0;
+        }
+        .missed-panel .mp-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--deep-teal);
+            margin-bottom: 10px;
+        }
+        .missed-panel ul { list-style: none; }
+        .missed-panel li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0, 119, 182, .12);
+        }
+        .missed-panel li:last-child { border-bottom: none; }
+        .missed-panel li a {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            color: var(--navy);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .missed-panel li a:hover { color: var(--deep-teal); }
+        .missed-panel li .mp-date {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--med-gray);
+            letter-spacing: .3px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* ═══ READ STATE — issues the user has already opened ═══ */
+        .issue-row.is-read .ir-title,
+        .issue-row.is-read .ir-date,
+        .issue-row.is-read .ir-tag { opacity: .45; }
+        .issue-row.is-read .ir-pdf { opacity: .6; }
+        .issue-row.is-read::after {
+            content: '✓';
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            color: var(--med-gray);
+            font-weight: 700;
+        }
+        .spotlight.is-read::after {
+            content: 'READ';
+            position: absolute;
+            top: 12px;
+            left: 36px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--med-gray);
+        }
 
         /* ═══ SPOTLIGHT — latest issue ═══ */
         .spotlight-wrap {
@@ -564,6 +640,8 @@
                 align-items: flex-start;
                 gap: 10px;
             }
+            .missed-panel { margin: 20px 20px 0; padding: 14px 18px; }
+            .missed-panel li a { font-size: 14px; flex-wrap: wrap; gap: 6px; }
 
             .footer { padding: 32px 20px; }
         }
@@ -616,10 +694,16 @@
             </div>
         </div>
 
+        <!-- ═══ MISSED PANEL — JS reveals when unread issues exist since last visit ═══ -->
+        <div id="missed-panel" class="missed-panel" hidden>
+            <div class="mp-label" id="mp-label">Since you were last here</div>
+            <ul id="mp-list"></ul>
+        </div>
+
         <!-- ═══ SPOTLIGHT — latest issue ═══ -->
         <div class="spotlight-wrap">
             <div class="spotlight-label">This Week's Briefing</div>
-            <div class="spotlight">
+            <div class="spotlight" data-issue-id="issue-10" data-issue-date="2026-05-15">
                 <span class="sp-ribbon">Latest</span>
                 <div class="sp-main">
                     <span class="issue-type type-weekly">Weekly · Issue 10</span>
@@ -655,14 +739,14 @@
                     <span class="mh-count">2 issues</span>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-9" data-issue-date="2026-05-08">
                     <span class="ir-date">8 May</span>
                     <a class="ir-title" href="issues/issue-9.html">Issue 9 — Node 26, cPanel, and a UK Fintech Rebound</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-9.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row is-deepdive">
+                <div class="issue-row is-deepdive" data-issue-id="issue-8" data-issue-date="2026-05-01">
                     <span class="ir-date">1 May</span>
                     <a class="ir-title" href="issues/issue-8.html">Issue 8 — The Agentic AI Production Gap</a>
                     <span class="ir-tag deepdive">Deep Dive</span>
@@ -676,35 +760,35 @@
                     <span class="mh-count">5 issues</span>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-7" data-issue-date="2026-04-24">
                     <span class="ir-date">24 Apr</span>
                     <a class="ir-title" href="issues/issue-7.html">Issue 7 — The Fintech Week Package</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-7.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-6" data-issue-date="2026-04-17">
                     <span class="ir-date">17 Apr</span>
                     <a class="ir-title" href="issues/issue-6.html">Issue 6 — When Everything Patches at Once</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-6.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-5" data-issue-date="2026-04-17">
                     <span class="ir-date">17 Apr</span>
                     <a class="ir-title" href="issues/issue-5.html">Issue 5 — Codex Breaks Free</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-5.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row is-deepdive">
+                <div class="issue-row is-deepdive" data-issue-id="issue-4" data-issue-date="2026-04-10">
                     <span class="ir-date">10 Apr</span>
                     <a class="ir-title" href="issues/issue-4.html">Issue 4 — The 97% Paradox</a>
                     <span class="ir-tag deepdive">Deep Dive</span>
                     <a class="ir-pdf" href="issues/issue-4.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-3" data-issue-date="2026-04-03">
                     <span class="ir-date">3 Apr</span>
                     <a class="ir-title" href="issues/issue-3.html">Issue 3 — The AI Tooling War Has a Winner</a>
                     <span class="ir-tag">Weekly</span>
@@ -718,49 +802,49 @@
                     <span class="mh-count">7 issues · Launch</span>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-2.5" data-issue-date="2026-03-27">
                     <span class="ir-date">27 Mar</span>
                     <a class="ir-title" href="issues/issue-2.5.html">Issue 2.5 — Agentic AI Gets Write Access</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-2.5.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-2" data-issue-date="2026-03-27">
                     <span class="ir-date">27 Mar</span>
                     <a class="ir-title" href="issues/issue-2.html">Issue 2 — When AI Outruns the Control Plane</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-2.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row is-deepdive">
+                <div class="issue-row is-deepdive" data-issue-id="deep-dive-dd2" data-issue-date="2026-03-24">
                     <span class="ir-date">24 Mar</span>
                     <a class="ir-title" href="issues/deep-dive-dd2.html">DD-2 — Team Topologies for a Product Company</a>
                     <span class="ir-tag deepdive">Deep Dive</span>
                     <a class="ir-pdf" href="issues/deep-dive-dd2.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-1" data-issue-date="2026-03-20">
                     <span class="ir-date">20 Mar</span>
                     <a class="ir-title" href="issues/issue-1.html">Issue 1 — The Trillion-Dollar Agent Layer</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-1.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-05" data-issue-date="2026-03-18">
                     <span class="ir-date">18 Mar</span>
                     <a class="ir-title" href="issues/issue-05.html">Issue 0.5 — The SaaSpocalypse Edition</a>
                     <span class="ir-tag">Weekly</span>
                     <a class="ir-pdf" href="issues/issue-05.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row is-deepdive">
+                <div class="issue-row is-deepdive" data-issue-id="deep-dive-dd1" data-issue-date="2026-03-18">
                     <span class="ir-date">18 Mar</span>
                     <a class="ir-title" href="issues/deep-dive-dd1.html">DD-1 — When Drones Hit the Cloud</a>
                     <span class="ir-tag deepdive">Deep Dive</span>
                     <a class="ir-pdf" href="issues/deep-dive-dd1.pdf">PDF</a>
                 </div>
 
-                <div class="issue-row">
+                <div class="issue-row" data-issue-id="issue-0" data-issue-date="2026-03-18">
                     <span class="ir-date">18 Mar</span>
                     <a class="ir-title" href="issues/issue-0.html">Issue 0 — Monthly Retrospective</a>
                     <span class="ir-tag">Weekly</span>
@@ -932,6 +1016,142 @@
             setState({ subscribed: false });
         }
     })();
+})();
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Mark-as-read state + "What I missed" panel + open tracking (editor-only)
+// ═══════════════════════════════════════════════════════════════════════════
+(() => {
+    const READ_PREFIX = 'digest:read:';
+    const LAST_VISIT_KEY = 'digest:lastVisit';
+    const API = '/api';
+
+    function isRead(id) {
+        try { return localStorage.getItem(READ_PREFIX + id) !== null; } catch (_) { return false; }
+    }
+    function markRead(id) {
+        try { localStorage.setItem(READ_PREFIX + id, new Date().toISOString()); } catch (_) {}
+    }
+    function getLastVisit() {
+        try {
+            const v = localStorage.getItem(LAST_VISIT_KEY);
+            return v ? new Date(v) : null;
+        } catch (_) { return null; }
+    }
+    function setLastVisit() {
+        try { localStorage.setItem(LAST_VISIT_KEY, new Date().toISOString()); } catch (_) {}
+    }
+
+    // Fire an anonymous open-tracking event. Editor-only — only the count
+    // matters server-side. Same-session dedupe via sessionStorage so a
+    // refresh-spam doesn't inflate the count.
+    function trackOpen(id) {
+        try {
+            const seenKey = 'digest:tracked:' + id;
+            if (sessionStorage.getItem(seenKey)) return;
+            sessionStorage.setItem(seenKey, '1');
+        } catch (_) {}
+        // Fire-and-forget — don't block navigation on this.
+        fetch(`${API}/track`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ issueId: id }),
+            keepalive: true,
+        }).catch(() => {});
+    }
+
+    // Apply read-state styling to spotlight + every row that's been read
+    function applyReadStates() {
+        document.querySelectorAll('[data-issue-id]').forEach(el => {
+            if (isRead(el.dataset.issueId)) el.classList.add('is-read');
+        });
+    }
+
+    // Build the "What I missed" panel
+    function buildMissedPanel() {
+        const panel = document.getElementById('missed-panel');
+        const list = document.getElementById('mp-list');
+        const label = document.getElementById('mp-label');
+        if (!panel || !list || !label) return;
+
+        // Collect every tracked issue (spotlight + rows), sorted newest first
+        const allEls = [...document.querySelectorAll('[data-issue-id][data-issue-date]')];
+        const allIssues = allEls.map(el => ({
+            id: el.dataset.issueId,
+            date: new Date(el.dataset.issueDate),
+            // The clickable link inside the element
+            link: el.querySelector('a[href*="issues/"]'),
+        })).filter(i => i.link);
+        allIssues.sort((a, b) => b.date - a.date);
+
+        const lastVisit = getLastVisit();
+        let missed;
+        if (!lastVisit) {
+            // First-time visitor — surface only the most recent unread issue.
+            // Don't overwhelm with "you missed 15 issues".
+            const top = allIssues.find(i => !isRead(i.id));
+            missed = top ? [top] : [];
+            label.textContent = 'Start here';
+        } else {
+            // Returning visitor — show every issue published since their last visit
+            // that they haven't already read.
+            missed = allIssues.filter(i => i.date > lastVisit && !isRead(i.id));
+            label.textContent = 'Since you were last here';
+        }
+
+        if (missed.length === 0) {
+            panel.hidden = true;
+            return;
+        }
+
+        const dateFmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short' });
+        list.innerHTML = '';
+        for (const item of missed) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = item.link.getAttribute('href');
+            a.dataset.issueId = item.id;
+            const title = document.createElement('span');
+            title.className = 'mp-title';
+            title.textContent = item.link.textContent.trim();
+            const date = document.createElement('span');
+            date.className = 'mp-date';
+            date.textContent = dateFmt.format(item.date);
+            a.appendChild(title);
+            a.appendChild(date);
+            li.appendChild(a);
+            list.appendChild(li);
+        }
+        panel.hidden = false;
+    }
+
+    // Delegated click handler — mark read + fire tracking for any click that
+    // navigates to an issues/ URL, whether from the spotlight, an archive row,
+    // or the missed panel.
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href*="issues/"]');
+        if (!link) return;
+
+        // Find the data-issue-id either on the link itself (missed panel) or
+        // on an ancestor with [data-issue-id] (spotlight, archive row).
+        const idHolder = link.closest('[data-issue-id]');
+        const id = (idHolder && idHolder.dataset.issueId) || link.dataset.issueId;
+        if (!id) return;
+
+        markRead(id);
+        trackOpen(id);
+
+        // Update the visual state on this page in case they come back via
+        // back-button before navigation completes.
+        document.querySelectorAll(`[data-issue-id="${id}"]`).forEach(el => el.classList.add('is-read'));
+    });
+
+    // Initial render
+    applyReadStates();
+    buildMissedPanel();
+    // Update lastVisit AFTER building the panel — so panel logic uses the
+    // previous lastVisit value, not this one.
+    setLastVisit();
 })();
 </script>
 </body>

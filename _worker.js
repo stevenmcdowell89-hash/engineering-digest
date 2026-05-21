@@ -46,6 +46,12 @@ async function handleApi(request, url, env, ctx) {
     if (request.method === 'POST' && url.pathname === '/api/notify') {
       return await handleNotify(request, env);
     }
+    if (request.method === 'POST' && url.pathname === '/api/track') {
+      return await handleTrack(request, env);
+    }
+    if (request.method === 'GET' && url.pathname === '/api/stats') {
+      return await handleStats(request, url, env);
+    }
     return new Response('Not found', { status: 404 });
   } catch (err) {
     return new Response(`Worker error: ${err.message}`, { status: 500 });
@@ -110,6 +116,68 @@ async function handleNotify(request, env) {
   }
 
   return json({ sent: results.length, results });
+}
+
+// ─── open tracking + stats (editor-only) ─────────────────────────────────────
+
+// Track a page-open event for an issue. Anonymous — only the count is stored.
+// Key shape: count:<issueId>. Subscriber keys are sha256 hex so prefixes don't
+// collide. Dedup is client-side (sessionStorage); we don't dedup server-side
+// to keep this writeable without a read+write round-trip.
+async function handleTrack(request, env) {
+  let body;
+  try { body = await request.json(); } catch (_) { return new Response('bad', { status: 400 }); }
+  const id = body && body.issueId;
+  if (!id || typeof id !== 'string' || !/^[a-z0-9.\-_]+$/i.test(id) || id.length > 64) {
+    return new Response('bad', { status: 400 });
+  }
+  const key = `count:${id}`;
+  const current = parseInt((await env.SUBSCRIPTIONS.get(key)) || '0', 10);
+  await env.SUBSCRIPTIONS.put(key, String(current + 1));
+  return json({ ok: true });
+}
+
+// Editor-only stats. Auth via Bearer header OR ?token= query param.
+// Returns: subscriber count by push-service vendor, plus open counts per issue.
+async function handleStats(request, url, env) {
+  const auth = request.headers.get('authorization') || '';
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : url.searchParams.get('token');
+  if (!env.NOTIFY_TOKEN || token !== env.NOTIFY_TOKEN) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  const list = await env.SUBSCRIPTIONS.list();
+  let subscribers = 0;
+  const providers = { google: 0, mozilla: 0, apple: 0, windows: 0, other: 0 };
+  const opens = {};
+  let totalOpens = 0;
+
+  for (const k of list.keys) {
+    const raw = await env.SUBSCRIPTIONS.get(k.name);
+    if (raw === null) continue;
+
+    if (k.name.startsWith('count:')) {
+      const issueId = k.name.slice(6);
+      const n = parseInt(raw, 10) || 0;
+      opens[issueId] = n;
+      totalOpens += n;
+      continue;
+    }
+
+    // Otherwise it's a subscription record
+    try {
+      const sub = JSON.parse(raw);
+      const ep = sub.endpoint || '';
+      subscribers++;
+      if (ep.includes('fcm.googleapis.com')) providers.google++;
+      else if (ep.includes('mozilla.com')) providers.mozilla++;
+      else if (ep.includes('apple.com')) providers.apple++;
+      else if (ep.includes('windows.com') || ep.includes('notify.windows.com')) providers.windows++;
+      else providers.other++;
+    } catch (_) {}
+  }
+
+  return json({ subscribers, providers, totalOpens, opens });
 }
 
 // ─── Web Push (RFC 8030, 8188, 8291, 8292) ───────────────────────────────────
