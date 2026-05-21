@@ -1,0 +1,68 @@
+name: Notify subscribers of a new issue
+
+# Manual trigger from the GitHub web UI:
+#   Repo → Actions → "Notify subscribers of a new issue" → Run workflow
+# Fill in the issue number, headline summary, and URL, then click Run.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   PUSH_WORKER_URL   — the Cloudflare Worker URL, e.g. https://engineering-digest-push.<acct>.workers.dev
+#   NOTIFY_TOKEN      — the same random string you put into the Worker's NOTIFY_TOKEN secret
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: 'Issue number (e.g. 11)'
+        required: true
+        type: string
+      headline:
+        description: 'One-line headline shown in the notification body'
+        required: true
+        type: string
+      url:
+        description: 'Full URL of the new issue (defaults to /issues/issue-<N>.html on the published site)'
+        required: false
+        type: string
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send push
+        env:
+          PUSH_WORKER_URL: ${{ secrets.PUSH_WORKER_URL }}
+          NOTIFY_TOKEN: ${{ secrets.NOTIFY_TOKEN }}
+          ISSUE: ${{ inputs.issue }}
+          HEADLINE: ${{ inputs.headline }}
+          URL: ${{ inputs.url }}
+        run: |
+          if [ -z "$PUSH_WORKER_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
+            echo "Missing PUSH_WORKER_URL or NOTIFY_TOKEN repository secrets" >&2
+            exit 1
+          fi
+
+          URL_VALUE="${URL:-/issues/issue-${ISSUE}.html}"
+
+          PAYLOAD=$(jq -n \
+            --arg title "Issue $ISSUE is out" \
+            --arg body "$HEADLINE" \
+            --arg url "$URL_VALUE" \
+            '{title: $title, body: $body, url: $url}')
+
+          echo "Sending payload:"
+          echo "$PAYLOAD"
+
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$PUSH_WORKER_URL/notify" \
+            -H "authorization: Bearer $NOTIFY_TOKEN" \
+            -H "content-type: application/json" \
+            -d "$PAYLOAD")
+
+          BODY=$(echo "$RESPONSE" | head -n -1)
+          STATUS=$(echo "$RESPONSE" | tail -n 1)
+
+          echo "Worker responded with status: $STATUS"
+          echo "$BODY" | jq .
+
+          if [ "$STATUS" != "200" ]; then
+            exit 1
+          fi

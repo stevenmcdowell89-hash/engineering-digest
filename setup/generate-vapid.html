@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — VAPID key generator</title>
+<style>
+:root { --navy:#0A1628; --teal:#00B4D8; --deep-teal:#0077B6; --off-white:#F4F6F9; --body:#3D4F63; --light-gray:#E8EDF2; --med-gray:#8899AA; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--off-white); color: var(--body); padding: 24px 16px 48px; max-width: 720px; margin: 0 auto; line-height: 1.55; }
+h1 { font-size: 22px; color: var(--navy); margin-bottom: 6px; }
+.sub { font-size: 14px; color: var(--med-gray); margin-bottom: 24px; }
+.warn { background: rgba(255, 107, 53, .1); border-left: 3px solid #FF6B35; padding: 12px 14px; margin-bottom: 24px; font-size: 14px; color: var(--navy); border-radius: 3px; }
+.warn strong { display: block; margin-bottom: 4px; }
+button { background: var(--deep-teal); color: white; border: 0; padding: 12px 22px; font-size: 15px; font-weight: 600; border-radius: 4px; cursor: pointer; width: 100%; margin-bottom: 24px; }
+button:hover { background: var(--navy); }
+button:disabled { opacity: .5; }
+.field { margin-bottom: 20px; }
+.field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--deep-teal); margin-bottom: 6px; }
+.field .name { font-size: 13px; color: var(--med-gray); margin-bottom: 8px; font-family: ui-monospace, 'SF Mono', monospace; }
+.field textarea { width: 100%; min-height: 80px; font-family: ui-monospace, 'SF Mono', 'Roboto Mono', monospace; font-size: 13px; padding: 10px 12px; border: 1px solid var(--light-gray); border-radius: 4px; background: white; color: var(--navy); resize: vertical; word-break: break-all; }
+.field .copy { background: transparent; color: var(--deep-teal); border: 1px solid var(--deep-teal); padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 3px; margin-top: 8px; width: auto; }
+.field .copy.ok { background: var(--deep-teal); color: white; }
+#output { display: none; }
+.next { background: white; border: 1px solid var(--light-gray); padding: 16px 18px; border-radius: 4px; font-size: 14px; margin-top: 12px; }
+.next h2 { font-size: 14px; color: var(--navy); margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; }
+.next ol { padding-left: 20px; }
+.next li { margin-bottom: 8px; }
+.next code { background: var(--off-white); padding: 1px 6px; border-radius: 3px; font-size: 13px; font-family: ui-monospace, 'SF Mono', monospace; }
+</style>
+</head>
+<body>
+<h1>VAPID keypair generator</h1>
+<div class="sub">For Engineering Digest push notifications. Runs entirely in your browser — keys are never sent anywhere.</div>
+
+<div class="warn">
+  <strong>Keep the private key secret.</strong>
+  Paste it into the Cloudflare Worker secret (encrypted), then close this tab. Don't commit it, screenshot it, or send it over chat.
+</div>
+
+<button id="gen">Generate keypair</button>
+
+<div id="output">
+  <div class="field">
+    <label>Public key</label>
+    <div class="name">Worker secret name: <code>VAPID_PUBLIC_KEY</code> — safe to share</div>
+    <textarea id="pub" readonly></textarea>
+    <button class="copy" data-target="pub">Copy public key</button>
+  </div>
+
+  <div class="field">
+    <label>Private key</label>
+    <div class="name">Worker secret name: <code>VAPID_PRIVATE_KEY</code> — keep secret</div>
+    <textarea id="priv" readonly></textarea>
+    <button class="copy" data-target="priv">Copy private key</button>
+  </div>
+
+  <div class="next">
+    <h2>Next</h2>
+    <ol>
+      <li>In Cloudflare dashboard → Workers → your Worker → <strong>Settings → Variables and Secrets</strong>:
+        Add two encrypted variables and paste the values above.</li>
+      <li>While there, also add the other three secrets: <code>VAPID_SUBJECT</code>, <code>NOTIFY_TOKEN</code>, <code>ALLOWED_ORIGIN</code>.</li>
+      <li>Close this tab when done.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+function b64u(buf) {
+  const bytes = new Uint8Array(buf);
+  let s = '';
+  for (const b of bytes) s += String.fromCharCode(b);
+  return btoa(s).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+document.getElementById('gen').addEventListener('click', async (e) => {
+  e.target.disabled = true;
+  e.target.textContent = 'Generating…';
+
+  const keyPair = await crypto.subtle.generateKey(
+    { name: 'ECDSA', namedCurve: 'P-256' },
+    true,
+    ['sign', 'verify']
+  );
+
+  const publicRaw = await crypto.subtle.exportKey('raw', keyPair.publicKey);
+  const privateJwk = await crypto.subtle.exportKey('jwk', keyPair.privateKey);
+
+  document.getElementById('pub').value = b64u(publicRaw);
+  document.getElementById('priv').value = JSON.stringify(privateJwk);
+  document.getElementById('output').style.display = 'block';
+  e.target.textContent = 'Regenerate';
+  e.target.disabled = false;
+});
+
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const target = document.getElementById(btn.dataset.target);
+    target.select();
+    try {
+      await navigator.clipboard.writeText(target.value);
+      const orig = btn.textContent;
+      btn.classList.add('ok');
+      btn.textContent = 'Copied';
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('ok'); }, 1500);
+    } catch (_) {
+      // selection fallback already done
+    }
+  });
+});
+</script>
+</body>
+</html>
