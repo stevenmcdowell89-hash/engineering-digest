@@ -7,3 +7,10 @@
 #     (these are tracked normally)
 #   - the audit trail should be force-added: `git add -f digest-runs/issue-N/`
 digest-runs/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
