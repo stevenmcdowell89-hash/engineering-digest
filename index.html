@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Digest — Archive</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0A1628">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <!-- Set after deploying the Cloudflare Worker. Leave blank to disable alerts UI. -->
+    <meta name="push-worker-url" content="">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -166,6 +172,56 @@
             color: rgba(255, 255, 255, .65);
             margin-top: 6px;
         }
+
+        /* ═══ ALERTS BAR ═══ */
+        .alerts-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 60px;
+            background: rgba(0, 180, 216, .08);
+            border-bottom: 1px solid rgba(0, 180, 216, .2);
+            font-size: 14px;
+            color: var(--body-text);
+        }
+        .alerts-bar .ab-message {
+            font-weight: 500;
+        }
+        .alerts-bar .ab-state {
+            font-size: 13px;
+            color: var(--deep-teal);
+            font-weight: 600;
+            letter-spacing: .3px;
+        }
+        .alerts-bar .ab-actions {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .alerts-bar .ab-btn {
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .alerts-bar .ab-btn.primary {
+            background: var(--deep-teal);
+            color: var(--white);
+            border: 1px solid var(--deep-teal);
+        }
+        .alerts-bar .ab-btn.primary:hover { background: var(--navy); border-color: var(--navy); }
+        .alerts-bar .ab-btn.secondary {
+            background: transparent;
+            color: var(--deep-teal);
+            border: 1px solid var(--deep-teal);
+        }
+        .alerts-bar .ab-btn.secondary:hover { background: var(--deep-teal); color: var(--white); }
+        .alerts-bar .ab-btn:disabled { opacity: .5; cursor: wait; }
 
         /* ═══ SPOTLIGHT — latest issue ═══ */
         .spotlight-wrap {
@@ -505,6 +561,13 @@
             .issue-card { padding: 18px 18px; }
             .issue-card h2 { font-size: 19px; }
 
+            .alerts-bar {
+                padding: 12px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
             .footer { padding: 32px 20px; }
         }
     </style>
@@ -543,6 +606,18 @@
                 </div>
             </div>
         </header>
+
+        <!-- ═══ ALERTS BAR — hidden by default, JS reveals when push is supported ═══ -->
+        <div id="alerts-bar" class="alerts-bar" hidden>
+            <div class="ab-text">
+                <span class="ab-message" id="ab-message">Get a notification when a new issue lands.</span>
+                <span class="ab-state" id="ab-state" hidden></span>
+            </div>
+            <div class="ab-actions">
+                <button type="button" id="ab-enable" class="ab-btn primary">Enable alerts</button>
+                <button type="button" id="ab-disable" class="ab-btn secondary" hidden>Turn off</button>
+            </div>
+        </div>
 
         <!-- ═══ SPOTLIGHT — latest issue ═══ -->
         <div class="spotlight-wrap">
@@ -790,5 +865,134 @@
         </div>
 
     </div>
+
+<script>
+(() => {
+    const WORKER_URL = document.querySelector('meta[name="push-worker-url"]')?.content?.trim();
+
+    // If the Worker URL isn't set, hide the alerts UI entirely.
+    if (!WORKER_URL) return;
+
+    // Push requires service worker + Push API + Notification API.
+    const supported = 'serviceWorker' in navigator
+        && 'PushManager' in window
+        && 'Notification' in window;
+    if (!supported) return;
+
+    const bar = document.getElementById('alerts-bar');
+    const message = document.getElementById('ab-message');
+    const state = document.getElementById('ab-state');
+    const enableBtn = document.getElementById('ab-enable');
+    const disableBtn = document.getElementById('ab-disable');
+    bar.hidden = false;
+
+    function setState({ subscribed, denied, busy }) {
+        enableBtn.disabled = !!busy;
+        disableBtn.disabled = !!busy;
+        if (denied) {
+            message.textContent = 'Notifications are blocked in your browser settings.';
+            enableBtn.hidden = true;
+            disableBtn.hidden = true;
+            state.hidden = true;
+            return;
+        }
+        if (subscribed) {
+            message.hidden = true;
+            state.hidden = false;
+            state.textContent = 'Alerts on — you’ll get a notification when a new issue is out.';
+            enableBtn.hidden = true;
+            disableBtn.hidden = false;
+        } else {
+            message.hidden = false;
+            state.hidden = true;
+            enableBtn.hidden = false;
+            disableBtn.hidden = true;
+        }
+    }
+
+    function b64uToBytes(s) {
+        s = s.replace(/-/g, '+').replace(/_/g, '/');
+        while (s.length % 4) s += '=';
+        const bin = atob(s);
+        const out = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+        return out;
+    }
+
+    async function getRegistration() {
+        return navigator.serviceWorker.register('/sw.js');
+    }
+
+    async function getSubscription() {
+        const reg = await getRegistration();
+        return reg.pushManager.getSubscription();
+    }
+
+    async function subscribe() {
+        setState({ busy: true });
+        try {
+            const perm = await Notification.requestPermission();
+            if (perm !== 'granted') {
+                setState({ subscribed: false, denied: perm === 'denied' });
+                return;
+            }
+            const keyRes = await fetch(`${WORKER_URL}/vapid-public-key`);
+            const { key } = await keyRes.json();
+            const reg = await getRegistration();
+            const sub = await reg.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: b64uToBytes(key),
+            });
+            const res = await fetch(`${WORKER_URL}/subscribe`, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(sub),
+            });
+            if (!res.ok) throw new Error('subscribe endpoint returned ' + res.status);
+            setState({ subscribed: true });
+        } catch (err) {
+            console.error('Subscribe failed:', err);
+            message.textContent = 'Couldn’t enable alerts. Try again later.';
+            setState({ subscribed: false });
+        }
+    }
+
+    async function unsubscribe() {
+        setState({ busy: true });
+        try {
+            const sub = await getSubscription();
+            if (sub) {
+                await fetch(`${WORKER_URL}/unsubscribe`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ endpoint: sub.endpoint }),
+                });
+                await sub.unsubscribe();
+            }
+            setState({ subscribed: false });
+        } catch (err) {
+            console.error('Unsubscribe failed:', err);
+            setState({ subscribed: true });
+        }
+    }
+
+    enableBtn.addEventListener('click', subscribe);
+    disableBtn.addEventListener('click', unsubscribe);
+
+    // Initial state: check current permission + existing subscription.
+    (async () => {
+        if (Notification.permission === 'denied') {
+            setState({ denied: true });
+            return;
+        }
+        try {
+            const sub = await getSubscription();
+            setState({ subscribed: !!sub });
+        } catch (_) {
+            setState({ subscribed: false });
+        }
+    })();
+})();
+</script>
 </body>
 </html>

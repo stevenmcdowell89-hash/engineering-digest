@@ -1,0 +1,22 @@
+# Cloudflare Worker for Engineering Digest push notifications.
+#
+# Before first deploy:
+#   1. Create a KV namespace:  wrangler kv namespace create SUBSCRIPTIONS
+#      → paste the returned id into kv_namespaces.id below
+#   2. Generate VAPID keys:    node ../scripts/generate-vapid.mjs
+#   3. Set secrets:
+#        wrangler secret put VAPID_PUBLIC_KEY
+#        wrangler secret put VAPID_PRIVATE_KEY
+#        wrangler secret put VAPID_SUBJECT          # e.g. mailto:steven.mcdowell.89@gmail.com
+#        wrangler secret put NOTIFY_TOKEN           # any long random string; used by the publish step
+#   4. Set CORS origin (the site that serves the index/PWA):
+#        wrangler secret put ALLOWED_ORIGIN         # e.g. https://stevenmcdowell89-hash.github.io
+#   5. wrangler deploy
+
+name = "engineering-digest-push"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+[[kv_namespaces]]
+binding = "SUBSCRIPTIONS"
+id = "PUT_KV_NAMESPACE_ID_HERE"
