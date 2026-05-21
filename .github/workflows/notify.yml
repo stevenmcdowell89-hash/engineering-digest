@@ -1,14 +1,20 @@
 name: Notify subscribers of a new issue
 
-# Manual trigger from the GitHub web UI:
-#   Repo → Actions → "Notify subscribers of a new issue" → Run workflow
-# Fill in the issue number, headline summary, and URL, then click Run.
+# Auto-trigger: any push to main that ADDS a new issues/issue-*.html file.
+# Typo fixes / edits to existing files do NOT re-notify.
+#
+# Manual fallback: Actions tab → Run workflow with explicit inputs.
 #
 # Required repository secrets (Settings → Secrets and variables → Actions):
-#   PUSH_WORKER_URL   — the Cloudflare Worker URL, e.g. https://engineering-digest-push.<acct>.workers.dev
-#   NOTIFY_TOKEN      — the same random string you put into the Worker's NOTIFY_TOKEN secret
+#   PUSH_WORKER_URL   — the Cloudflare Worker URL
+#   NOTIFY_TOKEN      — matches the Worker's NOTIFY_TOKEN secret
+#   SITE_BASE_URL     — public origin where issues are served, e.g. https://stevenmcdowell89-hash.github.io
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'issues/issue-*.html'
   workflow_dispatch:
     inputs:
       issue:
@@ -16,11 +22,11 @@ on:
         required: true
         type: string
       headline:
-        description: 'One-line headline shown in the notification body'
+        description: 'One-line headline for the notification body'
         required: true
         type: string
       url:
-        description: 'Full URL of the new issue (defaults to /issues/issue-<N>.html on the published site)'
+        description: 'Full URL of the issue (optional — auto-built from SITE_BASE_URL if blank)'
         required: false
         type: string
 
@@ -28,28 +34,87 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve notification payload
+        id: payload
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.event.after }}
+          EVENT: ${{ github.event_name }}
+          INPUT_ISSUE: ${{ inputs.issue }}
+          INPUT_HEADLINE: ${{ inputs.headline }}
+          INPUT_URL: ${{ inputs.url }}
+          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+        run: |
+          set -euo pipefail
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            ISSUE="$INPUT_ISSUE"
+            HEADLINE="$INPUT_HEADLINE"
+            URL="${INPUT_URL:-${SITE_BASE_URL}/issues/issue-${ISSUE}.html}"
+            echo "Manual run for issue $ISSUE"
+          else
+            # Push event — find newly ADDED issue files only (filter A = added)
+            ADDED=$(git diff --name-only --diff-filter=A "$BEFORE" "$AFTER" -- 'issues/issue-*.html' || true)
+            if [ -z "$ADDED" ]; then
+              echo "No new issue files added in this push — skipping."
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            # Use the first added file (in practice there's one)
+            FILE=$(echo "$ADDED" | head -n 1)
+            echo "New issue file: $FILE"
+
+            # Extract issue number from filename (issues/issue-11.html → 11)
+            ISSUE=$(echo "$FILE" | sed -E 's|issues/issue-([0-9.]+)\.html|\1|')
+
+            HEADLINE=$(python3 scripts/extract-lead-headline.py "$FILE")
+
+            if [ -z "$HEADLINE" ]; then
+              HEADLINE="A new issue is out — read this week's briefing."
+            fi
+
+            URL="${SITE_BASE_URL}/issues/issue-${ISSUE}.html"
+          fi
+
+          if [ -z "${SITE_BASE_URL:-}" ] && [ -z "${INPUT_URL:-}" ]; then
+            echo "Missing SITE_BASE_URL secret — set it in repo settings." >&2
+            exit 1
+          fi
+
+          echo "issue=$ISSUE" >> "$GITHUB_OUTPUT"
+          echo "headline<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$HEADLINE" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
       - name: Send push
+        if: steps.payload.outputs.skip != 'true'
         env:
           PUSH_WORKER_URL: ${{ secrets.PUSH_WORKER_URL }}
           NOTIFY_TOKEN: ${{ secrets.NOTIFY_TOKEN }}
-          ISSUE: ${{ inputs.issue }}
-          HEADLINE: ${{ inputs.headline }}
-          URL: ${{ inputs.url }}
+          ISSUE: ${{ steps.payload.outputs.issue }}
+          HEADLINE: ${{ steps.payload.outputs.headline }}
+          URL: ${{ steps.payload.outputs.url }}
         run: |
+          set -euo pipefail
+
           if [ -z "$PUSH_WORKER_URL" ] || [ -z "$NOTIFY_TOKEN" ]; then
             echo "Missing PUSH_WORKER_URL or NOTIFY_TOKEN repository secrets" >&2
             exit 1
           fi
 
-          URL_VALUE="${URL:-/issues/issue-${ISSUE}.html}"
-
           PAYLOAD=$(jq -n \
             --arg title "Issue $ISSUE is out" \
             --arg body "$HEADLINE" \
-            --arg url "$URL_VALUE" \
+            --arg url "$URL" \
             '{title: $title, body: $body, url: $url}')
 
-          echo "Sending payload:"
+          echo "Payload:"
           echo "$PAYLOAD"
 
           RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "$PUSH_WORKER_URL/notify" \
