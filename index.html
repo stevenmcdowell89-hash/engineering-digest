@@ -853,9 +853,27 @@
                 setState({ subscribed: false, denied: perm === 'denied' });
                 return;
             }
+
             const keyRes = await fetch(`${API}/vapid-public-key`);
+            if (!keyRes.ok) throw new Error('vapid-public-key endpoint returned ' + keyRes.status);
             const { key } = await keyRes.json();
+            if (!key) throw new Error('VAPID public key not set on server');
+
             const reg = await getRegistration();
+
+            // Wipe any stale subscription before subscribing fresh — handles
+            // VAPID key rotation, half-broken state from a previous attempt,
+            // and the "already subscribed with different key" case cleanly.
+            const existing = await reg.pushManager.getSubscription();
+            if (existing) {
+                await fetch(`${API}/unsubscribe`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ endpoint: existing.endpoint }),
+                }).catch(() => {});
+                await existing.unsubscribe().catch(() => {});
+            }
+
             const sub = await reg.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey: b64uToBytes(key),
@@ -869,7 +887,7 @@
             setState({ subscribed: true });
         } catch (err) {
             console.error('Subscribe failed:', err);
-            message.textContent = 'Couldn’t enable alerts. Try again later.';
+            message.textContent = 'Couldn’t enable alerts: ' + (err.message || 'unknown error');
             setState({ subscribed: false });
         }
     }
@@ -883,13 +901,15 @@
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ endpoint: sub.endpoint }),
-                });
-                await sub.unsubscribe();
+                }).catch(() => {});
+                await sub.unsubscribe().catch(() => {});
             }
             setState({ subscribed: false });
         } catch (err) {
             console.error('Unsubscribe failed:', err);
-            setState({ subscribed: true });
+            // Even if something errored, treat as unsubscribed locally — the
+            // user told us to turn it off, don't trap them in "on" state.
+            setState({ subscribed: false });
         }
     }
 
