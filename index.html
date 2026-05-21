@@ -883,7 +883,10 @@
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(sub),
             });
-            if (!res.ok) throw new Error('subscribe endpoint returned ' + res.status);
+            if (!res.ok) {
+                const detail = await res.text().catch(() => '');
+                throw new Error(`subscribe endpoint returned ${res.status}${detail ? ' — ' + detail : ''}`);
+            }
             setState({ subscribed: true });
         } catch (err) {
             console.error('Subscribe failed:', err);
