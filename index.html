@@ -870,6 +870,12 @@
     // same Cloudflare Worker, so relative paths are all we need.
     const API = '/api';
 
+    // Opening the site (by notification tap, icon, or bookmark) means
+    // the user is engaging with the latest issue — clear any unread badge.
+    if (navigator.clearAppBadge) {
+        navigator.clearAppBadge().catch(() => {});
+    }
+
     // Push requires service worker + Push API + Notification API.
     const supported = 'serviceWorker' in navigator
         && 'PushManager' in window

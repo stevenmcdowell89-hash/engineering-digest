@@ -34,7 +34,12 @@ self.addEventListener('push', (event) => {
     data: { url: payload.url || './' },
   };
 
-  event.waitUntil(self.registration.showNotification(title, options));
+  event.waitUntil(Promise.all([
+    self.registration.showNotification(title, options),
+    // Badge dot on the PWA icon — persists until the user opens the issue
+    // or visits the site (clearAppBadge is called from the page on load).
+    self.navigator.setAppBadge ? self.navigator.setAppBadge(1).catch(() => {}) : null,
+  ]));
 });
 
 self.addEventListener('notificationclick', (event) => {
@@ -42,6 +47,10 @@ self.addEventListener('notificationclick', (event) => {
   const target = (event.notification.data && event.notification.data.url) || './';
 
   event.waitUntil((async () => {
+    // User engaged with the notification — clear the badge.
+    if (self.navigator.clearAppBadge) {
+      await self.navigator.clearAppBadge().catch(() => {});
+    }
     const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
     for (const client of all) {
       if ('focus' in client) {
