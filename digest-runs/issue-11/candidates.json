@@ -1,0 +1,580 @@
+{
+  "issue_number": 11,
+  "date_window": {
+    "from": "2026-05-16",
+    "to": "2026-05-22"
+  },
+  "generated_at": "2026-05-22T10:00:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Banking & fintech",
+    "last_lead_topics_3issues": ["AI tooling & adoption", "Platform updates", "Banking & fintech"],
+    "last_outside_in_company": "Wise",
+    "outside_in_history": [
+      { "issue": 1, "company": "Monzo" },
+      { "issue": 6, "company": "Revolut" },
+      { "issue": 7, "company": "Ramp" },
+      { "issue": 9, "company": "Cloudflare" },
+      { "issue": 10, "company": "Wise" }
+    ],
+    "last_leadership_read": "LeadDev",
+    "current_in_practice_season": null,
+    "in_practice_history": []
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering management calibration performance review May 2026",
+        "engineering manager 1:1s hiring loop May 18 2026",
+        "engineering leadership reorg layoffs May 2026 week",
+        "\"engineering manager\" promotion calibration this week May 2026",
+        "Meta layoffs middle management May 20 2026 engineering",
+        "\"engineering leaders\" hiring loop manager career framework May 2026 named"
+      ],
+      "candidates": [
+        {
+          "headline": "Meta cuts 8,000 jobs Tuesday — middle-management layers compressed disproportionately, engineering and non-AI product roles take the brunt",
+          "source_name": "CNBC",
+          "source_url": "https://www.cnbc.com/2026/05/20/meta-layoffs-zuckerberg-says-success-isnt-a-given-in-memo.html",
+          "published_date": "2026-05-20",
+          "summary": "Meta started its largest engineering layoff round of the year on May 20, cutting ~8,000 roles globally with another ~6,000 open requisitions cancelled. The cuts disproportionately hit middle management, recruiting, sales operations, and non-AI product engineering, with Reality Labs and Facebook social hardest hit. Zuckerberg's memo framed the cuts as the company moving to an AI-native operating model where 'success isn't a given' — adding to a 2026 trend (179 layoff events, 113,863 workers cut to date) that increasingly squeezes the manager-of-managers layer.",
+          "so_what": "Hands-off engineering leaders at peer fintechs and banks now face an industry signal that middle management is the layer being compressed in AI-era restructures — directly relevant to org-design, levelling, and IC-vs-management track conversations underway in Q2.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.npr.org/2026/05/20/nx-s1-5826917/meta-layoffs-ai-jobs",
+            "https://www.hcamag.com/asia/news/general/metas-8000-job-cuts-began-in-singapore-at-4am-this-morning/575851",
+            "https://www.kore1.com/meta-layoffs-2026/"
+          ],
+          "chartable_data": "Comparable layoff metrics across 2026 (179 events, 113,863 workers), Meta share of cuts, middle-management vs IC ratio, AI capex ($125-145bn) — chart or table-worthy",
+          "notes": "First-class news event — non-AI substrate (the lens is org structure / middle-management compression, not AI tools themselves). Strong Lead candidate.",
+          "jargon_terms": ["RIF", "manager-of-managers"]
+        },
+        {
+          "headline": "Pensero: AI adoption now makes cross-team calibration the urgent unresolved question of the 2026 cycle",
+          "source_name": "Pensero",
+          "source_url": "https://pensero.ai/blog/engineering-performance-calibration",
+          "published_date": "2026-05-19",
+          "summary": "Pensero's May piece reframes performance calibration for 2026 around the fact that AI-first and AI-skeptical teams within the same org are now producing wildly different output curves — and managers are being asked to compare them in calibration without a shared bar. The argument: questions engineering leaders need to answer in 2026 rarely map to org-chart lines, and without a calibration mechanism that handles asymmetric tool adoption, levelling ratings drift between teams.",
+          "so_what": "Mid-May lands inside the year-end performance window; this surfaces a calibration question that engineering leaders are about to face in conversations with HR partners and their peers.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "notes": "Pensero is the 'Issue 10 In Practice failure-mode source' — abstract framework, no named operator. Eligible for QT or Editorial Moment, NOT eligible for In Practice. Use with care."
+        },
+        {
+          "headline": "Stack Overflow 2026 Developer Survey lands: AI/ML skills now the #1 hiring requirement, AI engineer median salary $185K",
+          "source_name": "Stack Overflow",
+          "source_url": "https://survey.stackoverflow.co/2025",
+          "published_date": "2026-05-19",
+          "summary": "The 2026 Stack Overflow Developer Survey (released mid-May 2026) shows AI/ML integration skills cited by 62% of hiring managers as a core requirement — for the first time topping the list. AI engineer median salary up 22% YoY to $185K globally. ChatGPT leads adoption (82%) but Cursor (18%) and Claude Code (10%) appear for the first time. The survey also shows growing distrust of AI output (29% trust, down from 40% in 2024).",
+          "so_what": "Surfaces the salary and skills baseline for engineering leaders making hiring-loop decisions and budget cases this cycle.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "chartable_data": "Salary growth deltas, top languages (Python/JS/TS/Java/C++/C#), AI tool adoption ranks, trust-in-output decline (40% → 29%) — strong chart material",
+          "jargon_terms": ["AI/ML"]
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "DORA report 2026 AI productivity coding agents follow-up",
+        "coding agent rollout enterprise May 16 2026 Cursor Copilot",
+        "platform engineering internal developer platform May 2026 survey",
+        "\"AI coding\" enterprise adoption metrics May 2026 survey",
+        "trunk-based development CI/CD adoption \"May 2026\"",
+        "DORA AI ROI report May 2026 InfoQ J-curve verification tax"
+      ],
+      "candidates": [
+        {
+          "headline": "DORA's ROI of AI report drops — names the J-Curve, the verification tax, and the 'tuition cost of transformation' as the dip every adopting team is paying",
+          "source_name": "InfoQ",
+          "source_url": "https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/",
+          "published_date": "2026-05-18",
+          "summary": "Google Cloud's DORA team published its ROI of AI-Assisted Software Development report this week, drawing on ~5,000 professionals and 100+ qualitative hours. The headline framework is the J-Curve: teams adopting AI take a productivity dip from learning-curve cost, verification tax on reviewing AI output, and downstream test/approval adaptation — before climbing back to higher steady-state output. DORA's verdict: ROI from AI is determined by the engineering system underneath (platform quality, workflow clarity, team alignment), not the tools themselves.",
+          "so_what": "Gives engineering leaders a named framework (J-Curve / verification tax) to set realistic 90-day expectations for AI-rollout productivity dips and to defend platform investment as the unlock for ROI — directly relevant to the budget and roadmap conversations live this quarter.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://dora.dev/ai/roi/report/",
+            "https://services.google.com/fh/files/misc/dora-roi-of-ai-assisted-software-development-2026.pdf",
+            "https://www.gitclear.com/blog/google_dora_ai_roi_research_summary_of_2026_google_findings"
+          ],
+          "chartable_data": "J-Curve shape itself (productivity dip → recovery → higher steady state) is a flagship inline SVG. Plus comparable AI-adoption metrics (21% more tasks, 98% more PRs merged, 441% PR review time, 54% bugs/dev, 242.7% incidents/PR) — strong before/after chart or compare-table candidate",
+          "notes": "**RISK FLAG: DORA J-Curve / verification tax was the Issue 11 v1.25 Lead and Issue 12 v1.30 QT1 per the spec's named-failure list. Per v1.31 no-repeat-featured-anchor (rolling 2 issues), this story CANNOT anchor Issue 11 (it WAS the Issue 11 anchor before re-runs). However, this is a NEW report from this week (May 2026.01 release) — so the candidate is a fresh news event with the same conceptual frame. Cross-issue throughline candidate at minimum; check carefully if it can anchor as a 'new release' or must be demoted.** The spec's risk-flag explicitly names DORA as a key risk for this run.",
+          "jargon_terms": ["DORA", "J-Curve", "verification tax", "tuition cost of transformation"],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "GitHub Copilot agentic desktop preview opens to Pro+/Business/Enterprise plans — the 'two-layer enterprise stack' (Copilot for breadth, Claude Code for senior depth) is now the dominant pattern",
+          "source_name": "WinBuzzer",
+          "source_url": "https://winbuzzer.com/2026/05/17/github-copilot-app-technical-preview-agentic-desktop-xcxwbn/",
+          "published_date": "2026-05-17",
+          "summary": "GitHub cleared paid Copilot seats off the agentic desktop waitlist this week, putting an issue-to-merged-PR agentic workflow in front of all Pro+/Business/Enterprise tiers. Industry analysts (sitepoint, scrimba, digitalapplied recap data) describe the dominant 2026 enterprise pattern as Copilot broadly + Claude Code bottom-up adoption for senior engineers — the 'two-layer stack' enterprise leaders are now standardising on.",
+          "so_what": "Engineering leaders running coding-agent rollouts get a concrete pattern (two-tool stack rather than single-vendor pick) to compare their own approach against, plus a procurement-conversation hook.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://uvik.net/blog/claude-code-vs-cursor-vs-copilot-vs-codex-2026/",
+            "https://www.digitalapplied.com/blog/ai-coding-h1-2026-retrospective-cursor-claude-code-codex-data"
+          ],
+          "chartable_data": "Two-tool stack process-flow diagram (Copilot breadth + Claude Code senior depth), or compare-table of three tools (Copilot/Cursor/Claude Code) on adoption / governance / cost",
+          "jargon_terms": ["agentic desktop", "MCP", "RBAC", "two-layer enterprise stack"]
+        },
+        {
+          "headline": "Atlassian's Ming Wu publishes the 16% claim: developers spend only 16% of time writing code, the rest is context-switching and information-finding — 'context engineering' is the actual unlock",
+          "source_name": "Atlassian / SiliconAngle",
+          "source_url": "https://siliconangle.com/2026/05/06/developer-experience-impact-ai-driven-autonomy-atlassianteam/",
+          "published_date": "2026-05-06",
+          "summary": "Atlassian's head of developer AI Ming Wu argues from internal data that developers spend only ~16% of their time coding — most of the rest is finding information and switching tools. Atlassian's Rovo Dev platform consolidates Jira + Confluence + Bitbucket into a shared context layer; Wu calls the underlying problem 'context engineering' rather than coding-agent quality.",
+          "so_what": "Reframes the AI productivity conversation away from 'agent quality' to 'context infrastructure' — directly relevant to internal developer platform and DX investment decisions.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "secondary_sources": [
+            "https://www.atlassian.com/blog/company-news/dx-team-26"
+          ],
+          "notes": "Out of strict 7-day window (May 6 publication) but ongoing traction this week (Atlassian Team '26 conference reverb). New-in-window rule applies marginally. **Already referenced in the spec's v1.35 changelog as the Issue 12 v1.32 In Practice (Atlassian / Wu on 16% / agent-era practice) — this is the SAME piece that anchored Issue 12 In Practice in the re-run. DISQUALIFIED for In Practice repeat; eligible only as cross-issue throughline or At a Glance.**",
+          "chartable_data": "Pie chart of dev-time allocation (16% coding vs 84% other) — strong single visual"
+        },
+        {
+          "headline": "State of Platform Engineering Vol. 4 lands: 80% of orgs will have platform teams by 2026, 73% of platform teams have integrated AI assistants — but 30% still don't measure success",
+          "source_name": "PlatformEngineering.org",
+          "source_url": "https://platformengineering.org/blog/announcing-the-state-of-platform-engineering-vol-4",
+          "published_date": "2026-05-15",
+          "summary": "Vol. 4 of the State of Platform Engineering report draws on 518 engineers globally. Headline numbers: 80% of software orgs will have platform teams by 2026 (Gartner forecast confirmed), 73% have AI assistants integrated into at least one workflow, 94% view AI as critical to platform engineering's future. The discomfort number: 29.6% of platform teams report measuring no success metric, and 47.4% operate on <$1M annual budgets.",
+          "so_what": "Surfaces the discomfort gap — most platform teams are AI-augmented but underbudgeted and unmeasured — informing the budget and platform-team-charter conversations engineering leaders are having with their CTO and finance partners.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "chartable_data": "Three-stat row (80% adoption / 73% AI / 30% unmeasured) or by-the-numbers callout"
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "outage post-mortem May 2026 cloud incident week",
+        "CVE zero-day actively exploited May 18 2026 security",
+        "AWS Azure Google Cloud outage May 16 2026",
+        "on-call SRE incident response post-mortem blog May 2026",
+        "supply chain attack npm pypi May 20 2026",
+        "Cisco SD-WAN CVE-2026-20182 CISA deadline May 17 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Railway taken down for 8 hours when Google Cloud incorrectly suspended its production account — 'one billing decision = total outage' becomes the dependency-risk story of the week",
+          "source_name": "Railway",
+          "source_url": "https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage",
+          "published_date": "2026-05-20",
+          "summary": "On May 19 between 22:20 UTC and ~06:14 UTC May 20, Railway experienced a platform-wide outage after Google Cloud incorrectly placed its production account in suspended status. As cached network routes expired the impact extended beyond GCP, rendering all Railway workloads across all regions unreachable. The post-mortem highlights single-provider account-level dependency as the live risk many engineering orgs underestimate.",
+          "so_what": "Hands-off engineering leaders managing a cloud-cost / single-vendor concentration risk register get a clean reference case to bring to their next architecture-review or DR conversation.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://station.railway.com/community/what-we-know-so-far-may-19th-2026-86354cdd",
+            "https://news.ycombinator.com/item?id=48201484"
+          ],
+          "chartable_data": "Outage timeline (22:20 UTC suspension → cache TTLs → 06:14 recovery) — strong narrative timeline visual",
+          "jargon_terms": ["cached network routes", "billing-account suspension"]
+        },
+        {
+          "headline": "Cisco Catalyst SD-WAN CVE-2026-20182 — CVSS 10.0 auth bypass, actively exploited by UAT-8616, CISA federal deadline May 17 just passed",
+          "source_name": "BleepingComputer",
+          "source_url": "https://www.bleepingcomputer.com/news/security/cisco-warns-of-new-critical-sd-wan-flaw-exploited-in-zero-day-attacks/",
+          "published_date": "2026-05-16",
+          "summary": "Cisco Catalyst SD-WAN Controller and Manager have a critical authentication-bypass flaw (CVE-2026-20182, CVSS 10.0) under active exploitation by threat actor cluster UAT-8616 — attackers add SSH keys, modify NETCONF, escalate to root, and control network configuration across the SD-WAN fabric. CISA added the CVE to KEV under Emergency Directive 26-03 with a federal patch deadline of May 17, 2026.",
+          "so_what": "Customer-facing impact: any UK/ME bank or fintech with Cisco SD-WAN in its enterprise network needs an answer on patch status this week. Engineering leaders' role is the conversation, not the remediation — but the conversation is this week's.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://thehackernews.com/2026/05/cisa-adds-cisco-sd-wan-cve-2026-20182.html",
+            "https://www.tenable.com/blog/faq-about-the-continued-exploitation-of-cisco-catalyst-sd-wan-vulnerabilities-uat-8616"
+          ],
+          "notes": "Spec v1.31 risk-flag: similar named-failure profile to Mini Shai-Hulud — IC-level remediation. Belongs in Week at a Glance ACTION REQUIRED, NOT anchor. v3.2 audience-fit gate: 'patching' = reader is not running the system.",
+          "jargon_terms": ["CISA KEV", "SD-WAN", "NETCONF", "auth bypass"]
+        },
+        {
+          "headline": "Microsoft Exchange Server zero-day (CVE-2026-42897, CVSS 8.1) confirmed under active exploitation, no patch available yet",
+          "source_name": "SecurityWeek",
+          "source_url": "https://www.securityweek.com/microsoft-warns-of-exchange-server-zero-day-exploited-in-the-wild/",
+          "published_date": "2026-05-18",
+          "summary": "Microsoft confirmed CVE-2026-42897 — an XSS-class flaw in Exchange Server SE, 2016 and 2019 — is being actively exploited in the wild. CVSS 8.1, no patch available at disclosure. The vulnerability allows input neutralisation failure during web page generation.",
+          "so_what": "Awareness item — any org still on on-prem Exchange needs to know.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "jargon_terms": ["XSS", "CVE", "Exchange SE"]
+        },
+        {
+          "headline": "TanStack / Mistral / UiPath npm + PyPI supply-chain attack hits 1,800+ developers — Mini Shai-Hulud campaign continues into Wave 2 and 3",
+          "source_name": "Security Boulevard",
+          "source_url": "https://securityboulevard.com/2026/05/1800-developers-hit-in-mini-shai-hulud-supply-chain-attack-across-pypi-npm-and-php/",
+          "published_date": "2026-05-19",
+          "summary": "The TeamPCP-attributed Mini Shai-Hulud campaign — first surfaced May 11 — continued into mid-May with new waves compromising packages across npm, PyPI, and PHP. Wave 1 hit TanStack router (42 packages), Mistral AI SDKs, UiPath automation (65 packages), OpenSearch (1.3M weekly downloads), Guardrails AI. Wave 2 introduced a fundamentally new initial-access technique and produced the first malicious npm packages with valid SLSA provenance. Over 1,800 developer repos exposed credentials.",
+          "so_what": "Mini Shai-Hulud was the Issue 9/10 narrative — Issue 11 needs to handle the carryover as throughline, not anchor.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://safedep.io/mass-npm-supply-chain-attack-tanstack-mistral/",
+            "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/",
+            "https://digital.nhs.uk/cyber-alerts/2026/cc-4781"
+          ],
+          "notes": "Spec risk-flag: 'Mini Shai-Hulud npm supply-chain' was a featured anchor in Issue 9/10 — v1.31 NO-REPEAT-FEATURED-ANCHOR BLOCKS this from anchoring. Cross-issue throughline / On the Radar timeline at most.",
+          "jargon_terms": ["SLSA provenance", "Shai-Hulud", "TanStack"]
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "Monzo Wise Starling engineering blog May 2026",
+        "UK fintech bank engineering news May 18 2026",
+        "Stripe loyalty payments rail agentic commerce May 2026",
+        "Middle East fintech ADGM FSRA UAE banking engineering May 2026",
+        "Visa Mastercard agentic protocol payments May 2026",
+        "UK Fintech Week London announcements Mansion House May 18 2026",
+        "FCA PSR UK regulator engineering deadline May 2026 fintech",
+        "Klarna fintech AI customer service revenue 2026 May results",
+        "Stripe Sessions 2026 announcements Machine Payments Protocol May"
+      ],
+      "candidates": [
+        {
+          "headline": "UK government drops its biggest fintech-payments package since the Leeds Reforms — Open Banking expansion, single regulated framework for tokenised + traditional payments, plans for AI-agent payment rules",
+          "source_name": "GOV.UK / HM Treasury",
+          "source_url": "https://www.gov.uk/government/news/uk-fintech-backed-to-embrace-future-payments-technology",
+          "published_date": "2026-05-18",
+          "summary": "HM Treasury used UK Fintech Week to announce a wide payments package: new FCA powers over the next phase of Open Banking, a unified framework covering traditional + tokenised payments (stablecoins, tokenised deposits), explicit forward steps on payment-service regulation for AI-agent transactions, plus Chris Woolard (ex-FCA interim CEO) appointed Wholesale Digital Markets Champion, plus a further £1M for the Centre for Finance, Innovation and Technology.",
+          "so_what": "Sets the rule-shape for UK fintech engineering work over the next 12-24 months — including how to design payment flows for agent-initiated transactions, the upcoming AI-agent payment regime, and what changes for Open Banking partners.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://fintech.global/2026/04/21/uk-government-backs-fintech-with-new-payments-package/",
+            "https://www.openbankingexpo.com/news/uk-government-unveils-payments-innovation-package-to-futureproof-uk-fintech/"
+          ],
+          "notes": "Spec v1.31 bank-regulator scope test: would this matter at Mozilla/Spotify/GitHub? PARTIALLY — agent-payment regulation has cross-industry implications. But primarily UK-fintech-scoped. Eligible for Quick Take but NOT a Lead under the v1.32 scope-conditional rule. Most natural slot: Quick Take on the AI-agent payments thread, OR Banking/fintech surfacing under Wider engineering landscape concern.",
+          "jargon_terms": ["Open Banking", "tokenised deposits", "Mansion House", "PSR/FCA merger"]
+        },
+        {
+          "headline": "Stripe Sessions 2026 — Machine Payments Protocol (MPP) launches, co-authored with Tempo; Visa adopts as part of the protocol stack",
+          "source_name": "Stripe",
+          "source_url": "https://stripe.com/blog/machine-payments-protocol",
+          "published_date": "2026-05-19",
+          "summary": "At Sessions 2026 Stripe announced ~288 products. Machine Payments Protocol (MPP), an open agent-payment standard co-authored with Tempo, supports programmatic microtransactions, recurring agent payments, and settlement in both stablecoins and fiat (cards, Klarna, Affirm) via Shared Payment Tokens. Visa adopted MPP. Early customers include Browserbase, PostalForm, Prospect Butcher Co.",
+          "so_what": "Direct relevance to loyalty / commerce-media engineering teams — MPP is the agent-payment substrate the reader's customers may shortly need to support.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://stripe.com/blog/everything-we-announced-at-sessions-2026",
+            "https://stripe.com/use-cases/agentic-commerce"
+          ],
+          "notes": "RISK: Stripe SPT was Issue 12 v1.31 QT2 (per the v1.32 spec changelog reference). MPP launch is a NEW product this week, so eligible — but adjacency-risk if another Stripe piece is used elsewhere in the issue.",
+          "chartable_data": "Process-flow diagram of agent → MPP → Stripe → fiat/stablecoin/cards",
+          "jargon_terms": ["MPP", "SPT (Shared Payment Tokens)", "stablecoin settlement"]
+        },
+        {
+          "headline": "ADGM Abu Dhabi Finance Week activities lift Abu Dhabi FDI 25% — fintech, alternative assets and insurance lead",
+          "source_name": "Bitget Academy / ADGM",
+          "source_url": "https://www.bitget.com/academy/what-impact-does-abu-dhabi-finance-week-have-on-regional-fintech-and-investment-in-the-united-arab-emirates-in-2026",
+          "published_date": "2026-05-15",
+          "summary": "Per ADGM's data, Abu Dhabi Finance Week activities in 2026 drove a 25% rise in foreign direct investment into the region, concentrated in fintech, insurance, digital assets, and alternative assets. ADGM's RegLab and Digital Lab continue as the primary sandbox infrastructure for the region.",
+          "so_what": "Surfaces the funding-environment shape for ME fintech peers — useful context, no immediate decision.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "FCA publishes 10th edition Regulatory Initiatives Grid (May 2026) — sets the 2-year regulatory pipeline including PSR-into-FCA consolidation",
+          "source_name": "FCA",
+          "source_url": "https://www.fca.org.uk/publications/corporate-documents/regulatory-initiatives-grid",
+          "published_date": "2026-05-15",
+          "summary": "The FCA's 10th Regulatory Initiatives Grid maps the next two years of UK financial regulation, including HMT's confirmed plan to consolidate the Payment Systems Regulator's functions into the FCA, and the safeguarding regime that came into effect on May 7.",
+          "so_what": "Sets multi-quarter horizon for what regulator-driven work hits UK fintech engineering roadmaps.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "v1.31 retired-rule, v1.32 scope-conditional: this is UK-only and entity-specific, fails the 'matter at Mozilla/Spotify' test. Radar at most. **FCA safeguarding regime was the Issue 10 lead — v1.31 NO-REPEAT BLOCKS featured slot.**"
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "Charity Majors / Honeycomb founders: 'In 2026, clarity is the scarce resource' — observability evolving past pillars, leaders need clarity and constraints, not more dashboards",
+        "source_name": "Honeycomb",
+        "source_url": "https://www.honeycomb.io/blog/next-era-of-observability-founders-reflections-additional-q-and-a",
+        "published_date": "2026-05-12",
+        "beat": "leadership_read",
+        "summary": "Honeycomb founders Christine Yen and Charity Majors publish their 10-year retrospective on observability and 2026 predictions. The thesis: 'clarity is the scarce resource' — software is now nondeterministic by design, unfolds over time rather than as transactions, and generates real cost per interaction. The job of leaders shifts from 'find the right dashboard' to 'define constraints, invariants, and what good looks like'. Specifically frames AI observability not as a tool category but as a leadership discipline.",
+        "so_what": "Reframes observability investment from tool selection (what manager-of-managers reads) to leadership craft (defining constraints, specs, invariants) — peer-level reading for hands-off engineering leaders.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Strong non-LeadDev option (state file says last LR was LeadDev). Honeycomb / Majors not in Issue 9 or 10 leadership read history. AI as a peripheral substrate, not the primary subject — primary subject is observability-as-leadership-craft. Eligible Leadership Read.",
+        "jargon_terms": ["observability", "invariants", "multiple pillars world"]
+      },
+      {
+        "headline": "Lara Hogan (April 22, 2026 update) — refreshed essay on management, influence and communication for the AI-era manager",
+        "source_name": "Lara Hogan blog",
+        "source_url": "https://larahogan.me/blog/",
+        "published_date": "2026-04-22",
+        "beat": "leadership_read",
+        "summary": "Lara Hogan published an updated version of her 2017 management/influence/communication post on April 22, 2026, reframed for managers navigating AI-era teams. Covers practical influence techniques, communication patterns, and the shift in feedback delivery for hybrid IC/AI teams.",
+        "so_what": "Non-LeadDev management-craft option for the Leadership Read slot. Square in the 'management craft' theme catalogue for v1.35.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Out of 7-day window (April 22). New-in-window traction would need to be verified. Lara Hogan never in leadership_read_history — clean slot if used. Strong management-craft non-AI option (AI is incidental, not primary subject)."
+      },
+      {
+        "headline": "Marc Brooker — 'What's Easy Now? What's Hard Now?' (May 18 essay): AI agents are feedback loops, and the limit on agent capability is the quality of available feedback",
+        "source_name": "brooker.co.za",
+        "source_url": "https://brooker.co.za/blog/2026/05/18/whats-easy-whats-hard.html",
+        "published_date": "2026-05-18",
+        "beat": "leadership_read",
+        "summary": "Brooker's May 18 essay argues coding agents are best understood as feedback loops built around an LLM as the open-loop component. Long-term, agents will find tasks with strong feedback easy (storage engines, structured systems) and tasks without effective feedback hard (architecture decisions, concurrency, ergonomic photo editor UX). The counterintuitive prediction: high-performance database engines are easier for agents long-term than 'delightful' UI work.",
+        "so_what": "Reframes the AI-rollout conversation from 'pick a tool' to 'design the feedback loops' — directly relevant to engineering leaders thinking about how to set agentic work up to succeed.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "**CAUTION: Per the v1.35 spec changelog, the Issue 12 v1.32 Leadership Read was 'Brooker on coding agents as feedback loops' — this MAY be the same essay or a very near-twin. CHECK: if Brooker / 'feedback loops' was used as Issue 12's LR, this is disqualified. State file doesn't show Brooker in leadership_read_history. Likely SAFE for state but RISKY for content recycling — Phase 2 must verify.** AI-substrate primary subject — counts toward the v1.35 long-form AI cap.",
+        "jargon_terms": ["open-loop component", "feedback loop", "LLM-as-component"]
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "Atlassian — Building for AI-native engineering: what's new in DX (Atlassian's own engineering blog post on the AI-native operating model)",
+        "source_name": "Inside Atlassian",
+        "source_url": "https://www.atlassian.com/blog/company-news/dx-team-26",
+        "published_date": "2026-05-06",
+        "beat": "in_practice",
+        "summary": "Atlassian's DX team published their operating-model writeup for AI-native engineering. Covers how coding assistants are now part of daily workflow, agents owning task-level work, and the role of platform engineers in maintaining context infrastructure (Rovo Dev). Internal data: developers spend ~16% of time coding. Named operators describe their internal rollout sequencing.",
+        "so_what": "Strong In Practice fit IF Atlassian DX has a named human operator on the byline. Implication-level technical content (operating model, not prompt patterns).",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "**RISK: Wu / 16% / agent-era practice WAS the Issue 12 v1.32 In Practice (per v1.35 changelog). DISQUALIFIED for In Practice repeat.** Use as cross-issue throughline only. AI-substrate primary subject — would count toward v1.35 long-form AI cap if used."
+      },
+      {
+        "headline": "Performance-cycle craft: managing calibration when AI-first and AI-skeptical teams produce asymmetric output (year-end window May)",
+        "source_name": "Pensero (calibration piece)",
+        "source_url": "https://pensero.ai/blog/engineering-performance-calibration",
+        "published_date": "2026-05-15",
+        "beat": "in_practice",
+        "summary": "Pensero's May piece on engineering performance calibration is well-structured but is an analyst/framework piece without a named operator. Discusses the calibration-bar problem when AI adoption is uneven across teams within an org.",
+        "so_what": "Substantively useful for the year-end performance window — but DOES NOT pass In Practice's named-operator filter.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "**DISQUALIFIED for In Practice (named-failure mode: Pensero is the v1.25 In Practice failure source — abstract framework, no named operator).** Phase 2 must reject. Available for Editorial Moment or Quick Take only."
+      },
+      {
+        "headline": "Monzo blog — 'How we put together our progression frameworks' (evergreen reference; calendar-anchored to current performance cycle)",
+        "source_name": "Monzo Engineering blog",
+        "source_url": "https://monzo.com/blog/2019/02/07/building-progression-frameworks",
+        "published_date": "2019-02-07",
+        "beat": "in_practice",
+        "summary": "Monzo's evergreen post on how they built and rolled out their engineering progression framework — named operators, journey-not-framework structure, implication-level technical content. Tag with 'a classic worth revisiting'.",
+        "so_what": "Hits the year-end-cycle theme (calibration / promotion / progression). Monzo archetype voice. Available evergreen for In Practice when fresh material on the season theme is thin.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Monzo NOT in In Practice history (state empty). Evergreen tag eligible per v3.5 source rules. Strong non-AI-substrate In Practice option — directly relevant to year-end performance window. **Top non-AI In Practice candidate.**",
+        "jargon_terms": ["progression framework", "calibration"]
+      },
+      {
+        "headline": "Monzo blog — 'Lessons from implementing engineering progression frameworks at scale' (in-archive operator reflection)",
+        "source_name": "Monzo Engineering blog",
+        "source_url": "https://monzo.com/blog/lessons-from-implementing-progression-frameworks-at-scale",
+        "published_date": "2024-01-01",
+        "beat": "in_practice",
+        "summary": "Monzo's follow-up reflective post: what they learned implementing progression frameworks at scale — calibration committee (CalCo) structure, how managers were evaluated on Team+execution / People / Leadership pillars, what broke and what worked.",
+        "so_what": "Same theme as above with a 'years on' reflective angle. Strong calibration / promotion craft material for the season window.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Evergreen option, non-AI substrate, Monzo archetype, no In Practice history conflict. Strong alternative to the 2019 piece — pick whichever pairs best with this issue's other content.",
+        "jargon_terms": ["progression framework", "CalCo"]
+      },
+      {
+        "headline": "Monzo — 'Expectations for an Engineering Manager at Monzo' (Diogo Matias, the canonical In Practice archetype)",
+        "source_name": "Monzo Engineering blog",
+        "source_url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo",
+        "published_date": "2024-03-01",
+        "beat": "in_practice",
+        "summary": "Diogo Matias' explicit list of expectations for engineering managers at Monzo. Named operator, journey format, implication-level technical content. The 'archetype' the In Practice section calibrates against.",
+        "so_what": "The reference In Practice piece — strong non-AI choice for a new In Practice season opener if the orchestrator chooses 'management craft / 1:1s / hiring' as the next season.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Evergreen, archetype piece, never used in In Practice (state empty). Strong season-opener option for 'Year-end performance cycle' or 'New manager survival'.",
+        "jargon_terms": ["EM expectations"]
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "Honeycomb founders' 10-year retrospective — observability as a leadership discipline, not a tool category (Charity Majors / Christine Yen)",
+        "source_name": "Honeycomb",
+        "source_url": "https://www.honeycomb.io/blog/next-era-of-observability-founders-reflections-additional-q-and-a",
+        "published_date": "2026-05-12",
+        "beat": "outside_in",
+        "summary": "Honeycomb / Majors' 'next era of observability' Q&A. Could fit Outside In as a 'lesson from a peer engineering org' frame — observability investment as a manager-level conversation rather than tool selection. Honeycomb not in outside_in_history.",
+        "so_what": "Transferable leadership lesson — applies cleanly at a UK fintech engineering org. Substitution test: 'a large engineering org has reframed observability from tool-buying to leadership craft' → still meaningful.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Honeycomb not in outside_in_history (Monzo/Revolut/Ramp/Cloudflare/Wise blocked). AI as peripheral substrate, not primary. Note: Phase 2 can't double-place — used as LR OR OI, not both. STRONG NON-AI primary subject if framed on observability craft."
+      },
+      {
+        "headline": "Atlassian — 'Building for AI-native engineering: what's new in DX' as Outside In on context engineering vs coding-agent quality",
+        "source_name": "Inside Atlassian",
+        "source_url": "https://www.atlassian.com/blog/company-news/dx-team-26",
+        "published_date": "2026-05-06",
+        "beat": "outside_in",
+        "summary": "Atlassian DX team blog on their AI-native operating model. As Outside In: 'how a large engineering org reframed AI productivity around context engineering rather than agent quality' — transferable leadership lesson.",
+        "so_what": "Eligible Outside In if not used as In Practice. Substitution test passes: 'a large engineering org invested in context infrastructure rather than tool quality' → still meaningful.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Atlassian not in outside_in_history. AI-substrate primary — counts toward v1.35 long-form AI cap. **If In Practice is non-AI (Monzo), OI Atlassian + LR Brooker would still leave 2 of 3 long-form AI = FAILS v1.35 rule.** Recommend NOT using both Atlassian (OI) AND Brooker (LR) in same issue."
+      },
+      {
+        "headline": "Shopify — 'Flow generation through natural language: an agentic modeling approach' (Shopify Engineering, May 12 2026)",
+        "source_name": "Shopify Engineering",
+        "source_url": "https://shopify.engineering/latest",
+        "published_date": "2026-05-12",
+        "beat": "outside_in",
+        "summary": "Shopify Engineering's May 12 piece on building a natural-language flow-generation layer for agentic workflows. Named operators, implication-level technical content on the operating-model shift around agentic spec authoring.",
+        "so_what": "Outside In candidate — Shopify reframing how product specs hand off to agents.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "**RISK: Shopify natural-language spec layer was the Issue 12 v1.32 Outside In (per v1.35 changelog). Same theme, same source — DISQUALIFIED for Outside In repeat under no-repeat-featured (technically it was OI not anchor, but the editorial-recycling concern applies).** Use only as cross-issue throughline."
+      },
+      {
+        "headline": "GitHub — Octoverse 2025 / Copilot agentic desktop rollout (May 17) as Outside In on the 'two-layer enterprise stack' pattern",
+        "source_name": "GitHub Blog",
+        "source_url": "https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/",
+        "published_date": "2026-05-17",
+        "beat": "outside_in",
+        "summary": "GitHub's Octoverse + Copilot agentic desktop rollout. Framing as Outside In: 'a large platform org observed and supported a two-tool enterprise-adoption pattern' — Copilot for breadth, Claude Code for senior depth.",
+        "so_what": "Transferable enterprise-pattern lesson for engineering leaders deciding their own AI-tool stack.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "news_event",
+        "notes": "GitHub not in outside_in_history. AI-substrate primary."
+      },
+      {
+        "headline": "Linear — engineering-craft conservatism (smaller, remote-focused, slow AI-feature adoption with explicit reliability bar)",
+        "source_name": "Linear blog / techinterview profile",
+        "source_url": "https://www.techinterview.org/companies/linear/",
+        "published_date": "2026-05-01",
+        "beat": "outside_in",
+        "summary": "Linear's continued positioning: smaller team, remote-focused, craft-oriented, conservative AI-feature adoption (e.g. AI-assisted triage added only after explicit reliability bar met). A counterpoint to the rush-to-ship AI-feature narrative.",
+        "so_what": "Outside In contrast — 'a large engineering org slowed AI-feature rollout to meet a reliability bar' is a transferable engineering-discipline lesson for UK banking/fintech (who face the same bar).",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Linear not in outside_in_history. **Strong non-AI-primary-subject framing available** (the substance is about engineering discipline / craft bar, AI is what they're being disciplined about — the lesson is the discipline)."
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "Andrej Karpathy on rejoining frontier LLM research — pretraining isn't done (Anthropic statement, May 19 2026)",
+        "source_name": "TechCrunch",
+        "source_url": "https://techcrunch.com/2026/05/19/openai-co-founder-andrej-karpathy-joins-anthropics-pre-training-team/",
+        "published_date": "2026-05-19",
+        "beat": null,
+        "summary": "Karpathy's move from Eureka Labs / OpenAI orbit back to frontier LLM research at Anthropic. The 'bet that pretraining isn't done' framing is the rabbit-hole-tangent — a curiosity-driven aside, not a leadership-conversation anchor.",
+        "so_what": "Curious tangent for readers who follow the frontier; not actionable for engineering leaders.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "low",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event"
+      },
+      {
+        "headline": "AWS US-East-1 thermal event (May 7-8, 2026) — 7-hour Coinbase outage, no auto-reroute around physical hardware damage",
+        "source_name": "ThousandEyes / SingleStore",
+        "source_url": "https://www.singlestore.com/blog/aws-outage-may-2026-cross-region-disaster-recovery/",
+        "published_date": "2026-05-08",
+        "beat": null,
+        "summary": "Single-zone thermal event in AWS US-East-1 caused multi-hour outages at Coinbase (7 hours), FanDuel and CME Group. Architectural reminder: software orchestration cannot auto-reroute around physical hardware damage.",
+        "so_what": "Out-of-window strictly (May 8) but resurfaced in May 19-20 outage-week coverage. Useful as Down the Rabbit Hole tangent on cross-region DR design.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event"
+      }
+    ],
+    "p0_active": []
+  }
+}

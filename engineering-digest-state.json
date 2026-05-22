@@ -1,46 +1,50 @@
 {
   "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/. Fields inferred from HTML (last_lead_topic, outside_in_history, last_leadership_read) are derived from the most recent lead h2, .outside-in-section anchor, and Leadership Read source URL respectively. Fields that cannot be derived from the published HTML alone (last_editorial_moment, last_lead_opener, last_qt_layout, last_oi_format, in_practice_history, last_feature_date, last_stack_date, last_rabbit_hole_date) are initialised to null/empty — the spec's rotation rules will simply have no recent constraint to enforce on the first new run, then populate normally from then on. The previous digest-state.json is preserved at the repo root as a legacy archive.",
 
-  "last_issue_number": 10,
-  "last_issue_date": "2026-05-15",
+  "last_issue_number": 11,
+  "last_issue_date": "2026-05-22",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Banking & fintech",
+  "last_lead_topic": "Management & teams",
   "last_lead_topics_3issues": [
-    "AI tooling & adoption",
     "Platform updates",
-    "Banking & fintech"
+    "Banking & fintech",
+    "Management & teams"
   ],
-  "consecutive_non_deepdive": 2,
+  "consecutive_non_deepdive": 3,
 
-  "last_outside_in_company": "Wise",
+  "last_outside_in_company": "Linear",
   "outside_in_history": [
     { "issue": 1, "company": "Monzo", "source": "Suhail Patel — QCon talk" },
     { "issue": 6, "company": "Revolut", "source": "Revolut launches AI financial assistant" },
     { "issue": 7, "company": "Ramp", "source": "Ramp's Inspect agent writes half of merged PRs" },
     { "issue": 9, "company": "Cloudflare", "source": "Cloudflare on the .de DNSSEC outage" },
-    { "issue": 10, "company": "Wise", "source": "Leading engineering through ownership" }
+    { "issue": 10, "company": "Wise", "source": "Leading engineering through ownership" },
+    { "issue": 11, "company": "Linear", "source": "Linear engineering-craft conservatism / reliability bar" }
   ],
 
-  "last_leadership_read": "LeadDev",
+  "last_leadership_read": "Honeycomb",
   "leadership_read_history": [
     { "issue": 7, "source": "LeadDev", "piece": "The end of the non-technical engineering manager" },
     { "issue": 9, "source": "Pragmatic Engineer", "piece": "Five recommendations for platform teams in 2026" },
-    { "issue": 10, "source": "LeadDev", "piece": "Demand for engineering managers is surging in the agentic-coding era" }
+    { "issue": 10, "source": "LeadDev", "piece": "Demand for engineering managers is surging in the agentic-coding era" },
+    { "issue": 11, "source": "Honeycomb", "piece": "The next era of observability — founders' reflections (additional Q&A)" }
   ],
 
-  "last_editorial_moment": null,
-  "last_lead_opener": null,
-  "last_qt_layout": null,
-  "last_oi_format": null,
+  "last_editorial_moment": "number_of_the_week",
+  "last_lead_opener": "narrative-first",
+  "last_qt_layout": "qt-a",
+  "last_oi_format": "A",
 
   "last_feature_date": null,
   "last_stack_date": null,
-  "last_rabbit_hole_date": null,
+  "last_rabbit_hole_date": "2026-05-22",
 
-  "current_in_practice_season": null,
-  "in_practice_season_progress": 0,
+  "current_in_practice_season": "Manager-of-managers craft",
+  "in_practice_season_progress": 1,
   "in_practice_season_candidates": [],
-  "in_practice_history": [],
+  "in_practice_history": [
+    { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" }
+  ],
 
   "p0_stories_tracking": []
 }
