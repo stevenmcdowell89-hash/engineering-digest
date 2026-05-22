@@ -99,6 +99,9 @@ async function handleNotify(request, env) {
   const results = [];
 
   for (const k of list.keys) {
+    // Skip page-open tracking entries written by /api/track — they share this
+    // KV namespace with subscriptions and would otherwise be parsed as push targets.
+    if (k.name.startsWith('count:')) continue;
     const raw = await env.SUBSCRIPTIONS.get(k.name);
     if (!raw) continue;
     const sub = JSON.parse(raw);
@@ -321,5 +324,5 @@ function json(obj, init = {}) {
   });
 }
 function short(endpoint) {
-  return endpoint.replace(/^https?:\/\//, '').slice(0, 48) + '…';
+  return (endpoint || '').replace(/^https?:\/\//, '').slice(0, 48) + '…';
 }

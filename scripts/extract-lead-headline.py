@@ -6,6 +6,7 @@ Usage:
 
 Prints the headline plain text to stdout. Empty string if not found.
 """
+import html
 import re
 import sys
 
@@ -23,4 +24,5 @@ m = re.search(
 )
 if m:
     headline = re.sub(r'<[^>]+>', '', m.group(1)).strip()
+    headline = html.unescape(headline)
     print(headline)
