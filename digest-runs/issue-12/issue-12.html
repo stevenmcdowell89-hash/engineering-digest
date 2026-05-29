@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — 22–29 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER ═══ */
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ VOLUME II IDENTITY ═══ */
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+.cover-tagline{font-family:'Source Sans 3',sans-serif;font-style:italic;font-size:15px;color:rgba(0,180,216,.9);letter-spacing:.5px;margin-top:14px;text-align:center;font-weight:400}
+
+/* ═══ DROP CAPS ═══ */
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter,.mgmt-section .lr-intro::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+/* ═══ PER-SECTION READING TIME ═══ */
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+/* ═══ EDITOR'S NOTE (Issue 12 ONLY) ═══ */
+.editor-note{background:rgba(0,180,216,.06);border-left:3px solid var(--deep-teal);padding:16px 22px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--body-text);font-style:italic}
+.editor-note .en-label{display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+
+/* ═══ FOOTER VOLUME II ═══ */
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+
+/* ═══ VISUAL PRIMITIVES ═══ */
+.compare-table{width:100%;max-width:480px;margin:18px 0;border:1px solid var(--light-gray);border-radius:4px;border-collapse:separate;border-spacing:0;font-family:'Source Sans 3',sans-serif;font-size:13px;background:var(--white)}
+.compare-table thead th{padding:10px 14px;background:var(--off-white);border-bottom:1px solid var(--light-gray);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);text-align:left}
+.compare-table thead th:first-child{border-right:1px solid var(--light-gray)}
+.compare-table tbody td{padding:10px 14px;border-bottom:1px solid var(--light-gray);color:var(--body-text);line-height:1.5;vertical-align:top}
+.compare-table tbody td:first-child{border-right:1px solid var(--light-gray);font-weight:600;color:var(--navy);width:42%}
+.compare-table tbody tr:last-child td{border-bottom:none}
+.compare-table.compact{max-width:360px;font-size:12px}
+.compare-table.compact thead th,.compare-table.compact tbody td{padding:8px 12px}
+
+.process-flow{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif}
+.process-flow .pf-step{flex:1;min-width:110px;padding:12px 14px;border:1px solid var(--deep-teal);border-radius:4px;background:var(--off-white);font-size:13px;color:var(--navy);text-align:center;line-height:1.3;display:flex;flex-direction:column;justify-content:center}
+.process-flow .pf-step strong{display:block;font-size:10px;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-weight:700}
+.process-flow .pf-arrow{flex:0 0 24px;align-self:center;height:2px;background:var(--deep-teal);position:relative}
+.process-flow .pf-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border-left:8px solid var(--deep-teal);border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:560px){.process-flow{flex-direction:column;align-items:stretch}.process-flow .pf-step{width:100%}.process-flow .pf-arrow{width:2px;height:18px;align-self:center;margin:4px 0}.process-flow .pf-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--deep-teal);border-bottom:none}}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ IN PRACTICE ═══ */
+.in-practice-header{background:var(--off-white);color:var(--navy);padding:32px 60px 16px;border-top:3px solid var(--deep-teal);border-left:4px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 8px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin:0;display:block;line-height:1.3}
+.in-practice-header .section-time{color:var(--med-gray);font-style:normal;font-size:12px;letter-spacing:0;text-transform:none;font-weight:500;margin-left:10px;vertical-align:middle}
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:12px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+/* ═══ JARGON WATCH ═══ */
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+/* ═══ CONCEPT OF THE WEEK ═══ */
+.concept-of-week{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--accent-orange);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.concept-of-week .cw-label{display:block;font-size:10px;font-weight:700;color:var(--accent-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.concept-of-week .cw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.concept-of-week .cw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+@media(max-width:680px){.concept-of-week{float:none;width:auto;margin:18px 0}}
+
+/* ═══ AUTHOR CARD ═══ */
+.author-card{display:flex;align-items:center;gap:14px;background:var(--off-white);border-top:2px solid var(--deep-teal);padding:14px 18px;margin:0 0 20px}
+.author-card .ac-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,180,216,.12);color:var(--deep-teal);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px}
+.author-card .ac-meta{flex:1;min-width:0}
+.author-card .ac-name{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.2;margin:0}
+.author-card .ac-role{display:block;font-size:13px;color:var(--body-text);line-height:1.4;margin:2px 0 0}
+.author-card .ac-date{display:block;font-size:12px;color:var(--med-gray);margin-top:2px}
+.author-card .ac-link{font-size:12px;color:var(--deep-teal);text-decoration:none;white-space:nowrap;margin-left:auto;padding-left:8px}
+.author-card .ac-link:hover{text-decoration:underline}
+@media(max-width:680px){.author-card{flex-wrap:wrap}.author-card .ac-link{margin-left:0;padding-left:0;margin-top:6px;flex-basis:100%}}
+
+/* ═══ OUTSIDE IN ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+/* ═══ PULL QUOTE BAR ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+
+/* ═══ MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:560px;margin-left:auto;margin-right:auto}
+
+/* ═══ TIER 2 LABEL OVERRIDES ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+
+/* ═══ QT LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-header{padding-left:20px;padding-right:20px}.in-practice-skip{padding-left:20px;padding-right:20px}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.pq-bar{margin:28px -20px;padding:28px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+<a href="/" class="back-to-archive" aria-label="Back to all issues" style="display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;padding:10px 20px;background:#0A1628;color:#00B4D8;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)"><span style="font-size:14px;line-height:1">←</span><span>All Issues</span></a>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 12</span>
+    <span>22–29 May 2026</span>
+    <span>13 min read</span>
+  </div>
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-tagline">Engineering decisions, every Friday.</div>
+    <div class="cover-meta">
+      <span class="cover-date">22–29 May 2026</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">~7 hrs</div>
+    <div class="stat-context">A single data-centre hall lost cooling — and a multi-billion-dollar exchange went dark for most of a working day.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>GitHub Copilot moves to usage-based AI Credits</li>
+      <li>The AWS US-EAST-1 thermal-event post-mortems</li>
+      <li>Coinbase, "no pure managers" &amp; the layoff wave</li>
+      <li>The Leadership Read: a guide to calibration</li>
+      <li>Outside In: incident.io on customer-first reliability</li>
+      <li>In Practice, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <div class="editor-note">
+    <span class="en-label">A note from the editor</span>
+    A small change of dress this week. From this issue, the digest opens at Volume II — a sharper cover, a standing tagline, and a few markers that should make each edition easier to tell apart at a glance. The brief behind it is unchanged: the engineering decisions worth a Friday morning, nothing more.
+  </div>
+  <p>The thread this week is cost made visible. GitHub Copilot turns a fixed per-seat line-item into a metered one on 1 June. A failed cooling loop in a single AWS hall put a number on single-region concentration. And a layoff wave still running through late May is, at root, a price being put on the management layer itself. Three different ledgers, one question underneath them: what is actually being paid for, and by whom.</p>
+</section>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">$47bn</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center;max-width:560px;margin-left:auto;margin-right:auto">The six largest US banks posted roughly $47bn in combined quarterly profit while cutting around 15,000 jobs — the shape of a decision to run AI as cost takeout rather than a revenue engine, and the strategic split the banks in this sector's orbit are now choosing between. <a href="https://www.implicator.ai/the-banking-ai-bifurcation-incumbent-cost-takeout-vs-the-fintech-ai-native-stack/" style="color:var(--deep-teal);text-decoration:none">Implicator.ai →</a></p>
+  </div>
+</section>
+
+<!-- ═══ THE WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Seven Stories in Sixty Seconds <span class="section-time">(2 min)</span></h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Microsoft Defender zero-days under active exploitation.</strong> Two flaws — RedSun (CVE-2026-41091) and UnDefend (CVE-2026-45498) — are confirmed by CISA as exploited in the wild, with patches rolling out. For Windows-dependent orgs the leadership task is to confirm patching is owned and tracked, not to remediate it. <span class="on-source"><a href="https://www.bleepingcomputer.com/news/security/microsoft-warns-of-new-defender-zero-days-exploited-in-attacks/">BleepingComputer</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">Tooling</span><div class="qh-text"><strong>GitHub Copilot usage-based billing goes live 1 June.</strong> Flat Premium Request Units give way to metered AI Credits — the issue's Lead unpacks what changes for the budget. <span class="on-source"><a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">github.blog</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">Research</span><div class="qh-text"><strong>DORA publishes its "ROI of AI" report.</strong> DORA — the long-running delivery-research survey, not the EU regulation — finds returns come from the organisational system, not the tools. Covered as the Issue 10 Quick Take; no fresh treatment here. <span class="on-source"><a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/">InfoQ</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">M&amp;A</span><div class="qh-text"><strong>Anthropic acquires Stainless for $300M+.</strong> The hosted SDK generator used by OpenAI, Google and Cloudflare will wind down, concentrating the developer-tooling layer under one vendor. <span class="on-source"><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/">TechCrunch</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">Payments</span><div class="qh-text"><strong>Visa and Mastercard scale agentic commerce.</strong> The Trusted Agent Protocol and Agent Pay move toward mainstream for the 2026 holiday season — a signpost for any loyalty or commerce-media roadmap planning agent checkout. <span class="on-source"><a href="https://www.americanbanker.com/payments/news/visa-mastercard-expand-agentic-ai-deployments">American Banker</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Fintech</span><div class="qh-text"><strong>The Middle East fintech frontier keeps building.</strong> The UAE's FIT programme is roughly 85% complete, Saudi open finance is expanding, and new regional cloud regions are landing — concrete integration drivers for ME bank partners. <span class="on-source"><a href="https://mobileecosystemforum.com/2026/05/14/the-middle-east-is-quietly-becoming-one-of-the-worlds-most-exciting-fintech-frontiers/">Mobile Ecosystem Forum</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Tooling</span><div class="qh-text"><strong>"The harness is the product."</strong> The four big labs now price the agent runtime incompatibly — see the number band later in this issue. <span class="on-source"><a href="https://thenewstack.io/ai-agent-harness-pricing-split/">The New Stack</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section lead-article">
+  <div class="section-label">Ways of Working</div>
+  <h2>GitHub Copilot Turns a Fixed Cost Into a Metered One <span class="section-time">(3 min)</span></h2>
+
+  <p>From 1 June, GitHub Copilot stops being a flat per-seat purchase and becomes a usage-metered one — and the budget conversation changes with it. Seat prices hold and code completions stay unlimited, but the agentic work that teams have leaned into hardest is now billed by the token. A line-item that was easy to forecast becomes one that moves with how teams actually work.</p>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">Premium Request Units (PRU)</span>
+    <p class="jw-body">The retiring model: a fixed monthly allowance of "premium requests" bundled into each seat. Predictable, but blunt — heavy and light users cost the same.</p>
+    <span class="jw-term" style="margin-top:12px">GitHub AI Credits</span>
+    <p class="jw-body">The replacement: a monthly credit allotment consumed by token usage (input, output and cached tokens) at per-model rates, with paid plans able to buy more.</p>
+  </div>
+
+  <h3>What actually changes</h3>
+  <p>GitHub is replacing Premium Request Units with "GitHub AI Credits." Each plan includes a monthly allotment of credits matched to its seat price — Copilot Business at $19 with $19 of credits, Enterprise at $39 with $39 — and paid plans can purchase more. Crucially, the company confirms that "code completions and Next Edit suggestions remain included in all plans and do not consume AI Credits." The metering applies to the agentic features: the work where, as GitHub puts it, "agentic usage is becoming the default, and it brings significantly higher compute and inference demands."</p>
+
+  <p>A precision note on language. The agentic features being metered here are agent-mode workflows inside the IDE — a human still triggers a task and reviews the result — not autonomous production agents with authority to act on systems unattended. The bill scales with how much of that supervised, multi-step work a team does.</p>
+
+  <div class="pq-bar">
+    <p>"A line-item teams could forecast to the seat becomes one that moves with how the team works that month."</p>
+    <cite>— Engineering Digest, on the Copilot cutover</cite>
+  </div>
+
+  <h3>Why it lands as a budget decision</h3>
+  <p>The shift converts a fixed cost into a variable one, and that is the whole story for engineering leadership. Teams that have pushed agent-mode usage furthest — exactly the teams a year of adoption pressure encouraged — are the ones most exposed to rising bills. We covered the DORA ROI model in Issue 10; the Copilot change is the moment that model meets the actual invoice, where the question of where AI returns come from stops being theoretical and starts appearing on a statement.</p>
+
+  <div style="margin:24px 0 8px">
+  <table class="compare-table" style="max-width:560px">
+    <thead><tr><th>&nbsp;</th><th>Until 31 May</th><th>From 1 June</th></tr></thead>
+    <tbody>
+      <tr><td>Pricing unit</td><td>Flat seat + Premium Request Units</td><td>Flat seat + metered AI Credits (by token)</td></tr>
+      <tr><td>Business seat</td><td>$19 / user / month</td><td>$19 / user / month + $19 credits included</td></tr>
+      <tr><td>Enterprise seat</td><td>$39 / user / month</td><td>$39 / user / month + $39 credits included</td></tr>
+      <tr><td>Code completions</td><td>Unlimited</td><td>Unlimited — no credit cost</td></tr>
+      <tr><td>Agentic features</td><td>Counted as premium requests</td><td>Metered by token consumption</td></tr>
+    </tbody>
+  </table>
+  <p class="source-tag" style="margin-top:6px">Data: <a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">The GitHub Blog</a></p>
+  </div>
+
+  <h3>The conversation it forces</h3>
+  <p>The leadership conversation is concrete and imminent: how to meter and cap agent usage across teams, and how to renegotiate the AI line in the budget before consumption, not after. The trade-off engineering leaders are now navigating is between letting agent usage run free and keeping spend legible — a finance discipline that, until 1 June, the flat model quietly handled on their behalf. GitHub also paused new Pro, Pro+ and Student sign-ups in late April, a smaller signal pointing the same way: the economics of supervised agent work are being repriced in real time.</p>
+
+  <p class="source-tag">Source: <a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">The GitHub Blog</a> (announced 12 May; effective 1 June 2026)</p>
+</section>
+
+<!-- ═══ QUICK TAKES — QT-B featured + compact ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col qt-featured">
+
+    <div class="quick-take-col qt-card">
+      <div class="qt-header devex">Operating at Scale · DR</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">~7 hrs</div>
+        <div class="qt-anchor-context">Coinbase offline in the US-EAST-1 thermal event</div>
+        <h3 style="margin-top:0">When a single hall loses its cooling</h3>
+        <p>On 7–8 May, a single data-centre hall in AWS's US-EAST-1 region — its busiest, in Northern Virginia — lost cooling. The temperature spike inside one availability zone (one of the physically separate sites AWS runs within a region) triggered a power loss that physically damaged EC2 and EBS hardware on the affected racks. EC2 and EBS are AWS's core compute and block-storage building blocks. The DR post-mortems that landed this week, dissecting that earlier event, are the news here — and the reading they offer is uncomfortable.</p>
+        <p>AWS's own status note described "an increase in temperatures within a single data center" that "caused impairments for instances in the Availability Zone." The fallout reached well beyond AWS: Coinbase was knocked offline for the better part of a working day — reported at around seven hours — alongside disruption at FanDuel and CME Group. Recovery was slow precisely because the failure was physical; damaged hardware does not reboot.</p>
+        <p>The diagram below traces how one cooling fault cascaded into a customer-facing outage. The post-mortem coverage focuses on the cross-region disaster-recovery lesson: a workload concentrated in one region inherits that region's single points of failure, however many availability zones sit underneath it.</p>
+
+        <div style="margin:22px 0 10px">
+        <svg viewBox="0 0 560 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif" role="img" aria-label="Cascade diagram: a single-hall cooling failure leading to a customer outage">
+          <defs>
+            <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L7,3 L0,6 Z" fill="#0077B6"/>
+            </marker>
+          </defs>
+          <!-- Row 1: root cause -->
+          <rect x="20" y="20" width="200" height="48" rx="4" fill="#F4F6F9" stroke="#0077B6" stroke-width="1.5"/>
+          <text x="120" y="40" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">Single hall loses cooling</text>
+          <text x="120" y="56" text-anchor="middle" font-size="10" fill="#3D4F63">US-EAST-1 · one availability zone</text>
+          <!-- arrow down -->
+          <line x1="120" y1="68" x2="120" y2="96" stroke="#0077B6" stroke-width="2" marker-end="url(#arrow)"/>
+          <!-- Row 2: power loss -->
+          <rect x="20" y="98" width="200" height="48" rx="4" fill="#F4F6F9" stroke="#0077B6" stroke-width="1.5"/>
+          <text x="120" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">Temperature spike → power loss</text>
+          <text x="120" y="134" text-anchor="middle" font-size="10" fill="#3D4F63">affected racks shut down</text>
+          <!-- arrow down -->
+          <line x1="120" y1="146" x2="120" y2="174" stroke="#0077B6" stroke-width="2" marker-end="url(#arrow)"/>
+          <!-- Row 3: hardware damage -->
+          <rect x="20" y="176" width="200" height="48" rx="4" fill="#0A1628" stroke="#0A1628" stroke-width="1.5"/>
+          <text x="120" y="196" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">EC2 / EBS hardware damaged</text>
+          <text x="120" y="212" text-anchor="middle" font-size="10" fill="#00B4D8">physical — won't simply reboot</text>
+          <!-- arrow right to cascade -->
+          <line x1="220" y1="200" x2="312" y2="200" stroke="#0077B6" stroke-width="2" marker-end="url(#arrow)"/>
+          <!-- Right column: customer outages -->
+          <text x="430" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="#DC2626" letter-spacing="1">CUSTOMER OUTAGE</text>
+          <rect x="320" y="50" width="220" height="40" rx="4" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5"/>
+          <text x="430" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">Coinbase</text>
+          <text x="430" y="83" text-anchor="middle" font-size="10" fill="#3D4F63">~7 hours offline</text>
+          <rect x="320" y="100" width="220" height="40" rx="4" fill="#FFFFFF" stroke="#FF6B35" stroke-width="1.5"/>
+          <text x="430" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">FanDuel</text>
+          <text x="430" y="133" text-anchor="middle" font-size="10" fill="#3D4F63">trading / wagering disrupted</text>
+          <rect x="320" y="150" width="220" height="40" rx="4" fill="#FFFFFF" stroke="#FF6B35" stroke-width="1.5"/>
+          <text x="430" y="168" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">CME Group</text>
+          <text x="430" y="183" text-anchor="middle" font-size="10" fill="#3D4F63">exchange platform impacted</text>
+          <!-- connector from hardware box up to the cluster -->
+          <line x1="316" y1="200" x2="316" y2="70" stroke="#0077B6" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="316" y1="120" x2="320" y2="120" stroke="#0077B6" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="316" y1="170" x2="320" y2="170" stroke="#0077B6" stroke-width="1" stroke-dasharray="3,3"/>
+        </svg>
+        <p class="source-tag" style="margin-top:4px">Diagram: Engineering Digest, from <a href="https://www.itpro.com/infrastructure/aws-outage-explained-may-2026-data-center-overheating">IT Pro</a> reporting</p>
+        </div>
+
+        <p class="so-what"><strong>The takeaway: a workload sitting in one region carries that region's single points of failure no matter how many availability zones it spans — and physical damage turns a short outage into a long one, which is what makes cross-region DR a live design question again rather than a box already ticked.</strong></p>
+        <p class="source-tag">Source: <a href="https://www.itpro.com/infrastructure/aws-outage-explained-may-2026-data-center-overheating">IT Pro</a> (original event 7–8 May; DR analysis published this week)</p>
+      </div>
+    </div>
+
+    <div class="quick-take-col qt-card">
+      <div class="qt-header ai">Management &amp; Teams</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat ai">~700</div>
+        <div class="qt-anchor-context">Coinbase roles cut — about 14% of staff</div>
+        <div class="concept-of-week">
+          <span class="cw-label">Concept of the Week</span>
+          <span class="cw-term">Player-coach</span>
+          <p class="cw-body">A manager who keeps doing hands-on delivery work alongside leading the team — coaching while still carrying their own output. It removes the "pure manager" whose role is only coordination, and raises the bar on what a management title is expected to produce.</p>
+        </div>
+        <h3 style="margin-top:0">The post-AI org shape, named out loud</h3>
+        <p>Coinbase announced on 5 May that it would cut about 14% of staff — roughly 700 roles — and rebuild with "no pure managers," replacing them with "player-coaches" who lead while still contributing, capping the org at five layers below the CEO and floating "AI-native pods," potentially one-person teams directing agents. CEO Brian Armstrong's framing was blunt: "Layers slow things down and create coordination tax." The wave kept running through the window — Webflow and Groupon cut staff on 27 May — which is what keeps the 5 May announcement live.</p>
+        <p>The signal is the cross-company pattern, not any one firm: management layers thinned and org charts flattened as the default response to AI. The contrast below frames the strategic split underneath it.</p>
+
+        <table class="compare-table compact" style="max-width:100%">
+          <thead><tr><th>Incumbents</th><th>Fintech-native</th></tr></thead>
+          <tbody>
+            <tr><td>AI as cost takeout — ~15,000 jobs cut, $47bn combined profit (six largest US banks, Q1)</td><td>AI-native operating model — superior revenue per employee, API-first delivery</td></tr>
+            <tr><td>Efficiency engine: do the same work with fewer people</td><td>Revenue engine: new product surface per head of staff</td></tr>
+          </tbody>
+        </table>
+
+        <p class="so-what"><strong>The takeaway: the player-coach model and layer-capping reshape levelling, span-of-control and the IC-versus-management track directly — a "pure manager" title is being recast as a cost to justify rather than a default rung on the ladder.</strong></p>
+        <p class="source-tag">Sources: <a href="https://fortune.com/2026/05/05/coinbase-layoffs-14-of-employees-ai-tech-ai-job-anxiety-crypto/">Fortune</a>, <a href="https://www.informationweek.com/it-staffing-careers/2026-tech-company-layoffs">InformationWeek</a>, <a href="https://www.implicator.ai/the-banking-ai-bifurcation-incumbent-cost-takeout-vs-the-fintech-ai-native-stack/">Implicator.ai</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — number band ═══ -->
+<div class="mid-accent-band">
+  <div class="accent-stat">$0.08 / session-hour</div>
+  <div class="accent-context">Anthropic's price for its Managed Agents runtime — the "harness" that holds agent state, retries and tool hygiene. OpenAI charges no first-party runtime fee; Google and Microsoft bundle priced primitives inside broader platforms. Whichever harness a team standardises on now sets its multi-year AI cost structure and switching cost.</div>
+</div>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ IN PRACTICE ═══ -->
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Manager-of-managers craft <span class="section-time">(2 min)</span></span>
+</header>
+<section class="in-practice">
+  <span class="ip-evergreen">A classic worth revisiting</span>
+  <div class="author-card">
+    <div class="ac-avatar">JV</div>
+    <div class="ac-meta">
+      <span class="ac-name">Jay Vilalta</span>
+      <span class="ac-role">Director of Engineering · personal blog</span>
+      <span class="ac-date">September 2025</span>
+    </div>
+    <a class="ac-link" href="https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/">Read the piece →</a>
+  </div>
+  <h3>Managing managers: a director's short guide</h3>
+  <div class="ip-attribution">Jay Vilalta · personal blog, September 2025 · <a href="https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/">Read the full piece</a></div>
+  <blockquote>"I'm not here to catch anyone doing something wrong. I want to understand how we can better support you and your manager."</blockquote>
+  <p>That line is the hinge of Vilalta's account of managing managers, written by a director who has run dozens of them. He holds regular skip-levels — a one-to-one between a leader and someone two levels down — with every individual contributor, and frames them explicitly as support rather than surveillance. The distinction is the whole point: a skip-level read as a check-up on the manager poisons the well; read as "how do we support you and your manager," it surfaces problems early without undermining the chain.</p>
+  <p>His second mechanism is heavy structure for new managers. The jump from individual contributor to people-leader overwhelms most people, so Vilalta raises first-time managers to weekly one-to-ones and leans on concrete scaffolding — role-play, delegation coaching, pairing with an experienced mentor — rather than assuming the title confers the skill. The process flow below traces the cadence he describes.</p>
+
+  <div class="process-flow">
+    <div class="pf-step"><strong>Step 1</strong>Skip-level with every IC</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Step 2</strong>Frame it as support, not a check-up</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Step 3</strong>Heavy structure for new managers</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Step 4</strong>Name the org dysfunction, not the person</div>
+  </div>
+
+  <p>The third move is a catalogue of recurring organisational dysfunctions: unclear or shifting priorities, weak tooling, poor cross-team communication, misaligned incentives, thin planning. Vilalta's discipline is to treat these as structural rather than individual — they rarely stem from one person failing, and the manager-of-managers' job is to fix the system that produces them, not to find someone to blame. That reframe is what separates a director who scales their managers from one who simply audits them.</p>
+  <div class="ip-try">
+    <strong>What to try</strong>
+    The skip-level framing is the transferable piece here — whether a skip-level reads as support or as surveillance is set entirely by how the first one is opened, and Vilalta's single sentence is a clean model for setting that tone.
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Railway publishes its GCP account-suspension post-mortem.</strong> The full report on the 19 May outage shows a control-plane dependency on Google Cloud cascading beyond GCP, despite redundant data-plane environments. <span class="on-source"><a href="https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage">blog.railway.com</a></span></li>
+    <li><strong>Stripe Sessions 2026 fallout continues.</strong> The Machine Payments Protocol and related agent-commerce primitives keep drawing analysis as the rails for how money moves between agents take shape. <span class="on-source"><a href="https://stripe.com/blog/everything-we-announced-at-sessions-2026">stripe.com</a></span></li>
+    <li><strong>Brex and Ramp finance agents cross 1M conversations a month.</strong> Production agents with real action authority — blocking out-of-policy spend at swipe, auto-coding invoices — mark the credible end of the agent spectrum, alongside Capital One's $5.15bn Brex deal. <span class="on-source"><a href="https://www.fintechbrainfood.com/p/the-cfo-dashboard">fintechbrainfood.com</a></span></li>
+    <li><strong>EMs ask what's expected of them now.</strong> A practitioner essay argues the engineering-manager role has shifted again toward teaching and AI-stakeholder management — useful context for the management-shape pattern in this week's Quick Take. <span class="on-source"><a href="https://emdiary.substack.com/p/expectations-from-engineering-managers">emdiary.substack.com</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td><span class="status-dot amber"></span></td><td class="platform">GitHub Copilot</td><td>Billing model changes 1 June: flat Premium Request Units replaced by metered AI Credits. Near-term budget decision for any team running agent-mode workflows.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ OUTSIDE IN — Format A ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>incident.io: Measuring Reliability From the Customer's Outcome</h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">IO</div>
+    <div class="ac-meta">
+      <span class="ac-name">Mike</span>
+      <span class="ac-role">incident.io engineering</span>
+      <span class="ac-date">28 May 2026</span>
+    </div>
+    <a class="ac-link" href="https://incident.io/blog/customers-over-control">Read the post →</a>
+  </div>
+
+  <h3>The unit is "good minutes"</h3>
+  <p>incident.io measures reliability in good minutes over total minutes. Each month is divided into one-minute intervals, and a minute counts as "good" when the error rate stays below 10%. Transient, self-healing blips therefore do not register as outages — the metric tracks what customers actually experienced, not whether a component briefly wobbled. An SLO, or service-level objective, is simply the reliability target a team commits to; incident.io's is 99.99% a month for both alert ingestion (taking in the signals that trigger an alert) and notification delivery, with a five-minute latency threshold on getting a notification out.</p>
+
+  <div class="oi-stats-row">
+    <div class="oi-stat"><div class="oi-stat-num">99.99%</div><div class="oi-stat-label">monthly SLO target</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">&lt;5 min</div><div class="oi-stat-label">notification latency</div></div>
+    <div class="oi-stat"><div class="oi-stat-num">2×</div><div class="oi-stat-label">active-active telecom providers</div></div>
+  </div>
+
+  <div class="oi-callout">
+    <p>"Instead of thinking about reliability as an exercise in figuring out what we can control, and ignoring anything beyond that, we think about what we'll be really proud to offer to customers."</p>
+  </div>
+
+  <h3>No third-party degradation gets to be an excuse</h3>
+  <p>The sharper half of the philosophy is what incident.io refuses to write off. It runs dual active-active telecom providers — a redundancy added after a single October 2025 incident, the only AWS-driven outage in a twelve-month review otherwise near-perfect — so a degradation at one carrier is not accepted as a reason a customer missed a page. It also subtracts customer-configured delays from its latency maths, refusing to take credit for time it asked the customer to wait. The result is a reliability number measured from the outside in, against the experience promised, rather than from the inside out against the components a team happens to own.</p>
+
+  <p class="so-what"><strong>The takeaway: defining reliability from the customer's experienced outcome — and declining to treat a vendor's degradation as an excuse — sets a higher and more honest bar than component uptime, and it is a framing an SLO or on-call review can adopt without rebuilding anything.</strong></p>
+
+  <p class="source-tag"><a href="https://incident.io/blog/customers-over-control">Read the full post: incident.io/blog/customers-over-control →</a></p>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">01</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GitHub Copilot AI Credits cutover</strong> — flat Premium Request Units retire and token-metered billing begins. The budget decision in this week's Lead lands on this date.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">2026</div>
+        <div class="rd-label">Holiday</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Visa &amp; Mastercard agentic commerce goes mainstream</strong> — the card networks target the 2026 holiday season for millions of consumers shopping via AI agents under the Trusted Agent Protocol and Agent Pay.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">2026</div>
+        <div class="rd-label">Q4</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Microsoft Saudi Azure region general availability</strong> — new in-country cloud capacity supporting data-residency compliance for ME bank and fintech partners.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>How Calibration Slides Toward Stack-Ranking <span class="section-time">(3 min)</span></h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">AK</div>
+    <div class="ac-meta">
+      <span class="ac-name">Alex Karp</span>
+      <span class="ac-role">LeadDev</span>
+      <span class="ac-date">2022 · a classic worth revisiting</span>
+    </div>
+    <a class="ac-link" href="https://leaddev.com/management/managers-guide-performance-calibration">Read the article →</a>
+  </div>
+
+  <p class="lr-intro">Calibration is meant to make performance reviews fairer — managers compare ratings across a group so that one team's "exceeds expectations" means the same as another's. In a guide for LeadDev, Alex Karp argues that the process has a built-in drift, and he names it as a three-stage slippery slope. Each stage looks reasonable on its own. Taken together they carry an organisation from a fair comparison to a zero-sum contest, often without anyone deciding to make that move.</p>
+
+  <h3>The three stages</h3>
+  <p>Karp's progression runs in order, and the danger is that each step makes the next feel natural.</p>
+  <ol style="margin:12px 0 16px 20px;line-height:1.8;color:rgba(255,255,255,.82)">
+    <li><strong>Dissociation and fungibility.</strong> To cut the cost of calibration, companies abstract each person into a rating and a short summary. Senior leaders, working only from those abstractions, start to treat people as interchangeable — fungible — which quietly hollows out the point of the exercise.</li>
+    <li><strong>Performance curves.</strong> Ratings get fitted to a normal distribution on the assumption most people sit in the middle. This ignores how level and tenure shape a real distribution, and the harm arrives when managers are pressured to bend ratings to match the curve rather than the work.</li>
+    <li><strong>Stack-ranking.</strong> Performance becomes relative instead of absolute. A perfectly adequate engineer is rated poorly because peers scored higher — someone must be at the bottom — and the process turns into a zero-sum competition that can end in termination for meeting the bar.</li>
+  </ol>
+
+  <div class="pull-quote">
+    <p>Despite good intentions, calibration tends to deteriorate through a slippery slope — from people abstracted into ratings, to curves, to stack-ranking, where someone must always be at the bottom.</p>
+    <cite>— Alex Karp, LeadDev (paraphrased)</cite>
+  </div>
+
+  <h3>Seven ways to resist the drift</h3>
+  <p>Against that slide Karp offers seven counter-recommendations. Two are structural and do most of the work. First, run calibrations at a local organisational level rather than rolling everyone into one giant pool, which is where fungibility creeps in. Second, eliminate performance curves entirely — the false objectivity of a forced distribution is the mechanism that produces stack-ranking, so removing it removes the slope's middle step.</p>
+  <p>The other five are about discipline and trust: include everyone in the discussion rather than only the edge cases; focus on how managers will actually communicate a review, not just the score; grant managers autonomy with light verification rather than overriding them from above; write explicit, detailed definitions of each rating so "meets expectations" is not left to interpretation; and analyse outcomes across demographic groups to catch bias the process might be encoding. None of these is exotic. The argument is that without them, the gravity of cost-cutting and tidy distributions pulls every calibration cycle the same way.</p>
+  <p>For a manager-of-managers running a cycle this year, the value is the early-warning vocabulary. Once "we just need to fit the curve" enters the room, the slope has already started, and Karp's framework gives a name to what is happening while there is still time to step off it.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://leaddev.com/management/managers-guide-performance-calibration" class="mgmt-link">Read the full article: leaddev.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> In the last calibration cycle, was any rating adjusted to fit a distribution rather than to fit the work — and if so, which of Karp's two structural fixes would have caught it?</p>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://thenewstack.io/ai-agent-harness-pricing-split/">The harness is the product: how four labs price the agent runtime</a></span><span class="source">thenewstack.io</span></li>
+    <li><span class="title"><a href="https://www.implicator.ai/the-banking-ai-bifurcation-incumbent-cost-takeout-vs-the-fintech-ai-native-stack/">The banking AI bifurcation: cost takeout vs the AI-native stack</a></span><span class="source">implicator.ai</span></li>
+    <li><span class="title"><a href="https://mobileecosystemforum.com/2026/05/14/the-middle-east-is-quietly-becoming-one-of-the-worlds-most-exciting-fintech-frontiers/">The Middle East is quietly becoming a top fintech frontier</a></span><span class="source">mobileecosystemforum.com</span></li>
+    <li><span class="title"><a href="https://emdiary.substack.com/p/expectations-from-engineering-managers">Expectations from engineering managers, rewritten again</a></span><span class="source">emdiary.substack.com</span></li>
+    <li><span class="title"><a href="https://newsletter.systemdesign.one/p/distributed-systems">Taming time in distributed systems: why there is no global clock</a></span><span class="source">systemdesign.one</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">22–29 May 2026 · Weekly Edition · Issue #12</div>
+  <div class="footer-next">Next edition: 5 June 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">1 May · Weekly</span>
+    <span class="archive-pill">8 May · Weekly</span>
+    <span class="archive-pill">15 May · Weekly</span>
+    <span class="archive-pill">22 May · Weekly</span>
+    <span class="archive-pill current">29 May · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>

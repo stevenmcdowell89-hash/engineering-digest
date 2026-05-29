@@ -1,49 +1,52 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/. Fields inferred from HTML (last_lead_topic, outside_in_history, last_leadership_read) are derived from the most recent lead h2, .outside-in-section anchor, and Leadership Read source URL respectively. Fields that cannot be derived from the published HTML alone (last_editorial_moment, last_lead_opener, last_qt_layout, last_oi_format, in_practice_history, last_feature_date, last_stack_date, last_rabbit_hole_date) are initialised to null/empty — the spec's rotation rules will simply have no recent constraint to enforce on the first new run, then populate normally from then on. The previous digest-state.json is preserved at the repo root as a legacy archive.",
+  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 12 deliver (2026-05-29).",
 
-  "last_issue_number": 11,
-  "last_issue_date": "2026-05-22",
+  "last_issue_number": 12,
+  "last_issue_date": "2026-05-29",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Management & teams",
+  "last_lead_topic": "Ways of working",
   "last_lead_topics_3issues": [
-    "Platform updates",
     "Banking & fintech",
-    "Management & teams"
+    "Management & teams",
+    "Ways of working"
   ],
-  "consecutive_non_deepdive": 3,
+  "consecutive_non_deepdive": 4,
 
-  "last_outside_in_company": "Linear",
+  "last_outside_in_company": "incident.io",
   "outside_in_history": [
     { "issue": 1, "company": "Monzo", "source": "Suhail Patel — QCon talk" },
     { "issue": 6, "company": "Revolut", "source": "Revolut launches AI financial assistant" },
     { "issue": 7, "company": "Ramp", "source": "Ramp's Inspect agent writes half of merged PRs" },
     { "issue": 9, "company": "Cloudflare", "source": "Cloudflare on the .de DNSSEC outage" },
     { "issue": 10, "company": "Wise", "source": "Leading engineering through ownership" },
-    { "issue": 11, "company": "Linear", "source": "Linear engineering-craft conservatism / reliability bar" }
+    { "issue": 11, "company": "Linear", "source": "Linear engineering-craft conservatism / reliability bar" },
+    { "issue": 12, "company": "incident.io", "source": "Customers over control — measuring on-call reliability from the customer's outcome" }
   ],
 
-  "last_leadership_read": "Honeycomb",
+  "last_leadership_read": "LeadDev",
   "leadership_read_history": [
     { "issue": 7, "source": "LeadDev", "piece": "The end of the non-technical engineering manager" },
     { "issue": 9, "source": "Pragmatic Engineer", "piece": "Five recommendations for platform teams in 2026" },
     { "issue": 10, "source": "LeadDev", "piece": "Demand for engineering managers is surging in the agentic-coding era" },
-    { "issue": 11, "source": "Honeycomb", "piece": "The next era of observability — founders' reflections (additional Q&A)" }
+    { "issue": 11, "source": "Honeycomb", "piece": "The next era of observability — founders' reflections (additional Q&A)" },
+    { "issue": 12, "source": "LeadDev", "piece": "A manager's guide to performance calibration" }
   ],
 
   "last_editorial_moment": "number_of_the_week",
-  "last_lead_opener": "narrative-first",
-  "last_qt_layout": "qt-a",
+  "last_lead_opener": "summary-first",
+  "last_qt_layout": "qt-b",
   "last_oi_format": "A",
 
   "last_feature_date": null,
   "last_stack_date": null,
-  "last_rabbit_hole_date": "2026-05-22",
+  "last_rabbit_hole_date": "2026-05-29",
 
   "current_in_practice_season": "Manager-of-managers craft",
-  "in_practice_season_progress": 1,
+  "in_practice_season_progress": 2,
   "in_practice_season_candidates": [],
   "in_practice_history": [
-    { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" }
+    { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" },
+    { "issue": 12, "piece_title": "Managing Managers: A Very Short Director's Guide", "author": "Jay Vilalta", "url": "https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/" }
   ],
 
   "p0_stories_tracking": []
