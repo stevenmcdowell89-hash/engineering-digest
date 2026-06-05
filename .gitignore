@@ -7,3 +7,8 @@
 #     (these are tracked normally)
 #   - the audit trail should be force-added: `git add -f digest-runs/issue-N/`
 digest-runs/
+
+# Local-only tooling for PDF generation (puppeteer). Not part of the published site.
+node_modules/
+package.json
+package-lock.json
