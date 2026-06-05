@@ -39,7 +39,11 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          # Full history so the BEFORE..AFTER added-file diff is reliable even
+          # when a push carries more than one commit (a shallow clone can leave
+          # github.event.before outside the fetched range, which silently
+          # skipped the Issue 13 auto-notification).
+          fetch-depth: 0
 
       - name: Resolve notification payload
         id: payload
