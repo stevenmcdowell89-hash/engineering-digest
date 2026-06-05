@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Week of 29 May – 5 June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER ═══ */
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+.cover-tagline{font-family:'Source Sans 3',sans-serif;font-style:italic;font-size:15px;color:rgba(0,180,216,.9);letter-spacing:.5px;margin-top:14px;text-align:center;font-weight:400}
+
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+
+/* ═══ COMPARE TABLE / PROCESS FLOW ═══ */
+.compare-table{width:100%;max-width:480px;margin:18px 0;border:1px solid var(--light-gray);border-radius:4px;border-collapse:separate;border-spacing:0;font-family:'Source Sans 3',sans-serif;font-size:13px;background:var(--white)}
+.compare-table thead th{padding:10px 14px;background:var(--off-white);border-bottom:1px solid var(--light-gray);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);text-align:left}
+.compare-table thead th:first-child{border-right:1px solid var(--light-gray)}
+.compare-table tbody td{padding:10px 14px;border-bottom:1px solid var(--light-gray);color:var(--body-text);line-height:1.5;vertical-align:top}
+.compare-table tbody td:first-child{border-right:1px solid var(--light-gray);font-weight:600;color:var(--navy);width:42%}
+.compare-table tbody tr:last-child td{border-bottom:none}
+
+.process-flow{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif}
+.process-flow .pf-step{flex:1;min-width:110px;padding:12px 14px;border:1px solid var(--deep-teal);border-radius:4px;background:var(--off-white);font-size:13px;color:var(--navy);text-align:center;line-height:1.3;display:flex;flex-direction:column;justify-content:center}
+.process-flow .pf-step strong{display:block;font-size:10px;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-weight:700}
+.process-flow .pf-arrow{flex:0 0 24px;align-self:center;height:2px;background:var(--deep-teal);position:relative}
+.process-flow .pf-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border-left:8px solid var(--deep-teal);border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:560px){
+  .process-flow{flex-direction:column;align-items:stretch}
+  .process-flow .pf-step{width:100%}
+  .process-flow .pf-arrow{width:2px;height:18px;align-self:center;margin:4px 0}
+  .process-flow .pf-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--deep-teal);border-bottom:none}
+}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+.in-practice-header{background:var(--off-white);color:var(--navy);padding:32px 60px 16px;border-top:3px solid var(--deep-teal);border-left:4px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 8px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin:0;display:block;line-height:1.3}
+.in-practice-header .section-time{color:var(--med-gray);font-style:normal;font-size:12px;letter-spacing:0;text-transform:none;font-weight:500;margin-left:10px;vertical-align:middle}
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:12px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+.concept-of-week{float:right;width:240px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--accent-orange);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.concept-of-week .cw-label{display:block;font-size:10px;font-weight:700;color:var(--accent-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.concept-of-week .cw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.concept-of-week .cw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+@media(max-width:680px){.concept-of-week{float:none;width:auto;margin:18px 0}}
+
+.author-card{display:flex;align-items:center;gap:14px;background:var(--off-white);border-top:2px solid var(--deep-teal);padding:14px 18px;margin:0 0 20px}
+.author-card .ac-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,180,216,.12);color:var(--deep-teal);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px}
+.author-card .ac-meta{flex:1;min-width:0}
+.author-card .ac-name{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.2;margin:0}
+.author-card .ac-role{display:block;font-size:13px;color:var(--body-text);line-height:1.4;margin:2px 0 0}
+.author-card .ac-date{display:block;font-size:12px;color:var(--med-gray);margin-top:2px}
+.author-card .ac-link{font-size:12px;color:var(--deep-teal);text-decoration:none;white-space:nowrap;margin-left:auto;padding-left:8px}
+.author-card .ac-link:hover{text-decoration:underline}
+.mgmt-section .author-card{background:rgba(255,255,255,.05);border-top-color:var(--teal)}
+.mgmt-section .author-card .ac-name{color:var(--white)}
+.mgmt-section .author-card .ac-role{color:rgba(255,255,255,.7)}
+.mgmt-section .author-card .ac-date{color:rgba(255,255,255,.5)}
+.mgmt-section .author-card .ac-avatar{background:rgba(0,180,216,.18);color:var(--teal)}
+@media(max-width:680px){.author-card{flex-wrap:wrap}.author-card .ac-link{margin-left:0;padding-left:0;margin-top:6px;flex-basis:100%}}
+
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-content a{color:var(--deep-teal);text-decoration:none}.radar-content a:hover{text-decoration:underline}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:520px;margin-left:auto;margin-right:auto}
+
+.rabbit-hole{float:right;width:280px;margin:6px 0 16px 24px;background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;font-size:13px;line-height:1.6}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.rabbit-hole .rh-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.rabbit-hole .rh-title a{color:var(--navy);text-decoration:none}.rabbit-hole .rh-title a:hover{text-decoration:underline}
+.rabbit-hole .rabbit-hole-type{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(0,180,216,.12);color:var(--deep-teal);padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.rabbit-hole p{margin:0;color:var(--body-text)}
+@media(max-width:680px){.rabbit-hole{float:none;width:auto;margin:18px 0}}
+
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-header{padding-left:24px;padding-right:24px}.in-practice-skip{padding-left:20px;padding-right:20px}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.pq-bar{margin-left:-20px;margin-right:-20px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+<a href="/" class="back-to-archive" aria-label="Back to all issues" style="display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;padding:10px 20px;background:#0A1628;color:#00B4D8;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)"><span style="font-size:14px;line-height:1">←</span><span>All Issues</span></a>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 13</span>
+    <span>5 June 2026</span>
+    <span>12 min read</span>
+  </div>
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-tagline">Engineering decisions, every Friday.</div>
+    <div class="cover-meta">
+      <span class="cover-date">Week of 29 May – 5 June 2026</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">6%</div>
+    <div class="stat-context">The share of Gen Z who say they want a senior leadership role (Deloitte) — the demand-side counterpart to the management layer being cut and stretched across this week's issue.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Agent-initiated card payments move to live rails this month</li>
+      <li>The megamanager span-of-control surge</li>
+      <li>Microsoft ships its own coding models at Build</li>
+      <li>Leadership Read: the pipeline cost of cutting middle managers</li>
+      <li>Outside In: design engineering at Vercel</li>
+      <li>In Practice, Other News, Platform Updates &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Agents became a money question this week — on both sides of the org chart. Outside it, Visa and Mastercard are preparing to let software agents move money on their card rails. Inside it, the cost of coding models and the economics of how many people one manager can hold are reshaping budgets and team shapes at once. The through-line is the same: someone now has to own what an agent, or a stretched manager, is authorised to do.</p>
+</section>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">50:1</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center;max-width:560px;margin-left:auto;margin-right:auto">At fifty reports to one manager — the ratio inside Meta's applied-AI engineering division — the role stops being coaching and calibration and becomes pure routing. It is the clearest signal yet of how far the flattening trend has run.</p>
+  </div>
+</section>
+
+<!-- ═══ THE WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Six stories in sixty seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Exchange OWA zero-day under active attack.</strong> CVE-2026-42897, a cross-site scripting flaw in on-premise Exchange Server 2016/2019/SE Outlook Web Access, has been exploited since mid-May; only mitigations exist so far, with the permanent fix due on 10 June. A conversation to have with whoever owns on-prem mail. <span class="on-source"><a href="https://www.securityweek.com/microsoft-warns-of-exchange-server-zero-day-exploited-in-the-wild/">SecurityWeek</a></span></div></li>
+    <li class="tier-action"><span class="qh-badge red">Mobile</span><div class="qh-text"><strong>Android June bulletin patches an exploited zero-day.</strong> CVE-2025-48595, a privilege-escalation flaw across Android 14–16, is under targeted exploitation; the June update closes it — one for mobile-fleet patch cadence. <span class="on-source"><a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html">The Hacker News</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">Fintech</span><div class="qh-text"><strong>UAE banks lead the region's first responsible-AI ranking.</strong> Emirates NBD and FAB took the top spots in the inaugural Evident AI Index for Banks — Middle East &amp; Africa, scored on talent, innovation, leadership and transparency across 25 institutions. High relevance for the bank-engineering patch in the region. <span class="on-source"><a href="https://www.thenationalnews.com/business/banking/2026/06/02/emirates-nbd-and-fab-lead-responsible-ai-index-as-regions-banks-close-gap-with-global-peers/">The National</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Delivery</span><div class="qh-text"><strong>DORA metrics start to wobble in the agent era.</strong> Analysis this week argues that the four DORA delivery metrics — the long-running DevOps Research and Assessment survey's measures of throughput and stability, not the EU regulation of the same initials — partly break once agents write 30–70% of committed code and a single commit no longer maps to a single human. A dashboard caveat worth tracking. <span class="on-source"><a href="https://getdx.com/blog/dora-metrics-ai/">getDX</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Org shape</span><div class="qh-text"><strong>The "senior-only" org thesis resurfaces.</strong> Recruiters are again floating a team shape that freezes the junior rung and leans on AI-reliability roles instead — low-weight for now, but context for the flattening story below. <span class="on-source"><a href="https://www.optimumsourcing.com/blog/">Optimum</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section lead-article">
+  <div class="section-label">Wider Engineering Landscape</div>
+  <h2>Agent-initiated card payments move from pilot to live rails this month <span class="section-time">(3 min)</span></h2>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">The agent-commerce stack</span>
+    <p class="jw-body"><strong>Trusted Agent Protocol (TAP):</strong> Visa's open framework, announced September 2025, for an AI agent and a merchant to exchange cryptographically signed messages during checkout.</p>
+    <p class="jw-body"><strong>Verified Agent ID:</strong> a registry entry that lets a merchant confirm an agent is who it claims to be against Visa's public keys.</p>
+    <p class="jw-body"><strong>Intelligent Commerce Connect:</strong> Visa's productised version of all this for developers, with general availability targeted for June 2026.</p>
+    <p class="jw-body"><strong>Agent Pay:</strong> Mastercard's equivalent, already running live transactions in several markets.</p>
+    <p class="jw-body"><strong>Tokenisation:</strong> replacing a real card number with a single-use token so the agent never holds the actual card. <a class="jw-link" href="https://developer.visa.com/capabilities/trusted-agent-protocol" style="color:var(--deep-teal)">Visa Developer →</a></p>
+  </div>
+
+  <p>The card networks that UK and Middle East banks settle on are about to let software act as the cardholder. Visa and Mastercard are both moving agent-initiated card payments — transactions where a production agent with payment-action authority can complete a purchase without a human approving each step, not the assisted "agent-mode" buttons inside a developer tool — from controlled pilots toward live rails. This is the world the loyalty and commerce-media patch operates in shifting underneath it, not a shipped product to adopt this week.</p>
+
+  <h3>What is actually new this week</h3>
+  <p>Visa first announced its Trusted Agent Protocol in September 2025. The in-window news is the general-availability window opening: Visa's developer-facing Intelligent Commerce Connect, unveiled 8 April 2026, remains in pilot with GA targeted for June 2026 — turning on this month, not already shipped. Mastercard's Agent Pay has gone further into live transactions in several markets, though without a single confirmed GA date. The reaction this week is about the rails going from demo to default.</p>
+
+  <h3>Who signs what</h3>
+  <p>The protocols differ in what the agent is actually authorised to assert — its intent, a bounded cart mandate, or a fully delegated payment. That distinction is where the engineering and trust questions live.</p>
+
+  <table class="compare-table">
+    <thead><tr><th>Protocol</th><th>What the agent asserts</th></tr></thead>
+    <tbody>
+      <tr><td>Visa TAP + Verified Agent ID</td><td>Signed identity + intent at checkout; merchant verifies against Visa keys</td></tr>
+      <tr><td>Mastercard Agent Pay</td><td>Tokenised credential for live agent-initiated transactions</td></tr>
+      <tr><td>Stripe MPP <span style="color:var(--med-gray);font-weight:400">(Issues 11–12)</span></td><td>Order intent passed agent→merchant; payment stays on existing rails</td></tr>
+      <tr><td>Google AP2 / UCP</td><td>Cart mandate signed by the user, carried by the agent</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pq-bar">
+    <p>The question is no longer whether agents will pay — it is whose keys vouch for them when they do.</p>
+    <cite>— Engineering Digest, on the June GA window</cite>
+  </div>
+
+  <h3>Why it lands on the loyalty patch</h3>
+  <p>Once an agent can hold a verified identity and a tokenised credential, the surfaces that sit on top of card rails — rewards, points accrual, commerce-media offers — inherit a new kind of actor. The leadership conversation is about which products in the loyalty and commerce-media stack assume a human is at the keyboard, and what verifying an agent's authority does to that assumption. The rails are turning on this month; the design questions arrive with them.</p>
+
+  <p class="source-tag">Sources: <a href="https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21961.html">Visa Newsroom</a>, <a href="https://www.artificialintelligence-news.com/news/visa-ai-commerce-intelligent-commerce-2026/">AI News</a>, <a href="https://developer.visa.com/capabilities/trusted-agent-protocol">Visa Developer</a> (Apr–Jun 2026)</p>
+</section>
+
+<!-- ═══ QUICK TAKES — QT-B Featured + compact ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col qt-featured">
+    <div class="quick-take-col qt-card">
+      <div class="qt-header fintech">Management &amp; teams</div>
+      <div class="qt-body">
+        <div class="concept-of-week">
+          <span class="cw-label">Concept of the week</span>
+          <span class="cw-term">Span of control</span>
+          <p class="cw-body">The number of people who report directly to one manager. A small span (4–6) leaves room for coaching and one-to-ones; a wide span (12+) turns the role into triage and routing. It is the single lever most companies are pulling when they "flatten."</p>
+        </div>
+        <div class="qt-anchor-stat fintech">12.1</div>
+        <div class="qt-anchor-context">Average direct reports per manager, 2025</div>
+        <h3 style="margin-top:0">The megamanager surge is quietly rewriting the EM job</h3>
+        <p>The average manager now oversees 12.1 direct reports, up from 10.9 in 2024 and 8.2 when Gallup first measured in 2013. Meta's applied-AI engineering division has pushed the logic to its extreme at a 50:1 ratio — a data point that follows directly from the reset we covered in Issue 11. Analysis this week frames it as the rise of the "megamanager": flattening pitched as efficiency, with the costs only starting to show.</p>
+        <p>The mechanism is simple and unforgiving. Past roughly a dozen reports, the work that defines management — calibration, growth conversations, knowing who is struggling before they say so — gets squeezed out by sheer coordination load. The same debate ran through Issue 12's Coinbase "no pure managers" model, where managers were expected to keep shipping; widening spans bakes that expectation in by default.</p>
+        <div style="margin:18px 0 8px">
+          <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif" role="img" aria-label="Span of control rising from 10.9 in 2024 to 12.1 in 2025, with Meta at 50 to 1">
+            <line x1="50" y1="170" x2="470" y2="170" stroke="#E8EDF2" stroke-width="1"/>
+            <!-- 2024: 10.9 -->
+            <rect x="80" y="135" width="70" height="35" fill="#0077B6"/>
+            <text x="115" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#0A1628">10.9</text>
+            <text x="115" y="186" text-anchor="middle" font-size="11" fill="#8899AA">2024</text>
+            <!-- 2025: 12.1 -->
+            <rect x="190" y="131" width="70" height="39" fill="#00B4D8"/>
+            <text x="225" y="124" text-anchor="middle" font-size="15" font-weight="700" fill="#0A1628">12.1</text>
+            <text x="225" y="186" text-anchor="middle" font-size="11" fill="#8899AA">2025</text>
+            <!-- Meta outlier: 50:1 (scaled, clearly an outlier) -->
+            <rect x="340" y="50" width="70" height="120" fill="#FF6B35"/>
+            <text x="375" y="43" text-anchor="middle" font-size="15" font-weight="700" fill="#FF6B35">50:1</text>
+            <text x="375" y="186" text-anchor="middle" font-size="11" fill="#8899AA">Meta AI</text>
+            <text x="375" y="113" text-anchor="middle" font-size="9" fill="#FFF" font-weight="700">outlier</text>
+          </svg>
+        </div>
+        <p class="so-what"><strong>The takeaway: span of control has become the quiet variable behind "flatter org" decisions, and at the top of the range the EM role changes character — engineering leaders are now setting spans that decide whether their managers can still manage.</strong></p>
+        <p class="source-tag">Sources: <a href="https://www.heypinnacle.com/blog/end-of-middle-managers-2026">Pinnacle</a>, <a href="https://www.gallup.com/workplace/700718/span-control-optimal-team-size-managers.aspx">Gallup</a></p>
+      </div>
+    </div>
+    <div class="quick-take-col qt-card">
+      <div class="qt-header devex">Ways of working</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">10×</div>
+        <div class="qt-anchor-context">Cost-efficiency claim vs GPT-5.5</div>
+        <h3 style="margin-top:0">Microsoft ships its own coding models at Build</h3>
+        <p>At its Build conference on 2 June, Microsoft unveiled a family of seven in-house MAI models — among them MAI-Code-1-Flash, a small 5-billion-parameter coding model now rolling into VS Code and GitHub Copilot, and MAI-Thinking-1, a reasoning model (one that spends extra compute "thinking" before answering). The framing was self-sufficiency: cut the dependence on OpenAI and the per-token cost that comes with it. AI chief Mustafa Suleyman claimed up to 10× better cost efficiency than GPT-5.5 on refined tasks.</p>
+        <p>The timing matters for budgets. It lands the same week GitHub Copilot's usage-based billing took effect on 1 June — the 10×–50× bill stories and new pooled AI-credit model we covered in Issue 12 — making model mix a live cost lever that leaders now actively manage.</p>
+        <p class="so-what"><strong>The takeaway: the coding-model market is fragmenting along price, and which models sit behind a team's tooling is now a budget decision leaders own directly.</strong></p>
+        <p class="source-tag">Sources: <a href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html">CNBC</a> (2 Jun 2026)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — number band ═══ -->
+<div class="mid-accent-band">
+  <div class="accent-stat">12.1</div>
+  <div class="accent-context">Direct reports per manager on average in 2025 — up from 8.2 when Gallup first measured the span in 2013.</div>
+</div>
+
+<hr class="feature-break">
+
+<!-- ═══ IN PRACTICE ═══ -->
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Manager-of-managers craft</span>
+  <span class="section-time">(3 min)</span>
+</header>
+<section class="in-practice">
+  <div class="author-card">
+    <div class="ac-avatar">TG</div>
+    <div class="ac-meta">
+      <span class="ac-name">Thiago Ghisi</span>
+      <span class="ac-role">Director of Engineering, Mobile Platform · Nubank — QCon London (InfoQ)</span>
+      <span class="ac-date">QCon London 2025</span>
+    </div>
+    <a class="ac-link" href="https://www.infoq.com/presentations/scaling-engineering-teams/">Watch the talk →</a>
+  </div>
+  <h3>What changes when a director's org crosses a hundred engineers</h3>
+  <div class="ip-attribution">Thiago Ghisi · "Scaling to 100+ as a Director," QCon London 2025 (InfoQ) · <a href="https://www.infoq.com/presentations/scaling-engineering-teams/">Read the full piece</a></div>
+  <p>When Thiago Ghisi's organisation at Nubank crossed a hundred engineers, the job stopped being about his own teams and became about the teams he could no longer see directly. His QCon London 2025 talk offers a frame for that shift, which he calls the "Three Levels of Impact" — the idea that a director operates simultaneously across their own org, the skip-level organisation beneath their managers, and the company as a whole, and that influence has to be earned in that order.</p>
+  <div class="process-flow">
+    <div class="pf-step"><strong>Level 1</strong>The director's own org — prove changes here first</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Level 2</strong>Skip-level — the teams beneath the managers</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Level 3</strong>The company — peers as a first team</div>
+  </div>
+  <p>His sequencing rule is concrete: understand the wider company outside-in, but always act inside-out — prove a change works in the director's own org before pushing it upward. The most useful operating principle for the megamanager era running through this issue is what he refuses to delegate. A director should delegate real authority and decision rights to their managers, while never delegating away their own awareness of who the top and bottom performers are across the skip-level. That awareness is what a wide span of control quietly erodes.</p>
+  <blockquote>Manage the peaks and the valleys — across the whole organisation, not just your direct reports.</blockquote>
+  <p>At scale, a director's leverage shifts from doing the work to moving talented people across boundaries for company priorities, rather than hoarding them inside a "kingdom." Treating peer directors as a first team is what makes that possible.</p>
+  <div class="ip-try">
+    <strong>What to try</strong>
+    For directors whose spans have widened past the point of direct visibility, the open question is which signals about performance and morale they still see first-hand at the skip-level — and which ones now only reach them second-hand, after they have already become a problem.
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Railway demotes Google Cloud to backup-only.</strong> Following the 19 May account suspension that took the platform down for eight hours, Railway is removing GCP from its data plane's hot path and spreading high-availability shards across AWS and bare metal — a direct follow-up to the outage we covered in Issue 11. <span class="on-source"><a href="https://www.infoq.com/news/2026/05/railway-gcp-account-outage/">InfoQ</a></span></li>
+    <li><strong>Emirates NBD's core-tech rebuild sits behind its AI ranking.</strong> The bank's modernisation on Red Hat and Cloudera is the substrate underneath its top placement in this week's Evident MEA index — useful colour on what "AI-advanced" actually rests on. <span class="on-source"><a href="https://economymiddleeast.com/news/emirates-nbd-tops-ai-maturity-rankings-across-the-regions-banking-sector/">Economy Middle East</a></span></li>
+    <li><strong>Google markets a $100-a-month AI developer tier.</strong> As the coding-model price war reaches subscription budgets, the premium tier is another data point for vendor-mix decisions. <span class="on-source"><a href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html">CNBC</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What Changed</th></tr></thead>
+    <tbody>
+      <tr><td><span class="status-dot red"></span></td><td class="platform">Android</td><td>June security update patches an actively-exploited privilege-escalation zero-day (CVE-2025-48595) across Android 14–16. A patch-cadence item for any managed mobile fleet.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ OUTSIDE IN — Vercel, Format A ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Vercel</h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">VE</div>
+    <div class="ac-meta">
+      <span class="ac-name">Vercel Design Engineering</span>
+      <span class="ac-role">Glenn Hitchcock, Henry Heffernan, Rauno Freiberg &amp; others · Vercel</span>
+      <span class="ac-date">"Design Engineering at Vercel"</span>
+    </div>
+    <a class="ac-link" href="https://vercel.com/blog/design-engineering-at-vercel">Read the post →</a>
+  </div>
+
+  <p>"Iterate to Greatness" is one of Vercel's stated principles, and the team frames it as a way to balance business goals with craft by shipping continuous improvements and avoiding the perfection trap. That ethos sits behind a structural choice many engineering orgs are circling: making design engineering a first-class discipline in its own right.</p>
+
+  <h3>Collapsing the design-to-frontend handoff</h3>
+  <p>Vercel's account describes Design Engineers as people who pair aesthetic judgement with the technical skill to ship polished solutions themselves — owning a problem end to end rather than passing a mockup over a wall to a frontend engineer. They work in three modes: collaborating with designers, embedding in product teams, and independently owning features that address real user pain.</p>
+
+  <div class="oi-callout">
+    <p>The transferable lesson is structural, not aesthetic: a large engineering org collapsed the design-to-frontend handoff by treating the hybrid design-engineer as a first-class role instead of a coordination problem between two functions. The handoff that usually loses fidelity simply stops existing.</p>
+  </div>
+
+  <h3>Why it travels</h3>
+  <p>Swap "Vercel" for any large engineering org and the lesson holds: the friction in shipping polished product is often the seam between who designs and who builds. Naming a role that owns both sides removes the seam. For teams in the loyalty and commerce-media space, where the surface a customer touches is the product, that seam is expensive — and the fix is a hiring and team-shape decision more than a tooling one.</p>
+
+  <p class="so-what"><strong>The takeaway: making design engineering a first-class role is a structural lever for shipping quality faster, and it lands as a hiring and team-shape decision that leaders own directly.</strong></p>
+
+  <p class="source-tag"><a href="https://vercel.com/blog/design-engineering-at-vercel">Read the full post: vercel.com/blog/design-engineering-at-vercel →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">10</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Exchange permanent fix expected</strong> — Microsoft's Patch Tuesday is set to ship the permanent fix for the actively-exploited OWA zero-day (CVE-2026-42897), closing a roughly four-week exposure window for on-prem Exchange. <a href="https://www.securityweek.com/microsoft-warns-of-exchange-server-zero-day-exploited-in-the-wild/">SecurityWeek →</a></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-label">This month</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Visa Intelligent Commerce Connect GA window</strong> — general availability is targeted for June; watch for a confirmed GA date that turns the agent-commerce pilot into a live developer rail. <a href="https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21961.html">Visa →</a></div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-label">Ongoing</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Railway control-plane rebuild</strong> — the GCP-to-backup-only re-architecture following last month's eight-hour suspension is in progress. <a href="https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage">Railway →</a>
+        <div class="rabbit-hole">
+          <div class="rh-label">Down the Rabbit Hole</div>
+          <span class="rabbit-hole-type">Long-read</span>
+          <div class="rh-title"><a href="https://newsletter.pragmaticengineer.com/p/three-cloud-providers-three-outages">Three cloud providers, three outages, three different responses</a></div>
+          <p>The Railway incident is one of three recent cloud failures the Pragmatic Engineer dissects side by side. A clear read on how control-plane dependencies and provider responses diverge — and why multi-cloud did not save Railway.</p>
+        </div>
+      </div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">May</div>
+        <div class="rd-label">Debate</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Coinbase "player-coach" model, one month on</strong> — the no-pure-managers stance from Issue 12 is still drawing practitioner debate as a live test of how far the manager-who-ships idea scales.</div>
+    </li>
+  </ul>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ — Fortune ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>The middle-manager cuts saving millions today build the empty pipeline of 2028 <span class="section-time">(4 min)</span></h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">KT</div>
+    <div class="ac-meta">
+      <span class="ac-name">Kristien Turner</span>
+      <span class="ac-role">· Fortune</span>
+      <span class="ac-date">12 April 2026</span>
+    </div>
+    <a class="ac-link" href="https://fortune.com/2026/04/12/middle-manager-cuts-leadership-pipeline-crisis-2028-2/">Read on Fortune →</a>
+  </div>
+
+  <p>Only 6% of Gen Z say they want a senior leadership role, according to Deloitte research cited in a Fortune piece by Kristien Turner published on 12 April 2026. The figure has resurfaced this week as the span-of-control story gains fresh traction — and it pairs with the megamanager coverage above as the slower, structural counterweight. The argument was made in April; what is new is the audience now reacting to it.</p>
+
+  <h3>The deferred-cost thesis</h3>
+  <p>Turner's contention is that the middle-management cuts booking immediate savings are quietly dismantling the layer that produces the next generation of leaders. Gartner projects one in five companies will eliminate more than half their middle managers by the end of this year. The efficiency is real and immediate. The cost, the piece argues, lands in 2028, when the senior roles those managers would have grown into sit empty.</p>
+
+  <div class="pull-quote">
+    <p>The practical learning — where someone makes a bad decision and their manager walks them through why it failed? That's gone.</p>
+    <cite>— Kristien Turner, Fortune</cite>
+  </div>
+
+  <h3>Where leaders were actually made</h3>
+  <p>The mechanism the article names is informal coaching. The development of future leaders did not happen in a programme; it happened in the conversation after a bad call, in the translation of what the CEO meant into what a team should actually do. Flatten the layer that held those conversations and the 6% figure reads as a rational response: this generation watched the management track get treated as expendable and drew the obvious conclusion. The two trends compound — wider spans remove the time to coach, and the cuts remove the coaches.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://fortune.com/2026/04/12/middle-manager-cuts-leadership-pipeline-crisis-2028-2/" class="mgmt-link">Read the full article: fortune.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> Engineering leaders flattening their orgs now face the question of where their 2028 senior engineers and directors will come from — and whether the coaching that produces them survives a widening span of control, or quietly disappears with the managers being cut.</p>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21961.html">Visa and partners complete secure AI transactions</a></span><span class="source">usa.visa.com</span></li>
+    <li><span class="title"><a href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html">Microsoft unveils new AI models to lower developer costs</a></span><span class="source">cnbc.com</span></li>
+    <li><span class="title"><a href="https://www.heypinnacle.com/blog/end-of-middle-managers-2026">The end of middle managers</a></span><span class="source">heypinnacle.com</span></li>
+    <li><span class="title"><a href="https://www.infoq.com/presentations/scaling-engineering-teams/">Scaling to 100+ as a director — Thiago Ghisi</a></span><span class="source">infoq.com</span></li>
+    <li><span class="title"><a href="https://vercel.com/blog/design-engineering-at-vercel">Design engineering at Vercel</a></span><span class="source">vercel.com</span></li>
+    <li><span class="title"><a href="https://fortune.com/2026/04/12/middle-manager-cuts-leadership-pipeline-crisis-2028-2/">The middle-manager cuts and the 2028 pipeline</a></span><span class="source">fortune.com</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">Week of 29 May – 5 June 2026 · Weekly Edition · Issue #13</div>
+  <div class="footer-next">Next edition: 12 June 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">8 May · Weekly</span>
+    <span class="archive-pill">15 May · Weekly</span>
+    <span class="archive-pill">22 May · Weekly</span>
+    <span class="archive-pill">29 May · Weekly</span>
+    <span class="archive-pill current">5 Jun · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>
