@@ -42,6 +42,19 @@ Because the job is (mostly) singular, the **structure is topic-driven, not secti
 
 ---
 
+## Research Depth (v1.1 — named sweeps and the source map)
+
+Lesson from Issue 1: general web search surfaces the loud stories (networks, Apple, regulators) and misses the reader's own category. The direct competitive set, the funder side, and the regional footprint each need **named** queries every issue — their absence from the candidate pool must mean they were quiet, never that they weren't asked about.
+
+- **Competitor set (query each by name, every issue):** Cardlytics · Reward (rewardinsight) · Fidel API · Triple · Snoop · Bink · Mastercard personalised offers / Dynamic Yield · Visa offers products · Amex Offers · bank in-house rewards builds. These are who the reader is displaced by or compared against in an RFP; a Cardlytics platform move matters more to this reader than most network announcements.
+- **Source map (trade press, by outlet):** category/bank side — Finextra, FinTech Futures, Open Banking Expo, The Wise Marketer; funder/advertiser side — Marketing Week, Campaign, The Grocer, Retail Week. The monetisation & models lens in particular lives in marketing trade press, not general news.
+- **Region sweep (every issue):** the reader sells into the UK plus ME/Europe/Asia. One named query set per region — bank loyalty programme launches, regional CLO/rewards moves, super-app loyalty (GCC banks of the Emirates NBD tier, European bank rewards, Asian super-apps). Output usually feeds *Also moving*; the sweep still runs.
+- **Two-thin-months escalation:** a lens (especially monetisation) producing nothing in-window two issues running is treated first as a research failure — re-sweep through the named outlets — and only then as a quiet market.
+
+**Calibration note — rails vs craft (not a rule, not a checklist item).** Issue 1 ran three of four trends on *where offers live* (agent rails, A2A, wallet). That was honestly the month's movement. But a steady diet of rails coverage underserves the other half of the reader's job — what the offer product itself should do: personalisation, redemption UX, engagement mechanics, measurement craft. When craft material exists it competes for sections on equal terms; if several consecutive issues are all surfaces and rails, that is calibration drift worth catching, not a market fact.
+
+---
+
 ## The Monthly Look-Back Principle
 
 This is a monthly that **reviews the month**, not a weekly that reports the week. Each issue synthesises ~30 days of developments into trends. The unit of relevance is **the month's movement** — how things shifted — not point-in-time news. A trend section is an argument about how something moved this month, supported by the month's pieces.

@@ -12,12 +12,16 @@ description: >
   editorial spec, and a compliance checklist.
 metadata:
   author: steven-mcdowell
-  version: '1.0'
+  version: '1.1'
 ---
 
 # The Digest — Product Edition
 
 Generate monthly magazine-style issues for product managers and product leaders at a UK-based fintech that sells card-linked offers, cashback, personalised rewards and engagement to banks. The reader decides what to build, prioritise, position, price, partner on, or kill. The edition keeps them current on the month's movement and seeds a couple of grounded roadmap threads — never an executive/investor read (rejects up into funding/valuation noise), never an engineering read (rejects down into implementation).
+
+## Changelog
+
+- **v1.1 (June 2026)** — Research depth, from the Issue 1 retro. Issue 1 nailed the rails/surfaces story but left the reader's direct competitive set nearly invisible (Cardlytics surfaced only as a stock-split one-liner; Reward, Fidel, the networks' own offers stacks not at all), produced no funder-side (merchant/advertiser) coverage, and gave the ME/Europe/Asia footprint one query. Root cause was sourcing, not curation: this category's news lives in trade press, not general web search. v1.1 adds **named sweeps** to Phase 1 (competitor set by name, trade-press outlets by name, region sweep), a **two-thin-months escalation** rule for the monetisation lens, a matching compliance-checklist item, and a rails-vs-craft **calibration note** (not a rule) in the editorial spec.
 
 This is a **sibling edition** to the Engineering Edition, sharing the five-phase pipeline and sourcing discipline but with its own audience, structure, voice rules, and visual identity. The Engineering Edition is untouched.
 
@@ -54,7 +58,13 @@ Sweep ~30 days, not a week. Run explicit queries across **four concern lenses**,
 - **Experience & surface** — where offers live: app, agent, A2A/Pay-by-Bank, in-store media, wallet.
 - **Product craft & signals** — emerging patterns, standards, protocols, forward signals.
 
-Output candidates with date, source URL, concern lens, and a one-line "why it changes a product decision". Flag US-specific items as US. Write them to `product-runs/issue-N/candidates.json` — the Phase 5 checklist gates on this file existing and parsing.
+**Named sweeps (v1.1 — run every issue, in addition to the lens queries):**
+- **Competitor set, by name.** The reader's direct competitive set rarely surfaces in general search — query each by name: Cardlytics, Reward (rewardinsight), Fidel API, Triple, Snoop, Bink; the networks' own offers/personalisation stacks (Mastercard personalised offers / Dynamic Yield, Visa offers products, Amex Offers); and bank in-house rewards builds. A quiet month for a named competitor is a valid finding to record; not querying them is not.
+- **Trade press, by outlet.** Category news lives in trade press more than general search. Category/bank side: Finextra, FinTech Futures, Open Banking Expo, The Wise Marketer. Funder/advertiser side (feeds the monetisation lens): Marketing Week, Campaign, The Grocer, Retail Week.
+- **Region sweep.** One named query set per region of the sales footprint — Middle East/GCC, Europe, Asia: bank loyalty launches, regional CLO/rewards moves, super-app loyalty. Most months this feeds *Also moving*; it still runs every issue.
+- **Two-thin-months escalation.** If the monetisation & models lens yields no in-window UK material two issues running (check the previous issue's run-plan notes), treat it as a research failure before a market finding: re-sweep via the funder-side trade outlets above, then conclude.
+
+Output candidates with date, source URL, concern lens, and a one-line "why it changes a product decision". Flag US-specific items as US. Write them to `product-runs/issue-N/candidates.json` — the Phase 5 checklist gates on this file existing and parsing, and on the named sweeps having run.
 
 ### Phase 2 — Curate (the load-bearing phase)
 Cluster candidates into **3–5 trends**, ordered by significance. Apply, in order:
