@@ -82,3 +82,7 @@ Chase UK doubled cashback to 2% but made it behaviour-conditional (15 transactio
 - Nationwide **confirmed**: £100 Fairer Share / "Big Nationwide Thank You" announced at 21 May results — £440m to 4.4m members, paid 10–30 June. Primary source switched to Nationwide newsroom + MoneySavingExpert.
 - Tesco Clubcard travel insurance: URL resolves and the 1:1 rate is confirmed, but the publication date cannot be verified as in-window → **demoted from Trend 04 to Also moving** (no date claimed). Trend 04 runs on Chase + Nationwide.
 - Trend 01 statline third cell set to "0 — mentions of offers or rewards across the three releases" (verifiable against the releases themselves).
+
+## Post-publish amendment (12 Jun, operator-flagged miss)
+
+The Lloyds Rewards in-app hub launch (Lloyds/Halifax/Bank of Scotland; first £2,026 prize draw opened 1 June; merchant point-of-purchase offers + personalised cashback) never entered the candidate pool. Root cause: Lloyds was queried only in a media-network framing ("Lloyds NatWest Barclays bank media network advertising launch 2026"); the bank-rewards queries named other banks. Not a curation drop — a Phase 1 query-construction miss. Remedied: Lloyds Rewards added as Trend 04's lead piece (standfirst and closer updated to three benchmarks); skill v1.3 adds a named UK bank sweep so every major group is queried by name against rewards/offers terms each issue.

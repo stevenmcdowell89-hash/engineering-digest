@@ -41,3 +41,7 @@ Mode: **full** (first run under the spec). Verdict: **PASS** after two in-review
 ## Residual caveats (accepted)
 - Trend 03 runs on two pieces, one near-window (disclosed). Acceptable under the substance floor; flagged for the next curator.
 - Mastercard newsroom and Business Wire cannot be machine-fetched; both verified through secondary coverage.
+
+## Amendment review (12 Jun)
+
+Trend 04 amended post-publish to add Lloyds Rewards (operator-flagged Phase 1 miss; see run-plan addendum). Checks re-run on the amended section: dates in-window (first draw 1 June; coverage 9 June); two sources (Lloyds Banking Group newsroom — bot-blocked to automated clients like other bank newsrooms, corroborated by Brit Brief, fetched and confirmed 9 June); no instruction language; closer remains a third-person "Why it matters" (Trend 04 carries no roadmap closer — roadmap count stays 2); standfirst still leads with the month's movement; HTML re-validated; PDF regenerated. PASS.

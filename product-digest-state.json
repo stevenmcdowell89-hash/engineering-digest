@@ -1,21 +1,39 @@
 {
   "_comment": "State file for the product-digest skill (The Digest — Product Edition, monthly). Read at the start of every run; written ONLY on publish — test runs never pollute trend_history. Updated on the Issue 1 publish (2026-06-12).",
-
   "last_issue_number": 1,
   "last_issue_month": "2026-06",
-
   "trend_history": [
-    { "issue": 1, "trend": "Agentic commerce trust layer", "this_month_development": "Same-day 10 Jun double-header: Visa Agent Score / Agentic Directory / LTM + Visa-OpenAI partnership; Mastercard Agent Pay for Machines (30+ partners, multi-rail). Zero mentions of offers/rewards across the three releases." },
-    { "issue": 1, "trend": "Pay by Bank / A2A goes operational", "this_month_development": "UKPI commercial VRP scheme live 2 Jun (first new UK scheme since 2008, 31 firms; Wave 2 e-commerce H2 2026); GoCardless Recurring Pay by Bank on day one; TrueLayer Bank on File carried the scheme's first live payments (3 Jun)." },
-    { "issue": 1, "trend": "OS wallet as the loyalty surface", "this_month_development": "iOS 27 Wallet (WWDC, 10 Jun): camera-scan any loyalty card, Tap to Share loyalty identity in-store; ships ~Sept. Supporting: Visa Flexible Credential UK on Zilch (12 May, near-window, disclosed)." },
-    { "issue": 1, "trend": "UK rewards re-gated around behaviour", "this_month_development": "Chase UK 2% cashback behaviour-conditional from 1 Jun (15 transactions/DDs + £1,000 in savings); Nationwide £100 Fairer Share confirmed 21 May (£440m to 4.4m members, paid 10-30 Jun)." }
+    {
+      "issue": 1,
+      "trend": "Agentic commerce trust layer",
+      "this_month_development": "Same-day 10 Jun double-header: Visa Agent Score / Agentic Directory / LTM + Visa-OpenAI partnership; Mastercard Agent Pay for Machines (30+ partners, multi-rail). Zero mentions of offers/rewards across the three releases."
+    },
+    {
+      "issue": 1,
+      "trend": "Pay by Bank / A2A goes operational",
+      "this_month_development": "UKPI commercial VRP scheme live 2 Jun (first new UK scheme since 2008, 31 firms; Wave 2 e-commerce H2 2026); GoCardless Recurring Pay by Bank on day one; TrueLayer Bank on File carried the scheme's first live payments (3 Jun)."
+    },
+    {
+      "issue": 1,
+      "trend": "OS wallet as the loyalty surface",
+      "this_month_development": "iOS 27 Wallet (WWDC, 10 Jun): camera-scan any loyalty card, Tap to Share loyalty identity in-store; ships ~Sept. Supporting: Visa Flexible Credential UK on Zilch (12 May, near-window, disclosed)."
+    },
+    {
+      "issue": 1,
+      "trend": "UK rewards re-gated around behaviour",
+      "this_month_development": "Lloyds Rewards in-app hub launched across Lloyds/Halifax/BoS (first £2,026 prize draw 1 Jun, deposit-gated; merchant offers + personalised cashback — first-party build); Chase UK 2% cashback behaviour-conditional from 1 Jun (15 transactions/DDs + £1,000 in savings); Nationwide £100 Fairer Share confirmed 21 May (£440m to 4.4m members)."
+    }
   ],
-
   "roadmap_threads_history": [
-    { "issue": 1, "thread": "A2A coverage gap — recurring payments under UKPI produce no card transaction for card-linked offers to read" },
-    { "issue": 1, "thread": "Loyalty absent from the agent rails — agentic trust layer specified with no offers/rewards object" }
+    {
+      "issue": 1,
+      "thread": "A2A coverage gap — recurring payments under UKPI produce no card transaction for card-linked offers to read"
+    },
+    {
+      "issue": 1,
+      "thread": "Loyalty absent from the agent rails — agentic trust layer specified with no offers/rewards object"
+    }
   ],
-
   "source_map": {
     "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review. Baseline set at Issue 1 (the named list was authored from the Issue 1 retro, so the first review is due at Issue 7).",
     "last_reviewed_issue": 1,
