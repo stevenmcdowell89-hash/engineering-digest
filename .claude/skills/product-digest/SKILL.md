@@ -12,7 +12,7 @@ description: >
   editorial spec, and a compliance checklist.
 metadata:
   author: steven-mcdowell
-  version: '1.1'
+  version: '1.4'
 ---
 
 # The Digest — Product Edition
