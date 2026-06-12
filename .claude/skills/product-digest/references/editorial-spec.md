@@ -51,6 +51,12 @@ Lesson from Issue 1: general web search surfaces the loud stories (networks, App
 - **Region sweep (every issue):** the reader sells into the UK plus ME/Europe/Asia. One named query set per region — bank loyalty programme launches, regional CLO/rewards moves, super-app loyalty (GCC banks of the Emirates NBD tier, European bank rewards, Asian super-apps). Output usually feeds *Also moving*; the sweep still runs.
 - **Two-thin-months escalation:** a lens (especially monetisation) producing nothing in-window two issues running is treated first as a research failure — re-sweep through the named outlets — and only then as a quiet market.
 
+**The source map is self-correcting (v1.2).** The named lists above are a June 2026 snapshot; left alone they would go stale while creating false confidence (querying the list is not covering the market). Three rules keep the list honest using the pipeline's own output:
+
+1. **Floors, not ceilings.** The open-ended lens queries always run alongside the named lists; they are the discovery mechanism that finds what the lists don't know about.
+2. **Entrant promotion.** Phase 2 records candidate-pool companies that aren't on the named list; they accumulate in `source_map.unlisted_entities` in state. An entity surfacing in **two issues** is promoted on publish — added to the named competitor list in this spec, removed from the watchlist. Recurrence is the evidence it belongs.
+3. **Six-issue review.** When six issues have passed since the last review (`source_map.last_reviewed_issue` in state), the curation phase reviews the named list against the last six issues' findings and flags names with **zero findings across all six** for a keep/cull decision. Flag, never auto-remove — a quiet incumbent can still be the next RFP rival; removal is the operator's call. Publish records the review.
+
 **Calibration note — rails vs craft (not a rule, not a checklist item).** Issue 1 ran three of four trends on *where offers live* (agent rails, A2A, wallet). That was honestly the month's movement. But a steady diet of rails coverage underserves the other half of the reader's job — what the offer product itself should do: personalisation, redemption UX, engagement mechanics, measurement craft. When craft material exists it competes for sections on equal terms; if several consecutive issues are all surfaces and rails, that is calibration drift worth catching, not a market fact.
 
 ---
@@ -139,11 +145,17 @@ CSS lives in `assets/product-template.html`. The design-system palette and the c
   "roadmap_threads_history": [
     { "issue": 1, "thread": "Agent-readable offers" },
     { "issue": 1, "thread": "A2A coverage gap" }
-  ]
+  ],
+  "source_map": {
+    "last_reviewed_issue": 1,
+    "unlisted_entities": [
+      { "name": "ExampleCo", "seen_issues": [3] }
+    ]
+  }
 }
 ```
 
-`trend_history` drives the recurrence rule: recurrence allowed, this-month delta required, staleness detected.
+`trend_history` drives the recurrence rule: recurrence allowed, this-month delta required, staleness detected. `source_map` (v1.2) drives the self-correcting source map: `unlisted_entities` is the promotion watchlist (two appearances → promoted into this spec's named competitor list on publish), and `last_reviewed_issue` triggers the six-issue list review.
 
 ---
 

@@ -21,6 +21,7 @@ Generate monthly magazine-style issues for product managers and product leaders 
 
 ## Changelog
 
+- **v1.2 (June 2026)** — Self-correcting source map. The v1.1 named lists are a June 2026 snapshot and would otherwise go stale while breeding false confidence ("we queried the list" drifting into meaning "we covered the market"). v1.2 makes them self-maintaining: (1) **floors, not ceilings** — the open-ended lens queries always run alongside the lists and are the discovery mechanism; (2) **entrant scan** — Phase 2 records in the run plan any company/platform in the candidate pool that is not on the named lists; on publish these land in `source_map.unlisted_entities` in the state file; (3) **promotion rule** — an unlisted entity surfacing in two issues is promoted on publish: added to the spec's named competitor list and cleared from the watchlist; (4) **six-issue review** — when `last_issue_number + 1 − source_map.last_reviewed_issue ≥ 6`, the run plan reviews the named list against the last six issues' findings, flags names with zero findings across all six for a keep/cull judgement call (flag, never auto-remove), and publish sets `last_reviewed_issue`. The list corrects itself from the pipeline's own output rather than relying on anyone remembering to revisit it.
 - **v1.1 (June 2026)** — Research depth, from the Issue 1 retro. Issue 1 nailed the rails/surfaces story but left the reader's direct competitive set nearly invisible (Cardlytics surfaced only as a stock-split one-liner; Reward, Fidel, the networks' own offers stacks not at all), produced no funder-side (merchant/advertiser) coverage, and gave the ME/Europe/Asia footprint one query. Root cause was sourcing, not curation: this category's news lives in trade press, not general web search. v1.1 adds **named sweeps** to Phase 1 (competitor set by name, trade-press outlets by name, region sweep), a **two-thin-months escalation** rule for the monetisation lens, a matching compliance-checklist item, and a rails-vs-craft **calibration note** (not a rule) in the editorial spec.
 
 This is a **sibling edition** to the Engineering Edition, sharing the five-phase pipeline and sourcing discipline but with its own audience, structure, voice rules, and visual identity. The Engineering Edition is untouched.
@@ -63,6 +64,7 @@ Sweep ~30 days, not a week. Run explicit queries across **four concern lenses**,
 - **Trade press, by outlet.** Category news lives in trade press more than general search. Category/bank side: Finextra, FinTech Futures, Open Banking Expo, The Wise Marketer. Funder/advertiser side (feeds the monetisation lens): Marketing Week, Campaign, The Grocer, Retail Week.
 - **Region sweep.** One named query set per region of the sales footprint — Middle East/GCC, Europe, Asia: bank loyalty launches, regional CLO/rewards moves, super-app loyalty. Most months this feeds *Also moving*; it still runs every issue.
 - **Two-thin-months escalation.** If the monetisation & models lens yields no in-window UK material two issues running (check the previous issue's run-plan notes), treat it as a research failure before a market finding: re-sweep via the funder-side trade outlets above, then conclude.
+- **Floors, not ceilings (v1.2).** The named lists guarantee minimum coverage; the open-ended lens queries are the discovery mechanism and always run alongside them. The lists are kept current by the source-map loop below, not by memory.
 
 Output candidates with date, source URL, concern lens, and a one-line "why it changes a product decision". Flag US-specific items as US. Write them to `product-runs/issue-N/candidates.json` — the Phase 5 checklist gates on this file existing and parsing, and on the named sweeps having run.
 
@@ -74,7 +76,9 @@ Cluster candidates into **3–5 trends**, ordered by significance. Apply, in ord
 4. **Substance floor** — a topic earns a section only with genuine in-window material; thin items go to *Also moving*.
 5. **Roadmap-evidence test** — identify **0–2** trends that carry a **sourced** product instantiation OR an **evidenced** gap. Those get a "What it looks like in product →" closer and a line in the roadmap strip. Everything else is context ("Why it matters"). **Never invent; never instruct.**
 
-Output `run-plan.md`: chosen trends + order, the 0–2 roadmap threads with their sources, and candidates rejected with reasons.
+**Entrant scan (v1.2):** while curating, note every company/platform in the candidate pool that is not on the spec's named competitor list, and check `source_map.unlisted_entities` in the state file — any of them now seen in a second issue is marked *promote*. If the six-issue source-map review is due (`last_issue_number + 1 − source_map.last_reviewed_issue ≥ 6`), review the named list against the last six issues and flag zero-finding names for a keep/cull judgement (flag only — removal is an operator decision).
+
+Output `run-plan.md`: chosen trends + order, the 0–2 roadmap threads with their sources, candidates rejected with reasons, and a **Source-map notes** block (unlisted entrants seen this issue, promotions due, review findings if the review ran).
 
 ### Phase 3 — Plan
 Per-trend brief: standfirst angle (leading with the month's movement), feeding pieces, closer type (`investigate` vs `why`), any inline visual. Plan the cover dek, lead stat, contents rail, roadmap strip, *Also moving*, and a **varied** *What's next* (not all regulatory). Output `section-briefs.md`.
@@ -91,6 +95,8 @@ Run `references/compliance-checklist.md` end to end. Pay special attention to: t
 
 ## On Publish
 Only after the issue is approved: update `product-digest-state.json` — increment `last_issue_number`, set `last_issue_month`, append this issue's trends (with their this-month development) to `trend_history`, and append the roadmap threads to `roadmap_threads_history`.
+
+**Source-map maintenance (v1.2, same publish step):** apply the run plan's Source-map notes to state — record new unlisted entrants in `source_map.unlisted_entities` (name, issues seen); for any marked *promote*, add the name to the editorial spec's named competitor list and remove it from the watchlist; if the six-issue review ran, set `source_map.last_reviewed_issue` and apply any operator-approved culls to the spec. Like all state, this is written on publish only — test runs leave the source map untouched.
 
 **Where published issues live (repo conventions):**
 - Published HTML/PDF goes to `product-issues/issue-N.html` and `product-issues/issue-N.pdf`. **Never `issues/`** — that directory belongs to the Engineering Edition, and pushes adding `issues/issue-*.html` trigger its subscriber-notification workflow.

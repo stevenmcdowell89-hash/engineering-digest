@@ -9,11 +9,11 @@ Structural checks first — if any fail, the issue is invalid; don't proceed to 
 - [ ] **Run directory exists** at `product-runs/issue-N/` for this issue number
 - [ ] **Phase 1 artefact present**: `candidates.json` exists and parses; research ran explicit per-concern queries (category & competition, monetisation & models, experience & surface, product craft) **and named non-AI queries**, so the candidate pool isn't whatever was loudest
 - [ ] **Named sweeps ran (v1.1)**: `queries_run` shows the competitor set queried by name (Cardlytics, Reward, Fidel, Triple, Snoop, Bink, the networks' offers stacks, Amex Offers), the trade-press outlets swept (incl. the funder-side outlets for the monetisation lens), and a region sweep (ME/GCC, Europe, Asia). A named competitor or region with no findings is recorded as quiet, not skipped. If monetisation was thin last issue too, the escalation re-sweep is evidenced before the lens is called quiet
-- [ ] **Phase 2 artefact present**: `run-plan.md` names the chosen trends (3–5), their ordering, and the 0–2 roadmap threads, and lists candidates considered and rejected with reasons
+- [ ] **Phase 2 artefact present**: `run-plan.md` names the chosen trends (3–5), their ordering, and the 0–2 roadmap threads, and lists candidates considered and rejected with reasons, plus a **Source-map notes** block (v1.2: unlisted entrants seen this issue; promotions due on publish; six-issue review findings when `last_issue_number + 1 − source_map.last_reviewed_issue ≥ 6` — zero-finding names flagged for keep/cull, never auto-removed)
 - [ ] **Phase 3 artefact present**: `section-briefs.md` with per-trend briefs (standfirst angle, feeding pieces, closer type) and the roadmap-strip plan
 - [ ] **Phase 4 cross-check**: trends in the published HTML match `run-plan.md` (titles, order, count). No silent substitution
 - [ ] **Phase 5 artefact**: `review.md` exists with pass/fail summary
-- [ ] **State read & ready to write**: `product-digest-state.json` was read at start; `trend_history` and `roadmap_threads_history` will be updated on publish only
+- [ ] **State read & ready to write**: `product-digest-state.json` was read at start; `trend_history`, `roadmap_threads_history` and `source_map` (entrant watchlist, promotions, review marker) will be updated on publish only
 
 ## Audience & Gate
 

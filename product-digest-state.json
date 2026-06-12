@@ -14,5 +14,11 @@
   "roadmap_threads_history": [
     { "issue": 1, "thread": "A2A coverage gap — recurring payments under UKPI produce no card transaction for card-linked offers to read" },
     { "issue": 1, "thread": "Loyalty absent from the agent rails — agentic trust layer specified with no offers/rewards object" }
-  ]
+  ],
+
+  "source_map": {
+    "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review. Baseline set at Issue 1 (the named list was authored from the Issue 1 retro, so the first review is due at Issue 7).",
+    "last_reviewed_issue": 1,
+    "unlisted_entities": []
+  }
 }
