@@ -888,6 +888,112 @@
             </div>
         </div>
 
+        <!-- ════════════════════════════════════════════════════════════════
+             PRODUCT EDITION — sibling monthly publication (product-digest skill).
+             Fully self-contained: scoped `pe-` classes + inline <style> below,
+             no shared classes with the engineering archive above. Rows here
+             deliberately carry NO data-issue-id / data-issue-date attributes so
+             the engineering read-state, missed-panel and open-tracking scripts
+             never pick them up (their selectors substring-match "issues/").
+             Published issues live in product-issues/ (not issues/ — that path
+             triggers the engineering notify workflow).
+             ════════════════════════════════════════════════════════════════ -->
+        <style>
+            .pe-section { background: #FBF7EF; border-top: 4px solid #BE8A28; }
+            .pe-head { background: #13243B; padding: 34px 60px 30px; }
+            .pe-eyebrow {
+                font-size: 11px; font-weight: 700; letter-spacing: 5px;
+                text-transform: uppercase; color: #E0A93E;
+            }
+            .pe-title {
+                font-family: 'Playfair Display', serif; font-weight: 900;
+                font-size: 34px; color: #FFF; line-height: 1.05; margin-top: 8px;
+            }
+            .pe-tagline {
+                font-family: 'Playfair Display', serif; font-style: italic;
+                font-size: 16px; color: rgba(255, 255, 255, .75); margin-top: 10px;
+            }
+            .pe-body { padding: 30px 60px 38px; }
+            .pe-desc {
+                font-size: 15px; line-height: 1.7; color: #433D35; max-width: 640px;
+            }
+            .pe-list { list-style: none; margin-top: 22px; }
+            .pe-row {
+                display: grid; grid-template-columns: 80px 1fr auto;
+                gap: 16px; align-items: center; padding: 12px 14px;
+                border-bottom: 1px solid #E8DFCF; transition: background 0.15s;
+            }
+            .pe-row:last-child { border-bottom: none; }
+            .pe-row:hover { background: rgba(190, 138, 40, .07); }
+            .pe-row-date {
+                font-size: 12px; color: #9A8E7C; letter-spacing: .3px;
+                font-variant-numeric: tabular-nums;
+            }
+            .pe-row-title {
+                font-family: 'Playfair Display', serif; font-size: 16px;
+                font-weight: 700; color: #13243B; line-height: 1.3;
+                text-decoration: none; overflow: hidden;
+                text-overflow: ellipsis; white-space: nowrap;
+            }
+            .pe-row-title:hover { color: #B5532E; }
+            .pe-row-pdf {
+                font-size: 10px; font-weight: 700; color: #9A8E7C;
+                text-decoration: none; letter-spacing: 1.5px; padding: 4px 8px;
+                border-radius: 2px; text-transform: uppercase;
+                transition: color 0.15s, background 0.15s;
+            }
+            .pe-row-pdf:hover { color: #B5532E; background: rgba(181, 83, 46, .08); }
+            .pe-coming {
+                margin-top: 22px; padding: 16px 22px; background: #FFF;
+                border-left: 4px solid #BE8A28; border-radius: 0 4px 4px 0;
+            }
+            .pe-coming .pe-coming-label {
+                font-size: 10px; font-weight: 700; letter-spacing: 3px;
+                text-transform: uppercase; color: #BE8A28; margin-bottom: 6px;
+            }
+            .pe-coming p { font-size: 15px; line-height: 1.6; color: #2E2A26; margin: 0; }
+            @media (max-width: 760px) {
+                .pe-head { padding: 26px 20px 24px; }
+                .pe-title { font-size: 27px; }
+                .pe-body { padding: 24px 20px 30px; }
+                .pe-row { grid-template-columns: 60px 1fr auto; gap: 10px; padding: 10px 10px; }
+                .pe-row-title { font-size: 15px; }
+            }
+        </style>
+        <section class="pe-section">
+            <div class="pe-head">
+                <div class="pe-eyebrow">The Digest — Product Edition</div>
+                <div class="pe-title">Product Edition</div>
+                <div class="pe-tagline">Product signals for commerce, loyalty &amp; payments — monthly</div>
+            </div>
+            <div class="pe-body">
+                <p class="pe-desc">
+                    A monthly trend magazine for product managers and product leaders:
+                    the month's movement in card-linked offers, cashback, rewards and the
+                    adjacent tech — what changes a product decision — plus a couple of
+                    grounded, sourced roadmap threads per issue.
+                </p>
+
+                <!-- Issue rows go newest-first. Row template (note: NO data-issue-id /
+                     data-issue-date — product rows stay out of the engineering
+                     read-state / missed-panel / tracking scripts):
+
+                <ul class="pe-list">
+                    <li class="pe-row">
+                        <span class="pe-row-date">Jun 2026</span>
+                        <a class="pe-row-title" href="product-issues/issue-1.html">Issue 1 — [Title]</a>
+                        <a class="pe-row-pdf" href="product-issues/issue-1.pdf">PDF</a>
+                    </li>
+                </ul>
+                Remove the .pe-coming block below once the first issue is listed. -->
+
+                <div class="pe-coming">
+                    <div class="pe-coming-label">First issue</div>
+                    <p>Issue 1 lands with the June 2026 month-in-review. New issues monthly.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- ═══ FOOTER ═══ -->
         <div class="footer">
             <div class="footer-vol">Vol. II</div>
