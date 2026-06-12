@@ -16,9 +16,11 @@ _worker.js
 # State files (contain editorial state — never serve)
 engineering-digest-state.json
 digest-state.json
+product-digest-state.json
 
 # Build / test artefacts
 digest-runs/
+product-runs/
 
 # Legacy worker source (kept for reference, never served)
 worker/

@@ -650,6 +650,35 @@
 <body>
     <div class="archive-wrap">
 
+        <!-- ════════════════════════════════════════════════════════════════
+             EDITION TABS — shared chrome with product.html. Engineering is
+             this page; the Product Edition (monthly, product-digest skill)
+             lives on its own page at product.html. Scoped styles only; no
+             other engineering markup, styles or scripts are touched.
+             ════════════════════════════════════════════════════════════════ -->
+        <style>
+            .edition-tabs { display: flex; background: #0A1628; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+            .edition-tabs a {
+                flex: 1; text-align: center; padding: 15px 10px 12px;
+                font-family: 'Source Sans 3', sans-serif; font-size: 12px;
+                font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+                text-decoration: none; color: rgba(255, 255, 255, .55);
+                border-bottom: 3px solid transparent;
+                transition: color 0.15s;
+            }
+            .edition-tabs a:hover { color: rgba(255, 255, 255, .85); }
+            .edition-tabs a.active { color: #FFF; }
+            .edition-tabs a.tab-eng.active { border-bottom-color: #00B4D8; }
+            .edition-tabs a.tab-prod.active { border-bottom-color: #E0A93E; }
+            @media (max-width: 760px) {
+                .edition-tabs a { font-size: 11px; letter-spacing: 1.5px; padding: 13px 6px 10px; }
+            }
+        </style>
+        <nav class="edition-tabs" aria-label="Editions">
+            <a class="tab-eng active" href="index.html" aria-current="page">Engineering Edition</a>
+            <a class="tab-prod" href="product.html">Product Edition</a>
+        </nav>
+
         <!-- ═══ COVER ═══ -->
         <header class="cover">
             <div class="cover-identity-strap">

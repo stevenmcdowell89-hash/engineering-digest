@@ -8,6 +8,13 @@
 #   - the audit trail should be force-added: `git add -f digest-runs/issue-N/`
 digest-runs/
 
+# product-runs/ is the Product Edition's equivalent audit trail (product-digest
+# skill). Same convention: ignored by default; the published HTML/PDF goes to
+# product-issues/issue-N.html and product-issues/issue-N.pdf (tracked normally),
+# and the audit trail for a shipped issue is force-added:
+# `git add -f product-runs/issue-N/`
+product-runs/
+
 # Local-only tooling for PDF generation (puppeteer). Not part of the published site.
 node_modules/
 package.json

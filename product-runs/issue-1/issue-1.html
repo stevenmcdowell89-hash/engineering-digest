@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Digest — Product Edition — June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#13243B;--ink:#2E2A26;--gold:#BE8A28;--gold-bright:#E0A93E;
+  --clay:#B5532E;--cream:#FBF7EF;--paper:#FFFFFF;--line:#E8DFCF;
+  --muted:#9A8E7C;--body:#433D35;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;color:var(--body);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.mag{max-width:860px;margin:0 auto;background:var(--cream);box-shadow:0 0 60px rgba(19,36,59,.10)}
+a{color:var(--clay);text-decoration:none}a:hover{text-decoration:underline}
+
+/* ═══ COVER — left-aligned magazine cover ═══ */
+.cover{background:var(--navy);color:#fff;padding:0;position:relative}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold)}
+.cover-inner{padding:54px 56px 44px}
+.eyebrow{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold-bright)}
+.masthead{font-family:'Playfair Display',serif;font-weight:900;font-size:64px;line-height:.92;margin:10px 0 0;color:#fff}
+.cover-issue{font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:14px}
+.cover-dek{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:24px;line-height:1.4;color:rgba(255,255,255,.9);max-width:600px;margin:30px 0 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.cover-stat{margin:30px 0 0;display:flex;align-items:baseline;gap:16px}
+.cover-stat .cs-num{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;color:var(--gold-bright);line-height:.9}
+.cover-stat .cs-ctx{font-size:14px;color:rgba(255,255,255,.66);max-width:330px;line-height:1.45}
+.cover-contents{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.1);padding:24px 56px 30px}
+.cc-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:14px}
+.cc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 32px}
+.cc-list li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:rgba(255,255,255,.78);line-height:1.4}
+.cc-list .cc-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold-bright);font-size:15px;min-width:20px}
+
+/* ═══ FOREWORD ═══ */
+.foreword{padding:34px 56px;border-bottom:1px solid var(--line)}
+.foreword p{font-size:17px;line-height:1.8;color:var(--ink);max-width:680px}
+.foreword p::first-letter{font-family:'Playfair Display',serif;font-size:58px;float:left;line-height:.78;margin:6px 10px 0 0;color:var(--gold);font-weight:900}
+
+/* ═══ TREND SECTION ═══ */
+.trend{padding:44px 56px;border-bottom:1px solid var(--line)}
+.trend-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:8px}
+.trend-num{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--gold);line-height:.85;flex-shrink:0}
+.trend-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:4px}
+.trend-title{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1.1;color:var(--navy)}
+.trend-standfirst{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ink);margin:18px 0 22px;max-width:660px}
+.piece{margin:0 0 18px;padding-left:18px;border-left:2px solid var(--line)}
+.piece:last-of-type{margin-bottom:0}
+.piece h4{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.2px}
+.piece p{font-size:15px;line-height:1.65;margin-bottom:6px}
+.piece .src{font-size:12px;font-style:italic;color:var(--muted)}
+.piece .src a{color:var(--clay)}
+.why{margin-top:22px;background:var(--paper);border-left:4px solid var(--gold);padding:16px 22px;border-radius:0 4px 4px 0}
+.why .why-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.why p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.why p strong{color:var(--navy)}
+
+/* roadmap prompt — earned, action-adjacent (distinct from .why context) */
+.investigate{margin-top:22px;background:#FBF1DD;border-left:4px solid var(--gold-bright);padding:16px 22px;border-radius:0 4px 4px 0}
+.investigate .inv-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.investigate p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.investigate p strong{color:var(--navy)}
+
+/* consolidated roadmap strip — the payoff, surfaced up front */
+.roadmap{padding:26px 56px;background:var(--paper);border-top:3px solid var(--gold);border-bottom:1px solid var(--line)}
+.roadmap .rm-label{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.roadmap .rm-intro{font-size:14.5px;color:var(--ink);margin-bottom:16px;max-width:600px}
+.roadmap ol{list-style:none;counter-reset:rm;display:grid;gap:12px}
+.roadmap li{display:flex;gap:14px;align-items:baseline;font-size:15.5px;line-height:1.55;color:var(--body)}
+.roadmap li::before{counter-increment:rm;content:counter(rm);font-family:'Playfair Display',serif;font-weight:900;color:var(--gold);font-size:20px;min-width:20px;line-height:1}
+.roadmap li strong{color:var(--navy)}
+.roadmap li .rm-ref{font-size:12px;color:var(--muted);font-style:italic;white-space:nowrap}
+
+/* inline stat chip + mini compare used inside trends */
+.statline{display:flex;gap:0;margin:14px 0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper)}
+.statline .sl-cell{flex:1;padding:14px 12px;text-align:center;border-right:1px solid var(--line)}
+.statline .sl-cell:last-child{border-right:none}
+.statline .sl-num{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--gold);line-height:1}
+.statline .sl-lbl{font-size:10px;font-weight:600;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin-top:4px;line-height:1.3}
+
+/* ═══ ALSO MOVING ═══ */
+.also{padding:38px 56px;border-bottom:1px solid var(--line);background:var(--paper)}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.also h2,.next h2{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--navy);margin-bottom:18px}
+.also ul{list-style:none}
+.also li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6;display:flex;gap:12px;align-items:baseline}
+.also li:last-child{border-bottom:none}
+.also li .am-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+.also li strong{color:var(--navy)}
+.also li .src{font-style:italic;color:var(--muted);font-size:12px}
+
+/* ═══ WHAT'S NEXT ═══ */
+.next{padding:38px 56px;border-bottom:1px solid var(--line)}
+.next ul{list-style:none}
+.next li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6}
+.next li:last-child{border-bottom:none}
+.next li .nx-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--navy);padding:3px 9px;border-radius:10px;height:fit-content;white-space:nowrap;margin-top:2px}
+.next li .nx-tag.open{background:var(--clay)}
+.next li strong{color:var(--navy)}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:38px 56px;text-align:left}
+.footer-vol{display:inline-block;background:var(--gold);color:var(--navy);padding:5px 13px;border-radius:2px;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:900}
+.footer-sub{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.footer-next{font-size:13px;color:var(--gold-bright);margin-top:14px}
+
+@media(max-width:680px){
+  .cover-inner,.cover-contents,.foreword,.trend,.also,.next,.footer{padding-left:22px;padding-right:22px}
+  .masthead{font-size:46px}.cover-dek{font-size:20px}.cover-stat{flex-direction:column;gap:6px}
+  .cc-list{grid-template-columns:1fr}
+  .trend-head{gap:14px}.trend-num{font-size:40px}.trend-title{font-size:25px}
+  .trend-standfirst{font-size:17px}.statline{flex-direction:column}.statline .sl-cell{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div class="mag">
+
+  <!-- ═══ COVER ═══ -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="eyebrow">The Digest — Product Edition</div>
+      <h1 class="masthead">The Digest</h1>
+      <div class="cover-issue">Issue 1 · June 2026 · covering 13 May – 12 June 2026 · 8 min read</div>
+      <p class="cover-dek">Spend is moving onto rails the card-linked model cannot yet read — agent checkouts, account-to-account schemes, the OS wallet.</p>
+      <div class="cover-stat">
+        <span class="cs-num">2008</span>
+        <span class="cs-ctx">The last time the UK launched a new payment scheme — until 2 June, when UKPI's Pay-by-Bank scheme went live across every major UK bank.</span>
+      </div>
+    </div>
+    <div class="cover-contents">
+      <div class="cc-label">This month</div>
+      <ul class="cc-list">
+        <li><span class="cc-num">01</span><span>Agentic commerce builds its trust layer</span></li>
+        <li><span class="cc-num">02</span><span>Pay by Bank goes operational</span></li>
+        <li><span class="cc-num">03</span><span>The OS wallet bids for loyalty</span></li>
+        <li><span class="cc-num">04</span><span>Rewards, re-gated</span></li>
+        <li><span class="cc-num">+</span><span>For the roadmap · also moving · what's next</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ FOREWORD ═══ -->
+  <div class="foreword">
+    <p>The month's biggest announcements were not about new value but new rails. Visa and Mastercard specified, on a single June day, who an agent may pay and which merchants are ready to be paid. The UK switched on its first new payment scheme since 2008. Apple taught the iPhone to ingest any loyalty card. None of these rails carries an offer yet — while at home, UK banks were re-gating the value they already distribute.</p>
+  </div>
+
+  <!-- ═══ FOR THE ROADMAP ═══ -->
+  <div class="roadmap">
+    <div class="rm-label">For the roadmap</div>
+    <p class="rm-intro">Most of this month is context. Two threads are grounded in what shipped — or pointedly didn't.</p>
+    <ol>
+      <li><span><strong>The A2A coverage gap is now operational.</strong> Card-linked offers read card transactions; the recurring payments collecting under UKPI's new scheme don't produce one. <span class="rm-ref">→ Trend 02</span></span></li>
+      <li><span><strong>Loyalty is absent from the agent rails.</strong> The networks' new agentic trust layer specifies verified agents, merchant readiness and spending credentials — and no offers or rewards object. <span class="rm-ref">→ Trend 01</span></span></li>
+    </ol>
+  </div>
+
+  <!-- ═══ TREND 01 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">01</div>
+      <div>
+        <div class="trend-kicker">Trend · Agentic commerce</div>
+        <div class="trend-title">Agentic commerce builds its trust layer</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">On 10 June both card networks shipped the trust layer for agent-led commerce — scores, directories and credentials that will decide who may transact on a customer's behalf. Offers and rewards appear nowhere in it.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">3</div><div class="sl-lbl">network announcements on one day</div></div>
+      <div class="sl-cell"><div class="sl-num">30+</div><div class="sl-lbl">launch partners on Agent Pay for Machines</div></div>
+      <div class="sl-cell"><div class="sl-num">0</div><div class="sl-lbl">mentions of offers or rewards across the three releases</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>Visa specifies agent readiness</h4>
+      <p>At its Payments Forum, Visa announced Agent Score — a rating of how prepared a merchant is to receive agent-initiated traffic — alongside an Agentic Directory of verified agents and merchants, and a Large Transaction Model for intelligent commerce. Together they sketch the layer that decides which counterparties exist, and in what standing, when software does the shopping.</p>
+      <p class="src">Source: <a href="https://www.businesswire.com/news/home/20260610464331/en/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum">Business Wire (Visa)</a></p>
+    </div>
+    <div class="piece">
+      <h4>Visa credentials go inside OpenAI's checkout</h4>
+      <p>The same day, Visa and OpenAI announced a partnership to embed Visa payments across OpenAI's agentic commerce experiences — putting network credentials directly into ChatGPT-scale purchasing, where the agent rather than the human sees the checkout.</p>
+      <p class="src">Source: <a href="https://usa.visa.com/about-visa/newsroom/press-releases.releaseid.22496.html">Visa Newsroom</a></p>
+    </div>
+    <div class="piece">
+      <h4>Mastercard launches Agent Pay for Machines</h4>
+      <p>Mastercard answered with AP4M: credentialed, permissioned machine-to-machine payments with 30-plus partners including Stripe, Adyen and Checkout.com, settling across cards, accounts and stablecoins. It anticipates spend that is high-frequency and micro-value — paced by machines, not by people choosing a card.</p>
+      <p class="src">Source: <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html">Mastercard Newsroom</a> · <a href="https://thepaypers.com/payments/news/mastercard-launches-agent-pay-for-machines-for-ai-commerce">The Paypers</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>The agentic stack now specifies <strong>verified agent identities, merchant-readiness scores, spending permissions and multi-rail settlement</strong>. None of the three releases mentions offers, rewards or loyalty. The layer that will decide what an agent can see and weigh at checkout is being written this year, and the category's core objects are not yet defined in it.</p>
+      <p class="src">Sources: <a href="https://www.businesswire.com/news/home/20260610464331/en/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum">Visa</a> · <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html">Mastercard</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 02 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">02</div>
+      <div>
+        <div class="trend-kicker">Trend · A2A / Pay by Bank</div>
+        <div class="trend-title">Pay by Bank goes operational</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">The UK's first new payment scheme since Faster Payments went live on 2 June — and the first products built on it go straight at recurring spend.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">2008</div><div class="sl-lbl">last new UK payment scheme before this one</div></div>
+      <div class="sl-cell"><div class="sl-num">31</div><div class="sl-lbl">firms in UKPI, incl. every major UK retail bank</div></div>
+      <div class="sl-cell"><div class="sl-num">H2 '26</div><div class="sl-lbl">Wave 2 brings e-commerce onto the scheme</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>UKPI's commercial VRP scheme switches on</h4>
+      <p>The UK Payments Initiative took its variable-recurring-payments scheme live with a single commercial rulebook across 31 firms, including all the major retail banks. Wave 1 covers regulated and trusted sectors; Wave 2 extends to e-commerce in the second half of 2026. The FCA called it out as a milestone for open banking at national scale.</p>
+      <p class="src">Source: <a href="https://www.fca.org.uk/news/statements/open-banking-launch-uk-payments-initiative-scheme">FCA</a> · <a href="https://www.openbankingexpo.com/news/uk-payments-initiative-launches-new-a2a-payments-scheme-in-defining-moment/">Open Banking Expo</a></p>
+    </div>
+    <div class="piece">
+      <h4>GoCardless aims Recurring Pay by Bank at the card rails</h4>
+      <p>On scheme day one, GoCardless launched Recurring Pay by Bank, positioning it explicitly against the card networks' roughly £1.5bn annual UK fee take. Subscription and repeat spend — the natural territory of retention offers — is the first target.</p>
+      <p class="src">Source: <a href="https://gocardless.com/blog/gocardless-launches-recurring-pay-by-bank">GoCardless</a></p>
+    </div>
+    <div class="piece">
+      <h4>TrueLayer's Bank on File carries the scheme's first live payments</h4>
+      <p>TrueLayer launched Bank on File — a stored-credential relationship for bank payments, authorised biometrically, replacing the card on file — with Trading 212, IG Group, InvestEngine and East Lothian Housing Association already live. It cites card failure rates of 5–10% in subscription billing as the wedge.</p>
+      <p class="src">Source: <a href="https://itbrief.co.uk/story/truelayer-launches-bank-on-file-for-recurring-payments">IT Brief UK</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>A card-linked offer needs a card transaction to read; a Pay-by-Bank payment doesn't produce one. <strong>Bank on File's live merchants are collecting recurring payments today that sit outside card-linked measurement</strong>, and Wave 2 brings e-commerce onto the same rails within months. The UK context matters: consumer interchange here has been capped for years and offers are already merchant-funded — this is not a US-style funding story, it is a visibility one.</p>
+      <p class="src">Sources: <a href="https://www.fca.org.uk/news/statements/open-banking-launch-uk-payments-initiative-scheme">FCA</a> · <a href="https://itbrief.co.uk/story/truelayer-launches-bank-on-file-for-recurring-payments">IT Brief UK</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 03 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">03</div>
+      <div>
+        <div class="trend-kicker">Trend · Surfaces</div>
+        <div class="trend-title">The OS wallet bids for loyalty</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">This month the phone's wallet moved from a place loyalty cards can live to a surface that actively recruits them — and the card credential underneath grew more flexible too.</p>
+
+    <div class="piece">
+      <h4>iOS 27 ingests any loyalty card and presents it by tap</h4>
+      <p>At WWDC, Apple showed iOS 27's Wallet scanning any physical loyalty card into the phone by camera, and Tap to Share passing loyalty membership to a merchant's terminal in-store. Loyalty identity becomes an OS-level object, acquired and redeemed without a retailer app or a banking app in the loop. The features ship with iOS 27 in September.</p>
+      <p class="src">Source: <a href="https://www.macrumors.com/2026/06/10/ios-27-new-apple-wallet-features/">MacRumors</a> · <a href="https://www.apple.com/newsroom/2026/06/apple-unveils-innovative-features-and-intelligence-experiences-across-services/">Apple Newsroom</a></p>
+    </div>
+    <div class="piece">
+      <h4>Visa Flexible Credential reaches the UK</h4>
+      <p>On 12 May — the day before this issue's window opens — Visa's Flexible Credential went live in the UK on Zilch cards with processor Thredd: one credential carrying multiple funding options that can be, in Visa's words, financed, optimised and rewarded in real time. Where rewards logic attaches to a UK card is becoming a design choice, not a given.</p>
+      <p class="src">Source: <a href="https://www.visa.co.uk/about-visa/newsroom/press-releases.3447932.html">Visa Newsroom UK</a></p>
+    </div>
+
+    <div class="why">
+      <div class="why-label">Why it matters</div>
+      <p>The banking app's claim to be the natural home of offers rests on being where the card lives. When the OS wallet can ingest any loyalty card, present loyalty identity at the till, and the credential itself can re-route funding and rewards in real time, that claim is contested from both above and below — <strong>the surface where an offer is seen and redeemed is now a competitive variable</strong>, not a fixed fact about the channel.</p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 04 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">04</div>
+      <div>
+        <div class="trend-kicker">Trend · Rewards mechanics</div>
+        <div class="trend-title">Rewards, re-gated</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">The UK's biggest banking brands re-answered the same question this month — what is a reward actually for — and gave three different answers: a first-party offers hub, gated cashback, and unconditional cash.</p>
+
+    <div class="piece">
+      <h4>Lloyds builds the offers hub in-house</h4>
+      <p>Lloyds launched Lloyds Rewards, an in-app hub across Lloyds, Halifax and Bank of Scotland: monthly prize draws of £2,026 for 50 customers — entry gated on £1,000-plus deposited in the month — alongside point-of-purchase merchant offers (Smol, Virgin Wines, Readly) and personalised cashback at brands including Sainsbury's, B&amp;M and IHG. The first draw opened 1 June. The UK's largest retail banking group is now running merchant-funded, personalised offers as a first-party product.</p>
+      <p class="src">Source: <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds/lloyds-rewards.html">Lloyds Banking Group</a> · <a href="https://britbrief.co.uk/business/finance/lloyds-rewards-hub-win-2000-monthly.html">Brit Brief</a></p>
+    </div>
+    <div class="piece">
+      <h4>Chase doubles cashback, but makes it conditional on behaviour</h4>
+      <p>Chase UK's cashback rises to 2% (monthly cap up from £15 to £20) — but from 1 June, qualifying requires 15 card transactions or Direct Debit payments a month, plus £1,000 held continuously in Chase savings. The reward now pays for engagement and balances rather than mere presence. It is the clearest UK example yet of cashback being repriced as an engagement mechanic.</p>
+      <p class="src">Source: <a href="https://www.moneysavingexpert.com/news/2026/05/chase-increases-cashback/">MoneySavingExpert</a> · <a href="https://www.moneysavingexpert.com/news/2026/6/chase-cashback-criteria-change/">criteria change</a></p>
+    </div>
+    <div class="piece">
+      <h4>Nationwide writes 4.4 million cheques instead</h4>
+      <p>At its 21 May results, Nationwide confirmed another £100 member payment — £440m to 4.4 million members, landing 10–30 June. No merchant funding, no redemption journey, no targeting: a flat cash dividend for holding the right products. It is the opposite theory of loyalty value, and it keeps winning headlines.</p>
+      <p class="src">Source: <a href="https://www.nationwide.co.uk/media/news/nationwide-announced-2026-fairer-share-payment-as-part-of-its-member-benefits">Nationwide</a> · <a href="https://www.moneysavingexpert.com/news/2026/05/nationwide-fairer-share-announcement/">MoneySavingExpert</a></p>
+    </div>
+
+    <div class="why">
+      <div class="why-label">Why it matters</div>
+      <p>These are the benchmarks any merchant-funded offers proposition is now measured against inside a UK bank: <strong>a first-party offers hub at the country's largest retail bank, engagement-gated cashback that earns its cost in activity, and unconditional cash that earns its cost in goodwill</strong>. The Lloyds move cuts both ways — it validates the category's economics at the largest possible scale, and it shows the biggest buyer's build-it-in-house option is no longer hypothetical.</p>
+    </div>
+  </div>
+
+  <!-- ═══ ALSO MOVING ═══ -->
+  <div class="also">
+    <div class="sec-label">Also moving</div>
+    <h2>Movement that didn't make a trend</h2>
+    <ul>
+      <li><span class="am-dot"></span><span><strong>The PSR is being folded into the FCA.</strong> The Financial Services and Markets Bill had its first reading on 19 May and second on 8 June; the card-fee remedies — including the cross-border interchange cap work — carry over to the FCA. <span class="src"><a href="https://www.nortonrosefulbright.com/en/inside-fintech/blog/2026/05/uk-payment-systems-hmt-responds-to-consultation-on-merging-psr-functions-into-fca">Norton Rose Fulbright</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Co-op launched a 1,000-screen DOOH retail media network</strong> (14 May, with Smart Outdoor), making it one of the UK's largest digital outdoor operators — retail media keeps annexing new inventory. <span class="src"><a href="https://www.grocerytradenews.com/co-op-uk-dooh-retail-media-network/">Grocery Trade News</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Asda confirmed the Ocado Smart Platform for its online grocery from 2027</strong> — re-platforming one of the UK's largest grocery digital estates, where offers and retail media surface. <span class="src"><a href="https://www.igd.com/articles/asda-and-ocado-what-the-deal-means-for-uk-online-grocery/73302">IGD</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Tesco now takes Clubcard vouchers 1:1 against travel insurance</strong> — redemption breadth keeps widening at the UK's biggest loyalty scheme. <span class="src"><a href="https://www.irvinetimes.com/news/25870117.tesco-1-clubcard-change-may-save-2026-holidays/">PA via Irvine Times</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Cardlytics executed a 1-for-10 reverse stock split</strong> (3 June) after a Nasdaq minimum-bid notice — the US bank-channel CLO incumbent remains under visible pressure. <em>US.</em> <span class="src"><a href="https://www.tipranks.com/news/company-announcements/cardlytics-announces-reverse-stock-split-amid-nasdaq-deficiency">TipRanks</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Klarna's Q1 GMV grew 33% to $33.7bn</strong> (14 May) — an adjacent commerce surface still compounding into everyday banking. <span class="src"><a href="https://investors.klarna.com/News--Events/news/news-details/2026/Klarna-Delivers-Strong-Start-to-2026-With-1Bn-Revenue-and-68M-Adj--Operating-Profit/default.aspx">Klarna IR</a></span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ WHAT'S NEXT ═══ -->
+  <div class="next">
+    <div class="sec-label">What's next</div>
+    <h2>The forming picture</h2>
+    <ul>
+      <li><span class="nx-tag">Watch</span><span><strong>UKPI Wave 2 brings e-commerce onto the A2A scheme in H2 2026</strong> — the coverage question in Trend 02 stops being a recurring-payments story and becomes a checkout one. <span class="src"><a href="https://www.openbankingexpo.com/news/uk-payments-initiative-launches-new-a2a-payments-scheme-in-defining-moment/">Open Banking Expo</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>iOS 27 ships around September</strong> — scan-any-card and Tap to Share reach UK wallets at OS scale. <span class="src"><a href="https://www.macrumors.com/2026/06/10/ios-27-new-apple-wallet-features/">MacRumors</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>Visa's Agentic Directory and Agent Score roll out</strong> — merchant and agent verification becomes a real surface, and what's listed in it becomes discoverable to agents. <span class="src"><a href="https://www.businesswire.com/news/home/20260610464331/en/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum">Business Wire</a></span></span></li>
+      <li><span class="nx-tag open">Open</span><span><strong>The FCA's AI Input Zone closes 19 June</strong> — the evidence base for its 2026 report on good and poor AI practice, against which AI-driven personalisation in bank channels will be read. <span class="src"><a href="https://www.fca.org.uk/news/blogs/ai-financial-services-approach">FCA</a></span></span></li>
+      <li><span class="nx-tag open">Open</span><span><strong>The FCA's open-finance policy sprint runs this month</strong> under the Smart Data Accelerator — the framework that would widen the data offers personalisation can lawfully draw on. <span class="src"><a href="https://www.fca.org.uk/publications/corporate-documents/open-finance-roadmap">FCA</a></span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span class="footer-vol">Product Edition</span>
+    <div class="footer-brand">The Digest</div>
+    <div class="footer-sub">Product signals for commerce, loyalty &amp; payments — monthly</div>
+    <div class="footer-next">Next issue: July 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
