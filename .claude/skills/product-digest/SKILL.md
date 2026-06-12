@@ -54,7 +54,7 @@ Sweep ~30 days, not a week. Run explicit queries across **four concern lenses**,
 - **Experience & surface** — where offers live: app, agent, A2A/Pay-by-Bank, in-store media, wallet.
 - **Product craft & signals** — emerging patterns, standards, protocols, forward signals.
 
-Output candidates with date, source URL, concern lens, and a one-line "why it changes a product decision". Flag US-specific items as US.
+Output candidates with date, source URL, concern lens, and a one-line "why it changes a product decision". Flag US-specific items as US. Write them to `product-runs/issue-N/candidates.json` — the Phase 5 checklist gates on this file existing and parsing.
 
 ### Phase 2 — Curate (the load-bearing phase)
 Cluster candidates into **3–5 trends**, ordered by significance. Apply, in order:

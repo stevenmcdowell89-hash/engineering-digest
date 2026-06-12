@@ -1,20 +1,6 @@
 # Product Edition — Editorial Specification (v2)
 
-**Where this lives.** A sibling reference set to the Engineering Edition, not a separate skill. The intended layout is a single shared `digest` skill with per-edition reference folders:
-
-```
-.claude/skills/digest/
-  SKILL.md                         shared five-phase pipeline + edition selector
-  references/
-    shared/                        pipeline detail, failure-mode checklist, sourcing discipline
-    engineering/  editorial-spec.md, compliance-checklist.md   (unchanged)
-    product/      editorial-spec.md (this file), compliance-checklist.md
-  assets/
-    weekly-template.html           Engineering Edition
-    product-template.html          Product Edition sub-brand (own visual identity)
-```
-
-The Engineering Edition's editorial content is untouched — it is relocated, not rewritten. Adding the Product Edition = this folder of two files plus one template.
+**Where this lives (as deployed).** A **standalone sibling skill** at `.claude/skills/product-digest/` — SKILL.md, this spec and the compliance checklist under `references/`, the sub-brand template under `assets/`, state at the repo root (`product-digest-state.json`), run artefacts in `product-runs/issue-N/`, published issues in `product-issues/`. The Engineering Edition's skill, files, and state are entirely untouched and stay where they are. **Do not restructure either skill to match any other layout** — an earlier draft of this spec sketched a shared `digest` skill with per-edition reference folders; that layout was deliberately not adopted, because it would have meant relocating the Engineering Edition's files.
 
 ---
 
