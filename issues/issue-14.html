@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Week of 5–12 June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+.cover-tagline{font-family:'Source Sans 3',sans-serif;font-style:italic;font-size:15px;color:rgba(0,180,216,.9);letter-spacing:.5px;margin-top:14px;text-align:center;font-weight:400}
+.cover-lead-quote{margin-top:28px;padding:32px 60px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2);text-align:center}
+.cover-lead-quote .lq-text{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;max-width:640px;margin:0 auto 12px}
+.cover-lead-quote .lq-attribution{font-family:'Source Sans 3',sans-serif;font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+.editor-note{background:rgba(0,180,216,.06);border-left:3px solid var(--deep-teal);padding:16px 22px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--body-text);font-style:italic}
+.editor-note .en-label{display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+
+.compare-table{width:100%;max-width:480px;margin:18px 0;border:1px solid var(--light-gray);border-radius:4px;border-collapse:separate;border-spacing:0;font-family:'Source Sans 3',sans-serif;font-size:13px;background:var(--white)}
+.compare-table thead th{padding:10px 14px;background:var(--off-white);border-bottom:1px solid var(--light-gray);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);text-align:left}
+.compare-table thead th:first-child{border-right:1px solid var(--light-gray)}
+.compare-table tbody td{padding:10px 14px;border-bottom:1px solid var(--light-gray);color:var(--body-text);line-height:1.5;vertical-align:top}
+.compare-table tbody td:first-child{border-right:1px solid var(--light-gray);font-weight:600;color:var(--navy);width:42%}
+.compare-table tbody tr:last-child td{border-bottom:none}
+
+.process-flow{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif}
+.process-flow .pf-step{flex:1;min-width:110px;padding:12px 14px;border:1px solid var(--deep-teal);border-radius:4px;background:var(--off-white);font-size:13px;color:var(--navy);text-align:center;line-height:1.3;display:flex;flex-direction:column;justify-content:center}
+.process-flow .pf-step strong{display:block;font-size:10px;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-weight:700}
+.process-flow .pf-arrow{flex:0 0 24px;align-self:center;height:2px;background:var(--deep-teal);position:relative}
+.process-flow .pf-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border-left:8px solid var(--deep-teal);border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:560px){.process-flow{flex-direction:column;align-items:stretch}.process-flow .pf-step{width:100%}.process-flow .pf-arrow{width:2px;height:18px;align-self:center;margin:4px 0}.process-flow .pf-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--deep-teal);border-bottom:none}}
+
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+.in-practice-header{background:var(--off-white);color:var(--navy);padding:32px 60px 16px;border-top:3px solid var(--deep-teal);border-left:4px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 8px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin:0;display:block;line-height:1.3}
+.in-practice-header .section-time{color:var(--med-gray);font-style:normal;font-size:12px;letter-spacing:0;text-transform:none;font-weight:500;margin-left:10px;vertical-align:middle}
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:12px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+.concept-of-week{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--accent-orange);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.concept-of-week .cw-label{display:block;font-size:10px;font-weight:700;color:var(--accent-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.concept-of-week .cw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.concept-of-week .cw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.concept-of-week .cw-body + .cw-body{margin-top:6px}
+@media(max-width:680px){.concept-of-week{float:none;width:auto;margin:18px 0}}
+
+.author-card{display:flex;align-items:center;gap:14px;background:var(--off-white);border-top:2px solid var(--deep-teal);padding:14px 18px;margin:0 0 20px}
+.author-card .ac-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,180,216,.12);color:var(--deep-teal);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px}
+.author-card .ac-meta{flex:1;min-width:0}
+.author-card .ac-name{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.2;margin:0}
+.author-card .ac-role{display:block;font-size:13px;color:var(--body-text);line-height:1.4;margin:2px 0 0}
+.author-card .ac-date{display:block;font-size:12px;color:var(--med-gray);margin-top:2px}
+.author-card .ac-link{font-size:12px;color:var(--deep-teal);text-decoration:none;white-space:nowrap;margin-left:auto;padding-left:8px}
+.author-card .ac-link:hover{text-decoration:underline}
+@media(max-width:680px){.author-card{flex-wrap:wrap}.author-card .ac-link{margin-left:0;padding-left:0;margin-top:6px;flex-basis:100%}}
+
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+
+.rabbit-hole{float:right;width:280px;margin:0 0 16px 24px;background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;font-size:13px}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.rabbit-hole .rh-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:8px}
+.rabbit-hole .rh-title a{color:var(--navy);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.rabbit-hole p{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.rabbit-hole-type{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);background:rgba(0,180,216,.1);padding:2px 8px;border-radius:10px;margin-bottom:8px}
+@media(max-width:680px){.rabbit-hole{float:none;width:auto;margin:18px 0}}
+
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.qt-single{max-width:100%;margin-top:20px}
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:520px;margin-left:auto;margin-right:auto}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-skip{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.pq-bar{margin:24px -20px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+<a href="/" class="back-to-archive" aria-label="Back to all issues" style="display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;padding:10px 20px;background:#0A1628;color:#00B4D8;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)"><span style="font-size:14px;line-height:1">←</span><span>All Issues</span></a>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 14</span>
+    <span>12 June 2026</span>
+    <span>7 min read</span>
+  </div>
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-tagline">Engineering decisions, every Friday.</div>
+    <div class="cover-meta">
+      <span class="cover-date">Week of 5–12 June 2026</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">50:1</div>
+    <div class="stat-context">The manager-to-IC ratio becoming the archetype as AI absorbs the coordination layer — and the engineering-manager role splits in two.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Visa and OpenAI put permission-bound card payments inside ChatGPT</li>
+      <li>The engineering-manager role is splitting in two</li>
+      <li>UK banks and fintechs launch a shared open-banking payments scheme</li>
+      <li>Leadership Read: why post-mortems fail</li>
+      <li>Outside In: Honeycomb stopped tracking action items</li>
+      <li>Platform Updates, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Control is the thread running through this week. Visa and OpenAI are defining the rules a payment agent operates inside; the engineering-manager role is fracturing around what AI now coordinates and what still needs a human; and a consortium of UK banks and fintechs has sat down to write a shared rulebook for recurring account-to-account payments. Three different rooms, one shared question — who sets the boundaries, and how tightly.</p>
+</section>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">12.1</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center;max-width:560px;margin-left:auto;margin-right:auto">The average manager now carries 12.1 direct reports, up from 8.2 in 2013, while global employee engagement sits near 21% — the flattening wave that hollowed out team structures is now reaching the managers themselves, the same pressure behind this week's role-split story.</p>
+  </div>
+</section>
+
+<!-- ═══ WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Seven Stories in Sixty Seconds</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Chromium V8 zero-day exploited in the wild.</strong> CVE-2026-11645 was added to CISA's KEV — the Known Exploited Vulnerabilities list — on 9 June, with a federal mitigate-by date of 23 June; teams running Chrome or Chromium-based stacks should confirm the patch is rolling. <span class="on-source"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA KEV</a></span></div></li>
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>Cisco SD-WAN flaw exploited as a zero-day.</strong> CVE-2026-20245, a critical Cisco Catalyst SD-WAN Manager vulnerability (software-defined WAN edge networking), is under active exploitation with no patch yet available; edge appliances and Manager instances are the priority for delegation and monitoring. <span class="on-source"><a href="https://sec.cloudapps.cisco.com/security/center/publicationListing.x">Cisco PSIRT</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">Payments</span><div class="qh-text"><strong>Mastercard launches "Agent Pay for Machines."</strong> A multi-rail settlement layer spanning cards, accounts and stablecoins for agent-to-agent transactions, with 30+ launch partners including Adyen, Checkout.com, Stripe, Coinbase and Cloudflare — the competing half of the agent-commerce trust-layer contest. <span class="on-source"><a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html">Mastercard</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge green">DevEx</span><div class="qh-text"><strong>DORA's "adoption trap" comes into focus.</strong> New benchmark commentary contrasts ~100% AI-tool coverage with 30–40% weekly-active use — coverage is not adoption, and the ROI gap follows from the difference. <span class="on-source"><a href="https://dora.dev/research/">DORA</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Org</span><div class="qh-text"><strong>Salesforce describes a "truly agentic" engineering operating model.</strong> Peer-org context from the company's own newsroom — marketing-adjacent, light on operational detail, worth tracking rather than acting on. <span class="on-source"><a href="https://www.salesforce.com/news/">Salesforce</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Fintech</span><div class="qh-text"><strong>UK neobank champions are diverging.</strong> Chris Skinner reads Revolut's super-app push, Starling's Engine licensing play and Monzo's relationship focus as three distinct strategy bets rather than one neobank playbook. <span class="on-source"><a href="https://thefinanser.com/">The Finanser</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ═══ -->
+<section class="section lead-article">
+  <div class="section-label">Wider Engineering Landscape</div>
+  <h2>Visa and OpenAI Put Permission-Bound Card Payments Inside ChatGPT <span class="section-time">(4 min)</span></h2>
+
+  <aside class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">Agentic commerce</span>
+    <p class="jw-body">Software agents that buy on a person's behalf. Here that means production agents with action authority — they initiate and move money, not just draft a suggestion a human then executes.</p>
+    <span class="jw-term" style="margin-top:12px">Tokenization / network token</span>
+    <p class="jw-body">A token is a stand-in card number scoped to rules, used in place of the real card number (PAN) so the underlying credential is never exposed to the agent or merchant.</p>
+    <span class="jw-term" style="margin-top:12px">Merchant-category controls</span>
+    <p class="jw-body">Limits that restrict where a credential can be spent — e.g. groceries but not gambling — set by category rather than per-merchant.</p>
+    <span class="jw-term" style="margin-top:12px">Codex</span>
+    <p class="jw-body">OpenAI's coding-agent product; named here as one surface where Visa-backed developer experiences will sit.</p>
+  </aside>
+
+  <p>Visa and OpenAI announced on 10 June a partnership to let AI agents make tokenized, permission-bound card payments directly inside ChatGPT. Two of the largest names in payments and AI are jointly setting the default trust layer for agent-initiated commerce. This is agentic commerce at the production end of the spectrum: agents with the authority to initiate and move money, operating inside boundaries the cardholder defines in advance.</p>
+
+  <h3>How the controls work</h3>
+  <p>The mechanism is tokenization. Rather than handing an agent a card number, Visa issues a network token — a stand-in credential scoped to rules — and pairs it with real-time authorization and fraud monitoring. The cardholder sets the boundaries: spending limits, merchant categories, and required approvals. An agent can transact freely within those rails and is stopped at the edge of them.</p>
+
+  <p>The scoping model is best understood as three nested controls, illustrated below. (The grocery cap is the digest's illustration of how per-use-case scoping works, not a Visa-stated example.)</p>
+
+  <div class="process-flow">
+    <div class="pf-step"><strong>Per agent</strong>Which agent holds the credential</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Per use case</strong>What it may buy (e.g. groceries only)</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Per limit</strong>How much, with approvals above a threshold</div>
+  </div>
+
+  <div class="pq-bar">
+    <p>"Transactions will operate within clearly defined user permissions, policies and controls, such as spending limits, merchant categories or required approvals."</p>
+    <cite>— Visa</cite>
+  </div>
+
+  <h3>The trust-layer contest</h3>
+  <p>Visa is not alone. The same week, Mastercard launched "Agent Pay for Machines," a multi-rail settlement layer spanning cards, accounts and stablecoins with more than 30 partners. We covered the agent-commerce protocols reaching general availability in Issue 13; this is the consumer-distribution layer landing on top of them. The two firms are now competing on where agent payments reach people and how the permissions are expressed.</p>
+
+  <table class="compare-table">
+    <thead><tr><th>Mechanism</th><th>Approach</th></tr></thead>
+    <tbody>
+      <tr><td>Visa + OpenAI</td><td>Tokenized card credentials, distributed inside ChatGPT</td></tr>
+      <tr><td>Mastercard</td><td>Multi-rail: cards, accounts and stablecoins, across 30+ partners</td></tr>
+      <tr><td>Distribution</td><td>Single high-traffic surface (ChatGPT) vs. broad partner ecosystem</td></tr>
+      <tr><td>Settlement</td><td>Card network vs. cards / accounts / stablecoins</td></tr>
+      <tr><td>Control model</td><td>Spending limits, merchant categories, approvals vs. programmatic permissioning</td></tr>
+    </tbody>
+  </table>
+
+  <h3>What changes in the loyalty and commerce-media patch</h3>
+  <p>For a fintech in the loyalty and commerce-media space, the standard is now being set by others. Bank customers will start asking how agent-initiated payments and per-use-case token scoping affect their rails, what data flows when an agent transacts, and where rewards and offers sit when the buyer is software. The decision in front of in-scope organisations is what to build against — and that decision is now anchored to whichever trust layer the market consolidates around.</p>
+
+  <p class="source-tag">Sources: <a href="https://investor.visa.com/news/news-details/2026/Visa-Partners-with-OpenAI-to-Power-the-Next-Generation-of-AI-Commerce/default.aspx">Visa Investor Relations</a>, <a href="https://siliconangle.com/2026/06/10/visa-partners-openai-let-ai-agents-make-payments-users/">SiliconANGLE</a>, <a href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html">Mastercard</a> (10 June 2026)</p>
+</section>
+
+<!-- ═══ QUICK TAKES — QT-A equal grid ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col">
+    <div class="quick-take-col">
+      <div class="qt-header" style="background:var(--accent-orange)">Management &amp; Teams</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat" style="color:var(--accent-orange)">50:1</div>
+        <div class="qt-anchor-context">the manager-of-many archetype</div>
+
+        <aside class="concept-of-week">
+          <span class="cw-label">Concept of the Week</span>
+          <span class="cw-term">Levelling / career framework</span>
+          <p class="cw-body">The structured ladder an org uses to define what each engineering level means — scope, autonomy, impact — and how someone moves up. It is the tool a manager uses to make promotion and pay decisions defensible rather than personal.</p>
+        </aside>
+
+        <h3 style="margin-top:0">The Engineering-Manager Role Is Splitting in Two</h3>
+        <p>Meta's new applied-AI engineering team, LeadDev reports, runs with a 50-to-1 employee-to-manager ratio. Amazon's Andy Jassy has mandated a 15% increase in the ratio of individual contributors (IC) to managers, and Gartner predicts that through 2026, 20% of organisations will use AI to flatten structures and eliminate more than half of their middle-management positions.</p>
+        <p>LeadDev's argument is that these numbers point to a role that is fracturing into two distinct jobs. One path stays close to the code — the tech-lead-manager (TLM), a manager who still owns technical direction for a single team. The other expands outward across many teams as a non-technical manager-of-many, where the job is coordination, prioritisation and people. What is being hollowed out is the middle: the pure coordination layer — status, tracking, summaries — that agent-mode tooling inside developer platforms now absorbs. That work is being automated by agents running multi-step tasks under human triggers, not by autonomous production agents, and the span of control a manager can hold widens as a result.</p>
+        <p class="so-what"><strong>The takeaway: the "engineering manager" is no longer one job, and orgs that level, hire and pay for it as one will mis-shape both tracks — the technical lead and the manager-of-many now need different ladders.</strong></p>
+        <p class="source-tag">Sources: <a href="https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two">LeadDev</a>, <a href="https://fortune.com/2026/06/09/ai-agents-flattening-corporate-hierarchies-companies-managers-develop-new-playbook/">Fortune</a> (9 June 2026)</p>
+      </div>
+    </div>
+    <div class="quick-take-col">
+      <div class="qt-header fintech">Banking, Fintech &amp; Loyalty</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat fintech">14+</div>
+        <div class="qt-anchor-context">banks and fintechs, one shared rulebook</div>
+
+        <aside class="jargon-watch">
+          <span class="jw-label">Jargon Watch</span>
+          <span class="jw-term">A2A (account-to-account)</span>
+          <p class="jw-body">Payments that move directly between bank accounts, bypassing the card networks.</p>
+          <span class="jw-term" style="margin-top:12px">VRP (variable recurring payments)</span>
+          <p class="jw-body">Pre-authorised payments that can vary in amount and timing — like a direct debit, but under open-banking permissions the payer controls.</p>
+          <span class="jw-term" style="margin-top:12px">Open-banking rulebook</span>
+          <p class="jw-body">A shared set of commercial and operational standards every participant follows, so the scheme works the same way across firms.</p>
+        </aside>
+
+        <h3 style="margin-top:0">UK Banks and Fintechs Launch a Shared A2A Scheme</h3>
+        <p>At Money20/20 in early June, a consortium of more than a dozen UK banks and fintechs — Barclays, HSBC, Lloyds, NatWest, Santander, Nationwide, Monzo, Revolut, Starling, GoCardless, Plaid, TrueLayer and Yapily among them — announced a shared open-banking scheme for recurring account-to-account (A2A) payments and variable recurring payments (VRP).</p>
+        <p>The scheme provides a common rulebook so recurring A2A payments behave consistently across participants, rather than each firm building its own bilateral arrangements. It is an industry-scheme launch — banks and fintechs collaborating commercially — not a regulator mandate or an FCA compliance action, which is what makes it notable: the ecosystem is organising itself around recurring payments that compete directly with cards.</p>
+        <p class="so-what"><strong>The takeaway: recurring A2A is moving from pilot to shared infrastructure in the UK, and any firm whose rails or loyalty propositions assume card payments now has a credible non-card alternative forming around it.</strong></p>
+        <p class="source-tag">Sources: <a href="https://www.fintechfutures.com/open-banking/uk-banks-and-fintechs-unite-to-launch-new-open-banking-payment-framework">FinTech Futures</a>, <a href="https://thepaypers.com/payments/news/uk-banks-and-fintechs-launch-open-banking-payment-scheme">The Paypers</a> (2 June 2026)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — number band ═══ -->
+<div class="mid-accent-band">
+  <div class="accent-stat">+98% / +91%</div>
+  <div class="accent-context">PRs merged rose 98% with AI assistance — but review time rose 91% alongside it. The throughput shifts; the bottleneck moves to human approval. (Faros / LinearB benchmarks.)</div>
+</div>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ IN PRACTICE ═══ -->
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Career frameworks &amp; ladder design <span class="section-time">(3 min)</span></span>
+</header>
+<section class="in-practice">
+  <span class="ip-evergreen">A classic worth revisiting</span>
+  <h3>Treating a Career Framework Redesign Like a Product</h3>
+  <div class="ip-attribution">Megan Allison &amp; Kelly Jacobs · Twilio, February 2024 · <a href="https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process">Read the full piece</a></div>
+
+  <div class="author-card">
+    <div class="ac-avatar">MA</div>
+    <div class="ac-meta">
+      <span class="ac-name">Megan Allison &amp; Kelly Jacobs</span>
+      <span class="ac-role">Redesigning Twilio's career development framework</span>
+      <span class="ac-date">Twilio · February 2024</span>
+    </div>
+    <a class="ac-link" href="https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process">twilio.com →</a>
+  </div>
+
+  <p>When Twilio set out to rework its career development framework (CDF) — the ladder defining what each level means and how people progress — Allison and Jacobs did not treat it as a policy edit. They ran it as a product, moving through the same sequence of stages a design team would use to ship anything else. The framework had users, and the redesign was built and tested against them rather than drafted in isolation and handed down.</p>
+
+  <div class="process-flow">
+    <div class="pf-step"><strong>Research</strong>Study the field and gather user pain points</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Analysis</strong>Find the patterns across ladders</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Exploration &amp; iteration</strong>Prototype and refine the model</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Critique &amp; testing</strong>Design critique and usability testing</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>Packaging &amp; rollout</strong>Ship it to the org</div>
+  </div>
+
+  <p>The research stage included studying how other organisations build ladders — Figma, Intercom and the UK Government Digital Service (GDS) among them. The pattern they found across all of them was that the levels wove together increasing scope, autonomy, leadership and strategic impact, rather than stacking up craft skills alone. That diagnosis named the problem with the old CDF directly: it over-emphasised craft at the lower levels and read as a long list of boxes to tick.</p>
+
+  <blockquote>"The CDF was too long and felt like an unobtainable checklist."</blockquote>
+
+  <p>The redesign acted on that feedback in concrete terms. The team collapsed the behavioural categories from nineteen down to five, cutting the redundancy users had flagged, and built promotion "cheat sheets" that spelled out which skills mattered at each step and what good looked like in practice — replacing ambiguous language and opaque weighting with worked examples. The rebalance they landed on was deceptively simple — "craft, then strategy" — sequencing the two so that lower levels build craft and higher levels add scope and strategic impact, rather than demanding both at once.</p>
+
+  <p>The transferable mechanism is the method itself, more than any specific ladder shape. Treating levelling as a product means researching the field, prototyping a model, and testing it with the people who will be levelled against it, before it becomes policy.</p>
+
+  <div class="ip-try">
+    <strong>What to try</strong>
+    The substitution test holds — a large engineering org ran its career-framework redesign as a product, and the method survives the swap. The next ladder revision is a candidate for the same treatment: researched and tested with its users, rather than drafted as a document and announced.
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Azure OpenAI publishes its retry-amplification post-mortem.</strong> The formal write-up of the 29 May 2026 incident details how automatic client retries amplified load — a retry storm that widened the blast radius (the set of systems an incident reaches) before traffic was shed. <span class="on-source"><a href="https://azure.status.microsoft/en-us/status/history/">Azure status history</a></span></li>
+    <li><strong>AI throughput benchmarks sharpen the review-bottleneck picture.</strong> Faros and LinearB data this week shows merged-PR volume rising far faster than review capacity, putting human approval — not generation — on the critical path. <span class="on-source"><a href="https://linearb.io/resources">LinearB</a></span></li>
+    <li><strong>Mastercard's agent-commerce ecosystem widens.</strong> The 30+ launch partners for Agent Pay for Machines — including Adyen, Checkout.com, Stripe, Coinbase and Cloudflare — signal that agent settlement is consolidating around a small number of multi-rail platforms. <span class="on-source"><a href="https://blockonomi.com/mastercard-agent-pay-adds-stablecoin-rails-for-machines/">Blockonomi</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ OUTSIDE IN — Format A ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Honeycomb Stopped Tracking Action Items — and Its Reviews Got Better</h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">LN</div>
+    <div class="ac-meta">
+      <span class="ac-name">Lex Neva</span>
+      <span class="ac-role">Incident Retrospective Ground Rules</span>
+      <span class="ac-date">Honeycomb · August 2024</span>
+    </div>
+    <a class="ac-link" href="https://www.honeycomb.io/blog/incident-retrospective-ground-rules">honeycomb.io →</a>
+  </div>
+
+  <p>"If you have improvement ideas or action items, I would encourage you to note them down for later rather than raising them during this meeting." That is one of the ground rules Lex Neva uses to open an incident retrospective at Honeycomb — and it inverts how most teams run them.</p>
+
+  <h3>The ritual that crowded out learning</h3>
+  <p>The conventional retrospective drives toward a list of action items. Neva's argument is that doing so during the review pulls attention away from the harder, more valuable work: actually understanding what happened. When a team rushes to fixes, it stops asking why the incident unfolded the way it did. So Honeycomb's ground rules deliberately defer the action-item hunt.</p>
+
+  <div class="oi-callout">
+    <p>"Once we have a better understanding of this incident, action items usually surface organically." The team found that the items they would have rushed to capture were mostly things they would have done anyway — and the ones that mattered emerged once the understanding was in place.</p>
+  </div>
+
+  <h3>Removing a ritual, not adding one</h3>
+  <p>The point worth sitting with is that the fix wasn't a better template — it was removing the ritual that crowded out learning. Honeycomb improved its incident reviews by taking something away, not by adding process. A post-mortem culture is shaped as much by what a team refuses to do in the room as by the artefact it produces afterward.</p>
+
+  <p class="so-what"><strong>The takeaway: a peer org improved its incident reviews by deferring the action-item hunt until the team understood the incident — a reminder that the artefacts a process produces and the learning it generates are separate things.</strong></p>
+
+
+  <p class="source-tag"><a href="https://www.honeycomb.io/blog/incident-retrospective-ground-rules">Read the full post: honeycomb.io →</a></p>
+</section>
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">23</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Chromium V8 patch deadline</strong> — CVE-2026-11645 federal mitigate-by date under CISA KEV. Confirm Chrome/Chromium rollout is complete.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">10</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Agent-commerce ecosystem momentum</strong> — Visa–OpenAI and Mastercard's Agent Pay for Machines both landed this week; expect bank-customer questions to follow.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-label">Ongoing</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Cisco SD-WAN active exploitation</strong> — edge appliances remain the priority; track PSIRT advisories.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-label">TBC</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>Azure dedicated-routing migration</strong> — completion targeted this month, following the 29 May retry-amplification incident.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ FEATURE BREAK ═══ -->
+<hr class="feature-break">
+
+<!-- ═══ LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Why Post-Mortems Fail <span class="section-time">(5 min)</span></h2>
+  <p>The post-mortem has quietly become one of engineering's most performed and least useful rituals. incident.io's argument is direct: post-mortems underperform because the document drifted from being written for people to being filed for process — completed to prove an incident was handled, then rarely read again.</p>
+
+  <div class="author-card">
+    <div class="ac-avatar">io</div>
+    <div class="ac-meta">
+      <span class="ac-name">incident.io engineering</span>
+      <span class="ac-role">The post-mortem problem</span>
+      <span class="ac-date">incident.io · 2026</span>
+    </div>
+    <a class="ac-link" href="https://incident.io/blog/the-post-mortem-problem">incident.io →</a>
+  </div>
+
+  <h3>The distinction that matters</h3>
+  <p>The piece's central distinction is between two things a post-mortem can be. As communication, it is a narrative written by people, for people — an honest account of what happened, why it unfolded the way it did, and who owns what comes next. As a compliance artifact, it is a form filled in to satisfy a process, complete the moment the boxes are ticked. A blameless post-mortem — one written to understand rather than to assign fault — only delivers value if it is also read.</p>
+
+  <div class="pull-quote" style="text-align:center;font-size:20px;background:rgba(255,255,255,.08);border-left:none;padding:24px 32px">
+    <p>"The actual problem is that somewhere along the way, the post-mortem stopped being a piece of communication and became a compliance artifact."</p>
+    <cite>— incident.io</cite>
+  </div>
+
+  <h3>What good looks like</h3>
+  <p>incident.io draws the contrast through concrete examples. The 2024 CrowdStrike incident — which the post describes as "bad content, a missed validation step, deployments that should have been staged but weren't" — is offered as a clean case where the interconnected chain of failures matters far more than naming any single root cause. The piece reaches for the Swiss cheese model to explain why: human systems are layers of cheese, each with random holes, and an incident happens only when a threat passes all the way through. A post-mortem that hunts for one root cause therefore misrepresents how incidents actually happen, because it stops at the first hole rather than mapping the alignment of several.</p>
+
+  <p>The fixes the piece argues for follow from the communication framing rather than from process. The first is timing: the best post-mortems, the author contends, are written while the incident "still stings a bit," because that is when people remember what they were actually thinking, not just what they did. The second is form — "tell a story, not a log" — walking a reader chronologically through what the team knew and when, so the document explains why rather than merely recording sequence. The third is specificity of ownership: "improve monitoring" is not an action, whereas a named owner adding a named alert by a named date is. Each fix is a way of writing for a future reader, not a checkbox added to a template.</p>
+
+  <p>Underneath the mechanics sits a distinction the post is careful about: the line between context and blame. "'Alex deployed the change' is context. 'Alex should have known better' is blame," the author writes — one describes what happened, the other assigns judgment. A blameless review, on this reading, is not one that omits names; it is one that records what people did and knew without grading their character, which is precisely what makes the account safe enough to be honest, and honest enough to be worth reading.</p>
+
+  <p>It is worth noting the throughline with this week's Outside In: Honeycomb improved its reviews by changing how it treats the artefact, not by adding tooling — a separate piece arguing, from the other end, the same underlying claim incident.io makes here. The value of a post-mortem is whether someone learns from it later, not whether the template was completed.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://incident.io/blog/the-post-mortem-problem" class="mgmt-link">Read the full article: incident.io →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> Was the team's last post-mortem written to be read by someone who wasn't in the incident — or to be filed?</p>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+
+  <aside class="rabbit-hole">
+    <div class="rabbit-hole-type">Paper</div>
+    <div class="rh-label">Down the Rabbit Hole</div>
+    <div class="rh-title"><a href="https://www.gallup.com/workplace/700718/span-control-optimal-team-size-managers.aspx">Span of Control: What's the Optimal Team Size for Managers?</a></div>
+    <p>A tangent off this week's role-split thread: Gallup finds the optimal span of control isn't a fixed number. The strongest predictor of engagement is whether a manager holds one meaningful conversation per report each week — and that holds regardless of how large the team gets.</p>
+  </aside>
+
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two">The engineering manager role is splitting in two</a></span><span class="source">leaddev.com</span></li>
+    <li><span class="title"><a href="https://incident.io/blog/the-post-mortem-problem">The post-mortem problem</a></span><span class="source">incident.io</span></li>
+    <li><span class="title"><a href="https://www.honeycomb.io/blog/incident-retrospective-ground-rules">Incident retrospective ground rules</a></span><span class="source">honeycomb.io</span></li>
+    <li><span class="title"><a href="https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process">Redesigning our career development framework as a product</a></span><span class="source">twilio.com</span></li>
+    <li><span class="title"><a href="https://linearb.io/resources">2026 engineering benchmarks: AI throughput and review load</a></span><span class="source">linearb.io</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">Week of 5–12 June 2026 · Weekly Edition · Issue #14</div>
+  <div class="footer-next">Next edition: Week of 12–19 June 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">15 May · Weekly</span>
+    <span class="archive-pill">22 May · Weekly</span>
+    <span class="archive-pill">29 May · Weekly</span>
+    <span class="archive-pill">5 Jun · Weekly</span>
+    <span class="archive-pill current">12 Jun · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>
