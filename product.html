@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digest — Product Edition — Archive</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ════════════════════════════════════════════════════════════════
+           PRODUCT EDITION ARCHIVE — sub-brand page (product-digest skill).
+           Gold/cream/left-aligned identity per assets/product-template.html.
+           Sibling of index.html (Engineering Edition); shares only the
+           edition-tabs chrome. Deliberately NO manifest, NO service worker,
+           NO alerts bar and NO data-issue-id attributes — the Product
+           Edition stays outside the engineering PWA / push-notification /
+           read-tracking machinery.
+           ════════════════════════════════════════════════════════════════ */
+        :root {
+            --navy: #13243B;
+            --ink: #2E2A26;
+            --gold: #BE8A28;
+            --gold-bright: #E0A93E;
+            --clay: #B5532E;
+            --cream: #FBF7EF;
+            --paper: #FFFFFF;
+            --line: #E8DFCF;
+            --muted: #9A8E7C;
+            --body: #433D35;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            color: var(--body);
+            background: #F4F0E6;
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @view-transition { navigation: auto; }
+
+        .archive-wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            background: var(--cream);
+            box-shadow: 0 0 60px rgba(19, 36, 59, .10);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══ EDITION TABS — shared chrome with index.html ═══ */
+        .edition-tabs { display: flex; background: #0A1628; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+        .edition-tabs a {
+            flex: 1; text-align: center; padding: 15px 10px 12px;
+            font-family: 'Source Sans 3', sans-serif; font-size: 12px;
+            font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+            text-decoration: none; color: rgba(255, 255, 255, .55);
+            border-bottom: 3px solid transparent;
+            transition: color 0.15s;
+        }
+        .edition-tabs a:hover { color: rgba(255, 255, 255, .85); }
+        .edition-tabs a.active { color: #FFF; }
+        .edition-tabs a.tab-eng.active { border-bottom-color: #00B4D8; }
+        .edition-tabs a.tab-prod.active { border-bottom-color: #E0A93E; }
+
+        /* ═══ COVER — left-aligned, per the sub-brand ═══ */
+        .cover {
+            background: var(--navy);
+            color: #FFF;
+            position: relative;
+        }
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gold);
+        }
+        .cover-inner { padding: 50px 56px 40px; }
+        .eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+        }
+        .masthead {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 56px;
+            line-height: .92;
+            margin: 10px 0 0;
+            color: #FFF;
+        }
+        .cover-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 19px;
+            color: rgba(255, 255, 255, .82);
+            margin-top: 16px;
+        }
+        .cover-archive-label {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .85);
+        }
+
+        /* ═══ ABOUT STRIP ═══ */
+        .about {
+            padding: 26px 56px;
+            border-bottom: 1px solid var(--line);
+        }
+        .about p {
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: var(--ink);
+            max-width: 660px;
+        }
+
+        /* ═══ ARCHIVE ═══ */
+        .content { padding: 30px 56px 48px; flex: 1; }
+
+        .sec-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--clay);
+            margin-bottom: 14px;
+        }
+
+        .pe-list { list-style: none; }
+        .pe-row {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            transition: background 0.15s;
+        }
+        .pe-row:last-child { border-bottom: none; }
+        .pe-row:hover { background: rgba(190, 138, 40, .07); }
+        .pe-row-date {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: .3px;
+            font-variant-numeric: tabular-nums;
+        }
+        .pe-row-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+            text-decoration: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .pe-row-title:hover { color: var(--clay); }
+        .pe-row-pdf {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 1.5px;
+            padding: 4px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            transition: color 0.15s, background 0.15s;
+        }
+        .pe-row-pdf:hover { color: var(--clay); background: rgba(181, 83, 46, .08); }
+
+        .pe-coming {
+            padding: 18px 22px;
+            background: var(--paper);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+        }
+        .pe-coming .pe-coming-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+        .pe-coming p { font-size: 15px; line-height: 1.6; color: var(--ink); }
+
+        /* ═══ FOOTER ═══ */
+        .footer { background: var(--navy); padding: 38px 56px 34px; }
+        .footer-vol {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 5px 13px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #FFF;
+            font-weight: 900;
+        }
+        .footer-sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 760px) {
+            .edition-tabs a { font-size: 11px; letter-spacing: 1.5px; padding: 13px 6px 10px; }
+            .cover-inner { padding: 36px 22px 30px; }
+            .masthead { font-size: 42px; }
+            .cover-tagline { font-size: 17px; }
+            .about { padding: 22px 22px; }
+            .content { padding: 24px 22px 36px; }
+            .pe-row { grid-template-columns: 60px 1fr auto; gap: 10px; padding: 10px 10px; }
+            .pe-row-title { font-size: 15px; }
+            .footer { padding: 32px 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="archive-wrap">
+
+        <!-- ═══ EDITION TABS ═══ -->
+        <nav class="edition-tabs" aria-label="Editions">
+            <a class="tab-eng" href="index.html">Engineering Edition</a>
+            <a class="tab-prod active" href="product.html" aria-current="page">Product Edition</a>
+        </nav>
+
+        <!-- ═══ COVER ═══ -->
+        <header class="cover">
+            <div class="cover-inner">
+                <div class="eyebrow">The Digest — Product Edition</div>
+                <h1 class="masthead">The Digest</h1>
+                <div class="cover-tagline">Product signals for commerce, loyalty &amp; payments — monthly</div>
+                <div class="cover-archive-label">The Archive</div>
+            </div>
+        </header>
+
+        <!-- ═══ ABOUT ═══ -->
+        <div class="about">
+            <p>
+                A monthly trend magazine for product managers and product leaders:
+                the month's movement in card-linked offers, cashback, rewards and the
+                adjacent tech — what changes a product decision — plus a couple of
+                grounded, sourced roadmap threads per issue.
+            </p>
+        </div>
+
+        <!-- ═══ ARCHIVE ═══ -->
+        <div class="content">
+            <div class="sec-label">Issues</div>
+
+            <!-- Issue rows go newest-first. Row template (note: NO data-issue-id /
+                 data-issue-date — the Product Edition stays out of the engineering
+                 read-state / missed-panel / tracking machinery, and published files
+                 live in product-issues/, never issues/, so the subscriber-notify
+                 workflow can't fire for them):
+
+            <ul class="pe-list">
+                <li class="pe-row">
+                    <span class="pe-row-date">Jun 2026</span>
+                    <a class="pe-row-title" href="product-issues/issue-1.html">Issue 1 — [Title]</a>
+                    <a class="pe-row-pdf" href="product-issues/issue-1.pdf">PDF</a>
+                </li>
+            </ul>
+            Remove the .pe-coming block below once the first issue is listed. -->
+
+            <div class="pe-coming">
+                <div class="pe-coming-label">First issue</div>
+                <p>Issue 1 lands with the June 2026 month-in-review. New issues monthly.</p>
+            </div>
+        </div>
+
+        <!-- ═══ FOOTER ═══ -->
+        <div class="footer">
+            <span class="footer-vol">Product Edition</span>
+            <div class="footer-brand">The Digest</div>
+            <div class="footer-sub">Product signals for commerce, loyalty &amp; payments — monthly</div>
+        </div>
+
+    </div>
+</body>
+</html>

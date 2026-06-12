@@ -85,7 +85,7 @@ Only after the issue is approved: update `product-digest-state.json` — increme
 **Where published issues live (repo conventions):**
 - Published HTML/PDF goes to `product-issues/issue-N.html` and `product-issues/issue-N.pdf`. **Never `issues/`** — that directory belongs to the Engineering Edition, and pushes adding `issues/issue-*.html` trigger its subscriber-notification workflow.
 - Run artefacts in `product-runs/issue-N/` are gitignored by default (test runs leave no footprint); when shipping a real issue, force-add the audit trail: `git add -f product-runs/issue-N/`.
-- Add a row for the new issue to the **Product Edition** section of `index.html` (the `pe-` prefixed block) and update its latest-issue card. Do not touch the Engineering Edition markup, styles, or scripts on that page.
+- Add a row for the new issue to the archive on **`product.html`** (the Product Edition's own page, reached via the edition tabs; row template is in a comment there — note rows carry no `data-issue-id`). On the first publish, remove the `.pe-coming` placeholder. Do not touch `index.html` beyond the shared edition-tabs chrome, and never alter the Engineering Edition markup, styles, or scripts.
 
 ## Cadence
 Monthly. Trend-led, look-back synthesis. Consider biweekly only if the trend pool consistently overflows; run a shorter issue honestly when the month is quiet.
