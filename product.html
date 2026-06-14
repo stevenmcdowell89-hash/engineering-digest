@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         /* ════════════════════════════════════════════════════════════════
-           PRODUCT EDITION ARCHIVE — sub-brand page (product-digest skill).
+           PRODUCT EDITION HOME / ARCHIVE — sub-brand page (product-digest skill).
            Gold/cream/left-aligned identity per assets/product-template.html.
            Sibling of index.html (Engineering Edition); shares only the
            edition-tabs chrome. Deliberately NO manifest, NO service worker,
@@ -51,6 +51,8 @@
             display: flex;
             flex-direction: column;
         }
+
+        a { color: var(--clay); text-decoration: none; }
 
         /* ═══ EDITION TABS — shared chrome with index.html ═══ */
         .edition-tabs { display: flex; background: #0A1628; border-bottom: 1px solid rgba(255, 255, 255, .12); }
@@ -117,6 +119,39 @@
             color: rgba(255, 255, 255, .85);
         }
 
+        /* ═══ STATS STRIP — "at a glance", beneath the cover ═══ */
+        .stats-strip {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0;
+            padding: 18px 56px;
+            background: rgba(190, 138, 40, .08);
+            border-bottom: 1px solid var(--line);
+        }
+        .stats-strip .ss-item {
+            flex: 0 0 auto;
+            padding: 0 30px;
+            text-align: left;
+            border-right: 1px solid var(--line);
+        }
+        .stats-strip .ss-item:first-child { padding-left: 0; }
+        .stats-strip .ss-item:last-child { border-right: none; }
+        .stats-strip .ss-figure {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .stats-strip .ss-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
         /* ═══ ABOUT STRIP ═══ */
         .about {
             padding: 26px 56px;
@@ -129,8 +164,140 @@
             max-width: 660px;
         }
 
-        /* ═══ ARCHIVE ═══ */
-        .content { padding: 30px 56px 48px; flex: 1; }
+        /* ═══ SPOTLIGHT — latest issue, highlighted ═══ */
+        .spotlight-wrap { padding: 40px 56px 8px; }
+        .spotlight-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .spotlight-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+        .spotlight {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 36px;
+            padding: 32px 36px 32px 40px;
+            background: var(--paper);
+            border-left: 4px solid var(--gold);
+            border-radius: 4px;
+        }
+        .spotlight .sp-ribbon {
+            position: absolute;
+            top: 0;
+            right: 36px;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-radius: 0 0 2px 2px;
+        }
+        .spotlight .issue-type {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            border-radius: 2px;
+            margin-bottom: 14px;
+            background: var(--navy);
+            color: #FFF;
+        }
+        .spotlight h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 31px;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.14;
+            margin-bottom: 10px;
+        }
+        .spotlight h2 a { color: var(--navy); }
+        .spotlight h2 a:hover { color: var(--clay); }
+        .spotlight .date {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 14px;
+            letter-spacing: .3px;
+        }
+        .spotlight .summary {
+            font-size: 15px;
+            color: var(--body);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+        .spotlight .links { display: flex; gap: 12px; }
+        .spotlight .links a {
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 18px;
+            border-radius: 3px;
+            letter-spacing: .5px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .spotlight .links a.primary {
+            background: var(--gold);
+            color: var(--navy);
+            border: 1px solid var(--gold);
+        }
+        .spotlight .links a.primary:hover { background: var(--clay); border-color: var(--clay); color: #FFF; }
+        .spotlight .links a.secondary {
+            background: transparent;
+            color: var(--clay);
+            border: 1px solid var(--clay);
+        }
+        .spotlight .links a.secondary:hover { background: var(--clay); color: #FFF; }
+
+        .spotlight .sp-aside {
+            border-left: 1px solid var(--line);
+            padding-left: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .spotlight .sp-aside-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--clay);
+            margin-bottom: 12px;
+        }
+        .spotlight .sp-aside ul { list-style: none; }
+        .spotlight .sp-aside li {
+            font-size: 13px;
+            color: var(--body);
+            line-height: 1.5;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .spotlight .sp-aside li:last-child { border-bottom: none; }
+        .spotlight .sp-aside li strong {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2px;
+        }
+
+        /* ═══ ARCHIVE — grouped by month ═══ */
+        .content { padding: 32px 56px 48px; flex: 1; }
 
         .sec-label {
             font-size: 11px;
@@ -138,7 +305,32 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--clay);
-            margin-bottom: 14px;
+            margin-bottom: 6px;
+        }
+
+        .month-group { margin-top: 26px; }
+        .month-group:first-of-type { margin-top: 14px; }
+        .month-header {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 6px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+        }
+        .month-header .mh-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .3px;
+        }
+        .month-header .mh-count {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
         }
 
         .pe-list { list-style: none; }
@@ -184,21 +376,17 @@
         }
         .pe-row-pdf:hover { color: var(--clay); background: rgba(181, 83, 46, .08); }
 
-        .pe-coming {
-            padding: 18px 22px;
+        /* Empty-state shown in the archive until a previous issue exists below the latest */
+        .pe-archive-empty {
+            padding: 16px 22px;
             background: var(--paper);
             border-left: 4px solid var(--gold);
             border-radius: 0 4px 4px 0;
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: var(--ink);
+            margin-top: 10px;
         }
-        .pe-coming .pe-coming-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 6px;
-        }
-        .pe-coming p { font-size: 15px; line-height: 1.6; color: var(--ink); }
 
         /* ═══ FOOTER ═══ */
         .footer { background: var(--navy); padding: 38px 56px 34px; }
@@ -231,10 +419,29 @@
             .cover-inner { padding: 36px 22px 30px; }
             .masthead { font-size: 42px; }
             .cover-tagline { font-size: 17px; }
+            .stats-strip { padding: 14px 22px; flex-wrap: wrap; gap: 8px 0; }
+            .stats-strip .ss-item { padding: 0 18px; }
+            .stats-strip .ss-item:first-child { padding-left: 0; }
+            .stats-strip .ss-figure { font-size: 24px; }
             .about { padding: 22px 22px; }
+            .spotlight-wrap { padding: 30px 22px 4px; }
+            .spotlight {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 26px 22px;
+            }
+            .spotlight .sp-ribbon { right: 16px; }
+            .spotlight h2 { font-size: 25px; }
+            .spotlight .sp-aside {
+                border-left: none;
+                border-top: 1px solid var(--line);
+                padding-left: 0;
+                padding-top: 18px;
+            }
             .content { padding: 24px 22px 36px; }
             .pe-row { grid-template-columns: 60px 1fr auto; gap: 10px; padding: 10px 10px; }
             .pe-row-title { font-size: 15px; }
+            .month-header .mh-title { font-size: 16px; }
             .footer { padding: 32px 22px; }
         }
     </style>
@@ -258,6 +465,26 @@
             </div>
         </header>
 
+        <!-- ═══ STATS STRIP — update counts on each publish (see SKILL.md On Publish) ═══ -->
+        <div class="stats-strip">
+            <div class="ss-item">
+                <div class="ss-figure">1</div>
+                <div class="ss-label">Issue</div>
+            </div>
+            <div class="ss-item">
+                <div class="ss-figure">4</div>
+                <div class="ss-label">Trends tracked</div>
+            </div>
+            <div class="ss-item">
+                <div class="ss-figure">2</div>
+                <div class="ss-label">Roadmap threads</div>
+            </div>
+            <div class="ss-item">
+                <div class="ss-figure">Jun</div>
+                <div class="ss-label">Since 2026</div>
+            </div>
+        </div>
+
         <!-- ═══ ABOUT ═══ -->
         <div class="about">
             <p>
@@ -268,32 +495,67 @@
             </p>
         </div>
 
-        <!-- ═══ ARCHIVE ═══ -->
+        <!-- ═══ SPOTLIGHT — latest issue (becomes an archive row when the next issue ships) ═══ -->
+        <div class="spotlight-wrap">
+            <div class="spotlight-label">This Month's Issue</div>
+            <div class="spotlight">
+                <span class="sp-ribbon">Latest</span>
+                <div class="sp-main">
+                    <span class="issue-type">Monthly · Issue 1</span>
+                    <h2><a href="product-issues/issue-1.html">Agentic Trust Rails, the First New UK Payment Scheme Since 2008, and the Wallet's Bid for Loyalty</a></h2>
+                    <div class="date">12 June 2026 &middot; covering 13 May &ndash; 12 June 2026</div>
+                    <div class="summary">
+                        The month's biggest moves were about new rails, not new value. Visa and Mastercard specified the trust layer for agent-led checkout on a single June day — with loyalty nowhere in it. The UK switched on its first new payment scheme since 2008, and the first products on it target recurring spend. Apple's iOS 27 turned the wallet into a recruiter of loyalty cards. And Lloyds, Chase and Nationwide gave three different answers to what a reward is for.
+                    </div>
+                    <div class="links">
+                        <a href="product-issues/issue-1.html" class="primary">Read Online</a>
+                        <a href="product-issues/issue-1.pdf" class="secondary">Download PDF</a>
+                    </div>
+                </div>
+                <aside class="sp-aside">
+                    <div class="sp-aside-label">In This Issue</div>
+                    <ul>
+                        <li><strong>Trend 01</strong>Agentic commerce builds its trust layer</li>
+                        <li><strong>Trend 02</strong>Pay by Bank goes operational</li>
+                        <li><strong>Trend 03</strong>The OS wallet bids for loyalty</li>
+                        <li><strong>Trend 04</strong>Rewards, re-gated</li>
+                        <li><strong>For the roadmap</strong>The A2A coverage gap · loyalty absent from the agent rails</li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ═══ ARCHIVE — the full backlog, grouped by month, newest first ═══
+             Rows carry NO data-issue-id / data-issue-date — the Product Edition stays
+             out of the engineering read-state / missed-panel / tracking machinery, and
+             published files live in product-issues/, never issues/, so the
+             subscriber-notify workflow can't fire for them.
+
+             On publish (see SKILL.md On Publish): the outgoing spotlight issue moves
+             into its month group here as a .pe-row, and the new issue takes the
+             spotlight. Remove the .pe-archive-empty block once a row exists below.
+
+             Row template:
+             <div class="month-group">
+                 <div class="month-header">
+                     <span class="mh-title">June 2026</span>
+                     <span class="mh-count">1 issue</span>
+                 </div>
+                 <ul class="pe-list">
+                     <li class="pe-row">
+                         <span class="pe-row-date">12 Jun</span>
+                         <a class="pe-row-title" href="product-issues/issue-1.html">Issue 1 — Title</a>
+                         <a class="pe-row-pdf" href="product-issues/issue-1.pdf">PDF</a>
+                     </li>
+                 </ul>
+             </div>
+        -->
         <div class="content">
-            <div class="sec-label">Issues</div>
-
-            <!-- Issue rows go newest-first. Row template (note: NO data-issue-id /
-                 data-issue-date — the Product Edition stays out of the engineering
-                 read-state / missed-panel / tracking machinery, and published files
-                 live in product-issues/, never issues/, so the subscriber-notify
-                 workflow can't fire for them):
-
-            <ul class="pe-list">
-                <li class="pe-row">
-                    <span class="pe-row-date">Jun 2026</span>
-                    <a class="pe-row-title" href="product-issues/issue-1.html">Issue 1 — [Title]</a>
-                    <a class="pe-row-pdf" href="product-issues/issue-1.pdf">PDF</a>
-                </li>
-            </ul>
-            -->
-
-            <ul class="pe-list">
-                <li class="pe-row">
-                    <span class="pe-row-date">12 Jun 2026</span>
-                    <a class="pe-row-title" href="product-issues/issue-1.html">Issue 1 — Agentic Trust Rails, the First New UK Payment Scheme Since 2008, and the Wallet's Bid for Loyalty</a>
-                    <a class="pe-row-pdf" href="product-issues/issue-1.pdf">PDF</a>
-                </li>
-            </ul>
+            <div class="sec-label">The Archive</div>
+            <div class="pe-archive-empty">
+                Issue 1 is the first edition — it's featured above. Previous issues will gather
+                here as new ones publish each month.
+            </div>
         </div>
 
         <!-- ═══ FOOTER ═══ -->

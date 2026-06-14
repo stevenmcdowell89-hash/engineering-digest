@@ -105,7 +105,12 @@ Only after the issue is approved: update `product-digest-state.json` — increme
 **Where published issues live (repo conventions):**
 - Published HTML/PDF goes to `product-issues/issue-N.html` and `product-issues/issue-N.pdf`. **Never `issues/`** — that directory belongs to the Engineering Edition, and pushes adding `issues/issue-*.html` trigger its subscriber-notification workflow.
 - Run artefacts in `product-runs/issue-N/` are gitignored by default (test runs leave no footprint); when shipping a real issue, force-add the audit trail: `git add -f product-runs/issue-N/`.
-- Add a row for the new issue to the archive on **`product.html`** (the Product Edition's own page, reached via the edition tabs; row template is in a comment there — note rows carry no `data-issue-id`). On the first publish, remove the `.pe-coming` placeholder. Do not touch `index.html` beyond the shared edition-tabs chrome, and never alter the Engineering Edition markup, styles, or scripts.
+- Update **`product.html`** (the Product Edition's own home/archive page, reached via the edition tabs). It mirrors the engineering `index.html` treatment — stats strip, a highlighted latest-issue spotlight, and a month-grouped backlog. Four edits per publish (templates are in HTML comments on the page; rows carry no `data-issue-id`):
+  1. **Stats strip** — `Issue(s)` = `last_issue_number`; `Trends tracked` = total entries in `trend_history`; `Roadmap threads` = total entries in `roadmap_threads_history`; `Since` month unchanged.
+  2. **Spotlight** — replace with the new issue: `issue-type` ("Monthly · Issue N"), linked title, date line (publish date · covering window), a 60–80 word summary (the issue's through-thread, not a contents list), Read Online + Download PDF links, and the **In This Issue** aside listing this issue's trends (Trend 01…0N) plus a "For the roadmap" line naming the issue's roadmap threads.
+  3. **Archive** — move the *outgoing* spotlight issue into its month group as a `.pe-row` (create the `.month-header` if it's a new month; bump the `mh-count`). On the first such move, delete the `.pe-archive-empty` placeholder.
+  4. Leave the cover, about strip, and footer as-is.
+- Do not touch `index.html` beyond the shared edition-tabs chrome, and never alter the Engineering Edition markup, styles, or scripts.
 
 ## Cadence
 Monthly. Trend-led, look-back synthesis. Consider biweekly only if the trend pool consistently overflows; run a shorter issue honestly when the month is quiet.
