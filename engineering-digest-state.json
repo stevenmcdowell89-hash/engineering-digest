@@ -1,18 +1,18 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 14 deliver (2026-06-12).",
+  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 15 deliver (2026-06-19).",
 
-  "last_issue_number": 14,
-  "last_issue_date": "2026-06-12",
+  "last_issue_number": 15,
+  "last_issue_date": "2026-06-19",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Wider engineering landscape",
+  "last_lead_topic": "Ways of working",
   "last_lead_topics_3issues": [
-    "Ways of working",
     "Wider engineering landscape",
-    "Wider engineering landscape"
+    "Wider engineering landscape",
+    "Ways of working"
   ],
-  "consecutive_non_deepdive": 6,
+  "consecutive_non_deepdive": 7,
 
-  "last_outside_in_company": "Honeycomb",
+  "last_outside_in_company": "Datadog",
   "outside_in_history": [
     { "issue": 1, "company": "Monzo", "source": "Suhail Patel — QCon talk" },
     { "issue": 6, "company": "Revolut", "source": "Revolut launches AI financial assistant" },
@@ -22,10 +22,11 @@
     { "issue": 11, "company": "Linear", "source": "Linear engineering-craft conservatism / reliability bar" },
     { "issue": 12, "company": "incident.io", "source": "Customers over control — measuring on-call reliability from the customer's outcome" },
     { "issue": 13, "company": "Vercel", "source": "Design engineering at Vercel — collapsing the design-to-frontend handoff" },
-    { "issue": 14, "company": "Honeycomb", "source": "Lex Neva — Incident Retrospective Ground Rules (dropping action-item tracking in reviews)" }
+    { "issue": 14, "company": "Honeycomb", "source": "Lex Neva — Incident Retrospective Ground Rules (dropping action-item tracking in reviews)" },
+    { "issue": 15, "company": "Datadog", "source": "DASH 2026 — instrumenting post-incident review as a reportable governance metric" }
   ],
 
-  "last_leadership_read": "incident.io",
+  "last_leadership_read": "LeadDev",
   "leadership_read_history": [
     { "issue": 7, "source": "LeadDev", "piece": "The end of the non-technical engineering manager" },
     { "issue": 9, "source": "Pragmatic Engineer", "piece": "Five recommendations for platform teams in 2026" },
@@ -33,29 +34,31 @@
     { "issue": 11, "source": "Honeycomb", "piece": "The next era of observability — founders' reflections (additional Q&A)" },
     { "issue": 12, "source": "LeadDev", "piece": "A manager's guide to performance calibration" },
     { "issue": 13, "source": "Fortune", "piece": "The middle-manager cuts saving millions today build the empty pipeline of 2028" },
-    { "issue": 14, "source": "incident.io", "piece": "Why post-mortems fail" }
+    { "issue": 14, "source": "incident.io", "piece": "Why post-mortems fail" },
+    { "issue": 15, "source": "LeadDev", "piece": "The engineering manager role is splitting in two (Stephane Moreau, Zopa Bank)" }
   ],
 
-  "last_editorial_moment": "number_of_the_week",
+  "last_editorial_moment": "quote_of_the_week",
   "last_lead_opener": "summary-first",
-  "last_qt_layout": "qt-a",
+  "last_qt_layout": "qt-b",
   "last_oi_format": "A",
 
   "last_feature_date": null,
   "last_stack_date": null,
   "last_rabbit_hole_date": "2026-06-12",
 
-  "current_in_practice_season": "Career frameworks & ladder design",
-  "in_practice_season_progress": 1,
+  "current_in_practice_season": null,
+  "in_practice_season_progress": 0,
   "in_practice_season_candidates": [],
   "in_practice_history": [
     { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" },
     { "issue": 12, "piece_title": "Managing Managers: A Very Short Director's Guide", "author": "Jay Vilalta", "url": "https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/" },
     { "issue": 13, "piece_title": "Scaling to 100+ as a Director: Lessons From Growing Engineering Organizations", "author": "Thiago Ghisi", "url": "https://www.infoq.com/presentations/scaling-engineering-teams/" },
-    { "issue": 14, "piece_title": "Treating a Career Framework Redesign Like a Product", "author": "Megan Allison & Kelly Jacobs", "url": "https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process" }
+    { "issue": 14, "piece_title": "Treating a Career Framework Redesign Like a Product", "author": "Megan Allison & Kelly Jacobs", "url": "https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process" },
+    { "issue": 15, "piece_title": "Engineering Leadership Lessons from LDX3 2026 (hiring loops in the agent era)", "author": "Stephane Moreau", "url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026" }
   ],
 
-  "_season_note": "Season 'Manager-of-managers craft' ENDED at 3 issues on the Issue 14 run (cut short rather than drag — no fresh qualifying journey piece). New season 'Career frameworks & ladder design' started at Issue 14 (week 1).",
+  "_season_note": "Season 'Career frameworks & ladder design' (started Issue 14, week 1) was CUT SHORT at the Issue 15 run — no fresh 2026 named-author career-ladder journey piece existed (all candidates were 2019-2024). Per the 'cut rather than drag' rule the season closed at week 1 rather than dragging in an evergreen framework guide. Issue 15 ran an off-theme qualifying In Practice piece (LDX3 2026 hiring-loop recap, Stephane Moreau); season progress was NOT incremented for the off-theme piece. current_in_practice_season is null — the next run sets the new theme.",
 
   "p0_stories_tracking": []
 }

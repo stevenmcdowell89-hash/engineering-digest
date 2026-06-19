@@ -1,0 +1,342 @@
+{
+  "issue_number": 15,
+  "date_window": { "from": "2026-06-12", "to": "2026-06-19" },
+  "generated_at": "2026-06-19T00:00:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Wider engineering landscape",
+    "last_lead_topics_3issues": ["Ways of working", "Wider engineering landscape", "Wider engineering landscape"],
+    "last_outside_in_company": "Honeycomb",
+    "outside_in_history": ["Monzo", "Revolut", "Ramp", "Cloudflare", "Wise", "Linear", "incident.io", "Vercel", "Honeycomb"],
+    "current_in_practice_season": "Career frameworks & ladder design",
+    "in_practice_history": ["Monzo EM expectations", "Managing Managers (Vilalta)", "Scaling to 100+ (Ghisi)", "Twilio career-framework redesign"]
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering manager career framework ladder redesign engineering org June 2026",
+        "engineering leadership management teams calibration performance June 2026",
+        "engineering org restructure layoffs middle managers AI engineering June 2026",
+        "engineering manager career ladder redesign journey story company blog 2026 named author",
+        "engineering manager levelling calibration we redesigned 2026 blog journey first-person"
+      ],
+      "candidates": [
+        {
+          "headline": "The engineering manager role is splitting into a tech-lead-manager track and a multi-team-scope track — and most firms haven't chosen which",
+          "source_name": "LeadDev (Stephane Moreau, Senior EM at Zopa Bank)",
+          "source_url": "https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two",
+          "published_date": "2026-06-09",
+          "beat": "management_teams",
+          "summary": "Moreau argues the EM role is fragmenting: one path keeps managers close to code as tech-lead-managers over small teams; the other expands scope across many teams with little technical involvement. Cites Meta's new applied-AI team running a 50:1 employee-to-manager ratio, and research that managers with 15+ reports score 20% lower on team engagement than those with 7 or fewer.",
+          "so_what": "This reframes the career-frameworks and span-of-control conversation engineering leaders are having right now: which EM model the org is funding, and what ladder design supports it, is becoming an explicit decision rather than drift.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "chartable_data": "span-of-control comparison: 50:1 (Meta applied-AI) vs 7-or-fewer vs 15+ reports with 20% engagement delta; Gartner 20%-of-orgs-flatten-by-2026 stat",
+          "jargon_terms": ["tech-lead-manager", "span of control", "50:1 ratio"],
+          "notes": "Author is a UK fintech (Zopa Bank) EM — strong UK relevance. Essay, so cannot be the Lead under the v1.32 news-event Lead test; strong Leadership Read or Management & teams QT/anchor framing. Same author wrote the blog4ems LDX3 recap below — adjacent-source caution if both used."
+        },
+        {
+          "headline": "Meta rebuilt its engineering interview around AI-native assessment after testing it across 9,000 interviews",
+          "source_name": "blog4ems (Stephane Moreau, LDX3 2026 recap)",
+          "source_url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026",
+          "published_date": "2026-06-09",
+          "beat": "management_teams",
+          "summary": "Recap of LDX3 2026 talks: Danit Nativ Navon's Meta team rebuilt interviews to evaluate problem exploration, code quality, AI-output validation and dual communication (verbal to interviewers, written prompts to AI), tested across 9,000 interviews before an April 2026 launch. Also surfaces Nicole Forsgren's three friction types (velocity, cognitive, knowledge) and Wise's Rick Clegg on workflow-integrated AI that adds legibility, not just speed.",
+          "so_what": "Hiring-loop and interview-design decisions are being rewritten for the agent era; leaders running interview panels face a concrete redesign question this quarter.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "jargon_terms": ["AI-native assessment", "velocity/cognitive/knowledge friction"],
+          "notes": "Conference recap (LDX3 2026). Partly behind a paywall. Same author as the LeadDev piece above — do not place adjacent. Wise content here means Wise surfaces; Wise is in Outside In history but eligible elsewhere."
+        },
+        {
+          "headline": "Meta cuts ~8,000 roles with management positions hit hardest as budget shifts to AI infrastructure",
+          "source_name": "LatestLY / 2026 layoffs coverage",
+          "source_url": "https://www.latestly.com/technology/meta-layoffs-2026-8000-jobs-cut-as-zuckerberg-shifts-focus-to-ai-middle-managers-and-software-developers-face-largest-reductions-7469748.html",
+          "published_date": "2026-06-15",
+          "beat": "management_teams",
+          "summary": "Meta confirmed roughly 8,000 cuts with 1,400+ management positions eliminated (nearly a third of the total), reallocating to AI infrastructure. Mid-level coordination roles emerged as a vulnerable category as AI automates sprint planning, status reporting and dependency tracking. Sits alongside GitLab's flattening and Atlassian's 1,600-cut / 800-AI-hire mix.",
+          "so_what": "The middle-management squeeze is now a sector pattern, not one company — it changes how leaders justify management layers and plan org shape.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "Secondary outlet; corroborate against a primary source (company filing / Reuters) before anchoring. Pairs thematically with GitLab restructure in ways_of_working."
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "DORA report 2026 AI coding adoption developer productivity findings",
+        "internal developer platform AI agents rollout team workflow June 2026",
+        "GitLab restructure agentic AI era flatten management layers June 2026",
+        "engineering leadership essay managing through AI transition org structure June 2026 LeadDev OR Pragmatic Engineer",
+        "GitHub Stripe Datadog Pinterest engineering blog AI agents in production reliability decision June 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "GitLab restructures for the 'agentic era' — 7% cuts, up to three management layers removed, R&D split into ~60 autonomous teams",
+          "source_name": "TNW / heise / GitLab Act 2 blog",
+          "source_url": "https://thenextweb.com/news/gitlab-cuts-7-of-workforce-and-flattens-management-in-sweeping-agentic-era-restructuring",
+          "published_date": "2026-06-02",
+          "beat": "ways_of_working",
+          "summary": "GitLab announced (11 May, financial scope detailed 2 June alongside Q1 FY27 results) a restructure cutting ~7% of staff, reducing country presence up to 30%, removing up to three management layers in some functions, and reorganising R&D into ~60 small autonomous teams with AI agents automating internal reviews and approvals. CEO Bill Staples framed it as 'software built by machines, directed by people'.",
+          "so_what": "A devtools vendor is publicly redesigning team topology and management layers around agents — a concrete reference point for the org-shape conversation leaders are now forced to have.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "chartable_data": "before/after org shape: 3 management layers removed, R&D into ~60 teams, 7% headcount, 30% country reduction — process-flow or comparison table",
+          "jargon_terms": ["agentic era", "team topology", "RIF"],
+          "notes": "Strong Lead candidate and restores breadth (Ways of working / org design, not Wider-landscape). News event. Initial announcement 11 May; the 2 June financial detail + continued reaction keeps it in-window under the traction exception — frame around what is new this week. GitLab not in Outside In history, so also eligible as Outside In."
+        },
+        {
+          "headline": "DORA's 2026 follow-up: AI lifts throughput (epics-per-developer up 66%) but PR review time has ballooned 441%",
+          "source_name": "InfoQ (on DORA 2026 / State of AI-assisted Software Development)",
+          "source_url": "https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/",
+          "published_date": "2026-05-28",
+          "beat": "ways_of_working",
+          "summary": "DORA's latest analysis (22,000+ developers) reports organisational throughput gains — epics completed per developer up 66.2% — but quality/stability signals worsening, with median time in PR review up 441% (vs 91% the prior year). AI acts as a multiplier of existing engineering conditions: it strengthens high-performing teams and exposes weakness in fragmented ones.",
+          "so_what": "The review-bottleneck is now the measurable cost of AI throughput; it changes where leaders invest (review capacity, refinement discipline) rather than chasing raw speed.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "chartable_data": "two contrasting metrics: +66.2% epics/dev vs +441% PR review time — grouped bar or sparkline",
+          "jargon_terms": ["DORA", "epics-per-developer", "PR review time"],
+          "notes": "May 28 — borderline on the 7-day window. Use only under the traction exception if still generating reaction this week, else demote to On the Radar. DORA was covered earlier in the year (J-Curve / verification tax) — check no-repeat-featured-anchor before anchoring."
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "AWS GCP Azure outage June 2026 cloud incident postmortem",
+        "npm supply chain attack CVE actively exploited June 2026",
+        "engineering team operating at scale production reliability postmortem story June 2026",
+        "Netflix Spotify Atlassian Datadog engineering blog on-call incident culture scaling June 2026",
+        "Mastra npm supply chain attack easy-day-js June 17 2026 RAT backdoor"
+      ],
+      "candidates": [
+        {
+          "headline": "Mastra npm scope takeover backdoors 140+ AI-framework packages via an easy-day-js typosquat — linked to North Korean APT BlueNoroff",
+          "source_name": "StepSecurity / Snyk / JFrog",
+          "source_url": "https://www.stepsecurity.io/blog/mastra-npm-packages-compromised-using-easy-day-js",
+          "published_date": "2026-06-17",
+          "beat": "operating_at_scale",
+          "summary": "On 17 June an attacker took over the @mastra npm scope and mass-published 144 malicious versions in an 88-minute window, adding 'easy-day-js' (a dayjs typosquat) as a dependency. A postinstall dropper pulled a cross-platform RAT that harvests crypto-wallet extensions and browser data. Snyk and Orca attribute the tradecraft to Sapphire Sleet (BlueNoroff), elevating it to a nation-state campaign targeting AI tooling. ~1.1M weekly downloads exposed.",
+          "so_what": "Supply-chain risk now specifically targets AI-framework ecosystems and developer machines — a 'do my teams need to act this week, and what's our dependency-vetting posture' conversation.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "jargon_terms": ["typosquat", "postinstall dropper", "RAT", "BlueNoroff / Sapphire Sleet", "npm scope takeover"],
+          "notes": "Audience-fit gate: remediation is the pipeline-owner's job, so per Issue-10 Mini Shai-Hulud precedent this is Week at a Glance / Action Required, NOT a Quick Take or Lead. The nation-state + AI-tooling-targeting angle gives narrative weight but the reader's action is 'be aware / delegate'. Recurring pattern with the June 1 Red Hat npm worm — possible throughline."
+        },
+        {
+          "headline": "Datadog ships postmortem governance: statuses, owners, and org-wide SEV-1 postmortem-coverage reporting",
+          "source_name": "Datadog (DASH 2026)",
+          "source_url": "https://www.datadoghq.com/blog/dash-2026-new-feature-roundup-scale/",
+          "published_date": "2026-06-11",
+          "beat": "operating_at_scale",
+          "summary": "At DASH 2026 Datadog added postmortem management — Draft / In Review / Completed statuses, dedicated postmortem owners, and exposure of this as incident facets so leadership can report on postmortem coverage (e.g. % of SEV-1s with a completed postmortem). Turns post-incident review from a cultural norm into a measurable, reportable governance discipline.",
+          "so_what": "Post-incident review is being instrumented as a leadership metric; it changes how heads of engineering evidence reliability maturity rather than asserting it.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "chartable_data": "postmortem lifecycle as a 3-state process-flow (Draft -> In Review -> Completed); SEV-1 coverage % as a stat tile",
+          "jargon_terms": ["postmortem", "SEV-1", "incident facets"],
+          "notes": "Vendor feature ship — classify by the operational decision (post-incident governance / Ways of working) not by being a tool. Connects to Issue 14 Honeycomb/Lex Neva 'drop action-item tracking' Outside In as a contrasting view on post-incident discipline — possible throughline."
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "Monzo Starling Revolut Wise engineering blog June 2026",
+        "card-linked offers cashback loyalty commerce media platform launch June 2026",
+        "Visa Mastercard agentic commerce protocol payments rail June 2026",
+        "Mastercard Agent Pay for Machines June 2026 launch announcement",
+        "Cardlytics Fidel Bink Kard card-linked offers loyalty platform news June 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Mastercard launches Agent Pay for Machines — an open protocol for AI agents to transact and settle micropayments across cards, accounts and stablecoin rails",
+          "source_name": "Mastercard / Finextra / FF News",
+          "source_url": "https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html",
+          "published_date": "2026-06-10",
+          "beat": "banking_fintech_loyalty",
+          "summary": "On 10 June Mastercard launched Agent Pay for Machines (AP4M), letting verified AI agents transact autonomously at machine speed including sub-cent micropayments, with credentials/permissions stored on public blockchains (Polygon, Solana, Base) and 31 launch partners including Adyen, Stripe, Coinbase and Cloudflare. Same week Visa announced an OpenAI partnership for agent tokenisation and authorization — the two networks are racing to become the trust layer for agentic commerce.",
+          "so_what": "Agentic-commerce payment rails are becoming real infrastructure; bank customers will start asking how their loyalty/commerce-media stack handles agent-initiated transactions and tokenised consent.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "chartable_data": "Visa vs Mastercard agentic-commerce approach comparison table (tokenisation model, rails, launch partners, consent binding)",
+          "jargon_terms": ["agentic commerce", "Agent Pay for Machines / AP4M", "agentic tokens", "AP2", "stablecoin rail"],
+          "notes": "Direct loyalty / commerce-media relevance — the reader's vertical. Wider-landscape cross-industry cascade with a loyalty surfacing note per v1.32. Strong QT candidate; news event."
+        },
+        {
+          "headline": "Monzo's Ops Agent: building an LLM customer-operations agent with rigorous evaluation before automating end-to-end workflows",
+          "source_name": "Monzo Engineering Blog",
+          "source_url": "https://monzo.com/blog/engineering-the-future-of-customer-operations-the-monzo-ops-agent",
+          "published_date": "2026-06-04",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Monzo describes engineering an LLM-based operations agent and the evaluation systems built to improve it safely, shifting from answering questions to automating complex end-to-end operational workflows. A bank-engineering account of moving an LLM agent from assistive to action-taking under an evaluation discipline.",
+          "so_what": "A regulated UK bank publicly setting the evaluation bar before letting an agent take operational action is the reference the reader's customers will cite — it frames the 'how do we govern action-taking agents' conversation.",
+          "tier_guess": "in-practice",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "jargon_terms": ["LLM eval", "production agent vs assistive agent", "end-to-end workflow automation"],
+          "notes": "Define agent spectrum on first use (assistive -> action-taking) per spec. Monzo is in the Outside In history — eligible as In Practice / banking surfacing instead. AI-substrate, so watch the long-form variety rule (at most one of IP/OI/LR can be AI-primary)."
+        },
+        {
+          "headline": "Banks-as-media: card-linked offers cross into mainstream commerce-media as cookieless attribution and earn-and-burn wallets gain adoption",
+          "source_name": "ACHIVX (Medium) / Olive Insights",
+          "source_url": "https://medium.com/@achivx/card-linked-offers-in-2026-why-banks-as-media-is-happening-now-bf0a5a1692cf",
+          "published_date": "2026-06-01",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Analysis of why card-linked offers are becoming a core commerce-media activation in 2026: banks broker merchant-to-cardholder marketing using payment rails for cookieless, omnichannel attribution, with earn-and-burn / interoperable rewards wallets reaching mainstream adoption. Context for the reader's vertical rather than a discrete product launch.",
+          "so_what": "The reader's own category is shifting from niche loyalty to commerce-media infrastructure — useful framing context, though it carries no near-term engineering decision on its own.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "essay",
+          "notes": "No discrete in-window CLO product launch surfaced (Cardlytics Rewards Platform was May 2025; no June 2026 event from Fidel/Bink/Kard). This is the closest loyalty/commerce-media signal — context piece, On the Radar / Other News at most. Secondary outlet; treat as framing not fact."
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "The engineering manager role is splitting in two — choosing a span-of-control model deliberately",
+        "source_name": "LeadDev (Stephane Moreau)",
+        "source_url": "https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two",
+        "published_date": "2026-06-09",
+        "beat": "leadership_read",
+        "summary": "See management_teams entry. A reflective, opinionated piece on EM-role fragmentation and span of control with concrete stats, written by a UK fintech EM — well suited to the slow back-of-book read.",
+        "so_what": "Gives leaders a frame for an org-design decision they're being forced into by AI-driven flattening.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "LeadDev was the Leadership Read in Issues 7, 10, 12 — NOT consecutive (Issue 14 was incident.io), so LeadDev is eligible this week. Non-AI-primary (management craft), which helps the long-form variety rule if In Practice is the AI slot."
+      },
+      {
+        "headline": "The third golden age of software engineering — Grady Booch on AI and the craft",
+        "source_name": "The Pragmatic Engineer (Gergely Orosz, with Grady Booch)",
+        "source_url": "https://newsletter.pragmaticengineer.com/p/the-third-golden-age-of-software",
+        "published_date": "2026-06-10",
+        "beat": "leadership_read",
+        "summary": "A Booch interview/essay arguing AI is opening a third golden age of software engineering, emphasising architecture, system design and judgement as the durable value as routine code generation is automated.",
+        "so_what": "A senior, non-hype perspective on where engineering judgement still matters — reflective material for leaders calibrating where to invest skills.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Verify exact publish date inside window. Pragmatic Engineer is AI-primary here — if used as Leadership Read and In Practice is also AI, the long-form variety rule fails. Pair with the non-AI Moreau piece instead, or use as Rabbit Hole."
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "Monzo's Ops Agent — evaluation-first journey from assistive LLM to action-taking operational agent",
+        "source_name": "Monzo Engineering Blog",
+        "source_url": "https://monzo.com/blog/engineering-the-future-of-customer-operations-the-monzo-ops-agent",
+        "published_date": "2026-06-04",
+        "beat": "in_practice",
+        "summary": "Named operator (Monzo), a real journey (assistive -> action-taking under an evaluation discipline), technical content kept at the implication level. Fits the In Practice three-quality filter, though it does not continue the career-frameworks/ladder season.",
+        "so_what": "Shows how a regulated bank operationalised an action-taking agent without the technicalities — the kind of journey In Practice exists to surface.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "AI-substrate. SEASON FLAG: this does NOT continue the 'Career frameworks & ladder design' season. No fresh 2026 named-author career-ladder JOURNEY piece surfaced this week (Square 2019/2023, Dashlane 2024, Thumbtack 2019 all too old; 2026 results were generic framework guides, not journeys). Curation must decide: cut the season short (per the 'cut rather than drag' rule) and run this Monzo journey, or omit In Practice this week. Recommend flagging the season gap to Phase 2."
+      },
+      {
+        "headline": "LDX3 2026 recap — Meta's AI-native interview rebuild, friction taxonomy, and the EM squeeze",
+        "source_name": "blog4ems (Stephane Moreau)",
+        "source_url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026",
+        "published_date": "2026-06-09",
+        "beat": "in_practice",
+        "summary": "Conference recap with named operators (Meta's Danit Nativ Navon on the interview rebuild across 9,000 interviews; Nicole Forsgren on friction types; Wise's Rick Clegg on legibility). Closer to a hiring-loop / management-craft journey than a ladder-design one.",
+        "so_what": "Concrete operator practice on redesigning hiring loops for the agent era — management craft at implication level.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "Partly paywalled — In Practice needs a fully readable source. Adjacent-source caution with the LeadDev Moreau piece. Management-craft (hiring), non-AI-tooling primary — useful as the non-AI long-form anchor."
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "GitLab 'Act 2' — redesigning its own org and R&D into ~60 autonomous agent-augmented teams",
+        "source_name": "GitLab (Act 2 blog) / heise",
+        "source_url": "https://about.gitlab.com/blog/gitlab-act-2/",
+        "published_date": "2026-06-02",
+        "beat": "outside_in",
+        "summary": "A devtools company restructuring itself around agents — flattening management, splitting R&D into ~60 small autonomous teams, automating internal reviews/approvals with agents. Transferable lesson on org design and team topology in the agent era; GitLab is a fresh operator not in the Outside In history.",
+        "so_what": "A concrete operator example of choosing a team-topology model for agentic work — transferable to any scaling eng org.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "high",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "news_event",
+        "notes": "Distinct operator (not Monzo/Revolut/Ramp/Cloudflare/Wise/Linear/incident.io/Vercel/Honeycomb). If GitLab is the Lead/Ways-of-working anchor, do not also use as Outside In (no-repeat-featured-anchor / source-diversity). Then use Datadog below for Outside In."
+      },
+      {
+        "headline": "Datadog instruments post-incident review as a reportable governance metric",
+        "source_name": "Datadog (DASH 2026)",
+        "source_url": "https://www.datadoghq.com/blog/dash-2026-new-feature-roundup-scale/",
+        "published_date": "2026-06-11",
+        "beat": "outside_in",
+        "summary": "Datadog turning postmortems into a measurable lifecycle with owners and coverage reporting (see operating_at_scale). Transferable lesson: how a scale-tech org makes reliability maturity visible to leadership. Datadog is a fresh Outside In operator.",
+        "so_what": "Shows one model for evidencing reliability practice as data, not assertion.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event",
+        "notes": "Alternative Outside In if GitLab anchors elsewhere. Contrasts with the Issue 14 Honeycomb/Lex Neva piece (which argued for dropping action-item tracking) — a genuine tension worth a throughline."
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "The anatomy of an 88-minute npm scope takeover — how a typosquat looked credible enough to ship",
+        "source_name": "JFrog Security Research / Snyk",
+        "source_url": "https://research.jfrog.com/post/easy-day-js/",
+        "published_date": "2026-06-18",
+        "beat": "operating_at_scale",
+        "summary": "Deep technical write-up of the Mastra/easy-day-js attack: a clean decoy package published first to build credibility (mirroring dayjs version numbers, author metadata, repo URL), then a malicious version with a self-deleting dropper and a cross-platform RAT inventorying 166 crypto-wallet extensions. A genuinely interesting forensic read.",
+        "so_what": "Curiosity-grade detail on supply-chain tradecraft — interesting to read, not action-bearing for the reader.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "low",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event",
+        "notes": "last_rabbit_hole_date was 2026-06-12 (Issue 14 used one) — cadence gate may suppress a rabbit hole this week; Phase 3 decision."
+      }
+    ],
+    "p0_active": []
+  }
+}
