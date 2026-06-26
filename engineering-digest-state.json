@@ -1,18 +1,18 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 15 deliver (2026-06-19).",
+  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 16 deliver (2026-06-26).",
 
-  "last_issue_number": 15,
-  "last_issue_date": "2026-06-19",
+  "last_issue_number": 16,
+  "last_issue_date": "2026-06-26",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Ways of working",
+  "last_lead_topic": "Wider engineering landscape",
   "last_lead_topics_3issues": [
     "Wider engineering landscape",
-    "Wider engineering landscape",
-    "Ways of working"
+    "Ways of working",
+    "Wider engineering landscape"
   ],
-  "consecutive_non_deepdive": 7,
+  "consecutive_non_deepdive": 8,
 
-  "last_outside_in_company": "Datadog",
+  "last_outside_in_company": "The Finanser (Chris Skinner)",
   "outside_in_history": [
     { "issue": 1, "company": "Monzo", "source": "Suhail Patel — QCon talk" },
     { "issue": 6, "company": "Revolut", "source": "Revolut launches AI financial assistant" },
@@ -23,10 +23,11 @@
     { "issue": 12, "company": "incident.io", "source": "Customers over control — measuring on-call reliability from the customer's outcome" },
     { "issue": 13, "company": "Vercel", "source": "Design engineering at Vercel — collapsing the design-to-frontend handoff" },
     { "issue": 14, "company": "Honeycomb", "source": "Lex Neva — Incident Retrospective Ground Rules (dropping action-item tracking in reviews)" },
-    { "issue": 15, "company": "Datadog", "source": "DASH 2026 — instrumenting post-incident review as a reportable governance metric" }
+    { "issue": 15, "company": "Datadog", "source": "DASH 2026 — instrumenting post-incident review as a reportable governance metric" },
+    { "issue": 16, "company": "The Finanser (Chris Skinner)", "source": "Monzo, Revolut and Starling: the quiet emergence of Britain's banking champions — three platform-strategy bets (analyst-source Outside In, logged exception)" }
   ],
 
-  "last_leadership_read": "LeadDev",
+  "last_leadership_read": "MIT Sloan Management Review",
   "leadership_read_history": [
     { "issue": 7, "source": "LeadDev", "piece": "The end of the non-technical engineering manager" },
     { "issue": 9, "source": "Pragmatic Engineer", "piece": "Five recommendations for platform teams in 2026" },
@@ -35,30 +36,32 @@
     { "issue": 12, "source": "LeadDev", "piece": "A manager's guide to performance calibration" },
     { "issue": 13, "source": "Fortune", "piece": "The middle-manager cuts saving millions today build the empty pipeline of 2028" },
     { "issue": 14, "source": "incident.io", "piece": "Why post-mortems fail" },
-    { "issue": 15, "source": "LeadDev", "piece": "The engineering manager role is splitting in two (Stephane Moreau, Zopa Bank)" }
+    { "issue": 15, "source": "LeadDev", "piece": "The engineering manager role is splitting in two (Stephane Moreau, Zopa Bank)" },
+    { "issue": 16, "source": "MIT Sloan Management Review", "piece": "Managing up: a skill set that matters now (Clampitt & DeKoch) — buffer / translator / advocate as the org chart flattens" }
   ],
 
-  "last_editorial_moment": "quote_of_the_week",
-  "last_lead_opener": "summary-first",
-  "last_qt_layout": "qt-b",
+  "last_editorial_moment": "number_of_the_week",
+  "last_lead_opener": "narrative-first",
+  "last_qt_layout": "qt-a",
   "last_oi_format": "A",
 
   "last_feature_date": null,
   "last_stack_date": null,
-  "last_rabbit_hole_date": "2026-06-12",
+  "last_rabbit_hole_date": "2026-06-26",
 
-  "current_in_practice_season": null,
-  "in_practice_season_progress": 0,
+  "current_in_practice_season": "Ways of working in the agent era — operating-model change after adoption",
+  "in_practice_season_progress": 1,
   "in_practice_season_candidates": [],
   "in_practice_history": [
     { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" },
     { "issue": 12, "piece_title": "Managing Managers: A Very Short Director's Guide", "author": "Jay Vilalta", "url": "https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/" },
     { "issue": 13, "piece_title": "Scaling to 100+ as a Director: Lessons From Growing Engineering Organizations", "author": "Thiago Ghisi", "url": "https://www.infoq.com/presentations/scaling-engineering-teams/" },
     { "issue": 14, "piece_title": "Treating a Career Framework Redesign Like a Product", "author": "Megan Allison & Kelly Jacobs", "url": "https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process" },
-    { "issue": 15, "piece_title": "Engineering Leadership Lessons from LDX3 2026 (hiring loops in the agent era)", "author": "Stephane Moreau", "url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026" }
+    { "issue": 15, "piece_title": "Engineering Leadership Lessons from LDX3 2026 (hiring loops in the agent era)", "author": "Stephane Moreau", "url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026" },
+    { "issue": 16, "piece_title": "Code with Claude: coding is no longer the constraint", "author": "Niklas Gustavsson (Spotify)", "url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint" }
   ],
 
-  "_season_note": "Season 'Career frameworks & ladder design' (started Issue 14, week 1) was CUT SHORT at the Issue 15 run — no fresh 2026 named-author career-ladder journey piece existed (all candidates were 2019-2024). Per the 'cut rather than drag' rule the season closed at week 1 rather than dragging in an evergreen framework guide. Issue 15 ran an off-theme qualifying In Practice piece (LDX3 2026 hiring-loop recap, Stephane Moreau); season progress was NOT incremented for the off-theme piece. current_in_practice_season is null — the next run sets the new theme.",
+  "_season_note": "New season started Issue 16 (week 1): 'Ways of working in the agent era — operating-model change after adoption', opened with Spotify (Niklas Gustavsson) 'coding is no longer the constraint'. Per the v1.35 long-form-variety discipline and the 'don't let agent-era practice dominate' rule, the NEXT season after this one should pull from the technical-leadership or managing-upwards theme pools rather than another AI/agent theme. The prior 'Career frameworks & ladder design' season (Issue 14) was cut short at week 1; Issue 15 ran an off-theme qualifying piece. The EM-role-split material (Moreau/Zopa) remains available to inform a future In Practice but was deliberately not used as the Issue 16 In Practice piece to honour the spirit of the no-repeat-featured-anchor rule (it anchored Issues 14 and 15).",
 
   "p0_stories_tracking": []
 }

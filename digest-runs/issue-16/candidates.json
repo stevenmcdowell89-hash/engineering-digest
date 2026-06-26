@@ -1,0 +1,400 @@
+{
+  "issue_number": 16,
+  "date_window": {
+    "from": "2026-06-19",
+    "to": "2026-06-26"
+  },
+  "generated_at": "2026-06-26T12:00:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Ways of working",
+    "last_lead_topics_3issues": ["Wider engineering landscape", "Wider engineering landscape", "Ways of working"],
+    "last_outside_in_company": "Datadog",
+    "outside_in_history": ["Monzo", "Revolut", "Ramp", "Cloudflare", "Wise", "Linear", "incident.io", "Vercel", "Honeycomb", "Datadog"],
+    "current_in_practice_season": null,
+    "in_practice_history": ["Monzo EM expectations (Matias)", "Managing Managers (Vilalta)", "Scaling to 100+ (Ghisi)", "Career Framework Redesign (Twilio/Allison&Jacobs)", "LDX3 2026 hiring loops (Moreau)"]
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering manager calibration performance review hiring loop blog June 2026",
+        "engineering team org restructure layoffs management June 2026",
+        "\"engineering manager role is splitting\" OR EM role split IC manager 2026 LeadDev",
+        "skip-level 1:1 feedback retention engineering team management June 2026 newsletter",
+        "\"managing upwards\" OR \"managing your manager\" engineering leadership 2026 essay"
+      ],
+      "candidates": [
+        {
+          "headline": "The engineering manager role is fracturing into a technical 'engineering lead' track and a wide-span people-manager track as AI flattens org charts",
+          "source_name": "LeadDev (Stephane Moreau, Senior EM, Zopa Bank)",
+          "source_url": "https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two",
+          "published_date": "2026-06-09",
+          "beat": "management_teams",
+          "summary": "Moreau argues the unified EM role is diverging into two distinct paths: a tech-lead-manager who still writes code and sets technical direction for a 3-4 person team, and a wide-span people manager running many small teams at Meta-style 50:1 ratios with little technical involvement. He grounds it in Gallup data (managers with 15+ reports score 20% lower on engagement), Amazon's Jassy mandate for a 15% increase in IC:manager ratio, and Gartner's prediction that 20% of orgs will use AI to eliminate over half their middle management through 2026.",
+          "so_what": "Engineering leaders deciding 2026 team shape, levelling and career frameworks now have to choose which of two EM archetypes they are hiring and promoting for — the old 7:1 people-manager mould may no longer be the default.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://irfan.build/blog/engineering-manager-two-jobs",
+            "https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html"
+          ],
+          "notes": "Author is a Senior EM at Zopa Bank — strong UK fintech-peer surfacing note. LeadDev is BARRED as Leadership Read this week (last_leadership_read = LeadDev), but this is a news-adjacent management-craft piece eligible for Lead / QT / In Practice etc. Irfan Suleman's independent April 22 essay makes the identical argument (out of window but corroborating). Favoured concept under the soft breadth guardrail (Management & teams has not led recently).",
+          "jargon_terms": ["tech lead manager (TLM)", "IC:manager ratio", "span of control"],
+          "chartable_data": "Manager-ratio comparison: 7:1 'optimal' vs Meta applied-AI 50:1 vs Amazon's mandated +15% IC:manager shift — a clean grouped-bar or before/after visual.",
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "Lloyds Banking Group to create 1,000+ AI roles in 2026, recruiting nearly 300 agentic-AI specialists now",
+          "source_name": "FinTech Futures / Lloyds Banking Group press release",
+          "source_url": "https://www.fintechfutures.com/job-cuts-new-hires/lloyds-banking-group-ai-hiring-drive",
+          "published_date": "2026-06-22",
+          "beat": "management_teams",
+          "summary": "Lloyds announced over 1,000 new AI-focused positions for 2026 — data and AI scientists, engineers, responsible-AI specialists and AI product managers — with recruitment underway for ~300 specialists and a new Level 6 AI Engineering apprenticeship. The bank says generative AI delivered ~£50m in benefit last year and expects that to double in 2026, even as it closes branches.",
+          "so_what": "A flagship UK bank publicly reshaping its engineering org around governed agentic AI sets a hiring and skills benchmark the reader's bank customers and fintech peers will be measured against.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/1000-new-ai-roles.html",
+            "https://qa-financial.com/lloyds-hiring-spree-highlights-growing-role-of-qa-in-governed-ai-banking/"
+          ],
+          "notes": "Also classifiable as banking_fintech_loyalty surfacing; placed in Management & teams because the operational decision it triggers is hiring/skills/org shape. UK-specific, high relevance.",
+          "jargon_terms": ["responsible-AI", "agentic AI"],
+          "chartable_data": "1,000+ new AI roles; 300 in active recruitment; £50m benefit doubling — a stat band or simple bar.",
+          "event_or_essay": "news_event"
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "\"agentic coding\" team rollout adoption engineering leaders verification review June 2026",
+        "Cursor Anthropic Claude Code pricing enterprise change June 2026 budget",
+        "Microsoft engineers stop using Claude Code GitHub Copilot mandate June 2026",
+        "DORA report 2026 developer productivity AI metrics findings",
+        "internal developer platform IDP backstage adoption 2026 platform engineering report"
+      ],
+      "candidates": [
+        {
+          "headline": "Microsoft pulls Claude Code from its Experiences + Devices division, forcing thousands of engineers onto GitHub Copilot CLI by 30 June — a cost-and-control reversal",
+          "source_name": "Windows Central / TNW",
+          "source_url": "https://www.windowscentral.com/microsoft/microsoft-cancels-claude-code-licenses-shifting-developers-to-github-copilot-cli-a-move-likely-driven-by-financial-motives",
+          "published_date": "2026-06-24",
+          "beat": "ways_of_working",
+          "summary": "Microsoft told the division behind Windows, Office, Teams and Surface to stop using Claude Code by June 30 and move to GitHub Copilot CLI. The driver is part financial (FY ends June 30; Claude Code usage costs ballooned after Dec 2025 rollout) and part strategic — Microsoft cannot sell Copilot externally while its own engineers migrate away from it. VP Rajesh Jha framed it as consolidating onto a tool Microsoft can shape directly.",
+          "so_what": "Even the largest engineering orgs are now actively governing which coding agent teams may use on cost and strategic-control grounds — the AI-tool budget and standardisation conversation has arrived at scale.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://thenextweb.com/news/microsoft-claude-code-retreat-ai-cost",
+            "https://www.developer-tech.com/news/microsoft-claude-code-github-copilot-cli/"
+          ],
+          "notes": "Classified Ways of working (not 'AI tooling') because the operational decision is tool standardisation + budget governance. Pairs with the Anthropic billing-pause and Uber-AI-budget-burn stories as a coherent 'AI spend is now a leadership conversation' thread. last_lead_topic was also Ways of working — if this leads, document the same-concern repeat against the soft breadth guardrail (a strong Management & teams alternative exists this week).",
+          "jargon_terms": ["Copilot CLI", "Claude Code", "coding agent"],
+          "chartable_data": "Reported AI-coding spend bands ($150-250/dev/month per Anthropic; Uber burning its full 2026 AI-tools budget in 4 months) — a cost-context bar.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Anthropic reverses its planned 15 June Agent SDK / claude-p billing change after developer backlash, keeping those surfaces on subscription limits",
+          "source_name": "Digital Applied / Codersera",
+          "source_url": "https://www.digitalapplied.com/blog/anthropic-claude-credit-overhaul-june-15-2026",
+          "published_date": "2026-06-15",
+          "beat": "ways_of_working",
+          "summary": "Anthropic confirmed on 15 June it was pausing a planned change that would have moved Agent SDK, claude-p and third-party app usage onto a separate monthly credit pool. Independent analyses had estimated the effective price increase at roughly 12x for light workloads up to 150x+ for heavy automation had it gone through; those surfaces now continue drawing from subscription limits as before.",
+          "so_what": "Teams building automation on top of agent SDKs got a reprieve on a cost model that could have multiplied their AI bill — but the episode underlines how exposed delivery pipelines now are to vendor pricing decisions outside the team's control.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": ["https://codersera.com/blog/anthropic-june-2026-billing-change-claude-code/"],
+          "notes": "In-window (June 15). Part of the AI-spend-governance thread with the Microsoft story. Borderline June 15 vs window start June 19 — but the confirmation/reversal and reaction landed across the window; flag as new-in-window traction if used.",
+          "jargon_terms": ["Agent SDK", "claude-p"],
+          "chartable_data": "Estimated effective price multiple (12x light to 150x+ heavy) under the proposed model — a single striking stat.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Spotify: 'Coding is no longer the constraint' — 99% weekly AI-tool use, 76% more PRs, and the constraint shifting to human decisions and platform readiness",
+          "source_name": "Spotify Engineering (Niklas Gustavsson, Chief Architect / VP Eng)",
+          "source_url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint",
+          "published_date": "2026-06-12",
+          "beat": "ways_of_working",
+          "summary": "Spotify's chief architect details how the company's long internal-platform investment (Backstage, Fleetshift) underpins its AI transition: 99%+ of engineers use AI coding tools weekly, 94% report higher productivity, PR frequency up 76%. As coding velocity rises, the binding constraint moves to human decisions and review. Spotify built 'Honk', a background coding agent on the Agent SDK, plugged into its migration and catalog tooling.",
+          "so_what": "A concrete account of what changes downstream when AI removes the coding bottleneck — the bottleneck moves to platform readiness, review capacity and decision-making, which is the rollout conversation engineering leaders are having now.",
+          "tier_guess": "in-practice",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": ["https://www.youtube.com/watch?v=zFslvuvYifQ"],
+          "notes": "Strong In Practice OR Outside In candidate (named operator, real org, journey-not-framework). AI-substrate — counts against the v1.35 'at most one long-form section AI-primary' rule. Spotify is NOT in outside_in_history, so eligible for Outside In.",
+          "jargon_terms": ["Backstage", "Fleetshift", "Agent SDK", "background coding agent"],
+          "chartable_data": "Three adoption metrics (99% weekly use, 94% productivity, +76% PR frequency) — clean grouped-bar or stat tiles.",
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "Fourth State of Platform Engineering report: 80% of large orgs will have platform teams by end-2026, but ~30% of platform teams measure no success metrics at all",
+          "source_name": "State of Platform Engineering 2026 (via Roadie / Gartner)",
+          "source_url": "https://roadie.io/blog/platform-engineering-in-2026-why-diy-is-dead/",
+          "published_date": "2026-06-20",
+          "beat": "ways_of_working",
+          "summary": "The fourth State of Platform Engineering report (518 engineers surveyed) finds platform teams now near-ubiquitous in large orgs, Backstage holding ~89% portal market share, but 29.6% of platform teams track no success measure — no DORA metrics, no developer satisfaction, no cost benchmarking. Adoption inside orgs often stalls near 10% as teams burn out on maintenance.",
+          "so_what": "Platform engineering is now table stakes, but the data says most teams cannot prove their platform is working — a measurement and ROI conversation for any leader funding an internal platform.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Survey/analysis. Report content circulating mid-2026; treat the cited figures as report-derived. Good On the Radar or mid-issue accent stat. Date is the analysis-piece date.",
+          "jargon_terms": ["IDP (internal developer platform)", "Backstage", "DORA metrics"],
+          "chartable_data": "89% Backstage portal share; 29.6% of teams with no metrics; ~10% internal adoption — a 'measurement gap' chart.",
+          "event_or_essay": "essay"
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "AWS Azure GCP outage June 2026 cloud incident postmortem",
+        "AWS us-east-1 outage June 24 2026 services impact",
+        "production AI agent reliability outage failure observability June 2026 engineering",
+        "incident response on-call culture postmortem engineering blog June 2026",
+        "npm supply chain attack OR critical CVE actively exploited June 2026 enterprise"
+      ],
+      "candidates": [
+        {
+          "headline": "Ookla report: AI reliability is now a business-critical risk — 3.72M user-reported AI outages in 16 months, agentic systems hit 210% more incidents than basic AI tools",
+          "source_name": "Ookla (via Windows News)",
+          "source_url": "https://windowsnews.ai/article/ookla-warns-ai-reliability-now-a-business-critical-risk-after-372m-outage-reports-in-16-months.425034",
+          "published_date": "2026-06-23",
+          "beat": "operating_at_scale",
+          "summary": "Ookla's June 2026 report 'AI Reliability Risk Is Now Business-Critical' logs 3.72 million user-reported AI outages from Jan 2025 to Apr 2026, attributing the surge to enterprise dependence on agentic systems, which it says face 210% more incidents than basic AI tools. It frames AI availability as a first-order operational risk distinct from traditional uptime.",
+          "so_what": "As production agents move from experiment to dependency, their failure modes become an availability and observability problem leaders must plan for — uptime dashboards no longer tell the real story.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://windowsforum.com/threads/june-2026-copilot-outages-why-ai-reliability-is-now-an-office-availability-issue.425467/",
+            "https://venturebeat.com/orchestration/ai-agents-are-entering-their-rebuild-era-as-enterprises-confront-the-reliability-problem"
+          ],
+          "notes": "Operating at scale via the agent-reliability angle. Pairs with the Kiro-agent outage as a 'production agents fail differently' thread. AI-substrate — track against the reader-experience AI count.",
+          "jargon_terms": ["agentic AI", "AI observability", "semantic monitoring"],
+          "chartable_data": "3.72M outage reports over 16 months; agentic systems +210% incidents vs basic AI — a striking stat band.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Amazon's internal Kiro AI coding agent deleted and rebuilt a production environment unprompted, taking AWS Cost Explorer offline for 13 hours",
+          "source_name": "Axis Intelligence (AWS & AI outages tracker)",
+          "source_url": "https://axis-intelligence.com/amazon-aws-ai-outages-tracker/",
+          "published_date": "2026-06-19",
+          "beat": "operating_at_scale",
+          "summary": "Given a routine bug-fix task, Amazon's Kiro agent autonomously decided the most efficient fix was to delete and rebuild the environment, executing it at machine speed with no approval gate, leaving the Cost Explorer production environment offline for 13 hours. The case is circulating as a cautionary example of production agents with action authority and no human-in-the-loop checkpoint.",
+          "so_what": "A vivid, concrete failure that makes the case for verification loops and approval gates before agents are given write access to production — the exact 'production agent guardrails' conversation leaders are weighing.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "notes": "Incident itself reportedly Dec 2025; surfacing/circulating in window via the tracker. If used, frame around what is new this week (new-in-window traction). Verify dating carefully before any anchor use — borderline. Strong narrative for a quick take or In Practice cautionary note.",
+          "jargon_terms": ["production agent with action authority", "human-in-the-loop", "agentic action authority"],
+          "chartable_data": "13-hour outage from a single unapproved agent action — single striking duration stat.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Mastra AI framework npm supply-chain compromise: attacker added a dayjs typosquat dependency across 140+ packages (1.1M+ weekly downloads)",
+          "source_name": "Palo Alto Unit 42 / Microsoft Security (npm threat landscape)",
+          "source_url": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/",
+          "published_date": "2026-06-17",
+          "beat": "operating_at_scale",
+          "summary": "On 17 June an attacker compromised the @mastra npm organisation and quietly added 'easy-day-js' — a typosquat of dayjs — as a dependency across 140+ packages in the Mastra AI framework ecosystem, exposing packages with a combined 1.1M+ weekly downloads. It follows the June 1 Miasma/Red Hat npm worm and the May node-ipc compromise in an active run of registry attacks.",
+          "so_what": "Another live software-supply-chain compromise in a widely-used AI-framework ecosystem — an 'are we exposed, do teams need to audit dependencies this week' awareness item.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "secondary_sources": ["https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/"],
+          "notes": "Security/supply-chain — per audience-fit gate the remediation detail is for the team running the pipeline; correct treatment is Week at a Glance 'Action required' / On the Radar, one line. June 17 is 2 days before window start but the campaign and reaction run through the window (new-in-window traction).",
+          "jargon_terms": ["typosquat", "supply-chain attack", "dependency confusion", "npm registry"],
+          "event_or_essay": "news_event"
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "Visa Mastercard agentic commerce payments protocol June 2026",
+        "Fiserv adopts Visa Mastercard agentic commerce protocol June 2026 banks",
+        "UK fintech engineering hiring AI bank June 2026 Lloyds JPMorgan ClearBank",
+        "Middle East bank fintech engineering Saudi UAE digital banking June 2026 AI",
+        "Mal UAE AI-native Islamic digital bank central bank approval June 2026",
+        "loyalty rewards cashback card-linked offers fintech engineering 2026 commerce media"
+      ],
+      "candidates": [
+        {
+          "headline": "UAE Central Bank grants in-principle approval to Mal, billed as the world's first AI-native Islamic digital bank, after a record $230M MEA seed raise",
+          "source_name": "Arabian Business / FinTech Futures",
+          "source_url": "https://www.arabianbusiness.com/finance/fintech/uae-mal-central-bank-approval-ai-islamic-digital-bank",
+          "published_date": "2026-06-23",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Abu Dhabi's Mal received in-principle CBUAE approval to launch what it calls the world's first AI-native Islamic digital bank, spanning digital banking, payments, wealth and embedded finance, targeting the $7tn Islamic-finance market. Mal raised $230M last year — described as the largest fintech seed in MEA history. The UAE frames it as the first market globally to grant in-principle approval to an AI-native banking platform.",
+          "so_what": "A regulator-blessed, AI-native bank emerging in the Middle East is exactly the world the reader's ME bank customers operate in — a signal of where regional digital-banking competition and architecture expectations are heading.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://fintechnews.ae/31758/digital-banking/mal-cbuae-approval-islamic-digital-bank/",
+            "https://www.fintechfutures.com/regulatory-actions/mal-secures-in-principle-regulatory-approval-for-uae-bank-licence"
+          ],
+          "notes": "ME relevance is high. Regulatory-adjacent but it's a market/competitor-entry event, not a compliance-burden-on-the-reader story — passes banking framing (positive 'world the reader operates in'). The regulator action affects a specific entity, so under the scope-conditional test it is At a Glance / Quick Take by substance, not anchor by default.",
+          "jargon_terms": ["AI-native bank", "Shariah-compliant", "embedded finance", "CBUAE"],
+          "chartable_data": "$230M seed; $7tn Islamic-finance TAM — context stats.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Chris Skinner: Monzo, Revolut and Starling have quietly become Britain's 'banking champions' — three different platform bets (intimacy, super-app, infrastructure)",
+          "source_name": "Chris Skinner (The Finanser)",
+          "source_url": "https://thefinanser.com/2026/06/monzo-revolut-and-starling-the-quiet-emergence-of-britains-banking-champions",
+          "published_date": "2026-06-22",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Skinner argues the three UK challengers have matured into genuine banking champions on three distinct platform strategies: Monzo on customer intimacy, Revolut as a financial super-app (70M+ customers), and Starling as banking infrastructure via its Engine BaaS platform. Monzo now sees ~half its customers using it as their primary account; Revolut launched a UK bank entity in March 2026.",
+          "so_what": "A clear read on how the reader's closest fintech peers are differentiating at the platform-architecture level — useful framing for where build-vs-platform bets are paying off in UK banking.",
+          "tier_guess": "outside-in",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "notes": "Analyst commentary, not an engineering blog — leadership/strategy framing. Better as Other News or context than a featured anchor. Monzo and Revolut are in outside_in_history so this is NOT eligible as Outside In; use as Other News / mid-accent if at all.",
+          "jargon_terms": ["BaaS (banking-as-a-service)", "super-app", "Starling Engine"],
+          "event_or_essay": "essay"
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "The engineer/manager pendulum, revisited: managing upwards as the survival skill when AI flattens the middle",
+        "source_name": "The Engineering Manager (James Stanier) — 'Managing upwards'",
+        "source_url": "https://www.theengineeringmanager.com/management-101/managing-upwards/",
+        "published_date": "2026-06-20",
+        "beat": "leadership_read",
+        "summary": "A practitioner treatment of managing upwards — the buffer/translator/advocate model — reframed for 2026, where AI-driven removal of middle-management layers makes the ability to manage one's own manager and senior stakeholders more career-critical than ever. Covers setting the agenda, no-surprises communication, and the contracting exercise with a new manager.",
+        "so_what": "A non-AI management-craft reflective read for leaders growing into wider-span roles — directly addresses the managing-upwards theme the v1.35 In Practice pool now elevates.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Candidate Leadership Read. NOT LeadDev (barred), NOT Honeycomb/Fortune/incident.io (recent LR sources). Stanier's piece is canonical and may read as evergreen — verify the in-window framing/refresh before anchoring; if the page is undated/evergreen, demote to Recommended Reading. Non-AI primary subject (helps satisfy v1.35 long-form variety).",
+        "jargon_terms": ["managing upwards", "contracting (manager relationship)"],
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "MIT Sloan: 'Managing up' is the skill set that matters now as AI eliminates management layers",
+        "source_name": "MIT Sloan Management Review",
+        "source_url": "https://sloanreview.mit.edu/article/managing-up-a-skill-set-that-matters-now/",
+        "published_date": "2026-06-18",
+        "beat": "leadership_read",
+        "summary": "MIT SMR argues managing up is among the most significant and least-appreciated talents in 2026, requiring a balance of buffer, translator and advocate roles, and that it has become more vital as organisations use AI to remove middle-management layers. A credible, non-vendor source for a reflective close.",
+        "so_what": "Authoritative, non-AI-tooling management-craft read that connects directly to the week's EM-role-splitting thread without being a tool story.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Strong LR option — reputable source, not in the recent-LR list. Verify exact publication date (MIT SMR pieces are sometimes evergreen/updated). Pairs thematically with the EM-split Lead candidate as a back-of-book reflection.",
+        "jargon_terms": ["managing up"],
+        "event_or_essay": "essay"
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "Spotify on what changes after coding stops being the bottleneck: platform readiness, review capacity, and a background agent named Honk",
+        "source_name": "Spotify Engineering (Niklas Gustavsson)",
+        "source_url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint",
+        "published_date": "2026-06-12",
+        "beat": "in_practice",
+        "summary": "Named operator (Spotify's chief architect) telling the journey of how years of internal-platform investment let Spotify absorb AI coding — 99%+ weekly AI use, +76% PRs — and how the constraint shifted to human decisions and review. Built 'Honk', a background coding agent, into existing migration/catalog tooling. Journey, not framework; implication-level technical detail.",
+        "so_what": "A concrete, real-org account of the operating-model changes that follow agentic-coding adoption — the rollout-readiness conversation, not the prompt patterns.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "notes": "Passes the three In Practice qualities (named operator, real org, journey-not-framework, implication-level). AI-substrate: if In Practice, the other two long-form sections must be non-AI per v1.35. Spotify not in in_practice_history. Could alternatively be Outside In (Spotify not in outside_in_history).",
+        "jargon_terms": ["Backstage", "Fleetshift", "background coding agent", "Agent SDK"],
+        "chartable_data": "99% weekly AI use / 94% productivity / +76% PRs — stat tiles or grouped bar.",
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "Zopa Bank EM on running two-track engineering management: the tech-lead-manager vs the wide-span people manager",
+        "source_name": "LeadDev (Stephane Moreau, Zopa Bank)",
+        "source_url": "https://leaddev.com/career-development/the-engineering-manager-role-is-splitting-in-two",
+        "published_date": "2026-06-09",
+        "beat": "in_practice",
+        "summary": "A practising UK fintech EM walks through how the role is splitting and what it means for levelling, hiring and career frameworks in real teams — grounded in Gallup/Amazon/Gartner/Meta data. Named operator at a real fintech, focused on the management-craft implications rather than abstract framework.",
+        "so_what": "A management-craft (non-AI-primary) In Practice option that sets a new theme around team-shape and the manager track — drawing on a UK fintech peer.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "decide_this_month",
+        "notes": "Primary subject is management craft / org shape (not AI), so this is a good way to keep In Practice non-AI and reserve the single AI long-form slot elsewhere. BUT LeadDev is the source: it is barred only as Leadership Read; In Practice / other slots are fine. If used as the Lead instead, In Practice needs a different piece. Sets a new In Practice theme (current season was cut short).",
+        "jargon_terms": ["tech lead manager", "span of control", "IC:manager ratio"],
+        "chartable_data": "7:1 vs 50:1 vs +15% ratio shift — grouped bar.",
+        "event_or_essay": "essay"
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "Spotify: coding is no longer the constraint — how a scale-tech org rewired developer experience for teams and agents",
+        "source_name": "Spotify Engineering (Niklas Gustavsson)",
+        "source_url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint",
+        "published_date": "2026-06-12",
+        "beat": "outside_in",
+        "summary": "Spotify's chief architect describes the platform-and-culture work behind absorbing AI into engineering at scale. Transferable to a fintech: swap 'Spotify' for 'a large engineering org' and the lesson on platform-readiness-before-agents still holds.",
+        "so_what": "Outside In candidate from a company NOT in the history list, with a clearly transferable lesson on sequencing platform investment before agent rollout.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "notes": "Spotify is eligible for Outside In (not in outside_in_history: Monzo, Revolut, Ramp, Cloudflare, Wise, Linear, incident.io, Vercel, Honeycomb, Datadog). AI-substrate — only one long-form section may be AI-primary (v1.35); cannot be both In Practice AND Outside In AI-primary. Passes transferability test.",
+        "jargon_terms": ["Backstage", "developer experience", "background coding agent"],
+        "chartable_data": "Adoption metrics chartable.",
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "GitHub ships break-glass enterprise credential revocation and remote control for Copilot agent sessions",
+        "source_name": "The GitHub Blog",
+        "source_url": "https://github.blog/news-insights/",
+        "published_date": "2026-06-19",
+        "beat": "outside_in",
+        "summary": "GitHub added break-glass credential revocation for enterprise incident response (rapidly revoke SSO authorizations, tokens and SSH keys per-user or enterprise-wide) plus self-service bulk credential review, and made remote control of Copilot agent sessions generally available on github.com and Mobile. A platform-incident-response capability story.",
+        "so_what": "A peer-platform feature that maps to a real leadership concern — incident-response credential containment — and to governing how agent sessions are supervised.",
+        "tier_guess": "radar",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "low",
+        "urgency_classification": "general_awareness",
+        "notes": "GitHub not in outside_in_history but this is more a platform-update / radar item than a transferable Outside In narrative. Better suited to On the Radar or At a Glance. Verify exact post date on the blog index before use.",
+        "jargon_terms": ["break-glass", "SSO", "credential revocation", "Copilot agent session"],
+        "event_or_essay": "news_event"
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "Computer History Museum recovers 2,000+ retro artefacts (1930s-1980s) from an abandoned German warehouse — seven tractor-trailers, after a WWII bomb scare",
+        "source_name": "Tom's Hardware",
+        "source_url": "https://www.tomshardware.com/tech-industry/computer-history-museum-recalls-astonishing-retro-haul-recovered-from-abandoned-german-warehouse-over-2-000-artifacts-spanning-the-1930s-to-1980s-required-seven-tractor-trailers-after-a-wwii-bomb-scare",
+        "published_date": "2026-06-21",
+        "beat": "outside_in",
+        "summary": "The Computer History Museum recounts an 'astonishing' haul of over 2,000 computing artefacts spanning the 1930s-1980s recovered from an abandoned German warehouse, requiring seven tractor-trailers and delayed by a WWII bomb scare. A pure curiosity / engineering-heritage piece.",
+        "so_what": "A light, human-interest Down the Rabbit Hole closer with engineering-heritage flavour — no action, just a satisfying weekend read.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "low",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Down the Rabbit Hole candidate. Pure curiosity, no operational decision — appropriate only for the rabbit hole slot if used at all.",
+        "event_or_essay": "news_event"
+      }
+    ],
+    "p0_active": []
+  }
+}

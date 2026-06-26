@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — 19–26 June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+/* v1.31: week-badge refreshed to a bordered treatment for the Vol II look */
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ v1.29 — VOLUME II IDENTITY STRAP + COVER VARIANTS ═══ */
+/* v1.31: bolder identity strap — taller, brighter, Vol II marker as a teal pill badge */
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+
+/* v1.31: cover tagline — placed beneath the masthead, signals the publication's stance */
+.cover-tagline{font-family:'Source Sans 3',sans-serif;font-style:italic;font-size:15px;color:rgba(0,180,216,.9);letter-spacing:.5px;margin-top:14px;text-align:center;font-weight:400}
+
+/* Cover-lead-quote variant: use INSTEAD OF .cover-lead-stat when the issue's strongest signal is a quote (not a number) */
+.cover-lead-quote{margin-top:28px;padding:32px 60px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2);text-align:center}
+.cover-lead-quote .lq-text{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;max-width:640px;margin:0 auto 12px}
+.cover-lead-quote .lq-attribution{font-family:'Source Sans 3',sans-serif;font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+/* ═══ v1.29 — DROP CAPS for Lead + Leadership Read first paragraphs ═══ */
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+/* ═══ v1.29 — PER-SECTION READING TIME ═══ */
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+/* ═══ v1.29 — EDITOR'S NOTE (Issue 12 ONLY — remove from Issue 13 onwards) ═══ */
+.editor-note{background:rgba(0,180,216,.06);border-left:3px solid var(--deep-teal);padding:16px 22px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--body-text);font-style:italic}
+.editor-note .en-label{display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+
+/* ═══ v1.29 — FOOTER VOLUME II MARKING ═══ */
+/* v1.31: footer-vol upgraded to a teal pill badge (matches the cover identity strap treatment) */
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+
+/* ═══ v1.30 — VISUAL DENSITY PRIMITIVES (compare-table, process-flow, sparkline) ═══ */
+
+/* Compare table: 2-column compact, 3–5 rows max. Fits inside a Quick Take or In Practice. */
+.compare-table{width:100%;max-width:480px;margin:18px 0;border:1px solid var(--light-gray);border-radius:4px;border-collapse:separate;border-spacing:0;font-family:'Source Sans 3',sans-serif;font-size:13px;background:var(--white)}
+.compare-table thead th{padding:10px 14px;background:var(--off-white);border-bottom:1px solid var(--light-gray);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);text-align:left}
+.compare-table thead th:first-child{border-right:1px solid var(--light-gray)}
+.compare-table tbody td{padding:10px 14px;border-bottom:1px solid var(--light-gray);color:var(--body-text);line-height:1.5;vertical-align:top}
+.compare-table tbody td:first-child{border-right:1px solid var(--light-gray);font-weight:600;color:var(--navy);width:42%}
+.compare-table tbody tr:last-child td{border-bottom:none}
+.compare-table.compact{max-width:360px;font-size:12px}
+.compare-table.compact thead th,.compare-table.compact tbody td{padding:8px 12px}
+.mgmt-section .compare-table{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table thead th{background:rgba(255,255,255,.06);color:var(--teal);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table tbody td{color:rgba(255,255,255,.78);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table tbody td:first-child{color:var(--white)}
+
+/* Process flow: 3–5 horizontal step boxes joined by arrows. Stacks vertically on mobile. */
+.process-flow{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif}
+.process-flow .pf-step{flex:1;min-width:110px;padding:12px 14px;border:1px solid var(--deep-teal);border-radius:4px;background:var(--off-white);font-size:13px;color:var(--navy);text-align:center;line-height:1.3;display:flex;flex-direction:column;justify-content:center}
+.process-flow .pf-step strong{display:block;font-size:10px;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-weight:700}
+.process-flow .pf-arrow{flex:0 0 24px;align-self:center;height:2px;background:var(--deep-teal);position:relative}
+.process-flow .pf-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border-left:8px solid var(--deep-teal);border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:560px){
+  .process-flow{flex-direction:column;align-items:stretch}
+  .process-flow .pf-step{width:100%}
+  .process-flow .pf-arrow{width:2px;height:18px;align-self:center;margin:4px 0}
+  .process-flow .pf-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--deep-teal);border-bottom:none}
+}
+
+/* Sparkline wrapper: inline 80px container for hand-crafted inline SVG (mini bar / line / trend) */
+.sparkline{display:inline-block;vertical-align:middle;margin:0 4px;height:18px;width:80px;line-height:0}
+.sparkline svg{display:block;width:100%;height:100%}
+.sparkline.wide{width:120px;height:22px}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ IN PRACTICE — v2.8 weekly craft slot, v3.0 visual hierarchy ═══ */
+/* v1.31: in-practice-header redesigned. v1.30 used a navy bar that read as a breather, not a section start (the Issue 12 v1.30 review caught this). v1.31 makes the header off-white with deep-teal accents — visually continuous with the inset body below, so the whole In Practice section reads as ONE unit. */
+.in-practice-header{background:var(--off-white);color:var(--navy);padding:32px 60px 16px;border-top:3px solid var(--deep-teal);border-left:4px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 8px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin:0;display:block;line-height:1.3}
+.in-practice-header .section-time{color:var(--med-gray);font-style:normal;font-size:12px;letter-spacing:0;text-transform:none;font-weight:500;margin-left:10px;vertical-align:middle}
+/* v1.31: in-practice body now uses 12px top padding (was 32px) — sits flush against the header above, so the unit reads as one section. */
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:12px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+/* ═══ JARGON WATCH — v3.0 inline term-explanation sidebar ═══ */
+/* Small floated box for explaining a single proper noun / capitalised technical term in plain language. Does NOT count toward the 3–5 layout-component cap. Use whenever a term is doing real work in an article and an inline gloss would break flow. */
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+/* ═══ CONCEPT OF THE WEEK — for newer managers (v3.8) ═══ */
+.concept-of-week{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--accent-orange);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.concept-of-week .cw-label{display:block;font-size:10px;font-weight:700;color:var(--accent-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.concept-of-week .cw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.concept-of-week .cw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.concept-of-week .cw-body + .cw-body{margin-top:6px}
+@media(max-width:680px){.concept-of-week{float:none;width:auto;margin:18px 0}}
+
+/* ═══ AUTHOR CARD — for In Practice / Leadership Read / Outside In Format A (v3.8) ═══ */
+.author-card{display:flex;align-items:center;gap:14px;background:var(--off-white);border-top:2px solid var(--deep-teal);padding:14px 18px;margin:0 0 20px}
+.author-card .ac-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,180,216,.12);color:var(--deep-teal);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px}
+.author-card .ac-meta{flex:1;min-width:0}
+.author-card .ac-name{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.2;margin:0}
+.author-card .ac-role{display:block;font-size:13px;color:var(--body-text);line-height:1.4;margin:2px 0 0}
+.author-card .ac-date{display:block;font-size:12px;color:var(--med-gray);margin-top:2px}
+.author-card .ac-link{font-size:12px;color:var(--deep-teal);text-decoration:none;white-space:nowrap;margin-left:auto;padding-left:8px}
+.author-card .ac-link:hover{text-decoration:underline}
+@media(max-width:680px){.author-card{flex-wrap:wrap}.author-card .ac-link{margin-left:0;padding-left:0;margin-top:6px;flex-basis:100%}}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ DOWN THE RABBIT HOLE ═══ */
+.rabbit-hole{float:right;max-width:280px;background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;margin:0 0 16px 24px;font-size:13px}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rabbit-hole .rh-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:8px}
+.rabbit-hole .rh-title a{color:var(--navy);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.rabbit-hole .rh-title a:hover{border-bottom-color:var(--deep-teal)}
+.rabbit-hole p{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.rabbit-hole-type{display:inline-block;background:rgba(0,180,216,.12);color:var(--deep-teal);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:10px}
+@media(max-width:680px){.rabbit-hole{float:none;max-width:none;margin:18px 0}}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+/* ═══ P0 STATUS CARD (replaces progress-tracker bar) ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT (Leadership Read) ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE (Quick Takes, Outside In) ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER (v1.7) ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT (v1.7) ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly (v1.8) ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+
+/* ═══ ARTICLE WITH SIDEBAR — deep dives ONLY (v1.8: do NOT use in standard weeklies) ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:65% 35%;gap:28px;margin-top:20px}.article-body{min-width:0}.article-sidebar{min-width:0}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.sidebar-box.urgent{border-left:4px solid var(--alert-red)}.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ TIER 2 LABEL OVERRIDES — sentence case (v1.7) ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+/* Format B: Hero moment */
+.oi-hero-band{padding:48px 60px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);text-align:center;border-bottom:1px solid var(--light-gray)}
+.oi-hero-band .oi-hero-quote{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;color:var(--teal);line-height:1.35;max-width:700px;margin:0 auto 20px}
+.oi-hero-band .oi-hero-attr{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:24px}
+.oi-hero-band .oi-hero-body{max-width:700px;margin:0 auto;color:rgba(255,255,255,.8);font-size:15px;line-height:1.7;text-align:left}
+.oi-hero-band .section-label{color:var(--accent-orange)}
+.oi-hero-band h2{color:var(--white)}
+.oi-hero-band .so-what{color:rgba(255,255,255,.9)}
+
+/* Format C: Compact inset */
+.oi-compact{background:var(--off-white);border-left:4px solid var(--teal);padding:20px 24px;margin:24px 60px;border-radius:0 4px 4px 0}
+.oi-compact .oi-compact-company{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.oi-compact p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.oi-compact .oi-compact-source{font-size:12px;color:var(--med-gray)}
+
+/* Format E: Contrast card */
+.oi-contrast-card{display:grid;grid-template-columns:1fr 2fr;margin:24px 60px;border-radius:6px;overflow:hidden;border:1px solid var(--light-gray)}
+.oi-contrast-card .oic-left{background:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.oi-contrast-card .oic-left .oic-company{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.oi-contrast-card .oic-left .oic-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}
+.oi-contrast-card .oic-left .oic-stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-top:4px}
+.oi-contrast-card .oic-right{padding:24px;background:var(--white)}
+.oi-contrast-card .oic-right p{font-size:14px;line-height:1.6;color:var(--body-text)}
+.oi-contrast-card .oic-right .oi-compact-source{font-size:12px;color:var(--med-gray);margin-top:8px}
+
+/* Format F: Meanwhile strip */
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-skip{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-hero-band{padding:32px 20px}.oi-hero-band .oi-hero-quote{font-size:22px}.oi-compact{margin:16px 20px}.oi-contrast-card{grid-template-columns:1fr;margin:16px 20px}.oi-meanwhile{padding:10px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+<a href="/" class="back-to-archive" aria-label="Back to all issues" style="display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;padding:10px 20px;background:#0A1628;color:#00B4D8;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)"><span style="font-size:14px;line-height:1">←</span><span>All Issues</span></a>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 16</span>
+    <span>19–26 June 2026</span>
+    <span>14 min read</span>
+  </div>
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-tagline">Engineering decisions, every Friday.</div>
+    <div class="cover-meta">
+      <span class="cover-date">19–26 June 2026</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">30 June</div>
+    <div class="stat-context">The internal deadline by which Microsoft is moving its own engineers off Anthropic's Claude Code and onto GitHub Copilot CLI.</div>
+  </div>
+
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>Microsoft moves its engineers off Claude Code to Copilot CLI</li>
+      <li>Lloyds opens 1,000+ AI roles for 2026</li>
+      <li>Ookla: AI reliability is now a business-critical risk</li>
+      <li>Managing up: the skill that matters now</li>
+      <li>Britain's banking champions: three bets, three futures</li>
+      <li>In Practice, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>Maturity in any technology arrives the moment its costs land on a budget line and its failures land on a status page. This week both happened to coding agents at once: Microsoft put a deadline on which one its own engineers may use, Lloyds put a headcount number on building them, and Ookla put a figure on how often they break. The experiment phase is closing. The governance phase has begun.</p>
+</section>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week (NON-AI) ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">Almost half</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center">Almost half of Monzo's customers now use it as their primary bank account — the UK challengers have crossed from spending app to main banking relationship, and that engagement bar is the one incumbent bank customers and fintech peers are now measured against.</p>
+  </div>
+</section>
+
+<!-- ═══ QUICK HITS ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>The week in brief</h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Supply chain</span><div class="qh-text"><strong>Mastra npm packages compromised.</strong> More than 140 Mastra packages — combined 1.1M+ weekly downloads — were quietly republished with <code>easy-day-js</code> added, a typosquat (a deliberately mis-spelled copy of the popular <code>dayjs</code> date library) carrying an obfuscated post-install dropper attributed to North Korean group Sapphire Sleet; teams running these dependencies should audit their lockfiles. <span class="on-source"><a href="https://www.stepsecurity.io/blog/mastra-npm-packages-compromised-using-easy-day-js">StepSecurity</a>, <a href="https://www.microsoft.com/en-us/security/blog/2026/06/17/postinstall-payload-inside-mastra-npm-supply-chain-compromise/">Microsoft</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge orange">AI spend</span><div class="qh-text"><strong>Anthropic reverses its planned billing change.</strong> A 15 June plan to stop the Agent SDK, the <code>claude-p</code> command and third-party apps drawing on regular subscription limits — moving them to a separate tiered credit pool and then usage-based pricing — was paused on the day it was due after subscriber backlash, with Anthropic telling users "Nothing changes for now." <span class="on-source"><a href="https://thenewstack.io/anthropic-pauses-claude-agent-sdk-subscription-change/">The New Stack</a>, <a href="https://the-decoder.com/anthropic-backs-off-unpopular-billing-overhaul-as-price-war-with-openai-looms/">The Decoder</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">ME fintech</span><div class="qh-text"><strong>Mal secures in-principle approval in the UAE.</strong> Reported to have won in-principle CBUAE approval as what it describes as the world's first AI-native Islamic digital bank, on a roughly $230M MEA seed round — a market-entry signal worth tracking in the region. <span class="on-source"><a href="https://www.fintechfutures.com/digital-banking/mal-uae-ai-native-islamic-digital-bank">FinTech Futures</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Platform eng</span><div class="qh-text"><strong>Fourth State of Platform Engineering report lands.</strong> Gartner forecasts that around 80% of large engineering organisations will run platform teams by the end of 2026 — yet roughly 30% of those teams measure no success metric at all, the persistent measurement gap, across 518 respondents. <span class="on-source"><a href="https://platformengineering.org/blog/announcing-the-state-of-platform-engineering-vol-4">Platform Engineering</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE ═══ -->
+<section class="section lead-article">
+  <div class="section-label">Wider engineering landscape</div>
+  <h2>Microsoft moves its own engineers off Claude Code <span class="section-time">(2 min)</span></h2>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">Claude Code</span>
+    <p class="jw-body">Anthropic's command-line coding tool. It runs multi-step coding tasks from the terminal — an "agentic" assistant that edits files and runs commands, with a developer still triggering and reviewing the work.</p>
+    <span class="jw-term" style="margin-top:10px">Copilot CLI</span>
+    <p class="jw-body">GitHub and Microsoft's competing command-line coding agent. It can call several models — including Anthropic's — but does so behind Microsoft's own controls.</p>
+    <span class="jw-term" style="margin-top:10px">Agent SDK</span>
+    <p class="jw-body">The toolkit teams use to build their own coding or automation agents on top of a model rather than buying one off the shelf.</p>
+  </div>
+
+  <h3>A deadline inside the house that makes Copilot</h3>
+  <p>Microsoft has given its own engineers a date. By 30 June 2026 — the close of its fiscal year — teams in its Experiences and Devices division, the group behind Windows, Microsoft 365, Outlook, Teams and Surface, are to move off Anthropic's Claude Code and onto GitHub Copilot CLI. The wrinkle is hard to miss: the maker of Copilot was running a rival agent inside its own walls, and could not comfortably sell a tool its flagship division was leaning on something else to do.</p>
+  <p>This is a standardisation move. Claude models remain available through Copilot CLI; what changes is the front door engineers walk through and who controls it. The reporting is multi-sourced, which matters for a story this easy to overstate.</p>
+
+  <div class="pq-bar">
+    <p>"Copilot CLI has given us something especially important: a product we can help shape directly with GitHub for Microsoft's repos, workflows, security expectations, and engineering needs."</p>
+    <cite>— Rajesh Jha, EVP, Microsoft (internal memo)</cite>
+  </div>
+
+  <h3>Strategic control first, cost second</h3>
+  <p>The dominant rationale Microsoft gives is control. In an internal memo, EVP Rajesh Jha framed the switch as moving to a product Microsoft can shape directly with GitHub for its own repositories, security expectations and engineering needs. Cost is present but secondary and reported rather than itemised: pulling external Claude Code seats reduces external software spending heading into the new fiscal year, and the deadline aligns to that fiscal close. No specific token or budget figure has been disclosed in primary reporting, and the contributing-cost framing should be read as exactly that — a contributing factor, not a published number.</p>
+
+  <h3>Why it changes the conversation downstream</h3>
+  <p>A hyperscaler forcing thousands of its own engineers onto a single coding agent on strategic-control grounds reframes the question every engineering leader is now fielding: which coding agent to standardise on, what it costs, and how much of that decision should sit with the vendor versus the buyer. The same week's Anthropic billing reversal — covered above — points at the same maturing market, where the terms of AI-coding spend are now contested in public. Tooling that arrived as a free-for-all experiment is becoming a governed line item with an owner, a budget and a renewal date.</p>
+
+  <div style="margin:28px 0 24px;">
+    <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif;" role="img" aria-label="Comparison of Claude Code and Copilot CLI on the control dimensions Microsoft named">
+      <text x="0" y="22" font-size="15" font-weight="700" fill="#0A1628">What the switch changes: control that sits with the buyer</text>
+      <text x="0" y="42" font-size="12" fill="#8899AA">Relative degree of Microsoft-side control on each dimension (illustrative, from the stated rationale)</text>
+      <!-- legend -->
+      <rect x="500" y="12" width="12" height="12" fill="#8899AA"></rect>
+      <text x="518" y="22" font-size="12" fill="#3D4F63">Claude Code</text>
+      <rect x="620" y="12" width="12" height="12" fill="#00B4D8"></rect>
+      <text x="638" y="22" font-size="12" fill="#3D4F63">Copilot CLI</text>
+      <!-- rows -->
+      <!-- Row 1: Model choice -->
+      <text x="0" y="86" font-size="13" fill="#0A1628">Model choice</text>
+      <rect x="200" y="74" width="260" height="14" fill="#8899AA"></rect>
+      <rect x="200" y="92" width="300" height="14" fill="#00B4D8"></rect>
+      <!-- Row 2: Repo alignment -->
+      <text x="0" y="138" font-size="13" fill="#0A1628">Repo &amp; workflow fit</text>
+      <rect x="200" y="126" width="150" height="14" fill="#8899AA"></rect>
+      <rect x="200" y="144" width="430" height="14" fill="#00B4D8"></rect>
+      <!-- Row 3: Security controls -->
+      <text x="0" y="190" font-size="13" fill="#0A1628">Security controls</text>
+      <rect x="200" y="178" width="170" height="14" fill="#8899AA"></rect>
+      <rect x="200" y="196" width="470" height="14" fill="#00B4D8"></rect>
+      <!-- Row 4: Spend control -->
+      <text x="0" y="242" font-size="13" fill="#0A1628">External spend control</text>
+      <rect x="200" y="230" width="190" height="14" fill="#8899AA"></rect>
+      <rect x="200" y="248" width="420" height="14" fill="#00B4D8"></rect>
+      <!-- baseline -->
+      <line x1="200" y1="64" x2="200" y2="270" stroke="#E8EDF2" stroke-width="1"></line>
+    </svg>
+    <p class="source-tag" style="margin-top:8px;">Illustrative comparison of the control dimensions named in Microsoft's internal memo. Data: <a href="https://www.developer-tech.com/news/microsoft-claude-code-github-copilot-cli/">Developer Tech</a></p>
+  </div>
+
+  <div class="key-takeaway-box">
+    <div class="kt-title">Key Takeaways</div>
+    <ul>
+      <li>Microsoft is standardising its Experiences &amp; Devices engineers on Copilot CLI by 30 June 2026; Claude models stay reachable through it.</li>
+      <li>The stated driver is strategic control of the tool, with reduced external spend a secondary, reported factor — no dollar figure is public.</li>
+      <li>Coding-agent selection is now a governed procurement decision, not a developer-by-developer preference.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: <a href="https://www.developer-tech.com/news/microsoft-claude-code-github-copilot-cli/">Developer Tech</a>, <a href="https://winbuzzer.com/2026/05/15/microsoft-starts-canceling-claude-code-licenses-xcxwbn/">WinBuzzer</a>, <a href="https://windowsnews.ai/article/microsoft-plans-june-30-2026-shift-from-claude-code-to-copilot-cli.425488">Windows News</a> (May–June 2026)</p>
+</section>
+
+<!-- ═══ QUICK TAKES ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing</h2>
+  <div class="two-col">
+    <div class="quick-take-col">
+      <div class="qt-header fintech">Management &amp; teams</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat fintech">1,000+</div>
+        <div class="qt-anchor-context">New AI roles at Lloyds in 2026</div>
+        <h3 style="margin-top:0">Lloyds staffs up on AI even as it trims the branch network</h3>
+        <p>Lloyds Banking Group plans to create more than 1,000 new AI roles across 2026, with near-term recruitment under way for almost 300 agentic-AI positions — Data and AI Scientists, Engineers, Responsible AI specialists and AI Product Managers. Here, agentic AI means the bank is staffing to build and deploy systems that take actions on their own, such as real-time fraud decisioning, rather than agent-mode dev tools a human drives step by step.</p>
+        <p>The build-out has scaffolding behind it. More than 700 colleagues are already shaping these use cases; over 400,000 AI Academy courses have been taken since January and 65,000-plus staff have completed responsible-AI training. The group's AI financial assistant is in the hands of 500,000-plus Bank of Scotland customers, and it has launched what it describes as the first Level 6 AI Engineering apprenticeship at a UK bank, a 33-strong opening cohort.</p>
+        <p class="so-what"><strong>The takeaway: a flagship UK bank is treating agentic AI as a hiring and capability problem — and the benchmark its fintech partners and peers will now be measured against is whether they are building the skills to deploy agents, not merely licensing them.</strong></p>
+        <p class="source-tag">Sources: <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/1000-new-ai-roles.html">Lloyds Banking Group</a>, <a href="https://www.fintechfutures.com/job-cuts-new-hires/lloyds-banking-group-ai-hiring-drive">FinTech Futures</a></p>
+      </div>
+    </div>
+    <div class="quick-take-col">
+      <div class="qt-header ai">Operating at scale</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat ai">3.72M</div>
+        <div class="qt-anchor-context">AI-outage reports in 16 months</div>
+        <h3 style="margin-top:0">As agents reach production, they fail in ways availability planning hasn't caught up with</h3>
+        <p>Ookla frames AI reliability as a business-critical risk, and the numbers behind the claim are stark: 3.72 million user-reported AI outages on Downdetector between January 2025 and April 2026. The pattern inside that figure is the part worth planning for. Agentic systems — production agents with action authority, the kind that book meetings, process transactions or control other systems without per-step human approval — see 210% more incidents than basic AI tools that simply answer a prompt.</p>
+        <p>The trend line is steepening too: high-disruption days rose from six in the first quarter of 2025 to 51 in the first quarter of 2026. Circulating this week as a vivid illustration is the Amazon Kiro episode, in which an agent reportedly deleted and rebuilt a production environment unprompted, contributing to a 13-hour Cost Explorer outage. Autonomous agents tend to fail by taking confident, wrong actions at machine speed — a sharper failure mode than a gradually degrading API.</p>
+        <p class="so-what"><strong>The takeaway: production-agent reliability is becoming an availability and observability problem, and the engineering organisations putting agents into live systems now carry a new class of incident their on-call design was never built to absorb.</strong></p>
+        <p class="source-tag">Sources: <a href="https://windowsnews.ai/article/ookla-warns-ai-reliability-now-a-business-critical-risk-after-372m-outage-reports-in-16-months.425034">Windows News</a>, <a href="https://techblog.comsoc.org/2026/06/12/ookla-ai-platform-reliability-decreases-as-outages-surge/">techblog.comsoc.org</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT — Number band ═══ -->
+<div class="mid-accent-band">
+  <div class="accent-stat">30 June</div>
+  <div class="accent-context">The fiscal-year date that turned a coding-agent preference into a procurement decision — the clearest sign yet that AI tooling is now a governed line item with a renewal calendar.</div>
+</div>
+
+<!-- ═══ IN PRACTICE — Spotify ═══ -->
+<hr class="feature-break">
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Ways of working in the agent era — operating-model change after adoption <span class="section-time">(2 min)</span></span>
+</header>
+<section class="in-practice">
+  <div class="author-card">
+    <div class="ac-avatar">NG</div>
+    <div class="ac-meta">
+      <span class="ac-name">Niklas Gustavsson</span>
+      <span class="ac-role">Chief Architect &amp; VP of Engineering, Spotify</span>
+      <span class="ac-date">Code with Claude, June 2026</span>
+    </div>
+    <a class="ac-link" href="https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint">Read the piece →</a>
+  </div>
+  <h3>"Coding is no longer the constraint"</h3>
+  <div class="ip-attribution">Niklas Gustavsson · Spotify Engineering, June 2026 · <a href="https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint">Read the full piece</a></div>
+  <p>Spotify's chief architect opens with a claim that reframes the whole adoption debate: coding is no longer the constraint. With more than 99% of Spotify's engineers using AI coding tools every week, 94% reporting that AI has made them more productive, and a 76% increase in pull-request frequency, the bottleneck has simply moved. As Gustavsson puts it, the team is rethinking how it plans and prioritises as the work shifts from writing code to deciding what to build and reviewing what comes back.</p>
+  <p>The mechanism is the interesting part for anyone past the pilot stage. Spotify did not absorb agents because it bought the right tool; it absorbed them because years of platform investment were already in place. Backstage — its open-source internal developer portal — and Fleetshift, the system it built to execute large-scale automated migrations, gave agents a consistent surface to act on. Its background coding agent, Honk, runs Claude using the Agent SDK wrapped inside Spotify's own harness and deployed in Kubernetes pods, plugged into that migration and catalogue tooling. A telling detail: the agent performs better when the codebase is large and consistent, so the years spent on standardisation paid off precisely when agents arrived.</p>
+  <blockquote>As coding velocity increases, the constraints shift toward human decisions.</blockquote>
+  <p>The downstream lesson is uncomfortable for any organisation hoping a coding agent solves delivery on its own. Once code generation is cheap and fast, review capacity, decision-making and platform readiness become the limiting factors. The agent's coding ability is not the bottleneck; the human and platform layer around it is. Spotify's experience suggests the teams that benefit most from agents are the ones that did the unglamorous platform and consistency work first.</p>
+  <div class="ip-try">
+    <strong>What to try</strong>
+    A useful question for any team a few months past agent adoption: whether the real bottleneck has quietly moved from coding speed to review capacity and decision throughput — and whether the platform underneath is consistent enough for an agent to act on safely.
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>GitHub adds break-glass controls for agent sessions.</strong> GitHub shipped enterprise credential revocation and remote control for Copilot agent sessions, a peer-platform incident-response capability aimed squarely at the production-agent risk Ookla is flagging. <span class="on-source"><a href="https://github.blog/changelog/">GitHub Changelog</a></span></li>
+    <li><strong>The AI-coding price war keeps surfacing.</strong> Anthropic's reversed billing change and Microsoft's tool switch in the same week underline how unsettled the economics of coding agents remain — vendors and buyers are both still finding the price. <span class="on-source"><a href="https://the-decoder.com/anthropic-backs-off-unpopular-billing-overhaul-as-price-war-with-openai-looms/">The Decoder</a></span></li>
+  </ul>
+</section>
+
+<!-- Platform Updates OMITTED this issue (run-plan §13 / brief: 0 rows) -->
+
+<!-- ═══ OUTSIDE IN — Skinner (Format A) ═══ -->
+<hr class="feature-break">
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Britain's banking champions: three bets, three futures <span class="section-time">(2 min)</span></h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">CS</div>
+    <div class="ac-meta">
+      <span class="ac-name">Chris Skinner</span>
+      <span class="ac-role">Independent fintech commentator, The Finanser</span>
+      <span class="ac-date">22 June 2026</span>
+    </div>
+    <a class="ac-link" href="https://thefinanser.com/2026/06/monzo-revolut-and-starling-the-quiet-emergence-of-britains-banking-champions">Read the post →</a>
+  </div>
+
+  <h3>Three institutions, three distinct strategies</h3>
+  <p>Three institutions. Three distinct strategies. Three very different visions of the future. That is how Chris Skinner frames the quiet emergence of Britain's banking challengers — and the reason the piece earns attention from outside fintech is that the three have reached scale on entirely different platform-architecture bets. None of them is copying the others, and all of them are working.</p>
+
+  <table class="compare-table">
+    <thead><tr><th>Challenger</th><th>Platform bet</th></tr></thead>
+    <tbody>
+      <tr><td>Monzo</td><td>Customer <strong>intimacy</strong> — the primary-relationship engagement that comes from being the account people actually live in, now diversifying into adjacent products.</td></tr>
+      <tr><td>Revolut</td><td>Financial <strong>super-app</strong> — more than 70 million customers across dozens of countries, with FX, investments, crypto, travel and lifestyle stacked into one product.</td></tr>
+      <tr><td>Starling</td><td>Banking <strong>infrastructure</strong> — Engine, its BaaS (banking-as-a-service) platform, selling Starling's banking technology to financial institutions around the world.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="oi-callout">
+    <p>Skinner's framing of the divergence is the lesson in one line: Revolut is creating what could become Europe's first true financial super-app, Starling's ambition is infrastructure, and Monzo's ambition is intimacy. Same market, same starting point, three incompatible answers to the question of what a bank should be.</p>
+  </div>
+
+  <h3>Why the divergence travels beyond banking</h3>
+  <p>Strip out the company names and the pattern is a familiar one for any platform leader: build for depth with a narrow audience, build a wide super-app, or sell the platform itself to others. Revolut is building a global financial super-app on breadth; Starling expanded beyond banking by selling its technology platform through Engine; Monzo bet on the engagement that turns an app into a main account. There is no single correct build-versus-platform strategy on display here — there is a strategy that fits each company's chosen point of differentiation, and three teams that committed hard to theirs.</p>
+
+  <p class="so-what"><strong>The takeaway: three peer fintechs reaching scale on three different platform-architecture bets is a reminder that the right build-versus-platform decision is the one that fits a company's own differentiation.</strong></p>
+
+  <p class="source-tag"><a href="https://thefinanser.com/2026/06/monzo-revolut-and-starling-the-quiet-emergence-of-britains-banking-champions">Read the full post: thefinanser.com →</a></p>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-day">30</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content">
+        <div class="rabbit-hole">
+          <div class="rh-label">Down the Rabbit Hole</div>
+          <div class="rh-title"><a href="https://computerhistory.org/">A warehouse full of computing history</a></div>
+          <p>The Computer History Museum recovered more than 2,000 retro computing artefacts from an abandoned German warehouse — seven tractor-trailers' worth of machines hauled out over several days. After a week spent staring at the future of coding, it is a fitting reminder of how much hardware it took to get here.</p>
+          <span class="rabbit-hole-type">Long-read</span>
+        </div>
+        <strong>Microsoft's Claude Code → Copilot CLI cutover</strong> — the hard internal deadline for the Experiences &amp; Devices division to complete the switch, tied to the fiscal-year close.
+      </div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-label">Now</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>State of Platform Engineering Vol. 4 published</strong> — the measurement-gap finding (around 30% of platform teams track no success metric) is the data point to watch as platform-team adoption nears 80% of large orgs.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jun</div>
+        <div class="rd-label">New</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>GitHub break-glass agent-session controls</strong> — enterprise credential revocation and remote control for Copilot agent sessions now available, worth a look for anyone running agents against production.</div>
+    </li>
+  </ul>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Managing up is now a survival skill <span class="section-time">(3 min)</span></h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">CD</div>
+    <div class="ac-meta">
+      <span class="ac-name">Phillip G. Clampitt &amp; Bob DeKoch</span>
+      <span class="ac-role">MIT Sloan Management Review</span>
+      <span class="ac-date">13 April 2026</span>
+    </div>
+    <a class="ac-link" href="https://sloanreview.mit.edu/article/managing-up-a-skill-set-that-matters-now/">Read the article →</a>
+  </div>
+
+  <div class="concept-of-week">
+    <span class="cw-label">Concept of the week</span>
+    <span class="cw-term">Managing up</span>
+    <p class="cw-body">Influencing and informing the people above a manager — their own boss and senior stakeholders — so the team's work is understood, properly resourced and unblocked. It is not office politics; it is the craft of making sure the people who allocate budget and attention have what they need to back the team.</p>
+  </div>
+
+  <p>As organisations use AI to thin out the middle layers of management, the people who remain answer to fewer managers but more senior ones — and the ability to manage upward has stopped being a soft nicety. Clampitt and DeKoch make the case that managing one's own manager and senior stakeholders has become a defining skill precisely as the org chart flattens, and the argument lands harder this week, set against the AI-driven role changes running through the issue.</p>
+
+  <h3>Buffer, translator, advocate</h3>
+  <p>The authors define upward leadership as listening to those higher in rank and influencing them to assist the manager and their team to better embody the organisation's values and fulfil its mission, strategy and goals. Done well, it balances three roles. As a buffer, a manager absorbs noise and pressure from above so the team can do its work. As a translator, they convert senior priorities into terms the team can act on, and convert the team's reality into terms leadership will hear. As an advocate, they make the case for the team's resourcing, direction and credit in rooms the team is not in.</p>
+
+  <div class="pull-quote">
+    <p>Working successfully with people above you in the hierarchy requires you to carefully balance three roles: buffer, translator, and advocate.</p>
+    <cite>— Clampitt &amp; DeKoch, MIT Sloan Management Review</cite>
+  </div>
+
+  <h3>Why it matters more as the middle thins</h3>
+  <p>The authors are explicit about the trigger: with some organisations using artificial intelligence to eliminate middle layers of management, the ability to manage up has become even more vital. When there are fewer managers between an engineer and the decision-makers, the cost of being misunderstood upward rises, and the protection a thick management layer used to provide disappears. The practical disciplines that follow are the unglamorous ones — keeping senior stakeholders genuinely informed rather than managed, making bad news travel up quickly rather than slowly, and being clear about expectations early rather than discovering a mismatch late. For managers who came into the role from delivery or product, this is craft that can be learned deliberately, not a personality trait.</p>
+
+  <p>The thread back to this week's other stories is direct. Lloyds is reshaping what engineering managers manage; Microsoft is reshaping the tools they buy. In both, the managers who fare best are the ones who can read the room above them and shape the decision before it lands.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://sloanreview.mit.edu/article/managing-up-a-skill-set-that-matters-now/" class="mgmt-link">Read the full article: sloanreview.mit.edu →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> If the management layer above keeps thinning, which of the three roles — buffer, translator, or advocate — is the team currently least served by, and what would it take to close that gap before the next reorganisation forces the question?</p>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://www.developer-tech.com/news/microsoft-claude-code-github-copilot-cli/">Microsoft moves engineers from Claude Code to Copilot CLI</a></span><span class="source">developer-tech.com</span></li>
+    <li><span class="title"><a href="https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint">Coding is no longer the constraint</a></span><span class="source">engineering.atspotify.com</span></li>
+    <li><span class="title"><a href="https://thefinanser.com/2026/06/monzo-revolut-and-starling-the-quiet-emergence-of-britains-banking-champions">Monzo, Revolut and Starling: Britain's banking champions</a></span><span class="source">thefinanser.com</span></li>
+    <li><span class="title"><a href="https://sloanreview.mit.edu/article/managing-up-a-skill-set-that-matters-now/">Managing up: a skill set that matters now</a></span><span class="source">sloanreview.mit.edu</span></li>
+    <li><span class="title"><a href="https://platformengineering.org/blog/announcing-the-state-of-platform-engineering-vol-4">State of Platform Engineering, Vol. 4</a></span><span class="source">platformengineering.org</span></li>
+    <li><span class="title"><a href="https://thenewstack.io/anthropic-pauses-claude-agent-sdk-subscription-change/">Anthropic pauses its Agent SDK subscription change</a></span><span class="source">thenewstack.io</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">19–26 June 2026 · Weekly Edition · Issue #16</div>
+  <div class="footer-next">Next edition: 3 July 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">29 May · Weekly</span>
+    <span class="archive-pill">5 Jun · Weekly</span>
+    <span class="archive-pill">12 Jun · Weekly</span>
+    <span class="archive-pill">19 Jun · Weekly</span>
+    <span class="archive-pill current">26 Jun · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>
