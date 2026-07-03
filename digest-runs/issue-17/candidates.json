@@ -1,0 +1,421 @@
+{
+  "issue_number": 17,
+  "date_window": { "from": "2026-06-26", "to": "2026-07-03" },
+  "generated_at": "2026-07-03T00:00:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Wider engineering landscape",
+    "last_lead_topics_3issues": ["Wider engineering landscape", "Ways of working", "Wider engineering landscape"],
+    "last_outside_in_company": "The Finanser (Chris Skinner)",
+    "outside_in_history": ["Datadog", "Honeycomb", "Vercel", "incident.io", "Linear", "The Finanser"],
+    "current_in_practice_season": "Ways of working in the agent era — operating-model change after adoption (week 1 = Spotify)",
+    "in_practice_history": ["Spotify"]
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering management team calibration performance review AI adoption 2026",
+        "engineering leadership hiring levelling AI agents team restructure June 2026",
+        "\"June 2026\" OR \"July 2026\" engineering managers junior developers AI report survey hiring",
+        "software engineering team layoffs restructure levelling promotion announcement June 29 30 2026",
+        "tech layoffs AI hiring developers survey report week June 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "AI-washing layoffs keep rolling: Cisco and BAT cut thousands the same week, and 43% of firms are now freezing junior hiring",
+          "source_name": "TechCrunch / PwC 2026 Global AI Jobs Barometer",
+          "source_url": "https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/",
+          "published_date": "2026-06-30",
+          "beat": "management_teams",
+          "summary": "The 2026 AI-cited layoff tally passed 87,000 roles YTD, with Cisco eliminating 471 California jobs (30 June) and British American Tobacco cutting 9,000 in an 'AI transformation' (29 June). Alongside, PwC's Global AI Jobs Barometer and an Oliver Wyman read show the share of firms actively cutting junior/entry-level roles jumping from 17% to 43% in a year, while 'seniorised' entry roles demanding leadership skills grew 35%. Analysts warn a chunk of this is 'AI redundancy washing' — cost-cutting dressed as automation.",
+          "so_what": "The junior-role squeeze forces a levelling and apprenticeship-pipeline decision now — if teams stop hiring graduates, the 'system verifier' seniors of 2028 never get trained.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-jobs-barometer.html",
+            "https://spectrum.ieee.org/ai-effect-entry-level-jobs"
+          ],
+          "notes": "Cisco (30 Jun) and BAT (29 Jun) are clean in-window events; the PwC Barometer (15 Jun) and Oliver Wyman data sit just before the window but are receiving fresh coverage — new-in-window traction exception applies. Strongest Management & teams lead-eligible candidate; favoured by the breadth guardrail over another landscape lead.",
+          "jargon_terms": ["AI redundancy washing", "seniorised roles", "system verifier"],
+          "chartable_data": "17%->43% firms cutting junior roles; 35% growth in seniorised entry roles; 87,714 AI-cited cuts YTD vs 38,579 in May — bar or before/after chart.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Spotify's 99% AI adoption is quietly rewriting headcount math",
+          "source_name": "NextDev",
+          "source_url": "https://www.joinnextdev.com/blog/spotifys-99-ai-adoption-just-changed-headcount-math",
+          "published_date": "2026-06-27",
+          "beat": "management_teams",
+          "summary": "Analysis of Spotify's disclosed numbers — 99% of engineers using AI tools weekly, 76% more PRs, an internal agent (Honk) shipping ~1,000 PRs every 10 days — argues the real story is what it does to headcount planning, not productivity. The piece frames the debate over whether high-adoption orgs actually need fewer engineers or simply move the bottleneck to review and context assembly.",
+          "so_what": "Gives leaders a concrete peer data point for the 'do we grow the team or grow the agents?' planning conversation — but the review-bottleneck caveat resists simple headcount cuts.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "notes": "Spotify was In Practice week 1 of the current season — avoid re-featuring Spotify in a long-form slot. Fine as At a Glance / Other News.",
+          "chartable_data": "99% weekly adoption, 76% PR uplift, 1,000 PRs/10 days — stat tile candidate.",
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "Calibration in the AI era: comparing teams that adopted coding agents against those that didn't",
+          "source_name": "GetDX / Cortex / Pensero",
+          "source_url": "https://getdx.com/blog/measure-ai-impact/",
+          "published_date": "2026-06-26",
+          "beat": "management_teams",
+          "summary": "A cluster of practitioner pieces argues that AI adoption has broken traditional velocity-based calibration: with AI usage up 65% but median PR throughput up only ~8%, leaders now need complexity-weighted, per-headcount comparisons across high- and low-adoption teams to calibrate fairly. Individual output rises while system-level delivery often does not, because review becomes the constraint.",
+          "so_what": "Managers running performance calibration this cycle need a defensible way to compare an AI-heavy squad against a traditional one, or they will reward raw PR counts that don't reflect real delivery.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Framework/how-to content, not a news event — belongs in On the Radar or as supporting context for a Management quick take. Vendor-authored, treat with care.",
+          "chartable_data": "65% AI-usage rise vs 8% median PR throughput rise — single striking contrast bar.",
+          "event_or_essay": "essay"
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "DORA report agentic coding rollout developer platform July 2026",
+        "CI/CD internal developer platform trunk-based team topologies news June 2026",
+        "GitHub Copilot Cursor Anthropic pricing enterprise change engineering budget June 2026",
+        "engineering org restructure code review AI agents policy announcement late June 2026",
+        "\"State of DevOps\" OR \"developer productivity\" report published week June 29 2026 delivery metrics"
+      ],
+      "candidates": [
+        {
+          "headline": "The flat-rate era of AI coding is over — agentic sessions now burn $30-40 each and teams need a real budget line",
+          "source_name": "Developers Digest / GetDX",
+          "source_url": "https://www.developersdigest.tech/blog/ai-coding-tools-pricing-june-2026",
+          "published_date": "2026-07-01",
+          "beat": "ways_of_working",
+          "summary": "Following GitHub Copilot's 1 June switch to usage-based AI Credits, updated coverage (refreshed 1 July) reports the wider shift: every major coding tool has moved to metered pricing, agentic sessions routinely consume $30-40 in token/runtime costs, a Pro user's monthly credits can be exhausted in a single session, and Cursor Teams has added a $120/user/month heavy-agent tier. Small teams should now budget $200-500/month before overages.",
+          "so_what": "AI coding spend has moved from a fixed per-seat licence to a variable, usage-driven cost centre — leaders must open a finance conversation about metering, caps and who owns the overage.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/",
+            "https://www.morphllm.com/comparisons/cursor-vs-copilot"
+          ],
+          "notes": "Core event (Copilot billing) is 1 June — out of window — but the 'reality check' coverage refreshed 1 July with new figures (Cursor $120 tier, Claude Code $0.08/session-hour from 15 Jun). Ways-of-working lead-eligible via the budget conversation it triggers; classify by decision, not tool. Clean non-landscape lead option.",
+          "jargon_terms": ["usage-based billing", "AI Credits", "session-hour pricing"],
+          "chartable_data": "Entry vs power tier pricing across Claude/Cursor/Copilot/Devin; $20->$500/mo team cost ramp — comparison table or grouped bar.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Claude Sonnet 5 ships as Anthropic's 'most agentic' model — autonomous browser and terminal use at near-Opus quality, lower cost",
+          "source_name": "Anthropic / BuildFastWithAI roundup",
+          "source_url": "https://www.buildfastwithai.com/blogs/ai-news-today-july-1-2026",
+          "published_date": "2026-07-01",
+          "beat": "ways_of_working",
+          "summary": "Anthropic launched Claude Sonnet 5 on 1 July, described as its most agentic model yet — able to autonomously drive browsers and terminals in multi-step workflows — at near-Opus 4.8 performance for materially lower cost. Landed the same week as OpenAI's 'Jalapeño' inference chip and Google's Gemini 3.1 image models.",
+          "so_what": "A cheaper, more capable production-grade agent moves the 'should we let agents take actions in prod, and what verification loop wraps them?' question from hypothetical to this-quarter.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Model release — defaults to At a Glance per the tool-release rule unless the curator ties it to a specific operating-model decision. Names both ends of the agent spectrum (agent-mode inside tools vs production agents with action authority). Do not conflate with Issue 16's Microsoft Copilot CLI anchor.",
+          "jargon_terms": ["agentic model", "inference chip", "production agents with action authority"],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "DORA's ROI-of-AI framework tells leaders to stop counting headcount savings and start counting unlocked capacity",
+          "source_name": "InfoQ / Google Cloud DORA",
+          "source_url": "https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/",
+          "published_date": "2026-06-26",
+          "beat": "ways_of_working",
+          "summary": "DORA's 'ROI of AI-Assisted Software Development' report offers a framework for calculating financial return on AI investment, explicitly discouraging headcount reduction as a strategy and reframing ROI as latent human capacity unlocked by offloading toil to agents. It stresses that ROI depends on organisational systems — platform engineering, refinement discipline — not the tools themselves. Note: at data-collection time 61% had never used agentic workflows.",
+          "so_what": "Gives leaders an evidence-backed counter to the 'AI means we cut the team' board narrative, and a framework to defend AI spend on capacity rather than layoffs.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "notes": "Primary report published earlier (2026.01 / May InfoQ coverage) — largely out of window; include only if fresh follow-on traction appears. Overlaps thematically with the Spotify and calibration candidates.",
+          "chartable_data": "61% never used agentic workflows; ROI-as-capacity vs ROI-as-headcount framing — could anchor a concept diagram.",
+          "event_or_essay": "essay"
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "major outage postmortem cloud incident June 2026",
+        "Cloudflare fiber cut outage post-mortem lessons June 2026 engineering",
+        "actively exploited zero-day vulnerability CVE enterprise June 30 2026",
+        "Oracle PeopleSoft Arista EOS zero-day active exploitation June 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Cloudflare's fibre-cut outage exposed how much of the web rides on a handful of undocumented shared-transit layers",
+          "source_name": "Network World / CircleID",
+          "source_url": "https://www.networkworld.com/article/4113326/2026-network-outage-report-and-internet-health-check.html",
+          "published_date": "2026-06-27",
+          "beat": "operating_at_scale",
+          "summary": "The 22 June Cloudflare outage — a fibre cut in Eastern North America, not a bug or attack — cascaded to X, Reddit, Teams, Zoom and AWS-fronted services because Cloudflare fronts ~20% of web traffic. Follow-up analysis this week frames the lesson: modern reliability depends on shared transit, CDN, DNS and API-gateway layers most orgs only partially document, and single-provider concentration is now a systemic dependency-mapping problem.",
+          "so_what": "A prompt to revisit dependency mapping and single-provider concentration risk — the failure mode wasn't in anyone's code but in an undocumented shared layer.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "notes": "The outage itself (22 Jun) likely fell in Issue 16's window; treat as follow-on / On the Radar or rabbit-hole angle on shared-transit fragility, not a fresh anchor. Cloudflare has not yet published a formal engineering post-mortem.",
+          "jargon_terms": ["shared transit", "CDN", "API gateway", "traffic engineering"],
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "Oracle PeopleSoft zero-day (CVSS 9.8) actively exploited by ShinyHunters — unauthenticated RCE hitting the education sector",
+          "source_name": "Rapid7 / Mandiant",
+          "source_url": "https://www.rapid7.com/blog/post/etr-active-exploitation-of-oracle-peoplesoft-zero-day-cve-2026-35273/",
+          "published_date": "2026-06-26",
+          "beat": "operating_at_scale",
+          "summary": "Oracle issued an alert for CVE-2026-35273, a CVSS 9.8 unauthenticated remote-code-execution flaw in PeopleSoft PeopleTools' Updates Environment Management component. Mandiant confirmed zero-day exploitation by ShinyHunters (UNC6240) between 27 May and 9 June; 68% of 100+ notified victims were universities and colleges.",
+          "so_what": "For any org running PeopleSoft it's an act-this-week patch-and-verify; for everyone else it's a reminder that enterprise back-office middleware is now a front-line target.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "notes": "Audience-fit gate: remediation is delegate-and-be-aware for the reader, not hands-on — belongs in Week at a Glance 'Action Required', not an anchor. Narrow deployed base among the reader's own stack.",
+          "jargon_terms": ["CVE-2026-35273", "RCE", "PeopleTools", "ShinyHunters / UNC6240"],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Arista EOS zero-day confirmed exploited — and no patch is planned",
+          "source_name": "Zero Day Initiative / vendor advisory",
+          "source_url": "https://www.thezdi.com/blog/2026/6/9/the-june-2026-security-update-review",
+          "published_date": "2026-06-26",
+          "beat": "operating_at_scale",
+          "summary": "Alongside a record 198-CVE June Patch Tuesday and an actively-exploited Chrome V8 zero-day (CVE-2026-11645), an Arista EOS zero-day was confirmed under active exploitation with the vendor stating no patch is planned — pushing affected operators toward mitigations and network segmentation rather than a fix.",
+          "so_what": "The 'vendor won't patch' posture forces a mitigation-and-isolate decision and reframes the buy-vs-risk conversation for network kit that can't simply be updated away.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "low",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "notes": "Chrome V8 CVE-2026-11645 (actively exploited, everyone runs a browser) is the cleaner 'Action Required' one-liner for Week at a Glance. Arista angle has narrative interest but low direct UK/ME banking relevance.",
+          "jargon_terms": ["Arista EOS", "CVE-2026-11645", "V8", "network segmentation"],
+          "event_or_essay": "news_event"
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "Monzo Starling Revolut Wise engineering blog June 2026",
+        "bank loyalty card-linked offers rewards cashback fintech launch June 2026",
+        "agentic commerce payments protocol Visa Mastercard Stripe June 2026",
+        "Open USD stablecoin launch banks June 30 2026 Stripe",
+        "loyalty rewards platform commerce media retail media network launch UK Middle East bank June 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Open USD: 140+ firms — Visa, Stripe, Mastercard, BlackRock, DBS, Standard Chartered — launch a revenue-sharing stablecoin consortium",
+          "source_name": "Fortune / The Block",
+          "source_url": "https://fortune.com/2026/06/30/stripe-visa-stablecoin-rival-ousd-tether-circle/",
+          "published_date": "2026-06-30",
+          "beat": "banking_fintech_loyalty",
+          "summary": "On 30 June a consortium of 140+ payments, banking and fintech firms announced Open USD (OUSD), a USD stablecoin governed by an independent, partner-boarded entity that charges zero mint/redeem fees and shares nearly all reserve earnings with partners — a direct challenge to Tether and Circle (Circle's stock fell ~13%). Named banks include BBVA, BNY, DBS and Standard Chartered; go-live is later in 2026.",
+          "so_what": "A shared settlement rail with partner revenue-sharing reshapes the economics of the payments world the reader's bank customers operate in — and it's the settlement substrate that agentic-commerce protocols will plug into.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.theblock.co/post/406736/visa-stripe-coinbase-join-open-usd-stablecoin-shares-reserve-revenue",
+            "https://www.forrester.com/blogs/stripes-new-stablecoin-bet-the-open-usd/"
+          ],
+          "notes": "Wider-landscape/payments story with strong loyalty/commerce-media surfacing (reserve-revenue-sharing = a new merchant/partner economics model). Reader is upstream of the banks, so frame as 'the world the reader operates in', not a compliance briefing. Breadth guardrail disfavours a landscape lead this week — strong QT/anchor rather than lead. Part of a possible agentic-payments deep-dive cluster.",
+          "jargon_terms": ["Open USD / OUSD", "stablecoin", "reserve revenue sharing", "mint/redeem"],
+          "chartable_data": "USDT ~62% / USDC ~25% market share vs new OUSD entrant; 140+ partners; Circle -13% — market-share donut or bar.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Visa settles its first live agentic-commerce merchant payments in Europe",
+          "source_name": "Payment Expert",
+          "source_url": "https://paymentexpert.com/2026/07/02/visa-agentic-payments-merchants-eu/",
+          "published_date": "2026-07-02",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Visa announced the first live agentic-commerce payments settled across European merchant sites — lastminute.com, Frasers and BrickDepot — via Visa Intelligent Commerce, with transactions authorised by consumers. It follows Visa's Trusted Agent Protocol aligning with OpenAI's Agentic Commerce Protocol and its earlier Stripe/MPP collaboration.",
+          "so_what": "Agent-initiated checkout has moved from spec to live settled transactions in Europe — the commerce-media and card-linked-offer flows the reader builds around now have to account for a non-human buyer.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.digitalcommerce360.com/2026/04/02/visa-mastercard-in-agentic-commerce/"
+          ],
+          "notes": "Primary URL returned 403 to automated fetch — details drawn from indexed summary; Phase 2 should re-verify the merchant list and date. Mastercard Agent Pay was an Issue 15 anchor; this is a distinct Visa milestone but same theme — watch anchor-repeat adjacency. Core of a possible agentic-payments deep dive.",
+          "jargon_terms": ["Visa Intelligent Commerce", "Trusted Agent Protocol", "Agentic Commerce Protocol"],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Mastercard extends Agent Pay to 'Machines' for high-frequency, low-value autonomous payments",
+          "source_name": "Mastercard / Forbes",
+          "source_url": "https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html",
+          "published_date": "2026-06-24",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Mastercard launched Agent Pay for Machines, extending its 2025 Agent Pay programme to scale high-frequency, low-latency, low-value machine/agent payments with guaranteed multi-rail settlement across cards, accounts and stablecoins. Initial supporters include Stripe, Cloudflare, Coinbase, Polygon and 140+ others.",
+          "so_what": "Machine-to-machine micropayment rails are being productised — relevant context for how autonomous agents will transact, but a follow-on to a story the reader has already seen.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Direct follow-on to Issue 15's Mastercard Agent Pay anchor — On the Radar / Other News only, not a fresh anchor. Exact June date approximate (Mastercard June 2026 press).",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "'Banks as media': card-linked offers hit the mainstream as the reader's core vertical matures",
+          "source_name": "ACHIVX (Medium) / Kard / Olive",
+          "source_url": "https://medium.com/@achivx/card-linked-offers-in-2026-why-banks-as-media-is-happening-now-bf0a5a1692cf",
+          "published_date": "2026-06-29",
+          "beat": "banking_fintech_loyalty",
+          "summary": "A cluster of 2026 category pieces argue card-linked offers (CLO) have reached mainstream adoption because banks are now everyday digital touchpoints and merchants have shifted budget to measurable performance channels — the 'banks as media' thesis. Interoperable earn-and-burn wallets and merchant-funded, real-time redemption are cited as the maturing patterns.",
+          "so_what": "Direct read on the reader's own commerce-media/CLO vertical — useful category context, though trend-piece rather than a discrete news event.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Reader-vertical context surfaced per the loyalty-research mandate; thin as a standalone story — On the Radar or a 'Number of the week' pairing with the ME loyalty figure below. Vendor/marketing-authored — treat as context, not reporting.",
+          "jargon_terms": ["card-linked offers / CLO", "earn-and-burn wallets", "merchant-funded rewards"],
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "Middle East consumer-loyalty market on track for ~$3.4bn in 2026, growing 15% a year",
+          "source_name": "Novus Loyalty / market report (Yahoo Finance)",
+          "source_url": "https://uk.finance.yahoo.com/news/middle-east-consumer-loyalty-business-134100214.html",
+          "published_date": "2026-06-26",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Regional loyalty market reporting puts the Middle East consumer-loyalty market at ~$3.4bn in 2026 (some estimates $5.6bn by 2030), growing ~15% annually, with banks, airlines and large retailers (Majid Al Futtaim SHARE, ADNOC Rewards, stc Wallet) centralising customer data and orchestrating cross-partner rewards.",
+          "so_what": "Quantifies the ME loyalty opportunity the reader's customers are chasing — a clean 'Number of the week' or context stat rather than a story.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "chartable_data": "$3.4bn 2026 -> $5.6bn 2030 at 15.1% CAGR — single-stat tile or small growth line.",
+          "event_or_essay": "essay"
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "Will Larson revises his rules of engineering leadership after a year in hypergrowth",
+        "source_name": "Irrational Exuberance (Will Larson / lethain)",
+        "source_url": "https://lethain.com/revised-rules-of-engineering-leadership/",
+        "published_date": "2026-06-15",
+        "beat": "leadership_read",
+        "summary": "Larson revisits and rewrites his personal rules of engineering leadership based on specific projects over the past year in hypergrowth environments — a reflective, craft-focused essay on how a senior leader's operating principles actually change under pressure. Non-AI-centred; management-craft substance.",
+        "so_what": "A fresh, non-AI reflective read on how leadership principles evolve — good back-of-book variety against an AI-heavy news week.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Fresh source — lethain is not in the recent LR rotation (MIT Sloan, LeadDev, Fortune, incident.io, Pragmatic Engineer, Honeycomb). Non-AI = satisfies long-form variety rule when In Practice is AI. Published 15 Jun — essay traction latitude applies; frame around what's new.",
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "Team Topologies as 'infrastructure for agency' — why 80% of firms see no AI benefit",
+        "source_name": "InfoQ / Matthew Skelton (QCon London)",
+        "source_url": "https://www.infoq.com/news/2026/03/ai-agency-team-topologies/",
+        "published_date": "2026-06-26",
+        "beat": "leadership_read",
+        "summary": "Skelton argues as many as 80% of firms report no tangible AI benefit because they lack the organisational maturity to govern delegated agency, and frames bounded agency, security and stewardship (via Enabling Teams) as the org-design answer. A ways-of-working leadership angle on why AI adoption stalls.",
+        "so_what": "Reframes stalled AI adoption as an org-design problem, not a tooling one — useful leadership framing.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Original talk is QCon March 2026 — out of window and AI-centred, so it would break the long-form variety rule if In Practice (Atlassian) is also AI. Backup LR only.",
+        "event_or_essay": "essay"
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "Atlassian's AI operating-model rebuild: Working Agreements, AI Retros, and a Chief People and AI Enablement Officer",
+        "source_name": "Inside Atlassian (Avani Prabhakar)",
+        "source_url": "https://www.atlassian.com/blog/how-we-build/atlassian-dropbox-ai-transformation",
+        "published_date": "2026-06-29",
+        "beat": "in_practice",
+        "summary": "Avani Prabhakar, Atlassian's Chief People and AI Enablement Officer, describes the operating-model changes behind Atlassian's (and Dropbox's) AI transformation: merging People, IT, Data and Support under one AI-governance remit; team-level 'AI Working Agreements' defining where AI is and isn't used; 'AI Retros'; and a shift from tracking adoption to tracking 'super users' (40+ AI uses/week, ~30% of staff). The thesis: sustainable adoption is a cultural/workflow redesign that must precede tooling.",
+        "so_what": "A named operator's concrete journey through the operating-model change that follows AI adoption — exactly the season-2 In Practice brief (change after adoption, not a framework).",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Strong fit for In Practice week 2 (season: 'Ways of working in the agent era'). Named operator, real org, journey not framework, implication-level. In-window (29 Jun). This is AI-substrate — if selected, the other two long-form sections (Outside In, Leadership Read) must be non-AI per the variety rule. Season note flags variety matters; a non-AI IP option is thin this week (see notes below).",
+        "jargon_terms": ["AI Working Agreements", "AI Retros", "super users"],
+        "chartable_data": "Adoption -> 'super user' funnel (~30% at 40+ uses/week) — funnel or single-stat tile.",
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "Non-AI In Practice option: a bank/scale-tech ways-of-working journey (gap this week)",
+        "source_name": "Monzo Engineering (candidate, unverified recency)",
+        "source_url": "https://monzo.com/blog/we-have-updated-our-engineering-principles",
+        "published_date": "2026-06-26",
+        "beat": "in_practice",
+        "summary": "Placeholder/weak candidate: Monzo's 'we've updated our engineering principles' is a non-AI ways-of-working operator piece, but its publication recency could not be confirmed within the window. Surfaced only to flag that a strong, in-window, non-AI In Practice operator journey did not turn up this week despite targeted searches.",
+        "so_what": "If the season's variety note is pressed, this is the only non-AI operator-journey lead found — but recency is unverified and it may be stale.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "low",
+        "urgency_classification": "general_awareness",
+        "notes": "GAP FLAG: no strong in-window non-AI In Practice journey surfaced. Verify Monzo post date before use; likely stale. Recommend Atlassian for IP and take variety via non-AI Outside In + Leadership Read.",
+        "event_or_essay": "essay"
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "Forrester's analysts on Stripe's stablecoin bet and where agentic B2C payments actually are",
+        "source_name": "Forrester (analyst blog)",
+        "source_url": "https://www.forrester.com/blogs/stripes-new-stablecoin-bet-the-open-usd/",
+        "published_date": "2026-06-30",
+        "beat": "outside_in",
+        "summary": "Forrester analysts assess Stripe's Open USD move and, in a companion piece, take stock of where agentic payments in B2C commerce genuinely stand versus the hype. An outside analyst voice on the payments/commerce-media world the reader operates in — grounded, non-vendor perspective.",
+        "so_what": "A fresh outside-analyst read on the reader's own commerce-media/payments patch, distinct from the news reporting.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Fresh voice — not in the avoid list (Datadog, Honeycomb, Vercel, incident.io, Linear, The Finanser). Caveat: AI/payments-adjacent, so if In Practice is the AI Atlassian piece, prefer a non-AI Outside In to satisfy the long-form variety rule — see the Kent Beck option below.",
+        "secondary_sources": ["https://www.forrester.com/blogs/agentic-payments-in-b2c-commerce-where-we-are-now/"],
+        "event_or_essay": "essay"
+      },
+      {
+        "headline": "Kent Beck and Charity Majors on running out to meet change (engineering-craft voice)",
+        "source_name": "Tidy First? (Kent Beck)",
+        "source_url": "https://tidyfirst.substack.com/p/run-out-to-meet-it",
+        "published_date": "2026-06-26",
+        "beat": "outside_in",
+        "summary": "A reflective engineering-craft essay from Kent Beck (with Charity Majors) on meeting change proactively — a non-AI, practitioner-philosophy Outside In option that gives back-of-book variety against an AI-heavy news week.",
+        "so_what": "A non-AI craft-and-mindset outside voice — the variety counterweight if both In Practice and the payments material are AI/commerce-heavy.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "low",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Published April 2026 per some indexes — VERIFY date; likely out of window and Honeycomb-adjacent (Majors) which brushes the Outside In avoid list. Backup only. Fresh non-avoided primary voice preferred.",
+        "event_or_essay": "essay"
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "How a single fibre cut took down 20% of the web — the invisible shared-transit layer nobody maps",
+        "source_name": "Network World / CircleID",
+        "source_url": "https://www.networkworld.com/article/4113326/2026-network-outage-report-and-internet-health-check.html",
+        "published_date": "2026-06-27",
+        "beat": "in_practice",
+        "summary": "The 22 June Cloudflare fibre-cut cascade is a natural 'down the rabbit hole' on how much of the modern internet depends on shared transit, CDN, DNS and gateway layers that most engineering orgs neither own nor document — and what that means for dependency mapping.",
+        "so_what": "A curious, well-bounded tangent on hidden infrastructure dependencies that most readers never think about until it breaks.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "notes": "Outage likely covered in Issue 16 as news; here it's the reflective/curiosity angle, not a fresh anchor.",
+        "event_or_essay": "essay"
+      }
+    ],
+    "p0_active": []
+  }
+}
