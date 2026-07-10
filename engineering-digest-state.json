@@ -1,16 +1,16 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 17 deliver (2026-07-03).",
+  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 18 deliver (2026-07-10) — a Deep Dive on agentic payments; consecutive_non_deepdive reset from 9 to 0.",
 
-  "last_issue_number": 17,
-  "last_issue_date": "2026-07-03",
-  "last_issue_format": "weekly",
-  "last_lead_topic": "Management & teams",
+  "last_issue_number": 18,
+  "last_issue_date": "2026-07-10",
+  "last_issue_format": "deepdive",
+  "last_lead_topic": "Banking, fintech & loyalty",
   "last_lead_topics_3issues": [
+    "Banking, fintech & loyalty",
     "Management & teams",
-    "Wider engineering landscape",
-    "Ways of working"
+    "Wider engineering landscape"
   ],
-  "consecutive_non_deepdive": 9,
+  "consecutive_non_deepdive": 0,
 
   "last_outside_in_company": "Kent Beck (Tidy First? / newsletter.kentbeck.com)",
   "outside_in_history": [
@@ -64,7 +64,7 @@
     { "issue": 17, "piece_title": "Rebuilding the operating model, not just the toolkit (Atlassian × Dropbox AI transformation)", "author": "Avani Prabhakar (Atlassian)", "url": "https://www.atlassian.com/blog/how-we-build/atlassian-dropbox-ai-transformation" }
   ],
 
-  "_season_note": "Issue 17 (week 2) continued the season 'Ways of working in the agent era — operating-model change after adoption' with Atlassian (Avani Prabhakar) 'Rebuilding the operating model, not just the toolkit' — the AI Working Agreements / AI Retros / super-user measurement machinery. Per the v1.35 long-form-variety discipline and the 'don't let agent-era practice dominate' rule, the NEXT season should pull from the technical-leadership or managing-upwards theme pools rather than another AI/agent theme; consider cutting this season here rather than dragging it. Issue 17 held long-form variety at 1 of 3 AI-primary (In Practice = Atlassian AI-primary; Outside In = Kent Beck framed non-AI craft/mindset; Leadership Read = Larson framed non-AI management craft). consecutive_non_deepdive is now 9 — a deep dive is overdue; the agentic-payments cluster (Open USD + Visa EU agentic payments + Mastercard Agent Pay) is the tracked deep-dive candidate for a future issue when one leg dominates.",
+  "_season_note": "Issue 18 was a DEEP DIVE ('The rails go live' — Visa first live EU agentic-commerce settlement + the 140-firm Open USD consortium), so it has no In Practice / Outside In / Leadership Read and those histories + the In Practice season do NOT advance (season stays 'Ways of working in the agent era', progress 2). The season was flagged for CUT at Issue 17 and that decision still stands: the NEXT Standard Weekly should open a fresh In Practice season from the technical-leadership OR managing-upwards theme pools (a named operator at a real org, journey not framework), NOT another AI/agent-adoption theme. The agentic-payments deep-dive cluster (Open USD + Visa EU agentic + Mastercard Agent Pay) that Issues 15–17 tracked is now RETIRED as a tracked deep-dive candidate — the deep dive fired at Issue 18 when the rails went live (Visa's first live settlement, 2 Jul). consecutive_non_deepdive reset to 0. AWS us-east-1 remains a standing single-region concentration-risk watch (documented Oct-2025 + May-2026 events); the unverified 'July 2026 mega-outage' was demoted at curation and must not be asserted as fact in future issues without tier-1 confirmation.",
 
   "p0_stories_tracking": []
 }
