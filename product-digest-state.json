@@ -1,7 +1,7 @@
 {
-  "_comment": "State file for the product-digest skill (The Digest — Product Edition, monthly). Read at the start of every run; written ONLY on publish — test runs never pollute trend_history. Updated on the Issue 1 publish (2026-06-12).",
-  "last_issue_number": 1,
-  "last_issue_month": "2026-06",
+  "_comment": "State file for the product-digest skill (The Digest — Product Edition, monthly). Read at the start of every run; written ONLY on publish — test runs never pollute trend_history. Updated on the Issue 2 publish (2026-07-10).",
+  "last_issue_number": 2,
+  "last_issue_month": "2026-07",
   "trend_history": [
     {
       "issue": 1,
@@ -22,6 +22,26 @@
       "issue": 1,
       "trend": "UK rewards re-gated around behaviour",
       "this_month_development": "Lloyds Rewards in-app hub launched across Lloyds/Halifax/BoS (first £2,026 prize draw 1 Jun, deposit-gated; merchant offers + personalised cashback — first-party build); Chase UK 2% cashback behaviour-conditional from 1 Jun (15 transactions/DDs + £1,000 in savings); Nationwide £100 Fairer Share confirmed 21 May (£440m to 4.4m members)."
+    },
+    {
+      "issue": 2,
+      "trend": "UK retail media consolidates",
+      "this_month_development": "dunnhumby network alliance (19 Jun — single cross-retailer route, Tesco/B&Q/John Lewis/Waitrose pilots, Kevel, shared measurement standards); SMG RMX, the UK's first retail media exchange (Jun); Asda x Amazon Retail Ad Service (23 Jun — first retailer outside the US to license Amazon's ad stack, rollout Q4 2026); Nectar360 first UK network IAB Europe-certified (1 Jul) + Pollen platform (Unilever, Coca-Cola). UK retail media spend forecast £4.8bn in 2026."
+    },
+    {
+      "issue": 2,
+      "trend": "Agent checkout opens to every merchant (agentic commerce)",
+      "this_month_development": "Shopify Spring '26 (17 Jun) removed the approval gate: any developer registers an agent profile + calls the public MCP endpoint; UCP (co-developed with Google) covers discovery→checkout; trust tiers unlock direct checkout. No loyalty/offers/rewards as first-class objects; Talon.One UIP unmoved since Jan 2026. Evolution of Issue 1's networks trust-layer thread — platform-side this time."
+    },
+    {
+      "issue": 2,
+      "trend": "Gulf banks build the rewards hub in-house",
+      "this_month_development": "Emirates NBD Rewards Hub on ENBD X (10 Jun — unified in-app lifestyle/rewards marketplace, built with Vernost; 15% launch offers, AED 10k weekly draw, pay by card/points/part/instalments); Mashreq 'Everyday Cashback' (22 Jun — automated Visa card-linked cashback up to 20%, debit & credit first time, powered by vendor Rezolve Ai, in-app/personalised). Build vs buy, both live in the GCC sales region."
+    },
+    {
+      "issue": 2,
+      "trend": "Reward value re-priced away from cashback",
+      "this_month_development": "Barclays summer switch (9 Jun) makes the headline Premier reward a £600 experience vs £200 cash; ING Spain (10 Jun) packages rewards into four paid subscription tiers (Revolut/N26 playbook); PayPal Rewards (US, ~29 Jun) ends cash-out from 1 Aug, forces points into closed-loop redemption. Three axes: experiences, membership, closed-loop points."
     }
   ],
   "roadmap_threads_history": [
@@ -32,11 +52,30 @@
     {
       "issue": 1,
       "thread": "Loyalty absent from the agent rails — agentic trust layer specified with no offers/rewards object"
+    },
+    {
+      "issue": 2,
+      "thread": "Retail media gets an audited yardstick — IAB Europe Retail Media Certification live in the UK (Nectar360 first, 1 Jul, ABC-audited) + dunnhumby alliance built on shared measurement standards"
+    },
+    {
+      "issue": 2,
+      "thread": "The opening agent rails still have no loyalty object — Shopify opened MCP/UCP to every developer (17 Jun) with no offers/points/rewards as first-class objects; Talon.One UIP unmoved since January (platform-side evolution of the Issue 1 agent-rails gap)"
     }
   ],
   "source_map": {
-    "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review. Baseline set at Issue 1 (the named list was authored from the Issue 1 retro, so the first review is due at Issue 7).",
+    "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review (next due at Issue 7). All Issue 2 entrants are first sightings (seen_issues [2]); none promoted.",
     "last_reviewed_issue": 1,
-    "unlisted_entities": []
+    "unlisted_entities": [
+      { "name": "dunnhumby", "seen_issues": [2] },
+      { "name": "SMG / Plan-Apps (RMX)", "seen_issues": [2] },
+      { "name": "Kevel", "seen_issues": [2] },
+      { "name": "Rezolve Ai", "seen_issues": [2] },
+      { "name": "Vernost", "seen_issues": [2] },
+      { "name": "Shopify", "seen_issues": [2] },
+      { "name": "Talon.One (UIP)", "seen_issues": [2] },
+      { "name": "IAB Europe (retail media certification)", "seen_issues": [2] },
+      { "name": "Emirates NBD", "seen_issues": [2] },
+      { "name": "Mashreq", "seen_issues": [2] }
+    ]
   }
 }

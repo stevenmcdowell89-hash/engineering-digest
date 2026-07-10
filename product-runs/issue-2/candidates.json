@@ -1,0 +1,203 @@
+{
+  "issue": 2,
+  "window": {"from": "2026-06-10", "to": "2026-07-10"},
+  "generated": "2026-07-10",
+  "method": "Five parallel named sweeps (competitor set, UK bank set + catch-alls, monetisation/trade press, experience & craft, region) plus editor-run verification fetches. All dates and URLs confirmed via search-result snippets or WebFetch; anti-scraping 403s (Barclays, SMG/InternetRetailing) resolve in-browser and are cited from indexed results.",
+  "queries_run": {
+    "competitor_set_by_name": [
+      "Cardlytics announcement news June July 2026",
+      "Reward rewardinsight Reward Insight card-linked offers bank partnership 2026",
+      "Fidel API announcement 2026",
+      "Triple loyalty / Snoop money app / Bink card-linked news 2026",
+      "Mastercard personalised offers Dynamic Yield 2026",
+      "Visa offers products / Amex Offers American Express UK 2026",
+      "Nectar360 Tesco Clubcard Avios loyalty news June July 2026",
+      "card-linked offers CLO cashback rewards platform launch June 2026"
+    ],
+    "uk_bank_set_by_name": [
+      "Lloyds Rewards hub Halifax Bank of Scotland June 2026",
+      "NatWest Group RBS rewards loyalty offers June 2026",
+      "Barclays Barclaycard Avios Blue Rewards launch June July 2026",
+      "HSBC UK First Direct rewards cashback June July 2026",
+      "Santander UK Edge Boosts rewards June 2026",
+      "Nationwide Virgin Money rewards cashback June 2026",
+      "TSB Monzo Starling rewards loyalty June 2026",
+      "Revolut RevPoints June July 2026",
+      "Chase UK rewards cashback June 2026"
+    ],
+    "catch_alls_name_agnostic": [
+      "UK bank rewards launch June 2026",
+      "UK bank loyalty programme launch July 2026",
+      "challenger bank cashback rewards 2026",
+      "building society rewards 2026",
+      "UK bank offers hub launch 2026",
+      "neobank rewards launch 2026"
+    ],
+    "monetisation_and_trade_press": [
+      "dunnhumby retail media alliance cross-retailer network June 2026",
+      "Asda retail media Amazon Retail Ad Service partnership 2026",
+      "retail media network exchange interoperability SMG Criteo June 2026",
+      "Tesco Media Nectar360 retail media June July 2026 (Marketing Week / Finextra / The Grocer / Retail Week)",
+      "retail media network interoperability standards IAB Europe certification June July 2026",
+      "commerce media bank media network merchant-funded offers UK 2026"
+    ],
+    "experience_and_craft": [
+      "agentic commerce AI shopping agent checkout loyalty rewards offers June July 2026",
+      "Visa Intelligent Commerce Mastercard Agent Pay update June July 2026",
+      "Shopify Spring 26 open MCP endpoint agent profile UCP June 2026",
+      "Google AP2 Agent Payments Protocol update June July 2026",
+      "Talon.One Unified Incentives Protocol agent-readable offers 2026",
+      "Pay by Bank open banking UK VRP UKPI Wave 2 June July 2026",
+      "Apple Wallet Google Wallet Samsung Wallet loyalty offers June July 2026",
+      "PayPal Rewards closed-loop redemption change June 2026"
+    ],
+    "region_sweep": [
+      "GCC / UAE bank loyalty rewards cashback card-linked offers June 2026 (Emirates NBD, Mashreq, FAB, ADCB, Network International)",
+      "Saudi bank loyalty programme Al Rajhi Riyad Bank STC Pay 2026",
+      "European bank rewards loyalty cashback subscription BBVA Santander ING Revolut N26 Bunq June 2026",
+      "Asia super-app / bank rewards Grab GoTo Paytm Alipay DBS OCBC UOB June July 2026"
+    ]
+  },
+  "candidates": [
+    {
+      "title": "dunnhumby launches network alliance to connect and scale retail media across retailers",
+      "date": "2026-06-19",
+      "url": "https://www.dunnhumby.com/news/dunnhumby-network-alliance-launches-to-connect-and-scale-retail-media/",
+      "outlet": "dunnhumby (newsroom)",
+      "lens": "monetisation",
+      "why_product_decision": "The biggest structural block on commerce media — fragmentation across separate retailer networks — is being solved with a single cross-retailer activation route (Tesco, B&Q, John Lewis, Waitrose in pilots; tech partner Kevel) and shared standards for measurement and reporting. Reshapes how a bank/commerce-media proposition positions on reach and measurement.",
+      "us_specific": false,
+      "notes": "Announced 19 Jun 2026. Pilots begin 'this summer' across household/DIY, health & beauty, grocery. Corroborated: Grocery Gazette (19 Jun), Retail Gazette, The Grocer, Retail Technology Innovation Hub (18 Jun)."
+    },
+    {
+      "title": "SMG launches RMX — the UK's first retail media exchange platform",
+      "date": "2026-06-01",
+      "url": "https://internetretailing.net/uks-first-retail-media-exchange-platform-set-to-go-live-says-smg/",
+      "outlet": "InternetRetailing (also PerformanceMarketingWorld)",
+      "lens": "monetisation",
+      "why_product_decision": "A shared exchange/activation-and-measurement layer that lets brands buy across multiple retail media networks through one entry point while retailers keep control of pricing, inventory and data — the interoperability layer a bank media network would plug into rather than build alone.",
+      "us_specific": false,
+      "notes": "RMX by Plan-Apps, built with Empathy Lab by EPAM. Date given as early-June (exact day not confirmed; 403 to automated fetch but resolves in-browser and indexed). Supporting piece to the dunnhumby alliance in the same trend."
+    },
+    {
+      "title": "Asda becomes first retailer outside the US to license Amazon Retail Ad Service",
+      "date": "2026-06-23",
+      "url": "https://corporate.asda.com/newsroom/2026/23/06/asda-teams-up-with-amazon-in-uk-first-retail-media-and-ad-tech-partnership",
+      "outlet": "Asda (newsroom)",
+      "lens": "monetisation",
+      "why_product_decision": "Amazon exporting its ad stack to a UK grocer (Asda.com + George, rollout from Q4 2026) puts Amazon-grade ad tech and measurement inside a UK retail media network — raising the technical bar every commerce-media seller is benchmarked against.",
+      "us_specific": false,
+      "notes": "Announced 23 Jun 2026. Asda licenses Amazon's stack to power sponsored products; not buying ads on Amazon. Corroborated: Grocery Gazette (25 Jun), Retail-Insight-Network, ESM, Retail Technology Innovation Hub."
+    },
+    {
+      "title": "Nectar360 becomes first UK retail media network to achieve IAB Europe Retail Media Certification",
+      "date": "2026-07-01",
+      "url": "https://iabeurope.eu/nectar360-first-uk-retail-media-network-to-achieve-iab-europe-retail-media-certification-as-programme-momentum-builds-across-retail-and-ad-tech/",
+      "outlet": "IAB Europe",
+      "lens": "monetisation",
+      "why_product_decision": "An independent, audited certification for retail media measurement (Nectar360 first in the UK, via ABC audit) turns commerce-media measurement from a vendor claim into a standard a proposition can be measured against — directly relevant to how a bank/CLO media offer proves its numbers.",
+      "us_specific": false,
+      "notes": "Announced 1 Jul 2026. Covers off-site display/video (Meta, Google DV360, YouTube). Nectar360 also reporting early results on 'Pollen' unified platform with Unilever and Coca-Cola Europacific Partners. UK retail media ad spend forecast to top £4.8bn in 2026 (up from ~£4bn 2025). Corroborated: Retail Gazette, ExchangeWire, DecisionMarketing, FMCG Magazine."
+    },
+    {
+      "title": "Shopify Spring '26 removes the approval gate — any developer can register an agent profile and call the public MCP endpoint (UCP)",
+      "date": "2026-06-17",
+      "url": "https://www.shopify.com/news/spring-26-edition-dev",
+      "outlet": "Shopify (news)",
+      "lens": "craft",
+      "why_product_decision": "The agent-checkout surface is now open to millions of merchants with no approval gate (agent profiles + public MCP endpoint, UCP co-developed with Google, trust tiers unlock direct checkout) — but loyalty, offers, discounts and rewards are NOT first-class objects in it. The evidenced gap the category has to answer.",
+      "us_specific": false,
+      "notes": "Confirmed via WebFetch 17 Jun 2026. Article explicitly does not mention loyalty/offers/rewards as first-class objects. Pairs with the 10 Jun networks trust-layer moves (Issue 1) as the platform-side evolution."
+    },
+    {
+      "title": "Emirates NBD launches Rewards Hub — a unified in-app marketplace on ENBD X",
+      "date": "2026-06-10",
+      "url": "https://www.zawya.com/en/press-release/companies-news/emirates-nbd-elevates-digital-banking-experience-with-launch-of-rewards-hub-on-enbd-x-xdg5pxj8",
+      "outlet": "Zawya (Emirates NBD press release); primary: emiratesnbd.com newsroom",
+      "lens": "category",
+      "region": "ME",
+      "why_product_decision": "The largest UAE bank consolidating rewards, travel, shopping, gifting and lifestyle into a single in-app marketplace (built with Vernost) — the 'bank-as-lifestyle-super-app' benchmark in the reader's GCC sales region, deciding where redemption value gets surfaced and who powers it.",
+      "us_specific": false,
+      "notes": "Launched 10 Jun 2026. Vernost Marketing Technology Solutions. Launch: up to 15% off flights/hotels/Apple; AED 10,000 weekly draw for 12 weeks; pay by card / points / part-payment / instalments. Merchant onboarding in-window (Fnp.ae gifting joined 29 Jun)."
+    },
+    {
+      "title": "Mashreq launches 'Everyday Cashback' — Visa card-linked offers powered by Rezolve Ai (debit and credit)",
+      "date": "2026-06-22",
+      "url": "https://www.mashreq.com/en/uae/news/2026/june/mashreq-visa-card-linked-offers/",
+      "outlet": "Mashreq (newsroom); corroborated GlobeNewswire (Rezolve Ai), Zawya",
+      "lens": "category",
+      "region": "ME",
+      "why_product_decision": "A tier-1 UAE bank shipped automated, merchant-funded card-linked cashback (up to 20%, first time on debit as well as credit) bought from a third-party vendor (Rezolve Ai) — a sourced instantiation of the reader's exact product, deployed by a prospect/competitor bank in the expansion region.",
+      "us_specific": false,
+      "notes": "Announced 22 Jun 2026 (WebFetch confirmed). Fully digital, personalised, in-app cashback tracking. Branded evolution of Mashreq's rewards; extends benefits to debit cardholders for the first time."
+    },
+    {
+      "title": "Barclays summer switching offer pivots Premier reward value to a £600 'experience' (vs £200 cash)",
+      "date": "2026-06-09",
+      "url": "https://moneyfactscompare.co.uk/news/banking/barclays-summer-current-account-switching-offers/",
+      "outlet": "MoneyfactsCompare (primary: Barclays newsroom, 403 to bots, resolves in-browser)",
+      "lens": "category",
+      "why_product_decision": "A UK high-street bank substituting curated experiences (Michelin dining, hotel stays, entertainment) for cash as the headline reward is a live signal that premium reward value is moving from cashback toward experiences — a positioning axis a pure cashback/CLO proposition doesn't compete on.",
+      "us_specific": false,
+      "notes": "Offer live 9 Jun–27 Aug 2026. Two-tier: £200 cash (standard) or £600 experience (Premier). Weekly 'Barclays Experiences' (GAIL's, 4 months Apple Music). Corroborated MoneyfactsCompare + MSE forum. Announcement 9 Jun is one day pre-strict-window but the offer runs through the window."
+    },
+    {
+      "title": "ING Spain adopts Revolut/N26-style paid subscription tiers with rewards baked into higher tiers",
+      "date": "2026-06-10",
+      "url": "https://theobjective.com/economia/2026-06-10/ing-emula-revolut-n26-adopta-modelo-planes-suscripcion/",
+      "outlet": "The Objective (Spain)",
+      "lens": "category",
+      "region": "Europe",
+      "why_product_decision": "An incumbent European bank moving to four paid tiers (Go/More/Extra/Max) with rewards in the higher tiers packages loyalty as membership rather than transaction cashback — a different monetisation model for reward value that competes with standalone CLO/cashback.",
+      "us_specific": false,
+      "notes": "10 Jun 2026, Spanish-language regional press. Explicitly mirrors Revolut/N26/Bunq premium-plan playbook. Flag as Spain."
+    },
+    {
+      "title": "PayPal Rewards moves to closed-loop — cash redemption ends, active opt-in required (US)",
+      "date": "2026-06-29",
+      "url": "https://www.paypal.com/us/cshelp/article/updates-to-us-paypal-rewards-program-help1355",
+      "outlet": "PayPal (help centre); opt-in reported by Value Added Resource",
+      "lens": "craft",
+      "why_product_decision": "PayPal killing cash-out and forcing points into in-ecosystem redemption is a cautionary redemption-UX and reward-liability signal — a data point for anyone weighing closed-loop vs open-loop reward value against consumer-backlash risk.",
+      "us_specific": true,
+      "notes": "Cash-back redemption ends 1 Aug 2026; opt-in reported ~29 Jun. US programme. In-window movement is the transition taking effect."
+    },
+    {
+      "title": "Bank of America bundles referral bonuses, instalment 'Custom Pay Plan' and credit monitoring into rewards (US)",
+      "date": "2026-06-10",
+      "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/06/bank-of-america-introduces-new-ways-to-reward-clients--manage-pa.html",
+      "outlet": "Bank of America (newsroom)",
+      "lens": "category",
+      "why_product_decision": "'Rewards' broadening into a relationship bundle (referral + BNPL-style instalments + credit health) shows a major bank redefining reward scope beyond cashback — context for how a CLO/cashback proposition might be bundled.",
+      "us_specific": true,
+      "notes": "10 Jun 2026. Builds on BofA Rewards (enrolment opened May 2026). US-only. Also-moving one-liner."
+    },
+    {
+      "title": "Paytm x AU Small Finance Bank launch co-branded credit card with UPI-weighted rewards (India)",
+      "date": "2026-07-03",
+      "url": "https://cardinsider.com/blog/au-bank-launches-new-paytm-au-credit-card/",
+      "outlet": "Card Insider (India)",
+      "lens": "category",
+      "region": "Asia",
+      "why_product_decision": "A super-app deepening a bank card tie-up and steering rewards toward first-party ecosystem spend (Paytm UPI, Travel, Gold) — the super-app-as-rewards-gravity pattern relevant to Asian go-to-market.",
+      "us_specific": false,
+      "notes": "3 Jul 2026. Paytm's third co-brand (after HDFC, SBI). Up to 2% on Paytm UPI, 5% on Paytm Travel/Gold, zero annual fee. Also-moving one-liner."
+    },
+    {
+      "title": "IHG x Revolut debit-card rewards promotion (UK) — hotel loyalty earn via a neobank card",
+      "date": "2026-06-30",
+      "url": "https://thewisemarketer.com/the-loyalty-newswire-july-6-2026/",
+      "outlet": "The Wise Marketer (Loyalty Newswire, 6 Jul 2026)",
+      "lens": "category",
+      "why_product_decision": "A hotel loyalty programme tying earn to a neobank debit card (Revolut) is a card-linked reward-distribution precedent via a fintech wallet rather than a legacy bank — a partner-model data point.",
+      "us_specific": false,
+      "notes": "Promo window 30 Jun–25 Aug 2026. Secondary-sourced (newswire); lower confidence, no primary IHG/Revolut confirmation fetched. Also-moving one-liner only."
+    }
+  ],
+  "quiet_findings": {
+    "competitor_set": "Largely quiet in-window. No in-window Cardlytics, Reward (rewardinsight), Fidel API, Triple, Snoop or Bink product/partnership announcement found. Mastercard/Visa/Amex offers stacks: the only in-window network moves were the agentic-payments items (10 Jun, carried in Issue 1); no new personalised-offers stack launch. CLO infra vendors generated only evergreen explainer content this window.",
+    "uk_bank_set": "Quiet after last month's flurry. Barclays (summer experiences switch, 9 Jun) is the one genuinely new UK bank item. Lloyds Rewards is the SAME hub covered in Issue 1 (primary release 9 Jun; in-window coverage is secondary/'replaces Everyday Offers') — recurrence, not new movement; noted in Also moving, not re-featured. NatWest, HSBC/First Direct, Santander, Nationwide, Virgin Money, TSB, Monzo, Starling, Revolut, Chase: no qualifying in-window rewards/loyalty LAUNCH (Chase's overhaul and NatWest's Reward renewal both pre-window).",
+    "experience_surface": "Agentic/A2A/wallet from Issue 1 mostly quiet on NEW movement: Google AP2/UCP/Universal Cart (Apr–May), Talon.One UIP (Jan), Samsung Wallet, UKPI (2 Jun, pre-window) — no fresh in-window event. The ONE fresh agentic delta is Shopify Spring '26 (17 Jun) opening the agent-checkout surface to every merchant. Apple Wallet iOS 27 (WWDC, ~10 Jun) had incremental loyalty-pass detail but is the same WWDC covered in Issue 1.",
+    "region": "ME strongest (Emirates NBD, Mashreq). Europe thin (ING Spain the one concrete move; no new BBVA/Santander/Revolut/N26/Bunq launch). Asia thin (Paytm x AU the one co-brand; no new Grab/GoTo/Alipay/WeChat/DBS/OCBC/UOB loyalty launch). Saudi: only ongoing programmes."
+  }
+}

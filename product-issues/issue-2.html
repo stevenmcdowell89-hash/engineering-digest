@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Digest — Product Edition — July 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#13243B;--ink:#2E2A26;--gold:#BE8A28;--gold-bright:#E0A93E;
+  --clay:#B5532E;--cream:#FBF7EF;--paper:#FFFFFF;--line:#E8DFCF;
+  --muted:#9A8E7C;--body:#433D35;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;color:var(--body);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.mag{max-width:860px;margin:0 auto;background:var(--cream);box-shadow:0 0 60px rgba(19,36,59,.10)}
+a{color:var(--clay);text-decoration:none}a:hover{text-decoration:underline}
+
+/* ═══ COVER — left-aligned magazine cover ═══ */
+.cover{background:var(--navy);color:#fff;padding:0;position:relative}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold)}
+.cover-inner{padding:54px 56px 44px}
+.eyebrow{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold-bright)}
+.masthead{font-family:'Playfair Display',serif;font-weight:900;font-size:64px;line-height:.92;margin:10px 0 0;color:#fff}
+.cover-issue{font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:14px}
+.cover-dek{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:24px;line-height:1.4;color:rgba(255,255,255,.9);max-width:600px;margin:30px 0 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.cover-stat{margin:30px 0 0;display:flex;align-items:baseline;gap:16px}
+.cover-stat .cs-num{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;color:var(--gold-bright);line-height:.9}
+.cover-stat .cs-ctx{font-size:14px;color:rgba(255,255,255,.66);max-width:330px;line-height:1.45}
+.cover-contents{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.1);padding:24px 56px 30px}
+.cc-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:14px}
+.cc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 32px}
+.cc-list li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:rgba(255,255,255,.78);line-height:1.4}
+.cc-list .cc-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold-bright);font-size:15px;min-width:20px}
+
+/* ═══ FOREWORD ═══ */
+.foreword{padding:34px 56px;border-bottom:1px solid var(--line)}
+.foreword p{font-size:17px;line-height:1.8;color:var(--ink);max-width:680px}
+.foreword p::first-letter{font-family:'Playfair Display',serif;font-size:58px;float:left;line-height:.78;margin:6px 10px 0 0;color:var(--gold);font-weight:900}
+
+/* ═══ TREND SECTION ═══ */
+.trend{padding:44px 56px;border-bottom:1px solid var(--line)}
+.trend-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:8px}
+.trend-num{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--gold);line-height:.85;flex-shrink:0}
+.trend-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:4px}
+.trend-title{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1.1;color:var(--navy)}
+.trend-standfirst{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ink);margin:18px 0 22px;max-width:660px}
+.piece{margin:0 0 18px;padding-left:18px;border-left:2px solid var(--line)}
+.piece:last-of-type{margin-bottom:0}
+.piece h4{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.2px}
+.piece p{font-size:15px;line-height:1.65;margin-bottom:6px}
+.piece .src{font-size:12px;font-style:italic;color:var(--muted)}
+.piece .src a{color:var(--clay)}
+.why{margin-top:22px;background:var(--paper);border-left:4px solid var(--gold);padding:16px 22px;border-radius:0 4px 4px 0}
+.why .why-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.why p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.why p strong{color:var(--navy)}
+
+/* roadmap prompt — earned, action-adjacent (distinct from .why context) */
+.investigate{margin-top:22px;background:#FBF1DD;border-left:4px solid var(--gold-bright);padding:16px 22px;border-radius:0 4px 4px 0}
+.investigate .inv-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.investigate p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.investigate p strong{color:var(--navy)}
+
+/* consolidated roadmap strip — the payoff, surfaced up front */
+.roadmap{padding:26px 56px;background:var(--paper);border-top:3px solid var(--gold);border-bottom:1px solid var(--line)}
+.roadmap .rm-label{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.roadmap .rm-intro{font-size:14.5px;color:var(--ink);margin-bottom:16px;max-width:600px}
+.roadmap ol{list-style:none;counter-reset:rm;display:grid;gap:12px}
+.roadmap li{display:flex;gap:14px;align-items:baseline;font-size:15.5px;line-height:1.55;color:var(--body)}
+.roadmap li::before{counter-increment:rm;content:counter(rm);font-family:'Playfair Display',serif;font-weight:900;color:var(--gold);font-size:20px;min-width:20px;line-height:1}
+.roadmap li strong{color:var(--navy)}
+.roadmap li .rm-ref{font-size:12px;color:var(--muted);font-style:italic;white-space:nowrap}
+
+/* inline stat chip + mini compare used inside trends */
+.statline{display:flex;gap:0;margin:14px 0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper)}
+.statline .sl-cell{flex:1;padding:14px 12px;text-align:center;border-right:1px solid var(--line)}
+.statline .sl-cell:last-child{border-right:none}
+.statline .sl-num{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--gold);line-height:1}
+.statline .sl-lbl{font-size:10px;font-weight:600;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin-top:4px;line-height:1.3}
+
+/* ═══ ALSO MOVING ═══ */
+.also{padding:38px 56px;border-bottom:1px solid var(--line);background:var(--paper)}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.also h2,.next h2{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--navy);margin-bottom:18px}
+.also ul{list-style:none}
+.also li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6;display:flex;gap:12px;align-items:baseline}
+.also li:last-child{border-bottom:none}
+.also li .am-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+.also li strong{color:var(--navy)}
+.also li .src{font-style:italic;color:var(--muted);font-size:12px}
+
+/* ═══ WHAT'S NEXT ═══ */
+.next{padding:38px 56px;border-bottom:1px solid var(--line)}
+.next ul{list-style:none}
+.next li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6}
+.next li:last-child{border-bottom:none}
+.next li .nx-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--navy);padding:3px 9px;border-radius:10px;height:fit-content;white-space:nowrap;margin-top:2px}
+.next li .nx-tag.open{background:var(--clay)}
+.next li strong{color:var(--navy)}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:38px 56px;text-align:left}
+.footer-vol{display:inline-block;background:var(--gold);color:var(--navy);padding:5px 13px;border-radius:2px;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:900}
+.footer-sub{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.footer-next{font-size:13px;color:var(--gold-bright);margin-top:14px}
+
+@media(max-width:680px){
+  .cover-inner,.cover-contents,.foreword,.trend,.also,.next,.footer{padding-left:22px;padding-right:22px}
+  .masthead{font-size:46px}.cover-dek{font-size:20px}.cover-stat{flex-direction:column;gap:6px}
+  .cc-list{grid-template-columns:1fr}
+  .trend-head{gap:14px}.trend-num{font-size:40px}.trend-title{font-size:25px}
+  .trend-standfirst{font-size:17px}.statline{flex-direction:column}.statline .sl-cell{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div class="mag">
+
+  <!-- ═══ COVER ═══ -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="eyebrow">The Digest — Product Edition</div>
+      <h1 class="masthead">The Digest</h1>
+      <div class="cover-issue">Issue 2 · July 2026 · covering 10 June – 10 July 2026 · 8 min read</div>
+      <p class="cover-dek">The offer economy's plumbing began to consolidate — retail-media alliances, an exchange, a first certification, an agent checkout thrown open — while what counts as a reward kept splintering.</p>
+      <div class="cover-stat">
+        <span class="cs-num">£4.8bn</span>
+        <span class="cs-ctx">Forecast UK retail media ad spend for 2026, up from around £4bn in 2025 — the money this month's consolidation is being built to organise.</span>
+      </div>
+    </div>
+    <div class="cover-contents">
+      <div class="cc-label">This month</div>
+      <ul class="cc-list">
+        <li><span class="cc-num">01</span><span>UK retail media stops fragmenting</span></li>
+        <li><span class="cc-num">02</span><span>The agent checkout opens to every merchant</span></li>
+        <li><span class="cc-num">03</span><span>Gulf banks build the rewards hub</span></li>
+        <li><span class="cc-num">04</span><span>What a reward is, re-priced</span></li>
+        <li><span class="cc-num">+</span><span>For the roadmap · also moving · what's next</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ FOREWORD ═══ -->
+  <div class="foreword">
+    <p>Last month's story was new rails with no loyalty on them. This month the plumbing began to consolidate: UK retail media gained a cross-retailer alliance, its first exchange and its first certified network; Shopify threw the agent checkout open to every merchant; and two Gulf banks wired rewards into their apps. Yet what counts as a reward kept splintering — into experiences, membership tiers and closed-loop points that share less and less with plain cashback.</p>
+  </div>
+
+  <!-- ═══ FOR THE ROADMAP ═══ -->
+  <div class="roadmap">
+    <div class="rm-label">For the roadmap</div>
+    <p class="rm-intro">Most of this month is context. Two threads are grounded in what shipped — or pointedly didn't.</p>
+    <ol>
+      <li><span><strong>Retail media gets an audited yardstick.</strong> An independent certification for retail-media measurement went live in the UK — Nectar360 the first network to pass it — and the month's alliance is built on shared measurement standards. <span class="rm-ref">→ Trend 01</span></span></li>
+      <li><span><strong>The opening agent rails still have no loyalty object.</strong> Shopify removed the approval gate and opened its checkout protocol to every developer — with offers, points and rewards nowhere in it, and the one standard for them unmoved since January. <span class="rm-ref">→ Trend 02</span></span></li>
+    </ol>
+  </div>
+
+  <!-- ═══ TREND 01 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">01</div>
+      <div>
+        <div class="trend-kicker">Trend · Commerce media</div>
+        <div class="trend-title">UK retail media stops fragmenting</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">The block on commerce media has always been fragmentation — every retailer a separate network, separate plans, separate numbers. This month four moves went at it from four directions: an alliance, an exchange, a first certification, and Amazon's ad stack arriving in UK grocery.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">£4.8bn</div><div class="sl-lbl">forecast UK retail media spend, 2026</div></div>
+      <div class="sl-cell"><div class="sl-num">4</div><div class="sl-lbl">retailers in one cross-retailer alliance pilot</div></div>
+      <div class="sl-cell"><div class="sl-num">1st</div><div class="sl-lbl">UK network to earn IAB Europe certification</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>dunnhumby opens a single route across rival retailers</h4>
+      <p>dunnhumby launched a network alliance giving brands and agencies one route to run campaigns across multiple retailers rather than rebuilding plans network by network — with Tesco, B&amp;Q, John Lewis and Waitrose in the first pilots and ad-tech firm Kevel as the delivery partner. Retailers keep their own media businesses; what's shared is standards for activation, measurement and reporting.</p>
+      <p class="src">Source: <a href="https://www.dunnhumby.com/news/dunnhumby-network-alliance-launches-to-connect-and-scale-retail-media/">dunnhumby</a> · <a href="https://www.thegrocer.co.uk/news/tesco-joins-forces-with-waitrose-and-bandq-for-dunnhumby-led-retail-media-pilot/720459.article">The Grocer</a></p>
+    </div>
+    <div class="piece">
+      <h4>SMG stands up the UK's first retail media exchange</h4>
+      <p>SMG launched RMX, billed as the UK's first retail media exchange — a shared layer that lets brands plan, buy, activate and measure across multiple retail networks through a single entry point, while each retailer keeps control of pricing, inventory and data. Built with Empathy Lab by EPAM, it sits above the networks rather than replacing them.</p>
+      <p class="src">Source: <a href="https://internetretailing.net/uks-first-retail-media-exchange-platform-set-to-go-live-says-smg/">InternetRetailing</a></p>
+    </div>
+    <div class="piece">
+      <h4>Amazon's ad stack lands in a UK grocer</h4>
+      <p>Asda became the first retailer anywhere outside the US to license Amazon's Retail Ad Service, using Amazon's machine-learning ad tech to power sponsored products across Asda.com and George, with a phased rollout from Q4 2026. Asda isn't buying ads on Amazon — it is renting Amazon-grade targeting and measurement to run its own network.</p>
+      <p class="src">Source: <a href="https://corporate.asda.com/newsroom/2026/23/06/asda-teams-up-with-amazon-in-uk-first-retail-media-and-ad-tech-partnership">Asda</a> · <a href="https://www.grocerygazette.co.uk/2026/06/25/asda-teams-up-with-amazon-ads-to-boost-retail-media-offer/">Grocery Gazette</a></p>
+    </div>
+    <div class="piece">
+      <h4>Nectar360 clears the first UK certification</h4>
+      <p>Nectar360 became the first UK retail media network to achieve IAB Europe's Retail Media Certification, following an independent ABC audit — covering its off-site display and video products. It also reported early results from Pollen, its unified planning-to-measurement platform, with Unilever and Coca-Cola Europacific Partners on board.</p>
+      <p class="src">Source: <a href="https://iabeurope.eu/nectar360-first-uk-retail-media-network-to-achieve-iab-europe-retail-media-certification-as-programme-momentum-builds-across-retail-and-ad-tech/">IAB Europe</a> · <a href="https://www.retailgazette.co.uk/blog/2026/07/nectar360-becomes-first-uk-retail-media-network-to-secure-iab-europe-certification/">Retail Gazette</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>The month's moves are as much about <strong>measurement as reach</strong>. IAB Europe's certification turns retail-media measurement from a vendor claim into an audited standard a network can be tested against, and dunnhumby's alliance is explicitly built on shared measurement and reporting rules across retailers. The yardstick a commerce-media proposition is judged by is becoming external and common, rather than each seller's own.</p>
+      <p class="src">Sources: <a href="https://iabeurope.eu/nectar360-first-uk-retail-media-network-to-achieve-iab-europe-retail-media-certification-as-programme-momentum-builds-across-retail-and-ad-tech/">IAB Europe</a> · <a href="https://www.dunnhumby.com/news/dunnhumby-network-alliance-launches-to-connect-and-scale-retail-media/">dunnhumby</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 02 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">02</div>
+      <div>
+        <div class="trend-kicker">Trend · Agentic commerce</div>
+        <div class="trend-title">The agent checkout opens to every merchant</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">Last month the card networks specified who an agent may pay. This month Shopify opened the checkout itself — dropping the approval gate so any developer can plug an agent into millions of merchants — and the offer still isn't an object in it.</p>
+
+    <div class="piece">
+      <h4>Shopify drops the approval gate on agentic checkout</h4>
+      <p>In its Spring '26 edition, Shopify removed the approval requirement for building on its agentic layer: developers can now register an agent profile in the Developer Dashboard and call Shopify's public MCP endpoint directly, with the Universal Commerce Protocol — co-developed with Google — carrying the flow from discovery through checkout, and higher trust tiers unlocking direct checkout completion. The plumbing for agents to transact across millions of merchants is now self-serve.</p>
+      <p class="src">Source: <a href="https://www.shopify.com/news/spring-26-edition-dev">Shopify</a></p>
+    </div>
+    <div class="piece">
+      <h4>Offers are not in the protocol</h4>
+      <p>What the release describes is discovery, a catalog API and checkout. What it does not describe — anywhere — is loyalty, offers, discounts or rewards as first-class objects. The one standard aimed squarely at making incentives readable to agents, Talon.One's Unified Incentives Protocol, has not shipped a new milestone since January. As the transacting surface opens up, the category's core objects remain outside it.</p>
+      <p class="src">Source: <a href="https://www.shopify.com/news/spring-26-edition-dev">Shopify (protocol scope)</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>The agent-transaction surface now reaches millions of merchants with no gatekeeper — and <strong>an offer or a points balance is still not something an agent can read at that surface</strong>. Last month the gap sat in the networks' trust layer; this month it sits in the commerce platform's open checkout protocol too. The plumbing keeps being laid without the loyalty object, and the standard that would supply it has stalled.</p>
+      <p class="src">Sources: <a href="https://www.shopify.com/news/spring-26-edition-dev">Shopify</a> · Talon.One UIP (no in-window movement since Jan 2026)</p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 03 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">03</div>
+      <div>
+        <div class="trend-kicker">Trend · GCC · in-house rewards</div>
+        <div class="trend-title">Gulf banks build the rewards hub</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">In the reader's Gulf sales region, two tier-one UAE banks shipped first-party rewards this month — one a lifestyle marketplace built in-house, one automated card-linked cashback bought from a vendor. Two answers to the same build-or-buy question, both live.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">2</div><div class="sl-lbl">tier-one UAE banks shipping first-party rewards</div></div>
+      <div class="sl-cell"><div class="sl-num">20%</div><div class="sl-lbl">Mashreq card-linked cashback, up to</div></div>
+      <div class="sl-cell"><div class="sl-num">Debit</div><div class="sl-lbl">Mashreq rewards reach debit for the first time</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>Emirates NBD builds a rewards marketplace in the app</h4>
+      <p>The UAE's largest bank launched Rewards Hub inside its ENBD X app — a single in-app marketplace pulling rewards, travel, shopping, gifting and lifestyle into one place, built with Vernost. The launch ran up to 15% off flights, hotels and Apple products and a weekly AED 10,000 draw, with customers able to pay by card, redeem points, split the two, or spread cost over instalments.</p>
+      <p class="src">Source: <a href="https://www.zawya.com/en/press-release/companies-news/emirates-nbd-elevates-digital-banking-experience-with-launch-of-rewards-hub-on-enbd-x-xdg5pxj8">Emirates NBD (via Zawya)</a></p>
+    </div>
+    <div class="piece">
+      <h4>Mashreq buys automated card-linked cashback from a vendor</h4>
+      <p>Mashreq launched Everyday Cashback — automated, merchant-funded Visa card-linked offers of up to 20%, tracked in-app and personalised to the customer, and extended to debit cardholders for the first time. It is powered by third-party platform Rezolve Ai rather than built in-house: the exact card-linked-offer product this reader sells, bought off the shelf by a tier-one Gulf bank.</p>
+      <p class="src">Source: <a href="https://www.mashreq.com/en/uae/news/2026/june/mashreq-visa-card-linked-offers/">Mashreq</a></p>
+    </div>
+
+    <div class="why">
+      <div class="why-label">Why it matters</div>
+      <p>Two of the Gulf's biggest banks answered the build-or-buy question in the same month and split on it: <strong>Emirates NBD built a lifestyle marketplace in-house through Vernost; Mashreq bought automated card-linked cashback from Rezolve Ai</strong>. Both land in the reader's expansion region, and both are the category's own product shipping through a bank — one as an in-house build, one as a vendor deal. The competitive picture in the GCC is now first-party hubs and third-party CLO platforms at the same table.</p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 04 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">04</div>
+      <div>
+        <div class="trend-kicker">Trend · Reward mechanics</div>
+        <div class="trend-title">What a reward is, re-priced</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">This month reward value pulled away from plain cashback in three directions at once — into curated experiences, into paid membership tiers, and into closed-loop points that can no longer be cashed out.</p>
+
+    <div class="piece">
+      <h4>Barclays makes the headline reward an experience, not cash</h4>
+      <p>Barclays' summer switching offer, live from 9 June, splits two ways: £200 in cash for standard switchers, or — for Premier customers — a £600 "signature experience" spanning Michelin-level dining, hotel stays and entertainment. Weekly "Barclays Experiences" perks (a GAIL's drink, four months of Apple Music) sit alongside. The premium reward is deliberately something cashback can't be.</p>
+      <p class="src">Source: <a href="https://moneyfactscompare.co.uk/news/banking/barclays-summer-current-account-switching-offers/">MoneyfactsCompare</a></p>
+    </div>
+    <div class="piece">
+      <h4>ING packages rewards into paid tiers <em>(Spain)</em></h4>
+      <p>ING in Spain moved to a four-tier paid subscription model — Go, More, Extra and Max — with rewards weighted into the higher tiers, borrowing the premium-plan playbook of Revolut, N26 and Bunq. Loyalty value becomes something a customer subscribes to rather than earns per transaction. A Spanish-market move, but a template incumbents watch.</p>
+      <p class="src">Source: <a href="https://theobjective.com/economia/2026-06-10/ing-emula-revolut-n26-adopta-modelo-planes-suscripcion/">The Objective</a></p>
+    </div>
+    <div class="piece">
+      <h4>PayPal closes the loop on its points <em>(US)</em></h4>
+      <p>PayPal is ending cash redemption of PayPal Rewards from 1 August and requiring customers to actively opt in, pushing points into in-ecosystem redemption at checkout. It is a pointed data point on closed-loop versus open-loop reward value — and, judging by the reaction, on the backlash risk of taking cash-out away. A US programme, flagged as such.</p>
+      <p class="src">Source: <a href="https://www.paypal.com/us/cshelp/article/updates-to-us-paypal-rewards-program-help1355">PayPal</a></p>
+    </div>
+
+    <div class="why">
+      <div class="why-label">Why it matters</div>
+      <p>Three banks and wallets, three different answers to what a reward is <em>for</em>: <strong>an experience you couldn't buy the same way (Barclays), a membership you pay to hold (ING), and points that only spend inside the house (PayPal)</strong>. Each competes with a cashback or card-linked-offer proposition on a different axis — desirability, recurring revenue, and redemption control — and none of them is the flat percentage the category grew up on.</p>
+    </div>
+  </div>
+
+  <!-- ═══ ALSO MOVING ═══ -->
+  <div class="also">
+    <div class="sec-label">Also moving</div>
+    <h2>Movement that didn't make a trend</h2>
+    <ul>
+      <li><span class="am-dot"></span><span><strong>UK bank rewards went quiet after last month's flurry.</strong> Lloyds Rewards bedded in as it replaced Everyday Offers across Lloyds, Halifax and Bank of Scotland, but no new rewards launch landed from NatWest, HSBC, Santander, Nationwide, TSB, Monzo, Starling, Revolut or Chase in the window. <span class="src"><a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds/lloyds-rewards.html">Lloyds Banking Group</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Bank of America bundled rewards with referrals, instalments and credit health</strong> (10 June) — referral bonuses, a fixed-fee "Custom Pay Plan" and credit monitoring folded into one programme, widening "rewards" past cashback. <em>US.</em> <span class="src"><a href="https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/06/bank-of-america-introduces-new-ways-to-reward-clients--manage-pa.html">Bank of America</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Paytm and AU Small Finance Bank launched a co-branded card</strong> weighting rewards to Paytm-ecosystem spend (3 July) — super-apps deepening bank tie-ups and steering earn to first-party rails. <em>India.</em> <span class="src"><a href="https://cardinsider.com/blog/au-bank-launches-new-paytm-au-credit-card/">Card Insider</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>IHG tied hotel-loyalty earn to a Revolut debit card</strong> in a UK promotion (30 June–25 August) — card-linked reward distribution routed through a neobank rather than a legacy bank. <span class="src"><a href="https://thewisemarketer.com/the-loyalty-newswire-july-6-2026/">The Wise Marketer</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Card-linked-offer infrastructure vendors were quiet.</strong> No in-window product or partnership news from Cardlytics or Fidel API — a calm month for the reader's direct platform set. <span class="src">competitor sweep, this issue</span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ WHAT'S NEXT ═══ -->
+  <div class="next">
+    <div class="sec-label">What's next</div>
+    <h2>The forming picture</h2>
+    <ul>
+      <li><span class="nx-tag">Watch</span><span><strong>dunnhumby's alliance pilots go live this summer</strong> across household &amp; DIY, health &amp; beauty and grocery — cross-retailer retail media moves from announced to running. <span class="src"><a href="https://www.dunnhumby.com/news/dunnhumby-network-alliance-launches-to-connect-and-scale-retail-media/">dunnhumby</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>Asda's Amazon Retail Ad Service rolls out from Q4 2026</strong> — the first read on how Amazon-grade ad tech performs inside a UK grocery network. <span class="src"><a href="https://corporate.asda.com/newsroom/2026/23/06/asda-teams-up-with-amazon-in-uk-first-retail-media-and-ad-tech-partnership">Asda</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>More UK and EU networks line up for IAB Europe certification</strong> as the V1-to-V2 measurement-standard transition closes at the end of July — a standard consolidating in real time. <span class="src"><a href="https://iabeurope.eu/retail-media-certification-programme/">IAB Europe</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>Whether a loyalty or offer object reaches the agent rails</strong> — the Universal Commerce Protocol and Talon.One's UIP are where it would land as Shopify's open agent surface scales. <span class="src"><a href="https://www.shopify.com/news/spring-26-edition-dev">Shopify</a></span></span></li>
+      <li><span class="nx-tag open">Open</span><span><strong>UKPI Wave 2 brings general e-commerce onto the A2A scheme in H2 2026</strong> — the recurring-payments coverage question becomes a checkout one. <span class="src"><a href="https://www.openbankingexpo.com/news/uk-open-banking-payments-ecosystem-new-cvrp-scheme-is-welcome-step/">Open Banking Expo</a></span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span class="footer-vol">Product Edition</span>
+    <div class="footer-brand">The Digest</div>
+    <div class="footer-sub">Product signals for commerce, loyalty &amp; payments — monthly</div>
+    <div class="footer-next">Next issue: August 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
