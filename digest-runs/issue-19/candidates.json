@@ -1,0 +1,405 @@
+{
+  "issue_number": 19,
+  "date_window": { "from": "2026-07-10", "to": "2026-07-17" },
+  "generated_at": "2026-07-17T00:00:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Banking, fintech & loyalty",
+    "last_lead_topics_3issues": ["Banking, fintech & loyalty", "Management & teams", "Wider engineering landscape"],
+    "last_outside_in_company": "Kent Beck (Tidy First? / newsletter.kentbeck.com)",
+    "outside_in_history": ["Monzo", "Revolut", "Ramp", "Cloudflare", "Wise", "Linear", "incident.io", "Vercel", "Honeycomb", "Datadog", "The Finanser/Chris Skinner", "Kent Beck"],
+    "current_in_practice_season": "Ways of working in the agent era — operating-model change after adoption (FLAGGED FOR CUT; open fresh technical-leadership OR managing-upwards season)",
+    "in_practice_history": ["Monzo/Matias", "Vilalta", "Ghisi", "Twilio/Allison-Jacobs", "Moreau", "Spotify/Gustavsson", "Atlassian/Prabhakar"]
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering management team layoffs restructuring middle managers July 2026",
+        "engineering leadership hiring levelling org structure changes July 2026",
+        "Meta 50 to 1 manager ratio AI-native reorg July 2026 middle management",
+        "engineering leadership essay managing up presenting to executives escalation July 2026",
+        "engineering managers rising expectations LeadDev July 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Engineering managers are told to treat rising expectations as a tradeoff problem, not a workload problem",
+          "source_name": "LeadDev",
+          "source_url": "https://leaddev.com/leadership/engineering-managers-are-paying-the-price-of-rising-expectations",
+          "published_date": "2026-07-13",
+          "beat": "management_teams",
+          "summary": "Diego Quiroga (senior engineering leader, Microsoft) argues that EMs are being crushed not by more work but by competing expectations — coaching, technical depth and strategic influence all expanding at once — and that the fix is to make the tradeoffs explicit rather than silently absorb every demand. He offers deliberate framings like depth-vs-breadth and urgency-vs-importance to negotiate scope with one's own manager. Published in-window (13 Jul).",
+          "so_what": "Gives a director a concrete script for the scope-negotiation conversation their overloaded EMs are about to have (or should be having) with them.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "notes": "LeadDev is heavily used for Leadership Read (issues 7,10,12,15) — steer away from Leadership Read slot; fits management_teams QT or a management-craft long-form. Author is a named operator.",
+          "jargon_terms": ["depth-vs-breadth", "urgency-vs-importance"]
+        },
+        {
+          "headline": "Meta walks back its 50:1 manager ratio to ~20 after morale backlash, as the AI-native flattening meets reality",
+          "source_name": "TechBrew / WIRED / IndexBox (aggregated)",
+          "source_url": "https://www.techbrew.com/stories/meta-employee-morale-ai-reorg",
+          "published_date": "2026-07-14",
+          "beat": "management_teams",
+          "summary": "Meta's Applied AI reorg had pushed some teams to a 50-to-1 employee-to-manager ratio; after morale problems the company is capping managers at ~20 direct reports. The move sits inside a wider 2026 reorg (8,000 roles cut, ~7,000 moved into AI teams) and a Zuckerberg memo (2 Jul) admitting AI progress lagged expectations. Core events are late-June/early-July; the ratio walk-back is the fresh development this week.",
+          "so_what": "A concrete data point on how far span-of-control can actually stretch before it breaks — directly informs any leader modelling flatter org shapes under AI pressure.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "Mostly secondary/aggregator sourcing; primary WIRED ratio report is behind the aggregation. Core reorg predates the window — the 50→20 correction is the in-window hook. AI-substrate.",
+          "chartable_data": "span-of-control comparison: 50:1 initial vs ~20:1 revised vs typical 6-8:1 — a simple before/after or ratio bar."
+        },
+        {
+          "headline": "Middle-management delayering hardens into a 2026 pattern — Gartner says 20% of orgs will cut half their middle managers",
+          "source_name": "LeadRise / Intellizence / Kore1 (aggregated)",
+          "source_url": "https://www.leadrisecoaching.com/post/middle-management-layoffs-what-the-2026-meta-cuts-mean-for-professionals",
+          "published_date": "2026-07-15",
+          "beat": "management_teams",
+          "summary": "Coverage this week consolidates a year-long trend: Gartner's projection that through 2026 20% of organisations will use AI to flatten structures and eliminate more than half of current middle-management roles, alongside a ~42% drop in middle-management job postings vs 2022 and fresh cuts (Amazon 14k corporate roles, Thomson Reuters up to 500 engineering roles). The framing is that flattening is happening via layoffs and reorgs, not deliberate design.",
+          "so_what": "Frames the strategic question a head of engineering should put on the table now — design the flatter org on purpose, or have it happen to you via attrition and cuts.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "Trend/analysis rather than a single dated event; sourcing is aggregator-heavy — verify any specific number against a primary (Gartner, company filings) before use. AI-substrate.",
+          "chartable_data": "middle-management job-posting index vs 2022 baseline (-42%); could pair with named-company cut counts."
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "software engineering ways of working AI agents coding tools policy July 2026",
+        "AWS $1 billion forward deployed engineering organization embed engineers customers 2026",
+        "Microsoft Frontier Company $2.5 billion embed 6000 engineers customers July 2026 forward deployed",
+        "developer productivity metrics engineering teams AI adoption study July 2026",
+        "engineering blog technical leadership decision making not the expert build vs buy 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "The 'forward-deployed engineer' becomes an industry model — AWS ($1B) and Microsoft ($2.5B) will embed their own engineers inside customers",
+          "source_name": "CNBC / GeekWire / TechCrunch",
+          "source_url": "https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html",
+          "published_date": "2026-07-02",
+          "beat": "ways_of_working",
+          "summary": "Within three days, AWS announced a $1B Forward Deployed Engineering unit (30 Jun) embedding 5-6 engineers inside customers for ~45-day agentic-build engagements, and Microsoft announced a $2.5B 'Frontier Company' (2 Jul) putting 6,000 engineers inside enterprise clients — both following earlier Anthropic and OpenAI embedded-engineering ventures. The pitch is 'leave the customer self-sufficient' (runbooks, knowledge graphs, trained staff), not billable-hours consulting. Named early customers include the London Stock Exchange Group, NBA/NFL, Unilever and Southwest.",
+          "so_what": "Reframes the reader's build-vs-buy and vendor conversations: the hyperscalers are now selling embedded delivery capacity, which changes how a fintech decides what to staff internally vs. rent.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.geekwire.com/2026/microsoft-announces-2-5b-frontier-company-to-embed-ai-engineers-inside-customers/",
+            "https://www.aboutamazon.com/news/aws/aws-1-billion-forward-deployed-ai-engineers",
+            "https://techcrunch.com/2026/07/02/microsoft-launches-its-own-ai-deployment-company-with-2-5-billion-commitment/"
+          ],
+          "notes": "DATE CAVEAT: core announcements are 30 Jun-2 Jul, just before the window. Still reverberating in analysis this week (the 'build-vs-buy is now build-vs-buy-vs-embed' reframing). Strong Ways-of-working / build-vs-buy lead candidate the brief specifically asked to surface — but if used as Lead, the run plan must justify the new-in-window traction. AI-substrate. LSEG anchor gives UK/finance relevance.",
+          "chartable_data": "four embedded-engineering ventures compared (AWS $1B self-funded / Microsoft $2.5B 6,000 staff / Anthropic + partners $1.5B / OpenAI) — a compare-table of scale, funding model and engagement length.",
+          "jargon_terms": ["forward-deployed engineering (FDE)"]
+        },
+        {
+          "headline": "The AI productivity paradox sharpens: METR now measures an ~18% speedup, but delivery velocity and trust aren't following",
+          "source_name": "METR / GetDX / Faros (aggregated)",
+          "source_url": "https://getdx.com/news/new-data-ais-impact-on-engineering-velocity-is-more-modest-than-expected/",
+          "published_date": "2026-07-14",
+          "beat": "ways_of_working",
+          "summary": "Fresh syntheses this week revisit the gap between individual AI speedups and team-level outcomes: METR now estimates ~18% speedup (reversing its earlier 19% slowdown finding), while teams report developers completing more tasks and merging far more PRs even as review time balloons and business velocity stays flat. Stack Overflow's 2026 survey backdrop (84% using AI, trust in output down to ~3% 'highly trust') underlines the quality-and-review bottleneck.",
+          "so_what": "Arms a leader for the board-level 'where are the AI productivity gains?' conversation with the honest answer — the bottleneck has moved from writing code to reviewing it.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "notes": "Underlying studies (METR, DORA, Stack Overflow) are older; this is the recurring synthesis, not a single new event. Useful for Editorial Moment / number-of-the-week. AI-substrate.",
+          "chartable_data": "PR throughput +7.76% vs AI-usage +65%; review-time +91%; trust 40%(2024)->29%(2026) — several comparable metrics that chart well as a paradox panel."
+        },
+        {
+          "headline": "'GitHub is breaking' — Cursor (Origin), Zed and GitLab each move to decouple from a single code platform",
+          "source_name": "The New Stack",
+          "source_url": "https://thenewstack.io/cursor-origin-github-disruption/",
+          "published_date": "2026-06-24",
+          "beat": "ways_of_working",
+          "summary": "A cluster of moves — Cursor's GitHub-rival 'Origin', Zed's and GitLab's repositioning — argues that no single platform should own issues, CI, package delivery and deployment for the whole delivery chain. The shared thesis is decoupling and code custody as agentic tools raise the stakes on where source and pipelines live.",
+          "so_what": "Puts a concrete 'concentration risk in your own toolchain' question in front of a leader who has quietly let one vendor own the entire SDLC.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "DATE CAVEAT: late June, out of the strict window; theme is ongoing. Pairs thematically with the operating_at_scale concentration-risk watch. Primary article is partly paywalled.",
+          "jargon_terms": ["code custody"]
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "outage cloud infrastructure incident reliability July 2026 AWS Azure",
+        "Hugging Face security incident July 2026 agentic attacker autonomous agent breach",
+        "Ant Group agentic ransomware AI agent security tool open source July 2026",
+        "platform engineering scaling reliability postmortem SRE on-call July 2026",
+        "Forrester two major cloud outages 2026 hyperscaler concentration risk"
+      ],
+      "candidates": [
+        {
+          "headline": "The agentic attacker arrives for real: Hugging Face discloses an end-to-end AI-agent intrusion, days after the first agentic ransomware (JadePuffer)",
+          "source_name": "Hugging Face Engineering",
+          "source_url": "https://huggingface.co/blog/security-incident-july-2026",
+          "published_date": "2026-07-16",
+          "beat": "operating_at_scale",
+          "summary": "Hugging Face disclosed (16 Jul) an intrusion driven end-to-end by an autonomous AI agent that entered via malicious datasets, escalated privileges and executed 17,000+ recorded actions over a weekend; it was detected and reconstructed largely by Hugging Face's own defensive AI. The disclosure lands the same week as JadePuffer, the first documented complete ransomware operation run entirely by an AI agent (via a Langflow CVE), and Ant Group open-sourcing SingGuard-NSFA (14 Jul) to intercept exactly that attack class. The unifying lesson: defenders need capable models on their own infrastructure before an incident, or they get locked out by commercial-API guardrails while attackers run unconstrained.",
+          "so_what": "Moves 'agentic attacker' from forecast to this-week reality — a genuine decide-this-month resilience conversation about supply-chain risk, defensive model readiness and the attacker/defender asymmetry.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.techtimes.com/articles/320508/20260714/ant-group-open-sources-agent-security-tool-days-after-agentic-ransomware-hit.htm",
+            "https://www.forbes.com/sites/ronschmelzer/2026/07/10/ai-ransomware-is-here-now-powered-by-cheaper-agentic-models/",
+            "https://www.securityweek.com/agentic-ai-used-to-conduct-ransomware-attack-via-langflow/"
+          ],
+          "notes": "Strong in-window cluster (Hugging Face 16 Jul + Ant Group 14 Jul + JadePuffer ~10 Jul) and the Operating-at-scale candidate the brief asked to surface hard. Ant Group runs Alipay, giving a payments/fintech anchor; ties directly to the ECB AI-cyber letter in banking beat. Audience-fit is at the strategy/awareness level (not 'reader patches a CVE'), so it qualifies for anchor as a leadership-conversation story, not an IT-ops task. AI-substrate.",
+          "chartable_data": "attack-chain timeline (17,000+ agent actions) and the defender asymmetry (unconstrained attacker model vs guardrail-limited commercial API) — a process-flow or asymmetry diagram.",
+          "jargon_terms": ["agentic attacker", "JadePuffer", "SingGuard-NSFA", "prompt injection", "Langflow"]
+        },
+        {
+          "headline": "Forrester's 'two major hyperscaler outages in 2026' prediction keeps the single-region concentration-risk watch live",
+          "source_name": "Forrester / TechTarget / OpenMetal",
+          "source_url": "https://www.techtarget.com/searchcloudcomputing/feature/Cloud-outages-expected-to-be-the-new-normal-in-2026",
+          "published_date": "2026-07-13",
+          "beat": "operating_at_scale",
+          "summary": "Forrester's prediction of at least two multi-day hyperscaler outages in 2026 — as AWS, Azure and Google prioritise AI-infrastructure upgrades over aging legacy systems — continues to circulate, against the documented backdrop of the Oct-2025 AWS us-east-1 failure and the 2025 Azure Front Door cascade. Current status pages are healthy this week (minor GitHub Actions and Akamai incidents resolved early July).",
+          "so_what": "Keeps the standing 'what breaks if one region/one provider goes down' resilience question warm without over-claiming an incident that hasn't happened.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "essay",
+          "notes": "VERIFICATION FLAG: this is the standing us-east-1 concentration-risk watch. The unverified 'July 2026 mega-outage' must NOT be asserted as fact — no tier-1 confirmation of any new mega-outage this week; status pages are healthy. Use only as the concentration-risk framing, prediction attributed to Forrester.",
+          "chartable_data": "documented major cloud incidents 2025-26 (AWS us-east-1 15h/4M users; Azure Front Door; Cloudflare 28% of HTTP traffic) as a timeline."
+        },
+        {
+          "headline": "Slack rips SSH out of its EMR data pipelines, moving 700+ jobs to a REST orchestration layer over three quarters",
+          "source_name": "Slack Engineering / InfoQ",
+          "source_url": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/",
+          "published_date": "2026-06-30",
+          "beat": "operating_at_scale",
+          "summary": "Slack replaced SSH-based execution against Amazon EMR master nodes with 'Quarry', a REST-driven job-submission layer, migrating 700+ Airflow operators without downtime for critical workloads. The drivers were security (removing direct SSH to production clusters), reliability (server-side execution tracking) and reduced Airflow-EMR coupling.",
+          "so_what": "A clean named-operator case study of security-driven modernization as a multi-quarter technical-strategy bet — useful as Outside In or In Practice rather than a news anchor.",
+          "tier_guess": "outside-in",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "essay",
+          "notes": "DATE CAVEAT: late June (InfoQ write-up), out of strict window. Slack is NOT on the banned Outside In list. Strong candidate for Outside In or In Practice (named org, journey-not-framework, technical-strategy-under-uncertainty). Cross-listed in secondary pools."
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "fintech neobank engineering banking technology news week July 13 2026",
+        "ECB banks AI cyber threat action plans Anthropic frontier model July 2026",
+        "Circle OCC national trust bank USDC approval July 2026 stablecoin",
+        "Thought Machine core banking stablecoin settlement agentic commerce protocol July 2026",
+        "loyalty rewards card-linked offers cashback platform engineering 2026",
+        "UK Middle East bank fintech technology core banking modernization July 2026 Saudi UAE"
+      ],
+      "candidates": [
+        {
+          "headline": "ECB orders its 110 supervised banks to file AI-cyber action plans by 31 October, naming frontier models as a resilience risk",
+          "source_name": "Bloomberg / American Banker",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-07-07/ecb-asks-banks-for-plans-to-address-ai-cybersecurity-threats",
+          "published_date": "2026-07-07",
+          "beat": "banking_fintech_loyalty",
+          "summary": "ECB supervisory chair Claudia Buch wrote to CEOs of the ~110 significant institutions it supervises, requiring action plans (named owners, resources, timelines) by 31 Oct to address AI-enabled cyber threats — explicitly citing frontier models such as Anthropic's Claude 'Mythos', which found thousands of unknown vulnerabilities across major OSes and browsers. Banks are told to accelerate patching, strengthen AI-enabled defences and tighten third-party oversight.",
+          "so_what": "The regulator has put a hard October deadline on the exact agentic-attacker threat that Hugging Face and JadePuffer just made concrete — it is the reader's banking customers' near-term reality.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.americanbanker.com/news/ecb-tells-banks-fix-ai-cyber-gaps-by-oct-31",
+            "https://www.trendingtopics.eu/ecb-fears-systemic-risks-to-the-financial-system-from-frontier-ai-like-mythos/"
+          ],
+          "notes": "DATE: letter published 7 Jul (3 days pre-window) but heavy coverage runs through the window. REGULATOR RULE (v1.31): bank-regulator/banking-compliance stories are Radar/Other News/At-a-Glance, NOT Lead or featured QT. Passes the scope-conditional test thematically (AI-cyber threat crosses industries) but keep it in radar tier. Pairs with the operating_at_scale agentic-attacker cluster. AI-substrate.",
+          "jargon_terms": ["Joint Supervisory Team (JST)", "frontier model", "Mythos"]
+        },
+        {
+          "headline": "Circle wins final OCC approval for a national trust bank, putting USDC custody under federal supervision",
+          "source_name": "Circle / CoinDesk / CNBC",
+          "source_url": "https://www.circle.com/pressroom/circle-receives-final-occ-approval-to-establish-national-trust-bank",
+          "published_date": "2026-07-10",
+          "beat": "banking_fintech_loyalty",
+          "summary": "On 10 Jul Circle received final OCC approval to establish First National Digital Currency Bank, N.A. ('Circle National Trust'), bringing USDC (~$73B in circulation) custody under direct federal oversight, with reserve management planned later. Shares jumped on the news, framed as anchoring the largest regulated stablecoin inside the US banking system.",
+          "so_what": "Signals that stablecoin settlement infrastructure — the layer under agentic-commerce and card rails — is professionalising into supervised banking, part of the world the reader's loyalty/payments products plug into.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.coindesk.com/business/2026/07/10/circle-secures-u-s-trust-bank-approval-in-crypto-expansion",
+            "https://www.cnbc.com/2026/07/10/circle-gets-an-occ-bank-charter-as-stablecoin-competition-heats-up-shares-surge-14percent.html"
+          ],
+          "notes": "In-window (10 Jul). Adjacent to but NOT the retired agentic-payments deep-dive cluster (that was Visa EU agentic settlement + Open USD consortium); this is the stablecoin-custody/charter angle. Fintech-infrastructure QT or radar."
+        },
+        {
+          "headline": "Thought Machine crosses $100M ARR serving 68 banks, and joins Visa's 'Agentic Ready' programme",
+          "source_name": "BlackFin Tech Weekly / Future of Banking",
+          "source_url": "https://blackfintech.substack.com/p/blackfin-tech-weekly-july-13th-2026",
+          "published_date": "2026-07-13",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Cloud-native core-banking provider Thought Machine surpassed $100M ARR (up 57% YoY), now serving 68 banks including 18 tier-one institutions, reached positive free cash flow, and is progressing agentic customer-relationship models via Visa's Agentic Ready programme. A separate convertible round from an undisclosed tier-1 bank funds R&D and engineering-team expansion.",
+          "so_what": "A milestone in the maturation of the cloud core-banking layer the reader's UK/ME bank customers increasingly run on — and a marker of where agentic-banking capability is being wired in.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "In-window (13 Jul, BlackFin weekly). UK vendor, tier-1 bank customers, ME-relevant core-banking modernization thread. Business-milestone story, low tension — radar/Other News. Visa Agentic Ready touches the retired payments cluster; keep framing on the core-banking-maturity angle."
+        },
+        {
+          "headline": "'Banks as media' — card-linked offers turn the reader's own vertical into an advertising-economics play",
+          "source_name": "ACHIVX / Olive Insights / Kard",
+          "source_url": "https://medium.com/@achivx/card-linked-offers-in-2026-why-banks-as-media-is-happening-now-bf0a5a1692cf",
+          "published_date": "2026-07-11",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Analyses this month argue card-linked-offer (CLO) loyalty is converging with advertising economics: banks broker merchant-customer marketing, using payment rails to measure outcomes and the bank app to distribute offers. Engineering emphasis is on attribution, settlement, fraud controls and privacy-by-design — separating identity from transaction matching via tokenization so offer engines compute rewards without exposing customer identity.",
+          "so_what": "Directly names the reader's loyalty/commerce-media patch and the engineering primitives (attribution, tokenized matching, real-time reward at checkout) that a rewards platform lives or dies on.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "essay",
+          "notes": "Vertical-relevance research per the v1.27 loyalty/commerce-media weekly query. Trend/analysis, not a dated event; sourcing is vendor/Medium — treat as context, take a normal slot only if a sharper piece is needed. Loyalty patch."
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "'Buy infrastructure, build intelligence' — a build-vs-buy stance for the AI era from an operator who runs it",
+        "source_name": "The Signal (Brendan J Short)",
+        "source_url": "https://www.thesignal.club/p/build-vs-buy-in-the-ai-era",
+        "published_date": "2026-07-07",
+        "beat": "leadership_read",
+        "summary": "Brendan Short, drawing on Kyle Norton (CRO, Owner.com), argues you can 'own' intelligence without building from scratch — buy reliable infrastructure but keep control of proprietary logic, data, exportable memory and the ability to evaluate outputs. It reframes build-vs-buy as a leadership conversation about where durable advantage actually sits.",
+        "so_what": "Gives a leader a crisp, non-binary frame for the build-vs-buy-vs-embed decision that the FDE cluster is forcing this month.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "FRESH source (not on used list: LeadDev/Pragmatic/Honeycomb/incident.io/Fortune/MIT Sloan/lethain). CAVEATS: (1) GTM/revenue lens more than pure engineering; (2) 7 Jul, just pre-window; (3) AI-era subject, so if In Practice is also AI-substrate the v1.35 long-form variety rule bites. Technical-leadership / build-vs-buy theme."
+      },
+      {
+        "headline": "How to manage up as an engineer or a manager",
+        "source_name": "Engineering Leadership (Gregor Ojstersek)",
+        "source_url": "https://newsletter.eng-leadership.com/p/how-to-manage-up-as-an-engineer-or",
+        "published_date": "2026-02-15",
+        "beat": "leadership_read",
+        "summary": "A practical treatment of managing upwards — proactively surfacing wins, challenges and needs to your manager and stakeholders, and building credibility as the currency of opportunity. Sits squarely in the managing-across-and-upwards theme pool.",
+        "so_what": "A non-AI managing-upwards read that would satisfy the v1.35 variety rule if the other long-form pieces are AI-flavoured.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "low",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "BACKUP / non-AI option. Out of window (Feb) — use only if a fresher managing-upwards piece isn't sourced. Fresh source. Fits the managing-upwards theme the fresh In Practice season could draw from."
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "From SSH to REST: Slack's multi-quarter, security-driven modernization of its EMR data pipelines",
+        "source_name": "Slack Engineering",
+        "source_url": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/",
+        "published_date": "2026-06-30",
+        "beat": "in_practice",
+        "summary": "A named-operator account of Slack's data-platform team replacing SSH execution against EMR with the 'Quarry' REST layer — 700+ Airflow operators migrated over three quarters without downtime — as a deliberate technical-strategy bet on security, reliability and reduced coupling. It reads as a journey (why, what broke, how they de-risked) rather than a framework.",
+        "so_what": "A concrete technical-strategy-under-uncertainty journey a manager can learn from without being the SME.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Best available named-operator journey for a FRESH technical-leadership In Practice season. CAVEATS: late-June date; and it's more technical-ops than an explicit 'leadership decision' narrative. Non-AI subject — good for the v1.35 variety rule. Cross-listed under operating_at_scale."
+      },
+      {
+        "headline": "Buy infrastructure, build intelligence — an operator's build-vs-buy journey at Owner.com",
+        "source_name": "The Signal (Kyle Norton, Owner.com)",
+        "source_url": "https://www.thesignal.club/p/build-vs-buy-in-the-ai-era",
+        "published_date": "2026-07-07",
+        "beat": "in_practice",
+        "summary": "A hybrid operator narrative in which Owner.com's CRO walks through how the company decides what to build vs buy in its internal AI engineering practice, illustrating build-vs-buy as a lived leadership conversation rather than a scorecard.",
+        "so_what": "Fits the technical-leadership pool (build-vs-buy as a leadership conversation) with a named operator at a named org.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Also listed under leadership_read — curation should place in one slot only. GTM/revenue framing dilutes the pure-engineering fit; AI-era subject. Named operator + journey qualities are present."
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "Ant Group open-sources SingGuard-NSFA — an Alipay-hardened guardrail taxonomy of 185 agent threats",
+        "source_name": "TechTimes / MediaConnect",
+        "source_url": "https://www.techtimes.com/articles/320508/20260714/ant-group-open-sources-agent-security-tool-days-after-agentic-ransomware-hit.htm",
+        "published_date": "2026-07-14",
+        "beat": "outside_in",
+        "summary": "Ant Group's AI Security Lab released SingGuard-NSFA (GitHub + Hugging Face), an inline guardrail framework that catches prompt injection, credential theft, malicious code execution and permission misuse across a taxonomy of 185 operational agent-threat scenarios in 7 categories — the same detection already running in Alipay's production AI-pay and AI-healthcare systems. Released 12 days after the JadePuffer agentic-ransomware disclosure.",
+        "so_what": "A payments-platform peer publishing its agent-security playbook — an outside-in look at how a fintech at scale is operationalising the agentic-attacker threat.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "news_event",
+        "notes": "FRESH company (not on banned Outside In list). In-window (14 Jul). Strong fintech/payments relevance via Alipay. Ties to the operating_at_scale and banking beats — beware over-clustering the issue on agentic security if the Lead is already that cluster (v1.35 / AI-substrate ceiling).",
+        "chartable_data": "185 threats across 7 categories — a taxonomy table or category breakdown."
+      },
+      {
+        "headline": "Slack's security-driven EMR modernization (see In Practice / operating_at_scale)",
+        "source_name": "Slack Engineering",
+        "source_url": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/",
+        "published_date": "2026-06-30",
+        "beat": "outside_in",
+        "summary": "Cross-listed. A non-AI, named-operator technical-strategy journey (SSH->REST 'Quarry' migration) that could serve Outside In if In Practice takes a different piece — helps satisfy the v1.35 rule that at most one long-form section is AI-primary.",
+        "so_what": "A clean non-AI Outside In option to balance an AI-heavy issue.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Late-June date. Curation should pick either Slack OR Ant Group for Outside In, not both; Slack is the non-AI balancer, Ant Group is the fintech-relevant AI one."
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "How JadePuffer actually worked: one exposed Langflow instance, a two-year-old CVE, and a full extortion chain run by an agent",
+        "source_name": "Hard2bit / SecurityWeek",
+        "source_url": "https://hard2bit.com/en/blog/jadepuffer-agentic-ransomware-ai-langflow-nacos/",
+        "published_date": "2026-07-13",
+        "beat": "in_practice",
+        "summary": "A technical teardown of JadePuffer — the first fully agent-run ransomware — tracing entry via an internet-exposed Langflow instance (CVE-2025-3248) through to autonomous privilege escalation, exfiltration and extortion, with the agent chaining tools without human hands on keyboard. A curiosity-driven walk through how mundane exposure plus an agent produced a novel end-to-end attack.",
+        "so_what": "The satisfying 'how did this actually happen' teardown behind the week's agentic-attacker headlines.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "low",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event",
+        "notes": "Rabbit hole eligible (last 2026-06-26). CAVEAT: heavily overlaps the operating_at_scale Lead cluster — using it as the rabbit hole would deepen an already agentic-security-heavy issue. Optional; include only if the Lead is NOT the agentic-attacker cluster."
+      }
+    ],
+    "p0_active": []
+  }
+}
