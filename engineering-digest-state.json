@@ -1,72 +1,212 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 19 deliver (2026-07-17) — a Standard Weekly led by the agentic-attacker cluster (Operating at scale); consecutive_non_deepdive advances 0 to 1; a fresh In Practice season opens ('Technical strategy under uncertainty').",
-
-  "last_issue_number": 19,
-  "last_issue_date": "2026-07-17",
+  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 20 deliver (2026-07-31) - a Standard Weekly led by the 27 July UK multi-bank payments degradation (Operating at scale); consecutive_non_deepdive advances 1 to 2; In Practice season 'Technical strategy under uncertainty' advances to progress 2.",
+  "last_issue_number": 20,
+  "last_issue_date": "2026-07-31",
   "last_issue_format": "weekly",
   "last_lead_topic": "Operating at scale",
   "last_lead_topics_3issues": [
     "Operating at scale",
-    "Banking, fintech & loyalty",
-    "Management & teams"
+    "Operating at scale",
+    "Banking, fintech & loyalty"
   ],
-  "consecutive_non_deepdive": 1,
-
-  "last_outside_in_company": "Kent Beck (Tidy First? / newsletter.kentbeck.com)",
+  "consecutive_non_deepdive": 2,
+  "last_outside_in_company": "Shopify",
   "outside_in_history": [
-    { "issue": 1, "company": "Monzo", "source": "Suhail Patel — QCon talk" },
-    { "issue": 6, "company": "Revolut", "source": "Revolut launches AI financial assistant" },
-    { "issue": 7, "company": "Ramp", "source": "Ramp's Inspect agent writes half of merged PRs" },
-    { "issue": 9, "company": "Cloudflare", "source": "Cloudflare on the .de DNSSEC outage" },
-    { "issue": 10, "company": "Wise", "source": "Leading engineering through ownership" },
-    { "issue": 11, "company": "Linear", "source": "Linear engineering-craft conservatism / reliability bar" },
-    { "issue": 12, "company": "incident.io", "source": "Customers over control — measuring on-call reliability from the customer's outcome" },
-    { "issue": 13, "company": "Vercel", "source": "Design engineering at Vercel — collapsing the design-to-frontend handoff" },
-    { "issue": 14, "company": "Honeycomb", "source": "Lex Neva — Incident Retrospective Ground Rules (dropping action-item tracking in reviews)" },
-    { "issue": 15, "company": "Datadog", "source": "DASH 2026 — instrumenting post-incident review as a reportable governance metric" },
-    { "issue": 16, "company": "The Finanser (Chris Skinner)", "source": "Monzo, Revolut and Starling: the quiet emergence of Britain's banking champions — three platform-strategy bets (analyst-source Outside In, logged exception)" },
-    { "issue": 17, "company": "Kent Beck (Tidy First? / newsletter.kentbeck.com)", "source": "Run Out to Meet It — Kent Beck in conversation with Charity Majors; delivered as a durable craft/mindset stance (meeting a discontinuity head-on, the reset of expertise), AI as backdrop not subject" }
+    {
+      "issue": 1,
+      "company": "Monzo",
+      "source": "Suhail Patel — QCon talk"
+    },
+    {
+      "issue": 6,
+      "company": "Revolut",
+      "source": "Revolut launches AI financial assistant"
+    },
+    {
+      "issue": 7,
+      "company": "Ramp",
+      "source": "Ramp's Inspect agent writes half of merged PRs"
+    },
+    {
+      "issue": 9,
+      "company": "Cloudflare",
+      "source": "Cloudflare on the .de DNSSEC outage"
+    },
+    {
+      "issue": 10,
+      "company": "Wise",
+      "source": "Leading engineering through ownership"
+    },
+    {
+      "issue": 11,
+      "company": "Linear",
+      "source": "Linear engineering-craft conservatism / reliability bar"
+    },
+    {
+      "issue": 12,
+      "company": "incident.io",
+      "source": "Customers over control — measuring on-call reliability from the customer's outcome"
+    },
+    {
+      "issue": 13,
+      "company": "Vercel",
+      "source": "Design engineering at Vercel — collapsing the design-to-frontend handoff"
+    },
+    {
+      "issue": 14,
+      "company": "Honeycomb",
+      "source": "Lex Neva — Incident Retrospective Ground Rules (dropping action-item tracking in reviews)"
+    },
+    {
+      "issue": 15,
+      "company": "Datadog",
+      "source": "DASH 2026 — instrumenting post-incident review as a reportable governance metric"
+    },
+    {
+      "issue": 16,
+      "company": "The Finanser (Chris Skinner)",
+      "source": "Monzo, Revolut and Starling: the quiet emergence of Britain's banking champions — three platform-strategy bets (analyst-source Outside In, logged exception)"
+    },
+    {
+      "issue": 17,
+      "company": "Kent Beck (Tidy First? / newsletter.kentbeck.com)",
+      "source": "Run Out to Meet It — Kent Beck in conversation with Charity Majors; delivered as a durable craft/mindset stance (meeting a discontinuity head-on, the reset of expertise), AI as backdrop not subject"
+    },
+    {
+      "issue": 20,
+      "company": "Shopify",
+      "source": "Zack Deveau - Building an agentic harness that outlasts the model (application-security team; the orchestration and verification layer the org owns is the durable investment, not the model contract)"
+    }
   ],
-
-  "last_leadership_read": "The Signal (Brendan J Short)",
+  "last_leadership_read": "The Pragmatic Engineer",
   "leadership_read_history": [
-    { "issue": 7, "source": "LeadDev", "piece": "The end of the non-technical engineering manager" },
-    { "issue": 9, "source": "Pragmatic Engineer", "piece": "Five recommendations for platform teams in 2026" },
-    { "issue": 10, "source": "LeadDev", "piece": "Demand for engineering managers is surging in the agentic-coding era" },
-    { "issue": 11, "source": "Honeycomb", "piece": "The next era of observability — founders' reflections (additional Q&A)" },
-    { "issue": 12, "source": "LeadDev", "piece": "A manager's guide to performance calibration" },
-    { "issue": 13, "source": "Fortune", "piece": "The middle-manager cuts saving millions today build the empty pipeline of 2028" },
-    { "issue": 14, "source": "incident.io", "piece": "Why post-mortems fail" },
-    { "issue": 15, "source": "LeadDev", "piece": "The engineering manager role is splitting in two (Stephane Moreau, Zopa Bank)" },
-    { "issue": 16, "source": "MIT Sloan Management Review", "piece": "Managing up: a skill set that matters now (Clampitt & DeKoch) — buffer / translator / advocate as the org chart flattens" },
-    { "issue": 17, "source": "lethain (Will Larson)", "piece": "Revised rules of engineering leadership — durable, high-ownership teams and quick, good, durable decisions are the fundamentals that outlast the tooling (agents as backdrop)" },
-    { "issue": 19, "source": "The Signal (Brendan J Short)", "piece": "Buy infrastructure, build intelligence — buy the reliability layer, own the intelligence (data, decision logic, exportable memory, evaluation); build-vs-buy reframed as a leadership conversation in the AI era, drawing on Kyle Norton (CRO, Owner.com). Shipped as the authorised fallback after the primary (Gregor Ojstersek, 'How to manage up') was paywalled and could not clear the substance floor" }
+    {
+      "issue": 7,
+      "source": "LeadDev",
+      "piece": "The end of the non-technical engineering manager"
+    },
+    {
+      "issue": 9,
+      "source": "Pragmatic Engineer",
+      "piece": "Five recommendations for platform teams in 2026"
+    },
+    {
+      "issue": 10,
+      "source": "LeadDev",
+      "piece": "Demand for engineering managers is surging in the agentic-coding era"
+    },
+    {
+      "issue": 11,
+      "source": "Honeycomb",
+      "piece": "The next era of observability — founders' reflections (additional Q&A)"
+    },
+    {
+      "issue": 12,
+      "source": "LeadDev",
+      "piece": "A manager's guide to performance calibration"
+    },
+    {
+      "issue": 13,
+      "source": "Fortune",
+      "piece": "The middle-manager cuts saving millions today build the empty pipeline of 2028"
+    },
+    {
+      "issue": 14,
+      "source": "incident.io",
+      "piece": "Why post-mortems fail"
+    },
+    {
+      "issue": 15,
+      "source": "LeadDev",
+      "piece": "The engineering manager role is splitting in two (Stephane Moreau, Zopa Bank)"
+    },
+    {
+      "issue": 16,
+      "source": "MIT Sloan Management Review",
+      "piece": "Managing up: a skill set that matters now (Clampitt & DeKoch) — buffer / translator / advocate as the org chart flattens"
+    },
+    {
+      "issue": 17,
+      "source": "lethain (Will Larson)",
+      "piece": "Revised rules of engineering leadership — durable, high-ownership teams and quick, good, durable decisions are the fundamentals that outlast the tooling (agents as backdrop)"
+    },
+    {
+      "issue": 19,
+      "source": "The Signal (Brendan J Short)",
+      "piece": "Buy infrastructure, build intelligence — buy the reliability layer, own the intelligence (data, decision logic, exportable memory, evaluation); build-vs-buy reframed as a leadership conversation in the AI era, drawing on Kyle Norton (CRO, Owner.com). Shipped as the authorised fallback after the primary (Gregor Ojstersek, 'How to manage up') was paywalled and could not clear the substance floor"
+    },
+    {
+      "issue": 20,
+      "source": "The Pragmatic Engineer",
+      "piece": "Napkin math as a leadership discipline - Simon Eskildsen (Turbopuffer) with Gergely Orosz; reasoning from physical limits to judge whether a system is anywhere near what the hardware allows (10s observed against 10ms theoretical on a search benchmark; a Cursor bill cut from $80k to $4k a month)"
+    }
   ],
-
-  "last_editorial_moment": "number_of_the_week",
+  "last_editorial_moment": "worth_a_second_look",
   "last_lead_opener": "narrative-first",
-  "last_qt_layout": "qt-featured",
+  "last_qt_layout": "qt-A",
   "last_oi_format": "A",
-
   "last_feature_date": null,
   "last_stack_date": null,
-  "last_rabbit_hole_date": "2026-06-26",
-
+  "last_rabbit_hole_date": "2026-07-31",
   "current_in_practice_season": "Technical strategy under uncertainty",
-  "in_practice_season_progress": 1,
+  "in_practice_season_progress": 2,
   "in_practice_season_candidates": [],
   "in_practice_history": [
-    { "issue": 11, "piece_title": "Expectations for an Engineering Manager at Monzo", "author": "Diogo Matias", "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo" },
-    { "issue": 12, "piece_title": "Managing Managers: A Very Short Director's Guide", "author": "Jay Vilalta", "url": "https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/" },
-    { "issue": 13, "piece_title": "Scaling to 100+ as a Director: Lessons From Growing Engineering Organizations", "author": "Thiago Ghisi", "url": "https://www.infoq.com/presentations/scaling-engineering-teams/" },
-    { "issue": 14, "piece_title": "Treating a Career Framework Redesign Like a Product", "author": "Megan Allison & Kelly Jacobs", "url": "https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process" },
-    { "issue": 15, "piece_title": "Engineering Leadership Lessons from LDX3 2026 (hiring loops in the agent era)", "author": "Stephane Moreau", "url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026" },
-    { "issue": 16, "piece_title": "Code with Claude: coding is no longer the constraint", "author": "Niklas Gustavsson (Spotify)", "url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint" },
-    { "issue": 17, "piece_title": "Rebuilding the operating model, not just the toolkit (Atlassian × Dropbox AI transformation)", "author": "Avani Prabhakar (Atlassian)", "url": "https://www.atlassian.com/blog/how-we-build/atlassian-dropbox-ai-transformation" },
-    { "issue": 19, "piece_title": "From SSH to REST: A Security-Driven Modernization of Slack's EMR Data Pipelines", "author": "Mahendran Vasagam (Slack)", "url": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/" }
+    {
+      "issue": 11,
+      "piece_title": "Expectations for an Engineering Manager at Monzo",
+      "author": "Diogo Matias",
+      "url": "https://monzo.com/blog/expectations-for-an-engineering-manager-at-monzo"
+    },
+    {
+      "issue": 12,
+      "piece_title": "Managing Managers: A Very Short Director's Guide",
+      "author": "Jay Vilalta",
+      "url": "https://jayvilalta.com/blog/2025/09/02/managing-managers-a-very-short-directors-guide-to-engineering-leadership/"
+    },
+    {
+      "issue": 13,
+      "piece_title": "Scaling to 100+ as a Director: Lessons From Growing Engineering Organizations",
+      "author": "Thiago Ghisi",
+      "url": "https://www.infoq.com/presentations/scaling-engineering-teams/"
+    },
+    {
+      "issue": 14,
+      "piece_title": "Treating a Career Framework Redesign Like a Product",
+      "author": "Megan Allison & Kelly Jacobs",
+      "url": "https://www.twilio.com/en-us/blog/company/inside-twilio/design-team-cdf-revamp-process"
+    },
+    {
+      "issue": 15,
+      "piece_title": "Engineering Leadership Lessons from LDX3 2026 (hiring loops in the agent era)",
+      "author": "Stephane Moreau",
+      "url": "https://www.blog4ems.com/p/engineering-leadership-lessons-from-ldx3-2026"
+    },
+    {
+      "issue": 16,
+      "piece_title": "Code with Claude: coding is no longer the constraint",
+      "author": "Niklas Gustavsson (Spotify)",
+      "url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint"
+    },
+    {
+      "issue": 17,
+      "piece_title": "Rebuilding the operating model, not just the toolkit (Atlassian × Dropbox AI transformation)",
+      "author": "Avani Prabhakar (Atlassian)",
+      "url": "https://www.atlassian.com/blog/how-we-build/atlassian-dropbox-ai-transformation"
+    },
+    {
+      "issue": 19,
+      "piece_title": "From SSH to REST: A Security-Driven Modernization of Slack's EMR Data Pipelines",
+      "author": "Mahendran Vasagam (Slack)",
+      "url": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/"
+    },
+    {
+      "issue": 20,
+      "piece_title": "Arriving as a manager without the domain: a decision rule for when an EM writes the code",
+      "author": "Ferit Topcu (Zenjob SE)",
+      "url": "https://leaddev.com/management/engineering-managers-have-a-new-job-description"
+    }
   ],
-
-  "_season_note": "Issue 19 (Standard Weekly) OPENED a fresh In Practice season — 'Technical strategy under uncertainty' (technical-leadership pool, non-AI) — after the prior 'Ways of working in the agent era' season was flagged for CUT at Issues 17-18. Season progress = 1. The Issue 19 In Practice is Slack's SSH-to-REST/Quarry modernization (Mahendran Vasagam). Issue 18 was a DEEP DIVE (no In Practice / Outside In / Leadership Read), so those histories skipped issue 18. Outside In was OMITTED at Issue 19 (deliberate spread discipline — the only candidates were Ant Group SingGuard, which over-clustered with the agentic-attacker Lead, and Slack, which opened the In Practice season), so last_outside_in_company and outside_in_history are unchanged (still Kent Beck / issue 17). Leadership Read at Issue 19 shipped the authorised fallback (The Signal / Brendan Short, build-vs-buy) because the primary managing-up piece was paywalled. AWS us-east-1 remains a standing single-region concentration-risk watch; the unverified 'July 2026 mega-outage' was again demoted at curation and must not be asserted as fact without tier-1 confirmation. The agentic-payments deep-dive cluster remains RETIRED (fired at Issue 18).",
-
+  "_season_note": "Issue 20 (Standard Weekly) is week 2 of the In Practice season 'Technical strategy under uncertainty' (Ferit Topcu / Zenjob, via LeadDev). Outside In RETURNS at Issue 20 after the Issue 19 omission - Shopify (Zack Deveau), a company new to outside_in_history; Shopify could not serve both In Practice and Outside In, so Zenjob took In Practice and kept long-form AI variety at 1 of 3. Leadership Read primary HELD (the authorised paywall fallback did not fire). The Lead repeats Issue 19's operational concern (Operating at scale) - a deliberate, documented call under the v3.4 soft breadth guardrail (rolling-4 spread is 3 of 4 concerns); note SKILL.md's State Tracking section still carries a legacy 'lead must differ from last_lead_topic' line that the spec retired at v3.4. Binding facts carried forward: no shared cause was ever published for the 27 July UK multi-bank degradation - simultaneity is documented, causation is not, and it must not be upgraded in later coverage; Faster Payments the rail did NOT fail. The 'July 2026 AWS mega-outage' remains UNVERIFIED and was demoted for a third consecutive issue - only the 24 July us-west-2 routing event is asserted, and it must not be conflated with the standing us-east-1 concentration watch. AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN on the AWS Health Dashboard with AWS's last public update dated 30 April 2026. The agentic-payments deep-dive cluster stays retired. Issue 20 shipped 12 pages / ~3,600 words against the spec's nominal 5-7 page limit - Phase 5 judged the limit arithmetically unreachable against current section floors (issues 11-18 all ran 9-13 pages) and recommended amending the spec to a 2,800-3,600 word budget. That spec amendment is NOT yet made.",
   "p0_stories_tracking": []
 }
