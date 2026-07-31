@@ -510,3 +510,47 @@ All three blocking defects were fixed in the main loop and re-verified. No phase
 **Page count:** Phase 5 recommendation **(b)** accepted — shipped at 12 pages. The rendered issue is 12 pages / ~3,600 words. Recorded in the state file as a known standing divergence: the spec's 5–7 page limit is arithmetically unreachable against current section substance floors, and issues 11–18 all shipped 9–13 pages. **The recommended spec amendment (a 2,800–3,600 word budget replacing the page limit) has NOT been made** — it is a spec change, out of scope for a publish run, and is left for an explicit decision.
 
 **Status: PASS — cleared to publish.**
+
+---
+
+## Post-publication amendment — the Visa miss (main loop)
+
+Raised by the operator after publication: **Visa announced a 7% workforce cut on 28 July and the issue did not carry it.**
+
+### Verification
+
+Multi-source confirmed (American Banker, Bloomberg via The Spokesman-Review, CNBC, Quartz, CPA Practice Advisor): ~2,600 roles, close to 7% of the workforce, concentrated in technology and product, announced 28 July, with CEO Ryan McInerney putting AI at the centre — *"AI is also helping to accelerate this evolution and shape the way work gets done at Visa."* Mastercard cut 4% earlier in 2026.
+
+Single-sourced to American Banker, therefore **attributed rather than asserted** in copy: the $563m charge and the reorganisation of product and development teams from roughly ten people into groups of two to four. Sources also disagree on whether the announcement came via staff memo or on the earnings call, so the copy says only *"the same day"* and makes no claim about the channel.
+
+### Root cause of the miss
+
+Not a curation call — the story never entered `candidates.json`. Two Phase 1 patterns combined:
+
+1. **Name-anchoring.** The *Management & teams* layoff sweep opened generically (`engineering layoffs restructure July 2026`), hit Monday.com and Intel, then went name-specific for every subsequent query (`Monday.com layoffs 20% workforce`, `Intel layoffs July 26 2026`). It stopped sweeping and started drilling.
+2. **Beat siloing.** The *Banking/fintech* sweep ran 16 queries including two on the card networks, but every one was framed on loyalty, commerce media, agentic protocols or VAS revenue. **`Visa` and `layoffs` never co-occurred in a single query.**
+
+Compounding: **Phase 3 fetched the Visa Q3 transcript** to pin the VAS figures assigned to it and read it for nothing else.
+
+### Remedy applied — promoted to the Lead
+
+The story was judged stronger than the incumbent Lead and merged with the Q3 loyalty angle into one article, rather than being bolted onto a Quick Take:
+
+| | Before | After |
+|---|---|---|
+| **Lead** | UK multi-bank payments degradation (Operating at scale) | **Visa expands the offer layer and cuts the organisation building it** (Management & teams) |
+| **QT1** | Agent-raised PR review study | unchanged |
+| **QT2** | Visa Q3 / loyalty mechanic | **UK multi-bank payments degradation** |
+| **Editorial Moment** | Monday.com + Intel | **Status pages against customer experience** (Meta, promoted out of At a Glance) |
+| **Other News** | 4 items | **5** — Monday.com + Intel preserved here rather than dropped |
+| **Cover stat** | 79% | **7%** |
+
+**Rationale.** The incumbent Lead was built on an absence — its own register forbade claiming a cause, a rail failure, a cyber angle or any impact figure, because none is established. The Visa story carries verifiable substance, spans three concerns at once, and is a news event under the v1.32 definition (*"a corporate restructure"*). It also **dissolved the documented same-concern lead repeat** with Issue 19, which the original run plan had to write around.
+
+### Compliance re-verified after the restructure
+
+Anchor news events **2 of 3** ✅ · within-issue concern diversity **3 distinct, one per anchor** (Management & teams / Ways of working / Operating at scale) ✅ · soft breadth guardrail now **3 of 4 with no repeat** ✅ · AI-substrate **3 of 6** featured, cap 4 ✅ · long-form variety 1 of 3 ✅ · adjacent-source rule holds (QT1 and In Practice both LeadDev, separated by QT2) ✅ · source-diversity cap: LeadDev 2, TechCrunch 2, AWS Health Dashboard 2, none over ✅ · visuals **6**, real diagrams **4** ✅ · components 5 ✅ · `.section-label.alert` 0; Lead uses `.section-label.orange` per the Management & teams palette ✅ · direct address 0 ✅ · banned-claim register all 0 ✅ · word counts Lead 348 (300–400), QT1 238, QT2 261 (150–250, **11 over, accepted**) ✅
+
+**Reading time recomputed: 19 min, 3,709 words, 12 pages.**
+
+**Status: PASS — amended issue cleared to publish.**
