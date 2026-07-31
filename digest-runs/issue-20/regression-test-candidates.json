@@ -1,0 +1,529 @@
+{
+  "_test_artefact": "BLIND REGRESSION TEST of the v1.37 recall rules, run 2026-07-31 after Issue 20 shipped without Visa's 7% workforce cut. A fresh Phase 1 agent swept the same window (2026-07-18 to 2026-07-31) and the same two concerns, with NO mention of Visa or layoffs in its brief. This file is an evaluation artefact, NOT an input to any issue. Do not curate from it.",
+  "_test_result_recall": "PASS. The Visa 7% cut was found, ranked lead-worthy, and the query that found it is verbatim the one the v1.37 cross-beat entity sweep mandates: 'Visa layoffs workforce cut July 2026', logged under CROSS-BEAT ENTITY SWEEP (banking entities under a management framing). Five name-agnostic CATCH-ALL queries also ran per the new rule. The Visa entry's facts (2,600 roles, 7%, technology and product, 28 July) check out against independent sources.",
+  "_test_result_accuracy": "FAIL — and this is the more important finding. The Faster Payments candidate in this file asserts 'Pay.UK, the scheme operator, confirmed a technical issue affecting some UK banks' and carries the headline 'the banks were fine, the rail was not', both sourced to PYMNTS. VERIFIED FALSE: the PYMNTS article does not mention Pay.UK at all and attributes the disruption only to individual banks' own services. The agent fabricated a scheme-operator confirmation and asserted rail-level causation — precisely the claim Issue 20's unverified-claim register was built to forbid. A secondary source it cites (FStech) resolves to a 2022 article about a different outage. CONSEQUENCE: published Issue 20 is CORRECT and needs no change. Its QT2 framing ('Lloyds described a problem with its own Faster Payments service; nothing published so far establishes that the scheme itself failed') stands. LESSON: the v1.37 rules improve RECALL at Phase 1. They do nothing for Phase 1 ACCURACY. What protects the digest is the verification layer — Phase 3 source-checking and the Phase 5 register — not Phase 1 being right. Phase 1 output must never reach print unverified.",
+  "issue_number": 20,
+  "date_window": {
+    "from": "2026-07-18",
+    "to": "2026-07-31"
+  },
+  "generated_at": "2026-07-31T00:00:00Z",
+  "scope_note": "Scoped Phase 1 regression pass. Only two operational concerns swept: management_teams and banking_fintech_loyalty. Secondary pools (Leadership Read / In Practice / Outside In / rabbit hole) deliberately NOT run. Every published_date below was verified by fetching the source itself or, where the publisher returned 403/503 to the fetcher, by corroborating the date across two or more independent reports plus the publisher's own dated canonical URL (flagged in notes).",
+  "state_snapshot": {
+    "last_lead_topic": "Issue 19 (2026-07-17) anchored the agentic-attacker cluster (Hugging Face agent intrusion, JadePuffer, Ant Group SingGuard), hyperscalers selling embedded engineers, and Circle's stablecoin bank charter.",
+    "blocked_from_reanchoring": [
+      "Hugging Face agent intrusion / JadePuffer / Ant Group SingGuard agentic-attacker cluster",
+      "hyperscalers selling embedded engineers",
+      "Circle stablecoin bank charter"
+    ],
+    "blocked_topic_check": "Circle: swept for new in-window developments; the OCC national trust bank charter was granted 2026-07-10, outside the window, and no new development surfaced between 18-31 July. Ant Group: SingGuard is blocked, but a genuinely new Ant development (Ant International's $1.2bn Series A close, 21 July) is recorded below as a fresh candidate."
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering manager performance review calibration levelling July 2026",
+        "LeadDev engineering leadership July 2026 hiring loop interview AI",
+        "LeadDev article published 22 July 2026 engineering management",
+        "Pragmatic Engineer newsletter July 2026 engineering managers",
+        "\"July 2026\" engineering managers span of control flattening middle management report",
+        "survey report engineering managers AI agents team structure published week 20 July 2026",
+        "Amazon Meta Google engineering managers performance management change July 2026",
+        "software engineering hiring junior developers data report late July 2026",
+        "engineering leadership onboarding 1:1s coaching blog post published July 2026",
+        "EU AI Act 2 August 2026 high-risk obligations hiring performance evaluation employers deadline",
+        "AI Omnibus published Official Journal July 2026 AI Act high-risk delay entered into force",
+        "CATCH-ALL (name-agnostic): tech company cuts engineering roles restructure July 2026",
+        "CATCH-ALL (name-agnostic): engineering team restructure reorganisation announcement week of July 27 2026",
+        "CATCH-ALL (name-agnostic): technology company layoffs announced 29 30 July 2026 engineering workforce",
+        "CATCH-ALL (name-agnostic): fintech payments company layoffs workforce cut July 2026",
+        "CATCH-ALL (name-agnostic): bank technology reorganisation restructure July 2026",
+        "CROSS-BEAT ENTITY SWEEP (banking entities under a management framing): Visa layoffs workforce cut July 2026; HSBC hiring AI specialists July 2026; PayPal Enrique Lores restructuring cut 20% workforce split three units announcement; Robinhood layoffs 10% workforce July 2026; Intel data center group layoffs confirmed number employees July 21 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Visa cuts 7% of its workforce — about 2,600 roles, concentrated in technology and product — on the morning of its earnings call",
+          "source_name": "Tech Startups",
+          "source_url": "https://techstartups.com/2026/07/28/visa-to-lay-off-7-of-workforce-cutting-2600-jobs-as-payments-giant-restructures-amid-ai-driven-efficiency-push/",
+          "published_date": "2026-07-28",
+          "beat": "management_teams",
+          "summary": "Visa announced it is eliminating roughly 2,600 positions, about 7% of its global workforce, with the reductions falling primarily on the technology and product organisations that had grown fastest in recent years. CEO Ryan McInerney framed it as evolving how the company works and said AI is 'accelerating changes across the company by helping reduce repetitive work and shorten product development cycles', while positioning AI as one contributing factor rather than the sole driver. The announcement landed hours before Visa reported Q3 FY2026 results showing 14% revenue growth.",
+          "so_what": "A payments network cutting its engineering and product org by 7% in the same breath as reporting double-digit growth resets what 'efficiency' means in a healthy business, and gives engineering leaders a concrete precedent for the headcount conversation their own finance partners are about to open.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.hcamag.com/us/specialization/corporate-wellness/visa-to-cut-2600-jobs-as-payments-giant-pushes-for-efficiency/584000",
+            "https://qz.com/visa-layoffs-workforce-cuts-072826",
+            "https://s1.q4cdn.com/050606653/files/doc_financials/2026/q3/Q3-2026-Earnings-Release_vF.pdf"
+          ],
+          "notes": "Cross-beat: this is a fintech-peer story that surfaces under Management & teams because the operational decision it triggers is team shape and headcount, not payments rails. The same-day Q3 FY2026 earnings are logged separately under banking_fintech_loyalty. Bloomberg's 28 July piece is the originating report but is paywalled to the fetcher; date confirmed against three independent same-day reports.",
+          "jargon_terms": [
+            "value-added services"
+          ],
+          "chartable_data": "Cut size (2,600 / 7%) against same-quarter revenue growth (+14%) and VAS growth (+34%) — a growth-vs-headcount contrast chart.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Intel confirms fresh layoffs inside its Data Center and AI Group — the division that just grew revenue 22%",
+          "source_name": "Tom's Hardware",
+          "source_url": "https://www.tomshardware.com/tech-industry/policy/intel-layoffs-to-hit-data-center-group-division-focused-on-server-cpus-ai-chips-and-data-center-architecture-to-be-hit-by-an-unknown-number-of-cuts",
+          "published_date": "2026-07-21",
+          "beat": "management_teams",
+          "summary": "Intel confirmed on 21 July that it is cutting roles in its Data Center and AI Group, the division responsible for Xeon server processors and AI hardware, saying the group is 'realigning its organisation to ensure it has the right roles and skills in place'. The company did not disclose numbers. The cuts land despite the division posting $5.05bn of revenue in Q1 2026, up 22% year on year, and follow a global headcount fall from roughly 132,000 in 2022 to around 81,000-83,200 now.",
+          "so_what": "Restructuring a division while it is growing is now a normal move rather than a distress signal, which changes how engineering leaders should read 'we're realigning skills' language when it arrives from their own leadership or a supplier's.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "low",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://www.trendforce.com/news/2026/07/21/news-intel-reportedly-plans-data-center-and-ai-group-layoffs-despite-the-units-22-1q26-revenue-growth/",
+            "https://thenextweb.com/news/intel-layoffs-data-center-group-stock-rally"
+          ],
+          "notes": "Surfaced by the name-agnostic restructure catch-all, not by a named query. Low direct UK/ME banking relevance — recorded because the catch-all layer is meant to capture the pattern (growing division, skills realignment) even when the company is outside the reader's patch.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "The EU's Digital Omnibus on AI enters into force, pushing high-risk obligations for AI in hiring and performance evaluation out to December 2027",
+          "source_name": "Lewis Silkin",
+          "source_url": "https://www.lewissilkin.com/insights/2026/07/27/the-digital-omnibus-on-ai-enters-into-force-today-102nedo",
+          "published_date": "2026-07-27",
+          "beat": "management_teams",
+          "summary": "The Digital Omnibus on AI was published in the EU Official Journal on 24 July and entered into force on 27 July — the first formal amendment to the AI Act since its 2024 adoption. It moves the compliance date for stand-alone Annex III high-risk systems, which explicitly covers AI used in recruitment, candidate selection, performance evaluation, task allocation, worker monitoring and promotion or termination decisions, from 2 August 2026 to 2 December 2027; AI embedded in regulated products moves to 2 August 2028. Employment lawyers are warning that the deferral is breathing space, not a reprieve — the underlying obligations (risk management frameworks, technical documentation, conformity assessments, human oversight) are unchanged.",
+          "so_what": "The deadline that was going to force engineering and people teams to document and assess every AI tool touching hiring loops and performance reviews next week has moved sixteen months, which changes the sequencing of a programme many orgs were mid-way through.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "secondary_sources": [
+            "https://www.hunton.com/privacy-and-cybersecurity-law-blog/eu-digital-omnibus-on-ai-enters-into-force",
+            "https://fpf.org/blog/the-ai-act-implementation-timeline-what-changes-under-the-ai-omnibus/",
+            "https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/"
+          ],
+          "notes": "This is a regulator action but NOT a bank-regulator action — it is a horizontal tech regulation with engineering implications at any org running AI in its hiring or performance stack, so it passes the v1.32 'would this matter at Mozilla, Spotify or GitHub?' test. UK orgs are in scope extraterritorially where outputs are used in the EU (EU-based candidates, contractors or staff).",
+          "jargon_terms": [
+            "Digital Omnibus",
+            "Annex III",
+            "high-risk AI system",
+            "conformity assessment"
+          ],
+          "chartable_data": "A revised compliance timeline: 2 Aug 2026 → 2 Dec 2027 (Annex III stand-alone) and → 2 Aug 2028 (Annex I embedded), against what stays unchanged.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "LeadDev: the engineering manager job description has quietly rewritten itself into a player-coach role, with 37% of leaders now deeply hands-on",
+          "source_name": "LeadDev",
+          "source_url": "https://leaddev.com/management/engineering-managers-have-a-new-job-description",
+          "published_date": "2026-07-27",
+          "beat": "management_teams",
+          "summary": "Ferit Topcu argues the EM role has shifted from a coordination function to a player-coach model where hands-on technical contribution is expected rather than tolerated, citing LeadDev's 2026 Engineering Leadership Report finding that 37% of leaders are already deeply hands-on. His practical split is that managers absorb small unplanned work and complex investigations while delegating planned work, and he notes that 'trust built through proximity to the work is different from trust built through process and communication alone'. Coding agents are the enabler — they let a manager get to a working understanding of an unfamiliar codebase quickly.",
+          "so_what": "If a third of peers are already hands-on, the 'should EMs still code?' debate has been settled in practice, and job descriptions, levelling ladders and time expectations written for the 2022 coordination role are now describing a job nobody has.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://leaddev.com/the-engineering-leadership-report-2026"
+          ],
+          "notes": "Essay, not a news event — belongs in a long-form or Quick Take slot, not the Lead, per the v1.32 news-event Lead test. Adjacent-source warning: LeadDev also has an in-window candidate on 20 July (below); the two cannot sit in consecutive featured sections.",
+          "jargon_terms": [
+            "player-coach",
+            "TLM (tech lead manager)"
+          ],
+          "chartable_data": "37% deeply hands-on vs the 2022 baseline where coding was not expected; report also splits by org size.",
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "LeadDev: as titles flatten, influence without authority becomes the engineering leadership skill that no org chart confers",
+          "source_name": "LeadDev",
+          "source_url": "https://leaddev.com/leadership/the-engineering-leadership-skill-no-title-can-give-you",
+          "published_date": "2026-07-20",
+          "beat": "management_teams",
+          "summary": "Meg Adams, Senior Director of Engineering at The New York Times, argues that as hierarchies flatten and AI increases individual autonomy, the ability to move people and work forward without formal authority is displacing title-conferred power. She points to Anthropic's flattening of titles into a single 'technical staff' designation where authority is earned on the quality of ideas, and offers a three-step method — orient yourself, understand the other person's context, make engagement frictionless — with tactics such as agreeing the end state before debating the path and setting decision deadlines instead of waiting for consensus.",
+          "so_what": "Flattening removes the scaffolding that let a manager get things done by escalation, so the skill that determines whether an engineering leader is still effective after a de-layering is one that no restructure hands out.",
+          "tier_guess": "leadership-read",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "notes": "Essay. Pairs thematically with the flattening / span-of-control material below — the two together would let a curator connect 'the layers are going' to 'here is what replaces them'. Same outlet as the 27 July candidate: adjacent-source rule applies.",
+          "jargon_terms": [
+            "influence without authority",
+            "technical staff (Anthropic title model)"
+          ],
+          "event_or_essay": "essay"
+        },
+        {
+          "headline": "The Great Flattening lands on managers: span of control is climbing toward 25 by 2028, and the coaching model hasn't been rebuilt to match",
+          "source_name": "Forbes Human Resources Council",
+          "source_url": "https://www.forbes.com/councils/forbeshumanresourcescouncil/2026/07/30/the-great-flattening-is-asking-managers-to-coach-larger-teams/",
+          "published_date": "2026-07-30",
+          "beat": "management_teams",
+          "summary": "A council piece arguing that the de-layering wave has changed the mechanics of the manager job rather than just the headcount: span of control has moved from 8.1 in 2013 to 12.1 in 2025 and is tracked toward roughly 25 by 2028, 41% of companies cut management layers in 2025, and Revelio Labs shows middle-management postings down 42% against April 2022. The consequence it draws out is that coaching, feedback and development practices designed for a team of eight do not survive contact with a team of twenty.",
+          "so_what": "It puts numbers on the thing engineering leaders are already feeling — that 1:1 cadence, calibration and growth conversations are being asked to scale two or three times over without any redesign — which is the conversation to have before the next reorg rather than after it.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://rdel.substack.com/p/rdel-149-where-is-the-flattening"
+          ],
+          "notes": "SOURCE-QUALITY CAVEAT for curation: Forbes Councils is contributor-published, not Forbes newsroom. Forbes returns 403 to the fetcher, so the 2026-07-30 date is taken from the publisher's own dated canonical URL plus the search index, not from a successful fetch — verify before it anchors anything. The underlying span-of-control and flattening data is better evidenced in Lizzie Matusov's RDEL #149 (23 June 2026, out of window) and the LeadDev Engineering Leadership Report 2026, both of which are usable as the substantive source if this story is promoted.",
+          "jargon_terms": [
+            "span of control",
+            "de-layering"
+          ],
+          "chartable_data": "Span of control 8.1 (2013) → 12.1 (2025) → ~25 (2028 projection); 41% of companies cut layers in 2025; middle-management postings -42% vs Apr 2022.",
+          "event_or_essay": "essay"
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "card-linked offers loyalty rewards platform bank partnership July 2026",
+        "bank loyalty rewards programme launch app July 2026 Middle East UK",
+        "loyalty programme commerce media retail media network announcement week 27 July 2026",
+        "globalloyalty.org Global Loyalty News July 31 2026 week 31",
+        "\"Loyalty Newswire\" July 27 2026 thewisemarketer",
+        "agentic commerce protocol payments Visa Mastercard Stripe agent July 2026",
+        "UK open banking commercial variable recurring payments July 2026 launch",
+        "Monzo Starling Revolut ClearBank engineering blog July 2026",
+        "Revolut Monzo Starling Wise announcement technology results late July 2026",
+        "HSBC technology announcement July 2026 engineering AI",
+        "UAE Saudi bank digital payments platform launch July 2026",
+        "Saudi Arabia UAE fintech bank technology announcement 28 July 2026",
+        "Investec Infosys Finacle Microsoft Azure core banking transformation July 2026",
+        "Thought Machine £30 million funding Tier 1 bank core banking July 2026",
+        "Stripe announcement July 2026 payments infrastructure launch",
+        "Mastercard second quarter 2026 earnings July 30 2026 value added services results",
+        "Visa Q3 fiscal 2026 earnings results July 28 2026 value added services revenue",
+        "Visa loyalty offers platform announcement value added services July 2026 commerce",
+        "PayPal second quarter 2026 results July 28 2026 branded checkout Lores turnaround",
+        "Circle stablecoin national trust bank charter update July 2026",
+        "CATCH-ALL (name-agnostic): bank payments outage incident faster payments failure July 2026 UK",
+        "CATCH-ALL (name-agnostic): bank engineering blog post platform migration July 2026 bank tech team",
+        "CATCH-ALL (name-agnostic): loyalty rewards company acquisition funding round July 2026 cashback platform",
+        "CATCH-ALL (name-agnostic): fintech payments company layoffs workforce cut July 2026",
+        "CATCH-ALL (name-agnostic): bank technology reorganisation restructure July 2026",
+        "CROSS-BEAT ENTITY SWEEP (management-beat entities under a banking/loyalty framing): Visa value-added services and loyalty July 2026; HSBC AI centre hiring and payments July 2026; Ant International funding and agentic commerce July 2026; Stripe unsolicited bid PayPal $53 billion date announced"
+      ],
+      "candidates": [
+        {
+          "headline": "A Faster Payments failure takes down transfers at Lloyds, Barclays, HSBC, Halifax, Monzo and Revolut simultaneously — the banks were fine, the rail was not",
+          "source_name": "PYMNTS",
+          "source_url": "https://www.pymnts.com/news/banking/2026/uk-banking-customers-face-transfer-and-payment-glitches/",
+          "published_date": "2026-07-27",
+          "beat": "banking_fintech_loyalty",
+          "summary": "From around midday on Monday 27 July, customers at Barclays, Halifax, HSBC, Lloyds, Monzo and Revolut were unable to complete transfers, with Downdetector logging 348 reports for Barclays, 269 for Lloyds and 169 for Halifax before reports peaked in the late afternoon. Lloyds confirmed it was 'investigating an issue affecting Faster Payments'; Revolut cited GBP transfer disruption; Pay.UK, the scheme operator, confirmed a technical issue affecting some UK banks without disclosing a root cause. The disruption was resolved by late afternoon, with in-flight transfers settling later — leaving customers unsure whether failed payments had actually gone through, and a duplicate-payment risk behind it.",
+          "so_what": "When the shared rail fails, every institution on it fails at once and none of them own the fix — which is the scenario any firm whose product sits on top of Faster Payments has to have an answer for in its own incident comms and reconciliation design.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "act_this_week",
+          "secondary_sources": [
+            "https://www.fstech.co.uk/fst/Payment_outages_affect_users_of_banks_including_Lloyds_and_HSBC.php",
+            "https://www.crowdfundinsider.com/2026/07/294091-major-uk-banks-face-outages-as-barclays-halifax-and-lloyds-clients-report-account-access-problems/",
+            "https://www.finextra.com/newsarticle/48151/outage-leaves-uk-bank-customers-unable-to-make-payments"
+          ],
+          "notes": "Strongest UK-relevance story in the window. Also readable as Operating at scale (shared-dependency incident design) — recorded here because the entity set is the reader's customer base. No public post-mortem from Pay.UK as at 31 July; if one lands it is a follow-up. Finextra's report exists but returns 403 to the fetcher; date corroborated across three fetched sources.",
+          "jargon_terms": [
+            "Faster Payments System",
+            "Pay.UK",
+            "Downdetector"
+          ],
+          "chartable_data": "Downdetector report counts by bank (Barclays 348 / Lloyds 269 / Halifax 169) and the midday-to-late-afternoon incident timeline.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Visa's Q3: value-added services up 34% to $3.8bn, and the loyalty numbers behind it — one million cardholders, an 8% activation lift, $400m of incremental volume from a single promotion",
+          "source_name": "The Wise Marketer",
+          "source_url": "https://thewisemarketer.com/what-visas-q3-earnings-call-reveals-about-the-future-of-loyalty/",
+          "published_date": "2026-07-30",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Visa's Q3 FY2026 results (reported 28 July) put net revenue at $11.6bn, up 14%, with value-added services revenue up 34% to $3.8bn — close to a third of total revenue. The loyalty-specific detail from the call: CEO Ryan McInerney described Visa's FIFA World Cup work as a 'loyalty and engagement engine' rather than brand marketing, with a Brazilian ticket promotion drawing a million cardholders, lifting card activation 8% and generating $400m of incremental payment volume, and a Mexican co-branded card with match-day multipliers raising average transaction size by over 400%. Visa is also embedding rewards infrastructure into non-traditional products (DoorDash's Crimson platform for gig workers) and white-labelling AI financial assistants that combine network- and issuer-level data.",
+          "so_what": "The network is publishing hard attribution numbers for card-linked engagement, which resets the benchmark any loyalty or commerce-media platform will be measured against in its next bank conversation.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://s1.q4cdn.com/050606653/files/doc_financials/2026/q3/Q3-2026-Earnings-Release_vF.pdf",
+            "https://qz.com/visa-fiscal-q3-2026-earnings-revenue-growth-072826"
+          ],
+          "notes": "The 28 July earnings release is the primary artefact; the 30 July Wise Marketer piece is the in-window loyalty reading of the call and carries the loyalty-specific figures. Pair with the Mastercard candidate below for a two-network comparison. Note the tension with the Visa workforce cut logged under management_teams — same company, same day, opposite signals.",
+          "jargon_terms": [
+            "value-added services (VAS)",
+            "card-linked offer",
+            "co-brand",
+            "incremental payment volume"
+          ],
+          "chartable_data": "Visa VAS $3.8bn +34% vs Mastercard VAS $3.8bn +20% — two comparable network services lines at identical absolute scale, different growth rates. Plus the campaign-level loyalty metrics (1m cardholders, +8% activation, $400m incremental, +400% average transaction size).",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Mastercard's Q2: value-added services up 20% to $3.8bn, with customer acquisition and engagement named as a driver",
+          "source_name": "BNN Bloomberg",
+          "source_url": "https://www.bnnbloomberg.ca/business/company-news/2026/07/30/mastercard-profit-beats-estimates-as-stable-spending-drives-transaction-volumes/",
+          "published_date": "2026-07-30",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Mastercard reported Q2 2026 net revenue of $9.3bn, up 14%, with adjusted EPS of $5.04 against a $4.77 consensus and gross dollar volume of $2.9tn, up 8%. Value-added services and solutions revenue rose 20% to $3.8bn, credited to fraud detection and cybersecurity, data and merchant analytics, pricing, and customer acquisition and engagement services. CFO Sachin Mehra noted cross-border volumes up 12% and said disruption from Middle East instability was 'less severe than we anticipated'.",
+          "so_what": "Both card networks now book roughly $3.8bn a quarter from services sold alongside the rail rather than the rail itself, and the engagement and acquisition line inside that number is the same budget a loyalty platform competes for.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Incorporated-to-Host-Conference-Call-on-Second-Quarter-2026-Financial-Results/default.aspx"
+          ],
+          "notes": "Directly comparable to the Visa Q3 candidate — the two together are the strongest 'state of the loyalty/commerce-media budget' data point in the window. The Middle East commentary is a small but genuine ME-relevance hook.",
+          "jargon_terms": [
+            "value-added services and solutions",
+            "gross dollar volume"
+          ],
+          "chartable_data": "Grouped bar: Visa VAS vs Mastercard VAS, absolute and growth rate, against each network's total net revenue growth.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Ant International closes a $1.2bn Series A to scale cross-border payments and agentic-commerce infrastructure across Asia, Europe, the Middle East and Latin America",
+          "source_name": "The Asian Banker",
+          "source_url": "https://www.theasianbanker.com/press-releases/ant-international-completes-1-2-billion-series-a-financing-round",
+          "published_date": "2026-07-21",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Ant International announced the close of an approximately $1.2bn Series A backed by Ant Group, Alibaba and international institutions, with proceeds directed at merchant payments, account management and inclusive financial services for SMEs worldwide. The business, independent since 2024, runs four pillars — Alipay+, Antom, WorldFirst and Bettr — and describes its focus as AI-powered merchant payment, treasury and credit technology, connecting over 150 million merchants to more than 2 billion user accounts. Middle East operations are named as one of four core regions.",
+          "so_what": "A $1.2bn raise explicitly earmarked for agentic-commerce and cross-border merchant infrastructure signals where the competitive floor is being set for anyone building payment or rewards rails into ME merchant networks.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://www.businesswire.com/news/home/20260720424592/en/Ant-International-Raises-approx.-US$1.2-billion-in-Series-A-Equity-Financing-to-Boost-Cross-border-Payments-Agentic-Commerce-Solutions-for-Global-Businesses",
+            "https://www.fintechfutures.com/venture-capital-funding/ant-international-1.2bn-series-a"
+          ],
+          "notes": "GENUINELY NEW Ant development — distinct from the Ant Group SingGuard story that anchored Issue 19 and is blocked from re-anchoring. Different entity (Ant International, independent since 2024), different subject (funding and payments infrastructure, not agentic security). Businesswire wire copy is dated 20 July; the company/Asian Banker release is dated 21 July.",
+          "jargon_terms": [
+            "agentic commerce",
+            "Alipay+",
+            "Antom",
+            "WorldFirst"
+          ],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Ozone API ships a commercial VRP product that claims to take a non-CMA9 UK bank from zero to production in 8–10 weeks",
+          "source_name": "FF News",
+          "source_url": "https://ffnews.com/news/ozone-api-debuts-cvrp-solution-to-fast-track-open-banking-monetisation-for-non-cma9-banks",
+          "published_date": "2026-07-29",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Ozone API launched a commercial Variable Recurring Payments (cVRP) product aimed at UK banks and PSPs outside the CMA9, offering OBL 4.0-compliant infrastructure — the standard the new UK Payments Initiative and Visa A2A schemes require — with a claimed 8–10 week path to production against a typical 6–12 month internal build, and ISO 27001:2022 and SOC 2 Type 2 certification. Co-founder and CEO Huw Davies framed it as a timing play: 'The competitive window for cVRP is already open… we can take any UK bank from zero to production in 8–10 weeks.'",
+          "so_what": "Buy-vs-build on open banking payment infrastructure just got a concrete price in weeks, which is the comparison any engineering leader will be asked to defend when a bank customer asks why an internal build takes three quarters.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.openbanking.org.uk/news/an-industry-first-the-uks-new-commercial-open-banking-scheme/",
+            "https://www.fca.org.uk/news/statements/open-banking-launch-uk-payments-initiative-scheme"
+          ],
+          "notes": "Vendor announcement — the news value is the buy-vs-build timeline and the fact that a compliance standard (OBL 4.0) is now a productised commodity, not the product itself. The underlying UK Payments Initiative scheme launched 2 June 2026, outside the window; frame any coverage around what is new this week.",
+          "jargon_terms": [
+            "cVRP (commercial Variable Recurring Payments)",
+            "CMA9",
+            "OBL 4.0",
+            "UK Payments Initiative",
+            "A2A"
+          ],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Investec picks Infosys Finacle SaaS on Azure for a four-country core banking migration off legacy platforms",
+          "source_name": "PR Newswire",
+          "source_url": "https://www.prnewswire.com/news-releases/investec-selects-infosys-finacle-saas-platform-on-microsoft-azure-for-digital-banking-transformation-302838907.html",
+          "published_date": "2026-07-30",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Infosys Finacle announced that Investec has selected its Digital Banking Solution Suite on Microsoft Azure to modernise operations across South Africa, the UK, Mauritius and the Channel Islands. The bank will adopt the Finacle Deposits, Lending, Virtual Accounts Management and Liquidity Management suites on a multi-region SaaS platform, migrating off legacy cores, with the API suite positioned as the connection point to the wider fintech ecosystem and delivery running through the Microsoft Marketplace.",
+          "so_what": "A multi-country core migration to a vendor SaaS platform, procured through a cloud marketplace, is the shape bank modernisation is settling into — and it determines what integration surface partners will be asked to build against for the next several years.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://www.stocktitan.net/news/INFY/investec-selects-infosys-finacle-saa-s-platform-on-microsoft-azure-lgdw1xjjxszv.html"
+          ],
+          "notes": "Vendor press release; no independent verification of scope or timeline. Low narrative tension — likely a Week at a Glance or Other News item rather than an article. Recorded because the UK leg makes it directly relevant to the reader's customer base.",
+          "jargon_terms": [
+            "core banking",
+            "Finacle",
+            "SaaS core",
+            "virtual accounts"
+          ],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "HSBC sets up a Global AI Centre of Excellence in Singapore and will hire 100+ AI specialists to build agentic treasury and AI-enabled payments in-house",
+          "source_name": "HSBC Holdings plc",
+          "source_url": "https://www.hsbc.com/news-and-views/news/hsbc-news-archive/hsbc-to-establish-global-ai-centre-of-excellence-in-singapore",
+          "published_date": "2026-07-27",
+          "beat": "banking_fintech_loyalty",
+          "summary": "HSBC announced a Global AI Centre of Excellence launching in Singapore in H2 2026, hiring more than 100 specialists across natural language processing, data science, AI governance and human-centred design. The initial priorities are customer wealth-journey conversations, agentic treasury solutions and AI-enabled digital payments, led by Chief AI Officer David Rice alongside the wealth and global payments teams, with capabilities designed for global scaling. Group CEO Georges Elhedery framed the goal as personalised customer experience delivered 'safely, in real time and at scale, while keeping human judgement, decision-making and accountability at the core'. It is HSBC's third major AI commitment of 2026, after a Google Cloud partnership in June targeting 200+ AI use cases.",
+          "so_what": "A tier-one bank is building a dedicated in-house AI engineering function rather than buying the capability, which changes what a partner is selling into and what a bank's own team expects to own.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "secondary_sources": [
+            "https://www.retailbankerinternational.com/news/hsbc-singapore-global-ai-excellence-centre/",
+            "https://www.techtimes.com/articles/321767/20260728/hsbc-commits-proprietary-ai-singapore-agentic-treasury-goes-mainstream.htm"
+          ],
+          "notes": "Cross-beat: also a Management & teams story (a 100-person specialist hiring programme with a named talent-pipeline strategy involving universities and Singapore government bodies). Logged here because the primary decision it triggers is about what bank customers build vs buy. Contrast candidate: HSBC hiring 100 AI engineers in the same fortnight Visa cuts 2,600 tech and product roles.",
+          "jargon_terms": [
+            "agentic treasury",
+            "Centre of Excellence",
+            "AI governance"
+          ],
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "PayPal reports Q2 while fending off a $53bn Stripe/Advent bid its board called inadequate — branded checkout 'further stabilized' is the whole argument",
+          "source_name": "PayPal Newsroom",
+          "source_url": "https://newsroom.paypal-corp.com/2026-07-28-PayPal-Reports-Second-Quarter-2026-Results",
+          "published_date": "2026-07-28",
+          "beat": "banking_fintech_loyalty",
+          "summary": "PayPal reported Q2 2026 net revenue of $8.7bn, up 5%, total payment volume of $486.4bn, up 10%, on 6.8 billion transactions, with non-GAAP EPS down 1% to $1.38 but ahead of guidance. CEO Enrique Lores said the company 'moved with urgency to sharpen our transformation plan' and that 'branded checkout has further stabilized'. The results are the first hard evidence since PayPal's board rejected the 15 July $53bn ($60.50/share) joint bid from Stripe and Advent International as undervaluing the turnaround — a turnaround that includes roughly 4,760 job cuts (about 20% of the workforce) over three years, $1.5bn of targeted savings, and a reorganisation into three units.",
+          "so_what": "The board is asking shareholders to value an unfinished platform rebuild above a cash premium, which makes this quarter's numbers the clearest public test yet of whether 'we underinvested in technology' can be argued back within one CEO's tenure.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "general_awareness",
+          "secondary_sources": [
+            "https://www.pymnts.com/news/acquiring/2026/paypal-board-calls-53-billion-stripe-advent-bid-inadequate/",
+            "https://www.cnbc.com/2026/07/15/stripe-advent-offer-to-buy-paypal-for-more-than-53-billion-reuters.html",
+            "https://www.forbes.com/sites/zennonkapron/2026/07/27/paypal-turned-down-53-billion-now-it-has-to-beat-it/"
+          ],
+          "notes": "NEW-IN-WINDOW TRACTION CASE, flag for curation: the bid (15 July) and the board's rejection (reported 17 July) both sit OUTSIDE the 18-31 July window. What is in-window is the 28 July Q2 earnings and the follow-on analysis (Forbes, 27 July — Forbes 403s the fetcher, date taken from its canonical URL). Any coverage must state that the bid and rejection happened before the window and frame the story on what the earnings changed.",
+          "jargon_terms": [
+            "branded checkout",
+            "total payment volume (TPV)"
+          ],
+          "chartable_data": "TPV $486.4bn (+10%) against net revenue $8.7bn (+5%) — the volume-growing-faster-than-revenue gap that the turnaround has to close.",
+          "event_or_essay": "news_event"
+        },
+        {
+          "headline": "Dubai rewards platform Bundle raises $5.5m pre-seed to take shared-rewards infrastructure into Southeast Asia",
+          "source_name": "TechNode Global",
+          "source_url": "https://technode.global/2026/07/30/dubais-reward-platform-bundle-raises-5-5m-pre-seed-to-expand-to-singapore-philippines-vietnam/",
+          "published_date": "2026-07-30",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Bundle, a Dubai-based rewards platform using shared-rewards mechanics and blockchain infrastructure to help brands drive loyalty and customer growth, raised $5.5m in pre-seed funding to expand into Singapore, the Philippines and Vietnam. The raise is small but sits directly in the ME loyalty-infrastructure category.",
+          "so_what": "Early-stage capital is flowing into ME-headquartered rewards infrastructure aimed at export markets, which is the competitive layer forming underneath the bank-loyalty deals in the region.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "notes": "Small raise, single-source, low narrative tension — On the Radar at most. Surfaced by the name-agnostic loyalty funding catch-all rather than a named query, which is the point of running it. Date taken from the publisher's dated canonical URL and the search index; not independently corroborated.",
+          "jargon_terms": [
+            "shared rewards"
+          ],
+          "event_or_essay": "news_event"
+        }
+      ]
+    }
+  ],
+  "out_of_window_rejected": [
+    {
+      "story": "Thomson Reuters cutting up to 500 engineering roles while hiring 250 net-new AI-native engineers",
+      "date": "2026-07-13",
+      "reason": "Five days before the window opens; no new in-window development found."
+    },
+    {
+      "story": "Microsoft company transformation / engineering structure post",
+      "date": "2026-07-06",
+      "reason": "Outside window."
+    },
+    {
+      "story": "Robinhood cuts 10% of workforce to flatten management layers",
+      "date": "2026-06-16",
+      "reason": "Well outside window; surfaced by the fintech layoffs catch-all."
+    },
+    {
+      "story": "Pragmatic Engineer, 'Tech jobs market in 2026, part 3: hiring managers & job seekers'",
+      "date": "2026-07-07",
+      "reason": "Outside window. Archive checked directly: the only in-window Pragmatic Engineer posts (21, 23, 28, 29 July) are Ways of working / Operating at scale material, outside this scoped pass."
+    },
+    {
+      "story": "LeadDev, 'The engineering manager role is splitting in two' (Stephane Moreau, Zopa Bank)",
+      "date": "2026-06-09",
+      "reason": "Outside window despite strong fintech-peer fit."
+    },
+    {
+      "story": "RDEL #149, 'Where is the flattening of engineering organizations actually happening?' (Lizzie Matusov)",
+      "date": "2026-06-23",
+      "reason": "Outside window; retained as the better-evidenced substitute source if the flattening candidate is promoted."
+    },
+    {
+      "story": "Jellyfish 2026 State of Engineering Management Report (636 leaders, March 2026 data)",
+      "date": "2026-05-07",
+      "reason": "Outside window."
+    },
+    {
+      "story": "Lloyds Rewards in-app hub launch",
+      "date": "2026-06-09",
+      "reason": "Outside window — checked because it is the single closest story to the reader's own product space."
+    },
+    {
+      "story": "Emirates NBD 'Rewards Hub' on ENBD X, built with Vernost",
+      "date": "2026-06-10",
+      "reason": "Outside window — same reason as Lloyds."
+    },
+    {
+      "story": "Thought Machine raises £30m from an unnamed tier-1 bank client; pledges 100+ new engineers",
+      "date": "2026-07-06",
+      "reason": "Outside window."
+    },
+    {
+      "story": "NatWest Boxed / Mettle CTO Wayne Freeman departs; James Gawn succeeds",
+      "date": "2026-07-08",
+      "reason": "Outside window."
+    },
+    {
+      "story": "x402 Foundation launches at the Linux Foundation with Visa, Mastercard, Amex, Fiserv, Stripe and AWS",
+      "date": "2026-07-14",
+      "reason": "Four days before the window; no in-window follow-on coverage found."
+    },
+    {
+      "story": "Visa AI Financial Assistant for banking apps (Digital Issuer Solutions)",
+      "date": "2026-07-14",
+      "reason": "Outside window; referenced inside the in-window Visa Q3 loyalty candidate."
+    },
+    {
+      "story": "Stripe / Advent $53bn unsolicited bid for PayPal; PayPal board rejection",
+      "date": "2026-07-15 / 2026-07-17",
+      "reason": "Outside window; carried only as context inside the in-window PayPal Q2 candidate under the new-in-window traction rule."
+    },
+    {
+      "story": "Sav / Visa partnership for digital payments in UAE and Saudi Arabia",
+      "date": "2026-07-16 / 2026-07-17",
+      "reason": "One to two days before the window opens."
+    },
+    {
+      "story": "Valu launches Egypt's first instant cashback loyalty programme",
+      "date": "2026-07-12",
+      "reason": "Outside window."
+    },
+    {
+      "story": "Circle receives final OCC approval for a national trust bank charter",
+      "date": "2026-07-10",
+      "reason": "Outside window and blocked from re-anchoring per Issue 19; swept for new in-window developments and none found."
+    },
+    {
+      "story": "Banco Sabadell restructure creating a corporate transformation & AI unit",
+      "date": "structure effective 2026-09-01, announcement not confirmed in window",
+      "reason": "Could not verify an in-window announcement date against a primary source; discarded rather than demoted."
+    },
+    {
+      "story": "Apex Fintech Solutions layoffs",
+      "date": "reported 2026-07-21",
+      "reason": "In-window by date but only sourced to a layoff-tracker aggregator with no company statement or named numbers; discarded on source quality."
+    }
+  ]
+}

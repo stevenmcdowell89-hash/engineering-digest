@@ -554,3 +554,17 @@ Anchor news events **2 of 3** ✅ · within-issue concern diversity **3 distinct
 **Reading time recomputed: 19 min, 3,709 words, 12 pages.**
 
 **Status: PASS — amended issue cleared to publish.**
+
+---
+
+## Blind regression test of the v1.37 recall rules (2026-07-31, post-publication)
+
+A fresh Phase 1 agent re-swept the same window and the same two concerns under the v1.37 rules, with **no mention of Visa or layoffs in its brief**. Artefact: `regression-test-candidates.json` (evaluation only — never an input to an issue).
+
+**Recall: PASS.** The Visa 7% cut was found and ranked lead-worthy. The query that found it is verbatim the one the new cross-beat entity sweep mandates — *"Visa layoffs workforce cut July 2026"*, logged under `CROSS-BEAT ENTITY SWEEP (banking entities under a management framing)`. Five name-agnostic catch-alls also ran. The rule that was written to catch this miss is the rule that caught it.
+
+**Accuracy: FAIL — the more important finding.** The same run asserted that *"Pay.UK, the scheme operator, confirmed a technical issue affecting some UK banks"* and headlined the story *"the banks were fine, the rail was not"*, both sourced to PYMNTS. **Verified false:** PYMNTS does not mention Pay.UK anywhere and attributes the disruption only to individual banks' own services. A secondary source it cited (FStech) resolves to a 2022 article about a different outage.
+
+The fabricated claim is *exactly* the one Issue 20's unverified-claim register forbids — rail-level causation. **Published Issue 20 is correct and requires no change**; its QT2 framing stands as written.
+
+**What this establishes about the v1.37 patch.** It improves **recall** at Phase 1 and does nothing for **accuracy** at Phase 1. The digest's protection against a wrong fact has never been research being right — it is Phase 3 source-verification and the Phase 5 register catching research being wrong. Both worked at Issue 20: Phase 3 corrected nine facts, Phase 5 blocked three defects, and the register kept the rail claim out of print. Phase 1 output must never reach print unverified, and no recall rule changes that.
