@@ -58,10 +58,10 @@ These checks run before the content checks. They verify the five-phase pipeline 
 
 ## Format & Length
 - [ ] Correct format selected (weekly / deep dive / light edition)
-- [ ] Standard weekly: 5–7 pages (hard limit)
-- [ ] Light edition: 3–4 pages
+- [ ] **Standard weekly: 2,600–3,700 words of body copy** (v1.38 — replaces the retired 5–7 page limit). Count body copy only: exclude `<style>`, `<script>` and `<svg>` contents. **Under 2,600 is a failure too** — that is a Light Edition that has not admitted it. Page count is a derived observation (~250–300 words/page, so roughly 10–13 pages), **not** a constraint; do not cut to hit a page number
+- [ ] Light edition: 1,200–2,000 words of body copy
 - [ ] Deep dive: minimum 2–3 inline SVG visuals
-- [ ] Page count enforcement order followed if over limit
+- [ ] Word budget enforcement order followed if over 3,700 words
 - [ ] **When in doubt, go Light (v3.0)**: if any two of the following are true, the issue was published as a Light Edition rather than padded into a Standard Weekly — (1) the lead is a routine version release with no controversy or downstream impact story, (2) a quick take rests on a single-source funding number with no follow-on reporting, (3) Outside In is filling a slot rather than earning it, (4) Leadership Read cannot meet its 400-word floor with a defensible piece. A thin Standard Weekly is worse than a tight Light Edition.
 
 ## Topic & Lead Selection (v1.32 — news-first, wide engineering scope)
@@ -119,7 +119,7 @@ These checks enforce the v3.3 audience definition. The reader is engineering lea
 - [ ] **Leadership Read source differs from the previous issue's** — check `last_leadership_read` in state file. No publication serves as Leadership Read in consecutive issues.
 - [ ] Leadership Read passes the **transferability test (v2.5)**: source sector is irrelevant; the lesson must apply to a UK banking/fintech eng leader. Shopify performance-review posts, Netflix on-call culture posts, Atlassian delivery-framework posts all eligible provided the substitution test holds (swap company name for "a large engineering org" — lesson still meaningful).
 - [ ] **Anti-overlap (v2.5):** If both Leadership Read and Outside In appear in this issue, they are from **different companies**. Check the Outside In subject before finalising the Leadership Read.
-- [ ] Both condensed as needed to stay within page limits
+- [ ] Both condensed as needed to stay within the word budget
 
 ## Source Diversity (v2.0)
 - [ ] No single publication appears in more than **2 sections** of this issue
@@ -239,7 +239,7 @@ _Skip if Leadership Read is omitted this issue._
 - [ ] **Substance floor**: names the specific argument or thesis of the source piece; carries at least 2 concrete examples, mechanisms, or counter-positions from the source; articulates the takeaway in our own words. "It's worth a read because it's interesting" is not a takeaway.
 - [ ] **Strip-link test**: if the link were removed, the entry still teaches the reader something specific they can carry into a 1:1, a planning session, or a hiring debrief.
 - [ ] **Omit cleanly when thin**: if the week's candidate cannot meet the 400-word floor with substance, the Leadership Read is cut entirely and a footer note (*"Leadership Read returns next week"*) is added — it is not padded with summary or filler.
-- [ ] **Page-cut floor**: when trimming the issue to fit the page limit, the Leadership Read may be shortened toward 400 words but never below. If 400 cannot hold, omit per the rule above. *In Practice* is not a page-cut lever.
+- [ ] **Word-budget cut floor**: when trimming the issue to fit the word budget, the Leadership Read may be shortened toward 400 words but never below. If 400 cannot hold, omit per the rule above. *In Practice* is not a page-cut lever.
 
 ## Audience Framing & Voice (v1.31 — third-person editorial, no direct address)
 

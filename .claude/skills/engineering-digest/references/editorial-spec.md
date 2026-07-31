@@ -97,7 +97,7 @@ The phases are:
   - **`general_awareness`** — useful context, no near-term action. The reader "should be aware" but the action is "keep an eye on it" or "plan something for later." Examples: version EOLs months out, minor version bumps, monthly servicing updates, vendor changelogs, industry surveys without a near-term decision attached.
 
   **The anchor-slot rule:** the Lead, QT1, and QT2 are reserved for `act_this_week` and high-impact `decide_this_month` stories ONLY. Version EOLs, minor version bumps, monthly servicing updates, and most platform updates default to `general_awareness` unless impact is widespread *right now*. **Worked rejection: "Node.js 20 reaches end-of-life" or "Node.js 26 LTS path next October."** These are `general_awareness`. The reader's action is "be aware, plan something." They do NOT lead. They do NOT anchor a Quick Take. They belong in On the Radar or Week at a Glance, sized to one line. The Issues 9 and 10 prominence given to Node.js stories was a direct failure of this gate — it implied a catastrophic urgency the actual story did not have.
-- **Format decision falls out of the inventory.** Strong candidates across beats with 5–7 pages of viable material → Standard Weekly. One story dominates and supports a deep dive with 2–3 SVG-worthy data threads → Deep Dive. Thin across the board, or any two of the Light triggers from the format-selection rules apply → Light Edition. Format is a consequence of the candidate pool, not a starting decision.
+- **Format decision falls out of the inventory.** Strong candidates across beats with 2,600–3,700 words of viable material → Standard Weekly. One story dominates and supports a deep dive with 2–3 SVG-worthy data threads → Deep Dive. Thin across the board, or any two of the Light triggers from the format-selection rules apply → Light Edition. Format is a consequence of the candidate pool, not a starting decision.
 
 **Artefact:** `digest-runs/issue-N/run-plan.md`. The plan names the format, names the chosen story for every slot (lead, QT1, QT2, editorial moment, mid-issue accent, platform updates table rows, In Practice piece, Leadership Read, Outside In, Down the Rabbit Hole, On the Radar), and includes a short "why this lead" paragraph and a short "why this combination" paragraph. It also names any candidates considered and rejected for the lead slot, with reasons. Run notes for AI-balance and lead-sanity exceptions live here.
 
@@ -173,7 +173,7 @@ Do not use `.article-with-sidebar` in standard weeklies — the article body is 
 
 ## Section Breather (v1.7)
 
-A **section breather** is a thin horizontal band (48px tall, off-white background `var(--off-white)`, no text content) placed between major editorial blocks to create visual breathing room. It replaces the idea of interstitial pages — too expensive within the 5–7 page limit — with a lightweight pause that supports the weekend magazine pacing.
+A **section breather** is a thin horizontal band (48px tall, off-white background `var(--off-white)`, no text content) placed between major editorial blocks to create visual breathing room. It replaces the idea of interstitial pages — too expensive against the word budget — with a lightweight pause that supports the weekend magazine pacing.
 
 Place a section breather:
 - Between The Week at a Glance and the Lead Article
@@ -349,11 +349,15 @@ Calibrate depth to delivery managers. Concrete guidance:
 
 ## Format Selection
 
-**Standard Weekly** — default. Use when there are 2–3+ stories from top-priority areas that **all pass the "worth reading" test**, not just the "so what?" test. Target 5–7 pages (hard limit).
+**Standard Weekly** — default. Use when there are 2–3+ stories from top-priority areas that **all pass the "worth reading" test**, not just the "so what?" test. Target **2,600–3,700 words of body copy** (v1.38 — replaces the retired 5–7 page limit).
 
-**Deep Dive** — one story dominates. Use when a single event is significant enough to fill an entire issue. No Leadership Read or Outside In. No hard page limit, but visuals must carry weight — a deep dive without SVG diagrams is just a long article.
+**Why words, not pages (v1.38).** The 5–7 page limit was unreachable and had been ignored for ten consecutive issues. Issues 11–20 rendered at 9–13 pages; not one hit 7. The limit was arithmetically impossible against the section substance floors the spec itself mandates — Lead 300 + QT1 150 + QT2 150 + *In Practice* 300 (explicitly not a page-cut lever) + Leadership Read 400 comes to 1,300 words before the Foreword, Week at a Glance, Editorial Moment, Other News, Platform Updates, Outside In, On the Radar, Recommended Reading, takeaway lines or source attributions. A full issue with every section at its *floor* lands around 2,600 words. A rule that every issue breaks is not a rule; it is a line Phase 5 has to write an excuse around every week, which is what happened at Issue 20. **Page count is now a derived observation, not a constraint** — at current typography, body copy renders at roughly 250–300 words per page, so a compliant issue lands at about 10–13 pages. Do not cut to hit a page number.
 
-**Light Edition** — use when top-priority areas are quiet. Target 3–4 pages. Don't promote lower-tier stories to fill space.
+**The floor matters as much as the ceiling.** Below 2,600 words the issue is not a Standard Weekly — it is a Light Edition that has not admitted it. This ties the budget to the existing *"when in doubt, go Light"* rule: a thin weekly padded to look full is the failure the floor exists to catch.
+
+**Deep Dive** — one story dominates. Use when a single event is significant enough to fill an entire issue. No Leadership Read or Outside In. No word budget, but visuals must carry weight — a deep dive without SVG diagrams is just a long article.
+
+**Light Edition** — use when top-priority areas are quiet. Target **1,200–2,000 words**. Don't promote lower-tier stories to fill space.
 
 **When in doubt, go Light (v3.0).** A thin Standard Weekly is worse than an honest Light Edition. If the candidate stories include only one that genuinely earns a lead (rather than two–three competing for it), or if the second "quick take" is being padded to fill the slot, the issue should be Light. Signs you are about to publish a thin Standard Weekly: (1) the lead is a routine version release with no controversy, surprise, or contested reception; (2) one of the quick takes is a single-source funding number with no follow-on analysis; (3) Outside In is filling the slot rather than illuminating something. When two or more of those signs appear, drop to Light Edition. The reader will trust the digest more for an honest Light week than for a stretched Standard Weekly.
 
@@ -448,7 +452,7 @@ The Vol. II markers compound. Identity strap (top) + cover tagline (mid-cover) +
 
 **Section spread (v1.32 — hardened from v1.28 / v3.8 "at least one mid-issue" to "no two adjacent"):** **No two long-form sections (*In Practice*, Outside In, The Leadership Read) may be adjacent.** Each must be separated from the next by a news or news-adjacent section. The new default order interleaves: news block (Lead + QTs) → IP → Other News → Platform Updates → OI → Radar → LR. Three long-form sections, each cushioned by news between them, no back-of-book essay wall. The earlier "at least one mid-issue" rule (v1.28) passed Issue 12 v1.31 even though Outside In + Leadership Read were back-to-back at the close; v1.32 closes that gap. If only two of the three long-form sections are warranted this week (the third has thin material), drop the third — don't squeeze them adjacent.
 
-**Page count enforcement:** If the draft exceeds 7 pages, cut in this order: (1) shorten/remove Outside In, (2) drop the Feature or Down the Rabbit Hole, (3) demote weakest article to quick take or Other News, (4) tighten lead article to 400 words, (5) shorten Leadership Read toward its 400-word floor (do not go below — see Leadership Read substance floor v3.0.1; omit cleanly if it cannot meet the floor). *In Practice* is not a page-cut lever — it either earns its 300–450 words or it is omitted entirely with the standard "In Practice returns next week" note.
+**Word budget enforcement (v1.38 — replaces page count enforcement):** If the draft exceeds 3,700 words, cut in this order: (1) shorten/remove Outside In, (2) drop the Feature or Down the Rabbit Hole, (3) demote weakest article to quick take or Other News, (4) tighten lead article to 400 words, (5) shorten Leadership Read toward its 400-word floor (do not go below — see Leadership Read substance floor v3.0.1; omit cleanly if it cannot meet the floor). *In Practice* is not a page-cut lever — it either earns its 300–450 words or it is omitted entirely with the standard "In Practice returns next week" note.
 
 ---
 
@@ -465,7 +469,7 @@ A longer-form piece (400–600 words) that earns deeper treatment than a quick t
 ### When to omit
 
 - Nothing earns the extra space. Do not force a Feature to fill the slot.
-- The lead article already runs long and the issue is near the page limit.
+- The lead article already runs long and the issue is near the top of the word budget.
 - The last issue already included a Feature — minimum 1-issue gap.
 
 ### Placement
@@ -505,7 +509,7 @@ Engineering directors often encounter technical decisions without full context. 
 
 - Nothing in this week's news warrants an explainer. Do not write one speculatively.
 - The last issue included a Stack — minimum 2-issue gap.
-- The issue is already near the page limit.
+- The issue is already near the top of the word budget.
 
 ### Placement
 
@@ -1013,4 +1017,4 @@ Do not use inflammatory terms like "bombs" unless there were literally bombs and
 
 **Bad issue:** press release rewrites · padded with filler · IC-level technical details · corporate language · tells managers what to do · design deviates from template · all articles open the same way · foreword lists stories instead of finding the thread · epistemic reframing over the cap of 2 · grid sidebar in a standard weekly · same source anchoring 3+ sections · version lifecycle deadlines given article treatment · tool capability release as the lead.
 
-**Cross-cutting reminders:** P0 stories get the `.p0-status-card` (status badge + event log + current status sentence), never a progress/loading bar. *In Practice* and the Leadership Read in the same issue do not share an author or outlet. Both Leadership Read and Outside In can appear in the same issue when each earns its place; condense as needed to fit the 5–7 page limit.
+**Cross-cutting reminders:** P0 stories get the `.p0-status-card` (status badge + event log + current status sentence), never a progress/loading bar. *In Practice* and the Leadership Read in the same issue do not share an author or outlet. Both Leadership Read and Outside In can appear in the same issue when each earns its place; condense as needed to fit the word budget.

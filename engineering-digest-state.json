@@ -208,5 +208,32 @@
     }
   ],
   "_season_note": "Issue 20 (Standard Weekly) is week 2 of the In Practice season 'Technical strategy under uncertainty' (Ferit Topcu / Zenjob, via LeadDev). Outside In RETURNS at Issue 20 after the Issue 19 omission - Shopify (Zack Deveau), a company new to outside_in_history; Shopify could not serve both In Practice and Outside In, so Zenjob took In Practice and kept long-form AI variety at 1 of 3. Leadership Read primary HELD (the authorised paywall fallback did not fire). POST-PUBLICATION AMENDMENT: Phase 1 missed Visa's 28 July announcement of a 7% workforce cut (~2,600 roles, concentrated in technology and product, AI cited by CEO Ryan McInerney, product/development teams reorganised from ~10 people into groups of 2-4). The miss was caused by beat siloing plus name-anchoring - the layoff sweep sat in Management & teams and went name-specific after hitting Monday.com and Intel, while the Visa sweep sat in Banking/fintech framed entirely on loyalty and earnings, so 'Visa' and 'layoffs' never co-occurred in a query. Phase 3 then read the Visa Q3 transcript only for the VAS figures it was told to pin. On review the story was promoted to the LEAD (merged with the Q3 loyalty angle as one article) and the UK multi-bank degradation moved to a Quick Take. This also removed the same-concern lead repeat with Issue 19 that the original run plan had to document. Skill patched in response - see the v1.37 changelog entry. Binding facts carried forward: no shared cause was ever published for the 27 July UK multi-bank degradation - simultaneity is documented, causation is not, and it must not be upgraded in later coverage; Faster Payments the rail did NOT fail. The 'July 2026 AWS mega-outage' remains UNVERIFIED and was demoted for a third consecutive issue - only the 24 July us-west-2 routing event is asserted, and it must not be conflated with the standing us-east-1 concentration watch. AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN on the AWS Health Dashboard with AWS's last public update dated 30 April 2026. The agentic-payments deep-dive cluster stays retired. Issue 20 shipped 12 pages / ~3,600 words against the spec's nominal 5-7 page limit - Phase 5 judged the limit arithmetically unreachable against current section floors (issues 11-18 all ran 9-13 pages) and recommended amending the spec to a 2,800-3,600 word budget. That spec amendment is NOT yet made.",
-  "p0_stories_tracking": []
+  "p0_stories_tracking": [],
+  "seeded_threads_next_issue": [
+    {
+      "thread": "Payments-sector engineering org shape under AI attribution",
+      "seeded_at": "2026-07-31 (Issue 20 deliver)",
+      "why": "Visa's 7% cut led Issue 20. Adjacent reporting shows a sector pattern, not a single-company event: Mastercard 4% earlier in 2026, PayPal ~4,760 roles (~20%), Block ~4,000. Four major payments companies restructuring in the same year, with AI cited as a driver, is a different story from any one of them.",
+      "HARD CONSTRAINT": "Visa CANNOT anchor Issue 21. The v1.31 no-repeat-featured-anchor rule blocks a story that anchored either of the previous 2 issues from anchoring again, even in a different slot. Visa led Issue 20. Eligible treatments at Issue 21: the SECTOR pattern as its own story if new movement lands in the 31 Jul - 7 Aug window; a single-sentence cross-issue throughline (v3.8); Other News / On the Radar. Not the Lead, not a featured Quick Take, on Visa itself.",
+      "live_angles": [
+        {
+          "angle": "Contested AI attribution",
+          "detail": "TechTimes (28 Jul) argues stablecoins, not AI, drive the Visa pivot - a direct counter-reading of McInerney's stated rationale. Genuine narrative tension. VERIFY the argument holds before using; single outlet at time of seeding."
+        },
+        {
+          "angle": "Sector aggregate",
+          "detail": "Visa 2,600 / Mastercard 4% / PayPal ~4,760 / Block ~4,000. VERIFY EVERY FIGURE against primary sources before print - all are search-result reported at seeding time, none confirmed. The Block 'roughly half the workforce' figure in particular looks high and must not be asserted unverified."
+        },
+        {
+          "angle": "Leadership communications",
+          "detail": "CEOWORLD (28 Jul) critiques the memo for conflating strategic transparency with dignity toward affected staff. Possible Leadership Read or In Practice adjacency rather than a news slot."
+        },
+        {
+          "angle": "Team-shape mechanics",
+          "detail": "The 10-people-to-2-4 reorganisation is the most on-brief detail for this audience and is still single-sourced to American Banker. If a second source confirms it, it strengthens considerably."
+        }
+      ],
+      "if_nothing_new": "If the 31 Jul - 7 Aug window brings no new movement, do NOT force it. A cross-issue throughline sentence is sufficient, or drop it entirely. The thread is seeded, not promised."
+    }
+  ]
 }
