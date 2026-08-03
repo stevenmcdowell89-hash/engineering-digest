@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Digest — Product Edition — August 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#13243B;--ink:#2E2A26;--gold:#BE8A28;--gold-bright:#E0A93E;
+  --clay:#B5532E;--cream:#FBF7EF;--paper:#FFFFFF;--line:#E8DFCF;
+  --muted:#9A8E7C;--body:#433D35;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;color:var(--body);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.mag{max-width:860px;margin:0 auto;background:var(--cream);box-shadow:0 0 60px rgba(19,36,59,.10)}
+a{color:var(--clay);text-decoration:none}a:hover{text-decoration:underline}
+
+/* ═══ COVER — left-aligned magazine cover ═══ */
+.cover{background:var(--navy);color:#fff;padding:0;position:relative}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold)}
+.cover-inner{padding:54px 56px 44px}
+.eyebrow{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold-bright)}
+.masthead{font-family:'Playfair Display',serif;font-weight:900;font-size:64px;line-height:.92;margin:10px 0 0;color:#fff}
+.cover-issue{font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:14px}
+.cover-dek{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:24px;line-height:1.4;color:rgba(255,255,255,.9);max-width:600px;margin:30px 0 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.cover-stat{margin:30px 0 0;display:flex;align-items:baseline;gap:16px}
+.cover-stat .cs-num{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;color:var(--gold-bright);line-height:.9}
+.cover-stat .cs-ctx{font-size:14px;color:rgba(255,255,255,.66);max-width:330px;line-height:1.45}
+.cover-contents{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.1);padding:24px 56px 30px}
+.cc-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:14px}
+.cc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 32px}
+.cc-list li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:rgba(255,255,255,.78);line-height:1.4}
+.cc-list .cc-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold-bright);font-size:15px;min-width:20px}
+
+/* ═══ FOREWORD ═══ */
+.foreword{padding:34px 56px;border-bottom:1px solid var(--line)}
+.foreword p{font-size:17px;line-height:1.8;color:var(--ink);max-width:680px}
+.foreword p::first-letter{font-family:'Playfair Display',serif;font-size:58px;float:left;line-height:.78;margin:6px 10px 0 0;color:var(--gold);font-weight:900}
+
+/* ═══ TREND SECTION ═══ */
+.trend{padding:44px 56px;border-bottom:1px solid var(--line)}
+.trend-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:8px}
+.trend-num{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--gold);line-height:.85;flex-shrink:0}
+.trend-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:4px}
+.trend-title{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1.1;color:var(--navy)}
+.trend-standfirst{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ink);margin:18px 0 22px;max-width:660px}
+.piece{margin:0 0 18px;padding-left:18px;border-left:2px solid var(--line)}
+.piece:last-of-type{margin-bottom:0}
+.piece h4{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.2px}
+.piece p{font-size:15px;line-height:1.65;margin-bottom:6px}
+.piece .src{font-size:12px;font-style:italic;color:var(--muted)}
+.piece .src a{color:var(--clay)}
+.why{margin-top:22px;background:var(--paper);border-left:4px solid var(--gold);padding:16px 22px;border-radius:0 4px 4px 0}
+.why .why-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.why p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.why p strong{color:var(--navy)}
+
+/* roadmap prompt — earned, action-adjacent (distinct from .why context) */
+.investigate{margin-top:22px;background:#FBF1DD;border-left:4px solid var(--gold-bright);padding:16px 22px;border-radius:0 4px 4px 0}
+.investigate .inv-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.investigate p{font-size:15px;line-height:1.6;color:var(--ink);margin:0}
+.investigate p strong{color:var(--navy)}
+
+/* consolidated roadmap strip — the payoff, surfaced up front */
+.roadmap{padding:26px 56px;background:var(--paper);border-top:3px solid var(--gold);border-bottom:1px solid var(--line)}
+.roadmap .rm-label{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.roadmap .rm-intro{font-size:14.5px;color:var(--ink);margin-bottom:16px;max-width:600px}
+.roadmap ol{list-style:none;counter-reset:rm;display:grid;gap:12px}
+.roadmap li{display:flex;gap:14px;align-items:baseline;font-size:15.5px;line-height:1.55;color:var(--body)}
+.roadmap li::before{counter-increment:rm;content:counter(rm);font-family:'Playfair Display',serif;font-weight:900;color:var(--gold);font-size:20px;min-width:20px;line-height:1}
+.roadmap li strong{color:var(--navy)}
+.roadmap li .rm-ref{font-size:12px;color:var(--muted);font-style:italic;white-space:nowrap}
+
+/* inline stat chip + mini compare used inside trends */
+.statline{display:flex;gap:0;margin:14px 0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper)}
+.statline .sl-cell{flex:1;padding:14px 12px;text-align:center;border-right:1px solid var(--line)}
+.statline .sl-cell:last-child{border-right:none}
+.statline .sl-num{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--gold);line-height:1}
+.statline .sl-lbl{font-size:10px;font-weight:600;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin-top:4px;line-height:1.3}
+
+/* ═══ ALSO MOVING ═══ */
+.also{padding:38px 56px;border-bottom:1px solid var(--line);background:var(--paper)}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.also h2,.next h2{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--navy);margin-bottom:18px}
+.also ul{list-style:none}
+.also li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6;display:flex;gap:12px;align-items:baseline}
+.also li:last-child{border-bottom:none}
+.also li .am-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+.also li strong{color:var(--navy)}
+.also li .src{font-style:italic;color:var(--muted);font-size:12px}
+
+/* ═══ WHAT'S NEXT ═══ */
+.next{padding:38px 56px;border-bottom:1px solid var(--line)}
+.next ul{list-style:none}
+.next li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6}
+.next li:last-child{border-bottom:none}
+.next li .nx-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--navy);padding:3px 9px;border-radius:10px;height:fit-content;white-space:nowrap;margin-top:2px}
+.next li .nx-tag.open{background:var(--clay)}
+.next li strong{color:var(--navy)}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:38px 56px;text-align:left}
+.footer-vol{display:inline-block;background:var(--gold);color:var(--navy);padding:5px 13px;border-radius:2px;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:900}
+.footer-sub{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.footer-next{font-size:13px;color:var(--gold-bright);margin-top:14px}
+
+@media(max-width:680px){
+  .cover-inner,.cover-contents,.foreword,.trend,.also,.next,.footer{padding-left:22px;padding-right:22px}
+  .masthead{font-size:46px}.cover-dek{font-size:20px}.cover-stat{flex-direction:column;gap:6px}
+  .cc-list{grid-template-columns:1fr}
+  .trend-head{gap:14px}.trend-num{font-size:40px}.trend-title{font-size:25px}
+  .trend-standfirst{font-size:17px}.statline{flex-direction:column}.statline .sl-cell{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div class="mag">
+
+  <!-- ═══ COVER ═══ -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="eyebrow">The Digest — Product Edition</div>
+      <h1 class="masthead">The Digest</h1>
+      <div class="cover-issue">Issue 3 · August 2026 · covering 1 July – 3 August 2026 · 7 min read</div>
+      <p class="cover-dek">The offer's home address went up for renegotiation — out of the bank app, into payments apps and wallets — while the agent rails went live at the banks with no offer on them.</p>
+      <div class="cover-stat">
+        <span class="cs-num">30+</span>
+        <span class="cs-ctx">European banks, the major UK groups among them, that completed live agent-driven purchases with Visa this month. None of the announcements names an offer, a reward or a points balance.</span>
+      </div>
+    </div>
+    <div class="cover-contents">
+      <div class="cc-label">This month</div>
+      <ul class="cc-list">
+        <li><span class="cc-num">01</span><span>The offer follows the wallet</span></li>
+        <li><span class="cc-num">02</span><span>The agent rails go live at the banks</span></li>
+        <li><span class="cc-num">03</span><span>Everyone is selling the engagement layer</span></li>
+        <li><span class="cc-num">+</span><span>For the roadmap · also moving · what's next</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ FOREWORD ═══ -->
+  <div class="foreword">
+    <p>For a decade the card-linked offer had one address: the bank app. In July it turned up somewhere else three times over — inside a payments platform, in a network's invitation to any fintech to build a wallet, and on an airline's card where the issuing banks are only the rail. Meanwhile Britain's biggest banks went live on Visa's agent rails, where an offer is still not a thing an agent can see.</p>
+  </div>
+
+  <!-- ═══ FOR THE ROADMAP ═══ -->
+  <div class="roadmap">
+    <div class="rm-label">For the roadmap</div>
+    <p class="rm-intro">Most of this month is context. Two threads are grounded in what shipped — or in what has pointedly not been switched on.</p>
+    <ol>
+      <li><span><strong>The card-linked stack has left the bank app.</strong> A direct competitor's engagement and commerce-media platform is now running inside a payments app rather than a bank, and the network that carries the credential has invited any fintech to build a wallet — naming rewards as the reason to bother. <span class="rm-ref">→ Trend 01</span></span></li>
+      <li><span><strong>On the agent rails the loyalty hook is identity, and it is barely switched on.</strong> Thirty-plus European banks went live with agent-driven purchases and named no offer object; the capability that would carry one is identity linking, live at fifteen stores out of more than eleven thousand verified. <span class="rm-ref">→ Trend 02</span></span></li>
+    </ol>
+  </div>
+
+  <!-- ═══ TREND 01 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">01</div>
+      <div>
+        <div class="trend-kicker">Trend · Distribution</div>
+        <div class="trend-title">The offer follows the wallet</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">The card-linked offer has always had an assumed home — the bank app. This month it turned up somewhere else three times: inside a payments platform, in an open invitation to build a wallet, and on an airline's card where the banks are reduced to the issuing rail.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">~6m</div><div class="sl-lbl">customers of the payments app now carrying a competitor's offers</div></div>
+      <div class="sl-cell"><div class="sl-num">$3.3bn</div><div class="sl-lbl">annual spend that platform sends to merchants</div></div>
+      <div class="sl-cell"><div class="sl-num">200+</div><div class="sl-lbl">countries where any app can now hold the credential</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>A competitor's platform ships inside a payments app</h4>
+      <p>Rezolve Ai embedded Reward's customer-engagement and commerce-media platform into Zilch on 21 July, putting personalised offers from hundreds of UK retailers directly into the payments journey of a fintech with nearly six million customers and more than $3.3bn a year flowing to partner merchants. Reward — acquired by Rezolve in February — runs in more than fifteen markets across the UK, Europe, the Middle East and Asia and has returned over $2bn in cashback to date. Its distribution has been banks; this is the same stack arriving through a payments app instead.</p>
+      <p class="src">Source: <a href="https://www.globenewswire.com/news-release/2026/07/21/3330416/0/en/rezolve-ai-brings-agentic-commerce-infrastructure-to-zilch-s-payments-platform-serving-nearly-6-million-customers.html">Rezolve Ai (GlobeNewswire)</a></p>
+    </div>
+    <div class="piece">
+      <h4>Mastercard opens wallet-building to anyone — and names rewards as the reason</h4>
+      <p>Wallet Services, launched on 15 July, gives banks, fintechs, merchants and digital platforms the software kits, secure-element applet and tokenisation needed to put contactless payments inside their own iOS and Android apps, without separate operating-system integrations or their own EMVCo certification. Coverage spans the 200-plus countries where Mastercard's tokenisation service runs, iOS first in the US, UK and Europe. Chief digital officer Pablo Fourez put the point in loyalty terms: new wallets let companies "offer new benefits, rewards, discounts, points or features to encourage users to start using their wallets."</p>
+      <p class="src">Source: <a href="https://www.pymnts.com/mastercard/2026/mastercard-software-helps-companies-launch-custom-digital-wallets/">PYMNTS</a> · <a href="https://fintechnews.sg/134462/e-wallets/mastercard-wallet-services/">Fintech News Singapore</a></p>
+    </div>
+    <div class="piece">
+      <h4>An airline takes the programme; the banks take the rail <em>(Saudi Arabia)</em></h4>
+      <p>Riyadh Air launched RX Pay in late July — a suite of Mastercard-branded cards issued by Saudi banks, but carrying the airline's own Sfeer Points as the earn currency on everyday spending, and newly redeemable against any Mastercard purchase globally rather than only against flights. Multi-currency, split payments and instalments come as standard, with a phased rollout from Saudi Arabia under an exclusivity with Mastercard. In the reader's Gulf region, the loyalty brand belongs to the airline and the bank is the plumbing.</p>
+      <p class="src">Source: <a href="https://www.zawya.com/en/press-release/companies-news/riyadh-air-launches-rx-pay-its-new-branded-card-that-rewards-guests-everywhere-they-go-407735">Riyadh Air (via Zawya)</a> · <a href="https://gulfbusiness.com/en/2026/aviation/rx-pay-riyadh-air-launches-new-branded-card-with-mastercard-saudi-banks">Gulf Business</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>The category's distribution assumption is that a card-linked offer reaches a customer because a bank puts it in front of them. Two things this month sit outside that. <strong>Reward's platform is live in a payments app, not a bank app</strong>, reaching six million people through a fintech's own journey. And <strong>Mastercard has made the contactless credential something any app can hold</strong>, with the network itself describing rewards, discounts and points as the reason a company would build one. Neither is a forecast; both shipped in July.</p>
+      <p class="src">Sources: <a href="https://www.globenewswire.com/news-release/2026/07/21/3330416/0/en/rezolve-ai-brings-agentic-commerce-infrastructure-to-zilch-s-payments-platform-serving-nearly-6-million-customers.html">Rezolve Ai</a> · <a href="https://www.pymnts.com/mastercard/2026/mastercard-software-helps-companies-launch-custom-digital-wallets/">Mastercard via PYMNTS</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 02 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">02</div>
+      <div>
+        <div class="trend-kicker">Trend · Agentic commerce</div>
+        <div class="trend-title">The agent rails go live at the banks</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">In June the networks specified who an agent may pay; last month a commerce platform opened the checkout to every merchant. This month the reader's own bank customers started transacting — and the hook that would let an agent see a loyalty account turned out to be identity, switched on almost nowhere.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">30+</div><div class="sl-lbl">European banks live with agent purchases</div></div>
+      <div class="sl-cell"><div class="sl-num">15</div><div class="sl-lbl">stores exposing identity capabilities</div></div>
+      <div class="sl-cell"><div class="sl-num">0</div><div class="sl-lbl">of 11,414 verified stores exposing payment</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>Every major UK banking group, live</h4>
+      <p>On 3 July Visa announced that AI agents had completed live purchases in Europe on consumers' behalf, browsing, selecting and buying within user-defined parameters. More than thirty banks took part, among them Barclays, HSBC UK, Lloyds Banking Group, Nationwide, NatWest, Revolut and Klarna, with lastminute.com, Frasers, Cleverbridge and BrickDepot on the merchant side and Visa Payment Passkeys, the Trusted Agent Protocol and an Agent Directory underneath. The announcement covers authentication, identity and settlement. It names no offer, no reward and no points balance.</p>
+      <p class="src">Source: <a href="https://www.fstech.co.uk/fst/Visa_Partners_With_European_Banks_And_Merchants_For_Agentic_Commerce_Launch.php">FStech</a></p>
+    </div>
+    <div class="piece">
+      <h4>Identity becomes the layer everything else hangs off</h4>
+      <p>The capability that lets an agent see a shopper's member pricing and loyalty benefits is identity linking, added to the Universal Commerce Protocol in March. In July the protocol's technical council decided to carry saved payment methods on that same identity-linking infrastructure rather than build a separate extension — making identity the foundation for transacting at all. Adoption tells the other half of the story. The protocol tracker UCP Checker counts identity capabilities live at fifteen stores, three further vendors declaring identity-flavoured extensions, 99.7% of verified stores running a single spec revision — and zero of 11,414 verified stores exposing payment capabilities at all.</p>
+      <p class="src">Source: <a href="https://ucpchecker.com/blog/state-of-agentic-commerce-july-2026">UCP Checker, July state report</a> · <a href="https://blog.google/products-and-platforms/products/shopping/ucp-updates/">Google (identity linking, 19 March)</a></p>
+    </div>
+    <div class="piece">
+      <h4>Nothing shipped on the incentive side</h4>
+      <p>Across the same period an independent protocol tracker records no prominent loyalty-programme integrations and no dedicated discount protocols announced anywhere in the agentic stack. The two standards that would carry incentives both predate the window: Talon.One's Unified Incentives Protocol (28 January) and the identity-linking capability itself (19 March). What moved in July was payment authorisation, signature algorithms and 3-D Secure — the plumbing for a transaction, not for what makes one worth doing.</p>
+      <p class="src">Source: <a href="https://agenticplug.ai/current-state-of-agentic-commerce">agenticplug protocol tracker</a> · <a href="https://www.businesswire.com/news/home/20260128078022/en/Talon.One-Announces-Unified-Incentives-Protocol-to-Power-Loyalty-and-Promotions-in-Agentic-Commerce">Talon.One (UIP, 28 January)</a></p>
+    </div>
+
+    <div class="investigate">
+      <div class="inv-label">What it looks like in product →</div>
+      <p>Two issues ago the gap was that the agent rails had no loyalty object. It is more specific now. <strong>The object exists and it rides on identity linking</strong> — the same capability the protocol's technical council has just made foundational to transacting — <strong>and it is live at fifteen stores against more than eleven thousand verified, none of them yet exposing payment.</strong> The rails reached the UK's banks this month; the thing that would let an agent see a customer's rewards reached fifteen shops.</p>
+      <p class="src">Sources: <a href="https://www.fstech.co.uk/fst/Visa_Partners_With_European_Banks_And_Merchants_For_Agentic_Commerce_Launch.php">FStech on Visa</a> · <a href="https://ucpchecker.com/blog/state-of-agentic-commerce-july-2026">UCP Checker</a> · <a href="https://agenticplug.ai/current-state-of-agentic-commerce">agenticplug</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ TREND 03 ═══ -->
+  <div class="trend">
+    <div class="trend-head">
+      <div class="trend-num">03</div>
+      <div>
+        <div class="trend-kicker">Trend · Competitive set</div>
+        <div class="trend-title">Everyone is selling the engagement layer</div>
+      </div>
+    </div>
+    <p class="trend-standfirst">Within three weeks a card network, a marketing-automation platform and a loyalty specialist each pitched the same product — personalised engagement, sold as a service — into the same bank and retailer budgets. The competitive set for the engagement layer is no longer other loyalty vendors alone.</p>
+
+    <div class="statline">
+      <div class="sl-cell"><div class="sl-num">34%</div><div class="sl-lbl">growth in Visa's value-added services</div></div>
+      <div class="sl-cell"><div class="sl-num">15%</div><div class="sl-lbl">of consumers find brand marketing "very relevant"</div></div>
+      <div class="sl-cell"><div class="sl-num">5.8m</div><div class="sl-lbl">members on one new AI loyalty programme</div></div>
+    </div>
+
+    <div class="piece">
+      <h4>The network sells engagement</h4>
+      <p>On its 28 July quarterly call Visa described value-added services — up 34% to $3.8bn and now close to a third of its revenue — as increasingly a loyalty and engagement engine. The examples were campaign-level: a Brazilian bank's World Cup promotion drew a million participants, an 8% lift in card activation and $400m of incremental payment volume, while a Mexican co-brand saw average transaction size rise fivefold on match days <em>(Brazil and Mexico)</em>. Visa Direct now powers DoorDash's Crimson rewards-and-banking programme, and a white-label AI financial assistant is being rolled out for banks to put inside their own apps.</p>
+      <p class="src">Source: <a href="https://thewisemarketer.com/what-visas-q3-earnings-call-reveals-about-the-future-of-loyalty/">The Wise Marketer</a></p>
+    </div>
+    <div class="piece">
+      <h4>The marketing platform sells loyalty</h4>
+      <p>Dotdigital launched a native loyalty product on 16 July, alongside research across 4,000 consumers in the UK, US, Australia and Singapore. Points-based programmes came top at 62%, ahead of free shipping at 53% and cashback at 52%; 45% said they had raised their spending to reach the next tier and 53% called loyalty programmes important to their future relationship with a brand. The number the launch was built on: only 15% find the marketing they receive "very relevant".</p>
+      <p class="src">Source: <a href="https://www.prnewswire.com/news-releases/new-research-reveals-loyalty-crisis-as-only-15-of-consumers-say-brand-marketing-feels-relevant--dotdigital-launches-ai-powered-loyalty-platform-to-help-marketers-fight-back-302827512.html">Dotdigital (PR Newswire)</a></p>
+    </div>
+    <div class="piece">
+      <h4>The specialist sells scale <em>(Vietnam)</em></h4>
+      <p>Eagle Eye's AI-powered programme for Central Retail Vietnam, The 1 Vietnam, passed 5.8 million members within months of launch — reported in the trade press on 27 July. A large retailer in the reader's Asian footprint bought the engagement layer rather than building it, and got to a membership base of that size quickly enough for the number itself to be the story.</p>
+      <p class="src">Source: <a href="https://thewisemarketer.com/the-loyalty-newswire-july-27-2026/">The Wise Marketer</a></p>
+    </div>
+
+    <div class="why">
+      <div class="why-label">Why it matters</div>
+      <p>Three sellers, three different routes to the same buyer. <strong>A network bundles engagement into services it already sells issuers; a marketing-automation platform extends into loyalty from the campaign side; a specialist wins on delivered scale.</strong> Each arrives with an existing relationship the others lack — the network with the issuer, the platform with the marketing team, the specialist with the retailer — and the consumer research landing the same month says the deciding weakness is relevance, not reward value.</p>
+    </div>
+  </div>
+
+  <!-- ═══ ALSO MOVING ═══ -->
+  <div class="also">
+    <div class="sec-label">Also moving</div>
+    <h2>Movement that didn't make a trend</h2>
+    <ul>
+      <li><span class="am-dot"></span><span><strong>A European media marketplace launched, with the UK in the first five markets</strong> (8 July) — Vinted, Deutsche Telekom's T Advertising Solutions, Equativ, Experian, lastminute.com, leboncoin, Kleinanzeigen, Orange Advertising, Virgin Media O2 and Vodafone, spanning connected TV, video, display, native and retail media, with campaigns from September. Last month's UK retail-media consolidation, one level up. <span class="src"><a href="https://www.retailgazette.co.uk/blog/2026/07/vinted-joins-major-coalition-launching-european-media-marketplace/">Retail Gazette</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>UK bank rewards were quiet for a second month.</strong> Lloyds Rewards bedded in with summer merchant offers and Chase's behaviour-gated 2% took effect from 1 July as previously announced, but no new rewards programme launched from NatWest, Barclays, HSBC, Santander, Nationwide, TSB, Monzo, Starling or Revolut. HSBC's £500 Premier switching incentive appears in July round-ups; it was announced on 14 April. <span class="src"><a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds/lloyds-rewards.html">Lloyds Banking Group</a> · <a href="https://www.about.hsbc.co.uk/news-and-media/hsbc-uk-doubles-premier-switching-reward-to-500-in-boost-to-attract-new-customers">HSBC UK</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Visa's stablecoin platform entered beta</strong> (16 July) — banks and fintechs can mint, hold, transfer and redeem stablecoins inside Visa's existing risk and settlement systems. Settlement infrastructure, not an offer surface. <span class="src"><a href="https://www.finextra.com/newsarticle/48110/visa-launches-stablecoin-platform">Finextra</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>The Linux Foundation stood up the x402 Foundation</strong> (14 July) with a 40-member coalition, moving machine-to-machine payment standards to neutral governance. <span class="src"><a href="https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications">Linux Foundation</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Mastercard is examining a sale of Vocalink</strong> (20 July) — ownership of UK payments infrastructure back in play. <span class="src"><a href="https://thewisemarketer.com/the-loyalty-newswire-july-20-2026/">The Wise Marketer</a></span></span></li>
+      <li><span class="am-dot"></span><span><strong>Card-linked-offer vendors were quiet on product.</strong> No in-window product or partnership news from Cardlytics or Fidel API. Cardlytics reports second-quarter results on 5 August — the first clean read since the Bank of America relationship ended in February. <span class="src"><a href="https://www.stocktitan.net/news/CDLX/cardlytics-to-report-second-quarter-2026-results-on-august-pl3gq886ygmn.html">StockTitan</a></span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ WHAT'S NEXT ═══ -->
+  <div class="next">
+    <div class="sec-label">What's next</div>
+    <h2>The forming picture</h2>
+    <ul>
+      <li><span class="nx-tag">Watch</span><span><strong>Cardlytics reports Q2 on 5 August</strong> — the first full quarter without Bank of America, and the clearest read yet on what losing a top bank partner does to a bank-channel commerce-media business. <span class="src"><a href="https://www.stocktitan.net/news/CDLX/cardlytics-to-report-second-quarter-2026-results-on-august-pl3gq886ygmn.html">StockTitan</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>The first consumer wallets built on Mastercard Wallet Services land before the end of 2026</strong>, iOS first in the US, UK and Europe — the test of whether "any app can be a wallet" produces new offer surfaces or a handful of bank apps. <span class="src"><a href="https://www.pymnts.com/mastercard/2026/mastercard-software-helps-companies-launch-custom-digital-wallets/">PYMNTS</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>European Media Marketplace campaigns start running in September</strong> across the UK, France, Germany, Spain and Italy — cross-market commerce media moves from coalition announcement to booked spend. <span class="src"><a href="https://www.retailgazette.co.uk/blog/2026/07/vinted-joins-major-coalition-launching-european-media-marketplace/">Retail Gazette</a></span></span></li>
+      <li><span class="nx-tag">Watch</span><span><strong>Whether identity linking spreads past the handful of stores that have it</strong> — and whether any store flips payment capabilities on. Both are the precondition for an agent seeing a rewards balance at checkout. <span class="src"><a href="https://ucpchecker.com/blog/state-of-agentic-commerce-july-2026">UCP Checker</a></span></span></li>
+      <li><span class="nx-tag open">Open</span><span><strong>UKPI Wave 2 brings general e-commerce onto the A2A scheme in H2 2026</strong> — the coverage question from Issue 1 moves from recurring payments to the checkout. <span class="src"><a href="https://www.openbankingexpo.com/news/uk-open-banking-payments-ecosystem-new-cvrp-scheme-is-welcome-step/">Open Banking Expo</a></span></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span class="footer-vol">Product Edition</span>
+    <div class="footer-brand">The Digest</div>
+    <div class="footer-sub">Product signals for commerce, loyalty &amp; payments — monthly</div>
+    <div class="footer-next">Next issue: September 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
-  "_comment": "State file for the product-digest skill (The Digest — Product Edition, monthly). Read at the start of every run; written ONLY on publish — test runs never pollute trend_history. Updated on the Issue 2 publish (2026-07-10).",
-  "last_issue_number": 2,
-  "last_issue_month": "2026-07",
+  "_comment": "State file for the product-digest skill (The Digest — Product Edition, monthly). Read at the start of every run; written ONLY on publish — test runs never pollute trend_history. Updated on the Issue 3 publish (2026-08-03).",
+  "last_issue_number": 3,
+  "last_issue_month": "2026-08",
   "trend_history": [
     {
       "issue": 1,
@@ -42,6 +42,21 @@
       "issue": 2,
       "trend": "Reward value re-priced away from cashback",
       "this_month_development": "Barclays summer switch (9 Jun) makes the headline Premier reward a £600 experience vs £200 cash; ING Spain (10 Jun) packages rewards into four paid subscription tiers (Revolut/N26 playbook); PayPal Rewards (US, ~29 Jun) ends cash-out from 1 Aug, forces points into closed-loop redemption. Three axes: experiences, membership, closed-loop points."
+    },
+    {
+      "issue": 3,
+      "trend": "The offer follows the wallet (distribution leaves the bank app)",
+      "this_month_development": "Rezolve Ai embedded Reward's engagement/commerce-media platform into Zilch (21 Jul — ~6m customers, $3.3bn/yr merchant flow, hundreds of UK retailers; Reward in 15+ markets, $2bn cashback returned); Mastercard Wallet Services (15 Jul — SDKs/Secure Element applet/MDES tokenisation let any bank, fintech or merchant hold contactless in its own app, 200+ countries, iOS first US/UK/Europe, Fourez naming 'benefits, rewards, discounts, points' as the hook); Riyadh Air RX Pay (late Jul, Saudi Arabia — airline owns the Sfeer Points currency, Saudi banks issue, points redeemable on any Mastercard purchase globally)."
+    },
+    {
+      "issue": 3,
+      "trend": "The agent rails go live at the banks (agentic commerce)",
+      "this_month_development": "Visa completed live agent-driven purchases in Europe with 30+ banks incl. Barclays, HSBC UK, Lloyds, Nationwide, NatWest, Revolut, Klarna (3 Jul; merchants lastminute.com/Frasers/Cleverbridge/BrickDepot; Payment Passkeys + Trusted Agent Protocol + Agent Directory) with no offer/reward/loyalty object named. UCP technical council put saved payment methods on identity-linking infrastructure rather than a separate extension, making identity the transactability layer; identity live at 15 stores, 3 more vendors declaring identity extensions, 99.7% on one spec revision, 0 of 11,414 verified stores exposing payment (UCP Checker, July). No loyalty-programme integrations or dedicated discount protocols announced in the period (agenticplug). Third-issue evolution: the gap moved from 'no loyalty object' to 'the object rides on identity linking and is barely switched on'."
+    },
+    {
+      "issue": 3,
+      "trend": "Everyone is selling the engagement layer",
+      "this_month_development": "Visa Q3 call 28 Jul (reported 30 Jul): value-added services +34% to $3.8bn, near a third of revenue, positioned as a loyalty and engagement engine — Brazilian bank World Cup promo (1m participants, 8% activation lift, $400m incremental volume), Mexican co-brand 5x average transaction size on match days, Visa Direct behind DoorDash Crimson, white-label AI financial assistant for issuer apps. Dotdigital launched a native loyalty product (16 Jul) on Customer Trends Index research (4,000 consumers UK/US/AU/SG: 62% points, 53% free shipping, 52% cashback, 45% raised spend for a tier, only 15% find marketing 'very relevant'). Eagle Eye x Central Retail Vietnam past 5.8m members within months (27 Jul)."
     }
   ],
   "roadmap_threads_history": [
@@ -60,22 +75,35 @@
     {
       "issue": 2,
       "thread": "The opening agent rails still have no loyalty object — Shopify opened MCP/UCP to every developer (17 Jun) with no offers/points/rewards as first-class objects; Talon.One UIP unmoved since January (platform-side evolution of the Issue 1 agent-rails gap)"
+    },
+    {
+      "issue": 3,
+      "thread": "The card-linked stack has left the bank app — Reward's engagement/commerce-media platform live inside Zilch's payments journey (21 Jul, ~6m customers) and Mastercard Wallet Services (15 Jul) making the contactless credential something any app can hold, with the network naming rewards, discounts and points as the reason to build one"
+    },
+    {
+      "issue": 3,
+      "thread": "On the agent rails the loyalty hook is identity, and it is barely switched on — 30+ European banks live with agent purchases naming no offer object (3 Jul), while identity linking (the capability carrying member/loyalty benefits) was made foundational to transactability in July yet runs at 15 stores against 11,414 verified, none payment-capable (third-issue evolution of the Issue 1 and Issue 2 agent-rails threads)"
     }
   ],
   "source_map": {
-    "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review (next due at Issue 7). All Issue 2 entrants are first sightings (seen_issues [2]); none promoted.",
+    "_comment": "v1.2 self-correcting source map. unlisted_entities: candidate-pool companies not on the spec's named competitor list; two appearances promotes them into the spec on publish. last_reviewed_issue triggers the six-issue named-list review (next due at Issue 7). Issue 3 promoted Rezolve Ai (seen Issues 2 and 3) into the spec's named competitor list. Shopify and Talon.One appeared in Issue 3 only as dated background citations, not as in-window findings, so their seen_issues were deliberately not incremented — recurrence should be evidenced by findings, not citations.",
     "last_reviewed_issue": 1,
     "unlisted_entities": [
       { "name": "dunnhumby", "seen_issues": [2] },
       { "name": "SMG / Plan-Apps (RMX)", "seen_issues": [2] },
       { "name": "Kevel", "seen_issues": [2] },
-      { "name": "Rezolve Ai", "seen_issues": [2] },
       { "name": "Vernost", "seen_issues": [2] },
       { "name": "Shopify", "seen_issues": [2] },
       { "name": "Talon.One (UIP)", "seen_issues": [2] },
       { "name": "IAB Europe (retail media certification)", "seen_issues": [2] },
       { "name": "Emirates NBD", "seen_issues": [2] },
-      { "name": "Mashreq", "seen_issues": [2] }
+      { "name": "Mashreq", "seen_issues": [2] },
+      { "name": "Zilch", "seen_issues": [3] },
+      { "name": "Riyadh Air", "seen_issues": [3] },
+      { "name": "Eagle Eye", "seen_issues": [3] },
+      { "name": "Dotdigital", "seen_issues": [3] },
+      { "name": "Equativ / European Media Marketplace coalition", "seen_issues": [3] },
+      { "name": "UCP Checker (protocol adoption tracker)", "seen_issues": [3] }
     ]
   }
 }

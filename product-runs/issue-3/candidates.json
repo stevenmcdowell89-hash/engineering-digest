@@ -1,0 +1,264 @@
+{
+  "issue": 3,
+  "window": {"from": "2026-07-01", "to": "2026-08-03"},
+  "generated": "2026-08-03",
+  "method": "Five named sweeps (competitor set, UK bank set + v1.4 name-agnostic catch-alls, monetisation/trade press, experience & craft, region) plus editor-run verification fetches on every item that reached the shortlist. Publication dates were confirmed by fetching the source wherever the search snippet asserted a date; four apparently strong candidates were killed on date (Reward–Visa Europe = Aug 2020, RewardIQ = Sep 2025, Mastercard Commerce Media = Oct 2025, HSBC £500 Premier switch = 14 Apr 2026). Window note: Issue 2 declared 10 Jun – 10 Jul, so 1–10 July fell in its window but two significant items in that band (Visa's European agentic launch, 3 Jul; European Media Marketplace, 8 Jul) were not covered there. Issue 3 opens its window at 1 July to close that boundary gap rather than let it disappear; all such items carry their original date in the copy.",
+  "queries_run": {
+    "competitor_set_by_name": [
+      "Cardlytics announcement news July 2026",
+      "Cardlytics Bank of America partnership ended 2026 bank channel",
+      "Reward Insight rewardinsight card-linked offers bank partnership July 2026",
+      "Rezolve AI Reward Insight acquisition banks card-linked July 2026",
+      "Rezolve Ai July 2026 bank agreement Reward platform announcement",
+      "Fidel API announcement 2026 card-linked",
+      "Bink loyalty Snoop Triple card-linked news July 2026",
+      "Mastercard personalised offers loyalty announcement July 2026",
+      "Mastercard announcement July 2026 loyalty offers agentic personalisation",
+      "Visa offers rewards platform announcement July 2026",
+      "Amex Offers American Express UK rewards July 2026",
+      "\"card-linked\" offers cashback platform launch partnership \"July 2026\""
+    ],
+    "uk_bank_set_by_name": [
+      "Lloyds Banking Group Halifax rewards offers cashback July 2026",
+      "NatWest Group rewards loyalty offers launch July 2026",
+      "Barclays Barclaycard rewards Avios cashback July 2026",
+      "HSBC UK First Direct rewards cashback offers July 2026",
+      "Santander UK Edge rewards Nationwide Virgin Money cashback July 2026",
+      "Monzo Starling TSB rewards loyalty launch July 2026",
+      "Revolut RevPoints rewards July 2026 announcement",
+      "Chase UK cashback rewards July 2026"
+    ],
+    "catch_alls_name_agnostic_v1_4": [
+      "UK bank rewards launch July 2026 loyalty programme",
+      "challenger bank cashback rewards launch July 2026 building society",
+      "loyalty programme launch UK retailer July 2026 supermarket",
+      "European bank rewards cashback loyalty launch July 2026",
+      "GCC bank loyalty rewards launch July 2026 UAE Saudi",
+      "Asia super app bank loyalty rewards launch July 2026"
+    ],
+    "monetisation_and_trade_press": [
+      "UK retail media network news July 2026",
+      "retail media commerce media announcement UK July 2026 Tesco Sainsbury's Boots",
+      "commerce media loyalty platform launch partnership bank \"July 2026\" UK Europe",
+      "bank media network banks selling advertising commerce media July 2026",
+      "Chase Media Solutions Klarna financial media network July 2026",
+      "Finextra loyalty rewards card-linked offers July 2026",
+      "FinTech Futures loyalty rewards banking July 2026",
+      "The Wise Marketer loyalty news July 2026 (Loyalty Newswire 20 Jul, 27 Jul)",
+      "\"Europe Cashback Programs\" market report July 2026 interchange cap banks",
+      "John Lewis Waitrose Kevel retail media closed-loop reporting July 2026"
+    ],
+    "experience_and_craft": [
+      "agentic commerce loyalty rewards offers July 2026 protocol",
+      "Talon.One Unified Incentives Protocol UCP loyalty agent July 2026",
+      "\"Universal Commerce Protocol\" loyalty identity linking update July 2026",
+      "OpenAI Agentic Commerce Protocol instant checkout loyalty July 2026",
+      "agentic commerce identity linking loyalty adoption merchants August 2026",
+      "Visa Trusted Agent Protocol public July 2026",
+      "Wix Universal Commerce Protocol UCP launch July 2026 agentic",
+      "x402 Linux Foundation July 2026 MCP specification 2026-07-28",
+      "Apple Wallet Google Wallet loyalty offers update July 2026",
+      "Mastercard Wallet Services launch July 2026",
+      "Dotdigital research consumers points-based loyalty July 2026 UK",
+      "\"Utility Phase\" loyalty Antavo consumers rewards hard to use",
+      "Kroger rewards program expands points dollar discounts groceries July 2026",
+      "Open Banking Expo Pay by Bank VRP UK July 2026 rewards",
+      "PSR interchange cap cross-border UK decision July 2026"
+    ],
+    "region_sweep": [
+      "GCC bank loyalty rewards launch July 2026 UAE Saudi",
+      "Riyadh Air RX Pay Mastercard Saudi banks loyalty July 2026",
+      "European bank rewards cashback loyalty launch July 2026",
+      "Asia super app bank loyalty rewards launch July 2026",
+      "Klarna PayPal offers rewards in-app merchant offers July 2026"
+    ]
+  },
+  "escalation_check": {
+    "monetisation_lens": "Not triggered. Issue 2's monetisation lens was the issue's lead trend (UK retail media). This issue's monetisation material is in-window and real (European Media Marketplace, 8 Jul). No two-thin-months escalation required."
+  },
+  "candidates": [
+    {
+      "id": "c1",
+      "date": "2026-07-21",
+      "title": "Rezolve Ai embeds Reward's engagement platform in Zilch",
+      "lens": "category & competition",
+      "region": "UK",
+      "url": "https://www.globenewswire.com/news-release/2026/07/21/3330416/0/en/rezolve-ai-brings-agentic-commerce-infrastructure-to-zilch-s-payments-platform-serving-nearly-6-million-customers.html",
+      "why_it_changes_a_product_decision": "A named competitor's card-linked-offer and commerce-media stack ships inside a payments app rather than a bank app — nearly 6m customers, $3.3bn a year of merchant flow. The distribution assumption the category was built on (the bank is the surface) is no longer the only one.",
+      "verified": "Fetched primary release. Reward described as operating in 15+ markets across UK, Europe, ME and Asia; $2bn cashback returned to date, $4bn target by 2030."
+    },
+    {
+      "id": "c2",
+      "date": "2026-07-15",
+      "title": "Mastercard launches Wallet Services",
+      "lens": "experience & surface",
+      "region": "Global (iOS first in US, UK, Europe)",
+      "url": "https://www.pymnts.com/mastercard/2026/mastercard-software-helps-companies-launch-custom-digital-wallets/",
+      "why_it_changes_a_product_decision": "SDKs, a Secure Element applet and MDES tokenisation let any bank, fintech or merchant put contactless payments in its own app without separate OS integrations or EMVCo certification — and Mastercard frames the new wallets explicitly as places to offer 'benefits, rewards, discounts, points'. More surfaces that can hold a payment credential means more surfaces that can hold a card-linked offer.",
+      "verified": "Fetched. Chief Digital Officer Pablo Fourez quote confirmed. 200+ countries via MDES; first consumer products in select markets before end-2026."
+    },
+    {
+      "id": "c3",
+      "date": "2026-07 (late)",
+      "title": "Riyadh Air launches RX Pay with Saudi banks and Mastercard",
+      "lens": "category & competition",
+      "region": "Middle East (Saudi Arabia)",
+      "url": "https://www.zawya.com/en/press-release/companies-news/riyadh-air-launches-rx-pay-its-new-branded-card-that-rewards-guests-everywhere-they-go-407735",
+      "why_it_changes_a_product_decision": "An airline owns the loyalty brand and the earn currency; the banks issue. Sfeer Points now redeemable on any Mastercard purchase globally, not just flights. In the reader's GCC sales region, the bank is the rail rather than the programme owner.",
+      "verified": "Fetched Zawya release (no explicit date on page; corroborated as July 2026 by Gulf Business, TradeArabia, Future Travel Experience). Multi-currency, split payment and instalments confirmed; phased rollout from Saudi Arabia under Mastercard exclusivity."
+    },
+    {
+      "id": "c4",
+      "date": "2026-07-03",
+      "title": "Visa completes live agent-driven purchases with 30+ European banks",
+      "lens": "experience & surface",
+      "region": "Europe / UK",
+      "url": "https://www.fstech.co.uk/fst/Visa_Partners_With_European_Banks_And_Merchants_For_Agentic_Commerce_Launch.php",
+      "why_it_changes_a_product_decision": "Agents browsing, selecting and buying within user-defined parameters, live, with Barclays, HSBC UK, Lloyds, Nationwide, NatWest, Revolut and Klarna among 30+ banks, and lastminute.com, Frasers, Cleverbridge and BrickDepot as merchants. The reader's own bank customers are now on the agent rails — and no offer, reward or loyalty object appears anywhere in the announcement.",
+      "verified": "Fetched. Payment Passkeys, Trusted Agent Protocol, Agent Directory; Cloudflare and Akamai supporting. Date 3 July 2026 (Issue 2's window, not covered there)."
+    },
+    {
+      "id": "c5",
+      "date": "2026-07-31",
+      "title": "UCP's July state: identity linking made foundational, adoption tiny",
+      "lens": "product craft & signals",
+      "region": "Global",
+      "url": "https://ucpchecker.com/blog/state-of-agentic-commerce-july-2026",
+      "why_it_changes_a_product_decision": "The mechanism that makes a loyalty account visible to an agent is identity linking, and July's spec work put saved payment methods on the identity-linking infrastructure rather than a separate extension — identity is now the transactability layer. But identity capabilities are live at 15 stores, 99.7% of verified stores run one spec revision, and 0 of 11,414 verified stores expose payment capabilities.",
+      "verified": "Fetched. Tracker-sourced figures, attributed as such in copy. Corroborated on direction by agenticplug.ai protocol tracker."
+    },
+    {
+      "id": "c6",
+      "date": "2026-07 (period report)",
+      "title": "No loyalty-programme integrations or discount protocols announced in the period",
+      "lens": "product craft & signals",
+      "region": "Global",
+      "url": "https://agenticplug.ai/current-state-of-agentic-commerce",
+      "why_it_changes_a_product_decision": "Independent protocol tracker records identity linking as the loyalty-bearing capability in UCP and states that no prominent loyalty-programme integrations or dedicated discount protocols were announced in the period. Corroborates the gap rather than an assumption of one.",
+      "verified": "Fetched. Also records x402 moving to Linux Foundation governance in July and MCP's 2026-07-28 spec."
+    },
+    {
+      "id": "c7",
+      "date": "2026-07-14",
+      "title": "Linux Foundation launches the x402 Foundation",
+      "lens": "product craft & signals",
+      "region": "Global",
+      "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications",
+      "why_it_changes_a_product_decision": "Machine-to-machine payment standardisation moves to neutral governance with a 40-member coalition. Relevant as rails-hardening context; on its own it changes no offer decision. Also moving.",
+      "verified": "Confirmed 14 July 2026 via Linux Foundation and Fintech Garden."
+    },
+    {
+      "id": "c8",
+      "date": "2026-07-28 / 2026-07-30",
+      "title": "Visa Q3: value-added services positioned as a loyalty and engagement engine",
+      "lens": "monetisation & models",
+      "region": "Global",
+      "url": "https://thewisemarketer.com/what-visas-q3-earnings-call-reveals-about-the-future-of-loyalty/",
+      "why_it_changes_a_product_decision": "Not the earnings number — the product substance behind it. VAS grew 34% to $3.8bn, near a third of revenue, and is being sold to banks as engagement: a Brazilian bank's World Cup promotion drew a million participants, an 8% card-activation lift and $400m of incremental payment volume; Visa Direct powers DoorDash's Crimson rewards-and-banking programme; a white-label AI financial assistant is being rolled out for issuer apps. The network is selling the engagement layer into the same budget the reader sells into.",
+      "verified": "Fetched. Article 30 Jul reporting the 28 Jul call. Funding/valuation framing deliberately excluded per the double-reject gate."
+    },
+    {
+      "id": "c9",
+      "date": "2026-07-16",
+      "title": "Dotdigital Customer Trends Index and Dotdigital Loyalty launch",
+      "lens": "product craft & signals",
+      "region": "UK / US / Australia / Singapore",
+      "url": "https://www.prnewswire.com/news-releases/new-research-reveals-loyalty-crisis-as-only-15-of-consumers-say-brand-marketing-feels-relevant--dotdigital-launches-ai-powered-loyalty-platform-to-help-marketers-fight-back-302827512.html",
+      "why_it_changes_a_product_decision": "4,000 consumers across four markets including the UK: 62% prefer points-based programmes, 53% free shipping, 52% cashback, 45% raised spend to reach a tier, 53% say loyalty programmes matter to a future brand relationship — but only 15% find the marketing they receive 'very relevant'. A martech platform ships a native loyalty product off the back of it.",
+      "verified": "Fetched primary release, 16 July 2026. Censuswide fieldwork."
+    },
+    {
+      "id": "c10",
+      "date": "2026-07-27",
+      "title": "Eagle Eye's AI loyalty programme for Central Retail Vietnam passes 5.8m members",
+      "lens": "category & competition",
+      "region": "Asia",
+      "url": "https://thewisemarketer.com/the-loyalty-newswire-july-27-2026/",
+      "why_it_changes_a_product_decision": "A specialist loyalty vendor's AI-personalised programme scaling fast in the reader's Asian footprint — evidence that the engagement layer is being bought as a service by large retailers, not only built.",
+      "verified": "Fetched Loyalty Newswire, 27 July 2026."
+    },
+    {
+      "id": "c11",
+      "date": "2026-07-08",
+      "title": "European Media Marketplace launches, UK in the first five markets",
+      "lens": "monetisation & models",
+      "region": "Europe / UK",
+      "url": "https://www.retailgazette.co.uk/blog/2026/07/vinted-joins-major-coalition-launching-european-media-marketplace/",
+      "why_it_changes_a_product_decision": "Vinted, Deutsche Telekom's T Advertising Solutions, Equativ, Experian, lastminute.com, leboncoin, Kleinanzeigen, Orange Advertising, Virgin Media O2 and Vodafone build a cross-market alternative to closed ad ecosystems, spanning CTV, video, display, native and retail media. Issue 2's UK retail-media consolidation, one level up: pan-European and beyond retail. Campaigns from September 2026.",
+      "verified": "Fetched Retail Gazette, 8 July 2026 (Issue 2's window, not covered there)."
+    },
+    {
+      "id": "c12",
+      "date": "2026-07-16",
+      "title": "Visa Stablecoin Platform enters beta",
+      "lens": "experience & surface",
+      "region": "Global",
+      "url": "https://www.finextra.com/newsarticle/48110/visa-launches-stablecoin-platform",
+      "why_it_changes_a_product_decision": "Banks and fintechs can mint, hold, transfer and redeem stablecoins inside Visa's existing risk and settlement systems. Settlement infrastructure, not an offer surface — reference only this month.",
+      "verified": "Confirmed 16 July 2026 across Finextra, Bloomberg, Fortune."
+    },
+    {
+      "id": "c13",
+      "date": "2026-07-20",
+      "title": "Mastercard examines a sale of Vocalink",
+      "lens": "category & competition",
+      "region": "UK",
+      "url": "https://thewisemarketer.com/the-loyalty-newswire-july-20-2026/",
+      "why_it_changes_a_product_decision": "UK payments infrastructure ownership in play. Structural, not a product decision this month — Also moving.",
+      "verified": "Loyalty Newswire, 20 July 2026."
+    },
+    {
+      "id": "c14",
+      "date": "2026-07 (window)",
+      "title": "UK bank rewards: no new programme in the window",
+      "lens": "category & competition",
+      "region": "UK",
+      "url": "https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds/lloyds-rewards.html",
+      "why_it_changes_a_product_decision": "Recorded as quiet, not skipped. The full v1.3 bank sweep plus the v1.4 catch-alls returned no new UK bank rewards programme in the window: Lloyds Rewards continued to bed in with summer merchant offers, Chase's 2% behaviour-gated cashback took effect from 1 July as previously announced, and HSBC's £500 Premier switching incentive — which surfaced in July 'current offers' round-ups — was in fact announced 14 April 2026. Second consecutive quiet month for UK bank rewards launches.",
+      "verified": "HSBC date checked against the bank's own newsroom and excluded from the trend set on that basis."
+    },
+    {
+      "id": "c15",
+      "date": "2026-07-21 / 2026-07-29",
+      "title": "Cardlytics: Q2 results date and inducement grants",
+      "lens": "category & competition",
+      "region": "US (bank channel relevance)",
+      "url": "https://www.stocktitan.net/news/CDLX/cardlytics-to-report-second-quarter-2026-results-on-august-pl3gq886ygmn.html",
+      "why_it_changes_a_product_decision": "Nothing on its own — earnings scheduling and stock grants reject up. Recorded so the competitor is logged as quiet on product. Q2 results 5 August will be the first clean read after the Bank of America relationship ended (non-renewal completed February 2026).",
+      "verified": "Confirmed via StockTitan and Cardlytics' 10-K coverage of the BofA exit."
+    },
+    {
+      "id": "c16",
+      "date": "2026-07 (to 21 Jul)",
+      "title": "American Express UK boosts referral bonuses across ten cards",
+      "lens": "category & competition",
+      "region": "UK",
+      "url": "https://www.pointswellmade.co.uk/post/american-express-launches-limited-time-invite-a-friend-offers-earn-up-to-90-000-points-before-21",
+      "why_it_changes_a_product_decision": "A time-boxed acquisition promotion, not a programme change. Also moving at most.",
+      "verified": "Secondary sources only; treated as low-weight."
+    },
+    {
+      "id": "c17",
+      "date": "2026-07-27",
+      "title": "Robinhood launches a Platinum Card",
+      "lens": "category & competition",
+      "region": "US",
+      "url": "https://thewisemarketer.com/the-loyalty-newswire-july-27-2026/",
+      "why_it_changes_a_product_decision": "A brokerage extending into card rewards tiers. US-specific; Also moving.",
+      "verified": "Loyalty Newswire, 27 July 2026."
+    }
+  ],
+  "rejected_on_date_verification": [
+    {"item": "Reward extends partnership with Visa across Europe", "asserted": "recent", "actual": "2020-08-06", "action": "dropped"},
+    {"item": "Reward & Affinity Solutions launch RewardIQ in the UK", "asserted": "July 2026 result set", "actual": "2025-09-24", "action": "dropped"},
+    {"item": "Mastercard Commerce Media network launch", "asserted": "July 2026 result set", "actual": "2025-10-01", "action": "dropped"},
+    {"item": "HSBC UK doubles Premier switching reward to £500", "asserted": "started 27 July 2026 in offer round-ups", "actual": "announced 2026-04-14", "action": "dropped from trend set, noted in Also moving"},
+    {"item": "Banks tap 'financial media networks' for ad revenues (SAS)", "asserted": "current", "actual": "2026-01-09", "action": "dropped"},
+    {"item": "Europe Cashback Programs Market Report", "asserted": "July 2026", "actual": "2026-04-27", "action": "dropped"},
+    {"item": "Kroger Rewards expands to grocery discounts", "asserted": "20 July newswire", "actual": "2026-06-25", "action": "dropped"},
+    {"item": "John Lewis Partnership x Kevel retail media", "asserted": "July 2026", "actual": "2026-06-29", "action": "dropped (Issue 2 window)"},
+    {"item": "Co-op DOOH retail media network", "asserted": "July 2026 result set", "actual": "2026-05-14", "action": "dropped"},
+    {"item": "Talon.One UIP / UCP identity linking spec", "asserted": "July 2026", "actual": "2026-01-28 (UIP) and 2026-03-19 (identity linking)", "action": "used only as dated background inside the July delta, never as in-window movement"},
+    {"item": "'Loyalty Has Entered The Utility Phase' (The Wise Marketer)", "asserted": "July 2026", "actual": "undated; underlying research Dec 2025 (Engage People) and Feb 2026 (Antavo)", "action": "dropped — could not be dated to the window"}
+  ]
+}
