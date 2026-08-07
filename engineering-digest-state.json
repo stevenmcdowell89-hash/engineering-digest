@@ -1,16 +1,16 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Populated 2026-05-19 from a back-scan of issues 7-10 in issues/, then updated normally on each published issue. Updated on the Issue 20 deliver (2026-07-31), then AMENDED post-publication when the Visa 7% workforce cut (28 July) was found to have been missed at research: it was promoted to the Lead, replacing the UK multi-bank payments degradation, which moved to a Quick Take. Lead concern is therefore Management & teams, not Operating at scale; consecutive_non_deepdive advances 1 to 2; In Practice season 'Technical strategy under uncertainty' advances to progress 2.",
-  "last_issue_number": 20,
-  "last_issue_date": "2026-07-31",
+  "_comment": "v3.2 state file for the engineering-digest skill. Updated on the Issue 21 deliver (2026-08-07), the first issue produced under spec v1.38 (word budget replaces the retired page limit). Issue 21 shipped ~3,400 words of body copy across 12 rendered pages - in budget, and page count is now a derived observation rather than a constraint, so no cut order was invoked.",
+  "last_issue_number": 21,
+  "last_issue_date": "2026-08-07",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Management & teams",
+  "last_lead_topic": "Wider engineering landscape",
   "last_lead_topics_3issues": [
+    "Wider engineering landscape",
     "Management & teams",
-    "Operating at scale",
-    "Banking, fintech & loyalty"
+    "Operating at scale"
   ],
-  "consecutive_non_deepdive": 2,
-  "last_outside_in_company": "Shopify",
+  "consecutive_non_deepdive": 3,
+  "last_outside_in_company": "Klarna",
   "outside_in_history": [
     {
       "issue": 1,
@@ -76,6 +76,11 @@
       "issue": 20,
       "company": "Shopify",
       "source": "Zack Deveau - Building an agentic harness that outlasts the model (application-security team; the orchestration and verification layer the org owns is the durable investment, not the model contract)"
+    },
+    {
+      "issue": 21,
+      "company": "Klarna",
+      "source": "Bernard Marr (Forbes) as the in-window write-up peg; every figure re-anchored by Phase 3 to Klarna's own February 2024 press release and its Q3 2025 earnings reporting. The section covers what the AI support rollout published - deflection share, full-time-agent equivalents, minutes to resolution - and what it never measured."
     }
   ],
   "last_leadership_read": "The Pragmatic Engineer",
@@ -141,15 +146,15 @@
       "piece": "Napkin math as a leadership discipline - Simon Eskildsen (Turbopuffer) with Gergely Orosz; reasoning from physical limits to judge whether a system is anywhere near what the hardware allows (10s observed against 10ms theoretical on a search benchmark; a Cursor bill cut from $80k to $4k a month)"
     }
   ],
-  "last_editorial_moment": "worth_a_second_look",
-  "last_lead_opener": "narrative-first",
+  "last_editorial_moment": "number_of_the_week",
+  "last_lead_opener": "summary-first",
   "last_qt_layout": "qt-A",
   "last_oi_format": "A",
   "last_feature_date": null,
   "last_stack_date": null,
-  "last_rabbit_hole_date": "2026-07-31",
-  "current_in_practice_season": "Technical strategy under uncertainty",
-  "in_practice_season_progress": 2,
+  "last_rabbit_hole_date": "2026-08-07",
+  "current_in_practice_season": "Handling reorgs and ambiguous mandates",
+  "in_practice_season_progress": 1,
   "in_practice_season_candidates": [],
   "in_practice_history": [
     {
@@ -205,35 +210,16 @@
       "piece_title": "Arriving as a manager without the domain: a decision rule for when an EM writes the code",
       "author": "Ferit Topcu (Zenjob SE)",
       "url": "https://leaddev.com/management/engineering-managers-have-a-new-job-description"
+    },
+    {
+      "issue": 21,
+      "piece_title": "Reorgs happen (evergreen - carried the \"a classic worth revisiting\" sub-label)",
+      "author": "Ben Balter",
+      "url": "https://ben.balter.com/2026/06/07/reorgs-happen/"
     }
   ],
-  "_season_note": "Issue 20 (Standard Weekly) is week 2 of the In Practice season 'Technical strategy under uncertainty' (Ferit Topcu / Zenjob, via LeadDev). Outside In RETURNS at Issue 20 after the Issue 19 omission - Shopify (Zack Deveau), a company new to outside_in_history; Shopify could not serve both In Practice and Outside In, so Zenjob took In Practice and kept long-form AI variety at 1 of 3. Leadership Read primary HELD (the authorised paywall fallback did not fire). POST-PUBLICATION AMENDMENT: Phase 1 missed Visa's 28 July announcement of a 7% workforce cut (~2,600 roles, concentrated in technology and product, AI cited by CEO Ryan McInerney, product/development teams reorganised from ~10 people into groups of 2-4). The miss was caused by beat siloing plus name-anchoring - the layoff sweep sat in Management & teams and went name-specific after hitting Monday.com and Intel, while the Visa sweep sat in Banking/fintech framed entirely on loyalty and earnings, so 'Visa' and 'layoffs' never co-occurred in a query. Phase 3 then read the Visa Q3 transcript only for the VAS figures it was told to pin. On review the story was promoted to the LEAD (merged with the Q3 loyalty angle as one article) and the UK multi-bank degradation moved to a Quick Take. This also removed the same-concern lead repeat with Issue 19 that the original run plan had to document. Skill patched in response - see the v1.37 changelog entry. Binding facts carried forward: no shared cause was ever published for the 27 July UK multi-bank degradation - simultaneity is documented, causation is not, and it must not be upgraded in later coverage; Faster Payments the rail did NOT fail. The 'July 2026 AWS mega-outage' remains UNVERIFIED and was demoted for a third consecutive issue - only the 24 July us-west-2 routing event is asserted, and it must not be conflated with the standing us-east-1 concentration watch. AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN on the AWS Health Dashboard with AWS's last public update dated 30 April 2026. The agentic-payments deep-dive cluster stays retired. Issue 20 shipped 12 pages / ~3,600 words against the spec's nominal 5-7 page limit - Phase 5 judged the limit arithmetically unreachable against current section floors (issues 11-18 all ran 9-13 pages) and recommended amending the spec to a 2,800-3,600 word budget. That spec amendment is NOT yet made.",
+  "_season_note": "Issue 21 (Standard Weekly, 7 August 2026). The In Practice season 'Technical strategy under uncertainty' was CUT SHORT at two issues (19, 20) under the v3.5 'cut the season short rather than drag' rule - Phase 1 ran nine queries on the theme and surfaced only normative framework writing, which the explicit disqualifiers rule out. New season opens: 'Handling reorgs and ambiguous mandates' (v1.35 managing-across-and-upwards pool), week 1 = Ben Balter on twenty-five reorgs in thirteen years at GitHub. THE LEADERSHIP READ WAS OMITTED - a deliberate call, not thin material. The v1.35 long-form variety rule caps AI-primary pieces at one across In Practice / Outside In / Leadership Read, and every Leadership Read candidate in the pool was AI-primary alongside an AI-primary Outside In. The spec permits dropping the third long-form section rather than squeezing. last_leadership_read is therefore UNCHANGED at 'The Pragmatic Engineer'. ISSUE 22 MUST CARRY A LEADERSHIP READ - this is the first consecutive skip and the limit is two. Ludicity ('AI mania is eviscerating global decision-making', 18 July) is the standing candidate and has never appeared in leadership_read_history; Canva / Rob Giglio is the second, dropped from Issue 21 only on the source-diversity cap. DEEP DIVE TRIGGER: consecutive_non_deepdive reaches 3 at this issue - the trigger fires at Issue 22. Lead was EU AI Act Article 50, which took the rolling-4 leads to all four operational concerns. The regulator scope-conditional test (v1.32) was worked in full and PASSED on the horizontal-technology-regulation reading; the ECB's 31 October deadline for its 110 supervised banks was the negative control and FAILED, sized to one On the Radar line. Binding facts carried forward unchanged: no shared cause has ever been published for the 27 July UK multi-bank degradation - simultaneity is documented, causation is not, and Faster Payments the rail did NOT fail. The 'July 2026 AWS mega-outage' remains UNVERIFIED and was demoted for a fourth consecutive issue. AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN on the AWS Health Dashboard with AWS's last public update dated 30 April 2026; the dashboard could not be re-verified this week and the copy says nothing stronger. The agentic-payments deep-dive cluster stays retired. Phase 3 verification was unusually load-bearing this run: it withdrew four Klarna claims the run plan had carried from a commentator source (including a '5,000 to 3,500 support headcount' figure that is actually total company headcount), corrected the Anthropic inference-hooks mechanism, and pinned the Article 50 penalty to Article 99(4) plus the SME lower-of clause at 99(6). The 2 December 2026 marking backstop comes from the Digital Omnibus on AI, not the original Act. Phase 5 caught two epistemic reframings Phase 4's self-scan missed (its lexical scan found the two canonical patterns and stopped) and one misapplied Cooley URL; both fixed before publication, along with a bespoke .compare-table.cmp-wide modifier that existed only to defeat the documented 2-column cap. .rabbit-hole and .by-the-numbers were folded into weekly-template.html so future runs stop re-porting them by hand.",
   "p0_stories_tracking": [],
-  "seeded_threads_next_issue": [
-    {
-      "thread": "Payments-sector engineering org shape under AI attribution",
-      "seeded_at": "2026-07-31 (Issue 20 deliver)",
-      "why": "Visa's 7% cut led Issue 20. Adjacent reporting shows a sector pattern, not a single-company event: Mastercard 4% earlier in 2026, PayPal ~4,760 roles (~20%), Block ~4,000. Four major payments companies restructuring in the same year, with AI cited as a driver, is a different story from any one of them.",
-      "HARD CONSTRAINT": "Visa CANNOT anchor Issue 21. The v1.31 no-repeat-featured-anchor rule blocks a story that anchored either of the previous 2 issues from anchoring again, even in a different slot. Visa led Issue 20. Eligible treatments at Issue 21: the SECTOR pattern as its own story if new movement lands in the 31 Jul - 7 Aug window; a single-sentence cross-issue throughline (v3.8); Other News / On the Radar. Not the Lead, not a featured Quick Take, on Visa itself.",
-      "live_angles": [
-        {
-          "angle": "Contested AI attribution",
-          "detail": "TechTimes (28 Jul) argues stablecoins, not AI, drive the Visa pivot - a direct counter-reading of McInerney's stated rationale. Genuine narrative tension. VERIFY the argument holds before using; single outlet at time of seeding."
-        },
-        {
-          "angle": "Sector aggregate",
-          "detail": "Visa 2,600 / Mastercard 4% / PayPal ~4,760 / Block ~4,000. VERIFY EVERY FIGURE against primary sources before print - all are search-result reported at seeding time, none confirmed. The Block 'roughly half the workforce' figure in particular looks high and must not be asserted unverified."
-        },
-        {
-          "angle": "Leadership communications",
-          "detail": "CEOWORLD (28 Jul) critiques the memo for conflating strategic transparency with dignity toward affected staff. Possible Leadership Read or In Practice adjacency rather than a news slot."
-        },
-        {
-          "angle": "Team-shape mechanics",
-          "detail": "The 10-people-to-2-4 reorganisation is the most on-brief detail for this audience and is still single-sourced to American Banker. If a second source confirms it, it strengthens considerably."
-        }
-      ],
-      "if_nothing_new": "If the 31 Jul - 7 Aug window brings no new movement, do NOT force it. A cross-issue throughline sentence is sufficient, or drop it entirely. The thread is seeded, not promised."
-    }
-  ]
+  "seeded_threads_next_issue": [],
+  "_retired_threads_note": "The 'payments-sector engineering org shape under AI attribution' thread seeded at Issue 20 is RETIRED. Two consecutive issues brought no new in-window movement, and the sector aggregate could not be verified: the Block figure is internally contradictory across sources (reported as both 'close to half' and 'nearly 40%' of headcount) and the Mastercard and PayPal figures remain search-result reported only. None of those figures appeared anywhere in Issue 21. Visa appeared once, in Other News, carrying a single cross-issue throughline sentence on the $2.4bn BioCatch acquisition."
 }
