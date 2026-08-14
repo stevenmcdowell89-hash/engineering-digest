@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — 8–14 August 2026 · Issue 22</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08)}
+
+/* ═══ COVER — full width, centred masthead, lead stat ═══ */
+.cover{background:var(--navy);background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--accent-green),var(--teal));z-index:2}
+.cover-inner{padding:48px 60px 44px;text-align:center}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:.95;margin-bottom:4px}
+.cover h1 em{font-style:italic;font-weight:400;display:block;font-size:48px;color:rgba(255,255,255,.82)}
+.cover-meta{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:20px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+/* v1.31: week-badge refreshed to a bordered treatment for the Vol II look */
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-lead-stat{margin-top:28px;padding:24px 40px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2)}
+.cover-lead-stat .stat-figure{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--teal);line-height:1}
+.cover-lead-stat .stat-context{font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.cover-contents{padding:20px 60px 40px;border-top:1px solid rgba(255,255,255,.08)}
+.cover-contents-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;text-align:center}
+.cover-contents ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px;margin:0 auto}
+.cover-contents li{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;text-align:left}
+
+/* ═══ v1.29 — VOLUME II IDENTITY STRAP + COVER VARIANTS ═══ */
+/* v1.31: bolder identity strap — taller, brighter, Vol II marker as a teal pill badge */
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+
+/* v1.31: cover tagline — placed beneath the masthead, signals the publication's stance */
+.cover-tagline{font-family:'Source Sans 3',sans-serif;font-style:italic;font-size:15px;color:rgba(0,180,216,.9);letter-spacing:.5px;margin-top:14px;text-align:center;font-weight:400}
+
+/* Cover-lead-quote variant: use INSTEAD OF .cover-lead-stat when the issue's strongest signal is a quote (not a number) */
+.cover-lead-quote{margin-top:28px;padding:32px 60px;background:rgba(0,180,216,.08);border-top:1px solid rgba(0,180,216,.2);border-bottom:1px solid rgba(0,180,216,.2);text-align:center}
+.cover-lead-quote .lq-text{font-family:'Playfair Display',serif;font-size:28px;font-style:italic;font-weight:700;color:var(--white);line-height:1.3;max-width:640px;margin:0 auto 12px}
+.cover-lead-quote .lq-attribution{font-family:'Source Sans 3',sans-serif;font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+/* ═══ v1.29 — DROP CAPS for Lead + Leadership Read first paragraphs ═══ */
+.lead-article > h2 + p::first-letter,.lead-article > .lead-intro::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.mgmt-section h2 + p::first-letter{font-family:'Playfair Display',serif;font-size:52px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--teal);font-weight:900}
+
+/* ═══ v1.29 — PER-SECTION READING TIME ═══ */
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+.mgmt-section .section-time{color:rgba(255,255,255,.5)}
+
+/* ═══ v1.29 — EDITOR'S NOTE (Issue 12 ONLY — remove from Issue 13 onwards) ═══ */
+.editor-note{background:rgba(0,180,216,.06);border-left:3px solid var(--deep-teal);padding:16px 22px;margin:0 0 24px;font-size:14px;line-height:1.6;color:var(--body-text);font-style:italic}
+.editor-note .en-label{display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px}
+
+/* ═══ v1.29 — FOOTER VOLUME II MARKING ═══ */
+/* v1.31: footer-vol upgraded to a teal pill badge (matches the cover identity strap treatment) */
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+
+/* ═══ DOWN THE RABBIT HOLE (spec §Down the Rabbit Hole) — folded in at Issue 21; previously re-ported by hand each run ═══ */
+.rabbit-hole{float:right;width:280px;margin:6px 0 16px 24px;background:var(--off-white);border-left:3px solid var(--teal);padding:16px 20px;font-size:13px;line-height:1.6}
+.rabbit-hole .rh-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.rabbit-hole .rh-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.rabbit-hole .rh-title a{color:var(--navy);text-decoration:none}.rabbit-hole .rh-title a:hover{text-decoration:underline}
+.rabbit-hole .rabbit-hole-type{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(0,180,216,.12);color:var(--deep-teal);padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.rabbit-hole p{margin:0;color:var(--body-text)}
+@media(max-width:680px){.rabbit-hole{float:none;width:auto;margin:18px 0}}
+
+/* ═══ BY-THE-NUMBERS CALLOUT (spec §Visual primitives) — folded in at Issue 21. Use .compact for a narrow column (e.g. inside a Quick Take card). ═══ */
+.by-the-numbers{border:2px solid var(--teal);border-radius:4px;padding:18px 20px;margin:18px 0}
+.btn-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.btn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.by-the-numbers.compact .btn-grid{grid-template-columns:1fr 1fr}
+.btn-item{text-align:center}
+.btn-item.span2{grid-column:1/-1}
+.btn-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--navy);line-height:1}
+.btn-label{font-size:11px;color:var(--med-gray);margin-top:2px;line-height:1.4}
+.btn-note{font-size:11px;color:var(--med-gray);margin-top:12px;font-style:italic;line-height:1.5}
+
+/* ═══ v1.30 — VISUAL DENSITY PRIMITIVES (compare-table, process-flow, sparkline) ═══ */
+
+/* Compare table: 2-column compact, 3–5 rows max. Fits inside a Quick Take or In Practice. */
+.compare-table{width:100%;max-width:480px;margin:18px 0;border:1px solid var(--light-gray);border-radius:4px;border-collapse:separate;border-spacing:0;font-family:'Source Sans 3',sans-serif;font-size:13px;background:var(--white)}
+.compare-table thead th{padding:10px 14px;background:var(--off-white);border-bottom:1px solid var(--light-gray);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-teal);text-align:left}
+.compare-table thead th:first-child{border-right:1px solid var(--light-gray)}
+.compare-table tbody td{padding:10px 14px;border-bottom:1px solid var(--light-gray);color:var(--body-text);line-height:1.5;vertical-align:top}
+.compare-table tbody td:first-child{border-right:1px solid var(--light-gray);font-weight:600;color:var(--navy);width:42%}
+.compare-table tbody tr:last-child td{border-bottom:none}
+.compare-table.compact{max-width:360px;font-size:12px}
+.compare-table.compact thead th,.compare-table.compact tbody td{padding:8px 12px}
+.mgmt-section .compare-table{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table thead th{background:rgba(255,255,255,.06);color:var(--teal);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table tbody td{color:rgba(255,255,255,.78);border-color:rgba(255,255,255,.12)}
+.mgmt-section .compare-table tbody td:first-child{color:var(--white)}
+
+/* Process flow: 3–5 horizontal step boxes joined by arrows. Stacks vertically on mobile. */
+.process-flow{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif}
+.process-flow .pf-step{flex:1;min-width:110px;padding:12px 14px;border:1px solid var(--deep-teal);border-radius:4px;background:var(--off-white);font-size:13px;color:var(--navy);text-align:center;line-height:1.3;display:flex;flex-direction:column;justify-content:center}
+.process-flow .pf-step strong{display:block;font-size:10px;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-weight:700}
+.process-flow .pf-arrow{flex:0 0 24px;align-self:center;height:2px;background:var(--deep-teal);position:relative}
+.process-flow .pf-arrow::after{content:'';position:absolute;right:-1px;top:-4px;border-left:8px solid var(--deep-teal);border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:560px){
+  .process-flow{flex-direction:column;align-items:stretch}
+  .process-flow .pf-step{width:100%}
+  .process-flow .pf-arrow{width:2px;height:18px;align-self:center;margin:4px 0}
+  .process-flow .pf-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--deep-teal);border-bottom:none}
+}
+
+/* Sparkline wrapper: inline 80px container for hand-crafted inline SVG (mini bar / line / trend) */
+.sparkline{display:inline-block;vertical-align:middle;margin:0 4px;height:18px;width:80px;line-height:0}
+.sparkline svg{display:block;width:100%;height:100%}
+.sparkline.wide{width:120px;height:22px}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+
+/* ═══ QUICK HITS — urgency-tiered backgrounds ═══ */
+.quick-hits{list-style:none;margin:16px 0}
+.quick-hits li{padding:14px 16px;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;border-radius:4px;margin-bottom:2px}
+.quick-hits li:last-child{border-bottom:none}
+.quick-hits li.tier-action{background:rgba(220,38,38,.06);border-left:4px solid var(--alert-red)}
+.quick-hits li.tier-know{background:rgba(0,180,216,.04);border-left:4px solid var(--teal)}
+.quick-hits li.tier-watch{background:transparent;border-left:4px solid var(--light-gray)}
+.qh-badge{font-family:'Playfair Display',serif;font-size:11px;font-weight:900;color:var(--white);background:var(--deep-teal);min-width:52px;text-align:center;padding:3px 8px;border-radius:2px;margin-top:2px;white-space:nowrap}
+.qh-badge.orange{background:var(--accent-orange)}.qh-badge.green{background:var(--accent-green);color:var(--navy)}.qh-badge.purple{background:#7C3AED}.qh-badge.red{background:var(--alert-red)}
+.qh-text strong{color:var(--navy)}.qh-text{font-size:15px;line-height:1.6}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin:24px 0 8px}.tier-label.know{color:var(--deep-teal)}.tier-label.watch{color:var(--med-gray)}
+
+/* ═══ PULL QUOTE, STATS ROW ═══ */
+.pull-quote{border-left:4px solid var(--teal);padding:16px 24px;margin:24px 0;background:var(--off-white)}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ QUICK TAKES — coloured header bars + anchor stat ═══ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}
+.quick-take-col{border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);padding:0}
+.qt-header{padding:10px 20px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.qt-header.fintech{background:var(--accent-orange)}
+.qt-header.security{background:var(--alert-red)}
+.qt-header.devex{background:var(--deep-teal)}
+.qt-header.ai{background:var(--navy-mid)}
+.qt-body{padding:20px}
+.qt-anchor-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px}
+.qt-anchor-stat.fintech{color:var(--accent-orange)}
+.qt-anchor-stat.security{color:var(--alert-red)}
+.qt-anchor-stat.devex{color:var(--deep-teal)}
+.qt-anchor-stat.ai{color:var(--navy)}
+.qt-anchor-context{font-size:12px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.divider{width:50px;height:3px;background:var(--teal);margin:24px 0}
+
+/* ═══ PLATFORM UPDATES — row shading + status dots ═══ */
+.glance-table{width:100%;border-collapse:collapse;margin:20px 0}
+.glance-table th{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);padding:10px 16px;border-bottom:2px solid var(--light-gray)}
+.glance-table td{padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;vertical-align:middle}
+.glance-table tr:last-child td{border-bottom:none}
+.glance-table tbody tr:nth-child(even){background:var(--off-white)}
+.glance-table .platform{font-weight:700;color:var(--navy);white-space:nowrap;width:80px}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.status-dot.red{background:var(--alert-red)}.status-dot.amber{background:var(--accent-orange)}.status-dot.green{background:var(--accent-green)}
+
+/* ═══ OTHER NEWS ═══ */
+.other-news{list-style:none;margin:12px 0}
+.other-news li{padding:8px 0;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6}
+.other-news li:last-child{border-bottom:none}
+.on-source{font-size:12px;color:var(--deep-teal);font-style:italic}
+.on-source a{color:var(--deep-teal);text-decoration:none;font-size:12px;font-style:italic}.on-source a:hover{text-decoration:underline}
+
+/* ═══ MANAGEMENT SECTION ═══ */
+.mgmt-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px}.mgmt-section .section-label{color:var(--accent-orange)}.mgmt-section h2{color:var(--white)}.mgmt-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700}.mgmt-section p{color:rgba(255,255,255,.78)}.mgmt-section .pull-quote{border-left-color:var(--accent-orange);background:rgba(255,255,255,.05)}.mgmt-section .pull-quote p{color:var(--white)}
+
+/* ═══ IN PRACTICE — v2.8 weekly craft slot, v3.0 visual hierarchy ═══ */
+/* v1.31: in-practice-header redesigned. v1.30 used a navy bar that read as a breather, not a section start (the Issue 12 v1.30 review caught this). v1.31 makes the header off-white with deep-teal accents — visually continuous with the inset body below, so the whole In Practice section reads as ONE unit. */
+.in-practice-header{background:var(--off-white);color:var(--navy);padding:32px 60px 16px;border-top:3px solid var(--deep-teal);border-left:4px solid var(--deep-teal);margin-top:0}
+.in-practice-header .section-label{color:var(--deep-teal);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin:0 0 8px;display:block}
+.in-practice-header .ip-theme{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin:0;display:block;line-height:1.3}
+.in-practice-header .section-time{color:var(--med-gray);font-style:normal;font-size:12px;letter-spacing:0;text-transform:none;font-weight:500;margin-left:10px;vertical-align:middle}
+/* v1.31: in-practice body now uses 12px top padding (was 32px) — sits flush against the header above, so the unit reads as one section. */
+.in-practice{background:var(--off-white);border-left:4px solid var(--deep-teal);padding:12px 60px 36px;margin:0 0 32px}
+.in-practice .ip-evergreen{font-size:11px;font-style:italic;color:var(--med-gray);margin-bottom:12px;display:block;letter-spacing:.5px}
+.in-practice h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.25;margin:0 0 8px}
+.in-practice .ip-attribution{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--med-gray);margin-bottom:16px;font-style:italic}
+.in-practice p{font-size:15px;line-height:1.65;color:var(--body-text);margin:0 0 14px}
+.in-practice blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 16px;margin:14px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.45}
+.in-practice .ip-try{margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,119,182,.15);font-size:14px;color:var(--navy)}
+.in-practice .ip-try strong{color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;font-size:12px;display:block;margin-bottom:4px}
+.in-practice a{color:var(--deep-teal);text-decoration:none;border-bottom:1px solid rgba(0,119,182,.3)}
+.in-practice a:hover{border-bottom-color:var(--deep-teal)}
+.in-practice-skip{text-align:center;font-size:12px;font-style:italic;color:var(--med-gray);padding:12px 60px;margin:0}
+
+/* ═══ JARGON WATCH — v3.0 inline term-explanation sidebar ═══ */
+/* Small floated box for explaining a single proper noun / capitalised technical term in plain language. Does NOT count toward the 3–5 layout-component cap. Use whenever a term is doing real work in an article and an inline gloss would break flow. */
+.jargon-watch{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+@media(max-width:680px){.jargon-watch{float:none;width:auto;margin:18px 0}}
+
+/* ═══ CONCEPT OF THE WEEK — for newer managers (v3.8) ═══ */
+.concept-of-week{float:right;width:260px;margin:6px 0 18px 24px;background:var(--off-white);border-left:3px solid var(--accent-orange);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.concept-of-week .cw-label{display:block;font-size:10px;font-weight:700;color:var(--accent-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.concept-of-week .cw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.concept-of-week .cw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.concept-of-week .cw-body + .cw-body{margin-top:6px}
+@media(max-width:680px){.concept-of-week{float:none;width:auto;margin:18px 0}}
+
+/* ═══ AUTHOR CARD — for In Practice / Leadership Read / Outside In Format A (v3.8) ═══ */
+.author-card{display:flex;align-items:center;gap:14px;background:var(--off-white);border-top:2px solid var(--deep-teal);padding:14px 18px;margin:0 0 20px}
+.author-card .ac-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,180,216,.12);color:var(--deep-teal);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px}
+.author-card .ac-meta{flex:1;min-width:0}
+.author-card .ac-name{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);line-height:1.2;margin:0}
+.author-card .ac-role{display:block;font-size:13px;color:var(--body-text);line-height:1.4;margin:2px 0 0}
+.author-card .ac-date{display:block;font-size:12px;color:var(--med-gray);margin-top:2px}
+.author-card .ac-link{font-size:12px;color:var(--deep-teal);text-decoration:none;white-space:nowrap;margin-left:auto;padding-left:8px}
+.author-card .ac-link:hover{text-decoration:underline}
+@media(max-width:680px){.author-card{flex-wrap:wrap}.author-card .ac-link{margin-left:0;padding-left:0;margin-top:6px;flex-basis:100%}}
+
+/* ═══ OUTSIDE IN — with stats row ═══ */
+.outside-in-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray)}.outside-in-section .section-label{color:var(--accent-orange)}.outside-in-section h2{color:var(--navy)}
+.oi-stats-row{display:flex;gap:0;margin:24px 0;border-radius:4px;overflow:hidden;border:1px solid var(--light-gray);background:var(--white)}
+.oi-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}
+.oi-stat:last-child{border-right:none}
+.oi-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.oi-stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ ON THE RADAR — timeline treatment ═══ */
+.radar-timeline{list-style:none;margin:20px 0;position:relative;padding-left:0}
+.radar-item{display:flex;gap:0;align-items:stretch;margin-bottom:0}
+.radar-date-block{width:90px;flex-shrink:0;text-align:center;padding:12px 8px;position:relative}
+.radar-date-block .rd-month{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);line-height:1}
+.radar-date-block .rd-day{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1.1}
+.radar-date-block .rd-label{font-size:10px;font-weight:600;color:var(--deep-teal);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.radar-connector{width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.radar-connector .rc-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 1px var(--teal);margin-top:16px;z-index:1}
+.radar-connector .rc-line{flex:1;width:2px;background:var(--light-gray)}
+.radar-item:last-child .rc-line{display:none}
+.radar-content{flex:1;padding:12px 16px;border-bottom:1px solid var(--light-gray);font-size:14px;line-height:1.6;color:var(--body-text)}
+.radar-item:last-child .radar-content{border-bottom:none}
+.radar-content strong{color:var(--navy)}
+.radar-item.urgent .rc-dot{background:var(--alert-red);box-shadow:0 0 0 1px var(--alert-red)}
+.radar-item.urgent .rd-day{color:var(--alert-red)}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}.reading-list li{padding:8px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:baseline;gap:12px}.reading-list li:last-child{border-bottom:none}.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ FOOTER — with archive bar ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;color:rgba(255,255,255,.5);padding:3px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;letter-spacing:.5px}
+.archive-pill.current{color:var(--teal);border-color:var(--teal)}
+
+/* ═══ MISC ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:10px}.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+.mgmt-link{color:var(--teal);text-decoration:none}.mgmt-link:hover{text-decoration:underline}
+.feature-break{border:none;height:0;border-top:3px solid var(--teal);margin:0;opacity:.3}
+.key-takeaway-box{background:var(--navy);border-radius:4px;padding:20px 24px;margin:24px 0;color:var(--white)}.key-takeaway-box .kt-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}.key-takeaway-box ul{list-style:none;margin:0;padding:0}.key-takeaway-box li{padding:6px 0;font-size:14px;color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.08);line-height:1.5}.key-takeaway-box li:last-child{border-bottom:none}.key-takeaway-box li::before{content:'→ ';color:var(--teal);font-weight:700}
+/* ═══ P0 STATUS CARD (replaces progress-tracker bar) ═══ */
+.p0-status-card{background:var(--off-white);border:1px solid var(--light-gray);border-left:4px solid var(--alert-red);border-radius:4px;padding:16px 20px;margin:0 60px}
+.p0-status-card .p0-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:4px}
+.p0-status-card .p0-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p0-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;color:var(--white)}
+.p0-badge.unresolved{background:var(--alert-red)}.p0-badge.degraded{background:var(--alert-red)}.p0-badge.recovering{background:var(--accent-orange)}.p0-badge.resolved{background:var(--accent-green);color:var(--navy)}
+.p0-event-log{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid var(--light-gray)}
+.p0-event-log li{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5}
+.p0-event-log li:last-child{border-bottom:none}
+.p0-event-log .p0-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);white-space:nowrap;min-width:56px;font-size:13px}
+.p0-event-log .p0-event{color:var(--body-text)}
+.p0-status-card .p0-current{font-size:12px;color:var(--med-gray);margin-top:4px}
+.p0-status-card .p0-current a{color:var(--deep-teal);text-decoration:none}.p0-status-card .p0-current a:hover{text-decoration:underline}
+
+/* ═══ READING TIME ═══ */
+.cover-read-time{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ PULL QUOTE BAR (full-width, mid-article) ═══ */
+.pq-bar{background:var(--navy);padding:28px 60px;margin:28px -60px;text-align:center}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.45;max-width:700px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ STATS TILE (pattern breaker) ═══ */
+.stats-tile{display:inline-block;background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 24px;text-align:center;margin:12px 0}.stats-tile .st-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}.stats-tile .st-num.red{color:var(--alert-red)}.stats-tile .st-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ COMPLIANCE SIDE-NOTE ═══ */
+.sidebar-box.compliance{border-left:4px solid var(--accent-orange);background:rgba(255,107,53,.04);padding:12px 16px;margin:16px 0;border-radius:0 4px 4px 0}.sidebar-box.compliance .sb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-orange);margin-bottom:4px}.sidebar-box.compliance p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ OUTSIDE IN CALLOUT ═══ */
+.oi-callout{background:var(--off-white);border-left:4px solid var(--teal);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0}.oi-callout p{font-size:15px;line-height:1.7;color:var(--body-text);margin:0}
+
+/* ═══ DISCUSSION PROMPT (Leadership Read) ═══ */
+.discussion-prompt{font-size:14px;font-style:italic;color:var(--teal);margin-top:20px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}.discussion-prompt strong{font-style:normal}
+
+/* ═══ SO WHAT LINE (Quick Takes, Outside In) ═══ */
+.so-what{font-size:14px;line-height:1.6;margin-top:14px;padding-top:10px;border-top:1px solid var(--light-gray)}.so-what strong{color:var(--navy)}
+
+/* ═══ SECTION BREATHER (v1.7) ═══ */
+.section-breather{height:48px;background:var(--off-white);border:none;margin:0;padding:0}
+
+/* ═══ EDITORIAL MOMENT (v1.7) ═══ */
+.editorial-moment{padding:20px 60px;border-bottom:1px solid var(--light-gray)}
+.em-second-look{border-left:3px solid var(--teal);padding:16px 24px;margin:0;font-style:italic;color:var(--deep-teal);font-size:15px;line-height:1.7;background:rgba(0,180,216,.03)}.em-second-look .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}
+.em-number{text-align:center;padding:16px 0}.em-number .stats-tile{margin:0 auto}
+.em-quote{border-left:3px solid var(--med-gray);padding:14px 24px;margin:0;background:rgba(136,153,170,.04)}.em-quote p{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:4px}.em-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}.em-quote .em-label{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--med-gray);margin-bottom:6px;text-transform:uppercase}
+.em-changed{padding:14px 24px;margin:0;background:rgba(0,180,216,.03);border-radius:4px;font-size:14px;line-height:1.7;color:var(--body-text)}.em-changed .em-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);margin-bottom:6px;text-transform:uppercase}.em-changed a{color:var(--deep-teal);text-decoration:none}.em-changed a:hover{text-decoration:underline}
+
+/* ═══ FLOATED SIDEBAR BOX — standard weekly (v1.8) ═══ */
+.sidebar-box-float{float:right;width:280px;margin:0 0 16px 24px}
+
+/* ═══ ARTICLE WITH SIDEBAR — deep dives ONLY (v1.8: do NOT use in standard weeklies) ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:65% 35%;gap:28px;margin-top:20px}.article-body{min-width:0}.article-sidebar{min-width:0}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 20px;margin-bottom:16px}.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}.sidebar-box p{font-size:13px;line-height:1.6;color:var(--body-text);margin-bottom:8px}.sidebar-box p:last-child{margin-bottom:0}
+.sidebar-box.urgent{border-left:4px solid var(--alert-red)}.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ TIER 2 LABEL OVERRIDES — sentence case (v1.7) ═══ */
+.tier-label{text-transform:none}.tier-label.know{text-transform:none}.tier-label.watch{text-transform:none}
+.qt-header{text-transform:none}
+.stat-label,.oi-stat-label,.st-label,.qt-anchor-context{text-transform:none}
+.glance-table th{text-transform:none}
+.archive-bar-label{text-transform:none}
+.qh-badge{text-transform:none}
+.sidebar-box.compliance .sb-label{text-transform:none}
+
+/* ═══ v1.9 — QUICK TAKE LAYOUT VARIANTS ═══ */
+.two-col.qt-featured{grid-template-columns:3fr 2fr}
+.two-col.qt-featured .qt-card:last-child{font-size:14px}
+.two-col.qt-featured .qt-card:last-child h3{font-size:17px}
+.two-col.qt-featured .qt-card:last-child .qt-anchor{font-size:28px}
+.qt-single{max-width:100%;margin-top:20px}
+.qt-single .qt-card{border:1px solid var(--light-gray);border-radius:6px;overflow:hidden}
+
+/* ═══ v1.9 — MID-ISSUE ACCENT ═══ */
+.mid-accent-band{padding:28px 60px;background:var(--off-white);border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);text-align:center}
+.mid-accent-band .accent-stat{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--teal);line-height:1}
+.mid-accent-band .accent-context{font-size:15px;color:var(--body-text);margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+.mid-accent-highlight{padding:20px 60px;background:var(--off-white);border-left:4px solid var(--teal);margin:0 60px}
+.mid-accent-highlight p{font-size:14px;font-style:italic;color:var(--body-text);line-height:1.7;margin:0}
+.mid-accent-highlight .accent-source{font-size:12px;font-style:normal;color:var(--med-gray);margin-top:6px}
+
+/* ═══ v1.9 — OUTSIDE IN FORMAT VARIANTS ═══ */
+/* Format B: Hero moment */
+.oi-hero-band{padding:48px 60px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);text-align:center;border-bottom:1px solid var(--light-gray)}
+.oi-hero-band .oi-hero-quote{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;color:var(--teal);line-height:1.35;max-width:700px;margin:0 auto 20px}
+.oi-hero-band .oi-hero-attr{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:24px}
+.oi-hero-band .oi-hero-body{max-width:700px;margin:0 auto;color:rgba(255,255,255,.8);font-size:15px;line-height:1.7;text-align:left}
+.oi-hero-band .section-label{color:var(--accent-orange)}
+.oi-hero-band h2{color:var(--white)}
+.oi-hero-band .so-what{color:rgba(255,255,255,.9)}
+
+/* Format C: Compact inset */
+.oi-compact{background:var(--off-white);border-left:4px solid var(--teal);padding:20px 24px;margin:24px 60px;border-radius:0 4px 4px 0}
+.oi-compact .oi-compact-company{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.oi-compact p{font-size:14px;line-height:1.6;color:var(--body-text);margin:0 0 6px}
+.oi-compact .oi-compact-source{font-size:12px;color:var(--med-gray)}
+
+/* Format E: Contrast card */
+.oi-contrast-card{display:grid;grid-template-columns:1fr 2fr;margin:24px 60px;border-radius:6px;overflow:hidden;border:1px solid var(--light-gray)}
+.oi-contrast-card .oic-left{background:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.oi-contrast-card .oic-left .oic-company{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.oi-contrast-card .oic-left .oic-stat{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--teal);line-height:1}
+.oi-contrast-card .oic-left .oic-stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-top:4px}
+.oi-contrast-card .oic-right{padding:24px;background:var(--white)}
+.oi-contrast-card .oic-right p{font-size:14px;line-height:1.6;color:var(--body-text)}
+.oi-contrast-card .oic-right .oi-compact-source{font-size:12px;color:var(--med-gray);margin-top:8px}
+
+/* Format F: Meanwhile strip */
+.oi-meanwhile{padding:12px 60px;background:rgba(0,180,216,.06);border-top:1px solid rgba(0,180,216,.15);border-bottom:1px solid rgba(0,180,216,.15);font-size:14px;color:var(--body-text)}
+.oi-meanwhile strong{color:var(--navy)}
+.oi-meanwhile a{color:var(--deep-teal)}
+
+@media(max-width:700px){.cover-inner,.section,.mgmt-section,.foreword,.cover-contents,.outside-in-section,.editorial-moment{padding-left:20px;padding-right:20px}.in-practice{margin-left:20px;margin-right:20px;padding:22px 24px}.in-practice-skip{padding-left:20px;padding-right:20px}.sidebar-box-float{float:none;width:100%;margin:16px 0}.article-with-sidebar{grid-template-columns:1fr}.cover-inner{padding-top:28px;padding-bottom:28px}.cover h1{font-size:36px}.cover h1 em{font-size:34px}h2{font-size:26px}.two-col{grid-template-columns:1fr}.stats-row,.oi-stats-row{flex-direction:column}.stat,.oi-stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-contents ul{grid-template-columns:1fr}.p0-status-card{margin:0 20px}.radar-date-block{width:70px}.radar-date-block .rd-day{font-size:22px}.archive-bar{flex-direction:column;gap:8px}.two-col.qt-featured{grid-template-columns:1fr}.mid-accent-band{padding:20px}.mid-accent-band .accent-stat{font-size:36px}.mid-accent-highlight{margin:0 20px;padding:16px 20px}.oi-hero-band{padding:32px 20px}.oi-hero-band .oi-hero-quote{font-size:22px}.oi-compact{margin:16px 20px}.oi-contrast-card{grid-template-columns:1fr;margin:16px 20px}.oi-meanwhile{padding:10px 20px}}
+</style>
+</head>
+<body>
+<div class="magazine">
+<a href="/" class="back-to-archive" aria-label="Back to all issues" style="display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;padding:10px 20px;background:#0A1628;color:#00B4D8;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)"><span style="font-size:14px;line-height:1">←</span><span>All Issues</span></a>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 22</span>
+    <span>14 August 2026</span>
+    <span class="cover-read-time">18 min read</span>
+  </div>
+  <div class="cover-inner">
+    <h1>Engineering<em>Digest</em></h1>
+    <div class="cover-tagline">Engineering decisions, every Friday.</div>
+    <div class="cover-meta">
+      <span class="cover-date">8 – 14 August 2026</span>
+    </div>
+    <div class="week-badge">This Week's Briefing</div>
+  </div>
+  <div class="cover-lead-stat">
+    <div class="stat-figure">4 days</div>
+    <div class="stat-context">the window a proposed industry scheme would give members to file a confidential report after an AI agent security incident.</div>
+  </div>
+  <div class="cover-contents">
+    <div class="cover-contents-label">In This Issue</div>
+    <ul>
+      <li>An industry draft puts a four-day clock on AI agent incidents</li>
+      <li>Oracle plans another reduction, and asks managers to name the people</li>
+      <li>Zoom fixed a zero-click flaw in June and described it in August</li>
+      <li>In Practice: the manager who went back to building</li>
+      <li>Outside In: Duolingo builds one agent platform</li>
+      <li>The Leadership Read: middle management as a trap</li>
+      <li>Platform Updates, Other News &amp; On the Radar</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>The week's work was accounting, done after the fact. An industry body proposed a fixed clock for explaining what an AI agent did once it had already done it. A restructure pushed the naming of affected people down onto line managers. A vendor shipped a fix in June and described the flaw in August. In each case the record arrives some distance behind the event, and the interval is where the leadership question sits.</p>
+</section>
+
+<!-- ═══ EDITORIAL MOMENT — Number of the week ═══ -->
+<section class="editorial-moment">
+  <div class="em-number">
+    <div class="stats-tile">
+      <div class="st-num">1 in 3</div>
+      <div class="st-label">Number of the week</div>
+    </div>
+    <p style="font-size:14px;color:var(--body-text);margin-top:8px;text-align:center;max-width:620px;margin-left:auto;margin-right:auto">Microsoft offered 1,000 top engineers relocation to the United States and three other Western countries in 2024, and only about a third accepted — a figure in a Reuters exclusive of 13 August, attributed to people familiar with the matter. A talent pool can be offered a move without following it, and two-thirds declining is the planning assumption behind any shift of capacity across borders. <a href="https://kfgo.com/2026/08/13/exclusive-microsoft-retreats-in-china-but-ai-boom-helps-it-keep-a-window-open/" style="color:var(--deep-teal);text-decoration:none">Reuters →</a></p>
+  </div>
+</section>
+
+<!-- ═══ THE WEEK AT A GLANCE ═══ -->
+<section class="section">
+  <div class="section-label">The Week at a Glance</div>
+  <h2>Six stories in sixty seconds <span class="section-time">(2 min)</span></h2>
+
+  <div class="tier-label">Action required</div>
+  <ul class="quick-hits">
+    <li class="tier-action"><span class="qh-badge red">Security</span><div class="qh-text"><strong>A self-replicating worm is moving through widely used npm package families.</strong> npm is the registry JavaScript projects pull their libraries from. Datadog Security Labs documented Shai-Hulud on 4 August, spreading through the keyv, cacheable, flat-cache and ecto families and their dependents, some with over 150 million weekly downloads on Datadog's count, and collecting credentials from build environments and continuous-integration runners, the machines that build and test code automatically. The call it forces is scope and ownership: whether credentials on build machines are now treated as compromised, and who decides that. <span class="on-source"><a href="https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/">Datadog Security Labs</a></span></div></li>
+  </ul>
+
+  <div class="tier-label know">Worth knowing</div>
+  <ul class="quick-hits">
+    <li class="tier-know"><span class="qh-badge">Leadership</span><div class="qh-text"><strong>Engineering leaders report doing more hands-on technical work than a year ago.</strong> LeadDev's write-up on 10 August puts 37% of engineering leaders on more hands-on work than in 2025, with engineering managers moving from 20% to 35%. The figures come from LeadDev's Engineering Leadership Report 2026, a survey of more than 600 leaders published in June, so the data predates this week's coverage. <span class="on-source"><a href="https://leaddev.com/management/engineering-managers-are-back-in-the-codebase">LeadDev</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge orange">AI security</span><div class="qh-text"><strong>Black Hat research showed agent framework runtimes being hijacked through their own internals.</strong> Check Point Research demonstrated that injected content can take control of an agent through memory stores, planning loops and serialisation layers even where the agent has no direct tool access, with 12 CVEs — the public identifiers given to disclosed vulnerabilities — across four frameworks. The leadership question is who owns the agent threat model, since this exposure sits below the application code anyone reviews. <span class="on-source"><a href="https://blog.checkpoint.com/research/black-hat-2026-check-point-research-takes-the-stage">Check Point Research</a></span></div></li>
+    <li class="tier-know"><span class="qh-badge">Talent</span><div class="qh-text"><strong>Google filed a WARN notice for 52 roles in Washington state.</strong> The notice — the filing a US employer makes ahead of a workforce reduction — was lodged on 5 August, with roles ending in September and early October, spanning software engineers, engineering and product managers, mechatronics engineers, UX designers and recruiters. Google gave no explanation. Washington is one of its largest engineering hubs outside the Bay Area. <span class="on-source"><a href="https://www.geekwire.com/2026/google-to-cut-52-employees-in-washington-state/">GeekWire</a></span></div></li>
+  </ul>
+
+  <div class="tier-label watch">Watching</div>
+  <ul class="quick-hits">
+    <li class="tier-watch"><span class="qh-badge">Talent</span><div class="qh-text"><strong>The 2026 layoff count is level with 2025, at a faster daily rate.</strong> One tracker's count of publicly reported events reached 205,832 people across 322 events, against 205,773 across 338 events for all of 2025 — a margin of 59 people. The rate is the signal: about 911 job losses a day in 2026 against 564 in 2025, on a tracker's count. <span class="on-source"><a href="https://skillsyncer.com/layoffs-tracker">SkillSyncer</a></span></div></li>
+    <li class="tier-watch"><span class="qh-badge">Loyalty</span><div class="qh-text"><strong>The loyalty patch: a licence and a checkout integration.</strong> Revolut was granted an independent Authorised Deposit-taking Institution licence by APRA, Australia's banking regulator — its first banking entity in Asia-Pacific — and Miles &amp; More and Pointspay partnered to let members earn and redeem miles at merchant checkout, Switzerland first. <span class="on-source"><a href="https://thewisemarketer.com/the-loyalty-newswire-august-10-2026/">The Wise Marketer</a></span></div></li>
+  </ul>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ LEAD ARTICLE — SAFE ═══ -->
+<section class="section lead-article">
+  <div class="section-label">Ways of working</div>
+  <h2>An industry draft puts a four-day clock on AI agent incidents <span class="section-time">(2 min)</span></h2>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">SAFE — Shared AI Findings Exchange</span>
+    <p class="jw-body">A proposed scheme for reporting security incidents involving AI systems, published as a draft by the Linux Foundation on 4 August under the Open Secure AI Alliance, the industry body it sits under, with contributors from Cisco, CrowdStrike, NVIDIA and others.</p>
+    <p class="jw-body">It is open for public comment on GitHub, in force nowhere, and applies equally to open and proprietary AI systems. <a class="jw-link" href="https://github.com/OpenSecureAIAlliance/RFCs" style="color:var(--deep-teal);text-decoration:none">The RFC →</a></p>
+  </div>
+
+  <p>On 4 August the Linux Foundation published a draft that would put fixed deadlines on reporting AI agent security incidents — an RFC, a public draft circulated for comment rather than an adopted standard. What moved this week is its reception: 120 organisations behind it, an on-the-record airing at Black Hat, and the two largest model vendors still outside.</p>
+
+  <h3>What the draft asks members to do</h3>
+  <p>The scheme covers production agents with authority to act against third-party systems, a narrower category than agent features inside a developer's own tooling. Near-misses — the RFC's term for events that could have caused harm and did not — are reportable too, and the draft states that <em>"Intent does not determine whether an event is reportable"</em>.</p>
+
+  <div class="process-flow">
+    <div class="pf-step"><strong>As soon as possible</strong>Notify the affected organisation</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>72 hours</strong>Notify customers with credible exposure</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>4 business days</strong>File a confidential incident report</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>30 days</strong>Publish a preliminary factual report</div>
+    <div class="pf-arrow"></div>
+    <div class="pf-step"><strong>90 days</strong>Publish remediation status</div>
+  </div>
+  <p class="source-tag" style="margin-top:-6px">As worded in the SAFE RFC, which also carries a 14-day customer advisory when warranted and weekly machine-readable updates while risks remain.</p>
+
+  <h3>What is new this week</h3>
+  <p>The alliance launched on 27 July with two dozen founding members and passed 120 organisations as Black Hat opened. Justin Boitano, who runs enterprise computing at NVIDIA, put the model on the record there in an interview with Axios.</p>
+
+  <div class="pull-quote">
+    <p>"The way I think of it is the harness, which has visibility into everything the agent is doing, is the flight recorder."</p>
+    <cite>— Justin Boitano, NVIDIA</cite>
+  </div>
+
+  <p>It follows reported sandbox escapes in internal cyber-capability testing at OpenAI on 21 July and Anthropic on 31 July. Cybersecurity Dive records that <em>"OpenAI and Anthropic, the two companies with the largest influence over AI issues, are not members of the Open Secure AI Alliance."</em></p>
+
+  <h3>The question it puts to an organisation</h3>
+  <p>The test it creates is whether an organisation could assemble a factual account of what one of its agents did, and file it, inside four business days — a logging, observability and on-call design question that, for agents, usually has no owner.</p>
+  <p>It carries no adoption timeline, no vote threshold, no funding for the receiving body, and no consequence for missing a deadline.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.linuxfoundation.org/blog/proposing-the-safe-working-group-an-open-community-effort-to-improve-ai-security">Linux Foundation</a>, <a href="https://github.com/OpenSecureAIAlliance/RFCs">the SAFE RFC</a>, <a href="https://www.cybersecuritydive.com/news/ai-agent-security-exchange-linux-foundation/826940/">Cybersecurity Dive</a>, <a href="https://www.ibtimes.com/rogue-ai-agents-are-raising-alarms-tech-giants-are-proposing-new-system-track-them-3806330">IBTimes</a>, <a href="https://www.unite.ai/ai-alliance-drafts-confidential-incident-reporting-rules-with-public-deadlines/">Unite.ai</a>, <a href="https://siliconangle.com/2026/08/04/open-secure-ai-alliance-proposes-safe-guidelines-membership-tops-120/">SiliconANGLE</a></p>
+</section>
+
+<!-- ═══ QUICK TAKES — QT-A equal grid ═══ -->
+<section class="section">
+  <div class="section-label">Quick Takes</div>
+  <h2>Two Stories Worth Knowing <span class="section-time">(3 min)</span></h2>
+  <div class="two-col">
+
+    <div class="quick-take-col">
+      <div class="qt-header fintech">Management &amp; teams</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat fintech">$55.7bn</div>
+        <div class="qt-anchor-context">Capital spending, fiscal 2026</div>
+        <h3 style="margin-top:0">Oracle plans another reduction, and asks managers to name the people</h3>
+        <p>Oracle spent $55.7bn on capital expenditure in fiscal 2026 — capex, the spending on data centres and equipment rather than on running the business — against $21.2bn the year before. Over the same year its reported full-time headcount fell from about 162,000 to about 141,000 — a difference of roughly 21,000 people, or 13%, which is the year-on-year change in two annual filings rather than a layoff total Oracle has announced. Oracle Cloud Infrastructure, its cloud platform, grew 77% to $18.1bn, and restructuring charges came to $1.8bn against $374m.</p>
+
+        <div style="margin:18px 0 14px">
+          <svg viewBox="0 0 340 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif" role="img" aria-label="Oracle capital expenditure rose from 21.2 billion dollars in fiscal 2025 to 55.7 billion in fiscal 2026, while reported full-time employees fell from about 162,000 to about 141,000.">
+            <text x="76" y="16" text-anchor="middle" font-size="10" font-weight="700" letter-spacing="1" fill="#0077B6">CAPEX, $BN</text>
+            <text x="246" y="16" text-anchor="middle" font-size="10" font-weight="700" letter-spacing="1" fill="#1A2744">EMPLOYEES, 000s</text>
+            <line x1="14" y1="180" x2="326" y2="180" stroke="#E8EDF2" stroke-width="1"/>
+            <line x1="170" y1="26" x2="170" y2="180" stroke="#E8EDF2" stroke-width="1"/>
+            <rect x="30" y="138" width="46" height="42" fill="#8899AA"/>
+            <rect x="100" y="70" width="46" height="110" fill="#00B4D8"/>
+            <text x="53" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="#0A1628">21.2</text>
+            <text x="123" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#0A1628">55.7</text>
+            <rect x="200" y="70" width="46" height="110" fill="#8899AA"/>
+            <rect x="270" y="85" width="46" height="95" fill="#1A2744"/>
+            <text x="223" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#0A1628">162</text>
+            <text x="293" y="79" text-anchor="middle" font-size="12" font-weight="700" fill="#0A1628">141</text>
+            <text x="53" y="194" text-anchor="middle" font-size="10" fill="#8899AA">FY2025</text>
+            <text x="123" y="194" text-anchor="middle" font-size="10" fill="#8899AA">FY2026</text>
+            <text x="223" y="194" text-anchor="middle" font-size="10" fill="#8899AA">FY2025</text>
+            <text x="293" y="194" text-anchor="middle" font-size="10" fill="#8899AA">FY2026</text>
+          </svg>
+          <p class="source-tag" style="margin-top:6px">Data: Oracle's own Q4/FY2026 results and annual filings.</p>
+        </div>
+
+        <p>Business Insider reported on 11 August, citing people familiar with the plans and an internal document, that Oracle has drawn up a further reduction before 1 September, when its fiscal second quarter opens — Oracle's financial year runs June to May. Managers have been asked to identify the affected employees, and <em>"Some teams could see cuts in the double digits"</em>. Oracle declined to comment, and none of the August plan is confirmed by the company.</p>
+        <p>The part that changes a leadership conversation is the naming. A reduction routed through line managers rather than an HR process asks each of them to produce a list, then to keep running the team it came from.</p>
+        <p class="so-what"><strong>The takeaway: on the reported plan, the selection decision sits with line managers, which makes the round a question of management capacity as much as cost.</strong></p>
+        <p class="source-tag">Sources: <a href="https://finance.yahoo.com/technology/ai/articles/oracle-planning-round-layoffs-august-134527039.html">Quartz via Yahoo Finance</a>, <a href="https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx">Oracle</a>, <a href="https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm">Oracle FY2026 10-K</a></p>
+      </div>
+    </div>
+
+    <div class="quick-take-col">
+      <div class="qt-header devex">Operating at scale</div>
+      <div class="qt-body">
+        <div class="qt-anchor-stat devex">50 days</div>
+        <div class="qt-anchor-context">Between the first fixed client build and public disclosure</div>
+        <h3 style="margin-top:0">Zoom fixed a zero-click flaw in June and described it in August</h3>
+        <p>Zoom shipped a fixed client build on 22 June, a server-side mitigation on 15 July and a further client patch on 20 July. The flaw was described publicly on 11 August.</p>
+
+        <div style="margin:16px 0 12px">
+          <svg viewBox="0 0 340 132" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:'Source Sans 3',sans-serif" role="img" aria-label="Timeline: client fix 22 June, server-side mitigation 15 July, further client patch 20 July, public disclosure 11 August — fifty days from first fix to disclosure.">
+            <line x1="30" y1="20" x2="140" y2="20" stroke="#E8EDF2" stroke-width="1"/>
+            <line x1="200" y1="20" x2="310" y2="20" stroke="#E8EDF2" stroke-width="1"/>
+            <line x1="30" y1="16" x2="30" y2="24" stroke="#E8EDF2" stroke-width="1"/>
+            <line x1="310" y1="16" x2="310" y2="24" stroke="#E8EDF2" stroke-width="1"/>
+            <text x="170" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#8899AA">50 days</text>
+            <line x1="20" y1="70" x2="320" y2="70" stroke="#E8EDF2" stroke-width="2"/>
+            <circle cx="30" cy="70" r="6" fill="#0077B6"/>
+            <circle cx="159" cy="70" r="6" fill="#0077B6"/>
+            <circle cx="187" cy="70" r="6" fill="#0077B6"/>
+            <circle cx="310" cy="70" r="6" fill="#DC2626"/>
+            <text x="30" y="44" text-anchor="start" font-size="11" font-weight="700" fill="#0A1628">22 Jun</text>
+            <text x="30" y="56" text-anchor="start" font-size="10" fill="#8899AA">client fix</text>
+            <text x="187" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">20 Jul</text>
+            <text x="187" y="56" text-anchor="middle" font-size="10" fill="#8899AA">client patch</text>
+            <text x="159" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#0A1628">15 Jul</text>
+            <text x="159" y="102" text-anchor="middle" font-size="10" fill="#8899AA">server-side fix</text>
+            <text x="320" y="90" text-anchor="end" font-size="11" font-weight="700" fill="#DC2626">11 Aug</text>
+            <text x="320" y="102" text-anchor="end" font-size="10" fill="#8899AA">public disclosure</text>
+          </svg>
+        </div>
+
+        <p>The headline issue, CVE-2026-53413, sat in the annotation feature. SecurityWeek describes <em>"a memory corruption issue that allowed a meeting participant to execute code on another participant's machine"</em> — remote code execution, meaning attacker-chosen code running on the target, reachable zero-click, meaning with no action by the person on the other end. No exploitation in the wild has been reported.</p>
+        <p>The finding vendor, A Security, states that <em>"The entire operation, from finding the flaw to building a working exploit, was carried out by [A Security] using fewer than 20 prompts on publicly available AI models in under 24 hours"</em> — its own claim, and not independently confirmed.</p>
+        <p>The interval is the part with an owner. An organisation whose patch policy triggers on vendor disclosure carried this for seven weeks; one that takes client releases as they ship did not. Which of those an estate runs on is a patch-policy decision; what a vendor undertakes to tell customers, and when, is a supplier-assurance one.</p>
+        <p class="so-what"><strong>The takeaway: when fixes ship quietly, the exposure window is set by an organisation's own update cadence and by what its vendors undertake to disclose, and it can run for weeks before a CVE makes it visible.</strong></p>
+        <p class="source-tag">Sources: <a href="https://www.securityweek.com/zoom-patches-zero-click-code-execution-vulnerability/">SecurityWeek</a>, <a href="https://a.security/blog/asecurity-zoomsday">A Security</a>, <a href="https://securityaffairs.com/197042/hacking/zoom-patches-zoomsday-zero-click-flaw-enabling-remote-code-execution.html">Security Affairs</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION BREATHER ═══ -->
+<div class="section-breather"></div>
+
+<!-- ═══ MID-ISSUE ACCENT ═══ -->
+<div class="mid-accent-highlight">
+  <p>Cognition is reported to be in talks to raise at a $40bn valuation or more, three months after closing $1bn at $26bn on a $492m annualised run rate, with enterprise use of Devin then growing 50% month on month for six months. Goldman Sachs, Mercedes-Benz and NASA are named customers. These are reported talks, not a closed round — and a coding-agent supplier repricing at this speed with a tier-one bank on its customer list moves agent procurement onto the supplier-concentration register.</p>
+  <div class="accent-source"><a href="https://techcrunch.com/2026/08/12/ai-coding-startup-cognition-reportedly-already-in-talks-to-raise-at-40b-valuation/" style="color:var(--deep-teal);text-decoration:none">TechCrunch →</a></div>
+</div>
+
+<!-- ═══ IN PRACTICE ═══ -->
+<hr class="feature-break">
+<header class="in-practice-header">
+  <span class="section-label">In Practice</span>
+  <span class="ip-theme">Making technical decisions when not the SME</span>
+</header>
+<section class="in-practice">
+  <h3>The manager who went back to building <span class="section-time">(2 min)</span></h3>
+
+  <div class="author-card">
+    <div class="ac-avatar">JR</div>
+    <div class="ac-meta">
+      <span class="ac-name">Jay Rungta</span>
+      <span class="ac-role">Engineering Manager, YouTube</span>
+      <span class="ac-date">LeadDev · August 2026</span>
+    </div>
+    <a class="ac-link" href="https://leaddev.com/management/engineering-managers-who-build-are-pulling-ahead">Read the full piece →</a>
+  </div>
+
+  <p>"When the cost of doing it right is just as low as the cost of cutting corners, the only remaining constraint is your own ambition." Jay Rungta is describing what changed for him once prototyping — building a rough working version of something to find out whether the idea holds — stopped costing days. The trade-off he had managed for years, speed against quality, collapsed, and he started building again.</p>
+
+  <p>The ground he says it from is specific. He leads the team at YouTube that builds financial systems, making sure music royalties and streaming revenue are paid accurately and on time, globally, every month; billions of dollars move through that code. His team automated workflows handling hundreds of millions of dollars in annual royalty payouts and removed thousands of hours of manual work. That setting is what puts his claim about managerial contribution on real ground — a claim about judging work a manager is not the SME, the subject-matter expert, on.</p>
+
+  <p>The claim itself is that the durable thing a manager brings is <em>taste</em>. Rungta uses the word as a name for a specific capability: the ability to recognise <em>AI slop</em>, his term for output that reads plausibly and does not hold up. Plenty of work now arrives looking finished, and telling that from the merely plausible is the judgement being asked for; his account is that it decays when a manager stops going near the work.</p>
+
+  <blockquote>No matter how detailed your prompting game is, you will never be able to type the many many layers of your brain into a text box.</blockquote>
+
+  <p>What he changed, then, is his own default about where a manager's hours go. Hands-on work in his account is not a failure to delegate; it is how the judgement he is paid for stays calibrated. That gives a director a second reading of a manager who is still close to the code — as someone maintaining the instrument they use to evaluate work they did not do.</p>
+
+  <div class="ip-try">
+    <strong>What to try</strong>
+    Rungta's argument gives a manager who still writes code a defensible reason for it, which makes it worth testing in the other direction: whether the managers furthest from the work are the ones whose calls on quality have been hardest to explain.
+  </div>
+</section>
+
+<!-- ═══ OTHER NEWS ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Other News This Week</div>
+  <h2 style="font-size:26px;margin-bottom:14px">In Brief</h2>
+  <ul class="other-news">
+    <li><strong>Alasdair Allan argued that the entry rung is being removed.</strong> In an InfoQ interview on 13 August, after his QCon London talk <em>"Engineering Progression When AI Ate the Middle"</em>, Allan compresses the case as <em>"AI stunts skill formation, AI transforms work into supervision, and now AI slows hiring at the entry level"</em>: the apparent floor of what a person can produce rises while the work that built the judgement to evaluate it disappears. <span class="on-source"><a href="https://www.infoq.com/news/2026/08/AI-disrupts-engineering-progress/">InfoQ</a></span></li>
+    <li><strong>OpenAI slowed internal work on its Astra model on cybersecurity grounds.</strong> An internal review found the model had reached the company's "critical" cybersecurity threshold — the point at which a system can independently find and exploit severe vulnerabilities in well-protected systems without human direction — and work was halted pending tighter isolation, reported as the first time an AI lab has publicly slowed a release on those grounds, and a supply-side signal for any agent roadmap assuming capability arrives on schedule. <span class="on-source"><a href="https://www.cnbc.com/2026/08/10/openai-astra-cybersecurity-risks.html">CNBC</a></span></li>
+    <li><strong>A logistics breach put a bank's retail customer data in the open.</strong> A cyberattack that began on 29 July and was confirmed by CEVA Logistics on 1 August disrupted at least eight European warehouses and exposed retail customer names, addresses, phone numbers and email addresses, with confirmed downstream impact at ING, De Bijenkorf and Valve's Steam; separately, Uber Freight is investigating an extortion crew's breach claim, the reported entry route being a voice-phished IT helpdesk. <span class="on-source"><a href="https://techcrunch.com/2026/08/10/a-data-breach-at-shipping-giant-ceva-logistics-is-rippling-across-banks-retailers-steam-gamers-and-beyond/">TechCrunch</a>, <a href="https://techcrunch.com/2026/08/12/uber-freight-reportedly-investigating-after-hacking-group-claims-data-breach/">TechCrunch</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ PLATFORM UPDATES ═══ -->
+<section class="section" style="padding-top:32px;padding-bottom:32px">
+  <div class="section-label">Platform Updates</div>
+  <h2 style="font-size:26px;margin-bottom:14px">At a Glance</h2>
+  <table class="glance-table">
+    <thead><tr><th>Status</th><th>Platform</th><th>What changed</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="status-dot amber"></span></td>
+        <td class="platform">GitHub Copilot</td>
+        <td><strong>Scheduled, 1 September 2026.</strong> The promotional AI Credits boost carried through June, July and August reverts. Copilot Business drops from $30 to $19 of included monthly AI Credits at an unchanged $19 per user per month, and Copilot Enterprise from $70 to $39 at an unchanged $39 — reductions of 37% and 44% in included headroom at flat seat prices. Announced on 27 April 2026, with the underlying move to usage-based billing effective 1 June. <span class="on-source"><a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">GitHub</a></span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ OUTSIDE IN — Format A ═══ -->
+<section class="outside-in-section">
+  <div class="section-label">Outside In</div>
+  <h2>Duolingo built one agent platform instead of many <span class="section-time">(2 min)</span></h2>
+
+  <div class="author-card">
+    <div class="ac-avatar">GA</div>
+    <div class="ac-meta">
+      <span class="ac-name">Guadalupe Aliseda-Canton</span>
+      <span class="ac-role">Duolingo</span>
+      <span class="ac-date">August 2026</span>
+    </div>
+    <a class="ac-link" href="https://blog.duolingo.com/production-ready-ai-agent-platform/">Read the full post →</a>
+  </div>
+
+  <p>About ten minutes is what it now takes an engineer at Duolingo to create a production-ready agent, against a multi-step project that used to run into weeks. These are internal agents with tool access, running inside an execution layer a platform team owns — a different end of the spectrum from the production agents with external action authority in this week's Lead.</p>
+
+  <h3>What the platform was answering</h3>
+  <p>Duolingo's account starts with three organisational problems. Every team was rebuilding the same agent infrastructure with nothing reusable across projects. Agents were rebuilt for each surface they appeared on — Slack, internal sites, a command-line tool. And there was no consistent approach to orchestration, evaluation and observability: sequencing an agent's steps, testing whether its output is any good, and seeing what it did afterwards.</p>
+
+  <p>The answer was an agent registry — a single place where a developer defines an agent once, giving it a system prompt, the tools it may use, and the repositories it can reach, with a durable workflow engine handling execution. Every agent then inherits five capabilities by default: durability, observability, orchestration, evaluation, and invocation from multiple entry points.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:22px 0">
+    <div style="background:var(--white);border:1px solid var(--light-gray);border-radius:4px;padding:16px 18px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-bottom:6px">Before</div>
+      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--navy);line-height:1.1">Weeks</div>
+      <p style="font-size:13px;line-height:1.55;margin:8px 0 0">A multi-step project per agent, with the plumbing rebuilt each time.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--light-gray);border-left:4px solid var(--teal);border-radius:4px;padding:16px 18px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:6px">After</div>
+      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--deep-teal);line-height:1.1">About 10 minutes</div>
+      <p style="font-size:13px;line-height:1.55;margin:8px 0 0">Durability, observability, orchestration, evaluation and multi-entry-point invocation inherited by default.</p>
+    </div>
+  </div>
+
+  <h3>What the agents do now</h3>
+  <p>The agents built on it address CI failures and code-review comments, and support a Slack bot for release managers that investigates crashes. Guadalupe Aliseda-Canton's write-up puts the purpose in one line: <em>"Moving fast is usually framed as a tradeoff against building production-ready systems. This platform collapses that tradeoff."</em> The engineering effort went into the layer underneath, so that what gets built on top can be quick without being throwaway.</p>
+
+  <div class="oi-callout">
+    <p>The durable investment here is the shared execution and evaluation layer the organisation owns; the individual agents on top of it are the cheap part, and increasingly disposable. That places agent adoption inside a platform funding decision, with a platform team's staffing behind it.</p>
+  </div>
+
+  <p class="so-what"><strong>The takeaway: the reusable asset in an agent programme is the execution and evaluation layer, and an organisation that funds it once gets consistency it would otherwise ask every team to reinvent.</strong></p>
+
+  <p class="source-tag">Source: <a href="https://blog.duolingo.com/production-ready-ai-agent-platform/">Duolingo Blog, 4 August 2026</a></p>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-timeline">
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Oct</div>
+        <div class="rd-day">31</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>European Central Bank AI cyber-threat action plans due</strong> — the deadline for the significant institutions the ECB directly supervises to submit their plans to their Joint Supervisory Teams.</div>
+    </li>
+    <li class="radar-item urgent">
+      <div class="radar-date-block">
+        <div class="rd-month">Dec</div>
+        <div class="rd-day">02</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>EU AI Act transitional backstop</strong> — generative systems placed on the EU market before 2 August 2026 must meet the machine-readable marking obligation under Article 50(2).</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">AWS</div>
+        <div class="rd-label">Open</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>ME-CENTRAL-1 / ME-SOUTH-1</strong> — both items remain open, with AWS's last public update dated 30 April 2026. The dashboard could not be re-verified this week, and nothing beyond that is claimed.</div>
+    </li>
+    <li class="radar-item">
+      <div class="radar-date-block">
+        <div class="rd-month">Jul</div>
+        <div class="rd-label">Open</div>
+      </div>
+      <div class="radar-connector"><div class="rc-dot"></div><div class="rc-line"></div></div>
+      <div class="radar-content"><strong>27 July UK multi-bank degradation</strong> — eighteen days on, no published cause: no Pay.UK report, no Lloyds post-incident publication, no regulator statement. The simultaneity is documented; the causation is not, and Faster Payments the rail did not fail.</div>
+    </li>
+  </ul>
+</section>
+
+<hr class="feature-break">
+
+<!-- ═══ THE LEADERSHIP READ ═══ -->
+<section class="mgmt-section">
+  <div class="section-label">The Leadership Read</div>
+  <h2>Middle management roles were also a trap <span class="section-time">(3 min)</span></h2>
+
+  <p>Will Larson's argument is that the middle-management job — running managers rather than engineers — is a poor place to practise the skills that make an effective executive, and that the filters which produce good middle managers work against the line managers most likely to become excellent ones.</p>
+
+  <div class="author-card" style="background:rgba(255,255,255,.05);border-top-color:var(--teal)">
+    <div class="ac-avatar">WL</div>
+    <div class="ac-meta">
+      <span class="ac-name" style="color:#FFF">Will Larson</span>
+      <span class="ac-role" style="color:rgba(255,255,255,.78)">lethain.com</span>
+      <span class="ac-date">8 August 2026</span>
+    </div>
+    <a class="ac-link" href="https://lethain.com/middle-management-roles-were-also-a-trap/">Read it →</a>
+  </div>
+
+  <div class="concept-of-week">
+    <span class="cw-label">Concept of the week</span>
+    <span class="cw-term">Line manager vs middle manager</span>
+    <p class="cw-body">A <strong>line manager</strong> runs engineers directly — the people doing the work report to them.</p>
+    <p class="cw-body">A <strong>middle manager</strong> runs managers, and sits between executives above, peer functions sideways and teams below.</p>
+    <p class="cw-body">The distinction carries Larson's whole argument: the two jobs are usually treated as one career with more scope.</p>
+  </div>
+
+  <h3>The three functions of the job</h3>
+  <p>Larson names what a middle manager actually does as three things: <em>"Balancing between top-down executive, lateral stakeholder, and bottom-up team pressure"</em>, <em>"Defining and operating an organization's process"</em>, and <em>"Competing for a share of fixed organizational resources"</em>. All three are real work, performed largely in rooms full of other managers.</p>
+
+  <h3>The three skills of an executive</h3>
+  <p>Against that he sets what he thinks makes an effective executive: <em>"developing domain expertise, driving execution (including setting pace), and translating both of those into an organizational culture"</em>. His claim is that those are more easily practised as a line manager — closer to the domain, closer to the delivery, close enough to a team for the culture to be something a person actually sets.</p>
+
+  <p>The two mechanisms he gives are both recognisable. Go deep on domain expertise and <em>"you might get told that you're not focusing enough on your internal stakeholders"</em>. Drive execution closely and <em>"you might get told off as a micromanager"</em>. The behaviours that build the executive skills read, from inside a middle-management role, as failures of that role. Larson also revisits the Tech Lead Manager — the hybrid role, part technical lead and part people manager, he wrote about as a trap of its own — and puts the middle rung in the same family.</p>
+
+  <div class="pull-quote" style="text-align:center;background:rgba(255,255,255,.08);border-left:none">
+    <p style="font-size:20px">"the filters for good middle managers inadvertently negatively select out the 'challenging' line managers who actually have the best chance to be excellent executives"</p>
+    <cite>— Will Larson, lethain.com</cite>
+  </div>
+
+  <h3>Why it matters at promotion time</h3>
+  <p>The consequence Larson draws is a negative selection effect. Promotion into middle management rewards the manager who balances well, runs process cleanly and competes politely for resources. The line manager who goes too deep, or drives too hard, reads as a problem at exactly the point the decision is made — and on Larson's account that is the profile with the best chance of becoming an excellent executive. An organisation selecting only for the middle rung will keep hiring its executives from outside without ever quite knowing why.</p>
+
+  <p class="source-tag" style="color:var(--teal)"><a href="https://lethain.com/middle-management-roles-were-also-a-trap/" class="mgmt-link">Read the full article: lethain.com →</a></p>
+
+  <p class="discussion-prompt"><strong>This could be worth talking about:</strong> which of the line managers currently described as difficult are difficult because they are going deeper on the domain, or driving execution harder, than the middle rung above them finds comfortable?</p>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>This Week's Links</h2>
+  <ul class="reading-list">
+    <li><span class="title"><a href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/">AI mania is eviscerating global decision-making</a><span style="display:block;font-weight:400;font-size:13px;line-height:1.5;color:var(--body-text);margin-top:2px">Explicitly anecdotal: the central finding, that every AI project the author's team has observed is failing, comes from roughly 300 professional conversations.</span></span><span class="source">ludic.mataroa.blog</span></li>
+    <li><span class="title"><a href="https://github.com/OpenSecureAIAlliance/RFCs">The SAFE RFC</a><span style="display:block;font-weight:400;font-size:13px;line-height:1.5;color:var(--body-text);margin-top:2px">The draft the Lead covers.</span></span><span class="source">github.com</span></li>
+    <li><span class="title"><a href="https://www.emerald.com/jmh/article-abstract/26/4/515/228226/Journey-of-a-concept-span-of-control-the-rise-the">Journey of a concept: span of control — the rise, the decline, and what is next?</a><span style="display:block;font-weight:400;font-size:13px;line-height:1.5;color:var(--body-text);margin-top:2px">Zoller &amp; Muldoon, Journal of Management History, 2020. The abstract is public; the full text is paywalled. The hundred-year view behind a week of flattening org charts.</span></span><span class="source">emerald.com</span></li>
+    <li><span class="title"><a href="https://www.infoq.com/news/2026/08/perforce-maturity-ai-success/">Perforce 2026 Platform Engineering Report, via InfoQ</a><span style="display:block;font-weight:400;font-size:13px;line-height:1.5;color:var(--body-text);margin-top:2px">Vendor-sponsored research, 4 August: of 820 professionals surveyed, 73% at organisations with mature platform practices called that maturity critical or significant to their AI success, against 44% at less mature ones.</span></span><span class="source">infoq.com</span></li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">8 – 14 August 2026 · Weekly Edition · Issue #22</div>
+  <div class="footer-next">Next edition: 15–21 August 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">#18 · Deep Dive</span>
+    <span class="archive-pill">#19 · Weekly</span>
+    <span class="archive-pill">#20 · Weekly</span>
+    <span class="archive-pill">#21 · Weekly</span>
+    <span class="archive-pill current">#22 · Weekly</span>
+  </div>
+</footer>
+
+</div></body></html>
