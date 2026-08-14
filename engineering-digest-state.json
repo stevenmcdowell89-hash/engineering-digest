@@ -1,16 +1,16 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Updated on the Issue 21 deliver (2026-08-07), the first issue produced under spec v1.38 (word budget replaces the retired page limit). Issue 21 shipped ~3,400 words of body copy across 12 rendered pages - in budget, and page count is now a derived observation rather than a constraint, so no cut order was invoked.",
-  "last_issue_number": 21,
-  "last_issue_date": "2026-08-07",
+  "_comment": "v3.2 state file for the engineering-digest skill. Updated on the Issue 22 deliver (2026-08-14). Issue 22 shipped ~3,671 words of body copy (v1.38 budget 2,600-3,700) after a Phase 5 FULL review failed the first draft on a non-verbatim quote and a 3,841-word overrun; the Lead was tightened 633 -> 456 and the issue passed on delta re-review.",
+  "last_issue_number": 22,
+  "last_issue_date": "2026-08-14",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Wider engineering landscape",
+  "last_lead_topic": "Ways of working",
   "last_lead_topics_3issues": [
+    "Ways of working",
     "Wider engineering landscape",
-    "Management & teams",
-    "Operating at scale"
+    "Management & teams"
   ],
-  "consecutive_non_deepdive": 3,
-  "last_outside_in_company": "Klarna",
+  "consecutive_non_deepdive": 4,
+  "last_outside_in_company": "Duolingo",
   "outside_in_history": [
     {
       "issue": 1,
@@ -81,9 +81,14 @@
       "issue": 21,
       "company": "Klarna",
       "source": "Bernard Marr (Forbes) as the in-window write-up peg; every figure re-anchored by Phase 3 to Klarna's own February 2024 press release and its Q3 2025 earnings reporting. The section covers what the AI support rollout published - deflection share, full-time-agent equivalents, minutes to resolution - and what it never measured."
+    },
+    {
+      "issue": 22,
+      "company": "Duolingo",
+      "source": "Building a production-ready AI agent platform (blog.duolingo.com) — one agent platform instead of many; the before/after is the platform-investment decision, not the agents"
     }
   ],
-  "last_leadership_read": "The Pragmatic Engineer",
+  "last_leadership_read": "lethain (Will Larson)",
   "leadership_read_history": [
     {
       "issue": 7,
@@ -144,6 +149,11 @@
       "issue": 20,
       "source": "The Pragmatic Engineer",
       "piece": "Napkin math as a leadership discipline - Simon Eskildsen (Turbopuffer) with Gergely Orosz; reasoning from physical limits to judge whether a system is anywhere near what the hardware allows (10s observed against 10ms theoretical on a search benchmark; a Cursor bill cut from $80k to $4k a month)"
+    },
+    {
+      "issue": 22,
+      "source": "lethain (Will Larson)",
+      "piece": "Middle management roles were also a trap (8 Aug 2026) — the mandatory slot after Issue 21's authorised skip; non-AI long-form anchor. The three functions of the middle-management job, the three skills of an executive, and why the two diverge at promotion time."
     }
   ],
   "last_editorial_moment": "number_of_the_week",
@@ -153,7 +163,7 @@
   "last_feature_date": null,
   "last_stack_date": null,
   "last_rabbit_hole_date": "2026-08-07",
-  "current_in_practice_season": "Handling reorgs and ambiguous mandates",
+  "current_in_practice_season": "Making technical decisions when not the SME",
   "in_practice_season_progress": 1,
   "in_practice_season_candidates": [],
   "in_practice_history": [
@@ -216,10 +226,16 @@
       "piece_title": "Reorgs happen (evergreen - carried the \"a classic worth revisiting\" sub-label)",
       "author": "Ben Balter",
       "url": "https://ben.balter.com/2026/06/07/reorgs-happen/"
+    },
+    {
+      "issue": 22,
+      "piece_title": "Engineering managers who build are pulling ahead (shipped as 'The manager who went back to building')",
+      "author": "Jay Rungta (YouTube)",
+      "url": "https://leaddev.com/management/engineering-managers-who-build-are-pulling-ahead"
     }
   ],
-  "_season_note": "Issue 21 (Standard Weekly, 7 August 2026). The In Practice season 'Technical strategy under uncertainty' was CUT SHORT at two issues (19, 20) under the v3.5 'cut the season short rather than drag' rule - Phase 1 ran nine queries on the theme and surfaced only normative framework writing, which the explicit disqualifiers rule out. New season opens: 'Handling reorgs and ambiguous mandates' (v1.35 managing-across-and-upwards pool), week 1 = Ben Balter on twenty-five reorgs in thirteen years at GitHub. THE LEADERSHIP READ WAS OMITTED - a deliberate call, not thin material. The v1.35 long-form variety rule caps AI-primary pieces at one across In Practice / Outside In / Leadership Read, and every Leadership Read candidate in the pool was AI-primary alongside an AI-primary Outside In. The spec permits dropping the third long-form section rather than squeezing. last_leadership_read is therefore UNCHANGED at 'The Pragmatic Engineer'. ISSUE 22 MUST CARRY A LEADERSHIP READ - this is the first consecutive skip and the limit is two. Ludicity ('AI mania is eviscerating global decision-making', 18 July) is the standing candidate and has never appeared in leadership_read_history; Canva / Rob Giglio is the second, dropped from Issue 21 only on the source-diversity cap. DEEP DIVE TRIGGER: consecutive_non_deepdive reaches 3 at this issue - the trigger fires at Issue 22. Lead was EU AI Act Article 50, which took the rolling-4 leads to all four operational concerns. The regulator scope-conditional test (v1.32) was worked in full and PASSED on the horizontal-technology-regulation reading; the ECB's 31 October deadline for its 110 supervised banks was the negative control and FAILED, sized to one On the Radar line. Binding facts carried forward unchanged: no shared cause has ever been published for the 27 July UK multi-bank degradation - simultaneity is documented, causation is not, and Faster Payments the rail did NOT fail. The 'July 2026 AWS mega-outage' remains UNVERIFIED and was demoted for a fourth consecutive issue. AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN on the AWS Health Dashboard with AWS's last public update dated 30 April 2026; the dashboard could not be re-verified this week and the copy says nothing stronger. The agentic-payments deep-dive cluster stays retired. Phase 3 verification was unusually load-bearing this run: it withdrew four Klarna claims the run plan had carried from a commentator source (including a '5,000 to 3,500 support headcount' figure that is actually total company headcount), corrected the Anthropic inference-hooks mechanism, and pinned the Article 50 penalty to Article 99(4) plus the SME lower-of clause at 99(6). The 2 December 2026 marking backstop comes from the Digital Omnibus on AI, not the original Act. Phase 5 caught two epistemic reframings Phase 4's self-scan missed (its lexical scan found the two canonical patterns and stopped) and one misapplied Cooley URL; both fixed before publication, along with a bespoke .compare-table.cmp-wide modifier that existed only to defeat the documented 2-column cap. .rabbit-hole and .by-the-numbers were folded into weekly-template.html so future runs stop re-porting them by hand.",
+  "_season_note": "Issue 22 (Standard Weekly, 14 August 2026). THE DEEP-DIVE TRIGGER FIRED AT THIS ISSUE AND WAS DECLINED on evidence quality: no story dominated the window (the Oracle August round is reported planning, unconfirmed by Oracle), and of the five data threads in the 'org shape under AI' cluster only one verified against primary sources - the span-of-control and layoff aggregates are the same unverifiable class that retired the adjacent payments org-shape thread. consecutive_non_deepdive is now 4; re-test at Issue 23 against the two conditions in issue-22 run-plan.md §1.5 (a dominating story AND verifying data threads), not as a mandate. THE MANDATORY LEADERSHIP READ SHIPPED (Will Larson / lethain, 'Middle management roles were also a trap', non-AI) - the two-consecutive-skip limit is cleared; lethain is excluded from the Issue 23 Leadership Read by the no-consecutive-outlet rule. IN PRACTICE: the 'Handling reorgs and ambiguous mandates' season was CUT SHORT at one issue - Phase 1 found no qualifying on-theme journey piece despite a reorg-heavy news week. That is the SECOND consecutive short season; per the Issue 21 note, do not open a new season until a week 1 AND a plausible week 2 candidate are both visible, and prefer themes with a strong first-person publication culture. New season: 'Making technical decisions when not the SME' (v1.35 technical-leadership pool; label rephrased from the catalogue's second-person wording for the v1.31 voice rule), week 1 = Jay Rungta (EM, YouTube) via LeadDev. Lead was the SAFE agent-incident reporting RFC (Linux Foundation / Open Secure AI Alliance, published 4 Aug, covered under the new-in-window traction exception on the 12 Aug 120-org count and Black Hat reception; proposal-not-standard status held in every section). Rolling-4 leads now span all four concerns (Ways of working / Wider engineering landscape / Management & teams / Operating at scale). NO-REPEAT-ANCHOR SET FOR ISSUE 23 (anchors of Issues 21-22): EU AI Act Article 50; Microsoft token budgets; Temenos/Google leadership splits; SAFE RFC; Oracle capex-vs-headcount ($21.2bn->$55.7bn capex, 162k->141k headcount, Oracle's own filings); Zoom disclosure asymmetry (CVE-2026-53413, fixed June/July, disclosed 11 Aug). Binding facts carried forward unchanged: no shared cause has ever been published for the 27 July UK multi-bank degradation; the 'July 2026 AWS mega-outage' remains UNVERIFIED (fifth consecutive demotion); AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN with AWS's last public update dated 30 April 2026; the agentic-payments deep-dive cluster and the payments org-shape thread stay retired. Process notes: Phase 3 corrected 14 factual errors carried in the run plan (including a fabricated Google quote and two non-verbatim Rungta quotes) and cut the Visa pilot item (pilot never confirmed open) and the In Practice compare-table (distinction was not the author's). Phase 5 FULL review failed the first draft on a residual non-verbatim Rungta quote ('the right way' vs the source's 'right') and a 3,841-word count; both fixed, passed at 3,671 words with epistemic reframing at 1 of 2. ISSUE 23 STANDING CANDIDATES: Ludicity 'AI mania is eviscerating global decision-making' (Leadership Read, never used, outlet clear); Canva / Rob Giglio (AI-primary; mind the v1.35 long-form cap). Late finds routed but unslotted this week: the pre-window OpenAI/Anthropic sandbox-escape reports that triggered SAFE; OpenAI Astra's 'critical' cyber-capability threshold; ING named in CEVA's blast radius.",
   "p0_stories_tracking": [],
   "seeded_threads_next_issue": [],
-  "_retired_threads_note": "The 'payments-sector engineering org shape under AI attribution' thread seeded at Issue 20 is RETIRED. Two consecutive issues brought no new in-window movement, and the sector aggregate could not be verified: the Block figure is internally contradictory across sources (reported as both 'close to half' and 'nearly 40%' of headcount) and the Mastercard and PayPal figures remain search-result reported only. None of those figures appeared anywhere in Issue 21. Visa appeared once, in Other News, carrying a single cross-issue throughline sentence on the $2.4bn BioCatch acquisition."
+  "_retired_threads_note": "The 'payments-sector engineering org shape under AI attribution' thread seeded at Issue 20 is RETIRED. Two consecutive issues brought no new in-window movement, and the sector aggregate could not be verified: the Block figure is internally contradictory across sources (reported as both 'close to half' and 'nearly 40%' of headcount) and the Mastercard and PayPal figures remain search-result reported only. None of those figures appeared anywhere in Issue 21. Visa appeared once, in Other News, carrying a single cross-issue throughline sentence on the $2.4bn BioCatch acquisition. Issue 22 note: the declined deep-dive ruling at issue-22 run-plan.md §1 reaffirmed this retirement - the same unverifiable aggregates resurfaced in the 'org shape under AI' cluster and were declined again."
 }
