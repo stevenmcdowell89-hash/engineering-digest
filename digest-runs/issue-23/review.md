@@ -493,3 +493,136 @@ The rebuild is otherwise sound. Forty-four of forty-five new quotes match the pa
 - R-F2 FIXED: Counterpoint close now hands forward to the Monzo case study instead of pointing back at Source 5.
 
 Final verdict on the revised issue: PASS (two FAIL-WITH-FIXES items above resolved; all other checks clean per the revision-review section).
+
+---
+
+# THIRD-ROUND REVIEW — five-stage restructure (FACT FIDELITY ONLY)
+
+**Reviewed:** 21 August 2026, against `issue-23.html` as rewritten around the five-stage adoption arc (95,593 bytes · 6,827 body words · 4 SVGs · 8 numbered sections). **Scope limited to fact fidelity per the coordinator's instruction** — structure, voice register and section design were not re-litigated. Sources of truth: `revision-sources.md` (16-source pack) and `section-briefs.md` §0/§1.4.
+
+## VERDICT: **FAIL-WITH-FIXES** — 3 failures, all single-sentence edits. Two are regressions of defects fixed in earlier rounds.
+
+---
+
+## 1. Quote fidelity — 32 quoted passages compared, 31 exact
+
+Every quotation from the Foreword through Lessons was compared character-for-character against its pack block. **One defect (TR-F1).**
+
+The two the coordinator singled out both check out:
+- **GitClear, "The throughput is real, but so is the debt it accrues"** — not in `revision-sources.md` (which excludes GitClear by design) but present in **`section-briefs.md` §1.4, quote 2**, and independently verified against gitclear.com in the first review round. Attribution "— GitClear, *The Maintainability Gap*, January 2026" is correct. **PASS.**
+- **Craft Docs, "This migration work was estimated to take 3-4 months. It was done in a week with AI tooling."** — pack B4, verbatim, and confirmed at the Pragmatic Engineer primary in the previous round. **PASS.**
+
+Verified exact against their packs: Hashimoto ×2 (research delegation; "If I'm coding, I want an agent planning") · Ty Smith (dead-time parallelism) · Microsoft ×2 (24% lift; the merged-PR-proxy caveat, with the source's `--` dashes preserved) · Osmani ×2 (the relayed "first human being to ever lay eyes on this code", correctly framed as a developer's line; the reconstruction pull quote) · Ronacher ×2 (defensive-code passage; "code I deeply care about") · Gordon ($40,000) · Storment (tokenmaxxing) · Cramer (the plateau passage) · Cloudflare ×3 ("the difference is the wiring"; AGENTS.md local-context passage; the choke-point passage) · Willison ("They're free now…") · Figma ×2 ($0.50 median; the 99-lines/threat-model passage) · Böckeler (the harness pull quote) · Fung ×3 (roadmap, JIT planning, "Where we still definitely want a human is expertise") · Chada (toil) · Thawar ×2 (one-tool-per-job; "The brain is a muscle") · Wells ×2 (juniors; code-review knowledge transfer) · QA Financial (the testing-question shift) · Monzo (the bottleneck pull quote).
+
+**Round-3 R-F1 is fixed.** Fung now reads *"When I first joined the Claude Code team, we wrote a pretty good six month roadmap…"*, matching the claude.com primary. **Round-3 A14 is also resolved** — the Wells quote is now introduced as "names it plainly about junior engineers" rather than by asserting an interview question that the source does not record.
+
+**Attributions are correct throughout**: Hashimoto (co-founded HashiCorp, now Ghostty) · Ty Smith (principal engineer, Uber) · Osmani (engineering leader at Google, *Agentic Code Review*, 15 June 2026) · Wysopal (co-founder and chief security evangelist, Veracode) · Ronacher (creator of Flask, formerly principal architect at Sentry) · Gordon (chief executive, Faros AI, relaying a CTO — correctly second-hand) · Storment (FinOps Foundation) · Cramer (Sentry co-founder and chief product officer) · Willison (independent developer, Django and Datasette) · Böckeler (Thoughtworks, 2 April 2026) · Fung (Anthropic) · Chada (engineering director, Uber developer platform) · Thawar (head of engineering, Shopify) · Wells (consultant, formerly BBC and Financial Times) · Deshayes and Haley (Monzo, 13 August 2026).
+
+## 2. Figure fidelity — ~19 distinct figures, all values correct
+
+Every printed number exists in the packs at the stated value. **One interpretation defect (TR-F2).**
+
+| Figure | Source of truth | Result |
+|---|---|---|
+| 90% weekly, "JetBrains, August 2026" (cover, foreword, Stage One, SVG 1) | briefs §0.1 | **PASS** — no day claimed, no "this week" |
+| "seven projects in ten had fewer than one contributor in five" | pack A7 | **PASS** — and re-fetched at the LeadDev primary this round: *"in 70% of projects, fewer than one in five contributors took part in an agentic workflow"*. Plain-language rendering correct |
+| 79% both jobs / one workflow in eight | pack A7 | **PASS** — re-fetched: both verbatim; the digest's "the same developer both reviewed and modified" matches |
+| 25,264 PRs / 2,361 repositories | pack A7 | **PASS** — primary says "2,361 popular GitHub repositories" |
+| DX 42 → 72 average lines; >half of merged code AI-authored | briefs §0.2 | **PASS** — "average", per the correction |
+| Microsoft ~24% merged-PR lift, with the authors' own caveat | pack B7 | **PASS** |
+| METR 24% forecast / 20% estimated / 19% slower | briefs §0.1 | Values **PASS**; caveats — see **TR-F3** |
+| Veracode 56% security pass rate | briefs §0.3 | **PASS** |
+| GitClear 4–10× and ~25% velocity | primary (round 1) | **FAIL — TR-F2** |
+| DX DXI 67 → 65 | briefs §0.2 | **PASS** — no "first decline" claim |
+| Cloudflare 93% / eleven months / thirty days | pack B1 | **PASS** |
+| Deloitte 11% in production | briefs | **PASS** — and correctly flagged as counting organisations, not people |
+| GitKraken 28% primary way of working | briefs | **PASS** — vendor conflict named ("sells the review tooling it identifies as the new bottleneck") |
+| Monzo ~10% of merged PRs · 1,800 tasks a day · ~3 weeks | briefs | **PASS** — "1,800 tasks a day", no "+" |
+| $40,000 tokens · $0.50 per review · 99 lines / 2,560 words / 68 precedents · Ramp 48 hours · Craft six months + two weeks → Jan 2026 | packs B8/B6/B4 | **PASS** |
+| Sentry "about half of engineering" | pack B5 | **PASS** |
+
+**All long-dropped items remain out**: Gartner 0 · Capgemini 90/52/37 funnel 0 (Capgemini is not cited at all in this version) · McDonald's/Wired 0 · PYMNTS 0 · Tessl 0 · DORA-Stanford 0 · Apple CVE id 0 · PagerDuty MTTR 0 · Lloyds £50m 0 · "first decline" 0 · 3.3 h/wk 0 · C# 58% 0 · "AI efficiency paradox" 0. Spec Kit, Kiro, Socol and Tuckman — cut in earlier rounds — also return 0, so nothing orphaned or resurrected.
+
+## 3. Attribution integrity — PASS
+
+- **Osmani's reconstruction framing** is the digest's own paraphrase of his argument, placed outside the quotation marks and consistent with pack A4's mechanism ("verification" vs "reconstruction"); no invented label is put in his mouth.
+- **Wells's juniors point** is quoted verbatim and framed as her view, with the substitution-of-agent-for-colleague inference drawn in the digest's voice.
+- **Storment and Gordon** are quoted verbatim from pack B8, with Gordon correctly relaying a CTO's words rather than speaking for himself.
+- **QA Financial** keeps the pack's load-bearing caveat verbatim in the copy: *"Those are the outlet's words rather than the bank's."*
+- **Thawar / comprehension debt** — pack B2's mechanisms state Thawar names it as the risk that worries him most, and the digest leaves the term unquoted, so no label is attributed as his coinage.
+- **Deloitte vs GitKraken** are explicitly distinguished as counting organisations and individuals respectively — a distinction the packs require and the previous drafts sometimes left implicit.
+- **Monzo** figures are labelled "the bank's own measurement, self-reported and unaudited".
+
+## 4. SVG data — PASS
+
+- **SVG 1, the adoption arc.** Four pinned figures, all pack-verified: 90% weekly (JetBrains), 42 → 72 average lines (DX), 19% slower against 24% forecast (METR), 93% after eleven months (Cloudflare). The curve itself is explicitly labelled *"The curve is schematic; the four pinned figures are measured"* — the right disclosure for a shape that is an argument rather than a dataset. Source line correct.
+- **SVG 2, METR diverging bars.** 24% / 20% / 19% correct and correctly signed; date "study published 10 July 2025" correct. Caveat gap at **TR-F3**.
+- **SVG 3, two-agent conflict.** 41.7% vs 19.8% correct, and the mandated rarity caveat (0.5% of concurrent pairs, ~4.3% of repositories) is carried in the source line.
+- **SVG 4, rollout sequences.** Unchanged from the version verified last round; all Cloudflare, Craft Docs and Sentry steps pack-supported.
+
+## 5. Mechanical — PASS (and the flagged cosmetic is already correct)
+
+- **Markers**: 1 of 8 → 8 of 8, sequential, one per numbered section.
+- **Reading-time arithmetic**: section-time tags sum to **23** (2+2+2+4+6+3+2+2); cover reads **27 min**, deep path reads **27 min** — the ~4-minute balance is the unnumbered foreword, How to Read, Meanwhile, Radar and Recommended Reading. Independently corroborated: **6,827 body words at ~250 wpm = 27 minutes.** The middle path is exact too — 2-minute path + Stage Three (4) + Stage Four (6) = **12**, the figure printed.
+- **Tags balanced** across all 18 element types; single `<style>`, single `<script>`; the only external asset is the Google Fonts stylesheet.
+- **URLs**: 40 unique, **every one traceable to `revision-sources.md` or `section-briefs.md`**; none fabricated.
+- **Meanwhile, On the Radar, Recommended Reading and the footer archive bar are byte-identical** to the previously cleared version.
+- **Cosmetic check requested — no defect found.** The Stage Five sources line already carries the separator: `…Deloitte Tech Trends 2026</a> &middot; <a …>GitKraken</a>…`. Rendered: *"Cloudflare (20 April 2026) · Deloitte Tech Trends 2026 · GitKraken (2026) · Chris Stokel-Walker, LeadDev (28 July 2026) · Bessemer Atlas on Shopify (2 April 2026) · QA Financial via Resultsense (5 May 2026)"*. No action needed.
+
+## 6. Greps — PASS
+
+- **Second person**: five hits, **all inside verbatim quotations** (Ty Smith, Osmani's pull quote, Fung's JIT line, Wells ×1, Thawar). **Zero in the digest's own voice**; "the reader" returns 0.
+- **Epistemic reframing: 1 clear structural instance**, matching the writer's claim and inside the cap of 2 — the verdict's *"A team whose output has soared while its review queue drowns **has not made a mistake**; it has reached stage three roughly on schedule."* Nearest misses, excluded on the same standard applied in the previous rounds: "not a destination with a date on it", "The wall is a capacity problem before it is a quality problem", "deliberately, rather than under pressure". The earlier Counterpoint instance is gone with the section.
+
+---
+
+# FAILURES
+
+### TR-F1 · Quote fidelity **regression** · Stage Three, Veracode
+**Printed:** "**Models** may be almost syntactically perfect, but they're still failing on nearly half of all tasks where security is needed."
+**Source (Businesswire, Wysopal):** "But the root problem remains: **models** may be almost syntactically perfect, but they're still failing on nearly half of all tasks where security is needed."
+**Problem:** the quotation opens mid-sentence and the initial letter has been silently capitalised, presenting a fragment as a whole sentence. This is the first review round's F1 defect returning — it was corrected to "[M]odels" in the second round, and the bracket has been lost in the rewrite.
+**Fix:** restore "**[M]odels** may be almost syntactically perfect…", or lead in — *"the root problem, he says, is that "models may be almost syntactically perfect…""*.
+
+### TR-F2 · Figure interpretation **regression** · Stage Three, GitClear
+**Printed:** "GitClear, which sells code analytics, **compared heavy AI users against their own pre-AI baseline: four to ten times as much code produced, for about 25% more velocity.**"
+**Source (gitclear.com, verified in round 1):** "Heavy AI users out-produce non-users by 4–10x, **but most of that gap pre-dated AI** — compared to their past selves, heavy AI users enjoyed a more modest 25% velocity gain."
+**Problem, two parts.** (a) **The comparator is wrong for one of the two figures.** The 4–10× is a comparison against *non-users*; only the 25% is against the users' own pre-AI baseline. As written, the sentence assigns both to the same comparison, which is a stronger and different claim than the source makes. (b) **The source's qualifier is dropped** — GitClear says most of the 4–10× gap pre-dated AI. That is the round-1 F7 defect returning in a new form; the qualifier is what stops the pairing reading as "AI multiplied output ten-fold and delivered 25%".
+**Fix:** "GitClear, which sells code analytics, compared heavy AI users both with non-users and with their own past selves: four to ten times as much code as non-users, though GitClear finds most of that gap pre-dated AI, and about 25% more velocity than their own pre-AI baseline."
+
+### TR-F3 · Caveat loss on a headline visual · Stage Three, METR
+**Printed:** SVG 2 subtitle — "Change in how long the same tasks took, experienced developers on repositories they knew well"; source line — "Source: METR, study published 10 July 2025. Tooling of that generation…"; prose — "The study is a year old and the models have moved on."
+**Problem:** `section-briefs.md` §S3 binds three caveats to this figure — *"Small sample, one year old, and the tooling was Cursor Pro with Claude 3.5/3.7 Sonnet — say all three."* The age is carried and the tooling generation is gestured at, but **the sample size is stated nowhere**: n=16 across 246 tasks. Earlier drafts carried it. A 19%-slower result given a full diverging-bar chart and three paragraphs, with no sample size anywhere on the page, overstates the weight of the evidence — the figures themselves are correct, which is why this is the softest of the three failures.
+**Fix (one clause):** add the sample to the SVG subtitle — "sixteen experienced developers, 246 tasks, on repositories they knew well" — or to the prose sentence that already carries the age.
+
+---
+
+# ADVISORIES
+
+- **A22 · Fung's title is truncated** to "director of engineering for Claude Code at Anthropic"; the pack gives "Director of Engineering for Claude Code **and Claude Cowork**". Accurate as far as it goes, not a misstatement.
+- **A23 · Cloudflare's choke-point quote still ends "…Every feature described in the bootstrap section below exists because we had that single choke point."** The referenced section exists in Cloudflare's post, not in the digest, so the phrase dangles. Trimming at "…without touching any client configs" loses nothing (carried A16).
+- **A24 · Resolved from earlier rounds, recorded for the log:** the Shopify LLM-proxy material is now paraphrased outside quotation marks, which clears the round-1 front-truncation advisory (A5/A17); the round-3 Counterpoint thread-forward gap (R-F2) is moot, since the Counterpoint no longer exists and the Stage Five → Case Study → Lessons chain reads forward.
+
+# COULD NOT VERIFY
+
+1. **Harvard/SSRN** is not cited in this version, so the standing 403 no longer bears on the issue.
+2. **Cramer's title** (Sentry co-founder and chief product officer) is not stated on the published gist itself; well established elsewhere, unchanged from previous rounds.
+3. **Rendering** assessed from the markup, not in a browser (900px container, 780-unit viewBoxes, responsive breakpoint).
+
+---
+
+# FINAL VERDICT: **FAIL-WITH-FIXES**
+
+Three failures, each a single-sentence edit: **TR-F1** and **TR-F2** are regressions of defects corrected in earlier rounds and reintroduced by the rewrite — worth noting as a pattern, since both concern the same two sources (Veracode and GitClear) in the same section. **TR-F3** is a missing sample size on a figure that now carries a whole chart.
+
+Otherwise the fact base is sound: 31 of 32 quotes exact against the packs, every printed figure present at the correct value, the LeadDev cluster re-confirmed at the primary this round, all long-dropped items still out, attribution integrity intact on every paraphrase the coordinator flagged, all four SVGs carrying pack-verified data with the schematic curve honestly labelled, reading-time arithmetic exact to the word count, every URL traceable, and Meanwhile, On the Radar, Recommended Reading and the archive bar byte-identical to the cleared version. The flagged Stage Five separator is already correct and needs no change.
+
+*Phase 5 third-round review complete. Re-check TR-F1, TR-F2 and TR-F3 only.*
+
+## Third-round fixes (main loop, 21 Aug 2026)
+
+- TR-F1 FIXED: Veracode quote restored to "[M]odels may be almost…" (bracketed casing alteration).
+- TR-F2 FIXED: GitClear comparison corrected to heavy-users-vs-non-users with the "most of that gap pre-dated AI" qualifier restored.
+- TR-F3 FIXED: METR n (16 developers, 246 tasks, RCT) added to the chart note and chart source line.
+
+Final verdict on the adoption-arc rewrite: PASS.
