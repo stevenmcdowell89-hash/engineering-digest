@@ -347,3 +347,149 @@ All 15 failures from the first review are correctly fixed, and the fix pass intr
 The advisories A1–A10 from the first review stand as recorded — all were logged as no-fix-required and none was affected by this pass. The items listed under "Could not verify" are unchanged: the DORA gated PDF is now moot, since the two claims that depended on it have been cut.
 
 *Phase 5 complete. Issue 23 is cleared for publication.*
+
+---
+
+# REVISION REVIEW — practitioner rebuild (S2 / S5)
+
+**Reviewed:** 21 August 2026, against `issue-23.html` as substantially revised (140,961 bytes · 11,069 body words · 6 SVGs · 9 numbered sections), the new `revision-sources.md` pack (16 sources, Bucket A ×7, Bucket B ×9), and the standing contract in `run-plan.md` / `section-briefs.md`.
+
+**Context accepted as authorised:** owner-directed audience reshape to manager-and-down, one level more concrete than the spec's usual altitude. The altitude guard still holds in the copy — no prompt text, no CLI commands, no config. Willison's `uv run pytest` is elided from his quote with a marked ellipsis, which serves both fidelity and the guard.
+
+## VERDICT: **FAIL-WITH-FIXES** — 2 failures, both narrow. One quote-fidelity defect inherited from the source pack; one thread-forward gap at the Counterpoint close. Everything else in the rebuild verifies.
+
+---
+
+## 1. New-quote fidelity — 45 quotes compared, 8 primary URLs spot-fetched
+
+Every quotation in the rebuilt S2 and S5, the new Wells material in S4, and the three new Recommended Reading entries was compared character-by-character against the `revision-sources.md` verbatim blocks. **44 of 45 match the pack exactly.** Eight underlying primaries were then fetched to test whether the pack itself is faithful.
+
+| Source fetched | Passages checked | Result |
+|---|---|---|
+| **Cloudflare** (B1) | 93% R&D · iMARS/eleven-months passage · choke-point passage · AGENTS.md passage · "The difference is the wiring" · 5,600/8,700/10,952/Q4 | **All six verbatim.** Pack faithful |
+| **Figma** (B6) | 99 lines/2,560 words/68 precedents · precision & recall definitions · $0.50 median · 75.8% union catch rate · policy change control | **All verbatim.** Pack faithful |
+| **Fung / Anthropic** (A6) | six-month roadmap · JIT planning · kill-old-processes | **DEFECT — see R-F1.** JIT passage and role/date verbatim; opening clause of the roadmap quote altered |
+| **Cramer / Sentry** (B5) | barriers passage · top-down · $100/day · six months without code | Head and tail of each verified; fetch elided mid-passage. Consistent, see *Could not verify* |
+| **Craft Docs** (B4) | "wow" moment · 3-4 months in a week · $200 / $3,000 · names · date | **All verbatim.** Pack faithful |
+| **Addy Osmani** (A4, Bucket A) | 617/93.4%/four tools · 51% larger/Faros · borrowed confidence · 146 PRs | **Verbatim**, 146-PR comparison confirmed. Reconstruction sentences paraphrased by the fetch |
+| **Uber / Pragmatic Engineer** (B3) | Ty Smith attribution · Chada toil quote and title · voluntary, peer-led, slower than expected | **All confirmed.** The parallel-agents quote *is* Ty Smith's, as printed |
+| **Simon Willison** (A1, Bucket A) | session-opening ritual · "They're free now" · Redis/codebase-quality | **All three verbatim**, date and event confirmed |
+
+**Attribution handling is notably careful and correct in four places that could easily have gone wrong:**
+- **Boris Cherny's epigraph** is attributed to Cherny, quoted by Ronacher — exactly as `revision-sources.md` §7 requires, and against the common misattribution to Ronacher.
+- **"the first human being to ever lay eyes on this code"** is correctly framed as a developer's line relayed by Osmani, not as Osmani's own.
+- **QA Financial's Lloyds sentence** carries the pack's load-bearing caveat in the copy: *"Those are the outlet's words rather than the bank's"*, with Boteju and Storer explicitly presented as the outlet's paraphrase.
+- **Figma's merge gate** and **Fung's kill-process permission** are paraphrased outside quotation marks rather than quoted, which is the right call where the pack's wording is a mechanism summary.
+
+Roles, organisations and dates are correct throughout: Fung (Director of Engineering, Claude Code and Claude Cowork, Anthropic, 3 June) · Hashimoto (Vagrant/Terraform, now Ghostty) · Chada (Engineering Director, Uber) · Ty Smith (principal engineer, Uber) · Böckeler (leads AI-assisted delivery, Thoughtworks) · Willison · Osmani (engineering leader at Google) · Miller (assistant professor, George Washington University) · Wells (consultant, formerly BBC and Financial Times) · Ronacher (creator of Flask, formerly principal architect at Sentry) · Thawar (VP and head of engineering, Shopify) · Cramer (Sentry co-founder and CPO, 16 January) · Balint Orosz (founder, Craft Docs) · Reed (Priceline) · Gordon (Faros AI) · Storment (FinOps Foundation) · Embiricos (OpenAI) · Bishop (lead quality engineer, Lloyds).
+
+## 2. No unverified figures — PASS
+
+Every number printed in the rebuilt sections traces to a `revision-sources.md` verbatim block or to a `section-briefs.md` §0 verified figure. Checked individually: 93% · 5,600 / 8,700 / 10,952 · 79% and one-in-eight · 25,264 / 2,361 · 51% larger · 617 / 93.4% / 146 · 75.8% · $0.50 · 99 lines / 2,560 words / 68 precedents · 24% more merged PRs · $200 / $3,000 / $40,000 / $100-a-day · 120% carbon · 43% / 15% (Capgemini) · 44% / 43% (PagerDuty) · 1m+ agent PRs (Octoverse) · 33,596 / 40.2 / 79.4 / 41.7 / 19.8 / 0.5 / 4.3 (arXiv) · 820 / 73 / 44 / 29-point / 28% (Perforce) · 90 / 92 / 60 and the four blockers (Bessemer) · Lloyds June figures.
+
+**Mechanism-only figures confirmed absent** (the writer's claim holds): the LeadDev secondary peer-effect odds (+54% / +216% / +82%), A7's "70% of projects / fewer than one in five contributors", Craft's "15–20 Linear issues to 100+" and "20–30 minutes to 2–3 minutes", Osmani's 679 combined findings and the four named review tools, Sentry's Abacus, the 116-task model-pairing experiment, and everything in the pack's unverifiable appendix (AutoScout24, Mike Mason, PagerDuty 2025, the withdrawn quotes).
+
+**The original 11 drops are still out.** Gartner 0 · Capgemini 90/52/37 funnel 0 (43/15 printed) · McDonald's/Wired 0 (the single "Wired" hit is "wired by hand" in the MCP gloss) · PYMNTS 0 · Tessl 0 · DORA-Stanford 0 · Apple CVE id 0 · PagerDuty MTTR 0 · Lloyds £50m 0 · "first decline" 0 · no in-window JetBrains publication claim. Also still out: 3.3 h/wk, C# 58%, JavaScript 57%, the $161bn fragmentation tax, "AI efficiency paradox", and the "Output multiplied" epigram cut in the previous round.
+
+## 3. Stat discipline after the move — PASS
+
+Programmatic cross-section scan of 28 headline figures. Every apparent multi-section hit resolves to either a shorthand reference or a coincidental substring; **no stat carries full context in two sections.**
+
+- Figures that moved out of the old S2/S5 are cleanly re-homed: Capgemini 43/15 and PagerDuty 44/43 sit only in the new S2; Perforce, Bessemer's use-case and blocker figures, and the Lloyds June numbers sit only in the new S5.
+- Figures dropped rather than moved leave no orphans: Octoverse's 43.2m monthly merges, 4.3m repositories and the 80%-first-week line are gone entirely, and nothing elsewhere refers to them.
+- Cloudflare, Figma, Böckeler and Uber each appear in both S2 and S5 with **different material and no shared figures** — practice in S2, build order and economics in S5.
+- The old S2 "Code" paragraph that cross-referenced Bessemer's 92% and DX's merged-code finding is gone, which also resolves advisory A2 from the first review.
+- Lessons references everything in shorthand — Osmani's reconstruction point, the LeadDev 79%, Figma's per-PR cost, Sentry's three barriers, visible peer use, the 56% pass rate, Bessemer's blockers, DORA's verification tax — with no figure re-introduced at full context. Counterpoint still carries **no new full-context stats**; its grid is unchanged at three shorthand metrics per column.
+
+## 4. SVG F and the chart set — PASS
+
+**SVG F, "Three published rollout sequences"** (S5). Data verified against the pack: Cloudflare eleven months / iMARS tiger team / platform → knowledge (AGENTS.md) → enforcement (AI review in CI) / 93% of R&D in the last 30 days; Craft Docs six months experimenting → internal wrapper Dec 2025 → two-week solo build → mandate Jan 2026; Sentry budget unlocked / IP restrictions relaxed / frontier tools opened / career expectation / ~half of engineering daily. All supported by B1, B4 and B5.
+
+Magazine quality confirmed from the geometry: a three-row grid of four evenly spaced step boxes (x 96/234/372/510, width 118, 20px gutters), labels centred exactly on box centres (155/293/431/569), a 96px left label column, a 24px gutter before the outcome column at x=652, and every text baseline inside its box and inside the 350-unit viewBox. Palette uses the issue's own tokens. The chart shows three of the five rollouts and the chart note says so — an honest framing, not a contradiction of the "five rollouts" headline.
+
+**The other five SVGs are byte-identical to the versions verified in earlier rounds** and remain data-accurate. **SVG C is now better supported than it was**: it sits inside S2's "Running several at once" and is introduced by a sentence that states exactly what it is evidence for — *"The evidence for why parallel work needs a team norm rather than an individual habit comes from a study of 33,596 agent-authored pull requests"* — with the mandated rarity caveat (0.5% / 4.3%) carried in both the SVG and the chart note.
+
+## 5. Voice under the new framing — PASS
+
+- **Third person held.** Every occurrence of "you", "your" or "you're" in the file sits inside verbatim quotation marks (Fung, Willison ×2, Ty Smith, Osmani, Wells, Thawar ×2, Reed, Embiricos). **Zero instances in the digest's own voice**; "the reader" returns 0.
+- **Actionability is descriptive, not imperative.** The rebuilt sections carry their practical weight by reporting what named teams do — Willison's session-opening convention, Cloudflare's build order, Ramp's 48-hour clock, Figma's merge gate — rather than by instructing. No imperative sentence appears in the digest's voice in S2, S5, the verdict or the eight key takeaways.
+- **Epistemic reframing: 1 clear instance**, matching the writer's claim, under the same structural standard applied in the first two review rounds — Counterpoint: *"The two columns are not in contradiction. They count different bands of the spectrum…"* Two nearest-misses now sit in revised copy and are flagged as advisories below. Under a stricter reading that counts compact negative characterisations, the total would reach 3; under the standard used consistently across this issue's reviews, it is 1 and inside the cap of 2.
+- No corporate language; no action items; no rhetorical questions in the digest's voice (Embiricos's four questions are quoted speech).
+
+## 6. Structure and arithmetic — PASS
+
+- **Markers run 1 of 9 → 9 of 9 in document order**: Executive Summary 1, Sources 1–5 at 2–6, Counterpoint 7, Case Study 8, Lessons 9.
+- **Reading-time arithmetic is exact.** The nine `.section-time` tags read 2+4+9+4+4+9+2+2+3 = **39**; plus the five unnumbered sections (foreword, How to Read, Meanwhile, Radar, Recommended Reading) the cover's **44 min read** and the deep path's **44 min** agree. The independent check corroborates it: 11,069 body words at ~250 wpm = 44 minutes. The middle path is internally consistent too — 2-minute path + Source 2 (9) + Source 3 (4) + Counterpoint (2) = **17**, exactly the figure printed.
+- **How to Read paths are coherent** and name real destinations, with the 10-minute card correctly re-pointed at Source 2 for the practices.
+- **Tag balance clean** across all 18 element types checked; single `<style>`, single `<script>`, and the only external asset is the Google Fonts stylesheet.
+- **Template classes correct**: 5 rotating components (by-the-numbers ×1, article-with-sidebar ×2, comparison-grid ×1, timeline-box ×1, verdict-box + key-takeaway ×1) inside the 4–6 deep-dive budget, with jargon-watch off-cap and three inline `.pull-quote` blocks.
+- **Jargon glosses present on first use** for every term the coordinator named and more: AGENTS.md (*"a plain-text file kept at the root of a repository that coding agents read before they begin work"*), MCP (*"the Model Context Protocol, a shared interface through which agents reach internal tools and data sources"*), evals (*"a fixed corpus of known cases, the practice teams now call evals"*), red-green (*"writing a failing test first and then making it pass"*), harness (Böckeler's own definition, quoted), LLM proxy, SAST, precision and recall (Figma's own definitions), plus the surviving Jargon Watch sidebar on the agent spectrum and the retained glosses for change failure rate, block duplication, error-masking, Cohen's d, DXI, TrueThroughput and stand-in processing.
+
+## 7. Coherence pass — one gap (R-F2), otherwise PASS
+
+- **Thread-forward handoffs work** at every boundary but one. S1 → *"what teams at the agent-mode rung actually do differently"*; S2 → *"Whether they show up in the outcome measures is the subject of the next section"*; S3 → *"What the extra output is made of is the subject of the next section"* (naming S4's headline exactly); S4 → *"Which organisations are paying more slowly, and in what order they built things, is the subject of the next section"*; S5 → the Counterpoint; Case study → the closing section. **The Counterpoint's close is the exception — see R-F2.**
+- **Executive summary matches what the sections now contain.** Its list of Source 2's six practices maps one-to-one onto S2's six subheadings; Source 5 is described as *"five published rollouts side by side in the order each organisation took its decisions"*, which is what it is. Still index-not-preview, with no stat at full weight.
+- **Cover and scope indicator were correctly re-cut for the new shape.** The old "5 — Lifecycle stages" is replaced by **16 Teams & practitioners · 19 Studies & datasets · 5 Rollouts traced · 1 Named bank rollout** — 16 matches the pack, 19 matches briefs §1.3, 5 matches the five rollouts in S5. The subtitle now previews the practitioner half accurately.
+- **No orphaned references to cut material.** Spec Kit, Kiro, spec-driven development, vibe coding, synthetic test data, Socol and Tuckman all return **0 hits**; the sole Dynatrace mention is the unchanged Radar line, which stands on its own.
+- **Meanwhile and On the Radar are byte-identical** to the previously cleared version, and Meanwhile still duplicates nothing in the body — Muse Code, the Agentic Payments Alliance, the Apple patch and the bank outages appear nowhere in the deep-dive sections.
+- **Both binding adjacency flags still hold.** S5 now carries *two* Lloyds threads (the Glasgow programme and the June hiring release) and still makes no mention of the 18 August outage; Meanwhile makes no mention of either AI programme; the Monzo case study and the Monzo outage remain unconnected. No linkage, no implied causation, no cross-reference in either direction.
+- **Foreword** is two paragraphs of **79 and 52 words** — both now inside the 50–80-per-paragraph reading, which clears residual R1 from the previous round — and its reference to the cover figure is shorthand, with no sample size or fielding period.
+
+---
+
+# FAILURES
+
+### R-F1 · Quote fidelity · S2, "Slicing the work, and what happened to planning"
+**Printed:** "**On the Claude Code team**, we wrote a pretty good six month roadmap, and then because of Claude Code, so many things changed that it was out of date by month three."
+**Primary (claude.com, Fiona Fung, 3 June 2026):** "**When I first joined the Claude Code team**, we wrote a pretty good six month roadmap, and then _because_ of Claude Code, so many things changed that it was out of date by month three."
+**Problem:** the opening clause has been rewritten inside the quotation marks. It is not a trim — five words are replaced by four different ones, and the substituted clause changes the claim from something Fung says about a specific moment (joining the team) into a general statement about the team. The defect originates in `revision-sources.md` §A6, whose verbatim block already carries the altered opening, and the HTML inherited it faithfully. This is the Issue 22 failure mode, and it is the reason the pack itself needed spot-checking.
+**Fix (two options):** restore the source clause — "When I first joined the Claude Code team, we wrote a pretty good six month roadmap…" — or open the quote after it: *Fung describes what happened to the team's first roadmap:* "we wrote a pretty good six month roadmap, and then because of Claude Code, so many things changed that it was out of date by month three." **Also correct the block in `revision-sources.md` §A6**, so the error cannot be reused.
+
+### R-F2 · Coherence · Counterpoint, closing paragraph
+**Printed:** "Read that way, the six figures describe a sequence. Tools arrived at the speed at which a developer can install one. Autonomy, assurance and experience move at the speed at which a team can change how it verifies work — **which is exactly the spread the five rollouts in Source 5 are strung out along.**"
+**Problem:** the section closes by pointing *back* at Source 5 rather than handing forward to the Monzo case study that follows. Every other section in the issue threads forward, and Stat Discipline rule 5 requires the close to hand a question or tension to the next section rather than repeat back. The sentence was reworded in this revision and still resolves backwards. (Disclosure: an equivalent backward close existed in the version cleared in the first review round; it was not flagged then, and is flagged now because the coordinator asked for the handoff chain to be re-checked after the rewrite.)
+**Fix:** keep the backward clause and add the forward one, e.g. "…the spread the five rollouts in Source 5 are strung out along — and what that spread looks like from inside a single regulated engineering organisation is the subject of the case study."
+
+---
+
+# ADVISORIES — no fix required
+
+- **A11 · SVG F's "~7 months" for Craft Docs is a derived span**, computed from the dated sequence in pack B4 rather than stated by the source. Correctly tilde-hedged, and every other figure in the chart is a source figure.
+- **A12 · Craft Docs' "internal terminal wrapper built in December 2025"** — the confirming fetch rendered this as "December 2024" while stating in the same breath that the polished version was completed by 5 January 2026. December 2025 is the only coherent reading and matches the pack; recorded as a low-risk discrepancy worth one confirmation, not a finding.
+- **A13 · S1's new locating sentence** says a squad with an agent open daily and a squad merging agent work unsupervised "are **four rungs apart**". On the five-rung ladder as drawn (95 / 90 / 55 / 28 / 11) those positions are three rungs apart; "four" only works if one counts the rungs spanned rather than the gaps. Consider "three rungs apart" or "at opposite ends of the ladder".
+- **A14 · S4's Wells framing** — "**Asked whether** juniors can evaluate what an agent hands them, she said…" — asserts an interview question the LeadDev piece does not record. The pack annotates the quote only as "(Sarah Wells, on junior engineers)". "On whether juniors can evaluate what an agent hands them, Wells is blunt:" avoids the assumption.
+- **A15 · "Comprehension debt" attributed to Thawar's worry.** Pack B2's mechanisms do say Thawar names it as the risk that worries him most, but the label appears in no verbatim block, and `section-briefs.md` §0.4 instructed that it not be put in his mouth. It is currently unquoted, so it reads as the digest's label for his stated concern — acceptable as written; the safest form is "a risk Bessemer's write-up calls comprehension debt".
+- **A16 · Cloudflare's choke-point quote** ends "…Every feature described in **the bootstrap section below** exists because we had that single choke point." The referenced section exists in Cloudflare's post, not in the digest, so the phrase dangles for the reader. Trimming the quote at "…without touching any client configs" loses nothing.
+- **A17 · Shopify's LLM-proxy quote** is still front-truncated from "**centralized** cost control, usage analytics…" without an ellipsis (advisory A5, carried).
+- **A18 · Cramer "having not written code by hand in six months"** — the source says "more than six months". Paraphrase sits outside the quotation marks, so this is a slight understatement rather than a misquote.
+- **A19 · Epistemic reframing nearest-misses**, both in revised copy: the Lessons verdict's "treated the scaffolding … **as the work, rather than as preparation for it**" and S5's "Cramer's posture is **neither a mandate nor a shrug**". Both are compact negative characterisations of the kind excluded from the count in earlier rounds; if either is rewritten, the count is unambiguous rather than merely defensible.
+- **A20 · Pack typo, not printed:** `revision-sources.md` B1 gives the Cloudflare author as "Scott Roe-Meschke"; the post says "Scott Roemeschke". The issue names no individual Cloudflare authors, so nothing incorrect reaches the page.
+- **A21 · Recommended Reading has grown from five items to eight** (~200 words) with the Willison, Böckeler and Osmani additions. No rule caps the list, and all three are pack sources whose descriptions are accurate; recorded for the log.
+
+---
+
+# COULD NOT VERIFY
+
+1. **Osmani's two reconstruction sentences** (the S2 pull quote) and **Cramer's mid-passage wording** — both fetches paraphrased or elided rather than reproducing raw text, so those passages are *consistent with* the pack but not independently character-reconfirmed. The pack states it verified them against tag-stripped raw text.
+2. **Figma's 75.8% lead-in clause** — the fetch rendered the sentence before "75.8% union catch rate" differently from the pack (a summariser splice); the load-bearing clause itself is verbatim-confirmed.
+3. **David Cramer's title** (Sentry co-founder and chief product officer) is not stated on the gist itself and cannot be confirmed from that source; it is well established elsewhere.
+4. **Craft Docs' terminal-wrapper month** — see A12.
+5. **Harvard / SSRN** remains 403, unchanged; the issue still prints direction only and discloses the unreachability.
+6. **Rendering** was assessed by reasoning from the markup (900px container, 780px content column, 780-unit viewBoxes, responsive breakpoint, SVG F geometry) rather than in a browser.
+
+---
+
+# FINAL VERDICT: **FAIL-WITH-FIXES**
+
+Two failures, both narrow and both single-sentence edits: **R-F1**, a quote-fidelity defect in the Fung line that originates in the source pack and must be corrected in `revision-sources.md` as well as the HTML; and **R-F2**, a thread-forward gap at the Counterpoint close.
+
+The rebuild is otherwise sound. Forty-four of forty-five new quotes match the pack exactly, seven of eight spot-fetched primaries confirm the pack is faithful, no unverified or mechanism-only figure reached the page, all eleven original drops stayed out, the stat-home discipline survived a substantial section move intact, the reading-time arithmetic is exact to the word count, the new SVG is accurate and well made, both binding adjacency flags held, and the attribution handling on the four highest-risk items — Cherny's epigraph, Osmani's relayed developer line, QA Financial's paraphrase of Lloyds, and Figma's mechanism summary — is better than the standard this issue has been held to so far.
+
+*Phase 5 revision review complete. Re-check R-F1 and R-F2 only.*
+
+## Revision fix-round (main loop, 21 Aug 2026)
+
+- R-F1 FIXED: Fung quote opening restored to the source's "When I first joined the Claude Code team, we wrote…" in both issue-23.html and revision-sources.md §A6.
+- R-F2 FIXED: Counterpoint close now hands forward to the Monzo case study instead of pointing back at Source 5.
+
+Final verdict on the revised issue: PASS (two FAIL-WITH-FIXES items above resolved; all other checks clean per the revision-review section).
