@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Digest — Deep Dive: The Constraint Moved</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Source Sans 3',sans-serif;color:var(--body-text);background:var(--off-white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}.magazine{max-width:900px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(10,22,40,.08);position:relative}
+
+/* ═══ BACK TO ARCHIVE ═══ */
+.back-to-archive{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--navy);color:var(--teal);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(0,180,216,.25)}
+
+/* ═══ PROGRESS BAR — sticky top ═══ */
+.progress-bar{position:sticky;top:0;z-index:100;height:3px;background:rgba(10,22,40,.08)}.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--alert-red),var(--coral));transition:width .15s ease-out}
+
+/* ═══ SECTION MARKER — floating chapter numbers ═══ */
+.section-marker{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}
+.section-marker .marker-num{font-family:'Playfair Display',serif;font-size:13px;font-weight:900;color:var(--white);background:var(--alert-red);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1}
+.section-marker .marker-of{font-size:11px;font-weight:600;color:var(--med-gray);letter-spacing:1px}
+
+/* ═══ COVER — left-aligned investigative, scope indicator ═══ */
+.cover{background:var(--navy);padding:0;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--alert-red),var(--coral),var(--alert-red));z-index:3}
+.cover::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:1}
+.cover-inner{padding:44px 60px 0;text-align:left;position:relative;z-index:2}
+.deep-badge{display:inline-block;background:var(--alert-red);color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:20px}
+.cover h1{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;color:var(--white);line-height:1.02;margin-bottom:10px;max-width:700px}
+.cover-sub{font-family:'Source Sans 3',sans-serif;font-size:18px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:24px;max-width:640px}
+.cover-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cover-date{font-family:'Playfair Display',serif;font-size:18px;color:var(--teal)}
+.cover-issue{font-size:12px;color:var(--med-gray);letter-spacing:1px}
+.week-badge{display:inline-block;background:transparent;color:var(--accent-orange);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--accent-orange);border-radius:2px;margin-top:18px}
+.cover-scope{margin-top:28px;padding:24px 0;border-top:1px solid rgba(255,255,255,.1);display:flex;gap:40px}
+.scope-item{text-align:left}.scope-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--alert-red);line-height:1}.scope-label{font-size:11px;font-weight:600;color:var(--med-gray);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.cover-stat-band{padding:28px 60px;background:rgba(220,38,38,.08);border-top:1px solid rgba(220,38,38,.18);position:relative;z-index:2}
+.cover-stat-band .stat-figure{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:var(--alert-red);line-height:1;display:inline}
+.cover-stat-band .stat-context{font-size:15px;color:rgba(255,255,255,.6);margin-top:4px}
+
+/* ═══ VOL. II IDENTITY STRAP ═══ */
+.cover-identity-strap{display:flex;justify-content:center;align-items:center;gap:16px;padding:22px 60px;background:rgba(0,180,216,.10);border-bottom:1px solid rgba(0,180,216,.35);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);position:relative;z-index:2;flex-wrap:wrap}
+.cover-identity-strap .cis-vol{background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-size:12px;font-weight:800;letter-spacing:2.5px;line-height:1}
+.cover-identity-strap span:not(.cis-vol):not(:last-child)::after{content:'·';margin-left:16px;color:rgba(255,255,255,.4)}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:40px 60px;border-bottom:1px solid var(--light-gray)}.section:last-child{border-bottom:none}
+.section.tight{padding-top:32px;padding-bottom:32px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.section-label.alert{color:var(--alert-red)}.section-label.orange{color:var(--accent-orange)}.section-label.green{color:var(--accent-green)}
+h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:20px}
+h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin:24px 0 10px}h3:first-child{margin-top:0}
+p{margin-bottom:12px}p:last-child{margin-bottom:0}
+.section-time{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:var(--med-gray);margin-left:12px;letter-spacing:0;vertical-align:middle;text-transform:none;font-style:normal}
+
+/* ═══ FOREWORD ═══ */
+.foreword{padding:32px 60px;border-bottom:1px solid var(--light-gray)}.foreword p{font-size:16px;line-height:1.8;color:var(--body-text);max-width:760px}
+.foreword p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:56px;float:left;line-height:.8;margin-right:8px;margin-top:4px;color:var(--navy);font-weight:900}
+
+/* ═══ HOW TO READ ═══ */
+.how-to-read{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin:20px 0}
+.htr-card{border:1px solid var(--light-gray);border-radius:4px;padding:20px;text-align:center}
+.htr-card .htr-time{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--deep-teal);line-height:1}
+.htr-card .htr-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-top:4px;margin-bottom:8px}
+.htr-card p{font-size:13px;line-height:1.5;color:var(--body-text);margin:0}
+
+/* ═══ STATS ROW ═══ */
+.stats-row{display:flex;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden}.stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--light-gray)}.stat:last-child{border-right:none}.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);line-height:1}.stat-num.red{color:var(--alert-red)}.stat-num.teal{color:var(--deep-teal)}.stat-num.green{color:var(--accent-green)}.stat-label{font-size:10px;font-weight:600;color:var(--med-gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ═══ PULL QUOTE ═══ */
+.pull-quote{border-left:4px solid var(--alert-red);padding:16px 24px;margin:24px 0;background:#FEF2F2}.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:6px}.pull-quote cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+.pq-bar{background:var(--navy);padding:36px 60px;text-align:center;border-bottom:1px solid var(--light-gray)}.pq-bar p{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--white);line-height:1.4;max-width:720px;margin:0 auto 6px}.pq-bar cite{font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:12px;color:var(--med-gray)}
+
+/* ═══ ARTICLE WITH SIDEBAR ═══ */
+.article-with-sidebar{display:grid;grid-template-columns:1fr 300px;gap:32px;margin-top:16px}
+.sidebar-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:20px;margin-bottom:16px}
+.sidebar-box .sb-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:10px}
+.sidebar-box .sb-stat{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1;margin-bottom:4px}
+.sidebar-box .sb-context{font-size:13px;color:var(--body-text);line-height:1.5}
+.sidebar-box .sb-context + .sb-context{margin-top:8px}
+.sidebar-box .sb-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;line-height:1.4;padding:7px 0;border-bottom:1px solid var(--light-gray)}
+.sidebar-box .sb-row:last-child{border-bottom:none}
+.sidebar-box .sb-row strong{font-family:'Playfair Display',serif;font-size:17px;font-weight:900;color:var(--navy);line-height:1}
+.sidebar-box.urgent{border-color:var(--alert-red);border-left:4px solid var(--alert-red);background:#FEF2F2}
+.sidebar-box.urgent .sb-title{color:var(--alert-red)}
+
+/* ═══ BY-THE-NUMBERS CALLOUT ═══ */
+.by-the-numbers{border:2px solid var(--teal);border-radius:4px;padding:24px 28px;margin:24px 0}
+.btn-title{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.btn-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.btn-grid.five{grid-template-columns:repeat(5,1fr);gap:12px}
+.btn-item{text-align:center}
+.btn-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);line-height:1}
+.btn-grid.five .btn-num{font-size:26px}
+.btn-label{font-size:11px;color:var(--med-gray);margin-top:2px;line-height:1.35}
+
+/* ═══ JARGON WATCH ═══ */
+.jargon-watch{float:right;width:270px;margin:6px 0 18px 26px;background:var(--off-white);border-left:3px solid var(--deep-teal);padding:14px 16px 16px;font-family:'Source Sans 3',sans-serif}
+.jargon-watch .jw-label{display:block;font-size:10px;font-weight:700;color:var(--deep-teal);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.jargon-watch .jw-term{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.jargon-watch .jw-body{font-size:13px;line-height:1.55;color:var(--body-text);margin:0}
+.jargon-watch .jw-body + .jw-body{margin-top:6px}
+.jargon-watch .jw-link{display:block;margin-top:8px;font-size:11px;font-style:italic;color:var(--deep-teal);text-decoration:none}
+.jargon-watch .jw-link:hover{text-decoration:underline}
+
+/* ═══ CHARTS ═══ */
+.chart-wrap{margin:26px 0}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.chart-note{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:8px;line-height:1.55}
+
+/* ═══ COUNTERPOINT — green accent, comparison layout ═══ */
+.counterpoint-section{background:var(--off-white);padding:40px 60px;border-bottom:1px solid var(--light-gray);border-left:5px solid var(--accent-green)}
+.counterpoint-pill{display:inline-block;background:var(--accent-green);color:var(--navy);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:12px;margin-bottom:10px}
+.comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:24px 0;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden;background:var(--white)}
+.compare-col{padding:24px}
+.compare-col.left{background:rgba(220,38,38,.04);border-right:1px solid var(--light-gray)}
+.compare-col.right{background:rgba(0,212,170,.04)}
+.compare-col .cc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.compare-col.left .cc-label{color:var(--alert-red)}
+.compare-col.right .cc-label{color:var(--accent-green)}
+.compare-col .cc-metric{font-size:14px;color:var(--body-text);margin-bottom:6px;line-height:1.5}
+.compare-col .cc-metric strong{color:var(--navy)}
+.compare-col .cc-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1;margin-top:12px}
+.compare-col .cc-num:first-of-type{margin-top:0}
+.compare-col.left .cc-num{color:var(--alert-red)}
+.compare-col.right .cc-num{color:var(--accent-green)}
+
+/* ═══ TIMELINE BOX ═══ */
+.timeline-box{background:var(--off-white);border:1px solid var(--light-gray);border-radius:4px;padding:24px 28px;margin:20px 0}
+.timeline-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:14px}
+.timeline-track{border-left:3px solid var(--light-gray);padding-left:20px;margin-left:4px}
+.timeline-track p{margin-bottom:14px}
+.timeline-track p:last-child{margin-bottom:0}
+.tl-red{color:var(--alert-red);font-weight:700}.tl-navy{color:var(--navy);font-weight:700}.tl-teal{color:var(--deep-teal);font-weight:700}
+
+/* ═══ LESSONS — navy background, verdict callout ═══ */
+.lessons-section{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 60px;border-bottom:1px solid var(--light-gray)}
+.lessons-section .section-label{color:var(--teal)}
+.lessons-section h2{color:var(--white)}
+.lessons-section h3{color:var(--teal);font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:700;letter-spacing:.5px}
+.lessons-section p{color:rgba(255,255,255,.78)}
+.lessons-section .source-tag{color:rgba(255,255,255,.45)}
+.lessons-section .source-tag a{color:var(--teal)}
+.lessons-section .section-time{color:rgba(255,255,255,.5)}
+.verdict-box{background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);border-radius:4px;padding:24px 28px;margin-bottom:28px}
+.verdict-box .vb-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--alert-red);margin-bottom:8px}
+.verdict-box p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--white);line-height:1.45;margin:0}
+.key-takeaway{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:24px 28px;margin:28px 0}
+.key-takeaway .kt-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.key-takeaway ul{list-style:none;margin:0;padding:0}
+.key-takeaway li{padding:6px 0;color:rgba(255,255,255,.85);font-size:15px;line-height:1.6;padding-left:16px;position:relative}
+.key-takeaway li::before{content:'\2192';position:absolute;left:0;color:var(--teal)}
+
+/* ═══ MEANWHILE — deep dive catch-up ═══ */
+.meanwhile-section{background:var(--off-white);padding:40px 60px;border-top:2px solid var(--teal);border-bottom:1px solid var(--light-gray)}
+.meanwhile-intro{font-style:italic;color:var(--med-gray);font-size:15px;margin-bottom:20px}
+.meanwhile-lead{border-left:3px solid var(--teal);background:var(--white);padding:16px 20px;margin-bottom:14px;border-radius:0 4px 4px 0}
+.meanwhile-lead .ml-cat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--deep-teal);margin-bottom:4px}
+.meanwhile-lead p{font-size:14px;line-height:1.6;margin:0}
+.meanwhile-lead strong{color:var(--navy)}
+.meanwhile-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:12px;border:1px solid var(--light-gray);border-radius:4px;overflow:hidden;background:var(--white)}
+.meanwhile-grid .mw-item{padding:14px 18px;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.55}
+.meanwhile-grid .mw-item:nth-child(odd){border-right:1px solid var(--light-gray)}
+.meanwhile-grid .mw-item strong{color:var(--navy)}
+.mw-src a{color:var(--deep-teal);text-decoration:none;font-style:italic;font-size:11px}
+.mw-src a:hover{text-decoration:underline}
+
+/* ═══ COMPACT RADAR ═══ */
+.radar-compact{list-style:none;margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.radar-compact li{display:flex;gap:10px;padding:10px 16px;border-bottom:1px solid var(--light-gray);font-size:13px;line-height:1.5;align-items:flex-start}
+.radar-compact li:nth-child(odd){border-right:1px solid var(--light-gray)}
+.radar-compact .rc-date{font-family:'Playfair Display',serif;font-weight:900;color:var(--deep-teal);font-size:13px;white-space:nowrap;min-width:56px}
+.radar-compact .rc-date.urgent{color:var(--alert-red)}
+.radar-compact strong{color:var(--navy)}
+.radar-compact a{color:var(--deep-teal);text-decoration:none;font-style:italic;font-size:11px}
+.radar-compact a:hover{text-decoration:underline}
+
+/* ═══ READING LIST ═══ */
+.reading-list{list-style:none;margin:16px 0}
+.reading-list li{padding:10px 0;border-bottom:1px solid var(--light-gray)}
+.reading-list li:last-child{border-bottom:none}
+.reading-list .rl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.reading-list .title{font-weight:600;color:var(--navy);font-size:14px}
+.reading-list .source{font-size:12px;color:var(--med-gray);white-space:nowrap}
+.reading-list .rl-note{font-size:13px;line-height:1.55;color:var(--body-text);margin-top:4px}
+.reading-list a{color:var(--navy);text-decoration:none}.reading-list a:hover{text-decoration:underline}
+
+/* ═══ SOURCE TAG ═══ */
+.source-tag{font-size:12px;color:var(--med-gray);font-style:italic;margin-top:16px;line-height:1.6}
+.source-tag a{color:var(--deep-teal);text-decoration:none}.source-tag a:hover{text-decoration:underline}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:36px 60px;text-align:center}
+.footer-vol{display:inline-block;background:var(--teal);color:var(--navy);padding:5px 12px;border-radius:2px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;line-height:1}
+.footer-brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);font-weight:700}
+.footer-sub{font-size:12px;color:var(--med-gray);letter-spacing:1px;margin-top:4px}
+.footer-next{margin-top:14px;font-size:13px;color:var(--teal)}
+.archive-bar{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+.archive-bar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--med-gray);margin-right:8px}
+.archive-pill{display:inline-block;font-size:11px;padding:4px 12px;border-radius:12px;color:var(--med-gray);border:1px solid rgba(255,255,255,.1);letter-spacing:.5px}
+.archive-pill.current{background:var(--deep-teal);color:var(--white);border-color:var(--deep-teal)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:700px){.cover-inner,.section,.foreword,.pq-bar,.footer,.lessons-section,.counterpoint-section,.cover-stat-band,.meanwhile-section,.cover-identity-strap{padding-left:20px;padding-right:20px}.cover h1{font-size:34px}h2{font-size:26px}.article-with-sidebar,.comparison-grid,.how-to-read{grid-template-columns:1fr}.meanwhile-grid,.radar-compact{grid-template-columns:1fr}.meanwhile-grid .mw-item:nth-child(odd){border-right:none}.radar-compact li:nth-child(odd){border-right:none}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--light-gray)}.cover-scope{flex-direction:column;gap:16px}.btn-grid,.btn-grid.five{grid-template-columns:1fr}.jargon-watch{float:none;width:auto;margin:18px 0}}
+</style>
+</head>
+<body>
+<div class="magazine">
+
+<a href="../../index.html" class="back-to-archive" aria-label="Back to all issues"><span style="font-size:14px;line-height:1">&#8592;</span><span>All Issues</span></a>
+
+<!-- ═══ PROGRESS BAR ═══ -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- ═══ COVER ═══ -->
+<header class="cover">
+  <div class="cover-identity-strap">
+    <span class="cis-vol">Vol. II</span>
+    <span>Issue 23</span>
+    <span>21 August 2026</span>
+    <span>30 min read</span>
+  </div>
+  <div class="cover-inner">
+    <div class="deep-badge">Deep Dive</div>
+    <h1>The Constraint Moved</h1>
+    <div class="cover-sub">Nine in ten professional developers now use a coding agent every week. Nineteen studies, more than 30,000 survey respondents and one UK bank&rsquo;s own published numbers on what that changed across the lifecycle &mdash; and where the work landed instead.</div>
+    <div class="cover-meta">
+      <span class="cover-date">21 August 2026</span>
+      <span class="cover-issue">|&ensp;Issue 23&ensp;|&ensp;Engineering Digest&ensp;|&ensp;Deep Dive</span>
+    </div>
+    <div class="week-badge">15 &ndash; 21 August 2026</div>
+    <div class="cover-scope">
+      <div class="scope-item"><div class="scope-num">19</div><div class="scope-label">Studies &amp; datasets</div></div>
+      <div class="scope-item"><div class="scope-num">30,000+</div><div class="scope-label">Survey respondents</div></div>
+      <div class="scope-item"><div class="scope-num">5</div><div class="scope-label">Lifecycle stages</div></div>
+      <div class="scope-item"><div class="scope-num">1</div><div class="scope-label">Named bank rollout</div></div>
+    </div>
+  </div>
+  <div class="cover-stat-band">
+    <div class="stat-figure">90%</div>
+    <div class="stat-context">Nine in ten professional developers use a coding agent at work at least weekly; 68% use one daily. JetBrains, more than 15,000 professional developers, fielded May&ndash;July 2026, published August 2026.</div>
+  </div>
+</header>
+
+<!-- ═══ FOREWORD ═══ -->
+<section class="foreword">
+  <div class="section-label">Foreword</div>
+  <p>The largest fresh sample yet taken of coding-agent use was published this month: nine in ten professional developers now reach for a coding agent at least weekly. The figure lands on top of a year of studies measuring the other side of the ledger: what generated code costs to review and maintain, how much of it carries a security flaw, and what happens to the engineers who would once have written it by hand.</p>
+  <p>Adoption is settled. Outcomes are not, and the two findings are being reported as though they were one. This issue works through nineteen studies, surveys and datasets, one randomised trial, one merge-conflict analysis of nearly thirty-four thousand agent-authored pull requests, and one UK bank&rsquo;s published numbers from its own agent platform. Read together they describe where the work now sits.</p>
+</section>
+
+<!-- ═══ HOW TO READ THIS ═══ -->
+<section class="section">
+  <div class="section-label">How to Read This</div>
+  <h2>Three Paths Through This Issue</h2>
+  <div class="how-to-read">
+    <div class="htr-card">
+      <div class="htr-time">2 min</div>
+      <div class="htr-label">The Headlines</div>
+      <p>The cover figure, the Executive Summary, and the verdict box in Lessons &amp; Implications. The whole argument in miniature.</p>
+    </div>
+    <div class="htr-card">
+      <div class="htr-time">10 min</div>
+      <div class="htr-label">The Full Picture</div>
+      <p>Add Source 1 for what the adoption numbers are actually counting, Source 3 for expected against measured outcomes, and the Counterpoint for how the two reconcile.</p>
+    </div>
+    <div class="htr-card">
+      <div class="htr-time">30 min</div>
+      <div class="htr-label">The Deep Read</div>
+      <p>All five source sections, the Monzo case study and the full Lessons, then Meanwhile, On the Radar and Recommended Reading for the rest of the week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXECUTIVE SUMMARY — 1 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">1</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Executive Summary</div>
+  <h2>Every input measure is rising. The outcome measures are not.<span class="section-time">(2 min)</span></h2>
+
+  <p>Adoption is settled and outcomes are not, and that gap is the subject of this issue. Every measure of <em>input</em> is climbing steeply: weekly agent use, daily agent use, the share of merged code that is AI-authored, pull-request volume, pull-request size, and spend. Every measure of <em>outcome</em> that has been independently observed is flat, falling, or has not been measured at all: developer experience, change confidence, the security pass rate of generated code, junior skill formation, and the share of organisations running agentic AI in production rather than in a pilot. The constraint on software delivery has moved from writing code to verifying, reviewing and maintaining it. Most rollouts are still resourced as though it sits where it used to.</p>
+
+  <p>The evidence base here is nineteen studies, surveys and datasets, covering more than thirty thousand disclosed survey respondents, plus one bank&rsquo;s own telemetry. It carries a measurement problem that has to be named before any of it can be read. The word &ldquo;agent&rdquo; covers at least three distinct things in these sources, from a chat assistant answering a question to software with standing authority to act in production. Source 1 pins the three bands down and tags every survey in this issue with the one it measures; the rest of the issue depends on that decoder.</p>
+
+  <p>From there the issue follows the work. Source 2 walks the five lifecycle stages &mdash; specification, code, test, review and merge, and operations &mdash; and finds adoption thinning sharply as it moves downstream. Source 3 sets the modelled economics of an AI rollout against what telemetry and self-report actually recorded over the past year. Source 4 examines what the output does to a codebase over four years of commit history, and what assisted work does to the people learning the craft. Source 5 looks at the organisations whose numbers hold up and asks what they built before the agents arrived. The Counterpoint reconciles the surveys that disagree; the case study is Monzo&rsquo;s published account of its own agent platform, including the bottleneck it found on the other side.</p>
+</section>
+
+<!-- ═══ SOURCE 1 — 2 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">2</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Source 1 &mdash; Adoption</div>
+  <h2>Current state: how many, and of what<span class="section-time">(4 min)</span></h2>
+
+  <div class="by-the-numbers">
+    <div class="btn-title">The adoption ladder</div>
+    <div class="btn-grid five">
+      <div class="btn-item"><div class="btn-num">95%</div><div class="btn-label">Using AI tools at least weekly</div></div>
+      <div class="btn-item"><div class="btn-num">90%</div><div class="btn-label">Using a coding agent at least weekly</div></div>
+      <div class="btn-item"><div class="btn-num">55%</div><div class="btn-label">Regular agent use</div></div>
+      <div class="btn-item"><div class="btn-num">28%</div><div class="btn-label">Autonomous AI as the primary way of working</div></div>
+      <div class="btn-item"><div class="btn-num">11%</div><div class="btn-label">Agentic AI running in production</div></div>
+    </div>
+  </div>
+
+  <div class="jargon-watch">
+    <span class="jw-label">Jargon Watch</span>
+    <span class="jw-term">Coding agent, agent-mode, autonomous agent</span>
+    <p class="jw-body">A <strong>coding agent</strong> plans and executes multi-step work from an instruction, rather than completing the next line the way an autocomplete tool does.</p>
+    <p class="jw-body"><strong>Agent-mode</strong> describes the arrangement most organisations run today: the agent carries out the task, and a human still initiates it, reviews the result and merges it.</p>
+    <p class="jw-body">An <strong>autonomous</strong> or <strong>production agent</strong> acts with action authority and no per-step human approval.</p>
+    <p class="jw-body">A <strong>remote</strong> or <strong>cloud agent</strong> runs on the vendor&rsquo;s infrastructure rather than on the developer&rsquo;s own machine.</p>
+    <a class="jw-link" href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains, AI coding agent adoption 2026 &rarr;</a>
+  </div>
+
+  <p>Those five figures span a factor of eight, and each of them is accurately reported by its publisher. They differ because they count different activities in different populations. The 95% and the 11% sit at opposite ends of a spectrum that the industry has not agreed a vocabulary for, and every argument about whether AI is working in engineering organisations runs aground on that spectrum somewhere.</p>
+
+  <p>Three bands are enough to separate them. At the <strong>assistant</strong> end, a human writes and the AI suggests or answers &mdash; autocomplete, chat, inline completion. In the middle sits <strong>agent-mode</strong>, where the agent plans and executes multi-step work while a human initiates, reviews and merges it. At the far end are <strong>autonomous</strong> or <strong>production agents</strong>, acting with authority and without per-step approval. Deloitte publishes the cleanest version of that ladder in the pool, describing augmentation as &ldquo;today&rsquo;s reality where agents enhance human worker capabilities&rdquo;, automation as &ldquo;an emerging capability where agents automate tasks within processes defined by humans&rdquo;, and true autonomy as &ldquo;a future state in which artificial general intelligence enables agents to work with minimal oversight&rdquo;. Its own numbers land where that framing predicts: 11% of organisations have agentic AI in production, 14% consider themselves ready to deploy, 38% are piloting and 30% are exploring, while 42% are still developing a roadmap and 35% have no formal agentic strategy at all. Deloitte surveys organisations across industries rather than developers, and does not disclose a sample size, so it belongs on this ladder as a measure of organisations rather than of engineers.</p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal bar chart comparing five adoption figures from four sources, banded by position on the agent spectrum">
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">What the adoption numbers are counting</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Five headline figures, five different definitions of &#8220;using AI&#8221;</text>
+
+      <!-- legend -->
+      <rect x="0" y="50" width="10" height="10" fill="#00B4D8"/><text x="16" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Assistant band</text>
+      <rect x="115" y="50" width="10" height="10" fill="#0077B6"/><text x="131" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Agent-mode band</text>
+      <rect x="245" y="50" width="10" height="10" fill="#FF6B35"/><text x="261" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Autonomous band</text>
+      <rect x="378" y="50" width="10" height="10" fill="#DC2626"/><text x="394" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Autonomous band (organisations)</text>
+
+      <!-- gridlines -->
+      <line x1="320" y1="76" x2="320" y2="288" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="425" y1="76" x2="425" y2="288" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="530" y1="76" x2="530" y2="288" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="635" y1="76" x2="635" y2="288" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="740" y1="76" x2="740" y2="288" stroke="#E8EDF2" stroke-width="1"/>
+
+      <!-- rows -->
+      <text x="0" y="96" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Using AI tools at least weekly</text>
+      <text x="0" y="111" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Pragmatic Engineer &#183; n=906</text>
+      <rect x="320" y="86" width="399" height="24" fill="#00B4D8" rx="2"/>
+      <text x="729" y="103" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">95%</text>
+
+      <text x="0" y="140" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Using a coding agent at least weekly</text>
+      <text x="0" y="155" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">JetBrains &#183; 15,000+ developers</text>
+      <rect x="320" y="130" width="378" height="24" fill="#0077B6" rx="2"/>
+      <text x="708" y="147" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">90%</text>
+
+      <text x="0" y="184" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Regular agent use</text>
+      <text x="0" y="199" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Pragmatic Engineer &#183; n=906</text>
+      <rect x="320" y="174" width="231" height="24" fill="#0077B6" rx="2"/>
+      <text x="561" y="191" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">55%</text>
+
+      <text x="0" y="228" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Autonomous AI as primary way of working</text>
+      <text x="0" y="243" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">GitKraken &#183; n=554</text>
+      <rect x="320" y="218" width="118" height="24" fill="#FF6B35" rx="2"/>
+      <text x="448" y="235" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">28%</text>
+
+      <text x="0" y="272" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Agentic AI running in production</text>
+      <text x="0" y="287" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Deloitte &#183; organisations, cross-industry</text>
+      <rect x="320" y="262" width="46" height="24" fill="#DC2626" rx="2"/>
+      <text x="376" y="279" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">11%</text>
+
+      <!-- axis -->
+      <line x1="320" y1="296" x2="740" y2="296" stroke="#8899AA" stroke-width="1"/>
+      <text x="320" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">0%</text>
+      <text x="425" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">25%</text>
+      <text x="530" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">50%</text>
+      <text x="635" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">75%</text>
+      <text x="740" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">100%</text>
+      <text x="0" y="326" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Sources: Pragmatic Engineer (Jan&#8211;Feb 2026), JetBrains (fielded May&#8211;Jul 2026), GitKraken (Aug 2026), Deloitte (2026).</text>
+    </svg>
+    <p class="chart-note">The four surveys measure different populations as well as different activities: three count developers, Deloitte counts organisations.</p>
+  </div>
+
+  <h3>The three surveys, and what each one asked</h3>
+
+  <p>JetBrains sits in the middle band. Its questions cover agents and remote or cloud agents rather than autocomplete, and its sample is more than fifteen thousand professional developers fielded between May and July 2026. Alongside the headline weekly and daily figures homed on the cover, it produced the sharpest picture yet of which tools those developers actually use. Claude Code reached 39% worldwide, up from 18% in January 2026, rising to 47% in the United States, and it is the most-used tool for 31% of developers. OpenAI&rsquo;s coding agent Codex reached 16%, up from 3% in January, with awareness of it climbing from 27% to 65%. GitHub Copilot is at 21%, down from 29% a year earlier, on 79% awareness. Cursor is at 12%, down from 18% in January, and down from 28% to 16% in China. JetBrains AI is at 9%, the open-source coding agent OpenCode at 7%, and Google&rsquo;s Antigravity at 6%, rising to 15% in India.</p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slope chart showing coding-agent tool share moving between January 2026 and May to July 2026">
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Eight months of tool-share churn</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Share of professional developers using each coding agent</text>
+
+      <!-- axes -->
+      <line x1="235" y1="60" x2="235" y2="300" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="545" y1="60" x2="545" y2="300" stroke="#E8EDF2" stroke-width="1"/>
+      <text x="235" y="318" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#8899AA" text-anchor="middle">January 2026</text>
+      <text x="545" y="318" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#8899AA" text-anchor="middle">May&#8211;July 2026</text>
+
+      <!-- Claude Code 18 -> 39 : y = 300 - v*5.333 -->
+      <line x1="235" y1="204" x2="545" y2="92" stroke="#00B4D8" stroke-width="3"/>
+      <circle cx="235" cy="204" r="5" fill="#00B4D8"/><circle cx="545" cy="92" r="5" fill="#00B4D8"/>
+      <text x="225" y="208" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Claude Code 18%</text>
+      <text x="558" y="96" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Claude Code 39%</text>
+
+      <!-- Codex 3 -> 16 -->
+      <line x1="235" y1="284" x2="545" y2="215" stroke="#0077B6" stroke-width="3"/>
+      <circle cx="235" cy="284" r="5" fill="#0077B6"/><circle cx="545" cy="215" r="5" fill="#0077B6"/>
+      <text x="225" y="288" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Codex 3%</text>
+      <text x="558" y="219" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Codex 16%</text>
+
+      <!-- Copilot 29 (a year earlier) -> 21 : dashed -->
+      <line x1="235" y1="145" x2="545" y2="188" stroke="#FF6B35" stroke-width="3" stroke-dasharray="7 5"/>
+      <circle cx="235" cy="145" r="5" fill="#FF6B35"/><circle cx="545" cy="188" r="5" fill="#FF6B35"/>
+      <text x="225" y="143" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">GitHub Copilot 29%*</text>
+      <text x="558" y="192" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">GitHub Copilot 21%</text>
+
+      <!-- Cursor 18 -> 12 -->
+      <line x1="235" y1="204" x2="545" y2="236" stroke="#DC2626" stroke-width="3"/>
+      <circle cx="235" cy="204" r="5" fill="#DC2626"/><circle cx="545" cy="236" r="5" fill="#DC2626"/>
+      <text x="225" y="222" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Cursor 18%</text>
+      <text x="558" y="240" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Cursor 12%</text>
+
+      <!-- endpoint-only cluster -->
+      <circle cx="545" cy="252" r="4" fill="#8899AA"/>
+      <circle cx="545" cy="263" r="4" fill="#8899AA"/>
+      <circle cx="545" cy="268" r="4" fill="#8899AA"/>
+      <line x1="552" y1="262" x2="576" y2="272" stroke="#8899AA" stroke-width="1"/>
+      <text x="580" y="270" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">Endpoint only:</text>
+      <text x="580" y="285" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">JetBrains AI 9% &#183; OpenCode 7%</text>
+      <text x="580" y="299" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">Google Antigravity 6%</text>
+
+      <text x="0" y="338" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">*Copilot&#8217;s 29% is reported as &#8220;a year earlier&#8221;, not January 2026 &#8212; the dashed line marks the different baseline.</text>
+      <text x="0" y="350" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: JetBrains, AI coding agent adoption survey, more than 15,000 professional developers, fielded May&#8211;July 2026.</text>
+    </svg>
+    <p class="chart-note">Four of the seven tools moved by ten points or more inside eight months. Any standardisation commitment made in January was made against a market that no longer exists in the same shape.</p>
+  </div>
+
+  <p>That churn is the practical finding of the section. Tool shares moved by tens of points in under a year, in both directions, and a single vendor doubled its share while another lost a third of its own. Standardising on one agent is a shorter-horizon bet than it looked at the start of the year, and any multi-year commitment made on current shares is being made against a market that has been reshuffling roughly every two quarters.</p>
+
+  <p>The Pragmatic Engineer survey draws the cleanest line between the bands of any source here, because it asked both questions separately. Across 906 respondents fielded between 27 January and 17 February 2026, 95% were using AI tools at least weekly, 75% for half or more of their work, and 56% for 70% or more of it. Regular agent use &mdash; the middle band &mdash; ran at 55%, rising to 63.5% among staff-plus engineers. Its company-size split is worth holding: Claude Code was at 75% in organisations under ten people, while GitHub Copilot was at 56% in organisations over ten thousand. Agent users were also nearly twice as likely to describe themselves as excited, at 61% against 36%.</p>
+
+  <p>GitKraken measures the far end. Its survey of 554 developers and engineering leaders found 96.4% of engineering organisations using AI coding tools and 84% reporting higher productivity, and it recorded the share naming autonomous AI as their &ldquo;primary way of working&rdquo; rising from 7.6% to 28% in nine months. That is the most striking movement in the pool and the one that most deserves its caveat. GitKraken sells the review-and-merge tooling that its own report identifies as the new bottleneck, so the finding runs in the direction of its commercial interest, and the sample is 554.</p>
+
+  <p>With the bands pinned down, the next question is where in the working week agent use actually sits.</p>
+
+  <p class="source-tag">Sources: <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains</a> (August 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">The Pragmatic Engineer</a> (fielded January&ndash;February 2026) &middot; <a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">GitKraken</a> (14 August 2026) &middot; <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html">Deloitte</a> (2026)</p>
+</section>
+
+<!-- ═══ SOURCE 2 — 3 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">3</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Source 2 &mdash; The Lifecycle</div>
+  <h2>Across the lifecycle: spec, code, test, review, run<span class="section-time">(5 min)</span></h2>
+
+  <p>Five stages carry a software change from an idea to something running in production: writing the specification, writing the code, testing it, reviewing and merging it, and operating it. Agent adoption is not evenly distributed across them. It is heaviest at the two stages closest to the keyboard and thins sharply as the work moves downstream, and the sources that measure each stage tell a consistent story about where the load has landed.</p>
+
+  <h3>Spec</h3>
+
+  <p>Spec-driven development &mdash; the practice of writing a structured specification that an agent then implements, rather than prompting for code directly &mdash; has consolidated into a recognisable tool category over the past year. GitHub&rsquo;s Spec Kit describes itself as &ldquo;an open source toolkit for building high-quality software with any AI coding agent&rdquo; and supports &ldquo;30+ AI coding agents&rdquo;; its stated position is that &ldquo;specifications become executable, directly generating working implementations rather than just guiding them&rdquo;. AWS&rsquo;s Kiro offers to &ldquo;turn prompts into executable specs&rdquo;, and carries an Auto model setting that &ldquo;picks the best model for the task based on complexity, factoring in model quality, latency, and cost&rdquo;. Kiro frames the whole approach against unstructured prompting: &ldquo;Developing with specs keeps the fun of vibe coding, but fixes some of its limitations&rdquo; &mdash; vibe coding being the practice of steering an agent conversationally and accepting what it produces without a written specification. No credible adoption numbers exist for this category yet, and none are printed here.</p>
+
+  <h3>Code</h3>
+
+  <p>The code stage is where adoption is heaviest and where the volume shift originates. Bessemer&rsquo;s figure of 92% for code generation, examined in Source 5, is the highest use-case number in this issue, and DX&rsquo;s telemetry finding that more than half of merged code is now AI-authored, examined in Source 3, is the one that makes the volume concrete. Both belong to the sections that own them. What matters at this stage is that the code being produced has to travel through the three stages that follow, and those stages did not gain capacity at the same rate.</p>
+
+  <h3>Test</h3>
+
+  <p>Capgemini&rsquo;s World Quality Report, 2025&ndash;26 edition, covers quality engineering &mdash; the discipline of designing and running the testing that decides whether a change is fit to ship. It found 43% of organisations experimenting with generative AI in that discipline and only 15% having scaled it enterprise-wide. That is the widest gap between trying and running in this issue: nearly half the market in pilots, one organisation in seven with the practice actually in place across the business. Generative AI is now the top-ranked quality-engineering skill at 63%, ahead of core quality-engineering skills at 60%, which is a notable inversion for a discipline whose core skills are its identity. Synthetic test data &mdash; artificially generated records that stand in for real customer data during testing &mdash; is the top generative-AI use case in testing, rising from 14% in 2024 to 25% in 2025.</p>
+
+  <h3>Review and merge</h3>
+
+  <p>This is where the work has visibly accumulated. GitHub&rsquo;s Octoverse, its annual data report on activity across the platform, recorded more than one million coding-agent pull requests created between May and September 2025, alongside 43.2 million pull requests merged monthly, up 23% year on year, and 4.3 million AI-related repositories. It also found that &ldquo;80% of new developers on GitHub use Copilot in their first week&rdquo;, which puts agent use ahead of familiarity with the platform itself for a whole cohort. That report was published on 28 October 2025 and updated in February 2026.</p>
+
+  <p>The most directly actionable finding in this issue comes from a paper submitted to arXiv on 6 July 2026 by Xu, Subramanian and Karthik, which examined 33,596 agent-authored pull requests across 2,807 repositories. It found that 40.2% of repositories contain co-active agent-authored PR pairs &mdash; the authors&rsquo; term for pull requests open on the same repository at the same time &mdash; and that those pairs account for 79.4% of all agent PRs, rising to 53.4% of repositories and 95.0% of PRs at a one-week window. The researchers then replayed 747 three-way merges to see what happened when those pairs met. Cross-agent pairs, where two different agents had worked the same repository, conflicted 41.7% of the time. Same-agent pairs conflicted 19.8% of the time. Of the conflicted files, 84.4% were source code, and nearly 42% of the conflicts were structural rather than textual &mdash; the two changes disagreed about the shape of the code, not merely about the same lines.</p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paired bar chart showing conflict rates for cross-agent and same-agent pull request pairs">
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">When two agents work the same repository</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Conflict rate across 747 replayed three-way merges of co-active pull-request pairs</text>
+
+      <!-- y gridlines -->
+      <line x1="70" y1="215" x2="470" y2="215" stroke="#8899AA" stroke-width="1"/>
+      <line x1="70" y1="167" x2="470" y2="167" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="70" y1="119" x2="470" y2="119" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="70" y1="71" x2="470" y2="71" stroke="#E8EDF2" stroke-width="1"/>
+      <text x="62" y="219" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">0%</text>
+      <text x="62" y="171" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">15%</text>
+      <text x="62" y="123" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">30%</text>
+      <text x="62" y="75" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">45%</text>
+
+      <!-- bars: scale 45% = 144px -> 3.2px per point -->
+      <rect x="130" y="82" width="96" height="133" fill="#DC2626" rx="2"/>
+      <text x="178" y="72" font-family="Playfair Display, serif" font-size="24" font-weight="900" fill="#DC2626" text-anchor="middle">41.7%</text>
+      <text x="178" y="236" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628" text-anchor="middle">Cross-agent pairs</text>
+      <text x="178" y="252" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">two different agents</text>
+
+      <rect x="320" y="152" width="96" height="63" fill="#0077B6" rx="2"/>
+      <text x="368" y="142" font-family="Playfair Display, serif" font-size="24" font-weight="900" fill="#0077B6" text-anchor="middle">19.8%</text>
+      <text x="368" y="236" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628" text-anchor="middle">Same-agent pairs</text>
+      <text x="368" y="252" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">one agent throughout</text>
+
+      <!-- context strip -->
+      <rect x="510" y="56" width="270" height="196" fill="#F4F6F9" rx="3"/>
+      <text x="528" y="80" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#0077B6">THE SAMPLE</text>
+      <text x="528" y="104" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">33,596</text>
+      <text x="528" y="120" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">agent-authored pull requests</text>
+      <text x="528" y="144" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">40.2%</text>
+      <text x="528" y="160" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">of repositories carry co-active</text>
+      <text x="528" y="174" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">agent PR pairs</text>
+      <text x="528" y="198" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">79.4%</text>
+      <text x="528" y="214" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">of all agent PRs sit in</text>
+      <text x="528" y="228" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">such a pair (95.0% at a</text>
+      <text x="528" y="242" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">one-week window)</text>
+
+      <text x="0" y="278" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Cross-agent overlap is currently rare: only 0.5% of concurrent pairs involve different agents, in about 4.3% of repositories.</text>
+      <text x="0" y="292" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: Xu, Subramanian &amp; Karthik, arXiv, submitted 6 July 2026 &#183; 2,807 repositories.</text>
+    </svg>
+    <p class="chart-note">The honest reading of this chart is forward-looking. Cross-agent overlap happens in only 0.5% of concurrent pairs today, across roughly 4.3% of repositories, so the 41.7% figure describes what happens when two agents meet rather than what happens in the median repository. It is the evidence-based argument for keeping one agent per codebase before multi-agent overlap becomes normal.</p>
+  </div>
+
+  <h3>Run</h3>
+
+  <p>Operations is where the line between assistance and autonomy is drawn most explicitly, and PagerDuty&rsquo;s research published on 17 March 2026 measured where organisations are drawing it. Across 1,000 business and IT leaders and developers in seven markets, 59% were actively incorporating AI into operational workflows and 34% were planning to. The boundary shows up in the exceptions: 44% require human involvement when AI remediates customer-facing systems, and 43% require it for cross-functional incident coordination. Looking ahead, 62% expect an even human-to-AI mix within three years. Organisations that described themselves as more resilient than a year ago used AI at 63%, against 53% among the less resilient. Every respondent agreed that post-incident learning needs strengthening, while only 48% run structured improvement cycles. PagerDuty sells incident-response tooling, and this is its own research.</p>
+
+  <p>Vendors are already selling into the far end of that boundary. Dynatrace announced an autonomous site-reliability agent and a no-code agent builder on 27 July 2026, with availability stated as August and no general-availability date published, describing its own governance model in terms of every action being &ldquo;rooted in environment-specific context and designed to be transparent, auditable, and governed&rdquo;.</p>
+
+  <p>Across all five stages the pattern is the same. Generation has scaled; verification has not. That raises the question of whether the money has followed the work downstream.</p>
+
+  <p class="source-tag">Sources: <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> &middot; <a href="https://kiro.dev/">AWS Kiro</a> &middot; <a href="https://www.capgemini.com/insights/research-library/world-quality-report-2025-26/">Capgemini, World Quality Report 2025&ndash;26</a> &middot; <a href="https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/">GitHub Octoverse</a> (28 October 2025, updated February 2026) &middot; <a href="https://arxiv.org/abs/2607.04697v2">Xu, Subramanian &amp; Karthik, arXiv</a> (6 July 2026) &middot; <a href="https://www.pagerduty.com/blog/digital-operations/2026-state-of-ai-first-operations-report/">PagerDuty</a> (17 March 2026) &middot; <a href="https://www.dynatrace.com/news/press-release/autonomous-operations-enterprise-ai/">Dynatrace</a> (27 July 2026)</p>
+</section>
+
+<!-- ═══ SOURCE 3 — 4 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">4</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Source 3 &mdash; The Economics</div>
+  <h2>Expected outcomes against measured outcomes<span class="section-time">(4 min)</span></h2>
+
+  <p>DORA modelled what an AI rollout should be worth over its first year. DX measured what actually happened across its customer base over the same period. The two exercises describe the same phenomenon from opposite directions, and the distance between them is the money conversation this issue is built around.</p>
+
+  <div class="article-with-sidebar">
+    <div class="article-main">
+      <h3>The shape DORA expects</h3>
+
+      <p>DORA &mdash; the research programme run by Google Cloud, and not the European regulation of the same name &mdash; publishes a report on the return on investment of AI-assisted software development, version 2026.1 of which was last updated on 22 April 2026. Its central claim, drawn from a model that does not separate assistant use from agent use, is that value arrives in a J-curve: an initial dip before the return, driven by three named forces. The first is the learning curve. The second is what DORA calls the <strong>verification tax</strong>, &ldquo;imposed by reviewing AI-generated code&rdquo;. The third is pipeline adaptation &mdash; the work of adjusting downstream testing and change-approval processes to handle a larger volume of code arriving faster. DORA&rsquo;s own name for the dip is &ldquo;the tuition cost of transformation&rdquo;. That J-curve led Issue 11 and was the first Quick Take in Issue 12; here it is a source rather than a fresh finding.</p>
+
+      <h3>The shape DX measured</h3>
+
+      <p>DX publishes engineering-effectiveness telemetry across its customer base, and it is a vendor writing about the metric it sells. Its Q2 2026 benchmarks, carried in its newsletter of 14 August 2026 and its Q2 report, put measured adoption at 95% &mdash; telemetry that counts every band of the spectrum together, from autocomplete to agent-mode &mdash; and found that more than half of merged code is now AI-authored. Average pull-request size has increased from 42 to 72 lines of code. Time savings are now over six hours a week on average. Median quarterly AI spend grew from roughly $1.5K to roughly $44K in a year, and AI spend has reached roughly 28 times year-ago levels among the largest companies in the dataset. Median weekly TrueThroughput &mdash; DX&rsquo;s own measure of shipped work per engineer &mdash; rose 37% over four quarters, from 1.42 to 1.94 pull requests per engineer per week.</p>
+
+      <p>Against those four rising series sits one that fell. The average Developer Experience Index, DX&rsquo;s composite measure of how effective engineers find their own working environment, slipped from 67 to 65. Underneath it, code maintainability is improving while change confidence is declining, even though those two measures have historically been closely correlated. The innovation ratio has increased by only about one percentage point.</p>
+    </div>
+    <div class="article-sidebar">
+      <div class="sidebar-box">
+        <div class="sb-title">DORA&rsquo;s sample model</div>
+        <div class="sb-context">A published illustration, not a measurement. DORA models a 500-person engineering organisation at a fully loaded salary of $176,000.</div>
+        <div class="sb-row"><span>Change failure rate</span><strong>5&rarr;6%</strong></div>
+        <div class="sb-row"><span>Negative downtime impact</span><strong>$344K</strong></div>
+        <div class="sb-row"><span>First-year return</span><strong>~39%</strong></div>
+        <div class="sb-row"><span>Value modelled</span><strong>~$11.6m</strong></div>
+        <div class="sb-row"><span>Investment modelled</span><strong>~$8.4m</strong></div>
+        <div class="sb-row"><span>Payback period</span><strong>~8 months</strong></div>
+        <div class="sb-context">Change failure rate &mdash; the share of deployments that cause a failure needing a fix or a rollback.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four paired start-to-end comparisons: AI spend, pull request size, throughput and developer experience index">
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Spend, size, throughput, experience</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Four DX measures, each on its own scale and its own period &#8212; start value to end value</text>
+
+      <!-- panel 1 -->
+      <rect x="0" y="54" width="380" height="120" fill="#F4F6F9" rx="3"/>
+      <text x="20" y="78" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Median quarterly AI spend</text>
+      <text x="20" y="94" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Over one year</text>
+      <circle cx="60" cy="130" r="7" fill="#8899AA"/>
+      <text x="60" y="158" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">~$1.5K</text>
+      <line x1="72" y1="130" x2="288" y2="130" stroke="#00B4D8" stroke-width="3"/>
+      <polygon points="300,130 286,124 286,136" fill="#00B4D8"/>
+      <circle cx="313" cy="130" r="9" fill="#00B4D8"/>
+      <text x="313" y="158" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">~$44K</text>
+
+      <!-- panel 2 -->
+      <rect x="400" y="54" width="380" height="120" fill="#F4F6F9" rx="3"/>
+      <text x="420" y="78" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Average pull-request size</text>
+      <text x="420" y="94" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Lines of code, Q3 2025 to Q2 2026</text>
+      <circle cx="460" cy="130" r="7" fill="#8899AA"/>
+      <text x="460" y="158" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">42</text>
+      <line x1="472" y1="130" x2="688" y2="130" stroke="#00B4D8" stroke-width="3"/>
+      <polygon points="700,130 686,124 686,136" fill="#00B4D8"/>
+      <circle cx="713" cy="130" r="9" fill="#00B4D8"/>
+      <text x="713" y="158" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">72</text>
+
+      <!-- panel 3 -->
+      <rect x="0" y="188" width="380" height="120" fill="#F4F6F9" rx="3"/>
+      <text x="20" y="212" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Median weekly TrueThroughput</text>
+      <text x="20" y="228" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">PRs per engineer per week, four quarters (+37%)</text>
+      <circle cx="60" cy="264" r="7" fill="#8899AA"/>
+      <text x="60" y="292" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">1.42</text>
+      <line x1="72" y1="264" x2="288" y2="264" stroke="#00B4D8" stroke-width="3"/>
+      <polygon points="300,264 286,258 286,270" fill="#00B4D8"/>
+      <circle cx="313" cy="264" r="9" fill="#00B4D8"/>
+      <text x="313" y="292" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">1.94</text>
+
+      <!-- panel 4 -->
+      <rect x="400" y="188" width="380" height="120" fill="#FEF2F2" rx="3"/>
+      <text x="420" y="212" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Developer Experience Index</text>
+      <text x="420" y="228" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Average across the DX dataset</text>
+      <circle cx="460" cy="264" r="7" fill="#8899AA"/>
+      <text x="460" y="292" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">67</text>
+      <line x1="472" y1="264" x2="688" y2="264" stroke="#DC2626" stroke-width="3"/>
+      <polygon points="700,264 686,258 686,270" fill="#DC2626"/>
+      <circle cx="713" cy="264" r="9" fill="#DC2626"/>
+      <text x="713" y="292" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#DC2626" text-anchor="middle">65</text>
+
+      <text x="0" y="330" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Each series runs on its own scale and its own period; the panels are not plotted on a shared axis.</text>
+      <text x="0" y="340" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: DX, Q2 2026 benchmarks and Q2 report (newsletter dated 14 August 2026).</text>
+    </svg>
+    <p class="chart-note">Three rising series and one falling one, on four different scales and four different periods. Spend, size and throughput all moved up together; the experience measure moved the other way.</p>
+  </div>
+
+  <h3>The time dimension</h3>
+
+  <p>DX&rsquo;s plateau study, led by Brian Houck, adds the dimension the benchmarks cannot show. Drawing on self-reported data from more than 500 companies between May 2025 and April 2026, it found 31.4% of developers climbing from the lowest time-savings band to the highest, and 69.7% of those who reached their peak doing so within two quarters. Then the curve turns. Some 66.1% reported lower savings after their peak, and 50.5% of those who peaked in a single quarter never returned to that level. The median engineering organisation in the study sees a 7.8% increase in pull-request throughput.</p>
+
+  <p>The measurement question sits underneath all of this, and METR&rsquo;s study is the sharpest available evidence on it. Published in July 2025, it took 16 experienced open-source developers through 246 tasks in repositories they had worked on for an average of five years. Beforehand they forecast that AI assistance would make them 24% faster. Afterwards they estimated it had made them 20% faster. Measured, they were 19% slower. Three caveats belong with that result and travel with it everywhere it is cited: the sample is 16 people, the study is a year old, and the tooling was Cursor Pro with Claude 3.5 and 3.7 Sonnet, which is two model generations behind what the JetBrains respondents are using now.</p>
+
+  <h3>What executives can show</h3>
+
+  <p>Atlassian&rsquo;s State of Teams 2026, published on 27 April 2026, surveyed 12,035 knowledge workers and 173 Fortune 1000 executives in January and February, with 25 executive interviews alongside. It covers cross-industry knowledge work rather than engineering specifically, and it is Atlassian&rsquo;s own research. Its central pair is unambiguous: &ldquo;89% of executives say AI increases speed, but only 6% of executives are sure they have clear examples of organization-wide AI ROI.&rdquo; Beneath it, 85% of knowledge workers use AI at work and 29% have embedded it into daily workflows, while 55% of executives report AI widening performance gaps between teams. The top-performing 14% of teams are 5.6 times more likely to credit AI with improved planning and 9.4 times more likely to report better collaboration.</p>
+
+  <p>Spend and throughput are up; experience and confidence are down. What the spend is producing is the subject of the next section.</p>
+
+  <p class="source-tag">Sources: <a href="https://dora.dev/ai/roi/report/">DORA, ROI of AI-assisted Software Development v.2026.1</a> (last updated 22 April 2026), sample-model figures via <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/">InfoQ</a> &middot; <a href="https://newsletter.getdx.com/p/ai-in-engineering-q2-2026-benchmarks">DX newsletter</a> (14 August 2026) and <a href="https://getdx.com/report/State-of-AI-Impact-in-Engineering-Q2-Report/">DX Q2 report</a> &middot; <a href="https://getdx.com/blog/the-ai-efficiency-plateau/">DX, the AI efficiency plateau</a> &middot; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR</a> (July 2025) &middot; <a href="https://www.atlassian.com/blog/state-of-teams-2026">Atlassian State of Teams 2026</a> (27 April 2026)</p>
+</section>
+
+<!-- ═══ SOURCE 4 — 5 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">5</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Source 4 &mdash; Code and People</div>
+  <h2>What it does to the code, and to the people<span class="section-time">(4 min)</span></h2>
+
+  <p>&ldquo;[M]odels may be almost syntactically perfect, but they&rsquo;re still failing on nearly half of all tasks where security is needed.&rdquo; That is Chris Wysopal, co-founder and chief security evangelist at Veracode, on the finding at the centre of the company&rsquo;s 2026 GenAI Code Security Report. Veracode sells application security, and its report is its own research.</p>
+
+  <h3>The code</h3>
+
+  <p>The report, released on 28 July 2026, tested more than 100 models across four testing snapshots, without security-specific prompting. The average security pass rate was 56%, meaning nearly 44% of generated code carried a known security flaw, against syntax correctness sitting near 100%. GPT-5.5 leads the field at 68%, and in Veracode&rsquo;s own words &ldquo;six of the 11 models cluster between 50 percent and 53 percent&rdquo;. Reasoning models pass at 56% against 51% for non-reasoning ones. Coding-specialised models pass at 51%, marginally below general-purpose models at 52%, which undercuts the assumption that a model trained for code is safer at writing it. Large models pass at 53%, medium and small at 51% each. By language, Python passes at 63% and Java at 30%.</p>
+
+  <p>Capability and safety have come apart. Models write code that compiles and runs at a rate approaching certainty, and write secure code at a rate close to a coin flip, and the second figure has not moved materially in a year.</p>
+
+  <p>GitClear&rsquo;s maintainability research, published in January 2026, examines what accumulates downstream of that. GitClear sells code analytics, and this is its own dataset: 623 million changes between 2023 and 2026, measured across eight quality signals. The reuse signals are all falling. Cross-file function calls are down 35% since 2023. Refactoring &mdash; code that was moved rather than newly written &mdash; has fallen from 21% of changes in 2022 to 3.8% in 2026, a drop of 82%. Legacy maintenance has fallen from 1.7% to 0.46%, down 74%. The risk signals are all rising. Block duplication &mdash; the same run of code appearing in more than one place &mdash; is up 81%, from 40.3 to 73.0 instances per million changed lines. Within-commit copy/paste is up 41%. Error-masking constructs &mdash; code that swallows a failure instead of surfacing it &mdash; are up 47%. Two-week churn, meaning code rewritten within a fortnight of being committed, is up 15%.</p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diverging bar chart showing reuse signals falling and risk signals rising in GitClear commit data">
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">The maintainability ledger</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Change since 2023 across eight quality signals &#8212; 623 million changes, 2023&#8211;2026</text>
+
+      <!-- headers -->
+      <text x="330" y="62" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#00B4D8" text-anchor="end">REUSE SIGNALS FALLING</text>
+      <text x="500" y="62" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#DC2626">RISK SIGNALS RISING</text>
+
+      <!-- zero axis -->
+      <line x1="440" y1="70" x2="440" y2="330" stroke="#0A1628" stroke-width="1.5"/>
+      <!-- gridlines: 2.6px per point, +/-100 -->
+      <line x1="180" y1="70" x2="180" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="310" y1="70" x2="310" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="570" y1="70" x2="570" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="700" y1="70" x2="700" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+
+      <!-- falling rows (teal, extend left from 440) -->
+      <rect x="349" y="78" width="91" height="22" fill="#00B4D8" rx="2"/>
+      <text x="341" y="94" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;35%</text>
+      <text x="452" y="94" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Cross-file function calls</text>
+
+      <rect x="227" y="110" width="213" height="22" fill="#00B4D8" rx="2"/>
+      <text x="219" y="126" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;82%</text>
+      <text x="452" y="126" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Refactoring (21% of changes in 2022 &#8594; 3.8%)</text>
+
+      <rect x="248" y="142" width="192" height="22" fill="#00B4D8" rx="2"/>
+      <text x="240" y="158" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;74%</text>
+      <text x="452" y="158" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Legacy maintenance (1.7% &#8594; 0.46%)</text>
+
+      <!-- rising rows (red, extend right from 440) -->
+      <rect x="440" y="182" width="211" height="22" fill="#DC2626" rx="2"/>
+      <text x="659" y="198" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+81%</text>
+      <text x="428" y="198" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Block duplication (40.3 &#8594; 73.0 per million lines)</text>
+
+      <rect x="440" y="214" width="122" height="22" fill="#DC2626" rx="2"/>
+      <text x="570" y="230" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+47%</text>
+      <text x="428" y="230" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Error-masking constructs</text>
+
+      <rect x="440" y="246" width="107" height="22" fill="#DC2626" rx="2"/>
+      <text x="555" y="262" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+41%</text>
+      <text x="428" y="262" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Within-commit copy/paste</text>
+
+      <rect x="440" y="278" width="39" height="22" fill="#DC2626" rx="2"/>
+      <text x="487" y="294" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+15%</text>
+      <text x="428" y="294" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Two-week churn</text>
+
+      <!-- axis labels -->
+      <line x1="180" y1="330" x2="700" y2="330" stroke="#8899AA" stroke-width="1"/>
+      <text x="180" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">&#8722;100%</text>
+      <text x="310" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">&#8722;50%</text>
+      <text x="440" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">0</text>
+      <text x="570" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">+50%</text>
+      <text x="700" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">+100%</text>
+
+      <text x="0" y="372" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Copy/paste is now roughly five times more common than refactoring, having been the rarer choice in 2022.</text>
+      <text x="0" y="386" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: GitClear, The Maintainability Gap, January 2026 &#183; 623 million changes across 2023&#8211;2026.</text>
+    </svg>
+    <p class="chart-note">Every signal associated with reusing existing code is falling; every signal associated with duplicating or hiding it is rising.</p>
+  </div>
+
+  <p>GitClear also compares heavy AI users against their own history. Those users out-produce non-users by four to ten times, but GitClear finds most of that gap pre-dated AI; measured against their own pre-AI baseline, the same users gained roughly 25%.</p>
+
+  <div class="pull-quote">
+    <p>&ldquo;The throughput is real, but so is the debt it accrues&rdquo;</p>
+    <cite>&mdash; GitClear, <em>The Maintainability Gap</em>, January 2026</cite>
+  </div>
+
+  <h3>The people</h3>
+
+  <p>Anthropic published a randomised controlled trial on 29 January 2026 that measured what assisted work does to skill formation. Fifty-two mostly junior engineers, all with more than a year of weekly Python, were set to learn Trio, an asynchronous library none of them knew. The AI-assisted group averaged 50% on a mastery quiz afterwards. The hand-coding group averaged 67%. The effect size was a Cohen&rsquo;s d of 0.738 at p = 0.01 &mdash; Cohen&rsquo;s d being a standard measure of how large a difference is, independent of sample size &mdash; and the researchers describe the gap as &ldquo;nearly two letter grades&rdquo;. The AI group finished about two minutes faster, a difference that was not statistically significant. The largest gaps were on debugging questions.</p>
+
+  <p>The most useful finding sits inside the AI group. Participants who asked conceptual questions and worked through their own errors averaged above 65%. Those who delegated generation and debugging averaged under 40%. The same tool, used two ways, produced a spread wider than the gap between the groups. Anthropic sells the assistant in question, which makes this a vendor publishing a result that runs against its own commercial interest &mdash; rare enough to be worth naming.</p>
+
+  <p>At the level of the labour market, a Harvard working paper posted to SSRN by Hosseini Maasoum and Lichtinger, titled &ldquo;Generative AI as Seniority-Biased Technological Change&rdquo; &mdash; the authors&rsquo; own term for a technology that displaces work unevenly across experience levels &mdash; examines US r&eacute;sum&eacute; and job-posting data covering tens of millions of workers across hundreds of thousands of firms. Its direction is that after adopting generative AI, firms show declining junior employment relative to non-adopters, while senior employment trends stay largely unchanged. It is a working paper, not peer-reviewed, and its magnitudes are reported inconsistently in secondary coverage, so only the direction is carried here. It is US labour data, so any read-across to UK or Middle East hiring is inferential.</p>
+
+  <p>Alasdair Allan made the connected argument in his QCon London 2026 talk, &ldquo;Engineering Progression When AI Ate the Middle&rdquo;, reported by Ben Linders for InfoQ on 13 August 2026: the tasks AI now absorbs are the rungs junior engineers climbed, and those same juniors are the pipeline of people who will later be senior enough to supervise the AI.</p>
+
+  <p>The code carries a maintenance and security bill, and the people carry a skill bill. Some organisations are paying both more slowly than others, which raises the question of what those organisations built first.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode 2026 GenAI Code Security Report</a> (28 July 2026) &middot; <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">GitClear</a> (January 2026) &middot; <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">Anthropic</a> (29 January 2026) &middot; <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5425555">Hosseini Maasoum &amp; Lichtinger, SSRN</a> &middot; <a href="https://www.infoq.com/news/2026/08/AI-disrupts-engineering-progress/">InfoQ</a> (13 August 2026)</p>
+</section>
+
+<!-- ═══ SOURCE 5 — 6 of 8 ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">6</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Source 5 &mdash; Implementation</div>
+  <h2>What the organisations getting value built first<span class="section-time">(3 min)</span></h2>
+
+  <p>Ramp ships major features to an early-access tier of &ldquo;5,000+ businesses&rdquo; daily, and advances them to general availability on evidence &mdash; demos, key metrics, customer feedback and a rollout plan, submitted on a template. The reviewing group commits to responding within 48 hours; if it does not, the feature ships anyway. That is a small piece of process design, and it is the kind of artefact that separates the organisations whose AI numbers hold up from the ones whose numbers do not.</p>
+
+  <div class="article-with-sidebar">
+    <div class="article-main">
+      <h3>The precondition</h3>
+
+      <p>Perforce&rsquo;s 2026 Platform Engineering Report, based on 820 technology professionals and reported by InfoQ on 4 August 2026, puts a number on the groundwork. Among organisations with mature platform-engineering practices &mdash; platform maturity meaning the degree to which shared infrastructure, tooling and paved paths are established and operated as a product for internal teams &mdash; 73% called that maturity a critical or significant factor in their AI success. Among less mature organisations, 44% did, a gap of 29 points. Two-thirds already use AI in infrastructure workflows. Only 28% report having a dedicated platform-engineering team at all, which puts the precondition out of reach for most of the market as things stand. Perforce also records 31% reporting fully autonomous AI implementation, a self-reported figure with a soft definition that sits well above every independent measure in this issue. Organisations with formal governance mechanisms report substantially higher trust in AI than those working ad hoc. Perforce sells development infrastructure, and this is its own research.</p>
+
+      <h3>The enablement layer</h3>
+
+      <p>Bessemer&rsquo;s Atlas piece &ldquo;Inside AI-pilled engineering teams&rdquo;, published on 10 June 2026 with contributions from Geoff Charles of Ramp, Farhan Thawar of Shopify and Jessica Popp, is a venture firm writing about organisations in its own orbit. It found 90% of technology and engineering teams deploying AI at the core of their operations, with adoption by use case running at 92% for code generation, 79% for code-review augmentation, 75% for AI-powered product features, 69% for documentation generation, and 60% for agentic development &mdash; Bessemer&rsquo;s label for agents carrying out development work rather than assisting with it.</p>
+
+      <p>Shopify&rsquo;s contribution to that account is a central LLM proxy: a single gateway that all AI requests route through, giving &ldquo;cost control, usage analytics by team and project, and the ability to switch models&rdquo; without requiring every team to use the same tool. Human review is still required on production code, and Shopify reports reversion rates on AI-assisted code roughly equivalent to its pre-AI baselines. That last figure is Shopify-reported and unaudited.</p>
+
+      <h3>The cost nobody budgets</h3>
+
+      <p>Writing for LeadDev on 18 August 2026, James Socol &mdash; a senior staff engineer currently on sabbatical &mdash; names the organisational cost of parallelised agent work. His frame is that teams need three conditions: shared goals, &ldquo;with collective progress and success &ndash; and failure&rdquo;; work that is interdependent; and stability. Agent-parallelised work erodes all three at once, and Socol reaches for Tuckman&rsquo;s forming-storming-norming-performing stages to describe what follows, citing Richard Dalton&rsquo;s observation that teams are immutable structures, so that &ldquo;any change means you have a new team&rdquo; that has to go through the stages again. His reconstruction mechanisms are deliberate rather than ambient: celebrating the specific choices people made, writing a team charter, and modelling the behaviour expected.</p>
+
+      <div class="pull-quote">
+        <p>&ldquo;Culture no longer builds itself.&rdquo;</p>
+        <cite>&mdash; James Socol, LeadDev, 18 August 2026</cite>
+      </div>
+
+      <h3>The training route</h3>
+
+      <p>Lloyds Banking Group published its own approach on 22 June 2026, and it reads as a hiring and training programme. The bank is recruiting for almost 300 agentic-AI-related roles over the coming months, within more than 1,000 AI roles planned for 2026, and says more than 700 colleagues are already shaping AI use cases. It has launched one of the first Level 6 AI Engineering apprenticeships offered by a UK bank, with a 33-apprentice cohort across its UK hubs. Its internal AI Academy reports that over 400,000 courses have been taken since January, and that over 65,000 colleagues have completed modules on working responsibly with AI, against a workforce of 67,000.</p>
+    </div>
+    <div class="article-sidebar">
+      <div class="sidebar-box">
+        <div class="sb-title">What stops teams</div>
+        <div class="sb-context">Bessemer&rsquo;s four named blockers, in its own labels.</div>
+        <div class="sb-row"><span>Evaluating code quality</span><strong>52%</strong></div>
+        <div class="sb-row"><span>Measuring productivity gains</span><strong>46%</strong></div>
+        <div class="sb-row"><span>Managing token costs</span><strong>38%</strong></div>
+        <div class="sb-row"><span>Security and IP</span><strong>29%</strong></div>
+        <div class="sb-context">Three of the four are measurement and verification problems. Only one is about cost.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The enablement layer explains the spread between organisations. It does not explain why the surveys disagree with each other, which is the subject of the Counterpoint.</p>
+
+  <p class="source-tag">Sources: <a href="https://www.infoq.com/news/2026/08/perforce-maturity-ai-success/">Perforce 2026 Platform Engineering Report, via InfoQ</a> (4 August 2026) &middot; <a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Bessemer Atlas</a> (10 June 2026) &middot; <a href="https://leaddev.com/leadership/staff-engineers-must-rebuild-team-culture">LeadDev</a> (18 August 2026) &middot; <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/1000-new-ai-roles.html">Lloyds Banking Group</a> (22 June 2026)</p>
+</section>
+
+<!-- ═══ COUNTERPOINT — 7 of 8 ═══ -->
+<section class="counterpoint-section">
+  <div class="section-marker"><span class="marker-num">7</span><span class="marker-of">OF 9</span></div>
+  <div class="counterpoint-pill">Counterpoint</div>
+  <h2>Two readings of the same year<span class="section-time">(2 min)</span></h2>
+
+  <div class="comparison-grid">
+    <div class="compare-col left">
+      <div class="cc-label">The adoption reading</div>
+      <div class="cc-num">90%</div>
+      <div class="cc-metric">JetBrains&rsquo; weekly coding-agent use</div>
+      <div class="cc-num">28%</div>
+      <div class="cc-metric">GitKraken&rsquo;s primarily autonomous working</div>
+      <div class="cc-num">92%</div>
+      <div class="cc-metric">Bessemer&rsquo;s code-generation adoption</div>
+    </div>
+    <div class="compare-col right">
+      <div class="cc-label">The measured reading</div>
+      <div class="cc-num">11%</div>
+      <div class="cc-metric">Deloitte&rsquo;s agentic AI in production</div>
+      <div class="cc-num">67&rarr;65</div>
+      <div class="cc-metric">DX&rsquo;s Developer Experience Index</div>
+      <div class="cc-num">56%</div>
+      <div class="cc-metric">Veracode&rsquo;s security pass rate</div>
+    </div>
+  </div>
+
+  <h3>Why the two columns reconcile</h3>
+
+  <p>The two columns are not in contradiction. They count different bands of the spectrum, over different horizons, in different populations. Weekly tool use and production autonomy are separated by two full bands and a governance decision, and a survey of developers answers a different question from a survey of organisations. The left column is a measure of who has the tool open. The right column is a measure of what the organisation has committed to running without a human in the path.</p>
+
+  <p>A third difference sits underneath both. The two readings were taken at different points in the same rollout. Survey answers about tool use record a state that can change in a fortnight, because installing an agent is a decision one developer can make on a Tuesday. Measures of production autonomy, security posture and developer experience record states that take quarters to move, because each one depends on governance, review capacity and a body of code that already exists. Inputs that move in a fortnight and outputs that move over quarters produce two different pictures of the same rollout when they are set side by side on one page.</p>
+
+  <p>The J-curve and the plateau reconcile the same way. One describes a trough at organisational scale, where verification and pipeline work absorb the early gains before the return arrives. The other describes individual savings falling away after an individual peak. Both can be true simultaneously because they are measured at different altitudes and over different clocks &mdash; an organisation two quarters into a rollout and a developer two quarters past their own peak are at different points on unrelated curves.</p>
+
+  <p>The perceived-against-measured gap is the harder one, and Atlassian&rsquo;s 89-to-6 pair and METR&rsquo;s slower-but-felt-faster result put it squarely on the table. The most defensible reading is that this is first a measurement failure. Executives who cannot produce organisation-wide return figures may still be getting return; developers who felt faster while being slower were measuring against an intuition rather than a clock. A measurement failure and a value failure are different findings, and the evidence currently supports only the first. What follows from that is that organisations without a verification and measurement layer cannot tell which one they have.</p>
+
+  <p>Read that way, the six figures in the grid describe a sequence. Tools arrived first, at the speed at which a developer can install one. Autonomy, assurance and experience move at the speed at which an organisation can change how it verifies work, and that is where the spread between the organisations in Source 5 comes from.</p>
+
+  <p class="source-tag">Sources referenced in shorthand above are introduced in full in Sources 1&ndash;5: <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains</a>, <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html">Deloitte</a>, <a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">GitKraken</a>, <a href="https://getdx.com/report/State-of-AI-Impact-in-Engineering-Q2-Report/">DX</a>, <a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Bessemer</a>, <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode</a>, <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR</a>, <a href="https://www.atlassian.com/blog/state-of-teams-2026">Atlassian</a>.</p>
+</section>
+
+<!-- ═══ CASE STUDY ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">8</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label alert">Case Study</div>
+  <h2>Monzo&rsquo;s Agent Chip<span class="section-time">(2 min)</span></h2>
+
+  <div class="timeline-box">
+    <div class="timeline-label">One bank&rsquo;s agent platform, as published 13 August 2026</div>
+    <div class="timeline-track">
+      <p><strong class="tl-navy">Roughly three weeks</strong> &mdash; from decision to a working MVP, built in-house rather than bought, to avoid vendor lock-in.</p>
+      <p><strong class="tl-navy">Integrations</strong> &mdash; the agent is reachable from Slack, Linear, GitHub and engineers&rsquo; local machines.</p>
+      <p><strong class="tl-navy">Architecture</strong> &mdash; agents run in sandboxed containers on remote infrastructure, behind an MCP gateway.</p>
+      <p><strong class="tl-teal">~10%</strong> &mdash; of all merged pull requests at Monzo now come from the agent.</p>
+      <p><strong class="tl-teal">1,800 tasks a day</strong> &mdash; the current running volume.</p>
+      <p><strong class="tl-teal">Nearly all engineers</strong> &mdash; now use at least one coding agent regularly.</p>
+      <p><strong class="tl-red">The bottleneck moved</strong> &mdash; from engineer capacity to reviewer availability.</p>
+    </div>
+  </div>
+
+  <p>Monzo published an account of Agent Chip, its internal coding-agent platform, on 13 August 2026 &mdash; two days before this issue&rsquo;s window opens. Two of its engineers, Fabien Deshayes and Oli Haley, wrote it. The numbers in it are Monzo&rsquo;s own measurement, self-reported and unaudited, and they are the closest thing in this issue to a like-for-like reference point: a UK bank, publishing its own figures, with a named bottleneck at the end.</p>
+
+  <p>The build decision was to make rather than buy, on the grounds that a bought platform would have locked the bank into one vendor&rsquo;s agent at exactly the moment when tool shares are moving by tens of points a year. The MVP took roughly three weeks. Agents reach internal knowledge sources and tools through an MCP gateway &mdash; a single controlled entry point through which every such request passes, rather than each agent holding its own connections. The guardrails around it are architectural: sandboxed container isolation, an isolated proxy for external communication, per-task access configuration, environment-specific images, and secrets kept out of the agent&rsquo;s reach.</p>
+
+  <p>That guardrail list is the part of the account that travels furthest. A bank running agents against production repositories has to be able to answer for what the agent could reach, and Monzo&rsquo;s answer is architectural before it is procedural: the agent&rsquo;s reach is bounded by the container, the proxy and the per-task access configuration, ahead of any policy about how engineers should use it.</p>
+
+  <p>On the spectrum this issue has been using, Agent Chip is squarely agent-mode. The human review gate was designed in and never removed: engineers still review and merge everything the agent produces. That is the decision that produced the finding.</p>
+
+  <div class="pull-quote">
+    <p>&ldquo;An engineer still reviews and merges, but the bottleneck moves from &lsquo;find an engineer with capacity&rsquo; to &lsquo;find a reviewer&rsquo;. That changes who gets to improve the product.&rdquo;</p>
+    <cite>&mdash; Fabien Deshayes and Oli Haley, Monzo, 13 August 2026</cite>
+  </div>
+
+  <p>Two smaller findings travel with it. Non-engineers at Monzo can now ship small user-experience fixes without waiting to find an available engineer, which is the second half of that quote in practice. And the agent has caught errors during incident response, which puts it inside the operational loop rather than alongside it.</p>
+
+  <p>Two features of the numbers are worth holding at bank altitude. Around a tenth of merged pull requests is a substantial share of a regulated engineering organisation&rsquo;s change volume to route through one internal platform within months of building it. And the platform reached a working state in about three weeks, which is a measure of how far the underlying tooling has matured.</p>
+
+  <p>One bank&rsquo;s numbers, one bank&rsquo;s bottleneck, published in full. What follows from that across the rest of the evidence is the subject of the closing section.</p>
+
+  <p class="source-tag">Source: <a href="https://monzo.com/blog/building-agent-chip">Monzo, Building Agent Chip</a> (13 August 2026)</p>
+</section>
+
+<!-- ═══ LESSONS — 8 of 8 ═══ -->
+<section class="lessons-section">
+  <div class="section-marker"><span class="marker-num">9</span><span class="marker-of">OF 9</span></div>
+  <div class="section-label">Lessons &amp; Implications</div>
+  <h2>What nineteen datasets agree on<span class="section-time">(2 min)</span></h2>
+
+  <div class="verdict-box">
+    <div class="vb-label">The Verdict</div>
+    <p>Adoption is finished as a question, and the rollout budget is still being written as though it were the only one. The measurable effect of near-universal agent use is that the same amount of judgement now has to be applied to several times as much output, by the same number of people, in the same week. The organisations whose numbers hold up are the ones that built a verification layer before they built an adoption plan.</p>
+  </div>
+
+  <h3>The planning variable is review capacity</h3>
+
+  <p>Every downstream measure in this issue points at the same constrained resource. Pull requests are larger, merge volume is higher, cross-agent conflicts arrive structurally rather than textually, and the security pass rate means a substantial share of generated code needs a human security judgement. Monzo found the constraint by removing the one in front of it. Capacity planning that counts engineers who can produce work, without separately counting engineers who can review it, is planning against the old bottleneck. The same arithmetic shows up in the merge data and in Monzo&rsquo;s account: the constraint settles on whichever step still holds a human.</p>
+
+  <h3>The bands have to be named in any internal target</h3>
+
+  <p>An organisation that sets itself a 90% adoption target and an organisation that sets itself a 28% autonomous-working target have committed to two entirely different programmes, with different governance, different risk, and different costs. The vocabulary problem in the published research is also a vocabulary problem inside organisations, and it is cheaper to fix in a target than in a post-mortem.</p>
+
+  <h3>Verification is a standing cost line</h3>
+
+  <p>DORA models the verification tax as part of a dip that a rollout climbs out of. The four years of GitClear data and the flat security pass rate describe something that has not improved with model capability. A cost line that has held steady across four testing snapshots and four years of commit history is a permanent one, and budgeting it as a transition expense understates it. Two of Bessemer&rsquo;s four named blockers &mdash; evaluating code quality and measuring productivity gains &mdash; describe the same missing layer from the buyer&rsquo;s side of the market.</p>
+
+  <div class="key-takeaway">
+    <div class="kt-title">Key Takeaway</div>
+    <ul>
+      <li>Review capacity is the planning variable.</li>
+      <li>The spectrum bands belong in any internal target: &ldquo;90% adoption&rdquo; and &ldquo;28% autonomous&rdquo; are not the same commitment.</li>
+      <li>Tool standardisation is a shorter-horizon bet than it looked in January.</li>
+      <li>The security review layer is a permanent cost line, not a transitional one &mdash; the 56% pass rate has not moved in a year.</li>
+      <li>The junior-pipeline decision made this year sets the supervision capacity available in three.</li>
+      <li>The platform investment precedes the payback, and only 28% of organisations have the team to make it.</li>
+    </ul>
+  </div>
+
+  <p class="source-tag">Sources: the nineteen studies, surveys and datasets cited in Sources 1&ndash;5, the Counterpoint and the case study above &mdash; among them <a href="https://dora.dev/ai/roi/report/">DORA</a>, <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">GitClear</a> and <a href="https://monzo.com/blog/building-agent-chip">Monzo</a>.</p>
+</section>
+
+<!-- ═══ MEANWHILE ═══ -->
+<section class="meanwhile-section">
+  <div class="section-label">Meanwhile&hellip;</div>
+  <h2>The Rest of the Week</h2>
+  <p class="meanwhile-intro">While this issue was deep in the agent literature, the week kept moving.</p>
+
+  <div class="meanwhile-lead">
+    <div class="ml-cat">Would have led</div>
+    <p><strong>Two days of UK retail-banking degradation, and two different failure responses.</strong> On 18 August a technical fault locked Lloyds, Halifax and Bank of Scotland customers out of mobile and online banking; Downdetector logged more than 2,450 reports for Lloyds, more than 1,000 for Halifax and several hundred for Bank of Scotland, around 70% of them app-related, with problems spiking by 11:30am and service restored shortly after 1:00pm. On 19 August more than 3,000 Monzo customers reported problems after midday, and Monzo moved into its published stand-in system &mdash; a fallback mode in which core payment functions keep running while other services are unavailable. Monzo&rsquo;s statement: &ldquo;We&rsquo;ve moved into our back-up system Monzo Stand-in and customers can still do most things on their Monzo app including sending bank transfers and making card payments and ATM withdrawals.&rdquo; Neither bank has published a cause for either incident. <span class="mw-src"><a href="https://www.ibtimes.co.uk/uk-banking-apps-disrupted-lloyds-halifax-bank-scotland-outage-1814958">IBTimes UK</a> &middot; <a href="https://www.aol.co.uk/articles/thousands-affected-monzo-app-hit-142108000.html">Evening Standard via AOL</a></span></p>
+  </div>
+
+  <div class="meanwhile-lead">
+    <div class="ml-cat">Would have led</div>
+    <p><strong>Visa, Mastercard and around two dozen others form an Agentic Payments Alliance &mdash; and name loyalty as unsolved.</strong> Rain launched the alliance on 18 August with about two dozen founding members including Visa, Mastercard, Fiserv, Circle, Remitly, Shift4, Sardine, Lithic, Evertec, Episode Six and Chainalysis, to standardise agent identification and authorisation, run shared research and shape regulatory advocacy. American Banker reports that much of the infrastructure guiding agentic AI &mdash; how agents get authorised, how fraud gets caught, and how loyalty and rewards work &mdash; is still being defined. &ldquo;The risk in a moment like this is not that the industry moves too slowly &mdash; it&rsquo;s that innovation outpaces alignment,&rdquo; said Sherri Haymond, executive vice president and global head of digital commercialization at Mastercard. <span class="mw-src"><a href="https://www.americanbanker.com/payments/news/rain-visa-mastercard-build-agentic-payments-alliance">American Banker</a></span></p>
+  </div>
+
+  <div class="meanwhile-grid">
+    <div class="mw-item"><strong>Apple patches an image-processing flaw reported by Meta&rsquo;s red team.</strong> Security updates for recent iPhones, iPads, Macs and Vision Pro address an integer-overflow bug in ImageIO, the framework Apple uses to decode images, which could allow code execution when a malicious image is processed; Apple fixed it with improved input validation. <span class="mw-src"><a href="https://www.theregister.com/security/2026/08/18/apple-plugs-image-processing-hole-ripe-for-spyware-abuse/5289031">The Register</a>, 18 August 2026</span></div>
+    <div class="mw-item"><strong>Meta ships Muse Code, a terminal coding agent for large codebases, in beta.</strong> Announced on 5 August, before this window opens, it fans large jobs out to parallel sub-agents working in isolated worktrees, and Meta positions it on cost against Codex and Claude Code. No pricing figures were published. <span class="mw-src"><a href="https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/">TechCrunch</a>, 5 August 2026</span></div>
+  </div>
+</section>
+
+<!-- ═══ ON THE RADAR ═══ -->
+<section class="section tight">
+  <div class="section-label">On the Radar</div>
+  <h2>Coming Up</h2>
+  <ul class="radar-compact">
+    <li><span class="rc-date urgent">4 Aug</span> <span><strong>keyv and cacheable npm packages hijacked</strong> &mdash; Socket reports at least ten packages in the keyv and cacheable namespaces republished with a credential-sweeping preinstall hook, collectively accounting for tens of millions of weekly downloads, after a maintainer account was compromised and stolen tokens were used to republish further packages. The leadership question is which build agents hold tokens. <a href="https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain">Socket</a></span></li>
+    <li><span class="rc-date">2 Dec 27</span> <span><strong>EU AI Act high-risk regime slips</strong> &mdash; Annex III stand-alone high-risk obligations covering hiring, credit scoring, education and critical infrastructure are deferred to 2 December 2027, and Annex I embedded high-risk AI to 2 August 2028. Article 50 transparency obligations were not deferred and took effect on 2 August 2026. <a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/">Gibson Dunn</a></span></li>
+    <li><span class="rc-date">27 Jul</span> <span><strong>Dynatrace autonomous SRE agent and no-code Agent Builder</strong> &mdash; announced with availability stated as August 2026; no general-availability date has been published, so this remains an announcement rather than an event. <a href="https://www.dynatrace.com/news/press-release/autonomous-operations-enterprise-ai/">Dynatrace</a></span></li>
+  </ul>
+</section>
+
+<!-- ═══ RECOMMENDED READING ═══ -->
+<section class="section">
+  <div class="section-label">Recommended Reading</div>
+  <h2>Sources &amp; Further Reading</h2>
+  <ul class="reading-list">
+    <li>
+      <div class="rl-head"><span class="title"><a href="https://www.anthropic.com/research/economic-index-june-2026-report">Anthropic Economic Index, June 2026 &ldquo;Cadences&rdquo; edition</a></span><span class="source">Anthropic</span></div>
+      <p class="rl-note">One vendor&rsquo;s telemetry, attributed as such: &ldquo;Claude Code sessions run on the most capable models far more often (54% are served by Opus, against 10% of chat and Cowork conversations)&rdquo;, with sessions increasingly consisting of long-running agentic tasks.</p>
+    </li>
+    <li>
+      <div class="rl-head"><span class="title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5425555">Generative AI as Seniority-Biased Technological Change</a></span><span class="source">Hosseini Maasoum &amp; Lichtinger, SSRN</span></div>
+      <p class="rl-note">The working paper behind Source 4&rsquo;s direction-only finding, for the authors&rsquo; own magnitudes. The SSRN page was not reachable during preparation of this issue.</p>
+    </li>
+    <li>
+      <div class="rl-head"><span class="title"><a href="https://www.infoq.com/news/2026/08/AI-disrupts-engineering-progress/">Engineering Progression When AI Ate the Middle</a></span><span class="source">Ben Linders, InfoQ</span></div>
+      <p class="rl-note">Alasdair Allan&rsquo;s QCon London talk, connecting this year&rsquo;s hiring decision to the supervision capacity available in three. Recommended rather than cited, because its figures are a secondary aggregation.</p>
+    </li>
+    <li>
+      <div class="rl-head"><span class="title"><a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Inside AI-pilled engineering teams</a></span><span class="source">Bessemer Atlas</span></div>
+      <p class="rl-note">The full account of the enablement layer summarised in Source 5, including the Ramp and Shopify practices.</p>
+    </li>
+    <li>
+      <div class="rl-head"><span class="title"><a href="https://dora.dev/ai/roi/report/">ROI of AI-assisted Software Development (v.2026.1)</a></span><span class="source">DORA</span></div>
+      <p class="rl-note">The model behind the finance conversation in Source 3, published with an accompanying ROI calculator.</p>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-vol">Vol. II</div>
+  <div class="footer-brand">Engineering Digest</div>
+  <div class="footer-sub">21 August 2026 &middot; Deep Dive &middot; Issue #23</div>
+  <div class="footer-next">Next edition: 28 August 2026</div>
+  <div class="archive-bar">
+    <span class="archive-bar-label">Archive</span>
+    <span class="archive-pill">#18 &middot; Deep Dive</span>
+    <span class="archive-pill">#19 &middot; Weekly</span>
+    <span class="archive-pill">#20 &middot; Weekly</span>
+    <span class="archive-pill">#21 &middot; Weekly</span>
+    <span class="archive-pill">#22 &middot; Weekly</span>
+    <span class="archive-pill current">#23 &middot; Deep Dive</span>
+  </div>
+</footer>
+
+<!-- ═══ PROGRESS BAR SCRIPT ═══ -->
+<script>
+(function(){const fill=document.getElementById('progressFill');if(!fill)return;window.addEventListener('scroll',function(){const h=document.documentElement.scrollHeight-window.innerHeight;fill.style.width=h>0?(window.scrollY/h*100).toFixed(1)+'%':'0%'},{passive:true})})();
+</script>
+
+</div></body></html>
