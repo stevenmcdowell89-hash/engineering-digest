@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engineering Digest — Deep Dive: The Constraint Moved</title>
+<title>Engineering Digest — Deep Dive: Everyone Hits the Wall</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0A1628;--navy-mid:#1A2744;--teal:#00B4D8;--deep-teal:#0077B6;--white:#FFF;--off-white:#F4F6F9;--light-gray:#E8EDF2;--med-gray:#8899AA;--body-text:#3D4F63;--accent-green:#00D4AA;--accent-orange:#FF6B35;--alert-red:#DC2626;--coral:#FF4D6D}
@@ -208,6 +208,7 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 
 <a href="../../index.html" class="back-to-archive" aria-label="Back to all issues"><span style="font-size:14px;line-height:1">&#8592;</span><span>All Issues</span></a>
 
+
 <!-- ═══ PROGRESS BAR ═══ -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
@@ -217,35 +218,35 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
     <span class="cis-vol">Vol. II</span>
     <span>Issue 23</span>
     <span>21 August 2026</span>
-    <span>44 min read</span>
+    <span>27 min read</span>
   </div>
   <div class="cover-inner">
     <div class="deep-badge">Deep Dive</div>
-    <h1>The Constraint Moved</h1>
-    <div class="cover-sub">Nine in ten professional developers now use a coding agent every week. Nineteen studies on what that produced, and sixteen named teams and practitioners on what they do differently because of it &mdash; how work gets sliced, what goes in the instruction file, and what review turned into.</div>
+    <h1>Everyone Hits the Wall</h1>
+    <div class="cover-sub">Adoption of coding agents follows the same five stages almost everywhere: a few enthusiasts, a burst of output, a stall, a rebuild, and something steadier and narrower than the burst promised. Most teams are at the stall. It is where the value of the whole exercise gets decided.</div>
     <div class="cover-meta">
       <span class="cover-date">21 August 2026</span>
       <span class="cover-issue">|&ensp;Issue 23&ensp;|&ensp;Engineering Digest&ensp;|&ensp;Deep Dive</span>
     </div>
     <div class="week-badge">15 &ndash; 21 August 2026</div>
     <div class="cover-scope">
+      <div class="scope-item"><div class="scope-num">5</div><div class="scope-label">Stages of the arc</div></div>
       <div class="scope-item"><div class="scope-num">16</div><div class="scope-label">Teams &amp; practitioners</div></div>
       <div class="scope-item"><div class="scope-num">19</div><div class="scope-label">Studies &amp; datasets</div></div>
-      <div class="scope-item"><div class="scope-num">5</div><div class="scope-label">Rollouts traced</div></div>
       <div class="scope-item"><div class="scope-num">1</div><div class="scope-label">Named bank rollout</div></div>
     </div>
   </div>
   <div class="cover-stat-band">
     <div class="stat-figure">90%</div>
-    <div class="stat-context">Nine in ten professional developers use a coding agent at work at least weekly; 68% use one daily. JetBrains, more than 15,000 professional developers, fielded May&ndash;July 2026, published August 2026.</div>
+    <div class="stat-context">Nine in ten professional developers now use a coding agent at work at least weekly. That settles the adoption question and opens every other one. JetBrains, August 2026.</div>
   </div>
 </header>
 
 <!-- ═══ FOREWORD ═══ -->
 <section class="foreword">
   <div class="section-label">Foreword</div>
-  <p>The largest fresh sample yet taken of coding-agent use was published this month: nine in ten professional developers now reach for a coding agent at least weekly. Adoption is settled. What teams do with it is not, and 2026 has been the year engineering organisations started writing down what they actually changed &mdash; how work gets sliced, what goes in the file the agent reads first, how several agents running at once are handled, and what happened to review.</p>
-  <p>This issue sets that practitioner record against the year&rsquo;s outcome evidence. Sixteen named teams and practitioners describe what they do differently; nineteen studies, surveys and datasets describe what it produced. The two halves disagree in useful places, and the disagreements are where a team mid-rollout will find something worth comparing notes on.</p>
+  <p>Nine in ten professional developers now use a coding agent at least weekly. Adoption is finished as a question. It explains almost nothing about why two teams holding the same tools are having completely different years &mdash; what a team is experiencing depends on how far along a fairly predictable arc it has travelled.</p>
+  <p>This issue maps that arc in five stages: experimenting, the honeymoon, the wall, the rebuild, and settled practice. Most teams are in the third stage. The evidence for each comes from named engineers and organisations who published what they actually did, set against a year of studies measuring what it produced.</p>
 </section>
 
 <!-- ═══ HOW TO READ THIS ═══ -->
@@ -255,518 +256,302 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
   <div class="how-to-read">
     <div class="htr-card">
       <div class="htr-time">2 min</div>
-      <div class="htr-label">The Headlines</div>
-      <p>The cover figure, the Executive Summary, and the verdict box in Lessons &amp; Implications. The whole argument in miniature.</p>
+      <div class="htr-label">The Shape</div>
+      <p>The cover figure, the adoption-arc diagram in Section 1, and the verdict box in Lessons &amp; Implications.</p>
     </div>
     <div class="htr-card">
-      <div class="htr-time">17 min</div>
-      <div class="htr-label">The Full Picture</div>
-      <p>Add Source 2 for the practices named teams hold, Source 3 for felt speed against measured speed, and the Counterpoint for how the two readings reconcile.</p>
+      <div class="htr-time">12 min</div>
+      <div class="htr-label">Where Most Teams Are</div>
+      <p>Add Stage Three, the wall, and Stage Four, the rebuild &mdash; what stalls and what the teams that got past it changed.</p>
     </div>
     <div class="htr-card">
-      <div class="htr-time">44 min</div>
+      <div class="htr-time">27 min</div>
       <div class="htr-label">The Deep Read</div>
-      <p>All five source sections &mdash; the adoption ladder, day-to-day practice, the outcome evidence, the code and the people, and five rollouts side by side &mdash; then the Monzo case study, Lessons, and the rest of the week.</p>
+      <p>All five stages, the Monzo case study, Lessons &amp; Implications, then Meanwhile, On the Radar and Recommended Reading.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ EXECUTIVE SUMMARY — 1 of 8 ═══ -->
+<!-- ═══ 1 — THE ARC ═══ -->
 <section class="section">
-  <div class="section-marker"><span class="marker-num">1</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Executive Summary</div>
-  <h2>Adoption is settled. Practice is where the year&rsquo;s work went.<span class="section-time">(2 min)</span></h2>
+  <div class="section-marker"><span class="marker-num">1</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">The Shape</div>
+  <h2>Rollouts are converging on the same five stages<span class="section-time">(2 min)</span></h2>
 
-  <p>Every measure of <em>input</em> is climbing steeply: weekly agent use, daily agent use, the share of merged code that is AI-authored, pull-request volume, pull-request size, and spend. Every measure of <em>outcome</em> that has been independently observed is flat, falling, or unmeasured: developer experience, change confidence, the security pass rate of generated code, junior skill formation, and the share of organisations running agentic AI in production rather than in a pilot. The constraint on delivery has moved from writing code to verifying, reviewing and maintaining it, and the practices that separate teams from one another now sit downstream of the keyboard.</p>
+  <p>Enough organisations have now published what they did with coding agents that their rollouts can be laid side by side. They do not look alike in their tooling. They look remarkably alike in their sequence. A team starts with a few individuals trying things on their own, gets a burst of output that feels transformative, then spends a long stretch unable to show the gain anywhere it can point to. The teams that come out of that stretch have rebuilt their verification and their working norms, and what they arrive at is steadier and considerably narrower than the burst promised.</p>
 
-  <p>A measurement problem has to be named before any of the numbers can be read. The word &ldquo;agent&rdquo; covers at least three distinct things across these sources, from a chat assistant answering a question to software with standing authority to act in production. Source 1 pins the three bands down and tags every survey with the one it measures, which is also the quickest way for a team to locate its own use on the ladder.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Curve diagram of the five stages of coding-agent adoption, rising into a honeymoon peak, dipping at the wall, climbing through the rebuild and levelling at settled practice">
+      <defs>
+        <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#0077B6"/>
+          <stop offset="0.30" stop-color="#00B4D8"/>
+          <stop offset="0.52" stop-color="#DC2626"/>
+          <stop offset="0.76" stop-color="#0077B6"/>
+          <stop offset="1" stop-color="#00D4AA"/>
+        </linearGradient>
+      </defs>
 
-  <p>Source 2 is the practitioner record: how work is sliced and planned, what goes into the file the agent reads first, how teams handle several agents at once, what review became, what happened to tests, and where teams still refuse to hand anything over. Source 3 sets the modelled economics of a rollout against what telemetry and self-report recorded over the past year, including the gap between how fast the work felt and how fast it was. Source 4 examines what the output does to a codebase over four years of commit history and what assisted work does to people learning the craft. Source 5 puts five published rollouts side by side in the order each organisation took its decisions. The Counterpoint reconciles the surveys that disagree; the case study is Monzo&rsquo;s account of its own agent platform and the bottleneck it found on the other side.</p>
+      <text x="0" y="18" font-family="Playfair Display, serif" font-size="19" font-weight="700" fill="#0A1628">The adoption arc</text>
+      <text x="0" y="40" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#8899AA">Five stages teams pass through, with the year&#8217;s evidence pinned to the stage it belongs to</text>
+
+      <rect x="384" y="92" width="162" height="238" fill="#DC2626" opacity="0.05"/>
+      <line x1="222" y1="92" x2="222" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="384" y1="92" x2="384" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="546" y1="92" x2="546" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="708" y1="92" x2="708" y2="330" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="60" y1="330" x2="876" y2="330" stroke="#8899AA" stroke-width="1"/>
+      <polygon points="888,330 876,325 876,335" fill="#8899AA"/>
+
+      <path d="M 60 302 C 120 300, 175 268, 232 196 C 268 150, 296 124, 332 122 C 372 120, 396 176, 428 220 C 456 258, 478 270, 506 270 C 546 270, 566 246, 596 220 C 634 188, 662 172, 704 164 C 762 154, 812 151, 868 150" fill="none" stroke="url(#arcGrad)" stroke-width="4.5" stroke-linecap="round"/>
+
+      <line x1="104" y1="238" x2="146" y2="282" stroke="#C8D3DE" stroke-width="1"/>
+      <line x1="306" y1="198" x2="330" y2="136" stroke="#C8D3DE" stroke-width="1"/>
+      <line x1="498" y1="192" x2="506" y2="262" stroke="#C8D3DE" stroke-width="1"/>
+      <line x1="642" y1="262" x2="700" y2="174" stroke="#C8D3DE" stroke-width="1"/>
+
+      <circle cx="150" cy="289" r="6" fill="#FFFFFF" stroke="#0077B6" stroke-width="3"/>
+      <circle cx="332" cy="122" r="6" fill="#FFFFFF" stroke="#00B4D8" stroke-width="3"/>
+      <circle cx="506" cy="270" r="6" fill="#FFFFFF" stroke="#DC2626" stroke-width="3"/>
+      <circle cx="704" cy="164" r="6" fill="#FFFFFF" stroke="#0077B6" stroke-width="3"/>
+      <circle cx="830" cy="150" r="6" fill="#FFFFFF" stroke="#00D4AA" stroke-width="3"/>
+
+      <text x="70" y="196" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#0077B6">90%</text>
+      <text x="70" y="215" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">use a coding agent</text>
+      <text x="70" y="229" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">at least weekly</text>
+
+      <text x="246" y="215" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#00B4D8">42 &#8594; 72</text>
+      <text x="246" y="234" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">average lines per pull request</text>
+
+      <text x="452" y="152" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#DC2626">19% slower</text>
+      <text x="452" y="171" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">measured, against 24%</text>
+      <text x="452" y="185" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">forecast faster</text>
+
+      <text x="600" y="276" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#0077B6">93%</text>
+      <text x="600" y="295" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">of one R&amp;D organisation, after</text>
+      <text x="600" y="309" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">eleven months of platform work</text>
+
+      <text x="141" y="358" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0A1628" text-anchor="middle">1 &#183; EXPERIMENTING</text>
+      <text x="141" y="376" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">individuals try it,</text>
+      <text x="141" y="390" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">no shared practice</text>
+
+      <text x="303" y="358" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0A1628" text-anchor="middle">2 &#183; THE HONEYMOON</text>
+      <text x="303" y="376" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">output jumps,</text>
+      <text x="303" y="390" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">leadership sees green</text>
+
+      <text x="465" y="358" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#DC2626" text-anchor="middle">3 &#183; THE WALL</text>
+      <text x="465" y="376" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">review piles up,</text>
+      <text x="465" y="390" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">the gains stop showing</text>
+
+      <text x="627" y="358" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0A1628" text-anchor="middle">4 &#183; THE REBUILD</text>
+      <text x="627" y="376" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">verification, norms,</text>
+      <text x="627" y="390" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">work re-cut</text>
+
+      <text x="789" y="358" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#0A1628" text-anchor="middle">5 &#183; SETTLED PRACTICE</text>
+      <text x="789" y="376" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">routine within limits;</text>
+      <text x="789" y="390" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">few teams are fully here</text>
+
+      <text x="0" y="424" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Horizontal axis is months into a rollout. The curve is schematic; the four pinned figures are measured. Sources: JetBrains, August 2026 &#183; DX, Q2 2026 &#183; METR, July 2025 &#183; Cloudflare, April 2026.</text>
+    </svg>
+    <p class="chart-note">Nothing is awarded for reaching the end of this arc. The fifth stage describes what a small number of organisations report today, not a destination with a date on it. What the arc is good for is location: a team that knows which stage it is in spends much less time arguing about which tool to buy.</p>
+  </div>
+
+  <div class="sidebar-box">
+    <div class="sb-title">Reading the numbers</div>
+    <p class="sb-context">&ldquo;Agent&rdquo; means three different things across the sources here. An <strong>assistant</strong> completes the next line while a person types. <strong>Agent-mode</strong> means the agent takes a whole task and runs it, while a human still starts it, reviews it and merges it. An <strong>autonomous agent</strong> acts without per-step approval. Almost everything in this issue is agent-mode. Where a figure counts something else &mdash; an assistant, or an organisation rather than a person &mdash; the text says so at that point, and nowhere else.</p>
+  </div>
+
+  <p>Most teams are in the third stage. It gets the longest treatment here for that reason, and because everything a team builds afterwards is a response to something it found there.</p>
 </section>
 
-<!-- ═══ SOURCE 1 — 2 of 8 ═══ -->
+<!-- ═══ 2 — EXPERIMENTING ═══ -->
 <section class="section">
-  <div class="section-marker"><span class="marker-num">2</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Source 1 &mdash; Adoption</div>
-  <h2>Ninety per cent is real, and it counts five different things<span class="section-time">(4 min)</span></h2>
+  <div class="section-marker"><span class="marker-num">2</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">Stage One</div>
+  <h2>Experimenting: a few people, a lot of scattered wins<span class="section-time">(2 min)</span></h2>
 
-  <div class="by-the-numbers">
-    <div class="btn-title">The adoption ladder</div>
-    <div class="btn-grid five">
-      <div class="btn-item"><div class="btn-num">95%</div><div class="btn-label">Using AI tools at least weekly</div></div>
-      <div class="btn-item"><div class="btn-num">90%</div><div class="btn-label">Using a coding agent at least weekly</div></div>
-      <div class="btn-item"><div class="btn-num">55%</div><div class="btn-label">Regular agent use</div></div>
-      <div class="btn-item"><div class="btn-num">28%</div><div class="btn-label">Autonomous AI as the primary way of working</div></div>
-      <div class="btn-item"><div class="btn-num">11%</div><div class="btn-label">Agentic AI running in production</div></div>
-    </div>
-  </div>
+  <p>Nine in ten professional developers now reach for a coding agent in a given week [JetBrains, August 2026]. The figure counts people, not teams. An engineer who tried one on Tuesday and told nobody is inside it. So is an engineer on a team that has rebuilt its entire review process around agents. Counted this way, adoption says very little about whether an organisation has a practice.</p>
 
-  <div class="jargon-watch">
-    <span class="jw-label">Jargon Watch</span>
-    <span class="jw-term">Coding agent, agent-mode, autonomous agent</span>
-    <p class="jw-body">A <strong>coding agent</strong> plans and executes multi-step work from an instruction, rather than completing the next line the way an autocomplete tool does.</p>
-    <p class="jw-body"><strong>Agent-mode</strong> describes the arrangement most organisations run today: the agent carries out the task, and a human still initiates it, reviews the result and merges it.</p>
-    <p class="jw-body">An <strong>autonomous</strong> or <strong>production agent</strong> acts with action authority and no per-step human approval.</p>
-    <p class="jw-body">A <strong>remote</strong> or <strong>cloud agent</strong> runs on the vendor&rsquo;s infrastructure rather than on the developer&rsquo;s own machine.</p>
-    <a class="jw-link" href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains, AI coding agent adoption 2026 &rarr;</a>
-  </div>
+  <p>The gap shows up as soon as anyone looks at the work rather than the headcount. In an analysis of agent-written pull requests published this summer, seven projects in ten had fewer than one contributor in five taking part in an agentic workflow at all [LeadDev, July 2026]. Most people on most of those projects were outside the practice while their organisations counted themselves adopted.</p>
 
-  <p>Those five figures span a factor of eight, and each of them is accurately reported by its publisher. They differ because they count different activities in different populations. The 95% and the 11% sit at opposite ends of a spectrum that the industry has not agreed a vocabulary for, and every argument about whether AI is working in engineering organisations runs aground on that spectrum somewhere. The ladder is also the quickest way for a team to locate its own position: a squad where everyone has an agent open daily and a squad merging agent-authored work unsupervised are four rungs apart, and only one of them is described by the headline number.</p>
+  <p>From the inside, stage one looks like two or three engineers producing results nobody else can reproduce, no agreement on which tool, and no written record of what worked. The wins are real and they are personal. They do not transfer, because nothing has been written down for them to travel through.</p>
 
-  <p>Three bands are enough to separate them. At the <strong>assistant</strong> end, a human writes and the AI suggests or answers &mdash; autocomplete, chat, inline completion. In the middle sits <strong>agent-mode</strong>, where the agent plans and executes multi-step work while a human initiates, reviews and merges it. At the far end are <strong>autonomous</strong> or <strong>production agents</strong>, acting with authority and without per-step approval. Deloitte publishes the cleanest version of that ladder in the pool, describing augmentation as &ldquo;today&rsquo;s reality where agents enhance human worker capabilities&rdquo;, automation as &ldquo;an emerging capability where agents automate tasks within processes defined by humans&rdquo;, and true autonomy as &ldquo;a future state in which artificial general intelligence enables agents to work with minimal oversight&rdquo;. Its own numbers land where that framing predicts: 11% of organisations have agentic AI in production, 14% consider themselves ready to deploy, 38% are piloting and 30% are exploring, while 42% are still developing a roadmap and 35% have no formal agentic strategy at all. Deloitte surveys organisations across industries rather than developers, and does not disclose a sample size, so it belongs on this ladder as a measure of organisations rather than of engineers.</p>
+  <p>The second-order problem is divergence. Everyone develops their own habits for prompting the agent and correcting it, so a team that started with one shared process quietly ends up with five. It stays invisible until a handover or an incident, at which point it turns out that two engineers on the same service hold completely different beliefs about what the agent is allowed to touch.</p>
 
-  <div class="chart-wrap">
-    <svg viewBox="0 0 780 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal bar chart comparing five adoption figures from four sources, banded by position on the agent spectrum">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">What the adoption numbers are counting</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Five headline figures, five different definitions of &#8220;using AI&#8221;</text>
+  <p>The engineers who are not interested are usually not persuaded by being asked to let a machine write their code. Mitchell Hashimoto, who co-founded HashiCorp and now builds the Ghostty terminal, has the most portable move for that conversation. &ldquo;There&rsquo;s a lot of people like, &lsquo;I don&rsquo;t want it to write code for me.&rsquo; But just delegate some of the research part.&rdquo; Comparing libraries and enumerating edge cases sidesteps the identity objection entirely, and it is work that needs no real-time attention.</p>
 
-      <!-- legend -->
-      <rect x="0" y="50" width="10" height="10" fill="#00B4D8"/><text x="16" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Assistant band</text>
-      <rect x="115" y="50" width="10" height="10" fill="#0077B6"/><text x="131" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Agent-mode band</text>
-      <rect x="245" y="50" width="10" height="10" fill="#FF6B35"/><text x="261" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Autonomous band</text>
-      <rect x="378" y="50" width="10" height="10" fill="#DC2626"/><text x="394" y="59" font-family="Source Sans 3, sans-serif" font-size="11" fill="#3D4F63">Autonomous band (organisations)</text>
+  <p>The stage ends when one person&rsquo;s result becomes visible enough that the rest of the team copies it. That is almost always a demo, and it is almost never planned.</p>
 
-      <!-- gridlines -->
-      <line x1="320" y1="76" x2="320" y2="288" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="425" y1="76" x2="425" y2="288" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="530" y1="76" x2="530" y2="288" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="635" y1="76" x2="635" y2="288" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="740" y1="76" x2="740" y2="288" stroke="#E8EDF2" stroke-width="1"/>
-
-      <!-- rows -->
-      <text x="0" y="96" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Using AI tools at least weekly</text>
-      <text x="0" y="111" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Pragmatic Engineer &#183; n=906</text>
-      <rect x="320" y="86" width="399" height="24" fill="#00B4D8" rx="2"/>
-      <text x="729" y="103" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">95%</text>
-
-      <text x="0" y="140" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Using a coding agent at least weekly</text>
-      <text x="0" y="155" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">JetBrains &#183; 15,000+ developers</text>
-      <rect x="320" y="130" width="378" height="24" fill="#0077B6" rx="2"/>
-      <text x="708" y="147" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">90%</text>
-
-      <text x="0" y="184" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Regular agent use</text>
-      <text x="0" y="199" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Pragmatic Engineer &#183; n=906</text>
-      <rect x="320" y="174" width="231" height="24" fill="#0077B6" rx="2"/>
-      <text x="561" y="191" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">55%</text>
-
-      <text x="0" y="228" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Autonomous AI as primary way of working</text>
-      <text x="0" y="243" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">GitKraken &#183; n=554</text>
-      <rect x="320" y="218" width="118" height="24" fill="#FF6B35" rx="2"/>
-      <text x="448" y="235" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">28%</text>
-
-      <text x="0" y="272" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Agentic AI running in production</text>
-      <text x="0" y="287" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA">Deloitte &#183; organisations, cross-industry</text>
-      <rect x="320" y="262" width="46" height="24" fill="#DC2626" rx="2"/>
-      <text x="376" y="279" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#0A1628">11%</text>
-
-      <!-- axis -->
-      <line x1="320" y1="296" x2="740" y2="296" stroke="#8899AA" stroke-width="1"/>
-      <text x="320" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">0%</text>
-      <text x="425" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">25%</text>
-      <text x="530" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">50%</text>
-      <text x="635" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">75%</text>
-      <text x="740" y="312" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">100%</text>
-      <text x="0" y="326" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Sources: Pragmatic Engineer (Jan&#8211;Feb 2026), JetBrains (fielded May&#8211;Jul 2026), GitKraken (Aug 2026), Deloitte (2026).</text>
-    </svg>
-    <p class="chart-note">The four surveys measure different populations as well as different activities: three count developers, Deloitte counts organisations.</p>
-  </div>
-
-  <h3>The three surveys, and what each one asked</h3>
-
-  <p>JetBrains sits in the middle band. Its questions cover agents and remote or cloud agents rather than autocomplete, and its sample is more than fifteen thousand professional developers fielded between May and July 2026. Alongside the headline weekly and daily figures homed on the cover, it produced the sharpest picture yet of which tools those developers actually use. Claude Code reached 39% worldwide, up from 18% in January 2026, rising to 47% in the United States, and it is the most-used tool for 31% of developers. OpenAI&rsquo;s coding agent Codex reached 16%, up from 3% in January, with awareness of it climbing from 27% to 65%. GitHub Copilot is at 21%, down from 29% a year earlier, on 79% awareness. Cursor is at 12%, down from 18% in January, and down from 28% to 16% in China. JetBrains AI is at 9%, the open-source coding agent OpenCode at 7%, and Google&rsquo;s Antigravity at 6%, rising to 15% in India.</p>
-
-  <div class="chart-wrap">
-    <svg viewBox="0 0 780 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slope chart showing coding-agent tool share moving between January 2026 and May to July 2026">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Eight months of tool-share churn</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Share of professional developers using each coding agent</text>
-
-      <!-- axes -->
-      <line x1="235" y1="60" x2="235" y2="300" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="545" y1="60" x2="545" y2="300" stroke="#E8EDF2" stroke-width="1"/>
-      <text x="235" y="318" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#8899AA" text-anchor="middle">January 2026</text>
-      <text x="545" y="318" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#8899AA" text-anchor="middle">May&#8211;July 2026</text>
-
-      <!-- Claude Code 18 -> 39 : y = 300 - v*5.333 -->
-      <line x1="235" y1="204" x2="545" y2="92" stroke="#00B4D8" stroke-width="3"/>
-      <circle cx="235" cy="204" r="5" fill="#00B4D8"/><circle cx="545" cy="92" r="5" fill="#00B4D8"/>
-      <text x="225" y="208" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Claude Code 18%</text>
-      <text x="558" y="96" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Claude Code 39%</text>
-
-      <!-- Codex 3 -> 16 -->
-      <line x1="235" y1="284" x2="545" y2="215" stroke="#0077B6" stroke-width="3"/>
-      <circle cx="235" cy="284" r="5" fill="#0077B6"/><circle cx="545" cy="215" r="5" fill="#0077B6"/>
-      <text x="225" y="288" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Codex 3%</text>
-      <text x="558" y="219" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Codex 16%</text>
-
-      <!-- Copilot 29 (a year earlier) -> 21 : dashed -->
-      <line x1="235" y1="145" x2="545" y2="188" stroke="#FF6B35" stroke-width="3" stroke-dasharray="7 5"/>
-      <circle cx="235" cy="145" r="5" fill="#FF6B35"/><circle cx="545" cy="188" r="5" fill="#FF6B35"/>
-      <text x="225" y="143" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">GitHub Copilot 29%*</text>
-      <text x="558" y="192" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">GitHub Copilot 21%</text>
-
-      <!-- Cursor 18 -> 12 -->
-      <line x1="235" y1="204" x2="545" y2="236" stroke="#DC2626" stroke-width="3"/>
-      <circle cx="235" cy="204" r="5" fill="#DC2626"/><circle cx="545" cy="236" r="5" fill="#DC2626"/>
-      <text x="225" y="222" font-family="Source Sans 3, sans-serif" font-size="12" fill="#3D4F63" text-anchor="end">Cursor 18%</text>
-      <text x="558" y="240" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Cursor 12%</text>
-
-      <!-- endpoint-only cluster -->
-      <circle cx="545" cy="252" r="4" fill="#8899AA"/>
-      <circle cx="545" cy="263" r="4" fill="#8899AA"/>
-      <circle cx="545" cy="268" r="4" fill="#8899AA"/>
-      <line x1="552" y1="262" x2="576" y2="272" stroke="#8899AA" stroke-width="1"/>
-      <text x="580" y="270" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">Endpoint only:</text>
-      <text x="580" y="285" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">JetBrains AI 9% &#183; OpenCode 7%</text>
-      <text x="580" y="299" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">Google Antigravity 6%</text>
-
-      <text x="0" y="338" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">*Copilot&#8217;s 29% is reported as &#8220;a year earlier&#8221;, not January 2026 &#8212; the dashed line marks the different baseline.</text>
-      <text x="0" y="350" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: JetBrains, AI coding agent adoption survey, more than 15,000 professional developers, fielded May&#8211;July 2026.</text>
-    </svg>
-    <p class="chart-note">Four of the seven tools moved by ten points or more inside eight months. Any standardisation commitment made in January was made against a market that no longer exists in the same shape.</p>
-  </div>
-
-  <p>That churn is the practical finding of the section. Tool shares moved by tens of points in under a year, in both directions, and a single vendor doubled its share while another lost a third of its own. Standardising on one agent is a shorter-horizon bet than it looked at the start of the year, and any multi-year commitment made on current shares is being made against a market that has been reshuffling roughly every two quarters.</p>
-
-  <p>The Pragmatic Engineer survey draws the cleanest line between the bands of any source here, because it asked both questions separately. Across 906 respondents fielded between 27 January and 17 February 2026, 95% were using AI tools at least weekly, 75% for half or more of their work, and 56% for 70% or more of it. Regular agent use &mdash; the middle band &mdash; ran at 55%, rising to 63.5% among staff-plus engineers. Its company-size split is worth holding: Claude Code was at 75% in organisations under ten people, while GitHub Copilot was at 56% in organisations over ten thousand. Agent users were also nearly twice as likely to describe themselves as excited, at 61% against 36%.</p>
-
-  <p>GitKraken measures the far end. Its survey of 554 developers and engineering leaders found 96.4% of engineering organisations using AI coding tools and 84% reporting higher productivity, and it recorded the share naming autonomous AI as their &ldquo;primary way of working&rdquo; rising from 7.6% to 28% in nine months. That is the most striking movement in the pool and the one that most deserves its caveat. GitKraken sells the review-and-merge tooling that its own report identifies as the new bottleneck, so the finding runs in the direction of its commercial interest, and the sample is 554.</p>
-
-  <p>With the bands pinned down, the question that follows is what teams at the agent-mode rung actually do differently.</p>
-
-  <p class="source-tag">Sources: <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains</a> (August 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026">The Pragmatic Engineer</a> (fielded January&ndash;February 2026) &middot; <a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">GitKraken</a> (14 August 2026) &middot; <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html">Deloitte</a> (2026)</p>
+  <p class="source-tag">Sources: <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains developer research</a> (August 2026) &middot; <a href="https://leaddev.com/ai/ai-coding-agents-kill-team-collaboration">Chris Stokel-Walker, LeadDev</a> (28 July 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto">Gergely Orosz on Mitchell Hashimoto, The Pragmatic Engineer</a> (25 February 2026)</p>
 </section>
 
-<!-- ═══ SOURCE 2 — 3 of 8 ═══ -->
+<!-- ═══ 3 — THE HONEYMOON ═══ -->
 <section class="section">
-  <div class="section-marker"><span class="marker-num">3</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Source 2 &mdash; Team Practice</div>
-  <h2>How teams actually work with agents<span class="section-time">(9 min)</span></h2>
+  <div class="section-marker"><span class="marker-num">3</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">Stage Two</div>
+  <h2>The honeymoon: everything gets faster, and the graphs agree<span class="section-time">(2 min)</span></h2>
 
-  <p>Six practices recur across the first-hand accounts published this year: how work is sliced and planned, what goes into the file the agent reads before it starts, how teams handle several agents running at once, what review turned into, what happened to tests, and where teams still refuse to hand anything over. Every one of them is a convention a team agrees and then holds.</p>
+  <p>One line from Craft Docs is the sort of result that ends an argument inside a company: &ldquo;This migration work was estimated to take 3-4 months. It was done in a week with AI tooling.&rdquo; Stage two is what happens in the months after a result like that lands. The scepticism drains out of the room, the tools get bought for everybody, and for a while the work genuinely does feel different.</p>
 
-  <h3>Slicing the work, and what happened to planning</h3>
+  <p>Parallel agent use arrives on its own, and the mechanism is dead time. Ty Smith, a principal engineer at Uber, described it without dressing it up: &ldquo;as an engineer, you&rsquo;re giving a prompt and waiting for something. While it&rsquo;s running and you&rsquo;re waiting you&rsquo;re thinking: &lsquo;What am I going to do? Have a coffee or browse Reddit? Might as well kick off another background agent.&rsquo;&rdquo; Three agents at once is what happens when waiting is boring.</p>
 
-  <p>Fiona Fung, Director of Engineering for Claude Code and Claude Cowork at Anthropic, published the clearest first-hand account of what agent-assisted work does to planning ceremonies. She wrote in June: &ldquo;When I first joined the Claude Code team, we wrote a pretty good six month roadmap, and then because of Claude Code, so many things changed that it was out of date by month three.&rdquo; What replaced it has a name: &ldquo;I call it just-in-time (JIT) planning, almost like JIT compiling: how do you do just the right amount at the right time? Our planning ritual shifted away from design docs toward discussions in PRs or prototypes.&rdquo; Product review went the same way &mdash; rather than reviewing a proposal, the team builds it, puts internal users on it and acts on what comes back. Fung also names the governance mechanism that makes the rest possible: team members have explicit permission to question and kill processes that have stopped making sense.</p>
+  <p>The volume shows up quickly. Across the engineering organisations DX measures, the average pull request has grown from 42 to 72 lines, and more than half of all merged code is now AI-authored [DX, Q2 2026]. Bigger changes, more of them, and the majority of new material written by something that will not be sitting in the review.</p>
 
-  <p>Mitchell Hashimoto, the creator of Vagrant and Terraform now building the Ghostty terminal, describes a scheduling rule rather than a productivity aspiration. &ldquo;If I&rsquo;m coding, I want an agent planning. If they&rsquo;re coding, I want to be reviewing.&rdquo; The human and the agent are never in the same mode at the same time, which turns the aspiration of always having an agent working into something a calendar can hold. The corollary is that slow work gets queued at transitions &mdash; before a meeting, before the end of the day &mdash; and the canonical candidates are research, library comparison and edge-case enumeration, because none of them needs real-time attention.</p>
+  <p>Throughput measures agree. Microsoft researchers who studied their own employer&rsquo;s command-line agent rollout found that adopters &ldquo;merged roughly 24% more pull requests than they would have otherwise&rdquo;. They attached the caveat themselves, which is the model for how any throughput number should travel: &ldquo;We use merged pull requests as our proxy for output -- acknowledging that a merged PR is not the same as the value it delivers -- and the lift persists across our four-month window.&rdquo;</p>
 
-  <p>Which work goes first is a decision several teams have made the same way. At Uber, Engineering Director Anshu Chada told a Pragmatic Summit session in March that the deliberate first target was toil: &ldquo;What we found is when we push some of the boring stuff to AI &ndash; upgrades, migrations, bug fixes &ndash; not only does it result in much higher satisfaction from our engineers, but they&rsquo;re able to push our product and create features for end users in ways that we didn&rsquo;t even think were possible.&rdquo; Hashimoto has a matching move for the team&rsquo;s sceptics, and it starts nowhere near code generation: &ldquo;There&rsquo;s a lot of people like, &lsquo;I don&rsquo;t want it to write code for me.&rsquo; But just delegate some of the research part.&rdquo;</p>
+  <p>That distinction is the one nobody is looking at during stage two. A merged pull request measures work leaving the team. Value arriving at a customer is a different quantity, and the two only track each other while somebody downstream still has capacity to check the difference. This is the stage at which AI budget gets approved without much argument, because the anecdotes are strong and every dashboard leadership already had points the right way.</p>
 
-  <h3>The instruction file as a team artefact</h3>
+  <p>Nothing about stage two is fake. The output really is larger, it really does arrive faster, and the engineers producing it are not imagining the change. The stage ends when that output reaches the people who have to check it.</p>
 
-  <p>Cloudflare&rsquo;s developer-productivity team found that most agent failures traced back to one thing. &ldquo;Usually the problem was local context: the model didn&rsquo;t know the right test command, the team&rsquo;s current conventions, or which parts of the codebase were off-limits. That pushed us toward AGENTS.md: a short, structured file in each repo that tells coding agents how the codebase actually works and forces teams to make that context explicit.&rdquo; AGENTS.md is a plain-text file kept at the root of a repository that coding agents read before they begin work. Cloudflare&rsquo;s framing of it is worth holding: the file exists to force teams to write down context they otherwise keep in their heads. Files stay short and high-signal because they occupy space in the agent&rsquo;s context window, and they were generated across the estate rather than left to each team to start from a blank page.</p>
+  <p class="source-tag">Sources: <a href="https://newsletter.pragmaticengineer.com/p/ai-first-makeover-craft">Gergely Orosz on Craft Docs, The Pragmatic Engineer</a> (27 January 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development">Gergely Orosz on Uber, The Pragmatic Engineer</a> (10 March 2026) &middot; <a href="https://newsletter.getdx.com/p/ai-in-engineering-q2-2026-benchmarks">DX Q2 2026 benchmarks</a> (14 August 2026) &middot; <a href="https://arxiv.org/abs/2607.01418">Murphy-Hill, Butler &amp; Savelieva, arXiv preprint</a> (1 July 2026)</p>
+</section>
 
-  <p>Birgitta B&ouml;ckeler, who leads AI-assisted delivery at Thoughtworks, gives the whole category a name and therefore an owner. &ldquo;The term harness has emerged as a shorthand to mean everything in an AI agent except the model itself - Agent = Model + Harness.&rdquo; The harness covers instruction files, bootstrap scripts, linters, type checkers, test suites, architecture checks and review agents, and B&ouml;ckeler splits it in two. <em>Guides</em> steer the agent before it acts: instruction files, architecture notes, how-to docs. <em>Sensors</em> tell it whether what it did was right: linters, types, tests, structural checks. Her observation from client work is that most teams over-invest in guides and under-invest in sensors, and that a sensor firing only in CI fires too late to close the agent&rsquo;s own correction loop. The useful ones fire while the agent is still working.</p>
+<!-- ═══ 4 — THE WALL ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">4</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">Stage Three</div>
+  <h2>The wall: the output arrives, and the gains stop showing<span class="section-time">(4 min)</span></h2>
 
-  <p>Simon Willison makes the same point from the other end, about the repository itself. &ldquo;There&rsquo;s a lot to be said for keeping your codebase high quality because the agent will then add to it in a high quality way. And honestly, it&rsquo;s exactly the same with human development teams&mdash;if you&rsquo;re the first person to use Redis at your company, you have to do it perfectly because the next person will copy and paste what you did.&rdquo; The practical form of that is a golden-path repository template &mdash; a readme, CI and one small test already in the house style &mdash; rather than a document asking people to be careful.</p>
-
-  <h3>Running several at once</h3>
-
-  <p>Parallel agent use arrives on its own, and the honest mechanism is dead time. Ty Smith, a principal engineer at Uber, described it plainly: &ldquo;as an engineer, you&rsquo;re giving a prompt and waiting for something. While it&rsquo;s running and you&rsquo;re waiting you&rsquo;re thinking: &lsquo;What am I going to do? Have a coffee or browse Reddit? Might as well kick off another background agent.&rsquo;&rdquo; Hashimoto runs a more deliberate version where confidence is low: the same task against several models in separate checkouts, then adjudication between the outputs. It is a wasteful pattern that is only rational because machine time is cheap and review time is not.</p>
-
-  <p>The volume is already substantial: GitHub&rsquo;s Octoverse recorded more than a million coding-agent pull requests created between May and September 2025. The evidence for why parallel work needs a team norm rather than an individual habit comes from a study of 33,596 agent-authored pull requests.</p>
-
-  <div class="chart-wrap">
-    <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paired bar chart showing conflict rates for cross-agent and same-agent pull request pairs">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">When two agents work the same repository</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Conflict rate across 747 replayed three-way merges of co-active pull-request pairs</text>
-
-      <!-- y gridlines -->
-      <line x1="70" y1="215" x2="470" y2="215" stroke="#8899AA" stroke-width="1"/>
-      <line x1="70" y1="167" x2="470" y2="167" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="70" y1="119" x2="470" y2="119" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="70" y1="71" x2="470" y2="71" stroke="#E8EDF2" stroke-width="1"/>
-      <text x="62" y="219" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">0%</text>
-      <text x="62" y="171" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">15%</text>
-      <text x="62" y="123" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">30%</text>
-      <text x="62" y="75" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">45%</text>
-
-      <!-- bars: scale 45% = 144px -> 3.2px per point -->
-      <rect x="130" y="82" width="96" height="133" fill="#DC2626" rx="2"/>
-      <text x="178" y="72" font-family="Playfair Display, serif" font-size="24" font-weight="900" fill="#DC2626" text-anchor="middle">41.7%</text>
-      <text x="178" y="236" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628" text-anchor="middle">Cross-agent pairs</text>
-      <text x="178" y="252" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">two different agents</text>
-
-      <rect x="320" y="152" width="96" height="63" fill="#0077B6" rx="2"/>
-      <text x="368" y="142" font-family="Playfair Display, serif" font-size="24" font-weight="900" fill="#0077B6" text-anchor="middle">19.8%</text>
-      <text x="368" y="236" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628" text-anchor="middle">Same-agent pairs</text>
-      <text x="368" y="252" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">one agent throughout</text>
-
-      <!-- context strip -->
-      <rect x="510" y="56" width="270" height="196" fill="#F4F6F9" rx="3"/>
-      <text x="528" y="80" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#0077B6">THE SAMPLE</text>
-      <text x="528" y="104" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">33,596</text>
-      <text x="528" y="120" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">agent-authored pull requests</text>
-      <text x="528" y="144" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">40.2%</text>
-      <text x="528" y="160" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">of repositories carry co-active</text>
-      <text x="528" y="174" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">agent PR pairs</text>
-      <text x="528" y="198" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0A1628">79.4%</text>
-      <text x="528" y="214" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">of all agent PRs sit in</text>
-      <text x="528" y="228" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">such a pair (95.0% at a</text>
-      <text x="528" y="242" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#3D4F63">one-week window)</text>
-
-      <text x="0" y="278" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Cross-agent overlap is currently rare: only 0.5% of concurrent pairs involve different agents, in about 4.3% of repositories.</text>
-      <text x="0" y="292" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: Xu, Subramanian &amp; Karthik, arXiv, submitted 6 July 2026 &#183; 2,807 repositories.</text>
-    </svg>
-    <p class="chart-note">The honest reading of this chart is forward-looking. Cross-agent overlap happens in only 0.5% of concurrent pairs today, across roughly 4.3% of repositories, so the 41.7% figure describes what happens when two agents meet rather than what happens in the median repository. It is the evidence-based argument for keeping one agent per codebase before multi-agent overlap becomes normal.</p>
-  </div>
-
-  <p>A second analysis, of 25,264 agent-generated pull requests across 2,361 repositories, reported by Chris Stokel-Walker for LeadDev in July, describes what happens to the humans around that work: &ldquo;in 79% of agentic PRs, the same developer both reviewed and modified the AI&rsquo;s contribution. Just one in eight workflows involved multiple humans.&rdquo; Most teams believe they have a norm against unreviewed agent merges. That is the measurable form of the norm quietly breaking. Courtney Miller, an assistant professor of computer science at George Washington University, put the underlying problem in one line: &ldquo;Software development is not an isolated task, and writing new code was never the hard part&rdquo;. The countermeasures named in the same piece are all team-level and cheap: a Q&amp;A channel, a standing agent item in stand-up, demos against the team&rsquo;s own systems rather than toy repositories, and hack weeks.</p>
-
-  <h3>What review became</h3>
-
-  <p>Addy Osmani, an engineering leader at Google, names the mechanical change that explains the review-time blowout better than volume does. He relays one developer&rsquo;s line about reviewing an agent&rsquo;s pull request &mdash; that it made them &ldquo;the first human being to ever lay eyes on this code&rdquo; &mdash; and then draws out what follows from it.</p>
+  <p>The wall arrives as a review queue. Addy Osmani, an engineering leader at Google, relays one developer&rsquo;s line about reviewing an agent&rsquo;s pull request &mdash; that it made them &ldquo;the first human being to ever lay eyes on this code&rdquo; &mdash; and then draws out what follows from it.</p>
 
   <div class="pull-quote">
     <p>&ldquo;In normal review the author already understood the change and you were checking their work. With an agent PR, nobody has reconstructed the why yet, and the reviewer is the first to try.&rdquo;</p>
     <cite>&mdash; Addy Osmani, <em>Agentic Code Review</em>, 15 June 2026</cite>
   </div>
 
-  <p>Human-authored review is verification: someone already built the model of why, and the reviewer checks it. Agent-authored review is reconstruction, which is a different and more expensive job. Three countermeasures follow directly. The first is a pull-request intake standard &mdash; a statement of why the change is being made, a diff of readable size, and evidence the tests were actually run &mdash; which pushes the reconstruction work back to the submitter, where it is cheap. The second is size: &ldquo;Agent PRs run large, 51% larger on average in the Faros data, and reviewer engagement is one of the strongest predictors that a PR merges at all. A large unreviewable PR gets rejected outright or, worse, rubber-stamped.&rdquo; The third is risk tiering keyed to the code path rather than the author: a lint and a glance for configuration, and type checks, tests, more than one automated reviewer, a domain expert and a security look for payments and authentication paths.</p>
+  <p>That is the whole mechanism. Reviewing a colleague&rsquo;s change means checking work somebody has already understood. Reviewing an agent&rsquo;s change means building that understanding from nothing, in the reviewer&rsquo;s own head, for the first time. It is a slower and more expensive job, which is why review minutes stop dividing the way any capacity plan assumed they would. Larger diffs make it worse in a specific way: an oversized change does not get reviewed more carefully, it gets rejected outright or waved through.</p>
 
-  <p>Stacking review bots does not substitute for the human. Across a 146-pull-request comparison Osmani reports, &ldquo;Of 617 distinct flagged locations, 93.4% were caught by exactly one of the four tools. 6% by two. Almost none by three. None at all by all four.&rdquo; The tools are complementary rather than redundant, which is an argument for a second automated reviewer and against treating agreement between them as assurance. Osmani names the failure that follows when the humans step out: &ldquo;A confident &lsquo;looks good&rsquo; with no human anywhere in it is borrowed confidence: the system&rsquo;s certainty becomes yours, and nobody actually understood anything.&rdquo;</p>
+  <p>The norm most teams believe they hold is the first thing to break. In 79% of agent-written pull requests studied this summer, the same developer both reviewed and modified the agent&rsquo;s contribution, and just one workflow in eight involved more than one human [LeadDev, July 2026]. Nobody voted to remove the second pair of eyes. It came off under load.</p>
 
-  <p>Figma&rsquo;s security engineering team states its gate in one sentence: nothing merges without human review, a static-analysis pass and an agentic review, with failover between model providers so that an outage at one vendor cannot let a pull request through unreviewed. Two frontier models run independently and either one raising a finding escalates it &mdash; deliberate redundancy on the grounds that they miss different bugs, which is the same conclusion Osmani reached from outside data.</p>
-
-  <h3>Tests stopped being optional</h3>
-
-  <p>The most portable convention in the whole pack fits in a sentence, and Willison opens every agent session with it. &ldquo;Every single coding session I start with an agent, I start by saying here&rsquo;s how to run the test&hellip; So I say run the test and then I say use red-green TDD and give it its instruction.&rdquo; Red-green refers to writing a failing test first and then making it pass; every capable coding agent already knows the term, so the convention costs a handful of words. The reason it matters has changed. The historical objection to tests was the engineer time they cost to write and maintain: &ldquo;They&rsquo;re free now. They&rsquo;re effectively free. I think tests are no longer even remotely optional.&rdquo; A test suite is now the mechanism by which an agent can tell whether it has finished, which means a team that skipped tests has no such mechanism. Willison is equally clear about the limit: a green suite does not prove the service boots, so the agent is made to exercise the running system and leave a written record of what it exercised, as an artefact the reviewer can read.</p>
-
-  <p>Testing at organisational scale is where adoption thins most sharply. Capgemini&rsquo;s World Quality Report, 2025&ndash;26 edition, puts 43% of organisations experimenting with generative AI in quality engineering and only 15% having scaled it enterprise-wide.</p>
-
-  <h3>Where teams still say no</h3>
-
-  <p>The next step past running agents in parallel already has a shape. Armin Ronacher, the creator of Flask and formerly a principal architect at Sentry, describes it: &ldquo;The pattern is the same everywhere though: work is put into a queue of sorts, a machine picks it up, attempts it, stops, and then some harness decides whether that was actually the end.&rdquo; The epigraph he opens with, from Boris Cherny, states the shift in job description: &ldquo;I don&rsquo;t prompt Claude anymore. I have loops running that prompt Claude and figuring out what to do. My job is to write loops.&rdquo;</p>
-
-  <p>Ronacher is also the clearest voice on where that stops working, from his own practice: &ldquo;My current status is that I have not had much success with this way of working for code I deeply care about which turns out to be quite a lot of code.&rdquo; The line he draws is about the shelf life and invariant density of the output rather than the size of the task. Loops work on transformations of code that already exists &mdash; ports, migrations &mdash; and on deliberately short-lived artefacts such as performance experiments and security sweeps. They work badly on new, long-lived code with load-bearing invariants. The failure mode is specific enough to teach a reviewer to spot: &ldquo;Present-day models tend to produce code that is too defensive, too complex, too local in its reasoning. They avoid strong invariants. They add fallbacks instead of making bad states impossible. They duplicate code, invent bad abstractions, and paper over unclear design with more machinery.&rdquo; Each iteration adds a small defence, and the system becomes less understandable while looking more robust.</p>
-
-  <p>The same boundary is drawn formally in operations. PagerDuty&rsquo;s March survey of 1,000 leaders and developers across seven markets found 44% requiring human involvement when AI remediates customer-facing systems and 43% requiring it for cross-functional incident coordination. Ronacher&rsquo;s personal version of the bar is a statable team norm: being able to explain what the system does under pressure without asking the model first.</p>
-
-  <p>These are the conventions teams are holding. Whether they show up in the outcome measures is the subject of the next section.</p>
-
-  <p class="source-tag">Sources: <a href="https://claude.com/blog/running-an-ai-native-engineering-org">Fiona Fung, Anthropic</a> (3 June 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto">Gergely Orosz on Mitchell Hashimoto, The Pragmatic Engineer</a> (25 February 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development">Gergely Orosz on Uber, The Pragmatic Engineer</a> (10 March 2026) &middot; <a href="https://blog.cloudflare.com/internal-ai-engineering-stack/">Cloudflare</a> (20 April 2026) &middot; <a href="https://martinfowler.com/articles/harness-engineering.html">Birgitta B&ouml;ckeler, martinfowler.com</a> (2 April 2026) &middot; <a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/">Simon Willison</a> (14 March 2026) &middot; <a href="https://addyosmani.com/blog/agentic-code-review/">Addy Osmani</a> (15 June 2026) &middot; <a href="https://leaddev.com/ai/ai-coding-agents-kill-team-collaboration">Chris Stokel-Walker, LeadDev</a> (28 July 2026) &middot; <a href="https://lucumr.pocoo.org/2026/6/23/the-coming-loop/">Armin Ronacher</a> (23 June 2026) &middot; <a href="https://www.figma.com/blog/how-figma-stays-ahead-of-vulnerabilities-with-agents/">Figma</a> (23 July 2026) &middot; <a href="https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/">GitHub Octoverse</a> (28 October 2025) &middot; <a href="https://arxiv.org/abs/2607.04697v2">Xu, Subramanian &amp; Karthik, arXiv</a> (6 July 2026) &middot; <a href="https://www.capgemini.com/insights/research-library/world-quality-report-2025-26/">Capgemini</a> (2025&ndash;26 edition) &middot; <a href="https://www.pagerduty.com/blog/digital-operations/2026-state-of-ai-first-operations-report/">PagerDuty</a> (17 March 2026)</p>
-</section>
-
-<!-- ═══ SOURCE 3 — 4 of 8 ═══ -->
-<section class="section">
-  <div class="section-marker"><span class="marker-num">4</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Source 3 &mdash; The Economics</div>
-  <h2>Felt speed against measured speed<span class="section-time">(4 min)</span></h2>
-
-  <p>DORA modelled what an AI rollout should be worth over its first year. DX measured what actually happened across its customer base over the same period. The distance between them is the reason a team can hold a set of practices that plainly work and still find the quarterly numbers refusing to move, and the reason the sensation of going faster is a poor instrument.</p>
-
-  <div class="article-with-sidebar">
-    <div class="article-main">
-      <h3>The shape DORA expects</h3>
-
-      <p>DORA &mdash; the research programme run by Google Cloud, and not the European regulation of the same name &mdash; publishes a report on the return on investment of AI-assisted software development, version 2026.1 of which was last updated on 22 April 2026. Its central claim, drawn from a model that does not separate assistant use from agent use, is that value arrives in a J-curve: an initial dip before the return, driven by three named forces. The first is the learning curve. The second is what DORA calls the <strong>verification tax</strong>, &ldquo;imposed by reviewing AI-generated code&rdquo;. The third is pipeline adaptation &mdash; the work of adjusting downstream testing and change-approval processes to handle a larger volume of code arriving faster. DORA&rsquo;s own name for the dip is &ldquo;the tuition cost of transformation&rdquo;. That J-curve led Issue 11 and was the first Quick Take in Issue 12; here it is a source rather than a fresh finding.</p>
-
-      <h3>The shape DX measured</h3>
-
-      <p>DX publishes engineering-effectiveness telemetry across its customer base, and it is a vendor writing about the metric it sells. Its Q2 2026 benchmarks, carried in its newsletter of 14 August 2026 and its Q2 report, put measured adoption at 95% &mdash; telemetry that counts every band of the spectrum together, from autocomplete to agent-mode &mdash; and found that more than half of merged code is now AI-authored. These are the aggregate numbers a team&rsquo;s own dashboard is a sample of. Average pull-request size has increased from 42 to 72 lines of code. Time savings are now over six hours a week on average. Median quarterly AI spend grew from roughly $1.5K to roughly $44K in a year, and AI spend has reached roughly 28 times year-ago levels among the largest companies in the dataset. Median weekly TrueThroughput &mdash; DX&rsquo;s own measure of shipped work per engineer &mdash; rose 37% over four quarters, from 1.42 to 1.94 pull requests per engineer per week.</p>
-
-      <p>Against those four rising series sits one that fell. The average Developer Experience Index, DX&rsquo;s composite measure of how effective engineers find their own working environment, slipped from 67 to 65. Underneath it, code maintainability is improving while change confidence is declining, even though those two measures have historically been closely correlated. The innovation ratio has increased by only about one percentage point.</p>
-    </div>
-    <div class="article-sidebar">
-      <div class="sidebar-box">
-        <div class="sb-title">DORA&rsquo;s sample model</div>
-        <div class="sb-context">A published illustration, not a measurement. DORA models a 500-person engineering organisation at a fully loaded salary of $176,000.</div>
-        <div class="sb-row"><span>Change failure rate</span><strong>5&rarr;6%</strong></div>
-        <div class="sb-row"><span>Negative downtime impact</span><strong>$344K</strong></div>
-        <div class="sb-row"><span>First-year return</span><strong>~39%</strong></div>
-        <div class="sb-row"><span>Value modelled</span><strong>~$11.6m</strong></div>
-        <div class="sb-row"><span>Investment modelled</span><strong>~$8.4m</strong></div>
-        <div class="sb-row"><span>Payback period</span><strong>~8 months</strong></div>
-        <div class="sb-context">Change failure rate &mdash; the share of deployments that cause a failure needing a fix or a rollback.</div>
-      </div>
-    </div>
-  </div>
+  <p>The felt speed does not survive measurement either.</p>
 
   <div class="chart-wrap">
-    <svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four paired start-to-end comparisons: AI spend, pull request size, throughput and developer experience index">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Spend, size, throughput, experience</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Four DX measures, each on its own scale and its own period &#8212; start value to end value</text>
+    <svg viewBox="0 0 780 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diverging bar chart: developers forecast 24% faster and estimated 20% faster afterwards, but were measured 19% slower">
+      <text x="0" y="18" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Faster, expected. Slower, measured.</text>
+      <text x="0" y="38" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Change in how long the same tasks took, experienced developers on repositories they knew well</text>
 
-      <!-- panel 1 -->
-      <rect x="0" y="54" width="380" height="120" fill="#F4F6F9" rx="3"/>
-      <text x="20" y="78" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Median quarterly AI spend</text>
-      <text x="20" y="94" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Over one year</text>
-      <circle cx="60" cy="130" r="7" fill="#8899AA"/>
-      <text x="60" y="158" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">~$1.5K</text>
-      <line x1="72" y1="130" x2="288" y2="130" stroke="#00B4D8" stroke-width="3"/>
-      <polygon points="300,130 286,124 286,136" fill="#00B4D8"/>
-      <circle cx="313" cy="130" r="9" fill="#00B4D8"/>
-      <text x="313" y="158" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">~$44K</text>
+      <line x1="440" y1="58" x2="440" y2="196" stroke="#8899AA" stroke-width="1"/>
+      <text x="440" y="212" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA" text-anchor="middle">no change</text>
 
-      <!-- panel 2 -->
-      <rect x="400" y="54" width="380" height="120" fill="#F4F6F9" rx="3"/>
-      <text x="420" y="78" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Average pull-request size</text>
-      <text x="420" y="94" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Lines of code, Q3 2025 to Q2 2026</text>
-      <circle cx="460" cy="130" r="7" fill="#8899AA"/>
-      <text x="460" y="158" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">42</text>
-      <line x1="472" y1="130" x2="688" y2="130" stroke="#00B4D8" stroke-width="3"/>
-      <polygon points="700,130 686,124 686,136" fill="#00B4D8"/>
-      <circle cx="713" cy="130" r="9" fill="#00B4D8"/>
-      <text x="713" y="158" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">72</text>
+      <text x="0" y="82" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Forecast, before the work</text>
+      <rect x="440" y="68" width="144" height="26" fill="#00B4D8" rx="2"/>
+      <text x="594" y="86" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#00B4D8">24% faster</text>
 
-      <!-- panel 3 -->
-      <rect x="0" y="188" width="380" height="120" fill="#F4F6F9" rx="3"/>
-      <text x="20" y="212" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Median weekly TrueThroughput</text>
-      <text x="20" y="228" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">PRs per engineer per week, four quarters (+37%)</text>
-      <circle cx="60" cy="264" r="7" fill="#8899AA"/>
-      <text x="60" y="292" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">1.42</text>
-      <line x1="72" y1="264" x2="288" y2="264" stroke="#00B4D8" stroke-width="3"/>
-      <polygon points="300,264 286,258 286,270" fill="#00B4D8"/>
-      <circle cx="313" cy="264" r="9" fill="#00B4D8"/>
-      <text x="313" y="292" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6" text-anchor="middle">1.94</text>
+      <text x="0" y="124" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Estimated, after the work</text>
+      <rect x="440" y="110" width="120" height="26" fill="#0077B6" rx="2"/>
+      <text x="570" y="128" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#0077B6">20% faster</text>
 
-      <!-- panel 4 -->
-      <rect x="400" y="188" width="380" height="120" fill="#FEF2F2" rx="3"/>
-      <text x="420" y="212" font-family="Source Sans 3, sans-serif" font-size="12" font-weight="700" fill="#0A1628">Developer Experience Index</text>
-      <text x="420" y="228" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Average across the DX dataset</text>
-      <circle cx="460" cy="264" r="7" fill="#8899AA"/>
-      <text x="460" y="292" font-family="Playfair Display, serif" font-size="17" font-weight="900" fill="#3D4F63" text-anchor="middle">67</text>
-      <line x1="472" y1="264" x2="688" y2="264" stroke="#DC2626" stroke-width="3"/>
-      <polygon points="700,264 686,258 686,270" fill="#DC2626"/>
-      <circle cx="713" cy="264" r="9" fill="#DC2626"/>
-      <text x="713" y="292" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#DC2626" text-anchor="middle">65</text>
+      <text x="0" y="166" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="600" fill="#0A1628">Measured</text>
+      <rect x="326" y="152" width="114" height="26" fill="#DC2626" rx="2"/>
+      <text x="316" y="170" font-family="Playfair Display, serif" font-size="19" font-weight="900" fill="#DC2626" text-anchor="end">19% slower</text>
 
-      <text x="0" y="330" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Each series runs on its own scale and its own period; the panels are not plotted on a shared axis.</text>
-      <text x="0" y="340" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: DX, Q2 2026 benchmarks and Q2 report (newsletter dated 14 August 2026).</text>
+      <text x="0" y="238" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: METR, study published 10 July 2025. Tooling of that generation; the gap between sensation and stopwatch is the durable finding.</text>
     </svg>
-    <p class="chart-note">Three rising series and one falling one, on four different scales and four different periods. Spend, size and throughput all moved up together; the experience measure moved the other way.</p>
+    <p class="chart-note">Experienced developers working in repositories they knew well expected agents to make them about a quarter faster. Afterwards they believed they had been about a fifth faster. They were a fifth slower. The study is a year old and the models have moved on; what has not moved is that the sensation of speed is a poor instrument for measuring it.</p>
   </div>
 
-  <h3>The time dimension</h3>
+  <p>That gap is why the wall arrives as a surprise. A team that trusts the sensation plans its next quarter on it, and then finds the quarter did not land where the feeling said it would.</p>
 
-  <p>DX&rsquo;s plateau study, led by Brian Houck, adds the dimension the benchmarks cannot show. Drawing on self-reported data from more than 500 companies between May 2025 and April 2026, it found 31.4% of developers climbing from the lowest time-savings band to the highest, and 69.7% of those who reached their peak doing so within two quarters. Then the curve turns. Some 66.1% reported lower savings after their peak, and 50.5% of those who peaked in a single quarter never returned to that level. The median engineering organisation in the study sees a 7.8% increase in pull-request throughput.</p>
+  <p>Quality measures are flat while volume climbs. Chris Wysopal of Veracode, which sells application security, put the year&rsquo;s security finding in a single line: &ldquo;Models may be almost syntactically perfect, but they&rsquo;re still failing on nearly half of all tasks where security is needed.&rdquo; The security pass rate for generated code sits at 56% and has not improved while models have got better at nearly everything else. For a team in stage three, that means every extra pull request arrives at a queue that now has to carry a security judgement it did not carry before.</p>
 
-  <p>The measurement question sits underneath all of this, and METR&rsquo;s study is the sharpest available evidence on it. Published in July 2025, it took 16 experienced open-source developers through 246 tasks in repositories they had worked on for an average of five years. Beforehand they forecast that AI assistance would make them 24% faster. Afterwards they estimated it had made them 20% faster. Measured, they were 19% slower. Three caveats belong with that result and travel with it everywhere it is cited: the sample is 16 people, the study is a year old, and the tooling was Cursor Pro with Claude 3.5 and 3.7 Sonnet, which is two model generations behind what the JetBrains respondents are using now.</p>
+  <p>Maintainability moves the same way. GitClear, which sells code analytics, compared heavy AI users against their own pre-AI baseline: four to ten times as much code produced, for about 25% more velocity. Its own summary of four years of commit history is the sentence a team at the wall recognises immediately.</p>
 
-  <h3>What executives can show</h3>
+  <p><em>&ldquo;The throughput is real, but so is the debt it accrues&rdquo;</em> &mdash; GitClear, <em>The Maintainability Gap</em>, January 2026.</p>
 
-  <p>Atlassian&rsquo;s State of Teams 2026, published on 27 April 2026, surveyed 12,035 knowledge workers and 173 Fortune 1000 executives in January and February, with 25 executive interviews alongside. It covers cross-industry knowledge work rather than engineering specifically, and it is Atlassian&rsquo;s own research. Its central pair is unambiguous: &ldquo;89% of executives say AI increases speed, but only 6% of executives are sure they have clear examples of organization-wide AI ROI.&rdquo; Beneath it, 85% of knowledge workers use AI at work and 29% have embedded it into daily workflows, while 55% of executives report AI widening performance gaps between teams. The top-performing 14% of teams are 5.6 times more likely to credit AI with improved planning and 9.4 times more likely to report better collaboration.</p>
+  <p>Armin Ronacher, the creator of Flask and formerly a principal architect at Sentry, describes what the extra code is actually made of. &ldquo;Present-day models tend to produce code that is too defensive, too complex, too local in its reasoning. They avoid strong invariants. They add fallbacks instead of making bad states impossible. They duplicate code, invent bad abstractions, and paper over unclear design with more machinery.&rdquo; Each pass adds one more small defence. The system looks progressively more robust and becomes progressively harder to understand.</p>
 
-  <p>Two findings here travel directly into a team&rsquo;s own week. Individual time savings decay after a peak for most developers, so a rollout that measured itself once in its first quarter is holding a number that has since moved. And the sensation of speed and the measurement of speed came apart badly enough in a controlled setting that neither can stand in for the other. What the extra output is made of is the subject of the next section.</p>
+  <p>The bill arrives in the same window. Vitaly Gordon, chief executive of Faros AI, relayed a chief technology officer&rsquo;s problem: &ldquo;One of my engineers spent $40,000 on tokens last month, and I genuinely don&rsquo;t know whether I should stop him or should I go and tell everyone else to be like him.&rdquo; What makes that number unmanageable is attribution. Nobody can tell whether the engineer is the organisation&rsquo;s best investment or its worst, because nothing was built to say so. J.R. Storment of the FinOps Foundation dates the turn precisely: &ldquo;We started hearing existential crises, and the whole conversation shifted from tokenmaxxing and &lsquo;go fast&rsquo; to &lsquo;we need guardrails, how do we control this?&rsquo;&rdquo;</p>
 
-  <p class="source-tag">Sources: <a href="https://dora.dev/ai/roi/report/">DORA, ROI of AI-assisted Software Development v.2026.1</a> (last updated 22 April 2026), sample-model figures via <a href="https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/">InfoQ</a> &middot; <a href="https://newsletter.getdx.com/p/ai-in-engineering-q2-2026-benchmarks">DX newsletter</a> (14 August 2026) and <a href="https://getdx.com/report/State-of-AI-Impact-in-Engineering-Q2-Report/">DX Q2 report</a> &middot; <a href="https://getdx.com/blog/the-ai-efficiency-plateau/">DX, the AI efficiency plateau</a> &middot; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR</a> (July 2025) &middot; <a href="https://www.atlassian.com/blog/state-of-teams-2026">Atlassian State of Teams 2026</a> (27 April 2026)</p>
+  <p>Then adoption stops climbing. Sentry unlocked budget, relaxed its intellectual-property restrictions and opened frontier tools to every engineer, and its co-founder and chief product officer David Cramer published what happened next: &ldquo;We&rsquo;ve also been very intentional about adoption, but so far we haven&rsquo;t seen the organic growth we&rsquo;d like in the company. About half of engineering is using AI tools in their daily workflows, but only a small subset of engineers have gotten truly comfortable with the state of the art.&rdquo; Half the engineers use the tools daily. The other half still do not, and that split has held for months. Removing every barrier a company can name does not produce a practice.</p>
+
+  <p>The experience measure moved with all of it. Across DX&rsquo;s benchmarks the average Developer Experience Index &mdash; its composite score for how engineering work feels to the people doing it &mdash; slipped from 67 to 65 [DX, Q2 2026]. Two points is a small move. It is a small move in the wrong direction, in the year the tooling improved most.</p>
+
+  <p>Stage three is where most teams are. It is also where the value of the whole exercise gets decided, because everything worth building afterwards is a response to something found here.</p>
+
+  <p class="source-tag">Sources: <a href="https://addyosmani.com/blog/agentic-code-review/">Addy Osmani</a> (15 June 2026) &middot; <a href="https://leaddev.com/ai/ai-coding-agents-kill-team-collaboration">Chris Stokel-Walker, LeadDev</a> (28 July 2026) &middot; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR</a> (10 July 2025) &middot; <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode</a> (28 July 2026) &middot; <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">GitClear</a> (January 2026) &middot; <a href="https://lucumr.pocoo.org/2026/6/23/the-coming-loop/">Armin Ronacher</a> (23 June 2026) &middot; <a href="https://techcrunch.com/2026/06/05/the-token-bill-comes-due-inside-the-industry-scramble-to-manage-ais-runaway-costs/">Rebecca Bellan, TechCrunch</a> (5 June 2026) &middot; <a href="https://gist.github.com/dcramer/c0a673da13a24f7e315535c1cb57dcae">David Cramer, Sentry</a> (16 January 2026) &middot; <a href="https://getdx.com/report/State-of-AI-Impact-in-Engineering-Q2-Report/">DX Q2 report</a> (2026)</p>
 </section>
 
-<!-- ═══ SOURCE 4 — 5 of 8 ═══ -->
+<!-- ═══ 5 — THE REBUILD ═══ -->
 <section class="section">
-  <div class="section-marker"><span class="marker-num">5</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Source 4 &mdash; Code and People</div>
-  <h2>What the extra output is made of<span class="section-time">(4 min)</span></h2>
+  <div class="section-marker"><span class="marker-num">5</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">Stage Four</div>
+  <h2>The rebuild: what the teams that got through actually changed<span class="section-time">(6 min)</span></h2>
 
-  <p>&ldquo;[M]odels may be almost syntactically perfect, but they&rsquo;re still failing on nearly half of all tasks where security is needed.&rdquo; That is Chris Wysopal, co-founder and chief security evangelist at Veracode, on the finding at the centre of the company&rsquo;s 2026 GenAI Code Security Report. Veracode sells application security, and its report is its own research.</p>
+  <p>The organisations that published an account of getting past the wall did four things, in roughly this order. They made verification the gate. They wrote down the practice they had been improvising. They re-cut the work to suit the way agents actually run. And they fixed the mechanics of the rollout itself. None of it is exotic, and Cloudflare&rsquo;s engineers said so about their own stack: &ldquo;None of these pieces are especially novel on their own. Plenty of companies run service catalogs, ship reviewer bots, or publish engineering standards. The difference is the wiring.&rdquo;</p>
 
-  <h3>The code</h3>
+  <h3>Verification becomes the gate</h3>
 
-  <p>The report, released on 28 July 2026, tested more than 100 models across four testing snapshots, without security-specific prompting. The average security pass rate was 56%, meaning nearly 44% of generated code carried a known security flaw, against syntax correctness sitting near 100%. GPT-5.5 leads the field at 68%, and in Veracode&rsquo;s own words &ldquo;six of the 11 models cluster between 50 percent and 53 percent&rdquo;. Reasoning models pass at 56% against 51% for non-reasoning ones. Coding-specialised models pass at 51%, marginally below general-purpose models at 52%, which undercuts the assumption that a model trained for code is safer at writing it. Large models pass at 53%, medium and small at 51% each. By language, Python passes at 63% and Java at 30%.</p>
+  <p>The historical objection to writing tests was the engineer time they cost to write and maintain. Simon Willison, an independent developer best known for Django and Datasette, says that objection has gone: &ldquo;They&rsquo;re free now. They&rsquo;re effectively free. I think tests are no longer even remotely optional.&rdquo; The reason they matter has changed too. A test suite is now the mechanism by which an agent can tell whether it has finished. A team that skipped tests has no such mechanism, and no amount of instruction-writing substitutes for it.</p>
 
-  <p>Capability and safety have come apart. Models write code that compiles and runs at a rate approaching certainty, and write secure code at a rate close to a coin flip, and the second figure has not moved materially in a year.</p>
+  <p>Willison opens every agent session the same way &mdash; point the agent at the command that runs the tests, then name the discipline, red-green, meaning write the failing test first and then make it pass. Every capable agent already knows the term, so the convention costs a handful of words and is a team convention rather than a prompt library. He is equally clear about its limit: a passing suite does not prove the service boots, so the agent is made to exercise the running system and leave a written record a reviewer can read.</p>
 
-  <p>GitClear&rsquo;s maintainability research, published in January 2026, examines what accumulates downstream of that. GitClear sells code analytics, and this is its own dataset: 623 million changes between 2023 and 2026, measured across eight quality signals. The reuse signals are all falling. Cross-file function calls are down 35% since 2023. Refactoring &mdash; code that was moved rather than newly written &mdash; has fallen from 21% of changes in 2022 to 3.8% in 2026, a drop of 82%. Legacy maintenance has fallen from 1.7% to 0.46%, down 74%. The risk signals are all rising. Block duplication &mdash; the same run of code appearing in more than one place &mdash; is up 81%, from 40.3 to 73.0 instances per million changed lines. Within-commit copy/paste is up 41%. Error-masking constructs &mdash; code that swallows a failure instead of surfacing it &mdash; are up 47%. Two-week churn, meaning code rewritten within a fortnight of being committed, is up 15%.</p>
+  <p>Figma&rsquo;s security engineers state their merge gate in one sentence: nothing merges without human review, a static-analysis pass and an agentic review, with failover between model providers so that an outage at one vendor cannot let a pull request through unreviewed. Two frontier models run independently, and either one raising a finding escalates it, on the deliberate grounds that they miss different bugs. The whole apparatus is checked against a fixed corpus of known cases &mdash; the practice teams now call evals &mdash; and it is affordable: &ldquo;a pull request review runs about $0.50 median spend, rarely more, since most PRs have nothing to flag.&rdquo;</p>
 
-  <div class="chart-wrap">
-    <svg viewBox="0 0 780 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diverging bar chart showing reuse signals falling and risk signals rising in GitClear commit data">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">The maintainability ledger</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Change since 2023 across eight quality signals &#8212; 623 million changes, 2023&#8211;2026</text>
+  <p>Writing the policy that drives all of it produced something the team had not planned. &ldquo;Ninety-nine lines, 2,560 words, and 68 precedents later, this work had a side effect we did not plan for: We had written a complete threat model, in roughly the form we&rsquo;d want a new hire to read on day one. The policy is the threat model.&rdquo; The artefact that makes agents useful turned out to be the artefact the organisation had needed for its humans all along.</p>
 
-      <!-- headers -->
-      <text x="330" y="62" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#00B4D8" text-anchor="end">REUSE SIGNALS FALLING</text>
-      <text x="500" y="62" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#DC2626">RISK SIGNALS RISING</text>
-
-      <!-- zero axis -->
-      <line x1="440" y1="70" x2="440" y2="330" stroke="#0A1628" stroke-width="1.5"/>
-      <!-- gridlines: 2.6px per point, +/-100 -->
-      <line x1="180" y1="70" x2="180" y2="330" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="310" y1="70" x2="310" y2="330" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="570" y1="70" x2="570" y2="330" stroke="#E8EDF2" stroke-width="1"/>
-      <line x1="700" y1="70" x2="700" y2="330" stroke="#E8EDF2" stroke-width="1"/>
-
-      <!-- falling rows (teal, extend left from 440) -->
-      <rect x="349" y="78" width="91" height="22" fill="#00B4D8" rx="2"/>
-      <text x="341" y="94" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;35%</text>
-      <text x="452" y="94" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Cross-file function calls</text>
-
-      <rect x="227" y="110" width="213" height="22" fill="#00B4D8" rx="2"/>
-      <text x="219" y="126" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;82%</text>
-      <text x="452" y="126" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Refactoring (21% of changes in 2022 &#8594; 3.8%)</text>
-
-      <rect x="248" y="142" width="192" height="22" fill="#00B4D8" rx="2"/>
-      <text x="240" y="158" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#0077B6" text-anchor="end">&#8722;74%</text>
-      <text x="452" y="158" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63">Legacy maintenance (1.7% &#8594; 0.46%)</text>
-
-      <!-- rising rows (red, extend right from 440) -->
-      <rect x="440" y="182" width="211" height="22" fill="#DC2626" rx="2"/>
-      <text x="659" y="198" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+81%</text>
-      <text x="428" y="198" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Block duplication (40.3 &#8594; 73.0 per million lines)</text>
-
-      <rect x="440" y="214" width="122" height="22" fill="#DC2626" rx="2"/>
-      <text x="570" y="230" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+47%</text>
-      <text x="428" y="230" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Error-masking constructs</text>
-
-      <rect x="440" y="246" width="107" height="22" fill="#DC2626" rx="2"/>
-      <text x="555" y="262" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+41%</text>
-      <text x="428" y="262" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Within-commit copy/paste</text>
-
-      <rect x="440" y="278" width="39" height="22" fill="#DC2626" rx="2"/>
-      <text x="487" y="294" font-family="Playfair Display, serif" font-size="15" font-weight="900" fill="#DC2626">+15%</text>
-      <text x="428" y="294" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#3D4F63" text-anchor="end">Two-week churn</text>
-
-      <!-- axis labels -->
-      <line x1="180" y1="330" x2="700" y2="330" stroke="#8899AA" stroke-width="1"/>
-      <text x="180" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">&#8722;100%</text>
-      <text x="310" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">&#8722;50%</text>
-      <text x="440" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">0</text>
-      <text x="570" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">+50%</text>
-      <text x="700" y="346" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="middle">+100%</text>
-
-      <text x="0" y="372" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Copy/paste is now roughly five times more common than refactoring, having been the rarer choice in 2022.</text>
-      <text x="0" y="386" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: GitClear, The Maintainability Gap, January 2026 &#183; 623 million changes across 2023&#8211;2026.</text>
-    </svg>
-    <p class="chart-note">Every signal associated with reusing existing code is falling; every signal associated with duplicating or hiding it is rising.</p>
-  </div>
-
-  <p>GitClear also compares heavy AI users against their own history. Those users out-produce non-users by four to ten times, but GitClear finds most of that gap pre-dated AI; measured against their own pre-AI baseline, the same users gained roughly 25%.</p>
+  <p>Birgitta B&ouml;ckeler of Thoughtworks gives the whole layer a name teams can budget for. A <em>harness</em> is everything in an agent that is not the model: instruction files, bootstrap scripts, linters, type checkers, test suites, review agents. Guides steer the agent before it acts; sensors tell it whether what it did was right. Most teams over-invest in guides and under-invest in sensors, and a sensor that only fires in CI has fired too late to correct anything.</p>
 
   <div class="pull-quote">
-    <p>&ldquo;The throughput is real, but so is the debt it accrues&rdquo;</p>
-    <cite>&mdash; GitClear, <em>The Maintainability Gap</em>, January 2026</cite>
+    <p>&ldquo;A good harness should not necessarily aim to fully eliminate human input, but to direct it to where our input is most important.&rdquo;</p>
+    <cite>&mdash; Birgitta B&ouml;ckeler, Thoughtworks, <em>Harness engineering for coding agent users</em>, 2 April 2026</cite>
   </div>
 
-  <h3>The people</h3>
+  <h3>The practice gets written down</h3>
 
-  <p>Anthropic published a randomised controlled trial on 29 January 2026 that measured what assisted work does to skill formation. Fifty-two mostly junior engineers, all with more than a year of weekly Python, were set to learn Trio, an asynchronous library none of them knew. The AI-assisted group averaged 50% on a mastery quiz afterwards. The hand-coding group averaged 67%. The effect size was a Cohen&rsquo;s d of 0.738 at p = 0.01 &mdash; Cohen&rsquo;s d being a standard measure of how large a difference is, independent of sample size &mdash; and the researchers describe the gap as &ldquo;nearly two letter grades&rdquo;. The AI group finished about two minutes faster, a difference that was not statistically significant. The largest gaps were on debugging questions.</p>
+  <p>Cloudflare traced its agents&rsquo; bad output to a specific cause and fixed it with a file. &ldquo;Usually the problem was local context: the model didn&rsquo;t know the right test command, the team&rsquo;s current conventions, or which parts of the codebase were off-limits. That pushed us toward AGENTS.md: a short, structured file in each repo that tells coding agents how the codebase actually works and forces teams to make that context explicit.&rdquo; AGENTS.md is a convention: a plain file in the repository root that agents read before they start. The forcing function is the point: a team cannot write down which parts of the codebase are off-limits without first agreeing on the answer.</p>
 
-  <p>The most useful finding sits inside the AI group. Participants who asked conceptual questions and worked through their own errors averaged above 65%. Those who delegated generation and debugging averaged under 40%. The same tool, used two ways, produced a spread wider than the gap between the groups. Anthropic sells the assistant in question, which makes this a vendor publishing a result that runs against its own commercial interest &mdash; rare enough to be worth naming.</p>
+  <p>Teams that got through the wall also wrote down where they do not use agents. Ronacher draws the line on the shelf life and invariant density of the output rather than on the size of the task. Unsupervised loops work well on transformations of code that already exists, such as ports and migrations, and on deliberately short-lived artefacts such as performance experiments and security sweeps. They work badly on new, long-lived code carrying load-bearing invariants, and he says so about his own work: &ldquo;My current status is that I have not had much success with this way of working for code I deeply care about which turns out to be quite a lot of code.&rdquo;</p>
 
-  <p>At the level of the labour market, a Harvard working paper posted to SSRN by Hosseini Maasoum and Lichtinger, titled &ldquo;Generative AI as Seniority-Biased Technological Change&rdquo; &mdash; the authors&rsquo; own term for a technology that displaces work unevenly across experience levels &mdash; examines US r&eacute;sum&eacute; and job-posting data covering tens of millions of workers across hundreds of thousands of firms. Its direction is that after adopting generative AI, firms show declining junior employment relative to non-adopters, while senior employment trends stay largely unchanged. It is a working paper, not peer-reviewed, and its magnitudes are reported inconsistently in secondary coverage, so only the direction is carried here. It is US labour data, so any read-across to UK or Middle East hiring is inferential.</p>
+  <p>Hashimoto&rsquo;s rule for the working day is the most transplantable norm in the record, and it fits on a calendar: &ldquo;If I&rsquo;m coding, I want an agent planning. If they&rsquo;re coding, I want to be reviewing.&rdquo; The human and the agent are never in the same mode at the same time. Slow work gets queued at transitions &mdash; before a meeting, at the end of the day &mdash; because research and edge-case enumeration need no real-time attention.</p>
 
-  <p>Alasdair Allan made the connected argument in his QCon London 2026 talk, &ldquo;Engineering Progression When AI Ate the Middle&rdquo;, reported by Ben Linders for InfoQ on 13 August 2026: the tasks AI now absorbs are the rungs junior engineers climbed, and those same juniors are the pipeline of people who will later be senior enough to supervise the AI.</p>
+  <p>One more norm is worth setting before it is needed. Where two different agents work the same repository at the same time, their changes collide far more often than two runs of the same agent do.</p>
 
-  <p>Sarah Wells, a software engineering consultant formerly at the BBC and the Financial Times, names the immediate version of that problem for anyone running a team today. Asked whether juniors can evaluate what an agent hands them, she said: &ldquo;I&rsquo;m worried that they&rsquo;re not; they can&rsquo;t make the judgement about whether the agent is making a sensible suggestion&rdquo;. The channel that used to close that gap is closing too. &ldquo;I think code reviews are probably going to stop being the way that you share knowledge,&rdquo; Wells says. &ldquo;You&rsquo;re going to share knowledge at a higher level than the code itself.&rdquo; If that holds, the design and architecture conversations become the place knowledge transfers, and they are not currently staffed or scheduled as though they carry that load.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 780 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart comparing conflict rates: 41.7% for pull request pairs written by different agents against 19.8% for pairs written by the same agent">
+      <text x="0" y="18" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">When two agents work the same repository</text>
+      <text x="0" y="38" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Share of overlapping pull-request pairs that conflict when merged</text>
 
-  <p>Both bills land on the same team, and both are paid in review attention: someone has to catch the duplicated block, and someone has to be the colleague a junior would otherwise have asked. Which organisations are paying more slowly, and in what order they built things, is the subject of the next section.</p>
+      <line x1="120" y1="215" x2="700" y2="215" stroke="#8899AA" stroke-width="1"/>
+      <line x1="120" y1="167" x2="700" y2="167" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="120" y1="119" x2="700" y2="119" stroke="#E8EDF2" stroke-width="1"/>
+      <line x1="120" y1="71" x2="700" y2="71" stroke="#E8EDF2" stroke-width="1"/>
+      <text x="112" y="219" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">0%</text>
+      <text x="112" y="171" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">15%</text>
+      <text x="112" y="123" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">30%</text>
+      <text x="112" y="75" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8899AA" text-anchor="end">45%</text>
 
-  <p class="source-tag">Sources: <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode 2026 GenAI Code Security Report</a> (28 July 2026) &middot; <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">GitClear</a> (January 2026) &middot; <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">Anthropic</a> (29 January 2026) &middot; <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5425555">Hosseini Maasoum &amp; Lichtinger, SSRN</a> &middot; <a href="https://www.infoq.com/news/2026/08/AI-disrupts-engineering-progress/">InfoQ</a> (13 August 2026) &middot; <a href="https://leaddev.com/ai/ai-coding-agents-kill-team-collaboration">Chris Stokel-Walker, LeadDev</a> (28 July 2026)</p>
-</section>
+      <rect x="220" y="82" width="130" height="133" fill="#DC2626" rx="2"/>
+      <text x="285" y="72" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#DC2626" text-anchor="middle">41.7%</text>
+      <text x="285" y="238" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#0A1628" text-anchor="middle">Two different agents</text>
 
-<!-- ═══ SOURCE 5 — 6 of 8 ═══ -->
-<section class="section">
-  <div class="section-marker"><span class="marker-num">6</span><span class="marker-of">OF 9</span></div>
-  <div class="section-label alert">Source 5 &mdash; Rollouts</div>
-  <h2>Five rollouts, and the order they did things in<span class="section-time">(9 min)</span></h2>
+      <rect x="470" y="152" width="130" height="63" fill="#0077B6" rx="2"/>
+      <text x="535" y="142" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#0077B6" text-anchor="middle">19.8%</text>
+      <text x="535" y="238" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#0A1628" text-anchor="middle">One agent throughout</text>
 
-  <p>One early decision gets named by the team that made it as the one they got right. Cloudflare routed every AI request through a single proxy service from the first day, when connecting clients straight to the model gateway would have been quicker to stand up. &ldquo;But centralizing through a Worker meant we could add per-user attribution, model catalog management, and permission enforcement later without touching any client configs. Every feature described in the bootstrap section below exists because we had that single choke point.&rdquo; Every rollout account published this year turns on a handful of decisions like that one, and the order they were taken in is the part a team mid-rollout can compare itself against.</p>
+      <text x="0" y="262" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Source: Xu, Subramanian &amp; Karthik, arXiv, 6 July 2026. Cross-agent overlap is rare today: 0.5% of concurrent pairs, in about 4.3% of repositories.</text>
+    </svg>
+    <p class="chart-note">The honest reading is forward-looking. Two different agents rarely meet in the same repository today, so this describes what happens when they do rather than what happens in a median week. It is the cheapest argument available for settling on one agent per codebase before multi-agent overlap becomes normal.</p>
+  </div>
+
+  <h3>The work gets re-cut</h3>
+
+  <p>Planning is the ceremony that breaks first. Fiona Fung, director of engineering for Claude Code at Anthropic, is direct about it: &ldquo;When I first joined the Claude Code team, we wrote a pretty good six month roadmap, and then because of Claude Code, so many things changed that it was out of date by month three.&rdquo; What replaced it has a name and a shape. &ldquo;I call it just-in-time (JIT) planning, almost like JIT compiling: how do you do just the right amount at the right time? Our planning ritual shifted away from design docs toward discussions in PRs or prototypes.&rdquo; Rather than reviewing a proposal, the team builds it, puts internal users on it and acts on what comes back.</p>
+
+  <p>Review gets split by category rather than by seniority. In Fung&rsquo;s account the machine handles style, linting, pull-request feedback, catching bugs before a commit and adding tests, and &ldquo;Where we still definitely want a human is expertise&rdquo; &mdash; legal risk tolerance, trust and safety, product calls. That split is what makes a review queue survivable, because it stops human attention being spent on the things a machine reliably catches.</p>
+
+  <p>Which work goes first is a decision with a defensible answer. Uber sent the toil, and Anshu Chada, an engineering director on its developer platform, described what came back: &ldquo;What we found is when we push some of the boring stuff to AI &ndash; upgrades, migrations, bug fixes &ndash; not only does it result in much higher satisfaction from our engineers, but they&rsquo;re able to push our product and create features for end users in ways that we didn&rsquo;t even think were possible.&rdquo; Morale is the point as much as throughput. Satisfaction early is what buys the credibility to attempt harder work later.</p>
+
+  <h3>The rollout mechanics get fixed</h3>
+
+  <p>Cloudflare names one early decision as the one it got right, and it is an unglamorous one. Every AI request routed through a single proxy service from the first day, when connecting clients straight to the model gateway would have been quicker to stand up. &ldquo;But centralizing through a Worker meant we could add per-user attribution, model catalog management, and permission enforcement later without touching any client configs. Every feature described in the bootstrap section below exists because we had that single choke point.&rdquo; Every organisation that skipped the choke point rediscovered the need for it when the token bill arrived.</p>
+
+  <p>Shopify reached the same architecture from the opposite direction. Its default is one tool for one job, and AI is the stated exception: &ldquo;At Shopify, we always have one tool for one job&mdash;except for with AI,&rdquo; explains Farhan Thawar, its head of engineering, &ldquo;since we don&rsquo;t know yet which company, workflow, or model is going to win.&rdquo; Engineers run several agents side by side. What makes plural tooling survivable is a singular layer beneath it: one proxy carrying cost control, per-team usage analytics and the ability to switch models without touching anybody&rsquo;s setup.</p>
 
   <div class="chart-wrap">
     <svg viewBox="0 0 780 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three published rollout sequences shown as ordered steps with their stated outcomes">
-      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Three published rollout sequences</text>
-      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">The order each organisation took its decisions in, and the position it reports reaching</text>
+      <text x="0" y="16" font-family="Playfair Display, serif" font-size="17" font-weight="700" fill="#0A1628">Three rollouts, in the order they took their decisions</text>
+      <text x="0" y="36" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8899AA">Same destination, three sequences, three different positions reached</text>
 
-      <!-- Cloudflare -->
       <text x="0" y="76" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Cloudflare</text>
       <text x="0" y="92" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">11 months</text>
       <rect x="96" y="60" width="118" height="44" fill="#0077B6" rx="3"/>
@@ -788,7 +573,6 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
       <text x="652" y="78" font-family="Playfair Display, serif" font-size="20" font-weight="900" fill="#00B4D8">93%</text>
       <text x="652" y="94" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#3D4F63">of R&amp;D, last 30 days</text>
 
-      <!-- Craft Docs -->
       <text x="0" y="176" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Craft Docs</text>
       <text x="0" y="192" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">~7 months</text>
       <rect x="96" y="160" width="118" height="44" fill="#00B4D8" rx="3"/>
@@ -810,7 +594,6 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
       <text x="652" y="178" font-family="Playfair Display, serif" font-size="20" font-weight="900" fill="#FF6B35">Jan 2026</text>
       <text x="652" y="194" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#3D4F63">proof first, then mandate</text>
 
-      <!-- Sentry -->
       <text x="0" y="276" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="700" fill="#0A1628">Sentry</text>
       <text x="0" y="292" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Jan 2026 memo</text>
       <rect x="96" y="260" width="118" height="44" fill="#0A1628" rx="3"/>
@@ -832,119 +615,53 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
 
       <text x="0" y="336" font-family="Source Sans 3, sans-serif" font-size="10.5" fill="#8899AA">Sources: Cloudflare engineering blog, 20 April 2026 &#183; The Pragmatic Engineer on Craft Docs, 27 January 2026 &#183; David Cramer, Sentry, 16 January 2026.</text>
     </svg>
-    <p class="chart-note">Three orders of operations, three different positions reached. Cloudflare built the platform layer before the context layer and the enforcement layer; Craft Docs earned an internal proof before issuing a mandate; Sentry removed every access barrier it could name and still reports a plateau.</p>
+    <p class="chart-note">Cloudflare built the platform layer before the context layer and the enforcement layer. Craft Docs earned an internal proof before issuing a mandate. Sentry removed every access barrier it could name and reports a plateau anyway, which is why a rollout has to be run as a practice problem as well as an access one.</p>
   </div>
 
-  <div class="article-with-sidebar">
-    <div class="article-main">
-      <h3>Cloudflare: choke point, then context, then enforcement</h3>
+  <p>Craft Docs ran the sequence in the order most companies invert. Leadership refused to commit until it had its own demonstration, so six months of experimentation and a two-week internal build came before mandatory adoption across every team in January 2026. The ritual it kept is the most stealable artefact in the account: a weekly challenge in which teams propose something they believe would take two to three months, then attempt it in a week. The demonstration belongs to the team, which is why it converts sceptics.</p>
 
-      <p>Cloudflare&rsquo;s account is the most complete build order published this year, and it comes with a timeline and an owner. &ldquo;Eleven months ago, we undertook a major project: to truly integrate AI into our engineering stack. We needed to build the internal MCP servers, access layer, and AI tooling necessary for agents to be useful at Cloudflare. We pulled together engineers from across the company to form a tiger team called iMARS (Internal MCP Agent/Server Rollout Squad). The sustained work landed with the Dev Productivity team, who also own much of our internal tooling including CI/CD, build systems, and automation.&rdquo; MCP is the Model Context Protocol, a shared interface through which agents reach internal tools and data sources rather than each integration being wired by hand. The temporary team built it; the permanent team that already owned CI/CD and build systems inherited it.</p>
+  <p>Ramp&rsquo;s contribution is a clock. Major features ship daily to an early-access tier and advance to general availability on evidence &mdash; demos, key metrics, customer feedback and a rollout plan &mdash; with the reviewing group committed to responding within 48 hours or letting the feature ship regardless. A gate with a deadline attached is a gate that speeds work up.</p>
 
-      <p>Eleven months on, &ldquo;In the last 30 days, 93% of Cloudflare&rsquo;s R&amp;D organization used AI coding tools powered by infrastructure we built on our own platform.&rdquo; Throughput was reported against a stated baseline rather than as a naked number: the four-week rolling average of merge requests climbed from around 5,600 a week to more than 8,700, with the week of 23 March reaching 10,952, nearly double the Q4 baseline. The team is careful about what the value came from. &ldquo;None of these pieces are especially novel on their own. Plenty of companies run service catalogs, ship reviewer bots, or publish engineering standards. The difference is the wiring.&rdquo;</p>
+  <p>What actually spreads a rollout is the finding most enablement budgets get wrong. Microsoft&rsquo;s researchers found that first use spread primarily through social networks, while whether people stayed tracked how much they actually coded rather than who they were. Trying and sticking are two different problems. Visible peer use gets an engineer to try; whether the tool fits the shape of their work decides whether they keep going. Uber, which has the leverage to mandate if it wanted to, reached the same conclusion from practice and found adoption slower than expected even so.</p>
 
-      <h3>Shopify and Ramp: plural tools, singular platform</h3>
-
-      <p>Shopify runs the opposite of a standardisation policy on tooling, deliberately. Farhan Thawar, its VP and head of engineering, describes the exception in the company&rsquo;s own terms: &ldquo;At Shopify, we always have one tool for one job&mdash;except for with AI,&rdquo; he explains, &ldquo;since we don&rsquo;t know yet which company, workflow, or model is going to win.&rdquo; Engineers run several coding agents side by side. What makes that survivable is the layer underneath: a central LLM proxy &mdash; a single gateway all AI requests route through &mdash; giving &ldquo;cost control, usage analytics by team and project, and the ability to switch models&rdquo; without requiring a uniform tool. Human review is still required on production code, and Shopify reports reversion rates on AI-assisted code roughly equivalent to its pre-AI baselines, a figure it reports itself and nobody has audited. Thawar&rsquo;s stated posture on access was blunt: &ldquo;I don&rsquo;t care if you have a go-to-market for this. I don&rsquo;t care what the price is. How do I get this inside Shopify for every engineer?&rdquo; His stated worry is the other side of it &mdash; comprehension debt, engineers gradually losing the understanding of the systems they maintain. &ldquo;The brain is a muscle,&rdquo; he says, &ldquo;If you stop going to the gym&mdash;or stop using your brain&mdash;it will atrophy.&rdquo;</p>
-
-      <p>Ramp supplies the release mechanics in the same account. Major features ship daily to an early-access tier serving &ldquo;5,000+ businesses&rdquo; and advance to general availability on evidence &mdash; demos, key metrics, customer feedback and a rollout plan, submitted on a template. The reviewing group commits to responding within 48 hours; if it does not, the feature ships anyway. Across the teams surveyed in the same piece, 90% were deploying AI at the core of their operations, with code generation at 92% and agentic development &mdash; Bessemer&rsquo;s label for agents carrying out development work rather than assisting with it &mdash; at 60%.</p>
-
-      <h3>Sentry: every barrier removed, and still a plateau</h3>
-
-      <p>The most useful rollout account of the year is the one that did not work as planned, published in January by Sentry co-founder and chief product officer David Cramer as an internal memo made public. &ldquo;At Sentry we&rsquo;ve been forward thinking here in the engineering org. We&rsquo;ve unlocked budget, relaxed IP restrictions, and opened up the most cutting edge tools to our engineers. We&rsquo;ve also been very intentional about adoption, but so far we haven&rsquo;t seen the organic growth we&rsquo;d like in the company. About half of engineering is using AI tools in their daily workflows, but only a small subset of engineers have gotten truly comfortable with the state of the art.&rdquo; Three specific barriers removed &mdash; budget, intellectual-property restrictions, tool access &mdash; and a plateau anyway. Cramer&rsquo;s posture is neither a mandate nor a shrug: &ldquo;this is not something that we can solve top-down, we will need folks to lean in and we are going to expect it.&rdquo; He leads with his own practice, having not written code by hand in six months, and he names the cost rather than hiding it: &ldquo;there will be a point where we need to address that&hellip; This is especially true within engineering where some of us are spending more than $100/day on these tools. Yes, it&rsquo;s a lot. Yes, it&rsquo;s worth it. Yes, we will fix it at some point.&rdquo;</p>
-
-      <h3>Craft Docs: earn the proof, then mandate</h3>
-
-      <p>Craft Docs, a five-year-old startup, ran the sequence in the opposite order to most. Leadership refused to commit until it had its own demonstration: &ldquo;We knew we had one shot at showing users that AI is useful for them. And until we had a &lsquo;wow&rsquo; moment ourselves, we would not go all-in on AI.&rdquo; Six months of experimentation, an internal terminal wrapper built in December 2025 and a two-week solo build over the holidays came before mandatory adoption across all teams in January 2026. The budget policy is a single line &mdash; $200 a month per person, engineer or not, with founder Balint Orosz running about $3,000 a month on top as the heaviest user &mdash; and cost was explicitly not being optimised at that stage. The enablement ritual is the most transplantable artefact in the account: a weekly &ldquo;What&rsquo;s Impossible?&rdquo; challenge in which teams propose something they believe would take two to three months and then attempt it in a week. One migration made the case on its own: &ldquo;This migration work was estimated to take 3-4 months. It was done in a week with AI tooling.&rdquo; The surprise adopters were the non-engineers, who built triage, reporting and user-data workflows without engineering time.</p>
-
-      <h3>Figma: the policy is the artefact</h3>
-
-      <p>Figma&rsquo;s security engineers set out to point agents at their codebase and ended up writing something else. &ldquo;Ninety-nine lines, 2,560 words, and 68 precedents later, this work had a side effect we did not plan for: We had written a complete threat model, in roughly the form we&rsquo;d want a new hire to read on day one. The policy is the threat model.&rdquo; One written policy now drives three stages: review before merge, guidance during generation, and retrospective audit of a decade-old monorepo. The measurement discipline around it is unusually honest. Findings only surface to a human once a class of finding has held above a precision threshold over a rolling look-back &mdash; the mechanism that keeps reviewer fatigue from turning into rubber-stamping &mdash; and the team defines its terms plainly: &ldquo;Precision is the share of reported findings that are real vulnerabilities&hellip; Recall is the share of real vulnerabilities the system catches.&rdquo; Those measurements run against a fixed corpus of known cases, the practice teams now call evals. The denominator is stated rather than flattered: &ldquo;every task in the corpus is a bug that our historical review process, human reviewers plus static analysis (SAST), already missed. So a 75.8% union catch rate is 75.8% of the bugs that got all the way past our existing controls.&rdquo; Blast radius is scoped explicitly &mdash; read-only access during analysis, sandboxed execution with egress controls for fix-writing agents, and CI for agent-generated pull requests running without deploy credentials or production secrets. The agent layer is treated as production code: &ldquo;Every policy change is reviewed by a security engineer and rerun against the full corpus before it ships.&rdquo; And it is affordable: &ldquo;For both the models we use, a pull request review runs about $0.50 median spend, rarely more, since most PRs have nothing to flag.&rdquo;</p>
-
-      <h3>What actually spreads a rollout</h3>
-
-      <p>Three Microsoft researchers studied their own employer&rsquo;s early-2026 rollout of command-line coding agents across tens of thousands of engineers, and their finding cuts against most enablement budgets: &ldquo;first use spread primarily through social networks, retention was associated more with engineers&rsquo; coding activity than with demographics, and adopters merged roughly 24% more pull requests than they would have otherwise.&rdquo; The authors attach the caveat themselves, which is the model for how any throughput figure should travel: &ldquo;We use merged pull requests as our proxy for output -- acknowledging that a merged PR is not the same as the value it delivers -- and the lift persists across our four-month window.&rdquo; Their recommendation is explicit &mdash; organisations should treat visible peer use as central to rollout strategy. It is a preprint and not peer-reviewed. Uber, which has the leverage to mandate if it wanted to, reached the same conclusion from practice: adoption was voluntary and peer-led by design, and slower than expected even so.</p>
-
-      <p>Someone has to own the scaffolding for any of this to hold. Perforce&rsquo;s 2026 platform-engineering survey of 820 technology professionals found 73% of organisations with mature platform-engineering practices calling that maturity a critical or significant factor in their AI success, against 44% among the less mature &mdash; a 29-point gap &mdash; while only 28% report having a dedicated platform-engineering team at all. Cloudflare&rsquo;s answer was to hand the work to the team that already owned CI/CD; B&ouml;ckeler&rsquo;s is that a harness is a maintained artefact with a rota rather than a project with an end date.</p>
-
-      <h3>The bill, and the regulated case</h3>
-
-      <p>The relaxed-spend posture has an end point, and it arrived during the first months of 2026. Chris Reed, senior director of IT finance at Priceline, described the pattern after his company began placing token limits on certain groups: &ldquo;It&rsquo;s like the crack-cocaine epidemic&hellip; They let you try it to get you hooked on it, and now you&rsquo;re kind of beholden to it.&rdquo; The management problem is attribution rather than the total. Vitaly Gordon, chief executive of Faros AI, relayed a chief technology officer&rsquo;s dilemma: &ldquo;One of my engineers spent $40,000 on tokens last month, and I genuinely don&rsquo;t know whether I should stop him or should I go and tell everyone else to be like him.&rdquo; J.R. Storment of the FinOps Foundation dates the turn: &ldquo;We started hearing existential crises, and the whole conversation shifted from tokenmaxxing and &lsquo;go fast&rsquo; to &lsquo;we need guardrails, how do we control this?&rsquo;&rdquo; Alexander Embiricos, head of enterprise at OpenAI, lists what buyers now ask for: &ldquo;What visibility do you have? What auditability do you have? What token controls do you have? What is the efficiency of your models?&rdquo; Those four questions are the argument for Cloudflare&rsquo;s day-one attribution, made in retrospect by everyone who skipped it.</p>
-
-      <p>The closest published analogue to a UK bank rollout is Lloyds Banking Group, which is running a four-year research partnership with the University of Glasgow that places agents directly inside software and data engineering teams and measures their performance alongside human engineers under live conditions. QA Financial, reporting the programme in May, framed the shift in evaluation it represents: &ldquo;Lloyds&rsquo; move shifts the testing question from &lsquo;does this work in isolation?&rsquo; to &lsquo;does it work safely in live engineering environments under regulatory constraint?&rsquo;&rdquo; Those are the outlet&rsquo;s words rather than the bank&rsquo;s; the same report paraphrases chief data and analytics officer Ranil Boteju as framing the trial around preserving auditability and explainability, and Dr Tim Storer of Glasgow as aiming to produce evidence-based guidance for large regulated organisations &mdash; an admission that no such guidance yet exists. One unexpected measurement travels with it: Richard Bishop, a lead quality engineer at Lloyds, has reported that software-testing environments produce 120% more carbon emissions than production environments, which becomes a first-order number once agents multiply test runs.</p>
-
-      <p>Separately, and published in June, the bank is recruiting for almost 300 agentic-AI-related roles within more than 1,000 AI roles planned for 2026, with more than 700 colleagues already shaping AI use cases, a Level 6 AI Engineering apprenticeship running a 33-apprentice cohort, and an internal academy where over 400,000 courses have been taken since January against a 67,000-strong workforce.</p>
-
-      <p>The enablement layer explains the spread between organisations. It does not explain why the surveys disagree with each other, which is the subject of the Counterpoint.</p>
-    </div>
-    <div class="article-sidebar">
-      <div class="sidebar-box">
-        <div class="sb-title">What stops teams</div>
-        <div class="sb-context">Bessemer&rsquo;s four named blockers, in its own labels.</div>
-        <div class="sb-row"><span>Evaluating code quality</span><strong>52%</strong></div>
-        <div class="sb-row"><span>Measuring productivity gains</span><strong>46%</strong></div>
-        <div class="sb-row"><span>Managing token costs</span><strong>38%</strong></div>
-        <div class="sb-row"><span>Security and IP</span><strong>29%</strong></div>
-        <div class="sb-context">Three of the four are measurement and verification problems. Only one is about cost.</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="source-tag">Sources: <a href="https://blog.cloudflare.com/internal-ai-engineering-stack/">Cloudflare</a> (20 April 2026) &middot; <a href="https://www.bvp.com/atlas/inside-shopifys-ai-first-engineering-playbook">Bessemer Atlas on Shopify</a> (2 April 2026) &middot; <a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Bessemer Atlas</a> (10 June 2026) &middot; <a href="https://gist.github.com/dcramer/c0a673da13a24f7e315535c1cb57dcae">David Cramer, Sentry</a> (16 January 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/ai-first-makeover-craft">The Pragmatic Engineer on Craft Docs</a> (27 January 2026) &middot; <a href="https://www.figma.com/blog/how-figma-stays-ahead-of-vulnerabilities-with-agents/">Figma</a> (23 July 2026) &middot; <a href="https://arxiv.org/abs/2607.01418">Murphy-Hill, Butler &amp; Savelieva, arXiv</a> (1 July 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development">The Pragmatic Engineer on Uber</a> (10 March 2026) &middot; <a href="https://www.infoq.com/news/2026/08/perforce-maturity-ai-success/">Perforce, via InfoQ</a> (4 August 2026) &middot; <a href="https://martinfowler.com/articles/harness-engineering.html">Birgitta B&ouml;ckeler</a> (2 April 2026) &middot; <a href="https://techcrunch.com/2026/06/05/the-token-bill-comes-due-inside-the-industry-scramble-to-manage-ais-runaway-costs/">Rebecca Bellan, TechCrunch</a> (5 June 2026) &middot; <a href="https://www.resultsense.com/news/2026-05-05-lloyds-glasgow-agentic-ai-engineering/">QA Financial via Resultsense</a> (5 May 2026) &middot; <a href="https://www.lloydsbankinggroup.com/media/press-releases/2026/lloyds-banking-group/1000-new-ai-roles.html">Lloyds Banking Group</a> (22 June 2026)</p>
+  <p class="source-tag">Sources: <a href="https://blog.cloudflare.com/internal-ai-engineering-stack/">Cloudflare</a> (20 April 2026) &middot; <a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/">Simon Willison</a> (14 March 2026) &middot; <a href="https://www.figma.com/blog/how-figma-stays-ahead-of-vulnerabilities-with-agents/">Figma</a> (23 July 2026) &middot; <a href="https://martinfowler.com/articles/harness-engineering.html">Birgitta B&ouml;ckeler, martinfowler.com</a> (2 April 2026) &middot; <a href="https://lucumr.pocoo.org/2026/6/23/the-coming-loop/">Armin Ronacher</a> (23 June 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto">The Pragmatic Engineer on Mitchell Hashimoto</a> (25 February 2026) &middot; <a href="https://arxiv.org/abs/2607.04697v2">Xu, Subramanian &amp; Karthik, arXiv</a> (6 July 2026) &middot; <a href="https://claude.com/blog/running-an-ai-native-engineering-org">Fiona Fung, Anthropic</a> (3 June 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development">The Pragmatic Engineer on Uber</a> (10 March 2026) &middot; <a href="https://www.bvp.com/atlas/inside-shopifys-ai-first-engineering-playbook">Bessemer Atlas on Shopify</a> (2 April 2026) &middot; <a href="https://newsletter.pragmaticengineer.com/p/ai-first-makeover-craft">The Pragmatic Engineer on Craft Docs</a> (27 January 2026) &middot; <a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Bessemer Atlas on Ramp</a> (10 June 2026) &middot; <a href="https://arxiv.org/abs/2607.01418">Murphy-Hill, Butler &amp; Savelieva, arXiv preprint</a> (1 July 2026)</p>
 </section>
 
-<!-- ═══ COUNTERPOINT — 7 of 8 ═══ -->
-<section class="counterpoint-section">
-  <div class="section-marker"><span class="marker-num">7</span><span class="marker-of">OF 9</span></div>
-  <div class="counterpoint-pill">Counterpoint</div>
-  <h2>Two readings of the same year<span class="section-time">(2 min)</span></h2>
-
-  <div class="comparison-grid">
-    <div class="compare-col left">
-      <div class="cc-label">The adoption reading</div>
-      <div class="cc-num">90%</div>
-      <div class="cc-metric">JetBrains&rsquo; weekly coding-agent use</div>
-      <div class="cc-num">28%</div>
-      <div class="cc-metric">GitKraken&rsquo;s primarily autonomous working</div>
-      <div class="cc-num">92%</div>
-      <div class="cc-metric">Bessemer&rsquo;s code-generation adoption</div>
-    </div>
-    <div class="compare-col right">
-      <div class="cc-label">The measured reading</div>
-      <div class="cc-num">11%</div>
-      <div class="cc-metric">Deloitte&rsquo;s agentic AI in production</div>
-      <div class="cc-num">67&rarr;65</div>
-      <div class="cc-metric">DX&rsquo;s Developer Experience Index</div>
-      <div class="cc-num">56%</div>
-      <div class="cc-metric">Veracode&rsquo;s security pass rate</div>
-    </div>
-  </div>
-
-  <h3>Why the two columns reconcile</h3>
-
-  <p>The two columns are not in contradiction. They count different bands of the spectrum, over different horizons, in different populations. Weekly tool use and production autonomy are separated by two full bands and a governance decision, and a survey of developers answers a different question from a survey of organisations. The left column is a measure of who has the tool open. The right column is a measure of what the organisation has committed to running without a human in the path.</p>
-
-  <p>A third difference sits underneath both. Survey answers about tool use record a state that can change in a fortnight, because installing an agent is a decision one developer can make on a Tuesday. Measures of production autonomy, security posture and developer experience move over quarters, because each depends on governance, review capacity and a body of code that already exists.</p>
-
-  <p>The J-curve and the plateau reconcile the same way. One describes a trough at organisational scale, where verification and pipeline work absorb the early gains before the return arrives. The other describes individual savings falling away after an individual peak. Both can be true simultaneously because they are measured at different altitudes and over different clocks &mdash; an organisation two quarters into a rollout and a developer two quarters past their own peak are at different points on unrelated curves.</p>
-
-  <p>The perceived-against-measured gap is the harder one, and Atlassian&rsquo;s 89-to-6 pair and METR&rsquo;s slower-but-felt-faster result put it squarely on the table. The most defensible reading is that this is first a measurement failure. Executives who cannot produce organisation-wide return figures may still be getting return; developers who felt faster while being slower were measuring against an intuition rather than a clock. A measurement failure and a value failure are different findings, and the evidence currently supports only the first. What follows from that is that organisations without a verification and measurement layer cannot tell which one they have.</p>
-
-  <p>Read that way, the six figures describe a sequence. Tools arrived at the speed at which a developer can install one. Autonomy, assurance and experience move at the speed at which a team can change how it verifies work. What that looks like when one organisation publishes its own before-and-after numbers is the subject of the case study.</p>
-
-  <p class="source-tag">Sources referenced in shorthand above are introduced in full in Sources 1&ndash;5: <a href="https://blog.jetbrains.com/research/2026/08/ai-coding-agent-adoption-2026/">JetBrains</a>, <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html">Deloitte</a>, <a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">GitKraken</a>, <a href="https://getdx.com/report/State-of-AI-Impact-in-Engineering-Q2-Report/">DX</a>, <a href="https://www.bvp.com/atlas/inside-ai-pilled-engineering-teams-five-lessons-for-scaling-without-losing-the-plot">Bessemer</a>, <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode</a>, <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR</a>, <a href="https://www.atlassian.com/blog/state-of-teams-2026">Atlassian</a>.</p>
-</section>
-
-<!-- ═══ CASE STUDY ═══ -->
+<!-- ═══ 6 — SETTLED PRACTICE ═══ -->
 <section class="section">
-  <div class="section-marker"><span class="marker-num">8</span><span class="marker-of">OF 9</span></div>
+  <div class="section-marker"><span class="marker-num">6</span><span class="marker-of">OF 8</span></div>
+  <div class="section-label alert">Stage Five</div>
+  <h2>Settled practice: narrower than the honeymoon promised<span class="section-time">(3 min)</span></h2>
+
+  <p>Very few organisations are here, and the honest description of the stage is a modest one. Agents are routine for defined classes of work &mdash; migrations, upgrades, test authorship, first drafts, research &mdash; and unremarkable within them. Nobody demos them any more.</p>
+
+  <p>Cloudflare reports that 93% of its research and development organisation used AI coding tools in the last thirty days, running on infrastructure it built itself [Cloudflare, April 2026]. That figure took eleven months of platform work by a temporary tiger team, after which ownership landed permanently with the developer-productivity team that already ran CI/CD and build systems. The number is what the platform work produced.</p>
+
+  <p>Verification stays the constraint on the far side. Nothing in the rebuild removes the review gate; its purpose is to spend human attention only on the judgements humans have to make. Every organisation here that runs agents at volume still has a person merging the result.</p>
+
+  <p>Autonomy remains rare and deliberate. Around 11% of organisations report agentic AI running in production rather than in a pilot [Deloitte, 2026], while 28% of developers describe autonomous AI as their primary way of working [GitKraken, 2026] &mdash; a report from a vendor that sells the review tooling it identifies as the new bottleneck. The two figures count different things: one counts organisations describing their systems, the other counts individuals describing their own habits. Between weekly use at ninety per cent and production autonomy at eleven sits a very large supervised middle, and that middle is what settled practice actually looks like.</p>
+
+  <p>The open worry is what happens to the people who have not yet learned to judge the output. Sarah Wells, a software engineering consultant formerly of the BBC and the Financial Times, names it plainly about junior engineers. &ldquo;I&rsquo;m worried that they&rsquo;re not; they can&rsquo;t make the judgement about whether the agent is making a sensible suggestion,&rdquo; she says. Juniors are substituting the agent for the conversation with a colleague, and they are the least equipped to tell whether the answer they got was any good.</p>
+
+  <p>The channel that used to fix that is closing. &ldquo;I think code reviews are probably going to stop being the way that you share knowledge,&rdquo; Wells says. &ldquo;You&rsquo;re going to share knowledge at a higher level than the code itself.&rdquo; Collaboration that used to happen by accident inside review has to be put back deliberately somewhere else &mdash; design, architecture, incident review &mdash; or it does not happen at all.</p>
+
+  <p>Senior engineers carry a version of the same problem. Farhan Thawar names comprehension debt as the risk that worries him most: as agents write more, engineers gradually lose their understanding of the systems they are responsible for. &ldquo;The brain is a muscle,&rdquo; he says, &ldquo;If you stop going to the gym&mdash;or stop using your brain&mdash;it will atrophy.&rdquo; Ronacher&rsquo;s personal bar is the statable version of the countermeasure: being able to explain what the system does under pressure without asking the model first.</p>
+
+  <p>The regulated version of stage five is still in research. Lloyds Banking Group is running a four-year partnership with the University of Glasgow that places agents directly inside software and data engineering teams and measures them alongside human engineers under live conditions. QA Financial, reporting the programme in May, described the shift in evaluation it represents: &ldquo;Lloyds&rsquo; move shifts the testing question from &lsquo;does this work in isolation?&rsquo; to &lsquo;does it work safely in live engineering environments under regulatory constraint?&rsquo;&rdquo; Those are the outlet&rsquo;s words rather than the bank&rsquo;s. The programme&rsquo;s stated output is evidence-based guidance for large regulated organisations, which is an admission that none currently exists.</p>
+
+  <p class="source-tag">Sources: <a href="https://blog.cloudflare.com/internal-ai-engineering-stack/">Cloudflare</a> (20 April 2026) &middot; <a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html">Deloitte Tech Trends 2026</a> &middot; <a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">GitKraken</a> (2026) &middot; <a href="https://leaddev.com/ai/ai-coding-agents-kill-team-collaboration">Chris Stokel-Walker, LeadDev</a> (28 July 2026) &middot; <a href="https://www.bvp.com/atlas/inside-shopifys-ai-first-engineering-playbook">Bessemer Atlas on Shopify</a> (2 April 2026) &middot; <a href="https://www.resultsense.com/news/2026-05-05-lloyds-glasgow-agentic-ai-engineering/">QA Financial via Resultsense</a> (5 May 2026)</p>
+</section>
+
+<!-- ═══ 7 — CASE STUDY ═══ -->
+<section class="section">
+  <div class="section-marker"><span class="marker-num">7</span><span class="marker-of">OF 8</span></div>
   <div class="section-label alert">Case Study</div>
-  <h2>Monzo&rsquo;s Agent Chip<span class="section-time">(2 min)</span></h2>
+  <h2>Monzo did the rebuild on purpose<span class="section-time">(2 min)</span></h2>
 
   <div class="timeline-box">
     <div class="timeline-label">One bank&rsquo;s agent platform, as published 13 August 2026</div>
     <div class="timeline-track">
-      <p><strong class="tl-navy">Roughly three weeks</strong> &mdash; from decision to a working MVP, built in-house rather than bought, to avoid vendor lock-in.</p>
+      <p><strong class="tl-navy">Roughly three weeks</strong> &mdash; from decision to a working MVP, built in-house rather than bought, to avoid locking the bank into one vendor&rsquo;s agent.</p>
       <p><strong class="tl-navy">Integrations</strong> &mdash; the agent is reachable from Slack, Linear, GitHub and engineers&rsquo; local machines.</p>
       <p><strong class="tl-navy">Architecture</strong> &mdash; agents run in sandboxed containers on remote infrastructure, behind an MCP gateway.</p>
       <p><strong class="tl-teal">~10%</strong> &mdash; of all merged pull requests at Monzo now come from the agent.</p>
@@ -954,66 +671,63 @@ p{margin-bottom:12px}p:last-child{margin-bottom:0}
     </div>
   </div>
 
-  <p>Monzo published an account of Agent Chip, its internal coding-agent platform, on 13 August 2026 &mdash; two days before this issue&rsquo;s window opens. Two of its engineers, Fabien Deshayes and Oli Haley, wrote it. The numbers in it are Monzo&rsquo;s own measurement, self-reported and unaudited, and they are the closest thing in this issue to a like-for-like reference point: a UK bank, publishing its own figures, with a named bottleneck at the end.</p>
+  <p>Monzo published an account of Agent Chip, its internal coding-agent platform, on 13 August 2026. Two of its engineers, Fabien Deshayes and Oli Haley, wrote it. The figures are the bank&rsquo;s own measurement, self-reported and unaudited, and they are the closest thing in this issue to a like-for-like reference point: a UK bank, publishing its own numbers, with a named bottleneck at the end.</p>
 
-  <p>The build decision was to make rather than buy, on the grounds that a bought platform would have locked the bank into one vendor&rsquo;s agent at exactly the moment when tool shares are moving by tens of points a year. The MVP took roughly three weeks. Agents reach internal knowledge sources and tools through an MCP gateway &mdash; a single controlled entry point through which every such request passes, rather than each agent holding its own connections. The guardrails around it are architectural: sandboxed container isolation, an isolated proxy for external communication, per-task access configuration, environment-specific images, and secrets kept out of the agent&rsquo;s reach.</p>
+  <p>Monzo skipped most of stage one by building the platform layer first. The agent reaches internal knowledge sources and tools through an MCP gateway &mdash; the Model Context Protocol being a shared interface for connecting agents to internal systems, and a gateway being a single controlled entry point every such request passes through. The guardrails are architectural before they are procedural: sandboxed container isolation, an isolated proxy for external communication, per-task access configuration, environment-specific images, and secrets kept out of the agent&rsquo;s reach. A bank running agents against production repositories has to answer for what the agent could reach, and that list is the answer.</p>
 
-  <p>That guardrail list is the part of the account that travels furthest. A bank running agents against production repositories has to be able to answer for what the agent could reach, and Monzo&rsquo;s answer is architectural before it is procedural: the agent&rsquo;s reach is bounded by the container, the proxy and the per-task access configuration, ahead of any policy about how engineers should use it.</p>
-
-  <p>On the spectrum this issue has been using, Agent Chip is squarely agent-mode. The human review gate was designed in and never removed: engineers still review and merge everything the agent produces. That is the decision that produced the finding.</p>
+  <p>The agent is squarely agent-mode. The human review gate was designed in and never removed: engineers still review and merge everything it produces. That decision is what produced the finding.</p>
 
   <div class="pull-quote">
     <p>&ldquo;An engineer still reviews and merges, but the bottleneck moves from &lsquo;find an engineer with capacity&rsquo; to &lsquo;find a reviewer&rsquo;. That changes who gets to improve the product.&rdquo;</p>
     <cite>&mdash; Fabien Deshayes and Oli Haley, Monzo, 13 August 2026</cite>
   </div>
 
-  <p>Two smaller findings travel with it. Non-engineers at Monzo can now ship small user-experience fixes without waiting to find an available engineer, which is the second half of that quote in practice. And the agent has caught errors during incident response, which puts it inside the operational loop rather than alongside it.</p>
+  <p>Around 10% of Monzo&rsquo;s merged pull requests now come from the agent, at a running volume of 1,800 tasks a day. Both numbers describe work arriving at reviewers. Two smaller findings travel with them: non-engineers can now ship small user-experience fixes without waiting to find an available engineer, and the agent has caught errors during incident response, which puts it inside the operational loop rather than beside it.</p>
 
-  <p>One bank&rsquo;s numbers, one bank&rsquo;s bottleneck, published in full &mdash; and a platform that reached a working state in about three weeks, which says as much about how far the underlying tooling has matured as it does about Monzo. What follows from that across the rest of the evidence is the subject of the closing section.</p>
+  <p>A bank that built the verification layer alongside the platform still ended up with a review constraint. That is the wall arriving anyway, in its mildest form, and the clearest evidence here that reviewer capacity belongs in the plan from the start.</p>
 
   <p class="source-tag">Source: <a href="https://monzo.com/blog/building-agent-chip">Monzo, Building Agent Chip</a> (13 August 2026)</p>
 </section>
 
-<!-- ═══ LESSONS — 8 of 8 ═══ -->
+<!-- ═══ 8 — LESSONS ═══ -->
 <section class="lessons-section">
-  <div class="section-marker"><span class="marker-num">9</span><span class="marker-of">OF 9</span></div>
+  <div class="section-marker"><span class="marker-num">8</span><span class="marker-of">OF 8</span></div>
   <div class="section-label">Lessons &amp; Implications</div>
-  <h2>What the year&rsquo;s evidence means for a team mid-rollout<span class="section-time">(3 min)</span></h2>
+  <h2>What the arc means for a team part-way along it<span class="section-time">(2 min)</span></h2>
 
   <div class="verdict-box">
     <div class="vb-label">The Verdict</div>
-    <p>Adoption is finished as a question, and the rollout budget is still being written as though it were the only one. The measurable effect of near-universal agent use is that the same amount of judgement now has to be applied to several times as much output, by the same number of people, in the same week. The teams whose numbers hold up are the ones that treated the scaffolding around the agent &mdash; the instruction file, the test command, the review gate, the attribution layer &mdash; as the work, rather than as preparation for it.</p>
+    <p>The arc is normal. A team whose output has soared while its review queue drowns has not made a mistake; it has reached stage three roughly on schedule. The wall is where the value of the whole exercise gets decided, because everything worth having afterwards is built in response to it &mdash; the test command, the instruction file, the merge gate, the cost-attribution layer. The organisations whose numbers hold up are the ones that built that layer deliberately, rather than under pressure, after the bill arrived.</p>
   </div>
 
-  <h3>Review capacity is the variable that binds</h3>
+  <h3>Naming the stage ends most of the tool argument</h3>
 
-  <p>Every downstream measure in this issue points at the same constrained resource. Pull requests are larger, merge volume is higher, cross-agent conflicts arrive structurally rather than textually, and the security pass rate means a substantial share of generated code needs a human security judgement. Osmani&rsquo;s point about reconstruction explains why the minutes do not divide the way they used to, and Monzo found the same constraint by removing the one in front of it. The countermeasures the accounts converge on are small and procedural: a size limit on agent pull requests, an intake standard that carries the reasoning and the test evidence, and review tiered by the risk of the code path rather than by who wrote it.</p>
+  <p>Teams stuck at the wall tend to debate which agent to standardise on. The published accounts converge on scaffolding instead: a runnable test command, a short file describing how the codebase works, a stated merge gate, a single proxy carrying attribution. All four are tool-agnostic, and they are what changed the outcome in every account here.</p>
 
-  <h3>The bands belong in any internal target</h3>
+  <h3>The wall is a capacity problem before it is a quality problem</h3>
 
-  <p>A 90% adoption target and a 28% autonomous-working target are two entirely different programmes, with different governance, different risk and different costs. The vocabulary problem in the published research is also a vocabulary problem inside organisations, and it is cheaper to fix in a target than in a post-mortem. The same precision applies to the norm a team believes it holds: 79% of agent pull requests in the LeadDev analysis had the same person reviewing and modifying the work, which is what a stated review norm looks like when nothing enforces it.</p>
+  <p>Reviewing a colleague&rsquo;s change means checking intent; reviewing an agent&rsquo;s means reconstructing it. That is why review time does not scale the way a plan assumes. The countermeasures are small and procedural: a size limit on agent pull requests, an intake standard carrying the reasoning and the test evidence, and review tiered by the risk of the code path rather than by who wrote it. Monzo found the same constraint by removing the one in front of it.</p>
 
-  <h3>Verification is a standing cost line</h3>
+  <h3>The platform work precedes the payback</h3>
 
-  <p>DORA models the verification tax as part of a dip that a rollout climbs out of. The four years of GitClear data and the flat security pass rate describe something that has not improved with model capability. A cost line that has held steady across four testing snapshots and four years of commit history is a permanent one, and budgeting it as a transition expense understates it. Two of Bessemer&rsquo;s four named blockers &mdash; evaluating code quality and measuring productivity gains &mdash; describe the same missing layer, and Figma&rsquo;s per-pull-request review cost shows what filling it actually prices at.</p>
+  <p>Cloudflare's adoption figure came after eleven months of building. Craft Docs earned an internal proof before it issued a mandate. Sentry removed every access barrier it could name and still reports half its engineers outside daily use. The sequence is the finding, and it is the part of a rollout plan that is usually written last.</p>
 
   <div class="key-takeaway">
     <div class="kt-title">Key Takeaway</div>
     <ul>
-      <li>Review capacity is the variable a plan binds on, and diff size is the lever teams reach for first.</li>
-      <li>The spectrum bands belong in any internal target: &ldquo;90% adoption&rdquo; and &ldquo;28% autonomous&rdquo; are not the same commitment.</li>
-      <li>The stated review norm and the observed one diverge quietly; the LeadDev analysis is what the divergence looks like measured.</li>
-      <li>A runnable test command and a short instruction file are the cheapest scaffolding in the pack, and every practitioner account starts there.</li>
-      <li>The security review layer is a permanent cost line, not a transitional one &mdash; the 56% pass rate has not moved in a year.</li>
-      <li>Removing every access barrier does not produce adoption on its own; Sentry removed all three it could name and still reports a plateau.</li>
-      <li>Visible peer use is what spreads a rollout, and per-user cost attribution is cheaper to build before the bill than after it.</li>
-      <li>The junior-pipeline decision made this year sets the supervision capacity available in three.</li>
+      <li>The five stages are predictable enough to plan against, and the wall is a scheduled event on that plan.</li>
+      <li>Reviewer capacity is the variable a rollout plan binds on, and diff size is the first lever teams reach for.</li>
+      <li>The stated review norm and the observed one diverge quietly under volume; 79% of agent pull requests had one person doing both jobs.</li>
+      <li>A runnable test command and a short instruction file are the cheapest scaffolding available, and every practitioner account starts there.</li>
+      <li>Verification is a standing cost line: the 56% security pass rate has not moved in a year.</li>
+      <li>Removing every access barrier does not produce a practice; visible peer use and workflow fit do.</li>
+      <li>Per-user cost attribution is far cheaper to build before the token bill than after it.</li>
+      <li>The junior-pipeline decision taken this year sets the supervision capacity available in three.</li>
     </ul>
   </div>
 
-  <p class="source-tag">Sources: the studies, teams and rollouts cited in Sources 1&ndash;5, the Counterpoint and the case study above &mdash; among them <a href="https://dora.dev/ai/roi/report/">DORA</a>, <a href="https://www.gitclear.com/the_ai_code_quality_maintainability_gap">GitClear</a>, <a href="https://addyosmani.com/blog/agentic-code-review/">Addy Osmani</a>, <a href="https://gist.github.com/dcramer/c0a673da13a24f7e315535c1cb57dcae">Sentry</a> and <a href="https://monzo.com/blog/building-agent-chip">Monzo</a>.</p>
+  <p class="source-tag">Sources: the teams, practitioners and studies cited in Stages One to Five and the case study above &mdash; among them <a href="https://addyosmani.com/blog/agentic-code-review/">Addy Osmani</a>, <a href="https://blog.cloudflare.com/internal-ai-engineering-stack/">Cloudflare</a>, <a href="https://gist.github.com/dcramer/c0a673da13a24f7e315535c1cb57dcae">Sentry</a>, <a href="https://www.businesswire.com/news/home/20260728207685/en/LLMs-Are-Getting-Smarter-But-Not-Safer-Veracode-2026-GenAI-Code-Security-Report-Finds-AI-Generated-Code-Security-Has-Stalled-at-56-Pass-Rate">Veracode</a> and <a href="https://monzo.com/blog/building-agent-chip">Monzo</a>.</p>
 </section>
-
 <!-- ═══ MEANWHILE ═══ -->
 <section class="meanwhile-section">
   <div class="section-label">Meanwhile&hellip;</div>
