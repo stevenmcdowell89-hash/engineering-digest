@@ -1,16 +1,16 @@
 {
-  "_comment": "v3.2 state file for the engineering-digest skill. Updated on the Issue 24 deliver (2026-09-04). Issue 24 was a STANDARD WEEKLY (~3,470 body words, spec v1.38) after the Issue 23 deep dive; deep-dive trigger did not fire (consecutive_non_deepdive was 0). Lead: Uber's 2 September restructure (3,300 roles, fewer layers, one- and two-person teams halved, eng + science merged) - Management & teams, NON-AI, closing the rolling-4 breadth gap after two Ways-of-working leads. QT1 Nvidia/Hugging Face ($12.93bn, Wider engineering landscape). QT2 Tottenham Hotspur's VMware exit (Operating at scale, non-AI). FIRST-EVER FEATURE ran ('Nobody noticed': Unit 42's agent-run ten-hour intrusion + METR's $600k of unbilled credits; both primaries pinned). Outside In OMITTED on a worked eligibility ruling (DoorDash failed v1.35 long-form cap, Tottenham failed the migration test). In Practice week 2 ran as an EVERGREEN (Trokis/Monzo 2022, 'a classic worth revisiting'). Phase 3 pinned the Uber 20% to Uber's own newsroom (employees seven-plus layers from the CEO, NOT manager roles - TechCrunch's rendering barred) and recorded 16 binding corrections to the run plan plus 10 late finds under the v1.37 whole-source rule; one late find (Anthropic reassigning ~150 product engineers to security) was folded into Week at a Glance by main-loop routing (run-plan §14).",
-  "last_issue_number": 24,
-  "last_issue_date": "2026-09-04",
+  "_comment": "v3.2 state file for the engineering-digest skill. Updated on the Issue 25 deliver (2026-09-11). Issue 25 was a STANDARD WEEKLY (3,559 body words, spec v1.38); deep-dive trigger did not fire (consecutive_non_deepdive was 1, now 2). Lead: GreyNoise Labs' 9 September account of a single operator's agent swarm against PaperCut (440 instances / 395 organisations / 48 countries, eleven organisations in 26 seconds, admin privileges at 12 of 395, victims inside the operator's own 28-country exclusion list) - Operating at scale, AI-substrate, act_this_week; the Lead was framed on the attacker's operating model with all remediation content barred. QT1 Oracle's 11 September 10-Q (+$700m to ~$2.8bn restructuring, headcount ~141,000 / -21,000, $28.5bn quarterly capex; Management & teams, non-AI). QT2 Visa / Mastercard / Ant International 'Know Your Agent' interoperability (9 September; Wider engineering landscape, AI; the only in-window loyalty story - loyalty processing remains explicitly unsolved). Editorial Moment: number of the week, 60.4% (GitHub August availability report, non-AI). Mid-issue accent: Broadcom's VMware VDDK withdrawal (non-AI). AI-substrate count 3 of 6. In Practice week 3 ran as an EVERGREEN (Bruno Siqueira, Atlassian, March 2024) and the season CLOSED at three issues. Outside In RETURNED with Figma (enterprise / SaaS). Leadership Read: LeadDev on juniors skipping to architect-level thinking (non-AI). v1.35 long-form: 1 AI-primary of 3. VERIFICATION: this environment's network egress policy blocked ALL page fetches at every phase (WebFetch EGRESS_BLOCKED, curl 403 from the proxy); WebSearch worked. Issue 25 is a SEARCH-VERIFIED issue end to end under the two-limb standard recorded at section-briefs.md section 0.0 (a figure prints only if it appears in the primary's own search snippet OR in two independent outlets citing the primary; otherwise it drops). 41 claims cleared, 19 dropped, 0 softened. First Phase 5 pass FAILED (reframing 5, Hacker News adjacency, an unlinked Week at a Glance item); main-loop fixes recorded at section-briefs.md section 22; re-review passed. Four source links stand as bare domains (The Register, Payments Dive, two Pragmatic Engineer) because article paths could not be resolved without fetch capability - resolve at the next run with egress.",
+  "last_issue_number": 25,
+  "last_issue_date": "2026-09-11",
   "last_issue_format": "weekly",
-  "last_lead_topic": "Management & teams",
+  "last_lead_topic": "Operating at scale",
   "last_lead_topics_3issues": [
+    "Operating at scale",
     "Management & teams",
-    "Ways of working (Issue 23 deep dive, user-directed topic)",
-    "Ways of working"
+    "Ways of working (Issue 23 deep dive, user-directed topic)"
   ],
-  "consecutive_non_deepdive": 1,
-  "last_outside_in_company": "Duolingo",
+  "consecutive_non_deepdive": 2,
+  "last_outside_in_company": "Figma",
   "outside_in_history": [
     {
       "issue": 1,
@@ -86,9 +86,14 @@
       "issue": 22,
       "company": "Duolingo",
       "source": "Building a production-ready AI agent platform (blog.duolingo.com) — one agent platform instead of many; the before/after is the platform-investment decision, not the agents"
+    },
+    {
+      "issue": 25,
+      "company": "Figma",
+      "source": "Matthew Sullivan and Brad Girardeau - How we secure Figma's internal systems with agents (figma.com, 29 July 2026), via InfoQ's September write-up. A security alert-triage agent covered as an on-call design change: 71% faster alert resolution, 20% fewer on-call pages, 25% fewer endpoint approval requests, human review retained. Sector category: enterprise / SaaS (taken to put two categories in the rolling-4 window alongside Duolingo)."
     }
   ],
-  "last_leadership_read": "martinfowler.com (Rachel Laycock, Thoughtworks)",
+  "last_leadership_read": "LeadDev",
   "leadership_read_history": [
     {
       "issue": 7,
@@ -159,17 +164,22 @@
       "issue": 24,
       "source": "martinfowler.com (Rachel Laycock, CTO Thoughtworks)",
       "piece": "Code review is the wrong place to catch problems now that AI writes more than it reads (2 Sep 2026) - AI-primary long-form slot for the issue (v1.35: 1 of 2 long-form sections)"
+    },
+    {
+      "issue": 25,
+      "source": "LeadDev",
+      "piece": "Junior engineers are skipping straight to architect-level thinking (August 2026; no author byline could be established, inline attribution used) - non-AI long-form slot: levelling and coaching, seniors as apprenticeship infrastructure. Classification contested (AI is the setting, not the subject); ruled non-AI at run-plan section 5.8 and review.md."
     }
   ],
-  "last_editorial_moment": "quote_of_the_week",
-  "last_lead_opener": "summary-first",
+  "last_editorial_moment": "number_of_the_week",
+  "last_lead_opener": "narrative-first",
   "last_qt_layout": "qt-B",
   "last_oi_format": "A",
   "last_feature_date": "2026-09-04",
   "last_stack_date": null,
   "last_rabbit_hole_date": "2026-09-04",
-  "current_in_practice_season": "Making technical decisions when not the SME",
-  "in_practice_season_progress": 2,
+  "current_in_practice_season": "Making technical decisions when not the SME (CLOSED at three issues: 22, 24, 25)",
+  "in_practice_season_progress": 3,
   "in_practice_season_candidates": [],
   "in_practice_history": [
     {
@@ -243,9 +253,15 @@
       "piece_title": "My first 3 months at Monzo as an engineering manager (evergreen, April 2022 - carried the \"a classic worth revisiting\" sub-label; season week 2)",
       "author": "Jarryd Trokis (Monzo)",
       "url": "https://monzo.com/blog/2022/04/04/my-first-3-months-at-monzo-as-an-engineering-manager"
+    },
+    {
+      "issue": 25,
+      "piece_title": "Four things I learned as an interim engineering manager (evergreen, 22 March 2024 - carried the \"a classic worth revisiting\" sub-label; season week 3, season closed)",
+      "author": "Bruno Siqueira (Atlassian)",
+      "url": "https://www.atlassian.com/blog/inside-atlassian/four-things-i-learned-as-an-interim-engineering-manager"
     }
   ],
-  "_season_note": "Issue 24 (STANDARD WEEKLY, 4 September 2026). IN PRACTICE: season 'Making technical decisions when not the SME' progressed to week 2 on an EVERGREEN (Jarryd Trokis, Monzo, April 2022) because no fresh on-theme piece surfaced - a signal about the theme rather than the week. A plausible week 3 is visible and named: Bruno Siqueira, 'Four things I learned as an interim engineering manager' (Atlassian, March 2024). Standing instruction stands: do not open a new season until a week 1 AND a plausible week 2 are both visible. LEADERSHIP READ: martinfowler.com (Laycock) - excluded from Issue 25 by the no-consecutive-outlet rule; lethain's exclusion is discharged and it is eligible again. OUTSIDE IN: omitted by ruling, so outside_in_history is unchanged; DoorDash, Tottenham Hotspur and Zalando remain fresh - the footer carried 'Outside In returns next week'. FEATURE ran for the first time (last_feature_date 2026-09-04): minimum 1-issue gap, not eligible again until Issue 26. THE STACK has still never run. Rolling-4 leads: Management & teams / Ways of working / Ways of working / Wider engineering landscape (3 of 4 concerns - guardrail met). NO-REPEAT-ANCHOR SET FOR ISSUE 25 (anchors of Issues 23-24): the Issue 23 deep-dive core datasets; Uber's restructure; Nvidia / Hugging Face; Tottenham Hotspur / VMware. Single-sentence throughlines only. Binding facts carried forward unchanged: no shared cause ever published for the 27 July 2026 UK multi-bank degradation; the 'July 2026 AWS mega-outage' remains UNVERIFIED (seventh consecutive demotion); AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN, AWS last public update 30 April 2026; the agentic-payments deep-dive cluster and the payments org-shape thread stay retired. The 26 Aug Lloyds/Halifax/Scottish Widows outage (gap week - no issue shipped 28 Aug) went to On the Radar with no in-window traction; the Agentic Payments Alliance drew reaction only (PYMNTS is the source for the loyalty-unsolved point; member count disputed - print none). ISSUE 25 STANDING CANDIDATES: Ludicity 'AI mania is eviscerating global decision-making' (Leadership Read, never used, outlet clear); DoorDash Flux (Outside In - blocked this week by v1.35 only; take it when the Leadership Read is non-AI); Zalando's agentic-engineering snapshot (Outside In - 33% of PRs bot-approved, PR lead time -20-40%; strongest OI candidate); Giles Edwards-Alexander 'An Accidental Blackboard' (In Practice, blocked by outlet anti-overlap only); Broadcom TrueSource (31 Aug; supply-chain governance story, Quick Take on fresh movement); METR's second (May 2026) exposed-SQL incident (unused, would have blurred the Feature); Anthropic EFS commercial terms (no charge, phased rollout 'later this fall', components opt-in). RETIRE Canva / Rob Giglio from the standing list - declined at three consecutive issues. Verification notes: careersatdoordash.com 403 (4 Sep); The Pragmatic Engineer Pulse paywalled (the ~50% routing figure is visible in the free preview); OpenAI's 26 Aug incident post 403; Finextra, Parliament, Computer Weekly, India TV News 403; Oracle September round reported at 7,000-8,000 by Business Today only, unconfirmed by Oracle - print no figure.",
+  "_season_note": "Issue 25 (STANDARD WEEKLY, 11 September 2026). IN PRACTICE: the season 'Making technical decisions when not the SME' CLOSED at three issues (22, 24, 25), the last two on evergreens - a signal that the theme is exhausted rather than that the weeks were thin. NO SEASON IS OPEN. Standing instruction stands: do not open a new season until a week 1 AND a plausible week 2 are both visible. Named week-1 candidate for an agent-era-practice season: Giles Edwards-Alexander, 'An Accidental Blackboard' (martinfowler.com, 2 Sep 2026) - contingent on v1.35 (AI-primary, so Outside In and Leadership Read must both be non-AI that week) and on a plausible week 2 with a named operator; Zalando, DoorDash and Figma do NOT qualify as that week 2 (company bylines, no named operator). LEADERSHIP READ: LeadDev - excluded from Issue 26 by the no-consecutive-outlet rule; martinfowler.com's exclusion is discharged; lethain eligible and unused. OUTSIDE IN: Figma (enterprise / SaaS) - Figma joins the no-repeat set; DoorDash Flux (cite InfoQ, careersatdoordash.com is 403) and Zalando's agentic snapshot (33% of PRs bot-approved, PR lead time -20-40%) remain the strongest standing OI candidates, blocked this week on sector rotation only. FEATURE: eligible again from Issue 26 (last ran 2026-09-04). THE STACK has still never run - declined this week with a named standing topic, 'the agent harness', which competes with the Feature at Issue 26. RABBIT HOLE: omitted on a worked ruling (last ran 2026-09-04); H. Penny Nii's 1986 blackboard paper is the recorded candidate for whichever issue runs Edwards-Alexander. Rolling-4 leads: Operating at scale / Management & teams / Ways of working / Ways of working (3 of 4 concerns - guardrail met). NO-REPEAT-ANCHOR SET FOR ISSUE 26 (anchors of Issues 24-25): Uber's restructure; Nvidia / Hugging Face; Tottenham Hotspur / VMware; the GreyNoise PaperCut agent swarm; Oracle's 10-Q; the Visa / Mastercard / Ant Know Your Agent framework. Single-sentence throughlines only. Binding facts carried forward unchanged: no shared cause ever published for the 27 July 2026 UK multi-bank degradation (the contested Lloyds attribution in low-quality outlets is NOT a published cause); the 'July 2026 AWS mega-outage' remains UNVERIFIED (eighth consecutive demotion); AWS ME-CENTRAL-1 / ME-SOUTH-1 remain OPEN, AWS last public update 30 April 2026; the agentic-payments deep-dive cluster and the payments org-shape thread stay retired; Anthropic EFS commercial terms unchanged; Broadcom TrueSource still has no published pricing. ISSUE 26 STANDING CANDIDATES: Dario Amodei, 'We Must Pace the Frontier' (12 Sep - out of the Issue 25 window by one day, lands in Issue 26's) plus same-day responses; GitHub's first production MySQL primary on Azure (11 Aug) and the auth-core migration off its oldest shared database (~1m QPS removed) - strongest late find, plausibly its own slot; CISA BOD 26-04 'Prioritizing Security Updates Based on Risk' (10 June 2026) superseding BOD 22-01 - plausible first-ever The Stack; OpenAI Agents API nine named sandbox partners (supplier-concentration story) and its commercial terms (no additional API fee, billed as tokens and tools); Copilot enterprise-managed sandbox for JetBrains (8 Sep changelog); Figma's second agents post ('How Figma stays ahead of vulnerabilities with agents'); Anthropic's 1 September cache-read price cut (budget-relevant, unused); Anthropic's threat-report follow-on campaign against ~30 AI companies (single-sourced - needs a second limb); Oracle's 12-14 September secondary coverage attributing part of the reduction to AI (Oracle's own wording does not - print nothing beyond the filing). RETIRE Ludicity 'AI mania is eviscerating global decision-making' from the standing list - declined at four consecutive issues (ran once as a Recommended Reading link at Issue 25). Canva / Rob Giglio remain retired. DO NOT PRINT: PayPal's India figure (disputed: ~600 reported vs PayPal's ~220); Oracle's 7,000/6,000/3,000 function split or the 30,000 / 18% figures; the Copilot credit dollar figures ($30->$19 / $70->$39 were found to be wrong); 'seven China-based labs'; GitHub's 7h47m duration and 64.3% rendering (60.4% is GitHub's own figure). Verification notes: the Issue 24 403 list (careersatdoordash.com, Finextra, Computer Weekly, Parliament, OpenAI incident posts, India TV News) could not be retested and is treated as still live; The Pragmatic Engineer Pulse remains paywalled; the Siqueira date is pinned to 22 March 2024; no LeadDev byline could be established.",
   "p0_stories_tracking": [],
   "seeded_threads_next_issue": [],
   "_retired_threads_note": "The 'payments-sector engineering org shape under AI attribution' thread seeded at Issue 20 is RETIRED. Two consecutive issues brought no new in-window movement, and the sector aggregate could not be verified: the Block figure is internally contradictory across sources (reported as both 'close to half' and 'nearly 40%' of headcount) and the Mastercard and PayPal figures remain search-result reported only. None of those figures appeared anywhere in Issue 21. Visa appeared once, in Other News, carrying a single cross-issue throughline sentence on the $2.4bn BioCatch acquisition. Issue 22 note: the declined deep-dive ruling at issue-22 run-plan.md §1 reaffirmed this retirement - the same unverifiable aggregates resurfaced in the 'org shape under AI' cluster and were declined again."
