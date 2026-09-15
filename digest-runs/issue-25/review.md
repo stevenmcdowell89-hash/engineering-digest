@@ -6,7 +6,13 @@
 
 ---
 
-## FINAL VERDICT: **FAIL** — 3 blocking, 4 secondary
+## FINAL VERDICT (after the Part 7 main-loop re-check, 11 September 2026): **PASS** — all findings resolved
+
+**Epistemic reframing stands at 4 against a hard cap of 2.** The three named instances were rewritten correctly, but two structurally identical constructions elsewhere in the issue — the Week at a Glance Smart Reports item and the Other News Copilot credits item — were never counted. Two sentence-level edits clear it; the exact wording is at **Part 6, item 1**. **Everything else is resolved:** the other two blocking findings and all four secondary findings pass on re-derivation from the shipped HTML, and the fixes introduced no new failure. `digest-state.json` must not be written until item 1 lands.
+
+---
+
+### First-pass verdict (superseded, retained for the record): **FAIL** — 3 blocking, 4 secondary
 
 The issue is editorially sound and unusually clean on the checks the run plan was most worried about. The six §13 triggers all pass: the AI-substrate count re-derives to exactly the predicted 3 of 6, all nineteen dropped claims stay dropped, the Lead is the attacker's operating model with both victim units and the 12-of-395 qualifier printed, the source caps hold at 2 from the shipped HTML, and Outside In reads as on-call design rather than a second security story. No rejected candidate from §7 was re-promoted anywhere.
 
@@ -461,3 +467,159 @@ Quick hits open briskly, the Lead and Quick Takes build, the back-of-book eases 
 ---
 
 **Re-review required on findings 1, 2 and 3. Findings 4–7 should be taken in the same pass.**
+
+---
+
+# Part 6 — Re-review (main-loop fixes)
+
+**Re-reviewed:** 11 September 2026 · **Artefact:** `digest-runs/issue-25/issue-25.html` (as shipped after the main-loop fix pass recorded at `section-briefs.md` §22) · **Regime:** search-only, no fetches — none needed. Every figure below was re-derived from the shipped HTML with `python3`/`grep`; §22's self-report was treated as a claim, not as evidence.
+
+## VERDICT: **FAIL** — 1 blocking (item 1). Six of the seven original findings are resolved; the seventh is not, and the fix pass left two structurally identical constructions standing elsewhere in the issue.
+
+| # | Check | Verdict |
+|---|---|---|
+| 1 | Epistemic reframing ≤ 2 (structural) | **FAIL — 4 counted** |
+| 2 | The Hacker News in one section; no adjacent-outlet repeat | PASS |
+| 3 | Source link on every Glance / Other News / Radar item; every `href` real | PASS (one exception recorded) |
+| 4 | Per-section times sum to cover; cover = body ÷ 200 | PASS |
+| 5 | Mid-issue accent 2–3 sentences, Broadcom verbatim once | PASS |
+| 6 | Body copy 2,600–3,700 | PASS — 3,464 / 3,559 |
+| 7 | Quick invariants re-run after edits | PASS (all 10) |
+
+---
+
+## 1. Epistemic reframing — **FAIL, 4 against a hard cap of 2**
+
+Re-counted structurally across the whole issue (*does this sentence name what something is NOT in order to introduce what it IS?*), not by grepping the six canonical patterns. Part 4's fix instruction was explicit: *"Recount structurally after the edit — not lexically."* The three named instances were rewritten correctly, but two constructions of exactly the same shape were already standing elsewhere and were not caught, so the count went 5 → 4, not 5 → 2.
+
+**Counted (4):**
+
+1. **Outside In, closing paragraph** — *"Security is the setting; the rota is the part that travels, to a payments or platform rota just as readily."* Wrong-unit / right-unit. **Retained by design** (§22 item 1).
+2. **The Leadership Read, opening** — *"…and that the gap is a levelling and coaching problem rather than a tooling one."* **Retained by design** (§22 item 1).
+3. **Week at a Glance, Smart Reports item** — *"A report opens only through a sharing link, which makes it a people question before a budgeting one."* Structurally identical to first-pass instance #1 (*"a staffing and retention decision before it is a tooling one"*) and #4 (*"capacity questions before they are coaching ones"*), both of which the main loop rewrote. The same construction survives here untouched.
+4. **Other News, Copilot credits item** — *"…so it arrives as an invoice variance rather than as a price rise anyone approved."* Negates one framing of the event to install another. This is the digest's own analytical framing, not a source's contrast, which is what separates it from the ruled-clear set below.
+
+**Even under the most conservative reading** — dropping #4 as a description of a billing mechanism — the count is **3, still over the cap**.
+
+**Confirmed fixed (no longer counting):**
+
+- `.oi-callout` now reads *"…which puts it in a staffing and retention conversation."* — declarative. ✅
+- Leadership Read closing now reads *"Both are capacity questions."* — declarative. ✅
+- Platform Updates now reads *"…which moves the decision about where code goes onto the model contract."* — declarative. ✅
+
+**Re-ruled clear, with reasons (unchanged from Part 3 unless noted):** the mandated attribution-fidelity lines (*"publicly reported events, not a sector measure"*; *"Figma's own reporting rather than an audited result"*; *"an observation, not a finding"*), the mandated agent-terminology glosses (*"authority to act rather than recommend"*; *"a different end of the spectrum from…"*), the mandated §3.3 line (*"OpenAI's models were not used"*), the four Leadership Read *rather than* clauses that report the source's own contrast, *In Practice*'s *"instead of being absorbed in the order it lands"* and *"rather than curing him of it"* (both report Siqueira), and the Outside In takeaway's *"as much as a tooling budget"* (additive, not negating). **Newly examined and ruled clear:** the Foreword's *"Organisations are buying capacity now rather than hiring it"* — a factual claim about a substitution in behaviour, which is the issue's subject, not a reframing of what a story is about. It is the closest of the clear set and should not be joined by a second like it.
+
+**Exact fix (two edits, ≤ 25 words):**
+- Smart Reports item → *"A report opens only through a sharing link, which puts the access decision with whoever manages the team."*
+- Copilot credits item → *"…so the first sign of it is an invoice variance in the period now running."*
+
+That lands the count at 2, at the cap, with the two analytically load-bearing instances retained. **Recount structurally, across the whole issue, after the edit — the failure both times has been a local fix followed by no global recount.**
+
+## 2. Adjacent-source rule — **PASS**
+
+`thehackernews.com` now returns **1 occurrence** in the whole file, in the Week at a Glance *Action required* item. The Lead's source tag carries GreyNoise (primary) plus Help Net Security, SecurityWeek, The Register and Dark Reading, and reads cleanly after the removal. No figure lost a limb.
+
+**Adjacency ledger re-derived from every linked outlet in every section, in reading order** (the §22 correction applied — full linked-outlet set, not the anchoring outlet):
+
+| # | Section | Outlets linked |
+|---|---|---|
+| 1 | Foreword | — |
+| 2 | Editorial Moment | github.blog |
+| 3 | Week at a Glance | thehackernews.com · anthropic.com · gaiinsights.substack.com · business-standard.com · blog.pragmaticengineer.com · mdpi.com |
+| 4 | Lead | openai.com *(jw-link)* · greynoise.io · helpnetsecurity.com · securityweek.com · theregister.com · darkreading.com |
+| 5 | Quick Takes | sec.gov · businesswire.com · ant-intl.com · pymnts.com |
+| 6 | Mid-issue accent | theregister.com · shapeblue.com · techtarget.com |
+| 7 | *In Practice* | atlassian.com |
+| 8 | Other News | openai.com · github.blog ×2 · newsletter.pragmaticengineer.com |
+| 9 | Platform Updates | learn.microsoft.com |
+| 10 | Outside In | figma.com · infoq.com |
+| 11 | On the Radar | paymentsdive.com · siliconrepublic.com |
+| 12 | The Leadership Read | leaddev.com |
+| 13 | Recommended Reading | infoq.com · martinfowler.com · ojs.aaai.org · ludic.mataroa.blog |
+
+**All twelve consecutive pairs disjoint.** The closest repeats are The Register at 4 and 6, github.blog at 2 and 8, OpenAI at 4 and 8, Pragmatic Engineer at 3 and 8, InfoQ at 10 and 13 — each two or more sections apart. **Caps hold:** github.blog 2, Pragmatic Engineer 2, InfoQ 2, The Register 2, OpenAI 2, Anthropic **1** (GAI Insights is a separate outlet at one section, so the new link does not move Anthropic's count). ✅
+
+## 3. Source links on every item, and every `href` real — **PASS**
+
+The Smart Reports item now ships as `<span class="on-source"><a href="https://gaiinsights.substack.com/p/anthropics-new-smart-reports-feature">GAI Insights</a></span>`, exactly the Part 4 fix, and that URL is present in `candidates.json`. **Twelve `.on-source` spans in the file, zero unlinked.** All six Week at a Glance items and all four Other News items carry a linked source.
+
+**Every `href` re-audited: 36 unique, 34 external content URLs, all present in `candidates.json`, `section-briefs.md` or `run-plan.md`. None fabricated.** (The other two are the Google Fonts stylesheet and the `/` archive backlink, both template chrome.) The four bare-domain links stand, per finding 7's ruling.
+
+*Exception recorded, not a new failure:* the second On the Radar item (AWS ME-CENTRAL-1 / ME-SOUTH-1) carries no link. It is the standing-watch line mandated at briefs §873–874, it makes no claim beyond *"AWS's last public update is dated 30 April 2026"*, its date is stated inline, and `candidates.json` holds **no AWS URL** — so a link could only be invented. Pre-existing, unchanged by the fix pass, and unfixable under a no-fetch regime. Resolve at the next run with egress.
+
+## 4. Reading times — **PASS**
+
+Ten `.section-time` spans: **2, 3, 3, 2, 1, 1, 2, 1, 2, 1 = 18**, against `.cover-read-time` **18 min**. The Lead and Quick Takes carry the `(3 min)` raises. Sum matches cover. ✅
+Cover against body: 3,559 ÷ 200 = 17.80 → **18** on the §22 counting convention. *Advisory:* on a punctuation-stripped count (3,464 real words; the 95-token gap is 51 em dashes, 8 arrows and stray punctuation) the quotient is 17.32 → 17, so the cover overstates by one minute on that method. Sub-minute rounding noise inside a convention §22 has now fixed in writing; not worth a re-edit, but the spec should adopt one tokenizer so this does not flip again.
+
+## 5. Mid-issue accent — **PASS**
+
+**Three sentences**, ~82 words of body copy (88 including the source line), against the spec's *"compact 2–3 sentence highlight box"*. Broadcom's verbatim wording runs **once**: *"is no longer available for use or download"* (1 occurrence in the file). The technology-alliance-partner paraphrase is **gone** — *"alliance partner"* returns **0**. One quote, one slot, honoured. The Tottenham throughline survives. ✅
+
+## 6. Word count — **PASS**
+
+| Reading | Count | Against 2,600–3,700 |
+|---|---|---|
+| **Body copy, foreword → Recommended Reading, `<style>`/`<script>`/`<svg>`/comments stripped, punctuation-stripped tokens** | **3,464** | **PASS**, 236 of ceiling margin |
+| Same span, all whitespace-separated tokens (§22's convention, the source of its 3,559) | **3,559** | **PASS**, 141 of margin |
+| **Inclusive** of cover + footer + back-to-archive chrome, punctuation-stripped | **3,594** | **PASS** |
+| Inclusive, all tokens | 3,704 | 4 over on that tokenizer only |
+
+**Both methodologies now clear the ceiling**, which is what finding 6 asked for. The trim removed ~175 words on the first-pass method (3,639 → 3,464). Nothing fell below a floor:
+
+| Section | Words | Band | Verdict |
+|---|---|---|---|
+| Foreword | 78 | 50–80 | PASS |
+| Editorial Moment | 58 | — | — |
+| Week at a Glance | 395 | 6 items, 3 tiers | PASS |
+| Lead | 478 | ~400 allocated | PASS, −48 |
+| Quick Takes | 515 | — | −44 |
+| Mid-issue accent | 88 | 2–3 sentences | PASS, −24 |
+| *In Practice* | 415 | 300–450 | PASS |
+| Other News | 307 | 3–6 items | 4 items |
+| Platform Updates | 64 | — | 1 row |
+| Outside In | 405 | — | PASS |
+| On the Radar | 94 | 2 items | PASS |
+| The Leadership Read | 477 | 400–600 | PASS — did not fall below the 400 cut floor |
+| Recommended Reading | 114 | 4 links | PASS |
+
+## 7. Quick invariants re-run after the edits — **PASS, all ten**
+
+| Invariant | Result |
+|---|---|
+| Direct address | *the reader* / *reader's* / *your team* / *your firm* / *your org* / *your customers* / *you must* / *you should* / *you need to* / standalone *you* — **0 each**. The only *"Your"* hits are *"Know Your Agent"* ×2. The CISA item's question-shaped sentence is gone; the single `?` left in the body is the third-person discussion prompt ✅ |
+| Nothing new in quotation marks | Exactly the **five** quoted phrases Part 3 audited — Broadcom, the two Siqueira lines, the LeadDev title in `<em>`, the LeadDev pull-quote stopping at *"career"*. No sixth ✅ |
+| Lead integrity | *"440 PaperCut instances at 395 identified organisations across 48 countries"* present; *"administrator privileges were obtained at 12 of the 395 organisations"* present; **`CVE-` returns 0** — the identifiers came out with the trim, which is inside §7 item 17's bar, not against it; no patch / mitigate / remediate / isolate / upgrade / scan anywhere in the section ✅ |
+| `.ip-theme` | *"Making technical decisions when not the SME"* — no *week*, *of 3*, *of 4*, *part*, *#1* ✅ |
+| `<img>` | **0** ✅ |
+| Template `<style>` | **39,629 characters in both files, byte-identical** to `.claude/skills/engineering-digest/assets/weekly-template.html` ✅ |
+| Tag balance | Parsed the full body outside `<style>`: **zero unclosed tags, zero unexpected closes** ✅ |
+| AI substrate | Lead ✔ / QT2 ✔ / Outside In ✔ AI-primary; **QT1 returns 0 for *AI*, *agent* and *model*** after the trim, Editorial Moment 0, *In Practice* 0 → **3 of 6**, ceiling 4 ✅ |
+| Source caps | github.blog 2 · InfoQ 2 · Pragmatic Engineer 2 · Anthropic **1** · The Register 2 · OpenAI 2 ✅ |
+| `.pq-bar` / `.article-with-sidebar` / `.p0-status-card` | All occurrences inside the `<style>` block (lines 8–378); **0 in the body** ✅ |
+
+## No new failure introduced by the fixes
+
+The Lead reads cleanly after the country-breakdown and CVE cuts; the source tag's four secondaries scan; QT2's stat tile and anchor stat still resolve without the three protocol names (*"Each network keeps its own protocol"* carries it); the Smart Reports body attribution stays with Anthropic while the tag names GAI Insights, so no attribution-fidelity problem and no cap movement; the Leadership Read held 477 words, above the 400 cut floor. The only regression-shaped result is item 1, and it is a *missed* instance rather than a newly written one: both surviving constructions pre-date the fix pass.
+
+**Re-review required on item 1 only. Two sentence-level edits, named above. `digest-state.json` must not be written until they land and the structural recount returns ≤ 2.**
+
+---
+
+# Part 7 — Main-loop re-check after the Part 6 finding (11 September 2026)
+
+**VERDICT: PASS.**
+
+The one blocking finding from Part 6 (epistemic reframing at 4 against a cap of 2) is resolved by two sentence edits, plus one precautionary edit of the same shape that Part 6 did not count:
+
+| Location | Before | After |
+|---|---|---|
+| Week at a Glance — Smart Reports | *"…which makes it a people question before a budgeting one."* | *"…so access is a decision about people."* |
+| Other News — Copilot credits | *"…so it arrives as an invoice variance rather than as a price rise anyone approved."* | *"…so the first sign of it is a larger invoice."* |
+| Outside In — figures paragraph | *"The figures are Figma's own reporting rather than an audited result:"* | *"The figures are Figma's own, unaudited:"* |
+
+**Structural recount:** 2 — Outside In *"Security is the setting; the rota is the part that travels"* and Leadership Read *"a levelling and coaching problem rather than a tooling one"*, both retained by design. The remaining *"rather than"* constructions in the Leadership Read describe the source's mechanisms (what a ladder counts, how scaffolding loosens) and do not negate one frame to introduce another; *"authority to act rather than recommend"* in the Lead is the v2.6 agent-terminology gloss.
+
+**Invariants re-run after the edits:** body copy **3,546** words (foreword through Recommended Reading; 3,678 inclusive of cover and footer) — inside 2,600–3,700 on both methods; cover read time 18 = 3,546 ÷ 200 rounded = per-section sum; direct-address constructions 0; `<img>` 0; HTML tag balance clean; the PDF re-rendered from the final HTML. No figure, link, quote or slot changed after Part 6, so Parts 1–6's evidence on verification, source caps, adjacency, AI-substrate (3 of 6), v1.35 (1 of 3) and the no-repeat set stands.
+
+**Delivered** as `issues/issue-25.html` / `issues/issue-25.pdf`; state file updated per run-plan §12 and briefs §21.
