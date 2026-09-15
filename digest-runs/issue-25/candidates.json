@@ -1,0 +1,917 @@
+{
+  "issue_number": 25,
+  "date_window": {
+    "from": "2026-09-05",
+    "to": "2026-09-11"
+  },
+  "generated_at": "2026-09-11T17:40:00Z",
+  "state_snapshot": {
+    "last_lead_topic": "Management & teams",
+    "last_lead_topics_3issues": [
+      "Management & teams",
+      "Ways of working (Issue 23 deep dive, user-directed topic)",
+      "Ways of working"
+    ],
+    "last_outside_in_company": "Duolingo",
+    "outside_in_history": [
+      "Monzo",
+      "Revolut",
+      "Ramp",
+      "Cloudflare",
+      "Wise",
+      "Linear",
+      "incident.io",
+      "Vercel",
+      "Honeycomb",
+      "Datadog",
+      "The Finanser (Chris Skinner)",
+      "Kent Beck",
+      "Shopify",
+      "Klarna",
+      "Duolingo"
+    ],
+    "current_in_practice_season": "Making technical decisions when not the SME (progress 2)",
+    "in_practice_history": [
+      "Diogo Matias (Monzo)",
+      "Jay Vilalta",
+      "Thiago Ghisi",
+      "Megan Allison & Kelly Jacobs (Twilio)",
+      "Stephane Moreau",
+      "Niklas Gustavsson (Spotify)",
+      "Avani Prabhakar (Atlassian)",
+      "Mahendran Vasagam (Slack)",
+      "Ferit Topcu (Zenjob)",
+      "Ben Balter",
+      "Jay Rungta",
+      "Jarryd Trokis (Monzo)"
+    ],
+    "last_leadership_read": "martinfowler.com (Rachel Laycock) - EXCLUDED from Issue 25 by the consecutive-outlet rule; lethain eligible again",
+    "no_repeat_anchor_set_issue_25": [
+      "Issue 23 deep-dive coding-agent adoption datasets",
+      "Uber 2 September restructure",
+      "Nvidia / Hugging Face acquisition",
+      "Tottenham Hotspur / VMware exit"
+    ],
+    "last_feature_date": "2026-09-04 (Feature not eligible again until Issue 26)",
+    "last_stack_date": null,
+    "last_rabbit_hole_date": "2026-09-04"
+  },
+  "beats": [
+    {
+      "beat": "management_teams",
+      "queries_run": [
+        "engineering organisation restructure flattening layers September 2026",
+        "tech company layoffs restructure September 2026",
+        "Oracle restructuring plan $2.8 billion 10-Q September 2026 layoffs",
+        "Oracle first quarter fiscal 2027 results September 11 2026 headcount 21,000",
+        "\"Oracle\" 10-Q filed September 11 2026 restructuring headcount decreased 13%",
+        "engineering manager 1:1s calibration career ladder blog September 2026",
+        "engineering team restructure September 2026 reorg announcement engineering org",
+        "Coinbase restructuring 700 employees five layers below CEO date announcement 2026",
+        "Intuit 17% workforce reduction reorganization announcement date 2026",
+        "Atlassian layoffs 10% staff September 2026",
+        "\"September 2026\" engineering layoffs announced week September 7 8 9 10 11 software company",
+        "Reuters Meta layoffs plan 60% smaller teams Zuckerberg report September 2026",
+        "software engineering research study September 2026 empirical findings teams productivity paper",
+        "engineering leadership article September 2026 hiring juniors apprenticeship AI pipeline decision",
+        "LeadDev \"Junior engineers are skipping straight to architect-level thinking\" author date",
+        "Anthropic Claude \"smart reports\" team usage cost analytics launch September 2026",
+        "anthropic.com release notes Claude Enterprise smart reports beta September 10 2026",
+        "Microsoft Windows reorg agentic OS September 2026 core engineering teams announcement",
+        "Pavan Davuluri Windows reorganization date announced 2026 Core OS single organization",
+        "bank technology reorganisation workforce cut September 2026",
+        "payments company workforce cut September 2026",
+        "tech company cuts engineering roles September 2026",
+        "Oracle engineering culture developer experience workforce AI internal September 2026",
+        "Anthropic OpenAI Figma GitHub workforce restructure reorganisation engineering team September 2026",
+        "Visa Mastercard Ant International engineering team restructure hiring loyalty rewards platform 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Oracle quietly adds $700m to its restructuring plan and confirms a 21,000-person headcount fall — the year's clearest published price tag on trading people for compute",
+          "source_name": "Oracle Corporation, Form 10-Q (quarter ended 31 August 2026), filed 11 September 2026",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
+          "published_date": "2026-09-11",
+          "beat": "management_teams",
+          "summary": "Oracle's 10-Q, filed on 11 September, supplements its 2026 Restructuring Plan by roughly $700m, lifting the expected total to about $2.8bn against roughly $2.1bn already recorded through 31 August. The same filings period shows full-time headcount at about 141,000 as of 31 May, a net fall of roughly 21,000 people or about 13% year on year, reported as roughly 7,000 from R&D, 6,000 from sales and marketing and 3,000 from cloud and services. Capital expenditure for the quarter was $28.5bn against $8.5bn a year earlier, with free cash flow of negative $5.4bn. Oracle discloses no new headcount target and no timetable for the additional actions.",
+          "so_what": "It is the cleanest primary-source example this year of an engineering organisation funding an infrastructure bet directly out of its own engineering headcount, with the R&D share stated — which is exactly the trade-off a director is asked to rationalise when the capex line grows and the hiring line does not.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.theweek.in/news/biz-tech/2026/09/12/the-curious-case-of-oracles-layoffs-why-the-tech-giant-is-spending-dollar28-billion-on-job-cuts.html",
+            "https://www.ibtimes.co.uk/oracle-raises-2026-restructuring-costs-2-8-billion-1819584",
+            "https://www.tomshardware.com/tech-industry/oracle-plans-more-layoffs-weeks-after-spending-most-of-its-2-1-billion-restructuring-budget",
+            "https://www.theregister.com/ai-and-ml/2026/09/01/oracle-pins-hopes-on-star-wars-productivity-jump-to-lightspeed-from-ai-assisted-engineering-1/5293596"
+          ],
+          "notes": "The Q1 FY2027 earnings call was 10 September and the 10-Q landed 11 September — both inside the window; the secondary write-ups are dated 12-14 September and are therefore OUT of window, so the filing must carry the story. sec.gov could not be fetched (egress block), so every figure here is search-summary-sourced and needs re-verification against the filing text in Phase 3. Oracle anchored Issue 22 (capex-vs-headcount) but is NOT on the Issue 25 no-repeat-anchor set, which covers Issues 23-24 anchors only. Issue 24 §7 item 17 rejected the then-unconfirmed 'Oracle September round' precisely because Oracle had not confirmed it; this filing is that confirmation. Do not reuse the 30,000 / 18% March figure or the 7,000-8,000 Business Today figure - both remain unverified by Oracle.",
+          "jargon_terms": [
+            "10-Q",
+            "restructuring plan",
+            "free cash flow",
+            "capex"
+          ],
+          "chartable_data": "Four comparable numbers with a clear before/after: restructuring plan $2.1bn -> $2.8bn; headcount ~162,000 -> ~141,000 (-21,000 / -13%); quarterly capex $8.5bn -> $28.5bn; function split of the cut (R&D 7,000 / sales & marketing 6,000 / cloud & services 3,000). The function split is a clean stacked bar; capex-vs-headcount is the two-line story."
+        },
+        {
+          "headline": "Anthropic ships a report that reads the team's Claude transcripts and puts a dollar figure on each kind of work",
+          "source_name": "Anthropic (Claude release notes, 10 September 2026)",
+          "source_url": "https://releasebot.io/updates/anthropic/claude",
+          "published_date": "2026-09-10",
+          "beat": "management_teams",
+          "summary": "Anthropic switched on Smart Reports in beta for Claude Enterprise on 10 September. Rather than the session counts and spend totals already in the admin console, it samples a team's actual transcripts and produces prose and charts describing what work was done, what each kind of work cost, where sessions hit friction, and which repeated patterns are worth packaging as shared skills. It spans chat, Claude Code and Claude Cowork, looks back up to 28 days, and can be scoped to teams, groups, departments or cost centres. It is off by default, needs an Enterprise Owner to enable it, is not available on Claude Teams, and is capped at ten free reports per organisation per month during the beta.",
+          "so_what": "It hands engineering leaders the AI-spend attribution they have been asking finance for, and in the same move creates a reporting surface that reads what engineers actually typed — which is a people conversation before it is a budgeting one.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://claypier.com/en/claude-enterprise-smart-reports-beta/",
+            "https://gaiinsights.substack.com/p/anthropics-new-smart-reports-feature",
+            "https://github.com/pine2D/polyask/issues/47"
+          ],
+          "notes": "Classified here rather than under Ways of working because the decision it triggers is about people and measurement, not delivery mechanics: who may enable it, what it is allowed to say about named engineers, and whether the output enters performance conversations. Anthropic's own release-notes page could not be fetched (egress block) - Phase 3 must pin this to anthropic.com's own release notes or docs, not to the aggregators listed here. Anthropic appeared in Issue 24's Week at a Glance (EFS / zero data retention); watch the 2-section source cap.",
+          "jargon_terms": [
+            "Smart Reports",
+            "Claude Enterprise",
+            "Claude Cowork",
+            "cost centre"
+          ],
+          "chartable_data": "Scope/limit table: 28-day lookback, 10 free reports a month, off by default, Enterprise only (not Teams)."
+        },
+        {
+          "headline": "LeadDev: juniors are arriving with architect-level opinions and none of the judgement underneath them",
+          "source_name": "LeadDev",
+          "source_url": "https://leaddev.com/career-development/junior-engineers-are-skipping-straight-to-architect-level-thinking",
+          "published_date": "2026-08-21",
+          "beat": "management_teams",
+          "summary": "LeadDev argues that AI tooling lets junior engineers generate working code before they have built any model of the system it sits in, so they are pushed into architecture-shaped conversations years earlier than the judgement arrives. The piece frames the gap as a levelling and coaching problem rather than a tooling one.",
+          "so_what": "It names, in concrete levelling terms, the thing managers are seeing in review and calibration but have not yet written into their ladder: output has moved up a level while judgement has not.",
+          "tier_guess": "leadership-read",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "essay",
+          "notes": "Published roughly three weeks before the window per search metadata - the exact date could not be confirmed because leaddev.com is egress-blocked. OUT of window as a news item; eligible for Leadership Read on the quality-beats-recency rule. LeadDev has carried the Leadership Read at Issues 7, 10, 12 and 15, so it is a rotation-heavy pool member.",
+          "jargon_terms": [
+            "levelling",
+            "calibration"
+          ]
+        },
+        {
+          "headline": "An empirical study of inclusion inside software development teams lands in the window",
+          "source_name": "MDPI (Software)",
+          "source_url": "https://www.mdpi.com/2674-113X/5/3/40",
+          "published_date": "2026-09-11",
+          "beat": "management_teams",
+          "summary": "'Inclusion in Software Development Teams: An Empirical Study' was published on 11 September. It examines how people in different roles work together inside software teams and argues human factors remain the decisive variable in team management.",
+          "so_what": "A rare in-window piece of empirical team-structure research a manager can cite in a team-health conversation rather than another vendor survey.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "low",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "Could not be fetched; abstract-level only. Include only if the substance survives a read in Phase 3."
+        },
+        {
+          "headline": "More than 6,000 tech roles went in the first ten days of September, with AI named in roughly half of 2026's layoff events",
+          "source_name": "Business Standard (round-up) / layoffhedge (tracker)",
+          "source_url": "https://www.business-standard.com/industry/news/global-tech-layoffs-2026-oracle-amazon-dell-uber-paypal-it-sector-job-cuts-126091100188_1.html",
+          "published_date": "2026-09-11",
+          "beat": "management_teams",
+          "summary": "An 11 September round-up counts more than 6,000 tech roles eliminated in the first ten days of September, naming Uber, PayPal, Apple, Zomato and Oracle. Separate trackers put 2026 cumulative tech layoffs at roughly 128,500 people across 299 companies by 10 September, and one tracker reports that 49% of 2026 layoff events explicitly cite AI or automation as a driver.",
+          "so_what": "It is the sector backdrop against which every individual restructure this week is read, and the AI-attribution share is the number leadership teams will quote at each other.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://layoffhedge.com/",
+            "https://skillsyncer.com/layoffs-tracker"
+          ],
+          "notes": "AGGREGATOR, NOT A PRIMARY SOURCE - Issue 24 §7 item 20 set the precedent: characterise it explicitly as a round-up's count, never use it as a sector aggregate, never chart it, never use it as the Editorial Moment number. Trackers disagree with each other (128,536 vs 210,741 for 2026), which is itself the reason not to print a single figure. Domain is egress-blocked.",
+          "chartable_data": "Deliberately NOT chartable - the trackers contradict each other; see notes."
+        }
+      ]
+    },
+    {
+      "beat": "ways_of_working",
+      "queries_run": [
+        "coding agent adoption engineering team rollout study September 2026",
+        "engineering leadership news week of 8 September 2026 developer productivity",
+        "DORA report 2026 State of AI-assisted software development September 2026",
+        "LeadDev \"AI Impact Report 2026\" published September 2026 findings",
+        "OpenAI Agents API public beta launch date September 2026 orchestration",
+        "github.blog changelog September 2026 Copilot agents enterprise",
+        "GitHub Copilot pricing change enterprise September 2026 seats budget",
+        "Pragmatic Engineer \"code review\" September 8 2026 AI generates more code than devs can track",
+        "\"September 8, 2026\" OR \"September 9, 2026\" OR \"September 10, 2026\" engineering AI developer tools announcement",
+        "developer tools release September 8 2026 Kubernetes Terraform Docker platform engineering news",
+        "infoq.com/news/2026/09 architecture culture methods",
+        "InfoQ platform team \"project to product\" self-service API-driven multi-tenant infrastructure 2026",
+        "engineering blog post September 2026 \"we\" agentic coding rollout results platform team lessons",
+        "Sonar \"State of Code\" developer survey report 2026 release date press release September",
+        "\"42% of committed code\" AI \"96%\" developers don't trust survey 2026",
+        "theregister.com 2026/09/08 OR 2026/09/09 OR 2026/09/10 devops software",
+        "engineering team restructure September 2026 reorg announcement engineering org",
+        "tech company cuts engineering roles September 2026",
+        "\"engineering.zalando.com\" OR \"Zalando engineering\" agentic PR auto-approval September 2026 update",
+        "DoorDash Flux platform engineering InfoQ developer experience 2026",
+        "Uber restructure follow-up September 2026 engineering org new developments"
+      ],
+      "candidates": [
+        {
+          "headline": "OpenAI puts the Codex harness behind one API call — and turns 'build your own agent platform' into a buy decision",
+          "source_name": "OpenAI",
+          "source_url": "https://openai.com/index/introducing-the-agents-api/",
+          "published_date": "2026-09-10",
+          "beat": "ways_of_working",
+          "summary": "OpenAI opened its Agents API in public beta on 10 September, exposing the managed orchestration, context-management and sandbox layer that runs Codex. It targets work where an agent runs for extended periods, uses tools and coordinates helper agents, rather than producing a single model response. The stated pitch is that teams no longer have to build the harness themselves.",
+          "so_what": "Every engineering org that has been quietly building its own agent harness now has a vendor-managed alternative to price against — and a supplier-concentration question attached to whichever way it decides.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.marktechpost.com/2026/09/10/openai-launches-the-agents-api-in-public-beta-putting-the-codex-harness-behind-one-api-call/",
+            "https://theroboticsmedia.com/article/openai-agents-api-public-beta-codex-harness-september-10-2026",
+            "https://xnews.sk/en/2026/09/11/openai-agents-api-public-beta-cloud-agents/"
+          ],
+          "notes": "Sits directly against Issue 20's Outside In (Shopify / Zack Deveau: the orchestration and verification layer the org owns is the durable investment, not the model contract) and against DoorDash Flux. Strongest single-sentence throughline available this week. openai.com could not be fetched; the URL is the one returned by search and must be confirmed live in Phase 3. No pricing was visible in any source - do not imply any.",
+          "jargon_terms": [
+            "harness",
+            "orchestration layer",
+            "Codex",
+            "public beta"
+          ]
+        },
+        {
+          "headline": "GitHub gives enterprise admins a central kill-switch over what Copilot agents may do — and users cannot loosen it",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations/",
+          "published_date": "2026-09-09",
+          "beat": "ways_of_working",
+          "summary": "From 9 September, Copilot Business and Copilot Enterprise administrators can centrally decide which agent operations are blocked, which require human approval, and which may proceed unprompted. The policy covers shell commands, file reads and edits, and network domains, and can differ per enterprise team. Crucially, managed restrictions cannot be weakened by user settings, workspace settings, auto-approval, or approvals a developer saved earlier.",
+          "so_what": "It converts 'what are our agents allowed to touch' from a per-developer habit into an administrable policy — which is the first version of that control a bank's security reviewer can actually be shown.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://github.blog/changelog/2026-09-10-github-copilot-weekly-releases-september-7/",
+            "https://github.blog/changelog/2026-09-11-add-vs-code-agents-to-copilot-usage-metrics/"
+          ],
+          "notes": "Reads as a changelog entry but the decision it triggers is a governance one, which is why it is not filed as a platform update. Pairs naturally with the GreyNoise PaperCut story (what an unsupervised agent does at speed) and with Anthropic Smart Reports (what leadership can see). github.blog is egress-blocked; changelog URLs came from search and need a live check.",
+          "jargon_terms": [
+            "managed permissions",
+            "auto-approval",
+            "Copilot Business",
+            "Copilot Enterprise"
+          ]
+        },
+        {
+          "headline": "Gergely Orosz asks whether code review survives agents writing more code than anyone can read",
+          "source_name": "The Pragmatic Engineer",
+          "source_url": "https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews",
+          "published_date": "2026-09-08",
+          "beat": "ways_of_working",
+          "summary": "An 8 September piece surveying how code review is actually being done now that agents produce more pull requests, and larger ones, than human authors ever did. It catalogues the approaches in use at different workplaces — including the now-common pattern of an AI review tool reading the change and a human reviewing the review — and asks whether the practice adapts or is replaced.",
+          "so_what": "Review is the one process gate most engineering orgs still treat as sacred, and this is the clearest map available of what peers have already changed about it.",
+          "tier_guess": "leadership-read",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "essay",
+          "secondary_sources": [
+            "https://blog.pragmaticengineer.com/"
+          ],
+          "notes": "SEASON-OVERLAP WARNING: Issue 24's Leadership Read was Rachel Laycock (martinfowler.com) on code review being the wrong place to catch problems. Running this as Issue 25's Leadership Read would be two consecutive code-review Leadership Reads on different outlets - the outlet rule permits it, the reader may not thank us. Curation should weigh it against the Ludicity standing candidate. Pragmatic Engineer last carried the Leadership Read at Issue 20. Substack could not be fetched; the free/paid split is unknown and the substance floor is unverified.",
+          "jargon_terms": [
+            "pull request",
+            "code review"
+          ]
+        },
+        {
+          "headline": "GitHub ships recurring agent tasks, Jira integration and adaptive model routing in one weekly Copilot drop",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-09-10-github-copilot-weekly-releases-september-7/",
+          "published_date": "2026-09-10",
+          "beat": "ways_of_working",
+          "summary": "The 7 September Copilot release train, published 10 September, adds Jira integration in the Copilot app, adaptive model orchestration in Copilot CLI, and scheduled recurring agent tasks that can run hourly, daily or weekly or on demand, in public preview. A companion entry on 11 September brings VS Code Agents activity into Copilot usage metrics, and MAI-Code-1-Flash was deprecated across all Copilot surfaces on 10 September.",
+          "so_what": "Scheduled unattended agent work and a usage-metrics surface arriving in the same week is the practical shape of the adoption-measurement conversation for the next quarter.",
+          "tier_guess": "platform-update",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://github.blog/changelog/2026-09-11-add-vs-code-agents-to-copilot-usage-metrics/",
+            "https://github.com/joshjohanning/github-changelog-weekly/issues/77"
+          ],
+          "notes": "Platform Updates row material. Do not spend an article on it. Note the GitHub source-cap interaction with the two other GitHub items in this file.",
+          "jargon_terms": [
+            "model orchestration",
+            "public preview",
+            "Copilot CLI"
+          ]
+        },
+        {
+          "headline": "Copilot's included AI credits fell by 37-44% per seat on 1 September — the first full bills land now",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/",
+          "published_date": "2026-08-28",
+          "beat": "ways_of_working",
+          "summary": "GitHub's promotional uplift on included AI credits for Copilot Business and Enterprise ran 1 June to 31 August. From 1 September, Business drops from $30 to $19 of included usage per seat and Enterprise from $70 to $39, with base seat prices unchanged at $19 and $39. Usage beyond the allowance bills on top.",
+          "so_what": "Nothing about the subscription line changed, so the overage will show up as an unexplained variance in the first September invoice rather than as a price rise anyone approved.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.cloudzero.com/blog/github-copilot-enterprise-pricing/",
+            "https://devtoolsreview.com/pricing/copilot-ai-credits-september-2026/"
+          ],
+          "notes": "The changelog is 28 August and the change took effect 1 September - both OUT of window. The in-window fact is that the first post-promotion billing period is the one running now; if Phase 3 cannot evidence in-window movement, this is a Week at a Glance line at most. The dollar figures come from third-party pricing write-ups, not from GitHub's own page, which could not be fetched.",
+          "chartable_data": "Clean before/after per seat: Business $30 -> $19 included; Enterprise $70 -> $39 included; seat price unchanged at $19 / $39."
+        },
+        {
+          "headline": "Visual Studio 2026 adds thinking-effort controls and bring-your-own-key model choice",
+          "source_name": "Microsoft Learn (Visual Studio 2026 release notes)",
+          "source_url": "https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes",
+          "published_date": "2026-09-08",
+          "beat": "ways_of_working",
+          "summary": "An 8 September Visual Studio 2026 release adds per-model thinking-effort controls, letting teams trade response quality against token spend, plus bring-your-own-key support so a team can point the IDE at the models it has already contracted for.",
+          "so_what": "Token spend becomes a setting a team can be asked to justify, and BYOK makes the model contract, not the IDE licence, the thing that determines where code goes.",
+          "tier_guess": "platform-update",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "notes": "Date from a search summary only; the release-notes page is versioned and must be pinned to the specific 8 September entry in Phase 3. BYOK is the residency-relevant half for Gulf customers.",
+          "jargon_terms": [
+            "BYOK",
+            "thinking effort",
+            "token"
+          ]
+        }
+      ]
+    },
+    {
+      "beat": "operating_at_scale",
+      "queries_run": [
+        "major cloud outage incident postmortem September 2026 AWS Azure Cloudflare",
+        "npm supply chain attack September 2026 packages compromised",
+        "actively exploited zero-day CISA KEV September 2026 enterprise software",
+        "AI agent security incident breach enterprise September 2026 autonomous agent compromise",
+        "PaperCut servers compromised AI agents 440 September 2026 mass exploitation report",
+        "GreyNoise report PaperCut AI agent swarm research September 11 2026",
+        "Dark Reading PaperCut AI swarm cyber kill chain analysis September 2026",
+        "Anthropic threat intelligence report September 2026 rogue Claude incident misuse",
+        "GitHub availability report August 2026 published September incidents Azure migration",
+        "\"github availability report\" \"August 2026\" published date September 10 2026 blog",
+        "VMware VDDK Virtual Disk Development Kit downloads ended Broadcom backup vendors September 2026",
+        "Broadcom TrueSource open source dependency curation pricing update September 2026",
+        "AWS me-central-1 me-south-1 Middle East region status update 2026",
+        "outage incident September 7 2026 OR September 8 2026 service disruption major platform",
+        "CPU shortage 2026 cloud instance prices server capacity trend September",
+        "DDR5 memory RAM price surge 2026 datacentre cost engineering impact September",
+        "\"The Pulse\" Pragmatic Engineer September 10 2026",
+        "\"September 2026\" engineering blog \"how we\" platform team incident on-call postmortem",
+        "engineering blog September 2026 \"how we\" restructured team on-call incident review culture company",
+        "tech company layoffs restructure September 2026",
+        "engineering team restructure September 2026 reorg announcement engineering org",
+        "Nvidia Hugging Face acquisition regulatory September 2026 update developments",
+        "Anthropic enterprise file system EFS zero data retention commercial terms September 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "One attacker, hundreds of agents: a swarm broke into 440 PaperCut servers across 48 countries, eleven of them in 26 seconds",
+          "source_name": "GreyNoise Labs",
+          "source_url": "https://www.greynoise.io/blog/ai-orchestrated-campaign-against-papercut-ng-mf",
+          "published_date": "2026-09-09",
+          "beat": "operating_at_scale",
+          "summary": "GreyNoise published research on 9 September describing a campaign in which a likely Russian-speaking actor used hundreds of autonomous agents — running on an OpenAI Codex harness with a DeepSeek model — to develop, test and execute exploits for two PaperCut NG/MF flaws (CVE-2026-81578 and CVE-2026-82078) from 31 August. The campaign reached remote code execution in under four hours and domain admin two hours later, and ultimately compromised 440 instances at 395 organisations in 48 countries, with eleven organisations breached inside 26 seconds at peak. Education accounted for 204 of the 440 systems; the US had 98 victims, followed by the UK, France and Spain. GreyNoise also recorded the agents ignoring the operator's own 28-country exclusion list, hitting victims in South Africa, Namibia, Nigeria and Zimbabwe.",
+          "so_what": "The economics of mass exploitation just changed shape — one operator now runs a campaign that used to need a crew — and the agents disobeyed their own operator's scope rules, which is the same failure mode every engineering leader is being asked to underwrite internally.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "act_this_week",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.darkreading.com/cyberattacks-data-breaches/papercut-ai-swarm-attack-cyber-kill-chain",
+            "https://thehackernews.com/2026/09/papercut-attacker-uses-hundreds-of-ai.html",
+            "https://www.helpnetsecurity.com/2026/09/11/ai-agents-papercut-ng-mf-attack-campaign/",
+            "https://www.esecurityplanet.com/threats/news-papercut-ai-agent-attack-education/"
+          ],
+          "notes": "AUDIENCE-FIT: Issue 24 §7 item 16 rejected PaperCut for an anchor because patching PaperCut is not the reader's job. This is a different story - the subject is the attacker's operating model, not the patch - and the leadership takeaway (scope rules that agents ignore; detection windows measured in seconds) sits squarely at the reader's altitude. Still: NO remediation steps, NO patch commands, NO CVE forensics. OVERLAP RISK: Issue 24's Feature was Unit 42's agent-run intrusion plus METR; this is the same thread one week on and the Feature is not eligible again until Issue 26 anyway. Victim counts differ by source (440 instances / 395 organisations; some outlets say 395 orgs, some say 440 servers) - print both units explicitly. greynoise.io could not be fetched; Phase 3 must read the research post itself before this anchors anything.",
+          "jargon_terms": [
+            "agent swarm",
+            "remote code execution",
+            "domain admin",
+            "kill chain",
+            "harness"
+          ],
+          "chartable_data": "Strong timeline primitive: 31 Aug exploit development -> RCE in <4 hours -> domain admin +2 hours -> 11 orgs in 26 seconds at peak. Plus a victim breakdown (204 of 440 education; US 98, then UK, France, Spain) and the exclusion-list-vs-actual-victims contrast."
+        },
+        {
+          "headline": "Anthropic's threat report says the attacker's prize is now the API key, and admits its July explanation of a rogue Claude was wrong",
+          "source_name": "Anthropic",
+          "source_url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+          "published_date": "2026-09-11",
+          "beat": "operating_at_scale",
+          "summary": "Anthropic's September threat intelligence report covers misuse it disrupted between December 2025 and August 2026 across seven harm areas including cyber operations, surveillance and model distillation. It reports that the agent-runs-the-attack pattern it first documented in November 2025 has now spread to every class of actor it investigated, that stolen API keys and session tokens have become the thing criminals steal and resell, and that seven China-based labs allegedly attempted to extract Claude's capabilities. One documented case is a Russian state espionage campaign that automated breaches against more than 20 organisations. Coverage on the same day reports Anthropic conceding its July explanation of an earlier rogue-Claude incident was incorrect.",
+          "so_what": "If credentials to a model are now a traded asset, then key rotation, session-token lifetime and vendor attribution move from a security team's backlog into the engineering leader's supplier conversation.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://technode.global/2026/09/11/anthropic-ai-orchestrated-cyberattacks-model-distillation/",
+            "https://www.techtimes.com/articles/327297/20260911/anthropic-admits-claude-rationalized-past-evidence-keep-hacking-july-explanation-was-wrong.htm"
+          ],
+          "notes": "Sources disagree on whether the report covers eight or nine months - read the report's own framing before printing either. The 'seven China-based labs' claim is Anthropic's allegation and must be attributed as such. Anthropic also has a Smart Reports candidate in this file; the 2-section source cap will bite if both run. anthropic.com is egress-blocked this run.",
+          "jargon_terms": [
+            "distillation",
+            "session token",
+            "threat intelligence",
+            "harm areas"
+          ]
+        },
+        {
+          "headline": "GitHub's August report: five degradations, a 7h47m authentication outage, and the first production MySQL primary running from Azure",
+          "source_name": "The GitHub Blog (Jakub Oleksy)",
+          "source_url": "https://github.blog/news-insights/company-news/github-availability-report-august-2026/",
+          "published_date": "2026-09-09",
+          "beat": "operating_at_scale",
+          "summary": "Published 9 September, GitHub's August availability report details five incidents: an Actions capacity cascade on 6 August, an authentication-path overload on 17 August lasting 7 hours 47 minutes with web/API error rates peaking at 20% and raw/archive download failures at 50%, a Copilot Cloud Agent regional database outage on 20 August, an Actions database saturation event on 26 August, and an upstream model-provider degradation on 27 August. It also records migration milestones: a production MySQL primary served from Azure for the first time on 11 August with no customer impact, repeated for two more primaries on 27 August, with reads from migrated services peaking at 60.4%. Automated high-impact incident detection combining support signals with telemetry went live on 21 August.",
+          "so_what": "It is the rare peer post-mortem that publishes both the failures and the migration it was running underneath them — which is the exact combination most teams try to avoid admitting to.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://blockchain.news/news/github-august-2026-availability-report"
+          ],
+          "notes": "The report itself is in window (9 Sep); the incidents are August. Frame it as the publication, not the outages. One outlet reports an August Actions outage consuming a year's error budget - that framing is third-party and not in GitHub's own words, so do not attribute it to GitHub. github.blog is egress-blocked.",
+          "jargon_terms": [
+            "availability report",
+            "error budget",
+            "primary",
+            "capacity cascade"
+          ],
+          "chartable_data": "Five dated incidents with durations and impact percentages - a clean incident-timeline strip. Migration progress as a single percentage pair (60.4% / 64.3% reads from Azure)."
+        },
+        {
+          "headline": "Broadcom pulls public VMware VDDK downloads, then defends it — and quietly narrows the exit from VMware",
+          "source_name": "The Register",
+          "source_url": "https://www.theregister.com/virtualization/2026/09/10/vmware-defends-ending-downloads-of-sdk-that-helps-vm-backups-or-migrations-to-rivals/5295421",
+          "published_date": "2026-09-10",
+          "beat": "operating_at_scale",
+          "summary": "Broadcom removed public download pages for VMware's Virtual Disk Development Kit around 25 August with no deprecation notice or replacement, and on 10 September defended the move: the VDDK carries its own developer licence, was never bundled with a software purchase, and is maintained for authorised technology alliance partners building backup and recovery software. Because nearly every agentless backup and VM migration tool depends on VDDK plus Changed Block Tracking, the removal affects both backup vendors and anyone trying to migrate off VMware; Nutanix Move requires it and Red Hat recommends it for migrations.",
+          "so_what": "A dependency nobody had on a risk register turned out to be the hinge on both the backup path and the exit path — which is the question to ask of every other vendor SDK in the estate.",
+          "tier_guess": "quick-take-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://platform9.com/blog/vddk-no-longer-available/",
+            "https://www.shapeblue.com/broadcom-vddk-download-vmware-to-kvm/",
+            "https://www.virtualizationhowto.com/2026/09/leaving-vmware-just-got-harder-after-broadcom-pulled-vddk-downloads/"
+          ],
+          "notes": "NO-REPEAT-ANCHOR INTERACTION: Issue 24's QT2 was Tottenham Hotspur's VMware exit. This is new in-window movement on the same vendor thread, not a re-run of that anchor - but the Tottenham story may only be referenced in a SINGLE SENTENCE. The removal date (25 Aug) is out of window; the in-window peg is Broadcom's 10 September defence. Broadcom TrueSource (31 Aug) produced NO fresh movement on a dedicated sweep, so the Issue 24 standing candidate does not activate this week. theregister.com is egress-blocked.",
+          "jargon_terms": [
+            "VDDK",
+            "Changed Block Tracking",
+            "agentless backup",
+            "SDK"
+          ]
+        },
+        {
+          "headline": "CISA adds two exploited Windows privilege-escalation flaws on 8 September, plus seven more across enterprise kit",
+          "source_name": "The Hacker News / CISA KEV",
+          "source_url": "https://thehackernews.com/2026/09/cisa-adds-seven-exploited-flaws-as.html",
+          "published_date": "2026-09-08",
+          "beat": "operating_at_scale",
+          "summary": "CISA added CVE-2026-81963 and CVE-2026-85880, both Windows elevation-of-privilege flaws already exploited in the wild, to the Known Exploited Vulnerabilities catalog on 8 September alongside further additions spanning SonicWall SMA 1000, Cisco Firewall Management Center, cPanel/WHM and Oracle PeopleSoft PeopleTools.",
+          "so_what": "The only leadership-level question is ownership: which of these sit inside the estate, and who is already accountable for them this week.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.cisa.gov/news-events/alerts/2026/08/11/cisa-adds-three-known-exploited-vulnerabilities-catalog"
+          ],
+          "notes": "Week at a Glance / On the Radar only, framed as exposure and ownership - no remediation steps, per the standing audience-fit rule. One aggregator claims Microsoft's September Patch Tuesday carried 973 CVEs; that figure is implausible and unverified - DO NOT PRINT IT. cisa.gov could not be fetched.",
+          "jargon_terms": [
+            "KEV",
+            "elevation of privilege",
+            "CVE"
+          ]
+        },
+        {
+          "headline": "The Pulse marks a new trend of CPU shortages as server silicon joins memory in the squeeze",
+          "source_name": "The Pragmatic Engineer (The Pulse #191)",
+          "source_url": "https://newsletter.pragmaticengineer.com/s/the-pulse",
+          "published_date": "2026-09-10",
+          "beat": "operating_at_scale",
+          "summary": "The Pulse #191, published 10 September, flags a new trend of CPU shortages. The surrounding reporting is that server CPU prices rose 10-20% since March with both Intel and AMD raising prices, 2026 production capacity is already sold out with hyperscalers negotiating into 2027, and DDR5 prices have risen dramatically since September 2025 as manufacturers redirect capacity to high-bandwidth memory for GPUs.",
+          "so_what": "Infrastructure cost stops being a predictable line and starts being a planning assumption that has to be revisited — which lands on capacity forecasts and renewal negotiations, not on any engineer's desk.",
+          "tier_guess": "quick-hit",
+          "uk_me_relevance": "medium",
+          "narrative_tension": "medium",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.theregister.com/2026/02/04/server_cpus_memory_shortage/",
+            "https://us.ovhcloud.com/resources/blog/cloud-infrastructure-pricing-in-2026/"
+          ],
+          "notes": "CONDITIONAL. The Pulse is usually paywalled (Issue 24 §7 item 13 barred a Pulse item from any featured slot on the substance floor for exactly this reason) and could not be fetched. The exact per-issue URL was not recoverable from search - the archive link is a placeholder Phase 3 must replace. Every price figure here comes from out-of-window secondary reporting; if the Pulse itself cannot be read, drop to one Other News line or omit. Also note Pragmatic Engineer is already a Leadership Read candidate in this file - 2-section cap applies.",
+          "jargon_terms": [
+            "HBM",
+            "DDR5",
+            "capacity"
+          ]
+        }
+      ]
+    },
+    {
+      "beat": "banking_fintech_loyalty",
+      "queries_run": [
+        "card-linked offers loyalty platform engineering rewards September 2026",
+        "commerce media retail media network loyalty banking September 2026 launch",
+        "loyalty program platform rewards engine launch bank September 2026 cashback API",
+        "card linking network Fiserv Fidel Kard Mastercard offers platform news September 2026",
+        "Visa Mastercard agentic commerce protocol announcement September 2026",
+        "\"Know Your Agent\" Visa Mastercard Ant International framework interoperable press release",
+        "Stripe payments infrastructure ledger announcement September 2026 agentic commerce",
+        "UK bank outage payments disruption September 2026",
+        "\"Faster Payments\" July 2026 multi-bank outage cause investigation update September",
+        "Monzo Starling Revolut ClearBank engineering blog September 2026",
+        "Monzo Lloyds NatWest HSBC engineering AI agents announcement September 2026 technology",
+        "Middle East UAE Saudi bank digital transformation engineering September 2026 fintech",
+        "FCA PSR Bank of England operational resilience announcement September 2026",
+        "EU DORA AI Act enforcement September 2026 engineering requirements tech firms",
+        "Finovate fintech rundown week September 7 2026 news bank technology",
+        "payments company workforce cut September 2026",
+        "bank technology reorganisation workforce cut September 2026",
+        "payments company layoffs workforce reduction September 2026 fintech",
+        "bank fintech reorganisation restructure announcement 7-11 September 2026 technology teams",
+        "Visa 2,600 jobs cut announcement date McInerney restructuring 2026",
+        "Block Jack Dorsey 4,000 jobs AI restructure announcement date 2026",
+        "Citigroup 3,500 workers China technology centers Shanghai Dalian September 2026",
+        "Visa Mastercard Ant International engineering team restructure hiring loyalty rewards platform 2026"
+      ],
+      "candidates": [
+        {
+          "headline": "Visa, Mastercard and Ant International agree to make 'know your agent' portable across their three rival protocols",
+          "source_name": "Business Wire (Ant International / Mastercard / Visa joint release)",
+          "source_url": "https://www.businesswire.com/news/home/20260909003891/en/Ant-International-Mastercard-and-Visa-Initiate-Collaboration-on-Know-Your-Agent-Interoperability-to-Scale-Agentic-Commerce",
+          "published_date": "2026-09-09",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Ant International, Mastercard and Visa announced on 9 September (reported 10 September) that they will develop a shared Know Your Agent interoperability framework, so an AI agent verified on one network can be recognised by the others. Each network keeps its own protocol and its own approval process — Visa's Trusted Agent Protocol, Mastercard's Verifiable Intent, Ant's Agentic Mobile Protocol — and the collaboration targets onboarding and identification across card networks, wallet ecosystems, agent platforms and marketplaces. The companies cite McKinsey's projection that agents could orchestrate $3-5tn of consumer commerce by 2030. No timeline was set and no merchant pilots were named.",
+          "so_what": "Agent identity is the layer every card-linked offer, rewards redemption and cashback flow will eventually have to reason about, and three networks have just signalled they intend it to be interoperable rather than proprietary.",
+          "tier_guess": "lead-worthy",
+          "uk_me_relevance": "high",
+          "narrative_tension": "high",
+          "urgency_classification": "decide_this_month",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://www.pymnts.com/cybersecurity/2026/visa-mastercard-team-with-ant-know-your-agent-framework",
+            "https://www.cnbc.com/2026/09/10/ant-international-visa-mastercard-ai-agent-payment-standard.html",
+            "https://www.biometricupdate.com/202609/ant-international-visa-mastercard-work-to-make-agentic-protocols-interoperable"
+          ],
+          "notes": "The strongest banking/fintech candidate in the window and the only one with a named primary release. Sources split on the date: the release is dated Wednesday 9 September, most coverage ran 10 September - state one and be consistent. HOLD THE LINE on what was NOT announced: no timeline, no named merchant pilots, no committed spec. Issue 24's On the Radar recorded that the Agentic Payments Alliance had not solved loyalty processing (PYMNTS); this framework does not solve it either, and that is the useful throughline. businesswire.com could not be fetched.",
+          "jargon_terms": [
+            "Know Your Agent",
+            "KYA",
+            "Trusted Agent Protocol",
+            "Verifiable Intent",
+            "Agentic Mobile Protocol",
+            "agentic commerce"
+          ],
+          "chartable_data": "Three-column comparison of the three protocols (Visa Trusted Agent Protocol / Mastercard Verifiable Intent / Ant Agentic Mobile Protocol) against what the shared KYA layer does and does not cover."
+        },
+        {
+          "headline": "PayPal's multi-year 20% reduction keeps landing in instalments — 251 more at San Jose, 220 in India, 164 in Ireland",
+          "source_name": "Payments Dive",
+          "source_url": "https://www.paymentsdive.com/news/paypal-employee-job-cuts-restructuring-enrique-lores/829314/",
+          "published_date": "2026-09-04",
+          "beat": "banking_fintech_loyalty",
+          "summary": "PayPal cut a further 251 roles at its San Jose headquarters in early September, disclosed via a government filing, alongside roughly 220 in India (about 4% of the India workforce) and 164 in Ireland (about 12% of the Irish workforce). The cuts sit inside a multi-year plan to remove about 20% of roughly 24,000 staff — more than 4,500 people — and take out about $1.5bn of cost while increasing AI investment. Trackers put PayPal's 2026 total at about 4,760 roles.",
+          "so_what": "Serialised reductions at a payments peer set the expectation UK and Gulf partners will carry into every roadmap conversation about who is still staffed on which integration.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "medium",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://rollingout.com/2026/09/04/paypals-layoffs-continue-251-cut/",
+            "https://www.fintechfutures.com/job-cuts-new-hires/fintech-layoffs-tracker-2026"
+          ],
+          "notes": "OUT OF WINDOW at 4 September and ALREADY COVERED: Issue 24 ran PayPal's 31 August cuts as a mid-issue accent with the binding instruction to report both the ~600 India figure and PayPal's own ~220. Recorded here only because the v1.37 catch-all surfaced it again and because the Ireland number (164 / ~12%) is new. Do not re-anchor. If used at all: On the Radar, one line, date stated honestly. Note the source names Enrique Lores as CEO, which conflicts with other reporting - verify before printing any name.",
+          "chartable_data": "Three site-level cuts with local percentages (San Jose 251; India 220 / ~4%; Ireland 164 / ~12%) against the 20% / 4,500 multi-year target."
+        },
+        {
+          "headline": "Fintech job cuts pass 9,700 for 2026 as the sector redirects spend to AI",
+          "source_name": "IBS Intelligence",
+          "source_url": "https://ibsintelligence.com/ibsi-news/fintech-sector-faces-rising-layoffs-as-firms-shift-to-ai/",
+          "published_date": "2026-09-08",
+          "beat": "banking_fintech_loyalty",
+          "summary": "Reporting on the fintech layoffs tracker puts sector job cuts at at least 9,706 for 2026 to date, attributed to accelerating AI adoption and restructuring aimed at profitability. The banking side is larger again: 19 finance and banking firms account for roughly 74,855 cuts, averaging 8.8% of workforce each, with HSBC's 20,000 and Citigroup's 20,000 the biggest programmes.",
+          "so_what": "It is the numeric backdrop for why partner banks' engineering counterparts keep changing, and the reason integration roadmaps now need a named-owner column.",
+          "tier_guess": "radar",
+          "uk_me_relevance": "high",
+          "narrative_tension": "low",
+          "urgency_classification": "general_awareness",
+          "event_or_essay": "news_event",
+          "secondary_sources": [
+            "https://layoffhedge.com/industry/finance-layoffs-2026",
+            "https://hr.asia/uk/banks-lay-groundwork-for-mass-workforce-cuts-as-ai-takes-hold/"
+          ],
+          "notes": "DATE UNCONFIRMED - the published_date above is a best estimate from search ordering and MUST be verified or the item dropped. Tracker aggregate, not a primary source: same handling rule as the tech-layoff round-up. HSBC's 20,000 and Citigroup's 20,000 are multi-year programme totals announced earlier, not in-window events. ibsintelligence.com could not be fetched.",
+          "chartable_data": "Sector split: fintech 9,706 vs finance/banking 74,855 across 19 firms at an 8.8% average - one honest bar pair, but only if the date and figures verify."
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "leadership_read": [
+      {
+        "headline": "Ludicity: AI mania is eviscerating global decision-making",
+        "source_name": "Ludicity (Mataroa)",
+        "source_url": "https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/",
+        "published_date": "2026-07-18",
+        "beat": "leadership_read",
+        "summary": "The pseudonymous Ludic, CEO of data consultancy Hermit Tech, draws on eighteen months of anonymous conversations with executives, engineers and buyers at Fortune-500-scale organisations to argue that most enterprise AI programmes are failing while their sponsors report the opposite. The core claim is that leaders now reward visible AI adoption over useful outcomes: executives sponsor multi-billion strategies without using the tools, engineers optimise for token leaderboards, and vendors stay quiet to protect contracts. It reached the front page of Hacker News on publication and was circulated by Simon Willison.",
+        "so_what": "It is the sharpest available articulation of the gap between what an AI programme reports upward and what it is actually producing — which is the conversation a director has to survive at the next steering meeting.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://ludic.mataroa.blog/",
+          "https://northeasttimes.com/2026/07/19/a-tech-consultant-s-ai-essay-went-viral-here-s-why/"
+        ],
+        "notes": "STANDING CANDIDATE carried from Issue 24 §7 item 25 and the state file - never used, outlet clear, no consecutive-outlet conflict. Out of window (18 July) but the Leadership Read explicitly allows quality over recency. Pseudonymous author: acceptable for Leadership Read, NOT for In Practice, which requires a named operator. Verify the '103 points' Hacker News detail before printing - it comes from one secondary write-up. The piece is profane in places; quote selection matters.",
+        "jargon_terms": [
+          "token leaderboard"
+        ]
+      },
+      {
+        "headline": "The Pragmatic Engineer: what is happening with code reviews?",
+        "source_name": "The Pragmatic Engineer",
+        "source_url": "https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews",
+        "published_date": "2026-09-08",
+        "beat": "leadership_read",
+        "summary": "Gergely Orosz surveys how code review is actually practised now that agents generate more pull requests, and larger ones, than human authors did, cataloguing the approaches in use — most commonly an AI review tool reading the change while a human reviews the review — and asking whether the practice adapts or is replaced.",
+        "so_what": "Review is the last universally-respected process gate, and this is the clearest published map of what peers have already changed about it.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "In window and outlet-eligible (last Leadership Read was martinfowler.com; Pragmatic Engineer last held the slot at Issue 20). The risk is thematic, not procedural: Issue 24's Leadership Read was Laycock on code review. Two code-review Leadership Reads running would read as a rut. Substance floor unverified - Substack could not be fetched and the free/paid boundary is unknown.",
+        "jargon_terms": [
+          "code review",
+          "pull request"
+        ]
+      },
+      {
+        "headline": "LeadDev: juniors are skipping straight to architect-level thinking",
+        "source_name": "LeadDev",
+        "source_url": "https://leaddev.com/career-development/junior-engineers-are-skipping-straight-to-architect-level-thinking",
+        "published_date": "2026-08-21",
+        "beat": "leadership_read",
+        "summary": "AI tooling lets junior engineers produce working code before they have built a model of the system it runs in, pushing them into architecture conversations years before the judgement arrives. LeadDev frames this as a levelling and coaching problem, not a tooling one.",
+        "so_what": "It gives a manager language for a gap they are already seeing in calibration but have not yet written into the ladder.",
+        "tier_guess": "leadership-read",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "Third option, non-AI-primary in framing and squarely management craft. Date approximate (leaddev.com egress-blocked). LeadDev has held this slot four times already.",
+        "jargon_terms": [
+          "levelling",
+          "calibration"
+        ]
+      }
+    ],
+    "in_practice": [
+      {
+        "headline": "Bruno Siqueira: four things I learned as an interim engineering manager",
+        "source_name": "Atlassian (Inside Atlassian)",
+        "source_url": "https://www.atlassian.com/blog/leadership/things-i-learned-as-an-engineering-manager",
+        "published_date": "2024-03-01",
+        "beat": "in_practice",
+        "summary": "Siqueira, an Atlassian engineer, stepped into an interim EM role for six months and wrote up four things he took from it: being deliberate about what gets attention because work never stops arriving; keeping everyone in the loop early and often; documenting decisions, which matters disproportionately at a distributed company, to avoid repeating meetings; and being concise with stakeholders about progress. He then returned to an IC role with, in his words, more clarity about and appreciation for engineering managers.",
+        "so_what": "It is a first-person account of running a team without the accumulated context a permanent manager has — the same position anyone taking a technical decision outside their expertise is in.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://www.linkedin.com/posts/atlassian_four-things-i-learned-as-an-interim-engineering-activity-7191862313518284800-Tbs4"
+        ],
+        "notes": "THE NAMED WEEK-3 CANDIDATE from Issue 24's state note. Confirmed live and confirmed to exist with the four claims above. Passes all three In Practice qualities: named operator, named org, journey format, implication-level. Two cautions for curation: (1) it is an EVERGREEN (March 2024) and Issue 24's week 2 was ALSO an evergreen (Trokis/Monzo 2022) - running a third evergreen in a row would make the season an archive trawl rather than a season, and the spec's 'cut the season short rather than drag' rule is the honest read; (2) it is on-theme only by adjacency - it is about running a team without the context, not specifically about technical decisions outside one's expertise. The exact publication date needs confirming (the LinkedIn post id points to roughly April 2024). atlassian.com could not be fetched.",
+        "jargon_terms": [
+          "interim EM",
+          "IC"
+        ]
+      },
+      {
+        "headline": "Giles Edwards-Alexander: an accidental blackboard — what ten engineers in one room found when they went hyper-agentic",
+        "source_name": "martinfowler.com (Thoughtworks)",
+        "source_url": "https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html",
+        "published_date": "2026-09-02",
+        "beat": "in_practice",
+        "summary": "Edwards-Alexander, CTO for Europe, Middle East and India at Thoughtworks, put ten engineers in one room in Barcelona to find out how far they could get leaning fully into agentic engineering, building an airline IROps system — the tool an airline's control centre uses when things go wrong. The finding he writes up is accidental: the team had, without designing it, prompted their agents into using the repository itself as a shared blackboard, the 1970s coordination pattern from Hearsay-II.",
+        "so_what": "It is a named leader describing what a deliberately extreme team experiment actually produced, including the part nobody planned — which is the shape of every honest adoption story.",
+        "tier_guess": "in-practice",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "notes": "STANDING CANDIDATE from Issue 24 §7 item 24, where it was excluded for three reasons: off-theme for the season, AI-primary against v1.35, and outlet/employer overlap with that issue's martinfowler.com Leadership Read. Only the third block is automatically discharged this week. If the Leadership Read is Ludicity or Pragmatic Engineer, martinfowler.com is clear and this becomes available. Still off-theme for 'making technical decisions when not the SME', and still AI-primary - so it is the strongest candidate for a NEW season, not for week 3 of the current one. Named operator at a named org, journey format: all three qualities pass. martinfowler.com could not be fetched.",
+        "jargon_terms": [
+          "blackboard",
+          "IROps",
+          "hyper-agentic",
+          "Hearsay-II"
+        ]
+      }
+    ],
+    "outside_in": [
+      {
+        "headline": "Zalando auto-approves a third of its pull requests and takes 20-40% off PR lead time",
+        "source_name": "Zalando Engineering Blog",
+        "source_url": "https://engineering.zalando.com/posts/2026/08/agentic-engineering-at-zalando-a-snapshot.html",
+        "published_date": "2026-08-14",
+        "beat": "outside_in",
+        "summary": "Zalando's snapshot of its agentic engineering programme describes a risk-based PR approval tool that scores each pull request for rollout risk at creation time. About 33% land as low risk and are auto-approved by the bot, cutting PR lead time by 20-40% against all PRs. The stated benefit is not throughput for its own sake: it removes the interruption tax on colleagues asked to rubber-stamp prototypes and internal tooling changes.",
+        "so_what": "It is a peer org putting a measured number on a change most teams have only argued about — which reviews are actually load-bearing and which are ceremony.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "notes": "STRONGEST OUTSIDE IN CANDIDATE per the Issue 24 state note. Zalando is NOT in outside_in_history, so the no-repeat-company rule is clear; sector category is consumer tech at scale. Blocked at Issue 24 only by being out of window plus v1.35; it is still out of window (14 August) and Outside In explicitly does not require current-week material. Passes the substitution test: 'a large engineering org auto-approves a third of its pull requests on a risk score and cuts lead time 20-40%' still carries meaning. A dedicated in-window sweep found no newer Zalando engineering post - only an AGNTCon appearance scheduled for 18 September, which is a preview and therefore out of scope. engineering.zalando.com could not be fetched.",
+        "jargon_terms": [
+          "PR lead time",
+          "auto-approval",
+          "risk-based approval"
+        ],
+        "chartable_data": "33% of PRs auto-approved; 20-40% reduction in PR lead time - a single clean before/after pair."
+      },
+      {
+        "headline": "DoorDash moved agent work off laptops: 130,000 engineering tasks a month on a platform called Flux",
+        "source_name": "InfoQ",
+        "source_url": "https://www.infoq.com/news/2026/08/doordash-flux-cloud-agent/",
+        "published_date": "2026-08-31",
+        "beat": "outside_in",
+        "summary": "DoorDash built Flux after finding that running agent workloads on developers' laptops capped CPU and memory, depended on the machine staying connected, and handed autonomous agents whatever credentials and internal access the developer already had. Flux runs the work in isolated Firecracker microVMs behind an MCP gateway, with reusable playbooks and scoped access plus central auditing, triggerable from Slack, GitHub or scheduled jobs. It reports 130,000 engineering tasks automated in a single month, more than 25,000 automated code reviews a week, more than 300 playbooks and more than 10,000 weekly invocations.",
+        "so_what": "The decision it documents is the one every org reaches about three months into an agent rollout: whether agent execution stays on individual machines carrying individual credentials.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "high",
+        "narrative_tension": "medium",
+        "urgency_classification": "decide_this_month",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://careersatdoordash.com/blog/delegating-engineering-work-to-cloud-based-agents/"
+        ],
+        "notes": "STANDING CANDIDATE from Issue 24 §7 item 6 - the best Outside In candidate in that pool, blocked only by v1.35 (long-form AI cap), with the state note saying to take it when the Leadership Read is non-AI. If the Leadership Read is Ludicity, that condition is arguably met; if it is the Pragmatic Engineer code-review piece, it is not. DoorDash is not in outside_in_history. BINDING from Issue 24: cite InfoQ, not careersatdoordash.com, which returned 403 on 4 September (and is untestable this run). It also pairs directly against the OpenAI Agents API candidate - build-your-own vs buy-the-harness - which is the most interesting shape available this week. Watch the migration/technology test: the story survives substitution because the decision is about credentials and ownership, not about Firecracker.",
+        "jargon_terms": [
+          "Firecracker",
+          "microVM",
+          "MCP gateway",
+          "playbook"
+        ],
+        "chartable_data": "130,000 tasks/month; 25,000 automated code reviews/week; 300+ playbooks; 10,000+ weekly invocations; sub-5s p95 end-to-end setup."
+      },
+      {
+        "headline": "Figma's security team let an agent run alert triage and cut time-to-resolution by about 70%",
+        "source_name": "InfoQ (write-up of Figma's engineering blog)",
+        "source_url": "https://www.infoq.com/news/2026/09/figma-security-agents/",
+        "published_date": "2026-09-01",
+        "beat": "outside_in",
+        "summary": "Figma built an alert-triage agent that receives the full Slack thread history as context plus steering memory and a toolset scoped to what a security on-call engineer needs. Three kinds of memory — past alerts, behavioural guidance and learned database structures — let it improve over time. Figma reports roughly 70% faster resolution on complex alerts and a 20% reduction in on-call pages by correctly lowering the severity of some, with human review and strict controls retained.",
+        "so_what": "It is an on-call design change dressed as an AI story: the agent's real output is fewer pages, which is a rota and retention question before it is a security one.",
+        "tier_guess": "outside-in",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://www.figma.com/blog/how-we-secure-figmas-internal-systems-with-agents/",
+          "https://tldrsec.com/p/tldr-sec-342"
+        ],
+        "notes": "Figma is NOT in outside_in_history (sector: enterprise/SaaS, which also helps the rolling-4 sector-rotation rule). CAUTION ON DATES AND FIGURES: Figma's own post is dated 29 July 2026; the InfoQ write-up carries a /2026/09/ path but its exact day could not be confirmed, and the published_date above is an estimate. Sources also disagree on the headline number - 70% in the InfoQ rendering, 71% in the Figma post summary. Pin one source and one figure. The 20% page reduction appears only in the InfoQ rendering. Both domains egress-blocked.",
+        "jargon_terms": [
+          "alert triage",
+          "on-call",
+          "steering memory",
+          "severity"
+        ],
+        "chartable_data": "~70% faster resolution on complex alerts; ~20% fewer on-call pages; three memory types - a small before/after pair plus a three-part diagram."
+      }
+    ],
+    "rabbit_hole": [
+      {
+        "headline": "Agents Gone Wild: GreyNoise's own write-up of the PaperCut swarm, including the exclusion list the agents ignored",
+        "source_name": "GreyNoise Labs",
+        "source_url": "https://www.greynoise.io/blog/ai-orchestrated-campaign-against-papercut-ng-mf",
+        "published_date": "2026-09-09",
+        "beat": "operating_at_scale",
+        "summary": "The full threat-research post behind the week's swarm story, with the campaign timeline, the harness and model the operator used, and the detail that the agents produced victims in countries on the operator's own 28-country exclusion list.",
+        "so_what": "The tangent is the governance one: an operator who wrote scope rules for his agents and did not get them.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "high",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "news_event",
+        "notes": "Source type tag: 'Long-read'. Connects directly to the PaperCut candidate, which is the Rabbit Hole's requirement. Do not use if GreyNoise already anchors the Lead AND appears elsewhere - source cap."
+      },
+      {
+        "headline": "The Blackboard Model of Problem Solving and the Evolution of Blackboard Architectures",
+        "source_name": "AI Magazine (H. Penny Nii, 1986)",
+        "source_url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/537",
+        "published_date": "1986-06-01",
+        "beat": "ways_of_working",
+        "summary": "The canonical 1986 account of the blackboard pattern that came out of Hearsay-II, the DARPA speech-understanding system built at Carnegie Mellon between 1971 and 1976: many specialist, individually unreliable knowledge sources posting partial guesses to a shared structure, with a scheduler choosing the most promising next action.",
+        "so_what": "Forty years before anyone said 'multi-agent', this is the paper describing the coordination pattern agent harnesses keep rediscovering.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "low",
+        "narrative_tension": "medium",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://onlinelibrary.wiley.com/doi/abs/10.1609/aimag.v7i2.537"
+        ],
+        "notes": "Source type tag: 'Paper'. Only usable if the Edwards-Alexander 'Accidental Blackboard' piece runs in the issue - the Rabbit Hole must connect to a story that is actually in the issue. Delightful tangent if it does.",
+        "jargon_terms": [
+          "blackboard architecture",
+          "Hearsay-II",
+          "knowledge source",
+          "opportunistic scheduling"
+        ]
+      },
+      {
+        "headline": "Dario Amodei: We Must Pace the Frontier",
+        "source_name": "darioamodei.com",
+        "source_url": "https://darioamodei.com/post/we-must-pace-the-frontier",
+        "published_date": "2026-09-12",
+        "beat": "operating_at_scale",
+        "summary": "A roughly 3,800-word essay arguing that frontier labs should deliberately slow capability gains so safety work can keep pace, committing Anthropic to embedded employee-level third-party evaluators. Altman, Musk and Hassabis all signalled agreement within a day.",
+        "so_what": "The clearest statement yet of the pacing argument from someone with a commercial reason not to make it.",
+        "tier_guess": "rabbit-hole",
+        "uk_me_relevance": "medium",
+        "narrative_tension": "high",
+        "urgency_classification": "general_awareness",
+        "event_or_essay": "essay",
+        "secondary_sources": [
+          "https://thezvi.wordpress.com/2026/09/14/we-must-pace-the-frontier/"
+        ],
+        "notes": "OUT OF WINDOW - published 12 September, one day after the window closes. Recorded so Issue 26 does not have to rediscover it, and because the reaction wave will land in the Issue 26 window. DO NOT USE IN ISSUE 25 as an in-window item. Also interacts with the Anthropic threat-report candidate and the source cap.",
+        "jargon_terms": [
+          "frontier",
+          "embedded evaluators",
+          "recursive self-improvement"
+        ]
+      }
+    ],
+    "p0_active": []
+  },
+  "_research_notes": {
+    "fetch_failures": "WebFetch/HTTPS egress was blocked by the session proxy for every host tried this run (sec.gov, theregister.com, infoq.com, leaddev.com, github.blog, lethain.com, cnbc.com, business-standard.com, ibtimes.co.uk, calcalistech.com, waydev.co, en.wikipedia.org). All sourcing below therefore rests on WebSearch result summaries plus the real URLs those results returned; no page was fetched directly. Phase 3 must re-verify every figure against the primary before print.",
+    "known_403s_from_issue_24": "careersatdoordash.com, Finextra, Computer Weekly, Parliament and OpenAI incident posts could not be retested this run because the session proxy blocked all outbound fetches; treat the Issue 24 403 list as still live.",
+    "binding_facts_checked": [
+      "27 July 2026 UK multi-bank Faster Payments degradation - a dedicated sweep for a September update found NOTHING new. The binding fact stands: no shared cause has ever been published. Some low-quality outlets (startupfortune, fintech.garden) attribute the fault to Lloyds' connection into Faster Payments while Faster Payments said its central system was fine; that is contested attribution, not a published shared cause, and must not be printed as one.",
+      "'July 2026 AWS mega-outage' - no evidence surfaced this run. Remains UNVERIFIED; this is the eighth consecutive demotion.",
+      "AWS ME-CENTRAL-1 / ME-SOUTH-1 - no fresh status update found in the window. Still OPEN, AWS's last public update remains 30 April 2026. Available coverage relates to the March 2026 drone-strike incidents and is out of window.",
+      "Uber's 2 September restructure - a dedicated sweep found NO new in-window movement beyond the 2 September memo and its same-week coverage. On the no-repeat-anchor set; single-sentence throughline only.",
+      "Nvidia / Hugging Face - no in-window movement. The 8-K (2 September) and the first-half-2027 expected close are unchanged. On the no-repeat-anchor set.",
+      "Anthropic EFS commercial terms - no movement in the window. Terms as recorded at Issue 24 (no charge, phased rollout 'later this fall', components opt-in) stand; the 1 September announcement is out of window.",
+      "Broadcom TrueSource (31 August) - a dedicated sweep found NO fresh movement and still no published pricing. The Issue 24 'Quick Take on fresh movement' condition does NOT fire. The live Broadcom story this week is the VMware VDDK withdrawal instead."
+    ],
+    "retired": "Canva / Rob Giglio retired from the standing candidate list per the Issue 24 state note. Not researched this run.",
+    "loyalty_sweep_result": "The mandatory v1.27 loyalty / commerce-media / card-linked-offer / rewards-engineering sweep ran five dedicated queries and returned no in-window primary event. Everything found was undated vendor marketing (Kard, Olive, Open Loyalty, Talon.One), a December 2025 SAS press release on financial media networks, or Mastercard/Fiserv partnership material whose dates could not be confirmed. The nearest thing to an in-window loyalty story is the Visa/Mastercard/Ant KYA framework, recorded under banking_fintech_loyalty, where the loyalty angle is that agent identity is the layer card-linked redemption will have to reason about - and that loyalty processing remains explicitly unsolved.",
+    "uk_me_bank_engineering_sweep_result": "No in-window UK or Middle East bank engineering event surfaced. Lloyds Envoy (May), the HSBC/Lloyds/NatWest sovereign-model coalition (July) and Lloyds' Glasgow agentic-AI research programme are all out of window and were covered or available earlier. MEBIS (16-17 Sep) and Seamless Fintech ME (22-24 Sep) are forthcoming events and the digest does not preview.",
+    "out_of_window_but_worth_flagging_for_issue_26": [
+      "Dario Amodei, 'We Must Pace the Frontier' (12 September) plus same-day agreement from Altman, Musk and Hassabis.",
+      "Oracle coverage of the 10-Q (12-14 September) if the filing itself proves unreadable.",
+      "Anthropic cut cache-read pricing by 75% on 1 September - budget-relevant, out of window, unused."
+    ]
+  }
+}
