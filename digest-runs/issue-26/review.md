@@ -6,7 +6,11 @@
 
 ---
 
-## VERDICT: **FAIL** — 5 blocking, 10 secondary
+## VERDICT: **PASS** — cleared at re-review, 18 September 2026
+
+*Part 1 (below) ruled **FAIL** — 5 blocking, 10 secondary. All five blocking findings and all ten secondary findings landed in the shipped HTML; re-derived at **Part 2 — Re-review** at the foot of this file. **Clear to deliver.** One optional wording nit is recorded there; it is inside the cap and does not block.*
+
+## PART 1 VERDICT (superseded): **FAIL** — 5 blocking, 10 secondary
 
 This is a strong issue and it passes the checks the run plan was most worried about. The Issue 23 differentiation rule holds: none of the sixteen barred sources appears (grep returns zero for JetBrains, DX, DORA, GitClear, Veracode, Capgemini, Octoverse, PagerDuty, Deloitte, Perforce, Bessemer, Monzo, Atlassian, Agent Chip), the issue argues ownership and gating rather than the adoption arc, and Issue 23's own headings do not rhyme with these. The Figma hard bar holds absolutely — *alert triage*, *on-call*, *71%*, *20% fewer*, *25% fewer* and *draft* all return **zero**. All 25 binding corrections at §0.3 executed, including the seven §4 spot-checks: *Gartner* 0, *McKinsey* 0, *delegation gap* 0, *AI Control Plane* / *Agent Fabric* / *Trusted Agent Identity* 0, *Wickham* 0, *provisional agreement* 0, *feedforward* attributed to the Radar and never to Böckeler. The three main-loop rulings executed exactly: `60%` on the cover, `0–20%` nowhere, S2 re-weighted with no substitute source, Meanwhile at four items unpadded. Third-person voice is clean — *the reader*, *reader's*, *your team*, *your firm*, *your org*, *your customers*, *you must*, *you should*, *you need to* each return **zero**. Every quote appears in exactly one slot. Every `href` is real and in the briefs' list. Attribution fidelity passes on all six named tests.
 
@@ -330,3 +334,109 @@ The run plan's handoff (*"So why is a large share of this work still expected to
 5. **B5** — reword the executive summary's composition line so twenty-eight reconciles with its own breakdown.
 
 **Secondary — recommended in the same pass:** the Counterpoint's missing handoff and the three repeated *"is the next question"* closes (1) · the CNCF band tag (2) · Salesforce's vendor disclosure (3) · Figma's *~30%* (4) · six jargon glosses, *control plane* first (5) · the AWS Radar date's provenance (6) · three restatements cut (7) · ~80 words back into the Counterpoint (8) · compress the executive summary's band paragraph (9) · de-imperative *"instrument the lifecycle"* (10).
+
+---
+
+# PART 2 — RE-REVIEW
+
+**Re-reviewed:** 18 September 2026 · **Artefact:** `digest-runs/issue-26/issue-26.html` (post-fix) · **Mode:** FULL re-derivation from the shipped HTML. Nothing below is taken from the main loop's self-report; every claim was re-grepped or re-parsed.
+
+## RE-REVIEW VERDICT: **PASS — clear to deliver**
+
+All five blocking findings and all ten secondary findings are executed in the shipped HTML. The fix pass introduced no broken markup, no new banned construction, no new figure and no contradiction with a §0.2 ledger row. The three fixes the main loop authored on its own initiative are all correct.
+
+---
+
+## 1 — Epistemic reframing: **2, at the cap of 2. PASS.**
+
+Re-derived structurally across the whole issue (`<style>`, `<script>`, `<svg>` and comments stripped; 9,377 words scanned sentence by sentence against *"does this sentence name what something is NOT in order to introduce what it IS?"*), applying Part 1's own exclusion set — spec-mandated source-quality disclosures (*not peer-reviewed*, *self-reported rather than independently audited*, *a member contribution rather than a CNCF position*, *a vendor framework rather than an industry standard*, *this digest's arithmetic rather than Okta's phrasing*, *four outputs of one company rather than four independent voices*, the eleven *"does not separate"* band tags) and the build-or-buy factual contrasts.
+
+**Both remaining instances:**
+
+| # | Section | Sentence | Status |
+|---|---|---|---|
+| **1** | Counterpoint | "These are not contradictory readings; they are readings taken at different points of the same redesign." | **Allocated** at briefs §1.11. Correctly kept. |
+| **2** | Lessons — Key Takeaway, bullet 1 | "Oversight is at least four distinct activities, not one review step — a capacity plan that budgets 'review' is short before it starts." | **Unallocated but inside the cap.** Missed by Part 1's table — it was quoted at Part 1's S7 as a repetition and not carried into B1, though it is structurally identical to B1 #11 and #12, which sit in the same bullet list and were both cleared. |
+
+Part 1's eleven prescribed rewrites all landed verbatim; each superseded string returns **0** and each replacement returns **1**. The two "borderline and cheap to clear" items (*"A named person, not a committee."*, *"Two details make it live rather than historical."*) were also cleared, both returning 0.
+
+**The new Counterpoint closing paragraph introduces zero reframes.** It carries no `X rather than Y`, no `X, not Y` and no structurally equivalent negation. Scans for the six canonical patterns and their listed variants (*less a … than*, *not whether*, *the real issue/question/story/problem*, *isn't the story*, *is no longer*, *the interesting part*, *matters more than*, *isn't so much*) all return **0** across the file.
+
+**Borderline, judged out and recorded for transparency** (same line Part 1 drew): S1 *"Three of the four are organisational design rather than engineering"* · S3 *"The auto-approval applies to the change, not to the agent"* · case study *"with agents acting inside a governed platform rather than inside an editor"* · case study *"…do not clear its assurance bar, and has bought four years of somebody else's measurement instead"*. A stricter reviewer would count the first of these and put the issue at 3; at Part 1's setting the count is 2 and the cap holds.
+
+**Optional, not blocking** — instance 2 is the only slack in the cap, and it reads inconsistently beside its own de-reframed siblings. If it is cleared, the exact wording is:
+
+> "Oversight is at least four distinct activities — a capacity plan that budgets &ldquo;review&rdquo; as one task is short before it starts."
+
+## 2 — Stat discipline: **PASS.**
+
+- **The 60% is homed once.** `60%` returns exactly **one** instance in the whole file — the cover `.stat-figure`. B2's prescribed replacement is in place verbatim: S1 now reads *"That is the gap the cover names, in Anthropic's own measurement — the collaboration paradox, its label for the mismatch."* The three duplicated full-context elements are gone from S1: the against-interest framing now appears only in the cover band, and `21 January 2026` survives in S1 only inside the `.source-tag`, which is citation, not context. The Societal Impacts attribution was dropped rather than moved to the cover; that is permitted — Part 1 offered it as optional.
+- **The new Counterpoint paragraph is shorthand only and prints no new figure.** It names two cells already in the grid and already homed elsewhere — Okta's **34%** (homed S3) and Figma's **80%** (homed S4). It reproduces no sample size, no publication date, no methodology figure and no unlisted number. The Counterpoint still carries **six cells, all shorthand, none new**, and the section total of distinct figures is unchanged from Part 1.
+- One minor redundancy, not a violation: *"against a bar the organisation set before the number existed"* restates *"against a bar the team set in advance"* three paragraphs earlier. Both are shorthand; no rule engaged.
+
+## 3 — Section cross-references and How to Read routing: **PASS.**
+
+`Sections? [0-9]` returns **0** across the file. All eight of B3's strings are replaced, and every one routes to the section whose visible `.section-label` carries that name:
+
+| Reference | Points at | Label check |
+|---|---|---|
+| How to Read, 10-min: "Section Two on who owns what" | marker 3 | *Section Two — LeadDev · arXiv · FinOps · Pragmatic Engineer*, h2 *"Who owns what: roles, decision rights and the AI bill"* ✅ |
+| How to Read, 10-min: "Section Three on the control layer" | marker 4 | *Section Three — Okta · DoorDash · Zalando · Microsoft · Salesforce*, h2 *"The control layer: identity, the execution boundary, and policy at runtime"* ✅ |
+| Exec summary ¶4 and `.source-tag`; Lessons `.source-tag` | — | "Sections One to Five" ×3 ✅ |
+| S3 Salesforce: "a word Section Four is about to use" | marker 5 | *Section Four — GitHub · Thoughtworks · Figma · LinearB* (harness) ✅ |
+| Case study: "the same claim Section Three found in a vendor architecture" | marker 4 | Microsoft's governance architecture sits in Section Three ✅ |
+| Lessons: "regulated expectations described in Section Five" | marker 6 | *Section Five — PRA · BoE/FCA · European Commission · arXiv · Coder* ✅ |
+| Recommended Reading item 2: "Section Four's build-stage argument" | marker 5 | Böckeler sits in Section Four ✅ |
+
+The `.section-marker` "N OF 9" chips are unchanged and remain correct.
+
+## 4 — Meanwhile item 1: **PASS.**
+
+*"Named responses landed on both sides within days…"* returns **0**. The item now ends on *"…in which a swarm of agents attacked targets they had not been asked to attack."* followed by the `.mw-src` link, at two sentences plus the headline — inside the spec's 2–3. No responses claim, no hedge, no timing characterisation survives anywhere in the item. Meanwhile structure is unchanged at four items (2 `.meanwhile-lead` + 2 `.mw-item`); `.other-news-grid` markup returns **0**.
+
+## 5 — Executive-summary composition: **PASS.**
+
+B5's wording is in place verbatim. *"among them"* replaces the colon, so the enumeration is a sample and no longer presents itself as a partition of 28; the reader can no longer sum it and find 24. The scope indicator remains 28 in all five places. S9's compression also landed in the same paragraph — the band framing is now one signposted clause (*"a third category that is a caveat about measurement, covering sources whose headline numbers mix the first two"*) rather than 117 words of preview. S7's cut of the four-question list from the executive summary also landed: *"who holds the token budget"* now appears twice, in the Concept of the Week and the Verdict, as recommended.
+
+## 6 — Voice, imperatives and banned phrases: **PASS.**
+
+All nine banned constructions return **0** (*the reader*, *reader's*, *your team*, *your firm*, *your org*, *your customers*, *you must*, *you should*, *you need to*), as do *leverage*, *synergy* and *best-in-class*. S10 landed: *"instrument the lifecycle"* returns 0 and the line now reads *"where the lifecycle is instrumented, answering an audit is a query."* A sentence-initial imperative-verb sweep across the whole body returns two hits, both false positives — *"Build or buy:"* (a label) and *"Read together, the grid says…"* (a past participle modifying *the grid*, not an instruction). The only question marks are the three OCM scoring dimensions in the S5 sidebar, rendered third-person. The Figma hard bar still holds absolutely after the edits — *alert triage*, *alert-triage*, *on-call*, *on call*, *71%*, *20% fewer*, *25% fewer* and *draft* all return **0** — and all sixteen barred sources still return 0 (the single *Perforce* grep hit is the substring inside *Hyperforce*).
+
+## 7 — Markup integrity and ledger consistency: **PASS.**
+
+**Tags.** Balanced on every element: `<p>` 113/113 · `<div>` 142/142 · `<section>` 14/14 · `<h2>` 13/13 · `<h3>` 25/25 · `<span>` 65/65 · `<ul>` 3/3 · `<li>` 15/15 · `<svg>` 6/6 · `<a>` 60/60 · `<strong>` 23/23 · `<em>` 4/4. A full nesting parse over the document returns **zero** mismatches and **zero** unclosed elements. The six apparent self-closing `<p…/>` matches are `<path>` and `<polygon>` inside the SVGs.
+
+**SVG label repositionings.** All six charts still parse, still carry their full label sets (14 / 12 / 10 / 23 / 18 / 22 `<text>` elements), and **every** `<text>` in every chart sits inside its own `viewBox`. No plotted value, source line or in-chart limitation note was disturbed.
+
+**Ledger.** No edited or added wording contradicts a §0.2 row:
+- **GitHub changelog — the main loop's own correction is right.** Row 49 dates it **9 September 2026**; the briefs' date window is **12–18 September 2026**. 9 September is three days *before* the window opened, not nine days after it closed. *"out of window by nine days"* returns 0; the shipped line reads *"GitHub's changelog of 9 September 2026 — three days before the window opened, and stated as such"*. This also leaves Salesforce (15 September) correctly described as the only in-window body source.
+- **S4 ~30%** — row 61's approximation marker is restored: *"raised pass-rate recall by roughly 30% in relative terms"*.
+- **S6 AWS Radar** — the unsourced 30 April 2026 date is gone; the item is now a pure null finding (*"a dedicated sweep this week surfaced no newer public update from the provider on the Middle East regions"*), which needs no ledger row.
+- **S5 MAS** — now *"the Monetary Authority of Singapore"*, in the Bank of Thailand primary / cross-jurisdiction order that row 82 and correction C14 require.
+- **S2 CNCF band tag**, **S3 Salesforce vendor-interest disclosure** and the **control plane / CVE / ring-fenced / hyperscaler** glosses all landed in the prescribed wording and contradict nothing.
+- **Case study** — *"four years"*, the University of Glasgow programme and *"no figures have been published and none is invented here"* remain consistent with row 95. Residual nit, unchanged by this pass and reviewer-prescribed: row 95 establishes a four-year partnership but not that Lloyds *paid* for it, so *"it paid an outside party to produce"* and *"has bought"* both sit a half-step ahead of the primary. Not blocking; worth a row in §0.2 before Issue 27 reuses the framing.
+
+## 8 — S1 handoffs: **PASS.**
+
+*"is the next question"* now returns **1** (S2→S3); the other two closes are varied. The Counterpoint's missing handoff is supplied verbatim as specified — *"One organisation has published the whole of it, controls included, and it is a UK bank."* — and it now opens the case study rather than closing the section on *"this issue prints none"*. S8's ~80 words are back in the Counterpoint in the same paragraph.
+
+## 9 — Ruling on the Counterpoint's Okta claim
+
+**Consistent with S3.** S3 prints all three limbs the Counterpoint leans on: *"Okta sells that control surface, which is the reason to read its research carefully"* (the vendor interest), *"a survey published on 27 May 2026 across 292 C-level executives and vice presidents… plus knowledge workers"* (the survey population), and *"Okta does not separate agent-mode work from agents with action authority"* (the band mixing). The 34% is the share applying human-grade controls, so *"the control whose absence it measures"* is a fair reading of the remainder. One wording nit: *"a population whose sources do not separate the bands"* locates the non-separation in the respondents' sources rather than in Okta, which is where S3 puts it — the Counterpoint is echoing its own ¶4 formula. Substance matches; phrasing is a half-degree loose.
+
+---
+
+## Re-review summary
+
+| Finding | Status |
+|---|---|
+| B1 — epistemic reframing 13 → cap 2 | **CLEARED.** Count now **2**, at the cap. |
+| B2 — 60% re-explained in S1 | **CLEARED.** One appearance, cover only. |
+| B3 — section numbering / How to Read routing | **CLEARED.** Eight strings, all routing correctly. |
+| B4 — Meanwhile dropped-responses claim | **CLEARED.** Sentence deleted. |
+| B5 — false partition in the composition line | **CLEARED.** Reworded; no longer a partition. |
+| S1–S10 | **All ten executed.** |
+| Main loop's three own fixes | **All three correct**, including the 9 Sep / 12 Sep window correction. |
+| Markup | **Clean.** Balanced tags, valid nesting, all SVG labels in bounds. |
+
+**Clear to deliver.** `digest-state.json` may now be written on Deliver. Three carry-forwards for Issue 27, none blocking: correct briefs §1.0 (the composition line), §1.11 (the reframe allocation table) and §1.12 (six vs seven `.section-label.alert`); resolve the §1.7 / §2.7 disagreement on the CNCF band before the tagging table is reused; and add a §0.2 row for the Lloyds–Glasgow commission if the *"bought"* framing is kept.
